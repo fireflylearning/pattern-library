@@ -60,7 +60,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 863,
+		"initialSize": 552,
 		"inputAbbreviatedPath": "\/images\/tag.png",
 		"outputAbbreviatedPath": "\/images\/tag.png",
 		"outputPathIsOutsideProject": 0,
@@ -71,7 +71,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 514,
+		"initialSize": 557,
 		"inputAbbreviatedPath": "\/images\/tag@0.5x.png",
 		"outputAbbreviatedPath": "\/images\/tag@0.5x.png",
 		"outputPathIsOutsideProject": 0,
@@ -82,7 +82,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 1115,
+		"initialSize": 900,
 		"inputAbbreviatedPath": "\/images\/tag@2x.png",
 		"outputAbbreviatedPath": "\/images\/tag@2x.png",
 		"outputPathIsOutsideProject": 0,
@@ -406,9 +406,9 @@
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",
-	"displayValue": "cleanup-dev-14",
+	"displayValue": "firefly-pattern-library",
 	"displayValueWasSetByUser": 0,
-	"iconImageName": "pencil_gray"
+	"iconImageName": "harddrive_gray"
 	},
 "projectSettings": {
 	"alwaysUseExternalServer": 0,
