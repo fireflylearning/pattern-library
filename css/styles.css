@@ -999,6 +999,34 @@ table {
   -moz-box-shadow: 1px 0 0 #ffffff;
   box-shadow: 1px 0 0 #ffffff;
 }
+.ff-segment {
+  font-size: 16px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.ff-segment .ff-segment-title {
+  padding: 10px;
+  background-color: #f2f2f2;
+  line-height: 1;
+  margin: 0;
+  border-bottom: 1px solid #b4b4b4;
+}
+.ff-segment .ff-segment-list {
+  border-left: 1px solid #f2f2f2;
+  border-right: 1px solid #f2f2f2;
+  padding: 0;
+  margin: 0;
+}
+.ff-segment .ff-segment-list li {
+  list-style: none;
+}
+.ff-segment .ff-segment-list a {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #b4b4b4;
+  color: #366797;
+  text-decoration: none;
+}
 .ff-icon:before {
   display: block;
   font-family: 'ff-editor';

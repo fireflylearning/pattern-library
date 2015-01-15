@@ -30,10 +30,10 @@ body {
 @ff_message_pink:	#F91BD2;
 @ff_message_purple:	#8702FB;
 
-@ff_dashboard_c_rounded:         2px;
-@ff_dashboard_c_spacing:         10px;
-@ff_dashboard_c_text:            16px;
-@ff_dashboard_c_headings:        20px;
+@ff_dashboard_rounded:         2px;
+@ff_dashboard_spacing:         10px;
+@ff_dashboard_text:            16px;
+@ff_dashboard_headings:        20px;
 
 //should this template get all the extra styling bits, or the old crappy styling for somethings?
 //It's useful to turn this off when an existing template doesn't override a few of the newer styling bits
@@ -42,7 +42,7 @@ body {
 
 #ff_dashboard {
 	.normalise() {
-		font-size: @ff_dashboard_c_text;
+		font-size: @ff_dashboard_text;
 		line-height: 1;
 	}
 }
@@ -57,6 +57,7 @@ body {
 @import "_ff-messages";
 @import "_ff-labels-color";
 @import "_ff-progress";
+@import "_ff-segment";
 
 
 
