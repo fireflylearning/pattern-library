@@ -1,0 +1,236 @@
+// ------------------------------------------------------------- //
+// .ff-messages
+// ------------------------------------------------------------- //
+.ff-messages {
+	
+	#ff_dashboard > .normalise();
+	margin: 0;
+	padding: 0;
+	
+	li {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1em;
+		position: relative;
+	}
+	
+	//default grid for text
+	p {
+		margin: 0;
+		line-height: 1.4;
+	}
+	
+	a {
+		color: @ff_dashboard_c_link;
+		text-decoration: none;
+	}
+	
+	.ff-message-content, .ff-comment-content {
+		background-color: white;
+		border: 1px solid @ff_dashboard_c_border;
+		padding: @ff_dashboard_c_spacing;
+		position: relative;
+		#ff > .clearfix();
+	}
+	
+	.ff-message-meta, .ff-comment-meta {
+		font-size: 0.7em;
+		text-transform: uppercase;
+		color: @ff_dashboard_c_quiet;
+		clear: left;
+	}
+	.ff-message-text, .ff-comment-text {
+		margin-bottom: @ff_dashboard_c_spacing;
+		float: left;
+		max-width: 68%;
+	}
+	
+	
+	.ff-message-close {
+		position: absolute;
+		top: @ff_dashboard_c_spacing;
+		right: @ff_dashboard_c_spacing;
+		display: block;
+		span {
+			display: none;
+		}
+		&:before {
+			margin: 0;
+		}
+	}
+	
+	.ff-message-important(@ff_dashboard_c_extras) when (@ff_dashboard_c_extras='true') {
+		.ff-message-important:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top:0;
+			left: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: @ff_dashboard_c_spacing @ff_dashboard_c_spacing 0 0;
+			border-color: @ff_message_red transparent transparent transparent;
+		}
+	}
+	.ff-message-important(@ff_dashboard_c_extras);
+	
+	.ff-checkbox { //primary action button
+		float:right;
+		position: absolute;
+		top: @ff_dashboard_c_spacing;
+		right: @ff_dashboard_c_spacing;
+	}
+	@media all and (max-width: 780px) {
+		.ff-checkbox {
+			position: relative;
+			top: auto;
+			right: auto;	
+			clear: both;
+			float: left;
+			margin-bottom: @ff_dashboard_c_spacing;
+		}
+	}
+	
+	//colour label placement
+	
+	.ff-task .ff-message-meta {
+		float: left;
+	}
+	.ff-labels-color {
+		float: left;
+		margin-left: @ff_dashboard_c_spacing;
+		position: relative;
+		top: -4px;
+	}
+	
+	.ff-colors(@ff_dashboard_c_extras) when (@ff_dashboard_c_extras='true') {
+		//colour markings
+		.ff-color-red,
+		.ff-color-grey,
+		.ff-color-blue,
+		.ff-color-yellow,
+		.ff-color-green,
+		.ff-color-orange,
+		.ff-color-pink,
+		.ff-color-purple {
+			&:before {
+				content: '';
+				display: block;
+				width: 5px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				z-index: 1;
+			}
+		}
+		.ff-color-red:before { background-color: @ff_message_red; }
+		.ff-color-grey:before { background-color: @ff_message_grey; }
+		.ff-color-blue:before { background-color: @ff_message_blue; }
+		.ff-color-yellow:before { background-color: @ff_message_yellow; }
+		.ff-color-green:before { background-color: @ff_message_green; }
+		.ff-color-orange:before { background-color: @ff_message_orange; }
+		.ff-color-pink:before { background-color: @ff_message_pink; }
+		.ff-color-purple:before { background-color: @ff_message_purple; }
+	}
+	.ff-colors(@ff_dashboard_c_extras);
+	
+	
+	//special case for marks & feedback
+	.ff-result {
+		.ff-message-content {
+			padding-left: 100px;
+			
+		}
+		.ff-message-content:before,
+		.ff-message-result {
+			position: absolute;
+			left: 10px;
+			top: 50%;
+			width: 80px;
+			text-align: center;
+			margin-top: -12px;
+			font-size: 24px;
+			
+			p {
+				line-height: 1;
+				font-weight: bold;
+				color: @ff_dashboard_c_quiet;
+			}
+			
+		}
+		.ff-message-content:before {
+			content: '\e092';
+			font-family: 'ff-editor';
+			color: @ff_dashboard_c_quiet;
+		}
+		
+		&.ff-result-mark,
+		&.ff-result-grade {
+			.ff-message-content:before { display: none;}
+		}
+		
+		.ff-message-text {
+			margin: @ff_dashboard_c_spacing 0 0;
+		}
+		
+	}
+	
+}
+
+//special cases for comments
+.ff-comments.ff-messages {
+	.ff-comment-wrapper {
+		margin-left: 57px;
+	}
+	.ff-comment-content {
+		
+		.arrows(@ff_dashboard_c_extras) when (@ff_dashboard_c_extras='true') {
+			&:before {
+				content: '';
+				display: block;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 5px 7px 5px 0;
+				border-color: transparent @ff_dashboard_c_border transparent transparent;
+				position: absolute;
+				top: @ff_dashboard_c_spacing;
+				left: -7px;
+			}
+			
+			&:after {
+				content: '';
+				display: block;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 5px 7px 5px 0;
+				border-color: transparent white transparent transparent;
+				position: absolute;
+				top: @ff_dashboard_c_spacing;
+				left: -6px;
+			}
+		}
+		.arrows(@ff_dashboard_c_extras);
+		
+	}
+	
+	
+	.ff-comment-avatar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		border:1px solid @ff_dashboard_c_border;
+		padding: 1px;
+		background-color: white;
+		width: 42px;
+		
+		img {
+			max-width: 100%;
+			display: block;
+		}
+		
+	}
+}

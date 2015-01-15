@@ -1,0 +1,28 @@
+// ------------------------------------------------------------- //
+// .ff-button
+// ------------------------------------------------------------- //
+.ff-button {
+  
+  #ff_dashboard > .normalise();
+  
+  &, a {
+    color: @ff_dashboard_c_link;
+    display: block;
+    text-decoration: none;
+  }
+  
+  padding: @ff_dashboard_c_spacing;
+  cursor: pointer;
+  background-color: @ff_dashboard_c_bg;
+  line-height: 1;
+  border:1px solid @ff_dashboard_c_border;
+  text-align: center;
+  margin: 0;
+  
+  #ff > .rounded(@ff_dashboard_c_rounded);
+  
+  &:hover {
+    background-color: darken(@ff_dashboard_c_bg,5%);
+  }
+  
+}

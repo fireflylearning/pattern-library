@@ -1,0 +1,57 @@
+// ------------------------------------------------------------- //
+// .ff-labels-color
+// ------------------------------------------------------------- //
+
+.ff-labels-color {
+	overflow: hidden;
+	padding: 0;
+	
+	li {
+		margin: 0;
+		padding: 0;
+		display: none;
+		
+		&.ff-selected {
+			display: inline-block;
+		}
+		
+		a {
+			display: block;
+			width: 20px;
+			height: 20px;
+			background-image: url(../images/tag.png);
+			text-indent: -99em;
+			@media
+			(-webkit-min-device-pixel-ratio: 2), 
+			(min-resolution: 192dpi) {
+				background-image: url(../images/tag@2x.png);
+				background-size: 20px 20px;
+			}
+		}
+		
+		&.ff-label-color-empty a {
+			background-image: url(../images/tag-disabled.png);
+			@media
+			(-webkit-min-device-pixel-ratio: 2), 
+			(min-resolution: 192dpi) {
+				background-image: url(../images/tag-disabled@2x.png);
+				background-size: 20px 20px;
+			}
+		}
+		
+	}
+	
+	&.ff-active li {
+		display: inline-block;
+	}
+	
+	.ff-label-color-grey a {background-color: @ff_message_grey;}
+	.ff-label-color-red a {background-color: @ff_message_red;}
+	.ff-label-color-blue a {background-color: @ff_message_blue;}
+	.ff-label-color-yellow a {background-color: @ff_message_yellow;}
+	.ff-label-color-green a {background-color: @ff_message_green;}
+	.ff-label-color-orange a {background-color: @ff_message_orange;}
+	.ff-label-color-purple a {background-color: @ff_message_purple;}
+	.ff-label-color-pink a {background-color: @ff_message_pink;}
+	
+}

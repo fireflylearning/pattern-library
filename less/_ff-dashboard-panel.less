@@ -1,0 +1,59 @@
+// ------------------------------------------------------------- //
+// .ff-dashboard-panel
+// ------------------------------------------------------------- //
+
+.ff-dashboard-panel {
+  
+  //header
+  .ff-dashboard-panel-header {
+    #ff > .clearfix();
+    outline: 1px dashed red;
+  }
+  .ff-dashboard-panel-actions {
+    float: right;
+  }
+  .ff-dashboard-component-heading {
+    font-size: 20px;
+    padding: @ff_dashboard_c_spacing - ((@ff_dashboard_c_headings - @ff_dashboard_c_text)/2) @ff_dashboard_c_spacing;
+    margin: 0;
+    line-height: 1;
+    float: left;
+  }
+  
+  //body
+  .ff-dashboard-panel-body {
+    #ff > .clearfix();
+    outline: 1px dashed red;
+  }
+  
+  //more
+  .ff-dashboard-panel-more {
+    #ff > .clearfix();
+    outline: 1px dashed red;
+    padding: @ff_dashboard_c_spacing;
+    
+    .ff-see-more {
+      font-size: @ff_dashboard_c_text;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .ff-see-more a {
+      color: @ff_dashboard_c_link;
+      text-decoration: none;
+    }
+    
+    .ff-see-more a:after {
+      .ff-icon-define();
+      content: "\e009";
+      float: none;
+      display: inline;
+      position: relative;
+      top: 3px;
+      margin-left: 4px;
+    }
+    
+  }
+  
+}

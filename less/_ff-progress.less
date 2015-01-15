@@ -1,0 +1,47 @@
+// ------------------------------------------------------------- //
+// .ff-progress
+// ------------------------------------------------------------- //
+
+.ff-messages .ff-progress {
+	background-color: @ff_dashboard_c_bg;
+	float: right;
+	margin: -1*@ff_dashboard_c_spacing;
+	padding: @ff_dashboard_c_spacing;
+	width: 29%;
+	border: 1px solid white;
+}
+
+.ff-progress {
+	text-transform: uppercase;
+	color: @ff_dashboard_c_quiet;
+	font-size: 70%;
+}
+
+.ff-progress-bar {
+	background-color: #fff;
+	border: 1px solid #d5cfcf;
+	height: 20px;
+	padding: 3px;
+	position: relative;
+	#ff > .box-sizing();
+	#ff > .rounded(10px);
+	margin: @ff_dashboard_c_spacing 0;
+	
+	.ff-progress-completed,
+	.ff-progress-marked {
+		position: relative;
+		display: block;
+		height: 100%;
+		overflow: hidden;
+		background-color: #D1E3CD;
+		#ff > .rounded(6px);
+		
+	}
+
+	.ff-progress-marked {
+		background-color: #5f9d4c;
+		top: -100%;
+		#ff > .box-shadow(1px 0 0 white;)
+	}
+	
+}

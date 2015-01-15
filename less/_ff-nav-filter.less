@@ -1,0 +1,56 @@
+// ------------------------------------------------------------- //
+// .ff-nav-filter
+// ------------------------------------------------------------- //
+.ff-nav-filter {
+  border-top: 3px solid @ff_dashboard_c_border;
+  #ff_dashboard > .normalise();
+  
+  ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  a {
+    display: block;
+    line-height: 1;
+    padding: @ff_dashboard_c_spacing;
+    color: @ff_dashboard_c_link;
+    text-decoration: none;
+  }
+  
+  .ff-nav-group-header {
+    background-color: @ff_dashboard_c_bg;
+    border-bottom: 1px solid darken(@ff_dashboard_c_bg,5%);
+    color: #333;
+    
+    &:hover {
+      background-color: darken(@ff_dashboard_c_bg,5%);
+    }
+    
+    &:after {
+      .ff-icon-define();
+      content: "\e005";
+      float: right;
+    }
+  }
+  
+  .selected .ff-nav-group-header:after {
+    content: "\e006";
+  }
+  
+  .selected > a {
+    color: #333;
+  }
+  
+  .ff-nav-group-items li:last-child a {
+    border-bottom: 1px solid darken(@ff_dashboard_c_bg,5%);
+  }
+  
+  .ff-nav-group-items a:hover {
+    background-color: lighten(@ff_dashboard_c_bg,2%);
+  }
+  
+  
+  
+}

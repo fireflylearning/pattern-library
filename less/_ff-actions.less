@@ -1,0 +1,37 @@
+// ------------------------------------------------------------- //
+// .ff-actions (groupings)
+// ------------------------------------------------------------- //
+.ff-actions {
+  #ff > .clearfix();
+  #ff_dashboard > .normalise();
+  outline: 1px dashed red;
+  
+  &.ff-page-actions {
+    margin: 1em 0;
+  }
+  
+  .ff-actions-primary {
+    float: left;
+    
+    >* {
+      margin-right: @ff_dashboard_c_spacing;
+      float: left;
+    }
+    
+  }
+  
+  .ff-actions-secondary {
+    float: right;
+    
+    >* {
+      margin-left: @ff_dashboard_c_spacing;
+      float: left;
+    }
+ 
+  }
+  
+  .ff-actions-title {
+    padding: @ff_dashboard_c_spacing;
+  }
+  
+}
