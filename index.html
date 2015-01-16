@@ -204,7 +204,7 @@
                   <p class="ff-comment-meta">Posted by <a href="#" class="ff-comment-meta-author">Administrator</a>, <span class="ff-comment-meta-date">10/11/2014</span> at <span class="ff-comment-meta-time">09:38</span> in <a href="#" class="ff-comment-meta-location">Art</a></p>
                 </div>
               </div>
-              <div class="ff-comment-avatar"><img src="images/person.jpg"></div>
+              <div class="ff-comment-avatar"><img src="images/person.jpg" class="ff-avatar"></div>
             </li>
             <li class="ff-comment">
               <div class="ff-comment-wrapper">
@@ -215,7 +215,7 @@
                   <p class="ff-comment-meta">Posted by <a href="#" class="ff-comment-meta-author">Administrator</a>, <span class="ff-comment-meta-date">10/11/2014</span> at <span class="ff-comment-meta-time">09:38</span> in <a href="#" class="ff-comment-meta-location">Art</a></p>
                 </div>
               </div>
-              <div class="ff-comment-avatar"><img src="images/person.jpg"></div>
+              <div class="ff-comment-avatar"><img src="images/person.jpg" class="ff-avatar"></div>
             </li>
           </ol>
   	</div>
@@ -331,7 +331,7 @@
 	            </div>
 	            <p class="ff-message-meta"><a href="/profile?guid=d558dd63fa446347ac8967da4bbcfa01">Administrator</a> THIS now, submitted 22/09/2014 at 12:45</p>
 	            <div class="ff-message-text">
-	              <p><a href="http://firefly5/this-now?showtest=d558dd63fa446347ac8967da4bbcfa01">Mark only</a></p>
+	              <p><a href="http://firefly5/this-now?showtest=d558dd63fa446347ac8967da4bbcfa01">Mark</a></p>
 	            </div>
 	            <a href="#" class="ff-message-close ff-action-markasdoneundo ff-icon ff-icon-close" title="Archive"><span>Archive</span></a></div>
 	        </li>
@@ -350,7 +350,7 @@
 	            </div>
 	            <p class="ff-message-meta"><a href="/profile?guid=d558dd63fa446347ac8967da4bbcfa01">Administrator</a> Do this homework, submitted 22/09/2014 at 12:42</p>
 	            <div class="ff-message-text">
-	              <p><a href="http://firefly5/do-this-homework?showtest=d558dd63fa446347ac8967da4bbcfa01">This is lovely</a></p>
+	              <p><a href="http://firefly5/do-this-homework?showtest=d558dd63fa446347ac8967da4bbcfa01">Grade</a></p>
 	            </div>
 	            <a href="#" class="ff-message-close ff-action-markasdoneundo ff-icon ff-icon-close" title="Archive"><span>Archive</span></a></div>
 	        </li>
@@ -366,6 +366,33 @@
         </div>
   	</div>
   	
+  	<h2>ff-progress.ff-progress-status</h2>
+  	<div class="pattern">
+	  	<div class="ff-progress ff-progress-status">
+	        <p class="ff-progress-status-waiting ff-progress-status-message">Sally Student has <strong>not completed</strong> this task</p> 
+			<div class="ff-actions">
+				<div class="ff-actions-primary">
+					<button class="ff-button ff-button-addcomment ff-button-primary ff-icon ff-icon-clock"><span>Send Reminder</span></button>
+					<button class="ff-button ff-button-addcomment ff-button-primary ff-icon ff-icon-cross"><span>Excuse</span></button>
+				</div>
+			</div>
+	  	</div>
+	  	<div class="ff-progress ff-progress-status">
+	        <p class="ff-progress-status-complete ff-progress-status-message">Sally Student has <strong>completed</strong> this task</p> 
+			
+			<div class="ff-actions">
+				<div class="ff-actions-primary ff-actions-title">
+					<span>Awaiting Marks &amp; Feedback</span>
+				</div>
+				<div class="ff-actions-secondary">
+					<button class="ff-button ff-button-addcomment ff-button-primary ff-icon ff-icon-tasks"><span>Add Marks &amp; Feedback</span></button>
+				</div>
+			</div>
+	  	</div>
+	  	
+  	</div>
+  	
+  	
   	<h2>ff-segment</h2>
   	<div class="pattern">
 	  	<div class="ff-segment">
@@ -376,6 +403,20 @@
 			  	<li><a href="#">After School Clubs > Rowing Club Summer Schedule 2015</a></li>
 		  	</ul>
 	  	</div>
+  	</div>
+  	
+  	<h2>ff-avatar</h2>
+  	<div class="pattern">
+	  	<img src="images/person.jpg" class="ff-avatar"/>
+  	</div>
+  	
+  	<h2>ff-relationship-listing</h2>
+  	<div class="pattern">
+	  	<ul class="ff-relationship-listing">
+        	<li><a href="#"><img src="images/group.jpg" class="ff-relationship-listing-photo ff-avatar"/><span class="ff-relationship-listing-name">Administrators</span></a></li>
+        	<li><a href="#"><img src="images/group.jpg" class="ff-relationship-listing-photo ff-avatar"/><span class="ff-relationship-listing-name">Teachers</span></a></li>
+        	<li><a href="#"><img src="images/group.jpg" class="ff-relationship-listing-photo ff-avatar"/><span class="ff-relationship-listing-name">Swimming Team</span></a></li>
+      </ul>
   	</div>
   	
   </body>

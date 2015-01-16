@@ -58,51 +58,6 @@ body {
 @import "_ff-labels-color";
 @import "_ff-progress";
 @import "_ff-segment";
-
-
-
-
-// ------------------------------------------------------------- //
-// .ff-icon
-// ------------------------------------------------------------- //
-
-.ff-icon-define() {
-	display: block;
-	font-family: 'ff-editor';
-	font-style: normal;
-	font-weight: normal;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-}
-
-.ff-icon:before {
-  .ff-icon-define();
-  margin-right: 4px;
-  float: left;
-}
-
-.ff-icon-comment-add:before {
-  content: "\e052";
-}
-.ff-icon-selected:before {
-  content: "\e014";
-}
-.ff-icon-bookmark:before {
-  content: "\e042";
-}
-.ff-icon-task-add:before {
-  content: "\e010";
-}
-.ff-icon-archive:before {
-  content: "\e09F";
-}
-.ff-icon-close:before {
-	content: '\e017';
-}
-
-//after icons
-.ff-icon-dropdown:after {
-  .ff-icon-define();
-  content: "\e006";
-  float: right;
-}
+@import "_ff-avatar";
+@import "_ff-relationship-listing";
+@import "_ff-icon";
