@@ -1,0 +1,21 @@
+// ------------------------------------------------------------- //
+// .ff-label
+// ------------------------------------------------------------- //
+.ff-label {
+	padding: 2px 6px;
+	background-color: white;
+	border: 1px solid transparent;
+	#ff > .rounded(3px);
+}
+
+.ff-label-overdue {
+	border-color: darken(@ff_dashboard_c_red,10%);
+	color: lighten(@ff_dashboard_c_red,80%);
+	background-color: @ff_dashboard_c_red;
+}
+
+.ff-label-new {
+	border-color: darken(@ff_dashboard_c_green,10%);
+	color: lighten(@ff_dashboard_c_green,80%);
+	background-color: @ff_dashboard_c_green;
+}

@@ -1,0 +1,34 @@
+// ------------------------------------------------------------- //
+// .ff-navigation
+// ------------------------------------------------------------- //
+.ff-navigation {
+	padding: 0;
+	margin: 0;
+	#ff > .clearfix();
+	
+	li {
+		list-style: none;
+		display: block;
+		float: left;
+		margin-right: 6px;
+		
+		&:after {
+			content: "|";
+			margin-left: 6px;
+		}
+		
+		&:last-child:after {
+			display: none;
+		}
+		
+	}
+	
+	a {
+		color: @ff_dashboard_c_link;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+}

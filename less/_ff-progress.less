@@ -42,13 +42,13 @@
 		display: block;
 		height: 100%;
 		overflow: hidden;
-		background-color: #D1E3CD;
+		background-color: desaturate(lighten(@ff_dashboard_c_green,50%),60%);
 		#ff > .rounded(6px);
 		
 	}
 
 	.ff-progress-marked {
-		background-color: #5f9d4c;
+		background-color: @ff_dashboard_c_green;
 		top: -100%;
 		#ff > .box-shadow(1px 0 0 white;)
 	}
@@ -58,10 +58,10 @@
 .ff-progress-status {
 	
 	.ff-progress-status-waiting {
-		
+		color: @ff_dashboard_c_red;
 	}
 	.ff-progress-status-complete {
-		color: #5f9d4c;
+		color: @ff_dashboard_c_green;
 	}
 	
 }

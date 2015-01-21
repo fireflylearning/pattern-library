@@ -1,0 +1,51 @@
+// ------------------------------------------------------------- //
+// .ff-pagination
+// ------------------------------------------------------------- //
+
+.ff-pagination {
+	text-align: center;
+	
+	margin: 0;
+	padding: 0;
+	
+	
+	li {
+		display: inline;
+	}
+	a {
+		display: inline-block;
+		padding: 10px;
+		min-width: 20px;
+		border: 1px solid @ff_dashboard_c_border;
+		color: @ff_dashboard_c_link;
+		text-decoration: none;
+	}
+	
+	.ff-pagination-previous a {
+		float: left;
+		border-color: transparent;
+	}
+	
+	.ff-pagination-next a {
+		float: right;
+		border-color: transparent;
+	}
+	
+	.ff-pagination-disabled a {
+		color: @ff_dashboard_c_quiet;
+		cursor: default;
+	}
+	
+	.ff-pagination-skip span {
+		min-width: 40px;
+		display: inline-block;
+	}
+	
+	.ff-pagination-current-page a {
+		cursor: default;
+		background-color: @ff_dashboard_c_border;
+		color: lighten(@ff_dashboard_c_border,40%);
+		border-color: darken(@ff_dashboard_c_border,20%);
+	}
+	
+}

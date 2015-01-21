@@ -28,7 +28,8 @@
 	.ff-message-content, .ff-comment-content {
 		background-color: white;
 		border: 1px solid @ff_dashboard_c_border;
-		padding: @ff_dashboard_spacing;
+		#ff > .rounded(2px);
+		padding: @ff_dashboard_spacing @ff_dashboard_spacing @ff_dashboard_spacing @ff_dashboard_spacing*2;
 		position: relative;
 		#ff > .clearfix();
 	}
@@ -51,6 +52,9 @@
 		top: @ff_dashboard_spacing;
 		right: @ff_dashboard_spacing;
 		display: block;
+		border: 1px solid @ff_dashboard_c_border;
+		padding: @ff_dashboard_spacing/2;
+		background-color: white;
 		span {
 			display: none;
 		}
@@ -60,6 +64,11 @@
 	}
 	
 	.ff-message-important(@ff_dashboard_c_extras) when (@ff_dashboard_c_extras='true') {
+		.ff-message-important {
+			border-color: @ff_dashboard_c_red;
+			background-color: lighten(@ff_dashboard_c_red, 53%);
+		}
+		
 		.ff-message-important:before {
 			content: '';
 			display: block;
@@ -70,7 +79,7 @@
 			height: 0;
 			border-style: solid;
 			border-width: @ff_dashboard_spacing @ff_dashboard_spacing 0 0;
-			border-color: @ff_message_red transparent transparent transparent;
+			border-color: @ff_dashboard_c_red transparent transparent transparent;
 		}
 	}
 	.ff-message-important(@ff_dashboard_c_extras);

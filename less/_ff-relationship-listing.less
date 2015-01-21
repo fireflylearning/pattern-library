@@ -1,3 +1,45 @@
 // ------------------------------------------------------------- //
-// .ff-relationshop-listing
+// .ff-relationship-listing
 // ------------------------------------------------------------- //
+
+.ff-relationship-listing {
+	
+	margin: 0;
+	padding: 0;
+	#ff_dashboard > .normalise();
+	
+	
+	li {
+		list-style: none;
+		margin-bottom: @ff_dashboard_spacing;
+		#ff > .clearfix();
+		
+		&:last-child {
+			margin-bottom: 0;
+		}
+		
+	}
+	
+	a {
+		display: block;
+		clear: left;
+		color: @ff_dashboard_c_link;
+		text-decoration: none;
+	}
+	
+	.ff-relationship-listing-photo {
+		width: 42px;
+		display: inline-block;
+		float: left;
+	}
+	
+	.ff-relationship-listing-name {
+		float: left;
+		margin-left: @ff_dashboard_spacing;
+		margin-top: 8px;
+	}
+	
+	
+	
+	
+}
