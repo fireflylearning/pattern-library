@@ -141,6 +141,26 @@
 		display: @display;
 	}
 	
+	.flex-wrap(@wrap: nowrap) {
+	  -webkit-flex-wrap: @wrap;
+	     -moz-flex-wrap: @wrap;
+	      -ms-flex-wrap: @wrap;
+	          flex-wrap: @wrap;
+	}
+	.justify-content(@justify: flex-start) {
+	  -webkit-justify-content: @justify;
+	     -moz-justify-content: @justify;
+	      -ms-justify-content: @justify;
+	          justify-content: @justify;
+	}
+	.align-content(@align: stretch) {
+	  -webkit-align-content: @align;
+	     -moz-align-content: @align;
+	      -ms-align-content: @align;
+	          align-content: @align;
+	}
+
+	
 	// The 'flex' shorthand
 	// - applies to: flex items
 	// <positive-number>, initial, auto, or none

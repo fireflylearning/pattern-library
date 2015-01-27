@@ -1,12 +1,121 @@
 body {
   padding: 30px 60px;
   background-color: #F7F7F7;
+  font-family: 'firasans';
 }
 
 .pattern {
 	padding: 20px;
-	border: 1px dotted #CCC;
+	border: 1px dotted #EBB538;
 	background-color: white;
+	#ff > .clearfix();
+}
+
+.source {
+	
+	.toggle {
+		background: white;
+		border: 1px dotted #EBB538;
+		border-top: none;
+		padding: 10px 20px;
+		color: #ccc;
+		text-decoration: none;
+		display: block;
+	}
+	background-color: #3F3F3F;
+	
+	pre {
+		margin: 0;
+		padding: 20px;
+		display: none;
+	}
+
+	
+}
+
+nav {
+	
+	margin-bottom: 20px;
+	
+	ul {
+		margin: 0;
+		padding: 0;
+		#ff > .flex-display();
+	}	
+	
+	li {
+		list-style: none;
+		margin-right: 10px;
+	}
+	
+	a {
+		border: 1px solid #ccc;
+		#ff > .rounded(3px);
+		background: white;
+		padding: 10px;
+		color: #F12C40;
+		text-decoration: none;
+	}
+
+}
+
+
+
+@font-face {
+    font-family: 'firasans';
+    src: url('firasans/firasans-bold-webfont.eot');
+    src: url('firasans/firasans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('firasans/firasans-bold-webfont.woff2') format('woff2'),
+         url('firasans/firasans-bold-webfont.woff') format('woff'),
+         url('firasans/firasans-bold-webfont.ttf') format('truetype'),
+         url('firasans/firasans-bold-webfont.svg#fira_sansbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'firasans';
+    src: url('firasans/firasans-italic-webfont.eot');
+    src: url('firasans/firasans-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('firasans/firasans-italic-webfont.woff2') format('woff2'),
+         url('firasans/firasans-italic-webfont.woff') format('woff'),
+         url('firasans/firasans-italic-webfont.ttf') format('truetype'),
+         url('firasans/firasans-italic-webfont.svg#fira_sansitalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+
+}
+@font-face {
+    font-family: 'firasans';
+    src: url('firasans/firasans-regular-webfont.eot');
+    src: url('firasans/firasans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('firasans/firasans-regular-webfont.woff2') format('woff2'),
+         url('firasans/firasans-regular-webfont.woff') format('woff'),
+         url('firasans/firasans-regular-webfont.ttf') format('truetype'),
+         url('firasans/firasans-regular-webfont.svg#fira_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'firasans';
+    src: url('firasans/firasans-bolditalic-webfont.eot');
+    src: url('firasans/firasans-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('firasans/firasans-bolditalic-webfont.woff2') format('woff2'),
+         url('firasans/firasans-bolditalic-webfont.woff') format('woff'),
+         url('firasans/firasans-bolditalic-webfont.ttf') format('truetype'),
+         url('firasans/firasans-bolditalic-webfont.svg#fira_sansbold_italic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+b, strong {
+	font-weight: bold;
+}
+
+i, em {
+	font-style: italic;
 }
 
 
@@ -54,6 +163,19 @@ body {
 	}
 }
 
+//layouts
+.ff-content-primary {
+	float: left;
+	width: 74.5%;
+	clear: both;
+	#ff > .clearfix();
+}
+.ff-content-secondary {
+	float: right;
+	width: 23.5%;
+	#ff > .clearfix();
+}
+
 @import "_ff-button";
 @import "_ff-actions";
 @import "_ff-nav-switch";
@@ -65,18 +187,17 @@ body {
 @import "_ff-messages";
 @import "_ff-labels-color";
 @import "_ff-progress";
-@import "_ff-segment";
+@import "_ff-links-list";
 @import "_ff-avatar";
-@import "_ff-relationship-listing";
+@import "_ff-users";
+@import "_ff-group-listing";
 @import "_ff-icon";
 @import "_ff-navigation";
 @import "_ff-label";
 @import "_ff-pagination";
-
-
-
-
-
-
-
+@import "_ff-filter";
+@import "_ff-heading";
+@import "_ff-tags";
+@import "_ff-post-footer";
+@import "_ff-interface-form";
 

@@ -1,0 +1,100 @@
+﻿//global site settings
+// (generally you can leave these alone)
+//-------------------------------------//
+@ff_base:										16em;
+@ff_b:											16; //em free base
+
+//firefly core settings
+//-------------------------------------//
+
+@ff_width_wide:									800;
+@ff_width_medium:								400;
+@ff_width_small:								280;
+@ff_width_text:									670;
+
+//note that background vars are always decalired as "background:" 
+//so could contain images if required.
+
+//default spacing of items
+@ff_space_vertical:								22;
+
+//general settings
+@ff_c_text:										black;
+@ff_c_text_light:								fade(black,45%);
+
+//border and bg combos - usually used together:
+//light
+@ff_c_border:									#CCCCCC;
+@ff_c_background:								lighten(#CCCCCC,17%);
+//dark
+@ff_c_border_dark:								lighten(#95AB00,6%);
+@ff_c_background_dark:							lighten(#95AB00,56%);
+//header
+@ff_c_header_background:						#95AB00;
+@ff_c_header_text:								white;
+
+
+//button styles
+@ff_c_button_background_light:					white;
+@ff_c_button_text_light:						#95AB00;
+@ff_c_button_background_dark:					#95AB00;
+@ff_c_button_text_dark:							white;
+
+
+// paragraph colours for important, highlight and guidance
+@ff_c_paragraph_important:						#c23a46;
+@ff_c_paragraph_important_bg:					lighten(@ff_c_paragraph_important, 40%);
+@ff_c_paragraph_highlight:						#d79506;
+@ff_c_paragraph_highlight_bg:					lighten(@ff_c_paragraph_highlight, 45%);
+@ff_c_paragraph_guidance:						#67914d;
+@ff_c_paragraph_guidance_bg:					lighten(@ff_c_paragraph_guidance, 42%);
+@ff_c_paragraph_prominent:						#fd7700;
+@ff_c_paragraph_prominent_bg:					lighten(spin(@ff_c_paragraph_prominent, 10), 40%);
+
+//label styles (generally you wont need to alter these)
+@ff_c_label_warning:							#E5002B;
+@ff_c_label_new:								#95AD01;
+@ff_c_label_notice:								#999999;
+
+@ff_c_label_background:							white;
+
+@ff_c_label_grey:								#999999;
+@ff_c_label_red:								#D35447;
+@ff_c_label_blue:								#2B97CE;
+@ff_c_label_yellow:								#FFCD00;
+@ff_c_label_green:								#98CE1E;
+@ff_c_label_orange:								#FF9A00;
+@ff_c_label_pink:								#FF97CC;
+@ff_c_label_purple:								#9A63CE;
+
+//forms
+@ff_form_formfiled_border: 						1px solid #e0e0e0;
+@ff_form_border_radius: 						5px;
+@ff_form_error_color: 							#D21120;
+@ff_form_success_color: 						#88C64D;
+
+//tables
+//to turn off border set them to "transparent"
+@ff_c_table_border_outer:						1px solid #333333;
+@ff_c_table_border_inner:						1px solid #CCCCCC;
+@ff_c_table_border_footer:						2px solid #333333;
+@ff_c_table_background_header:					#333333;
+@ff_c_table_text_header:						white;
+@ff_c_table_background_zebra:					#F7F7F7;
+
+//galleries
+@ff_c_gallery_background_caption:				#333333;
+@ff_c_gallery_text_caption:						white;
+
+//filelist
+@ff_c_filelist_background:						lighten(#CCCCCC,17%);
+@ff_c_filelist_background_light:				lighten(#CCCCCC,18%);
+@ff_c_filelist_text_light:						fade(black,40%);
+
+//navigation
+@ff_c_navigation_background:					lighten(#CCCCCC,10%);
+
+//tickers
+@ff_ticker_background: transparent;
+@ff_ticker_border: 1px solid #e0e0e0;
+@ff_ticker_news_fontcolor: #AA1B47;

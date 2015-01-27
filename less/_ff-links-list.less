@@ -1,0 +1,103 @@
+// ------------------------------------------------------------- //
+// .ff-links-list
+// ------------------------------------------------------------- //
+.ff-links-list {
+	
+	#ff_dashboard > .normalise();
+	margin-bottom: @ff_dashboard_spacing;
+	
+	.ff-links-list-title {
+		padding: @ff_dashboard_spacing;
+		background-color: @ff_dashboard_c_bg;
+		line-height: 1;
+		margin: 0;
+	}
+	
+	ul, ol {
+		border-left: 1px solid @ff_dashboard_c_bg;
+		border-right: 1px solid @ff_dashboard_c_bg;
+		border-top: 1px solid darken(@ff_dashboard_c_bg,5%);
+		padding: 0;
+		margin: 0;
+		
+		li {
+			list-style: none;
+			position: relative;
+		}
+		
+		a, button {
+			display: block;
+			padding: @ff_dashboard_spacing;
+			border: none;
+			border-bottom: 1px solid darken(@ff_dashboard_c_bg,5%);
+			color: @ff_dashboard_c_link;
+			text-decoration: none;
+		}
+		
+	}
+	
+	
+	//actions
+	
+	.ff-links-list-actions {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 1px;
+		overflow: hidden;
+		
+		a, button {
+			#ff > .box-sizing();
+			text-align: left;
+			border: none;
+			border-left: 1px solid darken(@ff_dashboard_c_bg,5%);
+		}
+		
+		button {
+			background-color: @ff_dashboard_c_bg;
+		}
+		
+	}
+	
+	//form
+	.ff-form ff-links-list-form, form {
+		&, input { #ff > .box-sizing(); }
+		
+		input[type=text] {
+			width: 100%;
+			padding: (@ff_dashboard_spacing - 1) @ff_dashboard_spacing; //-2 for the border as this is box-sizing: border-box
+			border: none;
+			border-bottom: 1px solid darken(@ff_dashboard_c_bg,5%);
+			#ff > .box-shadow(inset 2px 2px 2px fade(black,5%));
+			background-color: lighten(@ff_dashboard_c_bg,3%);
+		}
+		
+	}
+	
+	
+	//reordering
+	&.ff-links-list-reordering {
+		
+		&, ul, ol { border: none; }
+		
+		li {
+			display: block;
+			margin-bottom: @ff_dashboard_spacing;
+			border: none;
+		}
+		
+		li > a {
+			cursor: ns-resize;
+			border: 1px solid darken(@ff_dashboard_c_bg,5%);
+		}
+		
+		.ff-links-list-droptarget {
+			height: 1em;
+			padding: @ff_dashboard_spacing;
+			border: 1px dotted @ff_dashboard_c_border;
+			background-color: @ff_dashboard_c_bg;
+		}
+		
+	}
+	
+}

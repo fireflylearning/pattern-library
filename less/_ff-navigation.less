@@ -5,16 +5,19 @@
 	padding: 0;
 	margin: 0;
 	#ff > .clearfix();
+	#ff_dashboard > .normalise();
 	
 	li {
 		list-style: none;
 		display: block;
 		float: left;
-		margin-right: 6px;
+		margin: 0;
+		margin-right: @ff_dashboard_spacing;
 		
 		&:after {
 			content: "|";
-			margin-left: 6px;
+			margin-left: @ff_dashboard_spacing;
+			color: @ff_dashboard_c_border;
 		}
 		
 		&:last-child:after {
@@ -26,9 +29,11 @@
 	a {
 		color: @ff_dashboard_c_link;
 		text-decoration: none;
-		&:hover {
-			text-decoration: underline;
-		}
+	}
+	
+	.ff-comment & {
+		display: block;
+		margin-top: @ff_dashboard_spacing*2;
 	}
 	
 }

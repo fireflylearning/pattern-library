@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" charset="utf-8">
-    <title>Firefly Core Pattern Library. Beta.</title>
-  </head>
-  <body>
-  	<h1>Firefly Core Pattern Library. Beta.</h1>
+<? require_once '_htmlhead.php'; ?>
   	
   	<h2>ff-button (as link)</h2>
   	<div class="pattern">
@@ -105,7 +98,6 @@
   	
   	<h2>ff-nav-filter</h2>
   	<div class="pattern">
-    	
     	<div class="ff-nav-filter">
         <ul>
           <li class="ff-nav-group selected"><a class="ff-nav-group-header" href="#"><span>Filter by Status</span></a><div class="ff-nav-group-items" style="display: block;">
@@ -137,8 +129,7 @@
             </div>
           </li>
         </ul>
-      </div>
-    	
+      </div>	
   	</div>
   	
   	
@@ -157,6 +148,55 @@
 			  	<li><a href="#">Biology > Selective Membranes</a></li>
 			  	<li><a href="#">After School Clubs > Rowing Club Summer Schedule 2015</a></li>
 		  	</ul>
+	  	</div>
+  	</div>
+  	
+  	<h2>ff-links-list with actions & form</h2>
+  	<div class="pattern">
+	  	<div class="ff-links-list">
+		  	<ul>
+			  	<li><a href="#">Planets of the Solar System</a><div class="ff-links-list-actions"><a href="#">Rename</a></div></li>
+			  	<li>
+			  		<form class="ff-form ff-links-list-form">
+				  		<input type="text" value="X Planets"/>
+				  		<div class="ff-links-list-actions">
+					  		<button type="submit">Update</button>
+				  		</div>
+			  		</form>
+			  	</li>
+			  	<li><a href="#">The Atmosphere on Mars</a><div class="ff-links-list-actions"><a href="#">Rename</a></div></li>
+		  	</ul>
+	  	</div>
+  	</div>
+  	
+  	<h2>ff-links-list reordering</h2>
+  	<div class="pattern">
+	  	<div class="ff-links-list ff-links-list-reordering">
+		  	<p class="ff-links-list-instructions"><em>Drag and Drop your bookmarks into your preferred order.</em></p>
+		  	<ul>
+			  	<li><a href="#">Planets of the Solar System</a><div class="ff-links-list-actions"><a href="#">Delete</a></div></li>
+			  	<li><a href="#">X Planets</a><div class="ff-links-list-actions"><a href="#">Delete</a></div></li>
+			  	<li class="ff-links-list-droptarget"></li>
+			  	<li><a href="#">The Atmosphere on Mars</a><div class="ff-links-list-actions"><a href="#">Delete</a></div></li>
+		  	</ul>
+	  	</div>
+  	</div>
+  	
+  	<h2>ff-filter</h2>
+  	<div class="pattern">
+	  	<div class="ff-filter">
+		  	<form name="bookmarksform" class="ff-form" method="GET">
+			  	<label for="group">Recommended to:</label>
+			  	<select name="group">
+				  	<option value="">All Groups</option>
+				</select>
+				<label for="sort">Sort by:</label>
+				<select name="sort" onchange="this.form.submit()">
+					<option value="">Newest</option>
+                    <option value="visited">Last Visited</option>
+                    <option value="popular">Most Popular</option>
+                </select>
+            </form>
 	  	</div>
   	</div>
   	
@@ -184,6 +224,50 @@
         </ol>
   	</div>
   	
+  	<h2>ff-heading</h2>
+  	<div class="pattern">
+	  	<div class="ff-heading">
+		  	<h1>Page Heading</h1>
+	  	</div>
+  	</div>
+  	
+  	<h2>ff-tags</h2>
+  	<div class="pattern">
+	  	<ul class="ff-tags">
+		  	<li class="ff-tag"><span class="ff-tag-detail">Class 8x/En2</span><a href="#" class="ff-tag-remove ff-icon ff-icon-close"><span>Remove</span></a></li>
+		  	<li class="ff-tag"><span class="ff-tag-detail">Juan Jardino</span><a href="#" class="ff-tag-remove ff-icon ff-icon-close"><span>Remove</span></a></li>
+		  	<li class="ff-tag"><span class="ff-tag-detail">Class President "Edo"</span></li>
+	  	</ul>
+  	</div>
+  	
+  	<h2>ff-post-footer (wrapper)</h2>
+  	<div class="pattern">
+	  	<div class="ff-post-footer">
+		  	<span class="ff-post-footer-message"><strong>Recommend to:</strong></span>
+		  	<ul class="ff-tags">
+			  	<li class="ff-tag"><span class="ff-tag-detail">Class 8x/En2</span><a href="#" class="ff-tag-remove ff-icon ff-icon-close"><span>Remove</span></a></li>
+			  	<li class="ff-tag"><span class="ff-tag-detail">Juan Jardino</span><a href="#" class="ff-tag-remove ff-icon ff-icon-close"><span>Remove</span></a></li>
+			  	<li class="ff-tag"><span class="ff-tag-detail">Class President "Edo"</span></li>
+		  	</ul>
+		  	<a class="ff-post-footer-action" href="#">Add Another</a>
+	  	</div>
+  	</div>
+  	
+  	
+  	<h2>ff-interface-form</h2>
+  	<div class="pattern">
+	  	<form class="ff-interface-form">
+		  	<fieldset>
+			  	<label for="uniqueId1">Type your comment</label>
+			  	<textarea name="uniqueId1"></textarea>
+		  	</fieldset>
+		  	
+		  	<div class="ff-actions">
+		  		<button class="ff-button ff-button-primary">Add your comment</button>
+		  	</div>
+		  	
+	  	</form>
+  	</div>
   	
   	<h2>ff-dashboard-panel</h2>
   	<div class="pattern">
@@ -263,6 +347,97 @@
           </ol>
   	</div>
   	
+  	<h2>ff-messages for comments with replies & navigation</h2>
+  	<div class="pattern">
+	  	<ol class="ff-comments ff-messages">
+		  	<li class="ff-comment">
+              <div class="ff-comment-wrapper">
+                <div class="ff-comment-content">
+                  <div class="ff-comment-text">
+                    <p>The original comment.</p>
+                  </div>
+                  <p class="ff-comment-meta">Posted by <a href="#" class="ff-comment-meta-author">Peter Pupil</a>, <span class="ff-comment-meta-date">10/11/2014</span> at <span class="ff-comment-meta-time">09:38</span></p>
+                  <ul class="ff-navigation">
+					<li><a href="#" class="">Reply</a></li>
+					<li><a href="#" class="">Edit</a></li>
+					<li><a href="#" class="">Delete</a></li>
+				</ul>
+                </div>
+              </div>
+              <div class="ff-comment-avatar"><img src="images/person.jpg" class="ff-avatar"></div>
+            </li>
+            
+            <li class="ff-comment">
+              <div class="ff-comment-wrapper">
+                <div class="ff-comment-content">
+                  <div class="ff-comment-text">
+                    <p>The original comment.</p>
+                  </div>
+                  <p class="ff-comment-meta">Posted by <a href="#" class="ff-comment-meta-author">Peter Pupil</a>, <span class="ff-comment-meta-date">10/11/2014</span> at <span class="ff-comment-meta-time">09:38</span></p>
+                  <form class="ff-interface-form ff-comment-form">
+	                  <fieldset>
+	                  	<textarea></textarea>
+	                  </fieldset>
+	                  <div class="ff-actions">
+		                  <div class="ff-actions-primary">
+		                  	<button class="ff-button ff-button-primary">Reply</button>
+						  	<a class="ff-button">Cancel</a>
+		                  </div>	
+	                  </div>
+                  </form>
+                </div>
+              </div>
+              <div class="ff-comment-avatar"><img src="images/person.jpg" class="ff-avatar"></div>
+              
+              <ol class="ff-comment-replies">
+	              <li class="ff-comment">
+		              <div class="ff-comment-wrapper">
+		                <div class="ff-comment-content">
+		                  <div class="ff-comment-text">
+		                    <p>This is a reply to the original comment.</p>
+		                  </div>
+		                  <p class="ff-comment-meta">Posted by <a href="#" class="ff-comment-meta-author">Sally Student</a>, <span class="ff-comment-meta-date">10/11/2014</span> at <span class="ff-comment-meta-time">09:38</span></p>
+		                </div>
+		              </div>
+		              <div class="ff-comment-avatar"><img src="images/person.jpg" class="ff-avatar"></div>
+		              <ol class="ff-comment-replies">
+			              <li class="ff-comment">
+				              <div class="ff-comment-wrapper">
+				                <div class="ff-comment-content">
+				                  <div class="ff-comment-text">
+				                    <p>This is a reply to the reply.</p>
+				                  </div>
+				                  <p class="ff-comment-meta">Posted by <a href="#" class="ff-comment-meta-author">Peter Pupil</a>, <span class="ff-comment-meta-date">10/11/2014</span> at <span class="ff-comment-meta-time">09:38</span></p>
+				                  <ul class="ff-navigation">
+									<li><a href="#" class="">Reply</a></li>
+									<li><a href="#" class="">Edit</a></li>
+									<li><a href="#" class="">Delete</a></li>
+								</ul>
+				                </div>
+				              </div>
+				              <div class="ff-comment-avatar"><img src="images/person.jpg" class="ff-avatar"></div>
+				            </li>
+		              </ol>
+		            </li>
+		            <li class="ff-comment">
+		              <div class="ff-comment-wrapper">
+		                <div class="ff-comment-content">
+		                  <div class="ff-comment-text">
+		                    <p>This is another reply to the original comment.</p>
+		                  </div>
+		                  <p class="ff-comment-meta">Posted by <a href="#" class="ff-comment-meta-author">Terry Teacher</a>, <span class="ff-comment-meta-date">10/11/2014</span> at <span class="ff-comment-meta-time">09:38</span></p>
+		                </div>
+		              </div>
+		              <div class="ff-comment-avatar"><img src="images/person.jpg" class="ff-avatar"></div>
+		            </li>
+              </ol>
+              
+            </li>
+            
+	  	</ol>
+  	</div>
+  	
+  	
   	
   	<h2>ff-messages for tasks</h2>
   	<div class="pattern">
@@ -318,13 +493,13 @@
 	            <div class="ff-message-text">
 	              <p><a href="#">Online Task</a></p>
 	              <ul class="ff-message-attachments">
-	                	<li class="ff-message-attachment-file"><a href="resource.aspx?id=2671">0104 Firefly-s-w125-h125-q75-m1415912984.jpg</a></li>
+	                	<li class="ff-message-attachment-file"><a href="resource.aspx?id=2671" class="ff-icon ff-icon-file">0104 Firefly-s-w125-h125-q75-m1415912984.jpg</a></li>
 	               </ul>
 	            </div>
 	            <div class="ff-checkbox"><a class="ff-button ff-button-mark ff-button-submitwork" href="/complete-this"><span>Submit Work</span></a></div>
 	            <div class="ff-message-meta-and-labels">
 	              <p class="ff-message-meta"><span class="ff-label ff-label-new" title="Due 03/12/2014">Just Added</span> Added 31/03/2014 at 17:15</p>
-	              <ul class="ff-labels-color ff-active">
+	              <ul class="ff-labels-color">
 	                <li class="ff-label-color-grey"><a href="">Gray</a></li>
 	                <li class="ff-label-color-red"><a href="">Red</a></li>
 	                <li class="ff-label-color-blue"><a href="">Blue</a></li>
@@ -458,14 +633,29 @@
 	  	<img src="images/person.jpg" class="ff-avatar"/>
   	</div>
   	
-  	<h2>ff-relationship-listing</h2>
+  	<h2>ff-users</h2>
   	<div class="pattern">
-	  	<ul class="ff-relationship-listing">
-        	<li><a href="#"><img src="images/group.jpg" class="ff-relationship-listing-photo ff-avatar"/><span class="ff-relationship-listing-name">Administrators</span></a></li>
-        	<li><a href="#"><img src="images/group.jpg" class="ff-relationship-listing-photo ff-avatar"/><span class="ff-relationship-listing-name">Teachers</span></a></li>
-        	<li><a href="#"><img src="images/group.jpg" class="ff-relationship-listing-photo ff-avatar"/><span class="ff-relationship-listing-name">Swimming Team</span></a></li>
+	  	<ul class="ff-users">
+        	<li><a href="#"><img src="images/group.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Administrators</span></a></li>
+        	<li><a href="#"><img src="images/group.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Teachers</span></a></li>
+        	<li><a href="#"><img src="images/group.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Swimming Team</span></a></li>
       </ul>
   	</div>
   	
-  </body>
-</html>
+  	<h2>ff-group-listing</h2>
+  	<div class="pattern">
+	  	<div class="ff-group-listing">
+		  	<h2 class="ff-group-listing-title">Group Members</h2>
+		  	<ul class="ff-users">
+	        	<li><a href="#"><img src="images/person.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Timmy Anderson</span></a></li>
+	        	<li><a href="#"><img src="images/person.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Barry Ball</span></a></li>
+	        	<li><a href="#"><img src="images/person.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Stacy Cat</span></a></li>
+	        	<li><a href="#"><img src="images/person.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Amzer Drigrto</span></a></li>
+	        	<li><a href="#"><img src="images/person.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Simone Ephone</span></a></li>
+	        	<li><a href="#"><img src="images/person.jpg" class="ff-users-photo ff-avatar"/><span class="ff-users-name">Freddy Fabricini</span></a></li>
+	      </ul>
+	  	</div>
+  	</div>
+  	
+  	
+<?php require_once '_footer.php'; ?>

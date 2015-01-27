@@ -1,0 +1,1 @@
+var createCodePreview=function(){alert("hi")};$(function(){createCodePreview()});

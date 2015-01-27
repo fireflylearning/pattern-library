@@ -1,0 +1,35 @@
+.ff-tags {
+	margin: 0;
+	padding: 0;
+	
+	#ff_dashboard > .normalise();
+	
+	li {
+		list-style: none;
+		display: inline-block;
+		padding: @ff_dashboard_spacing/2 @ff_dashboard_spacing;
+		margin-right: @ff_dashboard_spacing;
+		background-color: white;
+		border: 1px solid @ff_dashboard_c_border;
+		#ff > .rounded(3px);
+		
+		&:last-child {
+			margin-right: 0;
+		}
+		
+	}
+	
+	a {
+		display: inline;
+		color: @ff_dashboard_c_link;
+		//overflow: hidden;
+		span {
+			display: none;
+		}
+		&:before {
+			margin: 0;
+			float: right;
+		}
+	}
+	
+}

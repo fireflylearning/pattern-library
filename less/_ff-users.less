@@ -1,8 +1,8 @@
 // ------------------------------------------------------------- //
-// .ff-relationship-listing
+// .ff-users
 // ------------------------------------------------------------- //
 
-.ff-relationship-listing {
+.ff-users {
 	
 	margin: 0;
 	padding: 0;
@@ -25,21 +25,42 @@
 		clear: left;
 		color: @ff_dashboard_c_link;
 		text-decoration: none;
+		#ff > .rounded(2px);
+		background-color: white;
 	}
 	
-	.ff-relationship-listing-photo {
+	.ff-users-photo {
 		width: 42px;
 		display: inline-block;
-		float: left;
 	}
 	
-	.ff-relationship-listing-name {
-		float: left;
+	.ff-users-name {
+		display: inline-block;
 		margin-left: @ff_dashboard_spacing;
-		margin-top: 8px;
+		vertical-align: text-top;
 	}
 	
 	
+}
+
+//ff-group-listing modifier
+
+.ff-group-listing .ff-users {
+	
+	#ff > .flex-display();
+	#ff > .flex-wrap(wrap);
+	#ff > .clearfix();
+	
+	li {
+		min-width: 200px;
+		margin-right: @ff_dashboard_spacing;
+		float: left; //for browsers that don't support flexbox
+	}
+	
+	a {
+		padding: @ff_dashboard_spacing;
+		border: 1px solid @ff_dashboard_c_border;
+	}
 	
 	
 }

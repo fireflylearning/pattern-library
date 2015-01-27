@@ -1,11 +1,103 @@
 body {
   padding: 30px 60px;
   background-color: #F7F7F7;
+  font-family: 'firasans';
 }
 .pattern {
   padding: 20px;
-  border: 1px dotted #CCC;
+  border: 1px dotted #EBB538;
   background-color: white;
+  zoom: 1;
+}
+.pattern:after,
+.pattern:before {
+  content: "";
+  display: table;
+}
+.pattern:after {
+  clear: both;
+}
+.source {
+  background-color: #3F3F3F;
+}
+.source .toggle {
+  background: white;
+  border: 1px dotted #EBB538;
+  border-top: none;
+  padding: 10px 20px;
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+}
+.source pre {
+  margin: 0;
+  padding: 20px;
+  display: none;
+}
+nav {
+  margin-bottom: 20px;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+nav li {
+  list-style: none;
+  margin-right: 10px;
+}
+nav a {
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: white;
+  padding: 10px;
+  color: #F12C40;
+  text-decoration: none;
+}
+@font-face {
+  font-family: 'firasans';
+  src: url('firasans/firasans-bold-webfont.eot');
+  src: url('firasans/firasans-bold-webfont.eot?#iefix') format('embedded-opentype'), url('firasans/firasans-bold-webfont.woff2') format('woff2'), url('firasans/firasans-bold-webfont.woff') format('woff'), url('firasans/firasans-bold-webfont.ttf') format('truetype'), url('firasans/firasans-bold-webfont.svg#fira_sansbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'firasans';
+  src: url('firasans/firasans-italic-webfont.eot');
+  src: url('firasans/firasans-italic-webfont.eot?#iefix') format('embedded-opentype'), url('firasans/firasans-italic-webfont.woff2') format('woff2'), url('firasans/firasans-italic-webfont.woff') format('woff'), url('firasans/firasans-italic-webfont.ttf') format('truetype'), url('firasans/firasans-italic-webfont.svg#fira_sansitalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'firasans';
+  src: url('firasans/firasans-regular-webfont.eot');
+  src: url('firasans/firasans-regular-webfont.eot?#iefix') format('embedded-opentype'), url('firasans/firasans-regular-webfont.woff2') format('woff2'), url('firasans/firasans-regular-webfont.woff') format('woff'), url('firasans/firasans-regular-webfont.ttf') format('truetype'), url('firasans/firasans-regular-webfont.svg#fira_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'firasans';
+  src: url('firasans/firasans-bolditalic-webfont.eot');
+  src: url('firasans/firasans-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('firasans/firasans-bolditalic-webfont.woff2') format('woff2'), url('firasans/firasans-bolditalic-webfont.woff') format('woff'), url('firasans/firasans-bolditalic-webfont.ttf') format('truetype'), url('firasans/firasans-bolditalic-webfont.svg#fira_sansbold_italic') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+b,
+strong {
+  font-weight: bold;
+}
+i,
+em {
+  font-style: italic;
 }
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 /* ==========================================================================
@@ -369,6 +461,33 @@ table {
     src: url('ffeditor-regular.svg') format('svg');
   }
 }
+.ff-content-primary {
+  float: left;
+  width: 74.5%;
+  clear: both;
+  zoom: 1;
+}
+.ff-content-primary:after,
+.ff-content-primary:before {
+  content: "";
+  display: table;
+}
+.ff-content-primary:after {
+  clear: both;
+}
+.ff-content-secondary {
+  float: right;
+  width: 23.5%;
+  zoom: 1;
+}
+.ff-content-secondary:after,
+.ff-content-secondary:before {
+  content: "";
+  display: table;
+}
+.ff-content-secondary:after {
+  clear: both;
+}
 .ff-button {
   font-size: 16px;
   padding: 10px;
@@ -394,6 +513,11 @@ table {
 .ff-button:hover {
   background-color: #e5e5e5;
 }
+.ff-button.ff-button-primary {
+  background-color: #4481bc;
+  border-color: #366797;
+  color: white;
+}
 .ff-actions {
   zoom: 1;
   font-size: 16px;
@@ -408,21 +532,21 @@ table {
   clear: both;
 }
 .ff-actions.ff-page-actions {
-  margin: 1em 0;
+  margin: 0 0 10px 0;
 }
 .ff-actions .ff-actions-primary {
   float: left;
 }
 .ff-actions .ff-actions-primary > * {
   margin-right: 10px;
-  float: left;
+  display: inline-block;
 }
 .ff-actions .ff-actions-secondary {
   float: right;
 }
 .ff-actions .ff-actions-secondary > * {
   margin-left: 10px;
-  float: left;
+  display: inline-block;
 }
 .ff-actions .ff-actions-title {
   padding: 10px 0;
@@ -927,6 +1051,10 @@ table {
 .ff-messages .ff-result .ff-message-text {
   margin: 10px 0 0;
 }
+.ff-messages .ff-message-attachments {
+  margin: 10px 0 0;
+  padding: 0;
+}
 .ff-comments.ff-messages .ff-comment-wrapper {
   margin-left: 57px;
 }
@@ -953,6 +1081,11 @@ table {
   position: absolute;
   top: 10px;
   left: -6px;
+}
+.ff-comments.ff-messages .ff-comment-replies {
+  margin-top: 10px;
+  margin-left: 60px;
+  padding: 0;
 }
 .ff-comments.ff-messages .ff-comment-avatar {
   position: absolute;
@@ -1098,26 +1231,94 @@ table {
   background-color: #f2f2f2;
   line-height: 1;
   margin: 0;
-  border-bottom: 1px solid #e5e5e5;
 }
 .ff-links-list ul,
 .ff-links-list ol {
   border-left: 1px solid #f2f2f2;
   border-right: 1px solid #f2f2f2;
+  border-top: 1px solid #e5e5e5;
   padding: 0;
   margin: 0;
 }
 .ff-links-list ul li,
 .ff-links-list ol li {
   list-style: none;
+  position: relative;
 }
 .ff-links-list ul a,
-.ff-links-list ol a {
+.ff-links-list ol a,
+.ff-links-list ul button,
+.ff-links-list ol button {
   display: block;
   padding: 10px;
+  border: none;
   border-bottom: 1px solid #e5e5e5;
   color: #366797;
   text-decoration: none;
+}
+.ff-links-list .ff-links-list-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+  overflow: hidden;
+}
+.ff-links-list .ff-links-list-actions a,
+.ff-links-list .ff-links-list-actions button {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  text-align: left;
+  border: none;
+  border-left: 1px solid #e5e5e5;
+}
+.ff-links-list .ff-links-list-actions button {
+  background-color: #f2f2f2;
+}
+.ff-links-list .ff-form ff-links-list-form,
+.ff-links-list form,
+.ff-links-list .ff-form ff-links-list-form input,
+.ff-links-list form input {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+.ff-links-list .ff-form ff-links-list-form input[type=text],
+.ff-links-list form input[type=text] {
+  width: 100%;
+  padding: 9px 10px;
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  -webkit-box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.05);
+  background-color: #fafafa;
+}
+.ff-links-list.ff-links-list-reordering,
+.ff-links-list.ff-links-list-reordering ul,
+.ff-links-list.ff-links-list-reordering ol {
+  border: none;
+}
+.ff-links-list.ff-links-list-reordering li {
+  display: block;
+  margin-bottom: 10px;
+  border: none;
+}
+.ff-links-list.ff-links-list-reordering li > a {
+  cursor: ns-resize;
+  border: 1px solid #e5e5e5;
+}
+.ff-links-list.ff-links-list-reordering .ff-links-list-droptarget {
+  height: 1em;
+  padding: 10px;
+  border: 1px dotted #b4b4b4;
+  background-color: #f2f2f2;
 }
 .ff-avatar {
   display: block;
@@ -1138,43 +1339,92 @@ table {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-.ff-relationship-listing {
+.ff-users {
   margin: 0;
   padding: 0;
   font-size: 16px;
   line-height: 1;
 }
-.ff-relationship-listing li {
+.ff-users li {
   list-style: none;
   margin-bottom: 10px;
   zoom: 1;
 }
-.ff-relationship-listing li:after,
-.ff-relationship-listing li:before {
+.ff-users li:after,
+.ff-users li:before {
   content: "";
   display: table;
 }
-.ff-relationship-listing li:after {
+.ff-users li:after {
   clear: both;
 }
-.ff-relationship-listing li:last-child {
+.ff-users li:last-child {
   margin-bottom: 0;
 }
-.ff-relationship-listing a {
+.ff-users a {
   display: block;
   clear: left;
   color: #366797;
   text-decoration: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: white;
 }
-.ff-relationship-listing .ff-relationship-listing-photo {
+.ff-users .ff-users-photo {
   width: 42px;
   display: inline-block;
+}
+.ff-users .ff-users-name {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: text-top;
+}
+.ff-group-listing .ff-users {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  zoom: 1;
+}
+.ff-group-listing .ff-users:after,
+.ff-group-listing .ff-users:before {
+  content: "";
+  display: table;
+}
+.ff-group-listing .ff-users:after {
+  clear: both;
+}
+.ff-group-listing .ff-users li {
+  min-width: 200px;
+  margin-right: 10px;
   float: left;
 }
-.ff-relationship-listing .ff-relationship-listing-name {
-  float: left;
-  margin-left: 10px;
-  margin-top: 8px;
+.ff-group-listing .ff-users a {
+  padding: 10px;
+  border: 1px solid #b4b4b4;
+}
+.ff-group-listing {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #b4b4b4;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.ff-group-listing .ff-group-listing-title {
+  margin-top: 0;
 }
 .ff-icon:before {
   display: block;
@@ -2232,6 +2482,8 @@ table {
   padding: 0;
   margin: 0;
   zoom: 1;
+  font-size: 16px;
+  line-height: 1;
 }
 .ff-navigation:after,
 .ff-navigation:before {
@@ -2245,11 +2497,13 @@ table {
   list-style: none;
   display: block;
   float: left;
-  margin-right: 6px;
+  margin: 0;
+  margin-right: 10px;
 }
 .ff-navigation li:after {
   content: "|";
-  margin-left: 6px;
+  margin-left: 10px;
+  color: #b4b4b4;
 }
 .ff-navigation li:last-child:after {
   display: none;
@@ -2258,8 +2512,9 @@ table {
   color: #366797;
   text-decoration: none;
 }
-.ff-navigation a:hover {
-  text-decoration: underline;
+.ff-comment .ff-navigation {
+  display: block;
+  margin-top: 20px;
 }
 .ff-label {
   padding: 2px 6px;
@@ -2286,6 +2541,8 @@ table {
   text-align: center;
   margin: 0;
   padding: 0;
+  font-size: 16px;
+  line-height: 1;
 }
 .ff-pagination li {
   display: inline;
@@ -2319,4 +2576,106 @@ table {
   background-color: #b4b4b4;
   color: #ffffff;
   border-color: #818181;
+}
+.ff-filter select {
+  margin: 0 10px;
+}
+.ff-heading {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e7e7e7;
+}
+.ff-heading h1 {
+  margin: 0;
+}
+.ff-tags {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+.ff-tags li {
+  list-style: none;
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 10px;
+  background-color: white;
+  border: 1px solid #b4b4b4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.ff-tags li:last-child {
+  margin-right: 0;
+}
+.ff-tags a {
+  display: inline;
+  color: #366797;
+}
+.ff-tags a span {
+  display: none;
+}
+.ff-tags a:before {
+  margin: 0;
+  float: right;
+}
+.ff-post-footer {
+  font-size: 16px;
+  line-height: 1;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #b4b4b4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.ff-post-footer > * {
+  display: inline-block;
+  margin-right: 10px;
+}
+.ff-post-footer a {
+  color: #366797;
+  text-decoration: none;
+}
+.ff-interface-form {
+  font-size: 16px;
+  line-height: 1;
+}
+.ff-interface-form fieldset {
+  margin: 0 0 10px 0;
+  padding: 0;
+  border: none;
+}
+.ff-interface-form * {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+.ff-interface-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+.ff-interface-form textarea,
+.ff-interface-form input[type=text] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b4b4b4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.ff-comment .ff-interface-form {
+  margin-top: 10px;
 }
