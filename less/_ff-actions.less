@@ -4,9 +4,10 @@
 .ff-actions {
   #ff > .clearfix();
   #ff_dashboard > .normalise();
+  margin-bottom: @ff_dashboard_spacing*2;
   
   &.ff-page-actions {
-    margin: 0 0 @ff_dashboard_spacing 0;
+    margin: 0 0 @ff_dashboard_spacing*2 0;
   }
   
   .ff-actions-primary {
@@ -15,6 +16,7 @@
     >* {
       margin-right: @ff_dashboard_spacing;
       display: inline-block;
+      vertical-align: top;
     }
     
   }
@@ -25,12 +27,17 @@
     >* {
       margin-left: @ff_dashboard_spacing;
 	  display: inline-block;
+	  vertical-align: top;
     }
  
   }
   
   .ff-actions-title {
     padding: @ff_dashboard_spacing 0;
+    >* {
+		  margin: 0;
+		  padding: 0;
+	  }
   }
   
   

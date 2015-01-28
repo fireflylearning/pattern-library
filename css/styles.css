@@ -518,10 +518,14 @@ table {
   border-color: #366797;
   color: white;
 }
+.ff-button.ff-button-primary:hover {
+  background-color: #366797;
+}
 .ff-actions {
   zoom: 1;
   font-size: 16px;
   line-height: 1;
+  margin-bottom: 20px;
 }
 .ff-actions:after,
 .ff-actions:before {
@@ -532,7 +536,7 @@ table {
   clear: both;
 }
 .ff-actions.ff-page-actions {
-  margin: 0 0 10px 0;
+  margin: 0 0 20px 0;
 }
 .ff-actions .ff-actions-primary {
   float: left;
@@ -540,6 +544,7 @@ table {
 .ff-actions .ff-actions-primary > * {
   margin-right: 10px;
   display: inline-block;
+  vertical-align: top;
 }
 .ff-actions .ff-actions-secondary {
   float: right;
@@ -547,9 +552,14 @@ table {
 .ff-actions .ff-actions-secondary > * {
   margin-left: 10px;
   display: inline-block;
+  vertical-align: top;
 }
 .ff-actions .ff-actions-title {
   padding: 10px 0;
+}
+.ff-actions .ff-actions-title > * {
+  margin: 0;
+  padding: 0;
 }
 .ff-nav-switch {
   font-size: 16px;
@@ -595,6 +605,10 @@ table {
   padding: 10px;
   margin: 0;
   list-style: none;
+}
+.ff-nav-switch > ul li:hover,
+.ff-nav-switch .ff-nav-switch-items li:hover {
+  background-color: #e5e5e5;
 }
 .ff-nav-switch > ul li.selected,
 .ff-nav-switch .ff-nav-switch-items li.selected {
@@ -1224,7 +1238,7 @@ table {
 .ff-links-list {
   font-size: 16px;
   line-height: 1;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .ff-links-list .ff-links-list-title {
   padding: 10px;
@@ -1299,6 +1313,10 @@ table {
   -moz-box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.05);
   box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.05);
   background-color: #fafafa;
+}
+.ff-links-list .ff-links-list-instructions {
+  margin-bottom: 10px;
+  display: block;
 }
 .ff-links-list.ff-links-list-reordering,
 .ff-links-list.ff-links-list-reordering ul,
@@ -2576,6 +2594,9 @@ table {
   background-color: #b4b4b4;
   color: #ffffff;
   border-color: #818181;
+}
+.ff-filter {
+  margin-bottom: 10px;
 }
 .ff-filter select {
   margin: 0 10px;

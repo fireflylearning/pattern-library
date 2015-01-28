@@ -96,6 +96,27 @@
     	</div>
   	</div>
   	
+  	<h2>ff-actions with heading (h2) (wrapper)</h2>
+  	<div class="pattern">
+    	<div class="ff-actions pagetoolsbtns ff-page-actions">
+    	  <div class="ff-actions-primary ff-actions-title">
+    	    <h2>Your Bookmarks</h2>
+    	  </div>
+    	  <div class="ff-actions-secondary">
+          <div class="ff-button-with-dropdown">
+          	<a href="#" class="ff-button ff-button-add ff-primary-action ff-icon ff-icon-task-add"><span>Set a New Task</span></a>
+          	<ul class="ff-dropdown ff-button ff-button-dropdown ff-secondary-actions">
+              <li class="ff-icon-dropdown"><span class="ff-dropdown-label">More Options</span>
+                <ul class="ff-dropdown-items ff-secondary-actions-dropdown">
+                  <li><a href="#" class="ff-icon ff-icon-archive"><span>Bulk Archive</span></a></li>
+                </ul>
+              </li>
+            </ul>
+        	</div>
+      	</div>
+    	</div>
+  	</div>
+  	
   	<h2>ff-nav-filter</h2>
   	<div class="pattern">
     	<div class="ff-nav-filter">
@@ -172,7 +193,7 @@
   	<h2>ff-links-list reordering</h2>
   	<div class="pattern">
 	  	<div class="ff-links-list ff-links-list-reordering">
-		  	<p class="ff-links-list-instructions"><em>Drag and Drop your bookmarks into your preferred order.</em></p>
+		  	<span class="ff-links-list-instructions"><em>Drag and Drop your bookmarks into your preferred order.</em></span>
 		  	<ul>
 			  	<li><a href="#">Planets of the Solar System</a><div class="ff-links-list-actions"><a href="#">Delete</a></div></li>
 			  	<li><a href="#">X Planets</a><div class="ff-links-list-actions"><a href="#">Delete</a></div></li>
