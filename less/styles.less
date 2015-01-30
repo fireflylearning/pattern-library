@@ -5,20 +5,37 @@ body {
 }
 
 .pattern {
-	padding: 20px;
-	border: 1px dotted #EBB538;
+	padding: 20px 20px 60px 20px;
+	border: 1px dashed #ccc;
 	background-color: white;
 	#ff > .clearfix();
 }
 
 .source {
 	
+	position: relative;
+    
+    .show-source {
+        border: 1px solid #ccc;
+        position: absolute;
+        font-size: 14px;
+        line-height: 1;
+        padding: 10px;
+        top: -36px;
+        right: 0;
+        color: #aaa;
+        #ff > .border-radius(0,0,0,3px);
+        text-decoration: none;
+        background: #F7F7F7;
+    }
 	
 	
 	pre {
+    	display: none;
 		margin: 0;
 		padding: 20px;
-		background-color: #3F3F3F;
+        background-color: #3F3F3F;
+		
 		color: white;
 		
 		.nt {
@@ -33,6 +50,26 @@ body {
 		
 	}
 
+	
+}
+
+.tags {
+    padding: 20px;
+	border: 1px dashed #ccc;
+	border-top: none;
+	background-color: white;
+	#ff > .clearfix();
+	
+	ul {
+    	padding: 0;
+    	margin: 0;
+	}
+	
+	li {
+    	display: inline-block;
+    	margin-right: 5px;
+    	list-style: none;
+	}
 	
 }
 

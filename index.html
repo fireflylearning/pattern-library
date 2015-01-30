@@ -9,8 +9,16 @@ title: All Controls
         {{ post.content }}
     </div>
     <div class="source">
+        <a href="#" class="show-source">Show Source</a>
         {% highlight xslt linenos %}
         {{ post.content }}
         {% endhighlight %}
+    </div>
+    <div class="tags">
+       <ul>
+           {% for tag in post.tags %}
+           <li>#{{ tag }}</li>
+           {% endfor %}
+       </ul> 
     </div>
 {% endfor %}

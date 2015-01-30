@@ -1,0 +1,20 @@
+---
+title: ff-filter
+tags: [filter,standard]
+notes:
+---
+
+<div class="ff-filter">
+    <form name="bookmarksform" class="ff-form" method="GET">
+        <label for="group">Recommended to:</label>
+        <select name="group">
+            <option value="">All Groups</option>
+        </select>
+        <label for="sort">Sort by:</label>
+        <select name="sort" onchange="this.form.submit()">
+            <option value="">Newest</option>
+            <option value="visited">Last Visited</option>
+            <option value="popular">Most Popular</option>
+        </select>
+    </form>
+</div>
