@@ -1,0 +1,16 @@
+---
+layout: default
+title: All Controls
+---
+
+{% for post in site.posts reversed %}
+    <h2>{{ post.title }}</h2>
+    <div class="pattern">
+        {{ post.content }}
+    </div>
+    <div class="source">
+        {% highlight xslt linenos %}
+        {{ post.content }}
+        {% endhighlight %}
+    </div>
+{% endfor %}

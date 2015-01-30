@@ -17,22 +17,20 @@ body {
 .pattern:after {
   clear: both;
 }
-.source {
-  background-color: #3F3F3F;
-}
-.source .toggle {
-  background: white;
-  border: 1px dotted #EBB538;
-  border-top: none;
-  padding: 10px 20px;
-  color: #ccc;
-  text-decoration: none;
-  display: block;
-}
 .source pre {
   margin: 0;
   padding: 20px;
-  display: none;
+  background-color: #3F3F3F;
+  color: white;
+}
+.source pre .nt {
+  color: #F9454C;
+}
+.source pre .na {
+  color: #4AE845;
+}
+.source pre .s {
+  color: #FCCA61;
 }
 nav {
   margin-bottom: 20px;
@@ -507,7 +505,7 @@ table {
 .ff-button,
 .ff-button a {
   color: #366797;
-  display: block;
+  display: inline-block;
   text-decoration: none;
 }
 .ff-button:hover {
