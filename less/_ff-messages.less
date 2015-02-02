@@ -48,9 +48,6 @@
 	
 	
 	.ff-message-close {
-		position: absolute;
-		top: @ff_dashboard_spacing;
-		right: @ff_dashboard_spacing;
 		display: block;
 		border: 1px solid @ff_dashboard_c_border;
 		padding: @ff_dashboard_spacing/2;
@@ -84,21 +81,24 @@
 	}
 	.ff-message-important(@ff_dashboard_c_extras);
 	
-	.ff-checkbox { //primary action button
+	.ff-message-actions { //primary action button
 		float:right;
 		position: absolute;
 		top: @ff_dashboard_spacing;
 		right: @ff_dashboard_spacing;
-	}
-	@media all and (max-width: 780px) {
-		.ff-checkbox {
-			position: relative;
-			top: auto;
-			right: auto;	
-			clear: both;
-			float: left;
-			margin-bottom: @ff_dashboard_spacing;
+		
+		> * {
+    		display: inline-block;
 		}
+		
+		@media all and (max-width: 780px) {
+    		position: relative;
+    		top: auto;
+    		right: auto;	
+    		clear: both;
+    		float: left;
+    		margin-bottom: @ff_dashboard_spacing;
+    	}
 	}
 	
 	//colour label placement

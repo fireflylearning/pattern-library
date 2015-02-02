@@ -87,6 +87,19 @@ body {
   margin-right: 5px;
   list-style: none;
 }
+.title {
+  text-align: center;
+}
+h1.title {
+  font-size: 54px;
+}
+h2.title {
+  font-size: 32px;
+}
+h3.title {
+  font-size: 22px;
+  color: #4c4c4c;
+}
 nav {
   margin-bottom: 20px;
 }
@@ -992,9 +1005,6 @@ table {
   max-width: 68%;
 }
 .ff-messages .ff-message-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   display: block;
   border: 1px solid #b4b4b4;
   padding: 5px;
@@ -1022,14 +1032,17 @@ table {
   border-width: 10px 10px 0 0;
   border-color: #e5002b transparent transparent transparent;
 }
-.ff-messages .ff-checkbox {
+.ff-messages .ff-message-actions {
   float: right;
   position: absolute;
   top: 10px;
   right: 10px;
 }
+.ff-messages .ff-message-actions > * {
+  display: inline-block;
+}
 @media all and (max-width: 780px) {
-  .ff-messages .ff-checkbox {
+  .ff-messages .ff-message-actions {
     position: relative;
     top: auto;
     right: auto;

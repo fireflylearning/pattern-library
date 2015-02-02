@@ -1,0 +1,21 @@
+{% for post in site.posts reversed  %}
+    {% if post.tags contains "standard" %}
+        <h3>{{ post.title }}</h3>
+        <div class="pattern">
+            {{ post.content }}
+        </div>
+        <div class="source">
+            <a href="#" class="show-source">Show Source</a>
+            {% highlight xslt linenos %}
+            {{ post.content }}
+            {% endhighlight %}
+        </div>
+        <div class="tags">
+           <ul>
+               {% for tag in post.tags %}
+               <li>#{{ tag }}</li>
+               {% endfor %}
+           </ul> 
+        </div>
+    {% endif %}
+{% endfor %}
