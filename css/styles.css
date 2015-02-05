@@ -2908,3 +2908,30 @@ table {
 .ff-table .ff-file-list {
   margin: 0;
 }
+.ff-alert {
+  font-size: 16px;
+  line-height: 1;
+  padding: 20px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.ff-alert a {
+  color: #366797;
+  text-decoration: none;
+}
+.ff-alert > *:last-child {
+  margin-bottom: 0;
+}
+.ff-alert h2,
+.ff-alert p {
+  margin: 0 0 10px 0;
+}
+.ff-alert-message {
+  border: 1px solid #AEC2D5;
+  background: #DEF1FB;
+  color: #666666;
+}
