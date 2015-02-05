@@ -1,0 +1,43 @@
+---
+layout: default
+title: All Controls
+---
+
+{% assign target_patterns = site.patterns %}
+{% assign group = '' %}
+
+{% for pattern in target_patterns %}
+    {% if pattern.url contains '.html' %}
+    
+            {% assign current_group_url = pattern.url | split:"/" %}
+            {% assign current_group_folder = current_group_url[2] %}
+            {% assign current_group = current_group_folder | split:"-" %}
+            {% assign current_group_filename = current_group_url[3] %}
+            
+            {% if current_group != group %}
+            {% assign group = current_group %}
+            <h2 id="group-{{current_group[1]}}" class="title">{{ current_group[1] | capitalize }}</h2>
+            {% endif %}
+            
+        
+            <h3 class="title">{{ pattern.title }}</h3>
+            <div class="pattern">
+                {{ pattern.content }}
+            </div>
+            {% if pattern.hide_source != true %}
+            <div class="source">
+                <a href="#" class="show-source">Show Source</a>
+                {% highlight xslt linenos %}
+                {{ pattern.content }}
+                {% endhighlight %}
+            </div>
+            {% endif %}
+            <div class="tags">
+               <ul>
+                   {% for tag in pattern.tags %}
+                   <li>#{{ tag }}</li>
+                   {% endfor %}
+               </ul> 
+            </div>
+    {% endif %}
+{% endfor %}

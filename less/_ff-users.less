@@ -26,18 +26,40 @@
 		color: @ff_dashboard_c_link;
 		text-decoration: none;
 		#ff > .rounded(2px);
-		background-color: white;
 	}
 	
 	.ff-users-photo {
 		width: 42px;
 		display: inline-block;
+		margin-right: @ff_dashboard_spacing;
 	}
 	
 	.ff-users-name {
 		display: inline-block;
-		margin-left: @ff_dashboard_spacing;
-		vertical-align: text-top;
+		vertical-align: top;
+		height: 42px;
+		line-height: 42px;
+	}
+	
+	
+}
+
+
+
+.ff-users.ff-users-inline {
+	
+	#ff > .flex-display();
+	#ff > .flex-wrap(wrap);
+	#ff > .clearfix();
+	
+	li {
+		min-width: 180px;
+		margin-right: @ff_dashboard_spacing;
+		float: left; //for browsers that don't support flexbox
+	}
+	
+	a {
+		padding: @ff_dashboard_spacing/2;
 	}
 	
 	
@@ -45,22 +67,21 @@
 
 //ff-group-listing modifier
 
-.ff-group-listing .ff-users {
-	
-	#ff > .flex-display();
-	#ff > .flex-wrap(wrap);
-	#ff > .clearfix();
-	
-	li {
-		min-width: 200px;
-		margin-right: @ff_dashboard_spacing;
-		float: left; //for browsers that don't support flexbox
+.ff-group-listing .ff-users-inline {
+    a {
+        border: 1px solid @ff_dashboard_c_border;
+        background-color: white;
+    }
+}
+
+//in tables
+.ff-table .ff-users-inline {
+    
+    li:first-child a {
+    	padding-left: 0;
 	}
-	
-	a {
-		padding: @ff_dashboard_spacing;
-		border: 1px solid @ff_dashboard_c_border;
-	}
-	
-	
+    
+    a {
+        padding-top:0;
+    }
 }

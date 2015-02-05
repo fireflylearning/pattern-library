@@ -1,0 +1,42 @@
+.ff-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: @ff_dashboard_spacing*2;
+    #ff_dashboard > .normalise();
+    
+    th {
+        text-align: left;
+        font-weight: normal;
+    }
+    
+    th, td {
+        padding: @ff_dashboard_spacing;
+        vertical-align: top;
+    }
+    
+    a {
+        color: @ff_dashboard_c_link;
+        text-decoration: none;
+    }
+    
+    p {
+        margin: 0 0 @ff_dashboard_spacing 0;
+    }
+    
+}
+
+.ff-table.ff-table-decorated {
+    
+    tr {
+        border-bottom: 1px solid darken(@ff_dashboard_c_bg,10%);
+    }
+    
+    th {
+        background-color: @ff_dashboard_c_bg;
+    }
+    
+    tr:hover td {
+        background-color: lighten(@ff_dashboard_c_bg,2%);
+    }
+    
+}

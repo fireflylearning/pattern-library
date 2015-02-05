@@ -1,8 +1,52 @@
 body {
-  padding: 30px 60px;
-  background-color: #F7F7F7;
   font-family: 'firasans';
 }
+
+nav.site-nav {
+    width: 20%;
+    background: #373737;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: visible;
+    left: 0;
+    #ff > .box-sizing();
+    padding: 20px;
+    
+    ul {
+        padding: 0;
+        margin: 0 0 0 20px;
+    }
+    
+    li {
+       list-style: none;
+       display: block;
+    }
+    
+    a, li {
+        color: white;
+        text-decoration: none;
+    }
+    
+    a {
+        padding: 5px;
+        display: inline-block;
+        &:before {
+            display: inline-block;
+            border-left: 1px solid white;
+        }
+    }
+    
+    
+}
+main.site-content {
+    float: right;
+    width: 80%;
+    background-color: #F7F7F7;
+    #ff > .box-sizing();
+    padding: 40px;
+} 
 
 .pattern {
 	padding: 20px 20px 60px 20px;
@@ -74,49 +118,25 @@ body {
 }
 
 .title {
-    text-align: center;
+    margin: 20px 0;
+    color: #4c4c4c;
 }
 
 h1.title {
     font-size: 54px;
 }
 h2.title {
-    font-size: 32px;
+    font-size: 34px;
+    border-bottom: 1px solid #373737;
+    margin: 20px -40px;
+    padding: 0 40px 20px 40px;
+    color: #373737;
 }
 h3.title {
     font-size: 22px;
-    color: #4c4c4c;
 }
 
-
-nav {
-	
-	margin-bottom: 20px;
-	
-	ul {
-		margin: 0;
-		padding: 0;
-		#ff > .flex-display();
-	}	
-	
-	li {
-		list-style: none;
-		margin-right: 10px;
-	}
-	
-	a {
-		border: 1px solid #ccc;
-		#ff > .rounded(3px);
-		background: white;
-		padding: 10px;
-		color: #F12C40;
-		text-decoration: none;
-	}
-
-}
-
-
-
+//fira
 @font-face {
     font-family: 'firasans';
     src: url('firasans/firasans-bold-webfont.eot');
@@ -127,7 +147,6 @@ nav {
          url('firasans/firasans-bold-webfont.svg#fira_sansbold') format('svg');
     font-weight: bold;
     font-style: normal;
-
 }
 @font-face {
     font-family: 'firasans';
@@ -163,7 +182,22 @@ nav {
          url('firasans/firasans-bolditalic-webfont.svg#fira_sansbold_italic') format('svg');
     font-weight: bold;
     font-style: italic;
+}
 
+//akko
+@font-face {
+    font-family: 'akko';
+    src: url('akko/7346b694-65fb-4f80-90e3-ede94b47bd0c.eot');
+    src: url('akko/7346b694-65fb-4f80-90e3-ede94b47bd0c.eot?#iefix') format('embedded-opentype'),
+         url('akko/5aedf8f4-d625-413b-b10e-83054289fd6b.woff') format('woff'),
+         url('akko/1a6b1d0c-b476-4409-87b4-b86af7cf2a58.ttf') format('truetype'),
+         url('akko/a780ffb6-dac6-463b-b3a7-cce65fef64e5.svg#akko') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+.ff-font-akko {
+    font-family: 'akko';
 }
 
 b, strong {
@@ -172,6 +206,37 @@ b, strong {
 
 i, em {
 	font-style: italic;
+}
+
+.icons-set-preview {
+    #ff > .flex-display();
+    #ff > .flex-wrap(wrap);
+    
+    .icon-preview {
+        border: 1px solid #ccc;
+        background: white;
+        width:113px;
+        margin: 20px;
+        padding: 10px;
+        #ff > .box-sizing();
+        
+        &:before {
+            display: block;
+            float: none;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 42px;
+        }
+        
+        p {
+            margin: 0;
+            font-size: 12px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        
+    }
+    
 }
 
 
@@ -190,6 +255,7 @@ i, em {
 @ff_dashboard_c_red:	#E5002B;
 @ff_dashboard_c_yellow:	#FFCD00;
 @ff_dashboard_c_green:	#95AD01;	
+@ff_dashboard_c_blue:   #2B97CE;
 
 
 //message/tag colours
@@ -206,11 +272,6 @@ i, em {
 @ff_dashboard_spacing:         10px;
 @ff_dashboard_text:            16px;
 @ff_dashboard_headings:        20px;
-
-//should this template get all the extra styling bits, or the old crappy styling for somethings?
-//It's useful to turn this off when an existing template doesn't override a few of the newer styling bits
-//In general, new templates should have this set on, and override.
-@ff_dashboard_c_extras:		 'true'; 
 
 #ff_dashboard {
 	.normalise() {
@@ -256,4 +317,6 @@ i, em {
 @import "_ff-tags";
 @import "_ff-post-footer";
 @import "_ff-interface-form";
-
+@import "_ff-alertbox";
+@import "_ff-table";
+@import "_ff-file-list";

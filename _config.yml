@@ -4,12 +4,16 @@ destination: ./_site
 plugins:     ./_plugins
 layouts:     ./_layouts
 data_source: ./_data
-collections: null
+collections: 
+    patterns:
+        output: false
+    examples:
+        output: true
 
 # Handling Reading
 safe:         false
 include:      [".htaccess"]
-exclude:      ["./_dev"]
+exclude:      ["./_dev", "./less"]
 keep_files:   [".git", ".svn"]
 encoding:     "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"

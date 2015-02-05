@@ -77,6 +77,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/_examples\/open-office-document.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/_examples\/open-office-document.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/_includes\/posts-by-tag.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -95,469 +104,320 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0001-01-01-ff-button.html": {
+	"\/_patterns\/01-buttons\/ff-button-alt.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0001-01-01-ff-button.html",
+		"inputAbbreviatedPath": "\/_patterns\/01-buttons\/ff-button-alt.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0002-01-01-ff-button-alt.html": {
+	"\/_patterns\/01-buttons\/ff-button-with-dropdown.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0002-01-01-ff-button-alt.html",
+		"inputAbbreviatedPath": "\/_patterns\/01-buttons\/ff-button-with-dropdown.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0003-01-01-ff-dropdown.html": {
+	"\/_patterns\/01-buttons\/ff-button.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0003-01-01-ff-dropdown.html",
+		"inputAbbreviatedPath": "\/_patterns\/01-buttons\/ff-button.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0004-01-01-ff-button-with-dropdown.html": {
+	"\/_patterns\/01-buttons\/ff-dropdown.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0004-01-01-ff-button-with-dropdown.html",
+		"inputAbbreviatedPath": "\/_patterns\/01-buttons\/ff-dropdown.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0005-01-01-ff-navigation.html": {
+	"\/_patterns\/02-navigation\/ff-nav-filter.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0005-01-01-ff-navigation.html",
+		"inputAbbreviatedPath": "\/_patterns\/02-navigation\/ff-nav-filter.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0006-01-01-ff-links-list.html": {
+	"\/_patterns\/02-navigation\/ff-navigation.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0006-01-01-ff-links-list.html",
+		"inputAbbreviatedPath": "\/_patterns\/02-navigation\/ff-navigation.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0007-01-01-ff-links-list-updating.html": {
+	"\/_patterns\/03-forms\/ff-filter.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0007-01-01-ff-links-list-updating.html",
+		"inputAbbreviatedPath": "\/_patterns\/03-forms\/ff-filter.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0008-01-01-ff-links-list-reodering.html": {
+	"\/_patterns\/03-forms\/ff-interface-form.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0008-01-01-ff-links-list-reodering.html",
+		"inputAbbreviatedPath": "\/_patterns\/03-forms\/ff-interface-form.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0009-01-01-ff-nav-filter.html": {
+	"\/_patterns\/04-users\/ff-avatar.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0009-01-01-ff-nav-filter.html",
+		"inputAbbreviatedPath": "\/_patterns\/04-users\/ff-avatar.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0010-01-01-ff-filter.html": {
+	"\/_patterns\/04-users\/ff-users.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0010-01-01-ff-filter.html",
+		"inputAbbreviatedPath": "\/_patterns\/04-users\/ff-users.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0011-01-01-ff-tags.html": {
+	"\/_patterns\/05-lists\/ff-file-list.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0011-01-01-ff-tags.html",
+		"inputAbbreviatedPath": "\/_patterns\/05-lists\/ff-file-list.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0012-01-01-ff-label.html": {
+	"\/_patterns\/05-lists\/ff-links-list-reodering.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0012-01-01-ff-label.html",
+		"inputAbbreviatedPath": "\/_patterns\/05-lists\/ff-links-list-reodering.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0013-01-01-ff-labels-color.html": {
+	"\/_patterns\/05-lists\/ff-links-list-updating.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0013-01-01-ff-labels-color.html",
+		"inputAbbreviatedPath": "\/_patterns\/05-lists\/ff-links-list-updating.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0014-01-01-ff-progress.html": {
+	"\/_patterns\/05-lists\/ff-links-list.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0014-01-01-ff-progress.html",
+		"inputAbbreviatedPath": "\/_patterns\/05-lists\/ff-links-list.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0015-01-01-ff-progress-status.html": {
+	"\/_patterns\/06-labels\/ff-label.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0015-01-01-ff-progress-status.html",
+		"inputAbbreviatedPath": "\/_patterns\/06-labels\/ff-label.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0016-01-01-ff-avatar.html": {
+	"\/_patterns\/06-labels\/ff-labels-color.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0016-01-01-ff-avatar.html",
+		"inputAbbreviatedPath": "\/_patterns\/06-labels\/ff-labels-color.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0017-01-01-ff-users.html": {
+	"\/_patterns\/06-labels\/ff-tags.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0017-01-01-ff-users.html",
+		"inputAbbreviatedPath": "\/_patterns\/06-labels\/ff-tags.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0018-01-01-ff-interface-form.html": {
+	"\/_patterns\/08-progress\/ff-progress-status.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0018-01-01-ff-interface-form.html",
+		"inputAbbreviatedPath": "\/_patterns\/08-progress\/ff-progress-status.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0200-01-01-ff-messages.html": {
+	"\/_patterns\/08-progress\/ff-progress.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0200-01-01-ff-messages.html",
+		"inputAbbreviatedPath": "\/_patterns\/08-progress\/ff-progress.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0201-01-01-ff-messages-comments.html": {
+	"\/_patterns\/09-messages\/ff-messages-comments-replies.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0201-01-01-ff-messages-comments.html",
+		"inputAbbreviatedPath": "\/_patterns\/09-messages\/ff-messages-comments-replies.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0203-01-01-ff-messages-comments-replies.html": {
+	"\/_patterns\/09-messages\/ff-messages-comments.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0203-01-01-ff-messages-comments-replies.html",
+		"inputAbbreviatedPath": "\/_patterns\/09-messages\/ff-messages-comments.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_posts\/0204-01-01-ff-messages-tasks.html": {
+	"\/_patterns\/09-messages\/ff-messages-marks.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_posts\/0204-01-01-ff-messages-tasks.html",
+		"inputAbbreviatedPath": "\/_patterns\/09-messages\/ff-messages-marks.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0001\/01\/01\/ff-button.html": {
+	"\/_patterns\/09-messages\/ff-messages-set-tasks.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0001\/01\/01\/ff-button.html",
+		"inputAbbreviatedPath": "\/_patterns\/09-messages\/ff-messages-set-tasks.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0002\/01\/01\/ff-button-alt.html": {
+	"\/_patterns\/09-messages\/ff-messages-tasks.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0002\/01\/01\/ff-button-alt.html",
+		"inputAbbreviatedPath": "\/_patterns\/09-messages\/ff-messages-tasks.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0003\/01\/01\/ff-dropdown.html": {
+	"\/_patterns\/09-messages\/ff-messages.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0003\/01\/01\/ff-dropdown.html",
+		"inputAbbreviatedPath": "\/_patterns\/09-messages\/ff-messages.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0004\/01\/01\/ff-button-with-dropdown.html": {
+	"\/_patterns\/10-table\/ff-table-marks.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0004\/01\/01\/ff-button-with-dropdown.html",
+		"inputAbbreviatedPath": "\/_patterns\/10-table\/ff-table-marks.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0005\/01\/01\/ff-navigation.html": {
+	"\/_patterns\/10-table\/ff-table-task-detail.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0005\/01\/01\/ff-navigation.html",
+		"inputAbbreviatedPath": "\/_patterns\/10-table\/ff-table-task-detail.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0006\/01\/01\/ff-links-list.html": {
+	"\/_patterns\/10-table\/ff-table.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0006\/01\/01\/ff-links-list.html",
+		"inputAbbreviatedPath": "\/_patterns\/10-table\/ff-table.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0007\/01\/01\/ff-links-list-updating.html": {
+	"\/_patterns\/11-wrappers\/ff-actions-heading.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0007\/01\/01\/ff-links-list-updating.html",
+		"inputAbbreviatedPath": "\/_patterns\/11-wrappers\/ff-actions-heading.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0008\/01\/01\/ff-links-list-reodering.html": {
+	"\/_patterns\/11-wrappers\/ff-actions-title.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0008\/01\/01\/ff-links-list-reodering.html",
+		"inputAbbreviatedPath": "\/_patterns\/11-wrappers\/ff-actions-title.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0009\/01\/01\/ff-nav-filter.html": {
+	"\/_patterns\/11-wrappers\/ff-actions.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0009\/01\/01\/ff-nav-filter.html",
+		"inputAbbreviatedPath": "\/_patterns\/11-wrappers\/ff-actions.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0010\/01\/01\/ff-filter.html": {
+	"\/_patterns\/11-wrappers\/ff-group-listing.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0010\/01\/01\/ff-filter.html",
+		"inputAbbreviatedPath": "\/_patterns\/11-wrappers\/ff-group-listing.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0011\/01\/01\/ff-tags.html": {
+	"\/_patterns\/11-wrappers\/ff-post-footer.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0011\/01\/01\/ff-tags.html",
+		"inputAbbreviatedPath": "\/_patterns\/11-wrappers\/ff-post-footer.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0012\/01\/01\/ff-label.html": {
+	"\/_patterns\/12-icons\/ff-icons.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0012\/01\/01\/ff-label.html",
+		"inputAbbreviatedPath": "\/_patterns\/12-icons\/ff-icons.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/0013\/01\/01\/ff-labels-color.html": {
+	"\/_site\/examples\/open-office-document.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0013\/01\/01\/ff-labels-color.html",
+		"inputAbbreviatedPath": "\/_site\/examples\/open-office-document.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/0014\/01\/01\/ff-progress.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0014\/01\/01\/ff-progress.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/0015\/01\/01\/ff-progress-status.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0015\/01\/01\/ff-progress-status.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/0016\/01\/01\/ff-avatar.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0016\/01\/01\/ff-avatar.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/0017\/01\/01\/ff-users.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0017\/01\/01\/ff-users.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/0018\/01\/01\/ff-interface-form.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0018\/01\/01\/ff-interface-form.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/0200\/01\/01\/ff-messages.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0200\/01\/01\/ff-messages.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/0201\/01\/01\/ff-messages-comments.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0201\/01\/01\/ff-messages-comments.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/0203\/01\/01\/ff-messages-comments-replies.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/0203\/01\/01\/ff-messages-comments-replies.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/images\/group.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3582,
-		"inputAbbreviatedPath": "\/_site\/images\/group.jpg",
-		"outputAbbreviatedPath": "\/_site\/images\/group.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/person.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 2110,
-		"inputAbbreviatedPath": "\/_site\/images\/person.jpg",
-		"outputAbbreviatedPath": "\/_site\/images\/person.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/tag-disabled.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 729,
-		"inputAbbreviatedPath": "\/_site\/images\/tag-disabled.png",
-		"outputAbbreviatedPath": "\/_site\/images\/tag-disabled.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/tag-disabled@2x.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 1366,
-		"inputAbbreviatedPath": "\/_site\/images\/tag-disabled@2x.png",
-		"outputAbbreviatedPath": "\/_site\/images\/tag-disabled@2x.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/tag.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 552,
-		"inputAbbreviatedPath": "\/_site\/images\/tag.png",
-		"outputAbbreviatedPath": "\/_site\/images\/tag.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/tag@0.5x.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 557,
-		"inputAbbreviatedPath": "\/_site\/images\/tag@0.5x.png",
-		"outputAbbreviatedPath": "\/_site\/images\/tag@0.5x.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/tag@2x.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 900,
-		"inputAbbreviatedPath": "\/_site\/images\/tag@2x.png",
-		"outputAbbreviatedPath": "\/_site\/images\/tag@2x.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
 		},
 	"\/_site\/index.html": {
 		"fileType": 8192,
@@ -565,149 +425,6 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/_site\/index.html",
 		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/js\/pattern-library.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/js\/pattern-library.js",
-		"outputAbbreviatedPath": "\/_site\/js\/min\/pattern-library-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 0
-		},
-	"\/_site\/less\/default-settings.less": {
-		"allowInsecureImports": 0,
-		"createSourceMap": 0,
-		"disableJavascript": 0,
-		"fileType": 1,
-		"ieCompatibility": 1,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/less\/default-settings.less",
-		"outputAbbreviatedPath": "\/_site\/css\/default-settings.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"relativeURLS": 0,
-		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"strictImports": 0,
-		"strictMath": 0,
-		"strictUnits": 0
-		},
-	"\/_site\/less\/fonts.less": {
-		"allowInsecureImports": 0,
-		"createSourceMap": 0,
-		"disableJavascript": 0,
-		"fileType": 1,
-		"ieCompatibility": 1,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/less\/fonts.less",
-		"outputAbbreviatedPath": "\/_site\/css\/fonts.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"relativeURLS": 0,
-		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"strictImports": 0,
-		"strictMath": 0,
-		"strictUnits": 0
-		},
-	"\/_site\/less\/normalise.less": {
-		"allowInsecureImports": 0,
-		"createSourceMap": 0,
-		"disableJavascript": 0,
-		"fileType": 1,
-		"ieCompatibility": 1,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/less\/normalise.less",
-		"outputAbbreviatedPath": "\/_site\/css\/normalise.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"relativeURLS": 0,
-		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"strictImports": 0,
-		"strictMath": 0,
-		"strictUnits": 0
-		},
-	"\/_site\/less\/styles.less": {
-		"allowInsecureImports": 0,
-		"createSourceMap": 0,
-		"disableJavascript": 0,
-		"fileType": 1,
-		"ieCompatibility": 1,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/less\/styles.less",
-		"outputAbbreviatedPath": "\/_site\/css\/styles.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"relativeURLS": 0,
-		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"strictImports": 0,
-		"strictMath": 0,
-		"strictUnits": 0
-		},
-	"\/_site\/less\/utility.less": {
-		"allowInsecureImports": 0,
-		"createSourceMap": 0,
-		"disableJavascript": 0,
-		"fileType": 1,
-		"ieCompatibility": 1,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/less\/utility.less",
-		"outputAbbreviatedPath": "\/_site\/css\/utility.css",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 0,
-		"relativeURLS": 0,
-		"shouldRunAutoprefixer": 0,
-		"shouldRunBless": 0,
-		"strictImports": 0,
-		"strictMath": 0,
-		"strictUnits": 0
-		},
-	"\/_site\/pattern.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/pattern.js",
-		"outputAbbreviatedPath": "\/_site\/min\/pattern-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 0
-		},
-	"\/_site\/README.html": {
-		"fileType": 8192,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/README.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/_site\/README.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/_site\/README.md",
-		"outputAbbreviatedPath": "\/_site\/README.html",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
@@ -837,6 +554,26 @@
 		"strictMath": 0,
 		"strictUnits": 0
 		},
+	"\/less\/_ff-alertbox.less": {
+		"allowInsecureImports": 0,
+		"createSourceMap": 0,
+		"disableJavascript": 0,
+		"fileType": 1,
+		"ieCompatibility": 1,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/less\/_ff-alertbox.less",
+		"outputAbbreviatedPath": "\/css\/_ff-alertbox.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"relativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"strictImports": 0,
+		"strictMath": 0,
+		"strictUnits": 0
+		},
 	"\/less\/_ff-avatar.less": {
 		"allowInsecureImports": 0,
 		"createSourceMap": 0,
@@ -927,6 +664,26 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/less\/_ff-dropdown.less",
 		"outputAbbreviatedPath": "\/css\/_ff-dropdown.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"relativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"strictImports": 0,
+		"strictMath": 0,
+		"strictUnits": 0
+		},
+	"\/less\/_ff-file-list.less": {
+		"allowInsecureImports": 0,
+		"createSourceMap": 0,
+		"disableJavascript": 0,
+		"fileType": 1,
+		"ieCompatibility": 1,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/less\/_ff-file-list.less",
+		"outputAbbreviatedPath": "\/css\/_ff-file-list.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
@@ -1237,6 +994,26 @@
 		"strictMath": 0,
 		"strictUnits": 0
 		},
+	"\/less\/_ff-table.less": {
+		"allowInsecureImports": 0,
+		"createSourceMap": 0,
+		"disableJavascript": 0,
+		"fileType": 1,
+		"ieCompatibility": 1,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/less\/_ff-table.less",
+		"outputAbbreviatedPath": "\/css\/_ff-table.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"relativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"strictImports": 0,
+		"strictMath": 0,
+		"strictUnits": 0
+		},
 	"\/less\/_ff-tags.less": {
 		"allowInsecureImports": 0,
 		"createSourceMap": 0,
@@ -1387,15 +1164,6 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 0
-		},
-	"\/README.html": {
-		"fileType": 8192,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/README.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
 		},
 	"\/README.md": {
 		"enableFootnoteSupport": 0,
