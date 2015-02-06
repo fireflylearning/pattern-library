@@ -1,5 +1,8 @@
 body {
   font-family: 'firasans';
+  &.all-controls {
+      background-color: #F7F7F7;
+  }
 }
 
 nav.site-nav {
@@ -32,10 +35,23 @@ nav.site-nav {
     a {
         padding: 5px;
         display: inline-block;
+        position: relative;
         &:before {
-            display: inline-block;
+            display: block;
             border-left: 1px solid white;
+            content: "";
+            position: absolute;
+            width: 2px;
+            top:0;
+            bottom:0;
+            left: -20px;
         }
+    }
+    
+    .nav-heading {
+        padding: 10px 0;
+        display: block;
+        text-transform: uppercase;
     }
     
     
@@ -43,7 +59,6 @@ nav.site-nav {
 main.site-content {
     float: right;
     width: 80%;
-    background-color: #F7F7F7;
     #ff > .box-sizing();
     padding: 40px;
 } 
@@ -124,6 +139,7 @@ main.site-content {
 
 h1.title {
     font-size: 54px;
+    margin: 0;
 }
 h2.title {
     font-size: 34px;
@@ -216,7 +232,7 @@ i, em {
         border: 1px solid #ccc;
         background: white;
         width:113px;
-        margin: 20px;
+        margin: 10px;
         padding: 10px;
         #ff > .box-sizing();
         
@@ -238,6 +254,15 @@ i, em {
     }
     
 }
+
+//background for layouts so they show up in the preview
+.pattern {
+   .ff-content-primary,
+    .ff-content-secondary {
+        background-color: #F1F1F1;
+    } 
+}
+
 
 
 // --------- start firefly code ----------//

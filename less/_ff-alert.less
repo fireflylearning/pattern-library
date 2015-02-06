@@ -2,6 +2,7 @@
     #ff_dashboard > .normalise();
     padding: @ff_dashboard_spacing*2;
     #ff > .rounded(3px);
+    position: relative;
     
     a {
         color: @ff_dashboard_c_link;
@@ -14,6 +15,13 @@
     
     h2, p {
         margin: 0 0 @ff_dashboard_spacing 0;
+    }
+    
+    .ff-alert-contols {
+        float: right;
+        position: absolute;
+        top: @ff_dashboard_spacing;
+        right: @ff_dashboard_spacing;
     }
     
 }

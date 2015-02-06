@@ -1,8 +1,28 @@
 ---
-title: ff-messages tasks
-tags: [messages,tasks]
-notes:
+title: Your Tasks
+layout: default
 ---
+
+<div class="ff-heading">
+    <h1>Your Tasks</h1>
+</div>
+
+<div class="ff-actions">
+	<div class="ff-actions-primary ff-actions-title">
+		<span>There are <strong>10 active tasks</strong> assigned to you.</span>
+	</div>
+	<div class="ff-actions-secondary">
+		<div class="ff-nav-switch">
+			<ul class="ff-nav-switch-items">
+				<li class="unselected"><a href="#">Archive</a></li>
+				<li class="selected ff-icon ff-icon-selected"><span>Active</span></li>
+			</ul>
+		</div>
+		<a href="#" class="ff-button ff-icon ff-icon-task-add">Add a Personal Task</a>
+	</div>
+</div>
+
+<p><em>Drag and drop your tasks into your preferred order. New tasks will appear at the bottom.</em></p>
 
 <ol class="ff-messages">
     <li class="ff-message-notice ff-task ff-offline ff-color-red">
@@ -12,7 +32,7 @@ notes:
                 <ul class="ff-file-list"></ul>
             </div>
             <div class="ff-message-actions">
-                <a class="ff-button ff-button-checkbox ff-action-markasdone ff-icon ff-"><span>Mark as Done</span></a>
+                <a class="ff-button ff-button-checkbox ff-action-markasdone ff-icon ff-icon-tick"><span>Mark as Done</span></a>
             </div>
             <div class="ff-message-meta-and-labels">
                 <div class="ff-message-meta"><span class="ff-label ff-label-overdue" title="Due 03/12/2014">Overdue</span> Posted by <a href="#">Administrator</a> to <strong>Administrators</strong>, 31/03/2014 at 14:09</div>
@@ -30,16 +50,17 @@ notes:
             </div>
         </div>
     </li>
-    
     <li class="ff-message-notice ff-task ff-offline">
         <div class="ff-message-content">
             <div class="ff-message-text">
-                <p>Personal Task</p>
+                <p>Online task</p>
                 <ul class="ff-file-list"></ul>
             </div>
-            <div class="ff-message-actions"><a class="ff-button ff-button-checkbox ff-action-markasdone"><span>Mark as Done</span></a></div>
+            <div class="ff-message-actions">
+                <a class="ff-button ff-button-checkbox ff-action-markasdone ff-icon ff-icon-tasks"><span>Submit Work</span></a>
+            </div>
             <div class="ff-message-meta-and-labels">
-                <div class="ff-message-meta">Personal Task, Added 10/01/2014 at 12:47</div>
+                <div class="ff-message-meta">Posted by <a href="#">Administrator</a> to <strong>Administrators</strong>, 31/03/2014 at 14:09</div>
                 <ul class="ff-labels-color">
                     <li class="ff-label-color-grey"><a href="">Gray</a></li>
                     <li class="ff-label-color-red"><a href="">Red</a></li>
@@ -54,31 +75,11 @@ notes:
             </div>
         </div>
     </li>
-    
-    <li class="ff-message-notice ff-task ff-online ff-color-empty">
-        <div class="ff-message-content">
-            <div class="ff-message-text">
-                <p><a href="#">Online Task</a></p>
-                <ul class="ff-file-list">
-                    <li class="ff-message-attachment-file"><a href="resource.aspx?id=2671" class="ff-icon ff-icon-file">0104 Firefly-s-w125-h125-q75-m1415912984.jpg</a></li>
-                </ul>
-            </div>
-            <div class="ff-message-actions"><a class="ff-button ff-button-mark ff-button-submitwork" href="/complete-this"><span>Submit Work</span></a></div>
-            <div class="ff-message-meta-and-labels">
-                <div class="ff-message-meta"><span class="ff-label ff-label-new" title="Due 03/12/2014">Just Added</span> Added 31/03/2014 at 17:15</div>
-                <ul class="ff-labels-color">
-                    <li class="ff-label-color-grey"><a href="">Gray</a></li>
-                    <li class="ff-label-color-red"><a href="">Red</a></li>
-                    <li class="ff-label-color-blue"><a href="">Blue</a></li>
-                    <li class="ff-label-color-yellow"><a href="">Yellow</a></li>
-                    <li class="ff-label-color-green"><a href="">Green</a></li>
-                    <li class="ff-label-color-orange"><a href="">Orange</a></li>
-                    <li class="ff-label-color-pink"><a href="">Pink</a></li>
-                    <li class="ff-label-color-purple"><a href="">Purple</a></li>
-                    <li class="ff-label-color-empty ff-selected"><a href="">NoColour</a></li>
-                </ul>
-            </div>
-        </div>
-    </li>
+</ol>
 
+<ol class="ff-pagination">
+    <li class="ff-pagination-previous ff-pagination-disabled"><a href="#" class="ff-icon ff-icon-arrow-left"><span>Previous</span></a></li>
+    <li class="ff-pagination-current-page"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li class="ff-pagination-next"><a href="#" class="ff-icon-after ff-icon-arrow-right"><span>Next</span></a></li>
 </ol>

@@ -4,11 +4,11 @@
         <link rel="stylesheet" href="{{ site.baseurl }}/css/styles.css" type="text/css" media="screen" charset="utf-8">
         <title>{{ page.title }} - Firefly Core Pattern Library. Beta.</title>
     </head>
-    <body>
+    <body class="{{ page.title | slugify }}">
         
         <nav class="site-nav">
             <ul>
-                <li><a href="/">All components</a>
+                <li><span class="nav-heading">All Controls</span>
                     <ul>
                         
                         {% assign target_patterns = site.patterns %}
@@ -30,7 +30,7 @@
                         
                     </ul>
                 </li>
-                <li>Pages
+                <li><span class="nav-heading">Example Pages</span>
                     <ul>
                         {% for example in site.examples %}
                         <li><a href="{{ example.url }}">{{ example.title }}</a></li>
@@ -41,7 +41,6 @@
         </nav>
         
         <main class="site-content">
-            <h1 class="title">{{ page.title }}</h1>
             {{ content }}
         </main>
         
