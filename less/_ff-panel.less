@@ -1,0 +1,64 @@
+// ------------------------------------------------------------- //
+// .ff-dashboard-panel
+// ------------------------------------------------------------- //
+
+.ff-panel {
+    
+    #ff_dashboard > .normalise();
+    margin-bottom: @ff_dashboard_spacing*2;
+    
+    >* {
+        #ff > .box-sizing();
+    }
+  
+    //header
+    .ff-panel-header {
+        #ff > .clearfix();
+        border: 1px solid lighten(@ff_dashboard_c_border,5%);
+        background: lighten(@ff_dashboard_c_bg,3%);
+        padding: @ff_dashboard_spacing;
+        border-bottom: none;
+        #ff > .border-radius(3px,0,0,3px);
+    
+        .ff-panel-header-title {
+            margin: 0;
+            float: left;
+        
+            >* {
+                margin: 0;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                line-height: 32px;
+            }
+            
+        }
+      
+        .ff-panel-header-actions {
+            float: right;
+        }
+    }
+  
+  //body
+  .ff-panel-body {
+    #ff > .clearfix();
+    border: 1px solid lighten(@ff_dashboard_c_border,5%);
+    padding: @ff_dashboard_spacing;
+  }
+  
+  //more
+  .ff-panel-footer {
+    #ff > .clearfix();
+    padding: @ff_dashboard_spacing;
+    border: 1px solid lighten(@ff_dashboard_c_border,5%);
+    border-top:none;
+    background: lighten(@ff_dashboard_c_bg,3%);
+    #ff > .border-radius(0,3px,3px,0);
+    
+    > * {
+        margin: 0;
+    }
+    
+  }
+  
+}

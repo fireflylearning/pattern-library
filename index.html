@@ -3,6 +3,7 @@ layout: default
 title: All Controls
 ---
 
+
 {% assign target_patterns = site.patterns %}
 {% assign group = '' %}
 
@@ -16,7 +17,7 @@ title: All Controls
             
             {% if current_group != group %}
             {% assign group = current_group %}
-            <h2 id="group-{{current_group[1]}}" class="title">{{ current_group[1] | capitalize }}</h2>
+            <h2 id="group-{{current_group[1]}}" class="title" data-scroll-index="{% increment counter %}">{{ current_group[1] | capitalize }}</h2>
             {% endif %}
             
         
@@ -39,5 +40,6 @@ title: All Controls
                    {% endfor %}
                </ul> 
             </div>
+            
     {% endif %}
 {% endfor %}

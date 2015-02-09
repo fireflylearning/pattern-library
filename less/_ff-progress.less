@@ -36,25 +36,96 @@
 	#ff > .rounded(10px);
 	margin: @ff_dashboard_spacing 0;
 	
+	//layout
 	.ff-progress-completed,
 	.ff-progress-marked {
 		position: relative;
 		display: block;
 		height: 100%;
 		overflow: hidden;
-		background-color: desaturate(lighten(@ff_dashboard_c_green,50%),60%);
 		#ff > .rounded(6px);
-		
 	}
 
 	.ff-progress-marked {
-		background-color: @ff_dashboard_c_green;
 		top: -100%;
-		#ff > .box-shadow(1px 0 0 white;)
+		#ff > .box-shadow(1px 0 0 white;);
+	}
+	
+	//colours
+	.ff-progress-completed,
+	.ff-progress-marked {
+    	background-color: desaturate(lighten(@ff_dashboard_c_green,50%),60%);
+	}
+	
+	.ff-progress-marked {
+	    background-color: @ff_dashboard_c_green;
+    }
+	
+}
+
+.ff-progress-bar-stacked {
+    background-color: #fff;
+	border: 1px solid #d5cfcf;
+	height: 20px;
+	padding: 3px;
+	position: relative;
+	#ff > .box-sizing();
+	#ff > .rounded(10px);
+	margin: @ff_dashboard_spacing 0;
+	
+	> span {
+        float: left;
+        height: 100%;
+        line-height: 12px;
+        background-color: #ccc;
+        font-size: 10px;
+        color: white;
+        text-align: center;	
+	}
+	
+	>span:first-child {
+    	#ff > .border-radius(0,0,6px,6px);
+	}
+	>span:last-child {
+    	#ff > .border-radius(6px,6px,0,0);
+	}
+	
+	//colours
+	.ff-progress-attandance-present {
+    	background-color: @ff_dashboard_c_green;
+	}
+	.ff-progress-attandance-absent-authorised {
+    	background-color: @ff_dashboard_c_yellow;
+	}
+	.ff-progress-attandance-absent-unauthorised {
+    	background-color: @ff_dashboard_c_red;
 	}
 	
 }
 
+//progress markers
+.ff-progress-marker {
+    &:before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        margin: @ff_dashboard_spacing;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: #ccc;
+    }
+    &.ff-progress-marker-present:before {
+        background-color: @ff_dashboard_c_green;
+    }
+    &.ff-progress-marker-absent-authorised:before {
+        background-color: @ff_dashboard_c_yellow;
+    }
+    &.ff-progress-marker-absent-unauthorised:before {
+        background-color: @ff_dashboard_c_red;
+    }
+}
+
+//progress statuses
 .ff-progress-status-waiting {
 	color: @ff_dashboard_c_red;
 }
