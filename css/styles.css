@@ -4,6 +4,9 @@ body {
 body.all-controls {
   background-color: #F7F7F7;
 }
+body.standalone {
+  padding: 20px;
+}
 nav.site-nav {
   width: 20%;
   background: #373737;
@@ -3121,4 +3124,132 @@ table {
   border: 1px solid #AEC2D5;
   background: #DEF1FB;
   color: #666666;
+}
+table.ff-mark-grid {
+  position: relative;
+  display: block;
+  width: 100%;
+  zoom: 1;
+  border-collapse: collapse;
+}
+table.ff-mark-grid:after,
+table.ff-mark-grid:before {
+  content: "";
+  display: table;
+}
+table.ff-mark-grid:after {
+  clear: both;
+}
+table.ff-mark-grid,
+table.ff-mark-grid * {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+table.ff-mark-grid thead {
+  float: left;
+  display: block;
+}
+table.ff-mark-grid tbody {
+  display: block;
+  width: auto;
+  position: relative;
+  overflow-x: auto;
+}
+table.ff-mark-grid tbody td,
+table.ff-mark-grid tbody th {
+  max-width: 60px;
+}
+table.ff-mark-grid td,
+table.ff-mark-grid th {
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+table.ff-mark-grid th {
+  height: 100px;
+}
+table.ff-mark-grid tr {
+  border-bottom: 1px solid red;
+}
+table.ff-mark-grid .ff-mark-grid-date {
+  background: lime;
+  display: block;
+  max-height: 80px;
+  overflow: hidden;
+}
+@media screen and (max-width: 800px) {
+  table.ff-mark-grid thead {
+    width: 70%;
+  }
+  table.ff-mark-grid th {
+    display: block;
+    height: auto;
+  }
+  table.ff-mark-grid tr {
+    display: block;
+    overflow: hidden;
+  }
+  table.ff-mark-grid tbody {
+    overflow-x: hidden;
+    float: right;
+    width: 30%;
+  }
+  table.ff-mark-grid tbody td,
+  table.ff-mark-grid tbody th {
+    display: none;
+    max-width: none;
+  }
+  table.ff-mark-grid tbody .ff-mark-grid-active {
+    display: block;
+    width: 100%;
+  }
+}
+ol.ff-mark-grid {
+  margin: 20px 0;
+  padding: 0;
+  display: flex;
+}
+ol.ff-mark-grid ol {
+  padding: 0;
+}
+ol.ff-mark-grid li {
+  list-style: none;
+}
+ol.ff-mark-grid ol li {
+  display: flex;
+}
+ol.ff-mark-grid .ff-mark-grid-student {
+  display: none;
+  width: 200px;
+}
+ol.ff-mark-grid > li:first-child .ff-mark-grid-student {
+  display: block;
+}
+ol.ff-mark-grid > li:first-child .ff-mark-grid-date {
+  margin-left: 200px;
+}
+.test-2 {
+  display: block;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+}
+.test-2 tr {
+  border: 1px solid red;
+}
+.test-2 td {
+  border: 1px solid green;
+  padding: 20px;
+}
+.test-2 th {
+  border: 1px solid gray;
+  padding: 20px;
+}
+.test-2 th,
+.test-2 td {
+  display: table-column-group;
 }
