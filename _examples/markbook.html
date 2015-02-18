@@ -3,81 +3,134 @@ title: Markbook
 layout: standalone
 ---
 
-<div class="ff-markbook">
-    <table class="ff-mark-grid" data-ff-mark-grid-task="taskid-1">
-        <thead class="ff-mark-grid-class">
-            <tr>
-                <th>
-                    <ul class="ff-dropdown ff-button ff-button-dropdown ff-button-bookmark">
-                        <li class="ff-icon ff-icon-dropdown"><div class="ff-dropdown-label">Class 8y/En2</div>
-                            <ul class="ff-dropdown-items">
-                                <li class="ff-button-unbookmark-page"><a href="#"><div>Class 8x/En1</div></a></li>
-                                <li class="ff-button-recommend-page"><a href="#"><div>Class 10t/En1</div></a></li>
-                            </ul>
-                        </li>
+<div class="ff-mark-grid">
+    
+    <div class="ff-mark-grid-students">
+        
+        <div class="ff-mark-grid-header">
+            <ul class="ff-dropdown ff-button ff-button-dropdown ff-button-bookmark">
+                <li class="ff-icon ff-icon-dropdown"><span class="ff-dropdown-label">Class 8y/En2</span>
+                    <ul class="ff-dropdown-items">
+                        <li class=""><a href="#"><span>Class 10z/En2</span></a></li>
+                        <li class=""><a href="#"><span>Class 11a/En2</span></a></li>
                     </ul>
-                </th>
-            </tr>
-            <tr>
-                <td>Olivia Chapman has an extremely long name indeed.</td>
-            </tr>
-            <tr>
-                <td>Kelly Chipboard</td>
-            </tr>
-            <tr>
-                <td>Angela Dogchum</td>
-            </tr>
-        </thead>
+                </li>
+            </ul>
+        </div>
         
-        <tbody class="ff-mark-grid-tasks">
-            <tr>
-                <th id="taskid-1"><time class="ff-mark-grid-date">Tue 20th Feb</time></th>
-                <th id="taskid-2"><time class="ff-mark-grid-date">Tue 20th Feb</time></th>
-                <th id="taskid-3"><time class="ff-mark-grid-date">Tue 20th Feb</time></th>
-            </tr>
-            <tr>
-                <td headers="taskid-1">60%</td>
-                <td headers="taskid-2">40%</td>
-                <td headers="taskid-3">20%</td>
-            </tr>
-            <tr>
-                <td headers="taskid-1">60%</td>
-                <td headers="taskid-2">40%</td>
-                <td headers="taskid-3">20%</td>
-            </tr>
-            <tr>
-                <td headers="taskid-1">60%</td>
-                <td headers="taskid-2">40%</td>
-                <td headers="taskid-3">20%</td>
-            </tr>
-        </tbody>
-        
-    </table>
+        <ol>
+            <li id="jon">
+                <div class="ff-mark-grid-student">
+                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
+                    <span class="ff-mark-grid-user-name">Jonathan James Andrew Roobottom Jonathan James Andrew Roobottom Jonathan James Andrew Roobottom</span>
+                    <div class="ff-mark-grid-target" title="Outstanding">Outstanding</div>
+                </div>
+            </li>
+            <li id="katie">
+                <div class="ff-mark-grid-student">
+                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
+                    <span class="ff-mark-grid-user-name">Katie Sellwood</span>
+                    <div class="ff-mark-grid-target" title="Good">Good</div>
+                </div>
+            </li>
+            <li id="catherine">
+                <div class="ff-mark-grid-student">
+                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
+                    <span class="ff-mark-grid-user-name">Catherine Hyslop</span>
+                    <div class="ff-mark-grid-target" title="Requires improvement">Requires improvement</div>
+                </div>
+            </li>
+            <li id="david">
+                <div class="ff-mark-grid-student">
+                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
+                    <span class="ff-mark-grid-user-name">David White</span>
+                    <div class="ff-mark-grid-target" title="101%">101%</div>
+                </div>
+            </li>
+            <li id="ellie">
+                <div class="ff-mark-grid-student">
+                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
+                    <span class="ff-mark-grid-user-name">Ellie Rose</span>
+                    <div class="ff-mark-grid-target" title="Inadequate">Inadequate</div>
+                </div>
+            </li>
+        </ol>
+    </div>
     
+    <div class="ff-mark-grid-results">
+        <div class="ff-mark-grid-header ff-mark-grid-choose-task">
+            <ul class="ff-dropdown ff-button ff-button-dropdown ff-button-bookmark">
+                <li class="ff-icon ff-icon-dropdown"><span class="ff-dropdown-label">Choose a task</span>
+                    <ul class="ff-dropdown-items">
+                        <li class=""><a href="#ff-mark-grid-task-uid1"><span>Mon 1st Feb</span></a></li>
+                        <li class=""><a href="#ff-mark-grid-task-uid2"><span>Tue 2nd Feb</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <ol>
+            <li id="ff-mark-grid-task-uid1">
+                <div class="ff-mark-grid-header ff-popover-trigger">
+                    <time class="ff-mark-grid-date">Mon 1st Feb</time>
+                    <div class="ff-popover ff-popover-js-template">
+                        <div class="ff-popover-header">
+                            Write a 250,000 word essay on the role of Oedipus in classic literature 
+                        </div>
+                        <div class="ff-popover-body">
+                            <ul class="ff-navigation">
+                                <li><a href="#" class="ff-icon ff-icon-tick">Go to Task</a></li>
+                                <li><a href="#" class="ff-icon ff-icon-tick">Highlight</a></li>
+                                <li><a href="#" class="ff-icon ff-icon-tick">Toggle Mark</a></li>
+                                <li><a href="#" class="ff-icon ff-icon-tick">Hide</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ol>
+                    <li data-student="jon" class="ff-popover-trigger">
+                            <div class="ff-mark-grid-result">100%</div>
+                            <div class="ff-popover ff-popover-js-template">
+                                <div class="ff-popover-header">
+                                    Jonathan James Andrew Roobottom
+                                </div>
+                                <div class="ff-popover-body">
+                                    <ul class="ff-summary">
+                                        <li><span class="ff-summary-title">Mark</span> <span class="ff-summary-data">10/10</span></li>
+                                        <li><span class="ff-summary-title">Percentage</span> <span class="ff-summary-data">100%</span></li>
+                                        <li><span class="ff-summary-title">Grade</span> <span class="ff-summary-data">A*</span></li>
+                                        <li><span class="ff-summary-title">Feedback</span> <span class="ff-summary-data">Typically brilliant from you Jonathan, and may I say you also have exceptional handwriting.</span></li>
+                                    </ul>
+                                </div>
+                                <div class="ff-popover-footer">
+                                    <ul class="ff-navigation">
+                                        <li><a href="#" class="ff-icon ff-icon-tick">Go to Task</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                        
+                    </li>
+                    <li data-student="katie"><div class="ff-mark-grid-result">80%</div></li>
+                    <li data-student="catherine"><div class="ff-mark-grid-result">60%</div></li>
+                    <li data-student="david"><div class="ff-mark-grid-result">40%</div></li>
+                    <li data-student="ellie"><div class="ff-mark-grid-result">20%</div></li>
+                </ol>
+            </li>
+            <li id="ff-mark-grid-task-uid1" class="ff-mark-grid-active"><div class="ff-mark-grid-header"><time class="ff-mark-grid-date">Tue 2nd Feb</time></div>
+                <ol>
+                    <li data-student="jon"><div class="ff-mark-grid-result">100%</div></li>
+                    <li data-student="katie"><div class="ff-mark-grid-result">80%</div></li>
+                    <li data-student="catherine"><div class="ff-mark-grid-result">60%</div></li>
+                    <li data-student="david"><div class="ff-mark-grid-result">40%</div></li>
+                    <li data-student="ellie"><div class="ff-mark-grid-result">20%</div></li>
+                </ol>
+            </li>             
+        </ol>
+    </div>
     
-    
-    <ol class="ff-mark-grid">
-        <li><time class="ff-mark-grid-date">Tue 1st Feb</time>
-            <ol>
-                <li><div class="ff-mark-grid-student">Sally Student</div><div class="ff-mark-grid-result">60%</div></li>
-                <li><div class="ff-mark-grid-student">Peter Pupil</div><div class="ff-mark-grid-result">40%</div></li>
-                <li><div class="ff-mark-grid-student">Lance Learner</div><div class="ff-mark-grid-result">20%</div></li>
-            </ol>
-        </li>
-        <li><time class="ff-mark-grid-date">Wed 2nd Feb</time>
-            <ol>
-                <li><div class="ff-mark-grid-student">Sally Student</div><div class="ff-mark-grid-result">60%</div></li>
-                <li><div class="ff-mark-grid-student">Peter Pupil</div><div class="ff-mark-grid-result">40%</div></li>
-                <li><div class="ff-mark-grid-student">Lance Learner</div><div class="ff-mark-grid-result">20%</div></li>
-            </ol>
-        </li>
-        <li><time class="ff-mark-grid-date">Thu 3rd Feb</time>
-            <ol>
-                <li><div class="ff-mark-grid-student">Sally Student</div><div class="ff-mark-grid-result">60%</div></li>
-                <li><div class="ff-mark-grid-student">Peter Pupil</div><div class="ff-mark-grid-result">40%</div></li>
-                <li><div class="ff-mark-grid-student">Lance Learner</div><div class="ff-mark-grid-result">20%</div></li>
-            </ol>
-        </li>
-    </ol>
-    
+</div>
+
+
+<div style="height:1200px; border: 1px solid blue;">
+    <p>Other stuff that might be on the page</p>
 </div>

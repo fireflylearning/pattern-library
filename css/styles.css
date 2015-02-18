@@ -857,7 +857,6 @@ table {
   top: 100%;
   border: 1px solid #b4b4b4;
   background: #def1fa;
-  min-width: 160px;
   z-index: 1000;
   -webkit-border-top-right-radius: 0;
   -webkit-border-bottom-right-radius: 2px;
@@ -2854,6 +2853,16 @@ table {
   display: block;
   margin-top: 20px;
 }
+.ff-popover .ff-navigation li {
+  float: none;
+}
+.ff-popover .ff-navigation li a {
+  display: block;
+}
+.ff-popover .ff-navigation li:after {
+  margin: 0;
+  display: none;
+}
 .ff-label {
   padding: 2px 6px;
   background-color: white;
@@ -3125,23 +3134,63 @@ table {
   background: #DEF1FB;
   color: #666666;
 }
-table.ff-mark-grid {
-  position: relative;
-  display: block;
-  width: 100%;
+div.ff-mark-grid {
   zoom: 1;
-  border-collapse: collapse;
+  border: 1px solid red;
+  /*
+---
+    small mode
+---   
+*/
+  /*
+---
+    fixed header mode
+---   
+*/
 }
-table.ff-mark-grid:after,
-table.ff-mark-grid:before {
+div.ff-mark-grid:after,
+div.ff-mark-grid:before {
   content: "";
   display: table;
 }
-table.ff-mark-grid:after {
+div.ff-mark-grid:after {
   clear: both;
 }
-table.ff-mark-grid,
-table.ff-mark-grid * {
+div.ff-mark-grid ol {
+  margin: 0;
+  padding: 0;
+}
+div.ff-mark-grid ol > li {
+  list-style: none;
+  line-height: 1;
+}
+div.ff-mark-grid ol > li:before,
+div.ff-mark-grid ol > li:after {
+  content: ' ';
+  display: table;
+}
+div.ff-mark-grid .ff-mark-grid-students {
+  float: left;
+  display: block;
+  max-width: 400px;
+  width: 400px;
+}
+div.ff-mark-grid .ff-mark-grid-students ol ol li:nth-child(odd) {
+  background-color: #fafafa;
+}
+div.ff-mark-grid .ff-mark-grid-results {
+  display: block;
+  width: auto;
+  position: relative;
+  overflow-x: auto;
+}
+div.ff-mark-grid .ff-mark-grid-results > ol > li {
+  display: table-cell;
+  width: 60px;
+  width: 3.75rem;
+}
+div.ff-mark-grid .ff-mark-grid-header {
+  padding: 10px;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
@@ -3149,107 +3198,235 @@ table.ff-mark-grid * {
   box-sizing: border-box;
   /* Opera/IE 8+ */
 }
-table.ff-mark-grid thead {
-  float: left;
-  display: block;
-}
-table.ff-mark-grid tbody {
-  display: block;
-  width: auto;
-  position: relative;
-  overflow-x: auto;
-}
-table.ff-mark-grid tbody td,
-table.ff-mark-grid tbody th {
-  max-width: 60px;
-}
-table.ff-mark-grid td,
-table.ff-mark-grid th {
-  padding: 10px;
+div.ff-mark-grid .ff-mark-grid-result {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 7px;
+  padding: 0.4375rem;
+  margin: 11px 2px;
+  margin: 0.6875rem 0.125rem;
+  border: 1px solid transparent;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
   white-space: nowrap;
-  overflow: hidden;
 }
-table.ff-mark-grid th {
-  height: 100px;
+div.ff-mark-grid .ff-mark-grid-student {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  padding-top: 1.1875rem;
+  padding-bottom: 1.1875rem;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  white-space: nowrap;
 }
-table.ff-mark-grid tr {
-  border-bottom: 1px solid red;
-}
-table.ff-mark-grid .ff-mark-grid-date {
-  background: lime;
+div.ff-mark-grid .ff-mark-grid-header {
+  height: 70px;
+  height: 4.375rem;
   display: block;
-  max-height: 80px;
-  overflow: hidden;
+  background-color: #f2f2f2;
 }
-@media screen and (max-width: 800px) {
-  table.ff-mark-grid thead {
-    width: 70%;
-  }
-  table.ff-mark-grid th {
-    display: block;
-    height: auto;
-  }
-  table.ff-mark-grid tr {
-    display: block;
-    overflow: hidden;
-  }
-  table.ff-mark-grid tbody {
-    overflow-x: hidden;
-    float: right;
-    width: 30%;
-  }
-  table.ff-mark-grid tbody td,
-  table.ff-mark-grid tbody th {
-    display: none;
-    max-width: none;
-  }
-  table.ff-mark-grid tbody .ff-mark-grid-active {
-    display: block;
-    width: 100%;
-  }
-}
-ol.ff-mark-grid {
-  margin: 20px 0;
-  padding: 0;
-  display: flex;
-}
-ol.ff-mark-grid ol {
-  padding: 0;
-}
-ol.ff-mark-grid li {
-  list-style: none;
-}
-ol.ff-mark-grid ol li {
-  display: flex;
-}
-ol.ff-mark-grid .ff-mark-grid-student {
+div.ff-mark-grid .ff-mark-grid-choose-task {
   display: none;
+}
+div.ff-mark-grid .ff-mark-grid-result {
+  background-color: #1A5B96;
+  text-align: center;
+  color: white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+div.ff-mark-grid .ff-mark-grid-date {
+  text-align: center;
+  display: block;
+  cursor: context-menu;
+}
+div.ff-mark-grid .ff-mark-grid-date:hover {
+  color: #366797;
+}
+div.ff-mark-grid .ff-mark-grid-student {
+  overflow: hidden;
+  padding-left: 52px;
+  padding-right: 100px;
+  position: relative;
+}
+div.ff-mark-grid .ff-mark-grid-student .ff-mark-grid-avatar {
+  max-width: 32px;
+  display: block;
+  vertical-align: middle;
+  position: absolute;
+  top: 11px;
+  left: 10px;
+}
+div.ff-mark-grid .ff-mark-grid-student .ff-mark-grid-target {
+  font-size: 14px;
+  display: block;
+  background: #f2f2f2;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  position: absolute;
+  width: 60px;
+  right: 10px;
+  padding: 5px;
+  top: 15px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: help;
+}
+div.ff-mark-grid.ff-mark-book-small {
+  padding-top: 140px;
+  position: relative;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-students {
+  width: auto;
+}
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results {
+  overflow: visible;
+  flex-grow: 1;
+  min-width: 60px;
+  position: static;
+}
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results > ol > li {
+  display: none;
+  width: auto;
+}
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-active {
+  display: block;
+}
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-header {
+  display: none;
+}
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-students .ff-mark-grid-header,
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-choose-task {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-choose-task {
+  top: 70px;
+}
+div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-student .ff-mark-grid-target {
+  right: 0;
+}
+div.ff-mark-grid.ff-mark-grid-fixed-header {
+  padding-top: 70px;
+  padding-top: 4.375rem;
+}
+div.ff-mark-grid.ff-mark-grid-fixed-header .ff-mark-grid-header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 400px;
+}
+div.ff-mark-grid.ff-mark-grid-fixed-header .ff-mark-grid-results .ff-mark-grid-header {
+  width: 60px;
+  width: 3.75rem;
+}
+.ff-popover-trigger {
+  position: relative;
+  text-decoration: none;
+  cursor: context-menu;
+}
+.ff-popover {
+  display: none;
+  text-decoration: none;
+  position: absolute;
   width: 200px;
+  left: -100px;
+  top: 0;
+  background-color: white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
 }
-ol.ff-mark-grid > li:first-child .ff-mark-grid-student {
+.ff-popover:before {
+  content: '';
   display: block;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  margin-left: -12px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 12px 12px 12px;
+  border-color: transparent transparent #1f80e3 transparent;
 }
-ol.ff-mark-grid > li:first-child .ff-mark-grid-date {
-  margin-left: 200px;
+.ff-popover .ff-popover-header {
+  background-color: #1f80e3;
+  padding: 10px;
+  color: #ffffff;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
-.test-2 {
-  display: block;
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
+.ff-popover .ff-popover-body {
+  padding: 10px;
 }
-.test-2 tr {
-  border: 1px solid red;
+.ff-popover .ff-popover-footer {
+  padding: 10px;
 }
-.test-2 td {
-  border: 1px solid green;
-  padding: 20px;
+.ff-summary {
+  margin: 0;
+  padding: 0;
 }
-.test-2 th {
-  border: 1px solid gray;
-  padding: 20px;
+.ff-summary li {
+  list-style: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.test-2 th,
-.test-2 td {
-  display: table-column-group;
+.ff-summary .ff-summary-title {
+  color: #A6A6A6;
 }

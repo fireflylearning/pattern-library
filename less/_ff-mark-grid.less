@@ -1,147 +1,253 @@
-table.ff-mark-grid {//table
-    
-    @ff_markbook_header_height: 100px;
-    position: relative;
-    display: block;
-    width: 100%;
+@ff_markbook_header_height: 70;
+@ff_makrbook_cell_width: 60;
+
+ 
+@ff_markbok_cell_height: 54;
+@ff_markbook_cell_text: 16;
+@ff_markbook_result_height: 32; 
+
+div.ff-mark-grid {
     
     #ff > .clearfix();
-    &, * {#ff > .box-sizing();}
-    border-collapse: collapse;
+    border: 1px solid red;
     
-    thead {
-        float: left;
-        display: block;    
+    //general list styling
+    ol {
+        margin: 0;
+        padding: 0;
     }
     
-    tbody {
+    ol > li {
+        list-style: none;
+        line-height: 1;
+        
+        &:before, &:after {
+            content: ' ';
+            display: table;
+        }
+    }
+    
+    //left hand panel
+    .ff-mark-grid-students {
+        float: left;
+        display: block;
+        max-width: 400px;
+        width: 400px; //undo this for small screens
+        
+        ol ol li:nth-child(odd) {
+            background-color: lighten(@ff_dashboard_c_bg,3%);
+        }
+        
+    }
+    
+    //right hand panel
+    .ff-mark-grid-results {
         display: block;
         width: auto;
         position: relative;
         overflow-x: auto;
         
-        td, th {
-            max-width: 60px;
+        > ol > li {
+            display: table-cell;
+            width: @ff_makrbook_cell_width * 1px;
+            width: @ff_makrbook_cell_width * 1rem/@ff_b;
         }
+        
+        
         
     }
     
     
-    //general shizzle
-    td, th {
-        padding: @ff_dashboard_spacing;
+    //"cell" sizing
+    .ff-mark-grid-header
+     {
+        padding: 10px;
+        #ff > .box-sizing();
+    }
+    .ff-mark-grid-result {
+        
+        font-size: @ff_markbook_cell_text * 1px;
+        font-size: @ff_markbook_cell_text * 1rem/@ff_b;
+        line-height: 1;
+        padding: (((@ff_markbook_result_height - @ff_markbook_cell_text)/2) - 1) * 1px;//-1 for border
+        padding: (((@ff_markbook_result_height - @ff_markbook_cell_text)/2) - 1) * 1rem/@ff_b;//-1 for border
+        margin: (((@ff_markbok_cell_height - @ff_markbook_result_height) / 2) * 1px) 2px;
+        margin: (((@ff_markbok_cell_height - @ff_markbook_result_height) / 2) * 1rem/@ff_b) 2rem/@ff_b;
+        border: 1px solid transparent;
+        
+        #ff > .box-sizing();
         white-space: nowrap;
-        overflow: hidden;
+    }
+    .ff-mark-grid-student {
+        font-size: @ff_markbook_cell_text * 1px;
+        font-size: @ff_markbook_cell_text * 1rem/@ff_b;
+        line-height: 1;
+        padding-top: ((@ff_markbok_cell_height - @ff_markbook_cell_text)/2) * 1px;
+        padding-bottom: ((@ff_markbok_cell_height - @ff_markbook_cell_text)/2) * 1px;
+        padding-top: ((@ff_markbok_cell_height - @ff_markbook_cell_text)/2) * 1rem/@ff_b;
+        padding-bottom: ((@ff_markbok_cell_height - @ff_markbook_cell_text)/2) * 1rem/@ff_b;
+        
+        #ff > .box-sizing(); 
+        white-space: nowrap;
     }
     
-    th {
-        height: @ff_markbook_header_height;
-    }
-    
-    tr {
-        border-bottom: 1px solid red;
-    }
-    
-    .ff-mark-grid-date {
-        background: lime;
+    //headers
+    .ff-mark-grid-header {
+        height: @ff_markbook_header_height * 1px;
+        height: @ff_markbook_header_height * 1rem/@ff_b;
         display: block;
-        max-height: @ff_markbook_header_height - (@ff_dashboard_spacing*2);
+        background-color: @ff_dashboard_c_bg;
+    }
+    
+    //choose a task, just for the reposnive view — added in with js?
+    .ff-mark-grid-choose-task {
+        display: none;
+    }
+    
+    //result box
+    .ff-mark-grid-result {
+        background-color: #1A5B96;
+        text-align: center;
+        color: white;
+        #ff > .rounded(5px);
+    }
+    
+    //date box
+    .ff-mark-grid-date {
+        text-align: center;
+        display: block;
+        cursor: context-menu;
+        &:hover {
+            color: @ff_dashboard_c_link;
+        }
+    }
+    
+    //student
+    .ff-mark-grid-student {
+        
         overflow: hidden;
+        padding-left: 52px;
+        padding-right: 100px;
+        position: relative;
+        
+        .ff-mark-grid-avatar {
+            max-width: 32px;
+            display: block;
+            vertical-align: middle;
+            position: absolute;
+            top: (@ff_markbok_cell_height - 32px)/2;
+            left: 10px;
+        }
+        .ff-mark-grid-target {
+            @text: @ff_markbook_cell_text - 2;
+            
+            font-size: @text * 1px;
+            display: block;
+            background: @ff_dashboard_c_bg;
+            #ff > .rounded(5px);
+            #ff > .box-sizing();
+            position: absolute;
+            width: 60px;
+            right: 10px;
+            padding: 5px;
+            top: ((@ff_markbok_cell_height - (@text + 10))/2) * 1px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: help;
+        }
     }
     
     
-    @media screen and (max-width:800px) {
+/*
+---
+    small mode
+---   
+*/
+    &.ff-mark-book-small {
         
-        thead {
-            width: 70%;
+        //maybe this should be an element query with js?
+        
+        padding-top: (@ff_markbook_header_height*2) * 1px;
+        position: relative;
+        #ff > .flex-display(); 
+        
+        //left hand panel
+        .ff-mark-grid-students {
+            width: auto;
         }
+              
         
-        th {
-            display: block;
-            height: auto;
-        }
-        
-        tr {
-            display: block;
-            overflow: hidden;
-        }
-        
-        tbody {
+        //right hand panel
+        .ff-mark-grid-results {
+            overflow: visible;
+            flex-grow: 1;
+            min-width: 60px;
+            position: static;
             
-            overflow-x: hidden;
-            float: right;
-            width: 30%;
-            
-            td, th {
+            >ol>li {
                 display: none;
-                max-width: none;
+                width: auto;
+                
             }
             .ff-mark-grid-active {
                 display: block;
-                width: 100%;
+            }
+            .ff-mark-grid-header {
+                display: none;
             }
         }
-    }
-    
-}
-
-ol.ff-mark-grid {
-    margin: 20px 0;
-    padding: 0;
-    display: flex;
-    
-    ol {
-        padding: 0;
-    }
-    
-    li {
-        list-style: none;
-    }
-    
-    ol li {
-        display: flex;
-    }
-    
-    //use first results as titles:
-    .ff-mark-grid-student {
-        display: none;
-        width: 200px;
-    }
-    >li:first-child {
-        .ff-mark-grid-student {
+        
+        //dropdowns
+        .ff-mark-grid-students .ff-mark-grid-header,
+        .ff-mark-grid-results .ff-mark-grid-choose-task {
             display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top:0;
         }
-        .ff-mark-grid-date {
-            margin-left: 200px;
+        .ff-mark-grid-results .ff-mark-grid-choose-task {
+            top: @ff_markbook_header_height * 1px;
+        } 
+        
+        //taget
+        .ff-mark-grid-student {
+            .ff-mark-grid-target {
+                right: 0;
+            }
         }
-    }
+        
+        
+    }//small
     
-}
+    
+/*
+---
+    fixed header mode
+---   
+*/
 
-
-.test-2 {
-    display: block;
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px 0;
-    
-    tr {
-        border: 1px solid red;
+    &.ff-mark-grid-fixed-header {
+        
+        padding-top: @ff_markbook_header_height * 1px;
+        padding-top: @ff_markbook_header_height * 1rem/@ff_b;
+        
+        .ff-mark-grid-header {
+            position: fixed;
+            top:0;
+            z-index: 100;
+            width: 400px;
+        }
+        
+        .ff-mark-grid-results {
+            .ff-mark-grid-header {
+                width: @ff_makrbook_cell_width * 1px;
+                width: @ff_makrbook_cell_width * 1rem/@ff_b;
+            }
+        }
+        
     }
     
-    td {
-        border: 1px solid green;
-        padding: 20px;
-    }
-    
-    th {
-        border: 1px solid gray;
-        padding: 20px;
-    }
-    
-    
-    th, td {
-        display: table-column-group;
-    }
     
 }

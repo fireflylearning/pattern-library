@@ -1,0 +1,57 @@
+@ff_popover_width: 200px;
+@ff_popover_c_header: #1F80E3;
+@ff_popover_c_header_text: white;
+
+.ff-popover-trigger {
+    position: relative;
+    text-decoration: none;
+    cursor: context-menu;
+}
+
+.ff-popover {
+    
+    display: none;
+    text-decoration: none;
+    
+    position: absolute;
+    
+    width: @ff_popover_width;
+    left: (@ff_popover_width / 2) * -1;
+    top: 0;
+    
+    background-color: white;
+    
+    #ff > .rounded(5px);
+    #ff > .box-shadow(3px 3px 0 fade(black,20%));
+    
+    //Triangles, always with zee Triangles.
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        margin-left: -12px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 12px 12px 12px;
+        border-color: transparent transparent @ff_popover_c_header transparent;
+    }
+    
+    .ff-popover-header {
+        background-color: @ff_popover_c_header;
+        padding: 10px;
+        color: @ff_popover_c_header_text;
+        #ff > .border-radius(5px,0,0,5px);
+    }
+    
+    .ff-popover-body {
+        padding: 10px;
+    }
+    
+    .ff-popover-footer {
+        padding: 10px;
+    }
+    
+}
