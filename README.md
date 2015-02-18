@@ -6,4 +6,6 @@ The full list of controls for Firefly's Interface.
 
 ## How this works
 
-The pattern library is built on [Jekyll](http://jekyllrb.com/) and uses it's [posts](http://jekyllrb.com/docs/posts/) structure for each of the components. By default you must use the following format for Jekyll posts `YYYY-MM-DD-post-name.html`. However, this format is hacked here to allow you to order the components on the index page. For example, the top component will have the lowest post-name like so `0001-01-01-ff-button.html`. In this way it's possible to order components.
+The pattern library is built on [Jekyll](http://jekyllrb.com/).
+
+Patterns are all contained within the `_patterns` folder. Example pages live within the `_examples` folder. Adding a new file in either of these folders will automatically add that pattern or example to the site.
