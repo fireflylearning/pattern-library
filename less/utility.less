@@ -50,6 +50,14 @@
 		transition: @transition;
 	}
 	
+	//Transforms
+	.transform(@string){
+    	-webkit-transform:   @string;
+    	-moz-transform: 	 @string;
+    	-ms-transform: 		 @string;
+    	-o-transform: 		 @string;
+    }
+	
 	// CSS3 Content Columns
 	.content-columns(@columnCount, @columnGap: 20px) {
 		-webkit-column-count: @columnCount;

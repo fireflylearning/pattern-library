@@ -69,62 +69,17 @@ layout: standalone
             </ul>
         </div>
         <ol>
-            <li id="ff-mark-grid-task-uid1">
-                <div class="ff-mark-grid-header ff-popover-trigger">
-                    <time class="ff-mark-grid-date">Mon 1st Feb</time>
-                    <div class="ff-popover ff-popover-js-template">
-                        <div class="ff-popover-header">
-                            Write a 250,000 word essay on the role of Oedipus in classic literature 
-                        </div>
-                        <div class="ff-popover-body">
-                            <ul class="ff-navigation">
-                                <li><a href="#" class="ff-icon ff-icon-tick">Go to Task</a></li>
-                                <li><a href="#" class="ff-icon ff-icon-tick">Highlight</a></li>
-                                <li><a href="#" class="ff-icon ff-icon-tick">Toggle Mark</a></li>
-                                <li><a href="#" class="ff-icon ff-icon-tick">Hide</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <li id="ff-mark-grid-task-uid1" class="ff-mark-grid-highlight">
+                {% include_relative markbook_includes/task-header.html date="Mon 1st Feb" %}
                 <ol>
-                    <li data-student="jon" class="ff-popover-trigger">
-                            <div class="ff-mark-grid-result">100%</div>
-                            <div class="ff-popover ff-popover-js-template">
-                                <div class="ff-popover-header">
-                                    Jonathan James Andrew Roobottom
-                                </div>
-                                <div class="ff-popover-body">
-                                    <ul class="ff-summary">
-                                        <li><span class="ff-summary-title">Mark</span> <span class="ff-summary-data">10/10</span></li>
-                                        <li><span class="ff-summary-title">Percentage</span> <span class="ff-summary-data">100%</span></li>
-                                        <li><span class="ff-summary-title">Grade</span> <span class="ff-summary-data">A*</span></li>
-                                        <li><span class="ff-summary-title">Feedback</span> <span class="ff-summary-data">Typically brilliant from you Jonathan, and may I say you also have exceptional handwriting.</span></li>
-                                    </ul>
-                                </div>
-                                <div class="ff-popover-footer">
-                                    <ul class="ff-navigation">
-                                        <li><a href="#" class="ff-icon ff-icon-tick">Go to Task</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </a>
-                        
-                    </li>
-                    <li data-student="katie"><div class="ff-mark-grid-result">80%</div></li>
-                    <li data-student="catherine"><div class="ff-mark-grid-result">60%</div></li>
-                    <li data-student="david"><div class="ff-mark-grid-result">40%</div></li>
-                    <li data-student="ellie"><div class="ff-mark-grid-result">20%</div></li>
+                    {% include_relative markbook_includes/student-mark.html id="jon" name="Jonathan Roobottom" percent="100" mark="10" outof="10" grade="A" %}
+                    {% include_relative markbook_includes/student-mark.html id="katie" name="Katie Sellwood" percent="80" mark="8" outof="10" grade="B" %}
+                    {% include_relative markbook_includes/student-mark.html id="catherine" name="Catherine Hyslop" percent="60" mark="6" outof="10" grade="C" %}
+                    {% include_relative markbook_includes/student-mark.html id="david" name="David Gavin James White" percent="40" mark="4" outof="10" grade="D" %}
+                    {% include_relative markbook_includes/student-mark.html id="ellie" name="Ellie Rose" percent="20" mark="2" outof="10" grade="E" %}
+                    {% include_relative markbook_includes/student-mark.html id="kamran" name="Kamran Kahn" percent="0" mark="0" outof="10" grade="F" %}
                 </ol>
-            </li>
-            <li id="ff-mark-grid-task-uid1" class="ff-mark-grid-active"><div class="ff-mark-grid-header"><time class="ff-mark-grid-date">Tue 2nd Feb</time></div>
-                <ol>
-                    <li data-student="jon"><div class="ff-mark-grid-result">100%</div></li>
-                    <li data-student="katie"><div class="ff-mark-grid-result">80%</div></li>
-                    <li data-student="catherine"><div class="ff-mark-grid-result">60%</div></li>
-                    <li data-student="david"><div class="ff-mark-grid-result">40%</div></li>
-                    <li data-student="ellie"><div class="ff-mark-grid-result">20%</div></li>
-                </ol>
-            </li>             
+            </li>            
         </ol>
     </div>
     

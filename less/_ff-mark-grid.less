@@ -1,4 +1,4 @@
-@ff_markbook_header_height: 70;
+@ff_markbook_header_height: 80;
 @ff_makrbook_cell_width: 60;
 
  
@@ -6,7 +6,12 @@
 @ff_markbook_cell_text: 16;
 @ff_markbook_result_height: 32; 
 
-div.ff-mark-grid {
+@ff_markbook_c_result_100: #1A5B96;
+@ff_markbook_c_highight: #EDEB56;
+
+@ff_markbook_c_result_grade: #CBD2D7;
+
+.ff-mark-grid {
     
     #ff > .clearfix();
     border: 1px solid red;
@@ -34,7 +39,7 @@ div.ff-mark-grid {
         max-width: 400px;
         width: 400px; //undo this for small screens
         
-        ol ol li:nth-child(odd) {
+        ol > li:nth-child(odd) {
             background-color: lighten(@ff_dashboard_c_bg,3%);
         }
         
@@ -51,6 +56,8 @@ div.ff-mark-grid {
             display: table-cell;
             width: @ff_makrbook_cell_width * 1px;
             width: @ff_makrbook_cell_width * 1rem/@ff_b;
+            max-width: @ff_makrbook_cell_width * 1px;
+            max-width: @ff_makrbook_cell_width * 1rem/@ff_b;
         }
         
         
@@ -61,22 +68,8 @@ div.ff-mark-grid {
     //"cell" sizing
     .ff-mark-grid-header
      {
-        padding: 10px;
+        padding: 5px;
         #ff > .box-sizing();
-    }
-    .ff-mark-grid-result {
-        
-        font-size: @ff_markbook_cell_text * 1px;
-        font-size: @ff_markbook_cell_text * 1rem/@ff_b;
-        line-height: 1;
-        padding: (((@ff_markbook_result_height - @ff_markbook_cell_text)/2) - 1) * 1px;//-1 for border
-        padding: (((@ff_markbook_result_height - @ff_markbook_cell_text)/2) - 1) * 1rem/@ff_b;//-1 for border
-        margin: (((@ff_markbok_cell_height - @ff_markbook_result_height) / 2) * 1px) 2px;
-        margin: (((@ff_markbok_cell_height - @ff_markbook_result_height) / 2) * 1rem/@ff_b) 2rem/@ff_b;
-        border: 1px solid transparent;
-        
-        #ff > .box-sizing();
-        white-space: nowrap;
     }
     .ff-mark-grid-student {
         font-size: @ff_markbook_cell_text * 1px;
@@ -106,17 +99,75 @@ div.ff-mark-grid {
     
     //result box
     .ff-mark-grid-result {
-        background-color: #1A5B96;
+        
+        font-size: @ff_markbook_cell_text * 1px;
+        font-size: @ff_markbook_cell_text * 1rem/@ff_b;
+        line-height: 1;
+        padding: (((@ff_markbook_result_height - @ff_markbook_cell_text)/2) - 1) * 1px;//-1 for border
+        padding: (((@ff_markbook_result_height - @ff_markbook_cell_text)/2) - 1) * 1rem/@ff_b;//-1 for border
+        margin: (((@ff_markbok_cell_height - @ff_markbook_result_height) / 2) * 1px) 2px;
+        margin: (((@ff_markbok_cell_height - @ff_markbook_result_height) / 2) * 1rem/@ff_b) 2rem/@ff_b;
+        border: 1px solid transparent;
+        
+        //#ff > .box-sizing();
+        white-space: nowrap;
+        
+        background-color: @ff_markbook_c_result_100;
         text-align: center;
         color: white;
         #ff > .rounded(5px);
+        
+        .result-colours(@index,@colour) when (@index >= 0) {
+            &.ff-mark-grid-result-@{index} {
+                background-color: lighten(@colour,@index);
+                background-color: fade(@colour,@index);
+                border-color: lighten(@colour,@index);
+                border-color: fade(@colour,@index);
+                .text-colour(@index,@colour);
+            }
+            .result-colours(@index - 1,@colour);
+        }
+        .text-colour(@index,@colour) when (@index < 30) {
+            color: @colour;
+        }
+        .result-colours(100,@ff_markbook_c_result_100);
     }
+    
+    //highlights
+    .ff-mark-grid-highlight {
+        
+        .ff-mark-grid-date {
+            background-color: @ff_markbook_c_highight;
+            border-color: lighten(@ff_markbook_c_highight,50%);
+        }
+        
+        .ff-mark-grid-result {
+            position: relative;
+            overflow: hidden;
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0 12px 12px 0;
+                border-color: transparent @ff_markbook_c_highight transparent transparent;
+            }
+        }
+    }
+    
     
     //date box
     .ff-mark-grid-date {
         text-align: center;
         display: block;
         cursor: context-menu;
+        padding: 5px 10px;
+        border: 1px solid transparent;
+        #ff > .rounded(5px);
         &:hover {
             color: @ff_dashboard_c_link;
         }
@@ -154,7 +205,7 @@ div.ff-mark-grid {
             text-align: center;
             overflow: hidden;
             text-overflow: ellipsis;
-            cursor: help;
+            cursor: pointer;
         }
     }
     

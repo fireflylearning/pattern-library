@@ -3134,7 +3134,7 @@ table {
   background: #DEF1FB;
   color: #666666;
 }
-div.ff-mark-grid {
+.ff-mark-grid {
   zoom: 1;
   border: 1px solid red;
   /*
@@ -3148,49 +3148,51 @@ div.ff-mark-grid {
 ---   
 */
 }
-div.ff-mark-grid:after,
-div.ff-mark-grid:before {
+.ff-mark-grid:after,
+.ff-mark-grid:before {
   content: "";
   display: table;
 }
-div.ff-mark-grid:after {
+.ff-mark-grid:after {
   clear: both;
 }
-div.ff-mark-grid ol {
+.ff-mark-grid ol {
   margin: 0;
   padding: 0;
 }
-div.ff-mark-grid ol > li {
+.ff-mark-grid ol > li {
   list-style: none;
   line-height: 1;
 }
-div.ff-mark-grid ol > li:before,
-div.ff-mark-grid ol > li:after {
+.ff-mark-grid ol > li:before,
+.ff-mark-grid ol > li:after {
   content: ' ';
   display: table;
 }
-div.ff-mark-grid .ff-mark-grid-students {
+.ff-mark-grid .ff-mark-grid-students {
   float: left;
   display: block;
   max-width: 400px;
   width: 400px;
 }
-div.ff-mark-grid .ff-mark-grid-students ol ol li:nth-child(odd) {
+.ff-mark-grid .ff-mark-grid-students ol > li:nth-child(odd) {
   background-color: #fafafa;
 }
-div.ff-mark-grid .ff-mark-grid-results {
+.ff-mark-grid .ff-mark-grid-results {
   display: block;
   width: auto;
   position: relative;
   overflow-x: auto;
 }
-div.ff-mark-grid .ff-mark-grid-results > ol > li {
+.ff-mark-grid .ff-mark-grid-results > ol > li {
   display: table-cell;
   width: 60px;
   width: 3.75rem;
+  max-width: 60px;
+  max-width: 3.75rem;
 }
-div.ff-mark-grid .ff-mark-grid-header {
-  padding: 10px;
+.ff-mark-grid .ff-mark-grid-header {
+  padding: 5px;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
@@ -3198,24 +3200,7 @@ div.ff-mark-grid .ff-mark-grid-header {
   box-sizing: border-box;
   /* Opera/IE 8+ */
 }
-div.ff-mark-grid .ff-mark-grid-result {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1;
-  padding: 7px;
-  padding: 0.4375rem;
-  margin: 11px 2px;
-  margin: 0.6875rem 0.125rem;
-  border: 1px solid transparent;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-  white-space: nowrap;
-}
-div.ff-mark-grid .ff-mark-grid-student {
+.ff-mark-grid .ff-mark-grid-student {
   font-size: 16px;
   font-size: 1rem;
   line-height: 1;
@@ -3231,17 +3216,26 @@ div.ff-mark-grid .ff-mark-grid-student {
   /* Opera/IE 8+ */
   white-space: nowrap;
 }
-div.ff-mark-grid .ff-mark-grid-header {
-  height: 70px;
-  height: 4.375rem;
+.ff-mark-grid .ff-mark-grid-header {
+  height: 80px;
+  height: 5rem;
   display: block;
   background-color: #f2f2f2;
 }
-div.ff-mark-grid .ff-mark-grid-choose-task {
+.ff-mark-grid .ff-mark-grid-choose-task {
   display: none;
 }
-div.ff-mark-grid .ff-mark-grid-result {
-  background-color: #1A5B96;
+.ff-mark-grid .ff-mark-grid-result {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 7px;
+  padding: 0.4375rem;
+  margin: 11px 2px;
+  margin: 0.6875rem 0.125rem;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  background-color: #1a5b96;
   text-align: center;
   color: white;
   -webkit-border-radius: 5px;
@@ -3251,21 +3245,685 @@ div.ff-mark-grid .ff-mark-grid-result {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-div.ff-mark-grid .ff-mark-grid-date {
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-100 {
+  background-color: #ffffff;
+  background-color: #1a5b96;
+  border-color: #ffffff;
+  border-color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-99 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.99);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.99);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-98 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.98);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.98);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-97 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.97);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.97);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-96 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.96);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.96);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-95 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.95);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.95);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-94 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.94);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.94);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-93 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.93);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.93);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-92 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.92);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.92);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-91 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.91);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.91);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-90 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.9);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.9);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-89 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.89);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.89);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-88 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.88);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.88);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-87 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.87);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.87);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-86 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.86);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.86);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-85 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.85);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.85);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-84 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.84);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.84);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-83 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.83);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.83);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-82 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.82);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.82);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-81 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.81);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.81);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-80 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.8);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.8);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-79 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.79);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.79);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-78 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.78);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.78);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-77 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.77);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.77);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-76 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.76);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.76);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-75 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.75);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.75);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-74 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.74);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.74);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-73 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.73);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.73);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-72 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.72);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.72);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-71 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.71);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.71);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-70 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.7);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.7);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-69 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.69);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.69);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-68 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.68);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.68);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-67 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.67);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.67);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-66 {
+  background-color: #ffffff;
+  background-color: rgba(26, 91, 150, 0.66);
+  border-color: #ffffff;
+  border-color: rgba(26, 91, 150, 0.66);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-65 {
+  background-color: #fdfeff;
+  background-color: rgba(26, 91, 150, 0.65);
+  border-color: #fdfeff;
+  border-color: rgba(26, 91, 150, 0.65);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-64 {
+  background-color: #f9fbfe;
+  background-color: rgba(26, 91, 150, 0.64);
+  border-color: #f9fbfe;
+  border-color: rgba(26, 91, 150, 0.64);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-63 {
+  background-color: #f4f9fd;
+  background-color: rgba(26, 91, 150, 0.63);
+  border-color: #f4f9fd;
+  border-color: rgba(26, 91, 150, 0.63);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-62 {
+  background-color: #f0f6fc;
+  background-color: rgba(26, 91, 150, 0.62);
+  border-color: #f0f6fc;
+  border-color: rgba(26, 91, 150, 0.62);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-61 {
+  background-color: #ebf4fc;
+  background-color: rgba(26, 91, 150, 0.61);
+  border-color: #ebf4fc;
+  border-color: rgba(26, 91, 150, 0.61);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-60 {
+  background-color: #e7f1fb;
+  background-color: rgba(26, 91, 150, 0.6);
+  border-color: #e7f1fb;
+  border-color: rgba(26, 91, 150, 0.6);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-59 {
+  background-color: #e3effa;
+  background-color: rgba(26, 91, 150, 0.59);
+  border-color: #e3effa;
+  border-color: rgba(26, 91, 150, 0.59);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-58 {
+  background-color: #deedf9;
+  background-color: rgba(26, 91, 150, 0.58);
+  border-color: #deedf9;
+  border-color: rgba(26, 91, 150, 0.58);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-57 {
+  background-color: #daeaf9;
+  background-color: rgba(26, 91, 150, 0.57);
+  border-color: #daeaf9;
+  border-color: rgba(26, 91, 150, 0.57);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-56 {
+  background-color: #d6e8f8;
+  background-color: rgba(26, 91, 150, 0.56);
+  border-color: #d6e8f8;
+  border-color: rgba(26, 91, 150, 0.56);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-55 {
+  background-color: #d1e5f7;
+  background-color: rgba(26, 91, 150, 0.55);
+  border-color: #d1e5f7;
+  border-color: rgba(26, 91, 150, 0.55);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-54 {
+  background-color: #cde3f6;
+  background-color: rgba(26, 91, 150, 0.54);
+  border-color: #cde3f6;
+  border-color: rgba(26, 91, 150, 0.54);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-53 {
+  background-color: #c9e0f6;
+  background-color: rgba(26, 91, 150, 0.53);
+  border-color: #c9e0f6;
+  border-color: rgba(26, 91, 150, 0.53);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-52 {
+  background-color: #c4def5;
+  background-color: rgba(26, 91, 150, 0.52);
+  border-color: #c4def5;
+  border-color: rgba(26, 91, 150, 0.52);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-51 {
+  background-color: #c0dbf4;
+  background-color: rgba(26, 91, 150, 0.51);
+  border-color: #c0dbf4;
+  border-color: rgba(26, 91, 150, 0.51);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-50 {
+  background-color: #bcd9f3;
+  background-color: rgba(26, 91, 150, 0.5);
+  border-color: #bcd9f3;
+  border-color: rgba(26, 91, 150, 0.5);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-49 {
+  background-color: #b7d6f3;
+  background-color: rgba(26, 91, 150, 0.49);
+  border-color: #b7d6f3;
+  border-color: rgba(26, 91, 150, 0.49);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-48 {
+  background-color: #b3d4f2;
+  background-color: rgba(26, 91, 150, 0.48);
+  border-color: #b3d4f2;
+  border-color: rgba(26, 91, 150, 0.48);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-47 {
+  background-color: #afd1f1;
+  background-color: rgba(26, 91, 150, 0.47);
+  border-color: #afd1f1;
+  border-color: rgba(26, 91, 150, 0.47);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-46 {
+  background-color: #aacff0;
+  background-color: rgba(26, 91, 150, 0.46);
+  border-color: #aacff0;
+  border-color: rgba(26, 91, 150, 0.46);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-45 {
+  background-color: #a6cdf0;
+  background-color: rgba(26, 91, 150, 0.45);
+  border-color: #a6cdf0;
+  border-color: rgba(26, 91, 150, 0.45);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-44 {
+  background-color: #a2caef;
+  background-color: rgba(26, 91, 150, 0.44);
+  border-color: #a2caef;
+  border-color: rgba(26, 91, 150, 0.44);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-43 {
+  background-color: #9dc8ee;
+  background-color: rgba(26, 91, 150, 0.43);
+  border-color: #9dc8ee;
+  border-color: rgba(26, 91, 150, 0.43);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-42 {
+  background-color: #99c5ed;
+  background-color: rgba(26, 91, 150, 0.42);
+  border-color: #99c5ed;
+  border-color: rgba(26, 91, 150, 0.42);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-41 {
+  background-color: #95c3ed;
+  background-color: rgba(26, 91, 150, 0.41);
+  border-color: #95c3ed;
+  border-color: rgba(26, 91, 150, 0.41);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-40 {
+  background-color: #90c0ec;
+  background-color: rgba(26, 91, 150, 0.4);
+  border-color: #90c0ec;
+  border-color: rgba(26, 91, 150, 0.4);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-39 {
+  background-color: #8cbeeb;
+  background-color: rgba(26, 91, 150, 0.39);
+  border-color: #8cbeeb;
+  border-color: rgba(26, 91, 150, 0.39);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-38 {
+  background-color: #88bbea;
+  background-color: rgba(26, 91, 150, 0.38);
+  border-color: #88bbea;
+  border-color: rgba(26, 91, 150, 0.38);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-37 {
+  background-color: #83b9ea;
+  background-color: rgba(26, 91, 150, 0.37);
+  border-color: #83b9ea;
+  border-color: rgba(26, 91, 150, 0.37);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-36 {
+  background-color: #7fb6e9;
+  background-color: rgba(26, 91, 150, 0.36);
+  border-color: #7fb6e9;
+  border-color: rgba(26, 91, 150, 0.36);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-35 {
+  background-color: #7ab4e8;
+  background-color: rgba(26, 91, 150, 0.35);
+  border-color: #7ab4e8;
+  border-color: rgba(26, 91, 150, 0.35);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-34 {
+  background-color: #76b1e7;
+  background-color: rgba(26, 91, 150, 0.34);
+  border-color: #76b1e7;
+  border-color: rgba(26, 91, 150, 0.34);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-33 {
+  background-color: #72afe7;
+  background-color: rgba(26, 91, 150, 0.33);
+  border-color: #72afe7;
+  border-color: rgba(26, 91, 150, 0.33);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-32 {
+  background-color: #6dade6;
+  background-color: rgba(26, 91, 150, 0.32);
+  border-color: #6dade6;
+  border-color: rgba(26, 91, 150, 0.32);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-31 {
+  background-color: #69aae5;
+  background-color: rgba(26, 91, 150, 0.31);
+  border-color: #69aae5;
+  border-color: rgba(26, 91, 150, 0.31);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-30 {
+  background-color: #65a8e4;
+  background-color: rgba(26, 91, 150, 0.3);
+  border-color: #65a8e4;
+  border-color: rgba(26, 91, 150, 0.3);
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-29 {
+  background-color: #60a5e4;
+  background-color: rgba(26, 91, 150, 0.29);
+  border-color: #60a5e4;
+  border-color: rgba(26, 91, 150, 0.29);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-28 {
+  background-color: #5ca3e3;
+  background-color: rgba(26, 91, 150, 0.28);
+  border-color: #5ca3e3;
+  border-color: rgba(26, 91, 150, 0.28);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-27 {
+  background-color: #58a0e2;
+  background-color: rgba(26, 91, 150, 0.27);
+  border-color: #58a0e2;
+  border-color: rgba(26, 91, 150, 0.27);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-26 {
+  background-color: #539ee1;
+  background-color: rgba(26, 91, 150, 0.26);
+  border-color: #539ee1;
+  border-color: rgba(26, 91, 150, 0.26);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-25 {
+  background-color: #4f9be0;
+  background-color: rgba(26, 91, 150, 0.25);
+  border-color: #4f9be0;
+  border-color: rgba(26, 91, 150, 0.25);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-24 {
+  background-color: #4b99e0;
+  background-color: rgba(26, 91, 150, 0.24);
+  border-color: #4b99e0;
+  border-color: rgba(26, 91, 150, 0.24);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-23 {
+  background-color: #4696df;
+  background-color: rgba(26, 91, 150, 0.23);
+  border-color: #4696df;
+  border-color: rgba(26, 91, 150, 0.23);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-22 {
+  background-color: #4294de;
+  background-color: rgba(26, 91, 150, 0.22);
+  border-color: #4294de;
+  border-color: rgba(26, 91, 150, 0.22);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-21 {
+  background-color: #3e91dd;
+  background-color: rgba(26, 91, 150, 0.21);
+  border-color: #3e91dd;
+  border-color: rgba(26, 91, 150, 0.21);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-20 {
+  background-color: #398fdd;
+  background-color: rgba(26, 91, 150, 0.2);
+  border-color: #398fdd;
+  border-color: rgba(26, 91, 150, 0.2);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-19 {
+  background-color: #358cdc;
+  background-color: rgba(26, 91, 150, 0.19);
+  border-color: #358cdc;
+  border-color: rgba(26, 91, 150, 0.19);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-18 {
+  background-color: #318adb;
+  background-color: rgba(26, 91, 150, 0.18);
+  border-color: #318adb;
+  border-color: rgba(26, 91, 150, 0.18);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-17 {
+  background-color: #2c88da;
+  background-color: rgba(26, 91, 150, 0.17);
+  border-color: #2c88da;
+  border-color: rgba(26, 91, 150, 0.17);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-16 {
+  background-color: #2885da;
+  background-color: rgba(26, 91, 150, 0.16);
+  border-color: #2885da;
+  border-color: rgba(26, 91, 150, 0.16);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-15 {
+  background-color: #2583d7;
+  background-color: rgba(26, 91, 150, 0.15);
+  border-color: #2583d7;
+  border-color: rgba(26, 91, 150, 0.15);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-14 {
+  background-color: #2580d3;
+  background-color: rgba(26, 91, 150, 0.14);
+  border-color: #2580d3;
+  border-color: rgba(26, 91, 150, 0.14);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-13 {
+  background-color: #247dcf;
+  background-color: rgba(26, 91, 150, 0.13);
+  border-color: #247dcf;
+  border-color: rgba(26, 91, 150, 0.13);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-12 {
+  background-color: #237bca;
+  background-color: rgba(26, 91, 150, 0.12);
+  border-color: #237bca;
+  border-color: rgba(26, 91, 150, 0.12);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-11 {
+  background-color: #2278c6;
+  background-color: rgba(26, 91, 150, 0.11);
+  border-color: #2278c6;
+  border-color: rgba(26, 91, 150, 0.11);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-10 {
+  background-color: #2275c1;
+  background-color: rgba(26, 91, 150, 0.1);
+  border-color: #2275c1;
+  border-color: rgba(26, 91, 150, 0.1);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-9 {
+  background-color: #2173bd;
+  background-color: rgba(26, 91, 150, 0.09);
+  border-color: #2173bd;
+  border-color: rgba(26, 91, 150, 0.09);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-8 {
+  background-color: #2070b9;
+  background-color: rgba(26, 91, 150, 0.08);
+  border-color: #2070b9;
+  border-color: rgba(26, 91, 150, 0.08);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-7 {
+  background-color: #1f6db4;
+  background-color: rgba(26, 91, 150, 0.07);
+  border-color: #1f6db4;
+  border-color: rgba(26, 91, 150, 0.07);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-6 {
+  background-color: #1f6bb0;
+  background-color: rgba(26, 91, 150, 0.06);
+  border-color: #1f6bb0;
+  border-color: rgba(26, 91, 150, 0.06);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-5 {
+  background-color: #1e68ac;
+  background-color: rgba(26, 91, 150, 0.05);
+  border-color: #1e68ac;
+  border-color: rgba(26, 91, 150, 0.05);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-4 {
+  background-color: #1d66a7;
+  background-color: rgba(26, 91, 150, 0.04);
+  border-color: #1d66a7;
+  border-color: rgba(26, 91, 150, 0.04);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-3 {
+  background-color: #1c63a3;
+  background-color: rgba(26, 91, 150, 0.03);
+  border-color: #1c63a3;
+  border-color: rgba(26, 91, 150, 0.03);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-2 {
+  background-color: #1c609f;
+  background-color: rgba(26, 91, 150, 0.02);
+  border-color: #1c609f;
+  border-color: rgba(26, 91, 150, 0.02);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-1 {
+  background-color: #1b5e9a;
+  background-color: rgba(26, 91, 150, 0.01);
+  border-color: #1b5e9a;
+  border-color: rgba(26, 91, 150, 0.01);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-result.ff-mark-grid-result-0 {
+  background-color: #1a5b96;
+  background-color: rgba(26, 91, 150, 0);
+  border-color: #1a5b96;
+  border-color: rgba(26, 91, 150, 0);
+  color: #1a5b96;
+}
+.ff-mark-grid .ff-mark-grid-highlight .ff-mark-grid-date {
+  background-color: #edeb56;
+  border-color: #ffffff;
+}
+.ff-mark-grid .ff-mark-grid-highlight .ff-mark-grid-result {
+  position: relative;
+  overflow: hidden;
+}
+.ff-mark-grid .ff-mark-grid-highlight .ff-mark-grid-result:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 12px 12px 0;
+  border-color: transparent #edeb56 transparent transparent;
+}
+.ff-mark-grid .ff-mark-grid-date {
   text-align: center;
   display: block;
   cursor: context-menu;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
-div.ff-mark-grid .ff-mark-grid-date:hover {
+.ff-mark-grid .ff-mark-grid-date:hover {
   color: #366797;
 }
-div.ff-mark-grid .ff-mark-grid-student {
+.ff-mark-grid .ff-mark-grid-student {
   overflow: hidden;
   padding-left: 52px;
   padding-right: 100px;
   position: relative;
 }
-div.ff-mark-grid .ff-mark-grid-student .ff-mark-grid-avatar {
+.ff-mark-grid .ff-mark-grid-student .ff-mark-grid-avatar {
   max-width: 32px;
   display: block;
   vertical-align: middle;
@@ -3273,7 +3931,7 @@ div.ff-mark-grid .ff-mark-grid-student .ff-mark-grid-avatar {
   top: 11px;
   left: 10px;
 }
-div.ff-mark-grid .ff-mark-grid-student .ff-mark-grid-target {
+.ff-mark-grid .ff-mark-grid-student .ff-mark-grid-target {
   font-size: 14px;
   display: block;
   background: #f2f2f2;
@@ -3297,10 +3955,10 @@ div.ff-mark-grid .ff-mark-grid-student .ff-mark-grid-target {
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  cursor: help;
+  cursor: pointer;
 }
-div.ff-mark-grid.ff-mark-book-small {
-  padding-top: 140px;
+.ff-mark-grid.ff-mark-book-small {
+  padding-top: 160px;
   position: relative;
   display: -webkit-flex;
   display: -moz-flex;
@@ -3308,50 +3966,50 @@ div.ff-mark-grid.ff-mark-book-small {
   display: -ms-flex;
   display: flex;
 }
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-students {
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-students {
   width: auto;
 }
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results {
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results {
   overflow: visible;
   flex-grow: 1;
   min-width: 60px;
   position: static;
 }
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results > ol > li {
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results > ol > li {
   display: none;
   width: auto;
 }
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-active {
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-active {
   display: block;
 }
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-header {
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-header {
   display: none;
 }
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-students .ff-mark-grid-header,
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-choose-task {
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-students .ff-mark-grid-header,
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-choose-task {
   display: block;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
 }
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-choose-task {
-  top: 70px;
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-results .ff-mark-grid-choose-task {
+  top: 80px;
 }
-div.ff-mark-grid.ff-mark-book-small .ff-mark-grid-student .ff-mark-grid-target {
+.ff-mark-grid.ff-mark-book-small .ff-mark-grid-student .ff-mark-grid-target {
   right: 0;
 }
-div.ff-mark-grid.ff-mark-grid-fixed-header {
-  padding-top: 70px;
-  padding-top: 4.375rem;
+.ff-mark-grid.ff-mark-grid-fixed-header {
+  padding-top: 80px;
+  padding-top: 5rem;
 }
-div.ff-mark-grid.ff-mark-grid-fixed-header .ff-mark-grid-header {
+.ff-mark-grid.ff-mark-grid-fixed-header .ff-mark-grid-header {
   position: fixed;
   top: 0;
   z-index: 100;
   width: 400px;
 }
-div.ff-mark-grid.ff-mark-grid-fixed-header .ff-mark-grid-results .ff-mark-grid-header {
+.ff-mark-grid.ff-mark-grid-fixed-header .ff-mark-grid-results .ff-mark-grid-header {
   width: 60px;
   width: 3.75rem;
 }
@@ -3429,4 +4087,7 @@ div.ff-mark-grid.ff-mark-grid-fixed-header .ff-mark-grid-results .ff-mark-grid-h
 }
 .ff-summary .ff-summary-title {
   color: #A6A6A6;
+}
+.ff-summary .ff-summary-excerpt {
+  cursor: help;
 }

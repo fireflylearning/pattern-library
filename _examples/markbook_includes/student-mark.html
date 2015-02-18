@@ -1,0 +1,21 @@
+<li data-student="jon" class="ff-popover-trigger">
+    <div class="ff-mark-grid-result ff-mark-grid-result-{{ include.percent }}">{{ include.percent }}%</div>
+    <div class="ff-popover ff-popover-js-template">
+        <div class="ff-popover-header">
+            {{ include.name }}
+        </div>
+        <div class="ff-popover-body">
+            <ul class="ff-summary">
+                <li><span class="ff-summary-title">Mark</span> <span class="ff-summary-data">{{ include.mark }}/{{ include.outof }}</span></li>
+                <li><span class="ff-summary-title">Percentage</span> <span class="ff-summary-data">{{ include.percent }}</span></li>
+                <li><span class="ff-summary-title">Grade</span> <span class="ff-summary-data">{{ include.grade }}</span></li>
+                <li title="This is some example feedback. Either well done or no good depending on your mark."><span class="ff-summary-title">Feedback</span> <span class="ff-summary-data ff-summary-excerpt">This is some example feedback. Either well done or no good depending on your mark.</span></li>
+            </ul>
+        </div>
+        <div class="ff-popover-footer">
+            <ul class="ff-navigation">
+                <li><a href="#" class="ff-icon ff-icon-tick">Go to Task</a></li>
+            </ul>
+        </div>
+    </div>
+</li>
