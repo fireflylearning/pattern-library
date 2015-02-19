@@ -79,11 +79,14 @@ var ffPopover__show = function(obj)
         var top = offset.top + height;
         var left = offset.left - ((width/2) - 30);
         
-        console.log('left',offset.left,'top',offset.top,'height',height,'width',width);
         popover.clone().appendTo('body').addClass('ff-popover-js-generated').css({
             'top' : top,
             'left' : left 
         }).fadeIn();
+    }
+    else
+    {
+        popover.fadeIn();
     }
 }
 

@@ -19,41 +19,12 @@ layout: standalone
         </div>
         
         <ol>
-            <li id="jon">
-                <div class="ff-mark-grid-student">
-                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
-                    <span class="ff-mark-grid-user-name">Jonathan James Andrew Roobottom Jonathan James Andrew Roobottom Jonathan James Andrew Roobottom</span>
-                    <div class="ff-mark-grid-target" title="Outstanding">Outstanding</div>
-                </div>
-            </li>
-            <li id="katie">
-                <div class="ff-mark-grid-student">
-                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
-                    <span class="ff-mark-grid-user-name">Katie Sellwood</span>
-                    <div class="ff-mark-grid-target" title="Good">Good</div>
-                </div>
-            </li>
-            <li id="catherine">
-                <div class="ff-mark-grid-student">
-                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
-                    <span class="ff-mark-grid-user-name">Catherine Hyslop</span>
-                    <div class="ff-mark-grid-target" title="Requires improvement">Requires improvement</div>
-                </div>
-            </li>
-            <li id="david">
-                <div class="ff-mark-grid-student">
-                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
-                    <span class="ff-mark-grid-user-name">David White</span>
-                    <div class="ff-mark-grid-target" title="101%">101%</div>
-                </div>
-            </li>
-            <li id="ellie">
-                <div class="ff-mark-grid-student">
-                    <img src="/images/person.jpg" class="ff-avatar ff-mark-grid-avatar"/>
-                    <span class="ff-mark-grid-user-name">Ellie Rose</span>
-                    <div class="ff-mark-grid-target" title="Inadequate">Inadequate</div>
-                </div>
-            </li>
+            {% include_relative markbook_includes/student-detail.html id="jon" name="Jonathan Roobottom" target="Excellent" %}
+            {% include_relative markbook_includes/student-detail.html id="katie" name="Katie Sellwood" target="" %}
+            {% include_relative markbook_includes/student-detail.html id="catherine" name="Catherine Hyslop" target="Average" %}
+            {% include_relative markbook_includes/student-detail.html id="david" name="David Gavin James White" target="55%" %}
+            {% include_relative markbook_includes/student-detail.html id="ellie" name="Ellie Rose" target="C/D" %}
+            {% include_relative markbook_includes/student-detail.html id="kamran" name="Kamran Kahn" target="Anything will do!" %}
         </ol>
     </div>
     
@@ -69,7 +40,11 @@ layout: standalone
             </ul>
         </div>
         <ol>
-            <li id="ff-mark-grid-task-uid1" class="ff-mark-grid-highlight">
+            
+            {% assign num = 100 %}
+            
+            {% for i in (1..num) %}
+            <li id="ff-mark-grid-task-uid1" {% if i == 2 %}class="ff-mark-grid-highlight"{% endif %}>
                 {% include_relative markbook_includes/task-header.html date="Mon 1st Feb" %}
                 <ol>
                     {% include_relative markbook_includes/student-mark.html id="jon" name="Jonathan Roobottom" percent="100" mark="10" outof="10" grade="A" %}
@@ -79,7 +54,8 @@ layout: standalone
                     {% include_relative markbook_includes/student-mark.html id="ellie" name="Ellie Rose" percent="20" mark="2" outof="10" grade="E" %}
                     {% include_relative markbook_includes/student-mark.html id="kamran" name="Kamran Kahn" percent="0" mark="0" outof="10" grade="F" %}
                 </ol>
-            </li>            
+            </li>
+            {% endfor %}            
         </ol>
     </div>
     

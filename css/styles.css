@@ -4023,8 +4023,9 @@ table {
   text-decoration: none;
   position: absolute;
   width: 200px;
-  left: -100px;
-  top: 0;
+  left: -66.66666667px;
+  top: 100%;
+  z-index: 200;
   background-color: white;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -4074,6 +4075,27 @@ table {
 }
 .ff-popover .ff-popover-footer {
   padding: 10px;
+}
+.ff-mark-grid .ff-mark-grid-results li:first-child .ff-popover,
+.ff-mark-grid .ff-mark-grid-results li:nth-child(2) .ff-popover {
+  left: 0;
+}
+.ff-mark-grid .ff-mark-grid-results li:first-child .ff-popover:before,
+.ff-mark-grid .ff-mark-grid-results li:nth-child(2) .ff-popover:before {
+  left: 0;
+  margin-left: 12px;
+}
+.ff-mark-grid .ff-mark-grid-results li:last-child .ff-popover,
+.ff-mark-grid .ff-mark-grid-results li:nth-last-child(2) .ff-popover {
+  left: auto;
+  right: 0;
+}
+.ff-mark-grid .ff-mark-grid-results li:last-child .ff-popover:before,
+.ff-mark-grid .ff-mark-grid-results li:nth-last-child(2) .ff-popover:before {
+  left: auto;
+  right: 0;
+  margin-left: 0;
+  margin-right: 12px;
 }
 .ff-summary {
   margin: 0;
