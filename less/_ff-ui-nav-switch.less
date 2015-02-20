@@ -1,11 +1,16 @@
 // ------------------------------------------------------------- //
 // .ff-nav-switch
 // ------------------------------------------------------------- //
-.ff-nav-switch {
+.ff-ui-nav-switch {
 	
   #ff_dashboard > .normalise();
   display: block;
   #ff > .clearfix();
+  
+  
+  &.ff-nav-switch-icons-only span {
+	  display: none;
+  }
   
   >p, .ff-nav-switch-label {
     display: block;
@@ -27,7 +32,6 @@
     li {
       display: block;
       float: left;
-      padding: @ff_dashboard_spacing;
       margin: 0;
       list-style: none;
       &:hover {
@@ -40,6 +44,7 @@
       color: white;
       #ff > .box-shadow(inset 0 2px 3px darken(@ff_dashboard_c_border,10%));
       text-shadow: 0 1px 0 darken(@ff_dashboard_c_border,20%);
+      padding: @ff_dashboard_spacing;
     }
     
     li:first-child {
@@ -53,6 +58,9 @@
     a {
       color: @ff_dashboard_c_link;
       text-decoration: none;
+      display: block;
+      padding: @ff_dashboard_spacing;
+      overflow: hidden; //force layout
     }
     
   }

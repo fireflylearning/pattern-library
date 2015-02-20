@@ -13,10 +13,13 @@ var ffMarkGrid__isSmall = function(obj)
     if(obj.width() <= breakpoint)
     {
         obj.addClass('ff-mark-book-small');
+        ffMarkGrid__releaseWidth(obj);
+        
     }
     else
     {
         obj.removeClass('ff-mark-book-small');
+        ffMarkGrid__setWidth(obj);
     } 
 };
 
@@ -35,14 +38,21 @@ var ffMarkGrid__fixHeader = function(obj)
       if(!obj.hasClass('ff-mark-book-small'))
       {
             var aboveHeight = obj.offset().top;
-            var objHeight = obj.outerHeight(false);	 
+            var objHeight = obj.outerHeight(false);
+            var headerWidth = $('.ff-mark-grid-results',obj).outerWidth(false);	
+            var totalTasks = obj.attr('data-ff-mark-grid-tasks'); 
+            var tasksWidth = 60 * totalTasks;
             if ($(window).scrollTop() > aboveHeight && $(window).scrollTop() < (aboveHeight + objHeight)) 
             {
                 obj.addClass('ff-mark-grid-fixed-header');
+                $('.ff-mark-grid-results .ff-mark-grid-header',obj).css('width',headerWidth);
+                $('.ff-mark-grid-results .ff-mark-grid-header > ol',obj).css('width',tasksWidth);
             }
             else
             {
                 obj.removeClass('ff-mark-grid-fixed-header');
+                $('.ff-mark-grid-results .ff-mark-grid-header',obj).css('width','');
+                $('.ff-mark-grid-results .ff-mark-grid-header > ol',obj).css('width','');
             }
       }
       else
@@ -53,6 +63,42 @@ var ffMarkGrid__fixHeader = function(obj)
     
 };
 
+
+/*
+    ---
+    setWidth: set the width of the overflow box in the right hand columm
+    ---    
+*/
+var ffMarkGrid__setWidth = function(obj)
+{
+    totalTasks = obj.attr('data-ff-mark-grid-tasks');
+    width = 60 * totalTasks;
+    $('.ff-mark-grid-results-wrapper').css('width',width);
+}
+var ffMarkGrid__releaseWidth = function(obj)
+{
+    $('.ff-mark-grid-results-wrapper').css('width','');
+}
+
+/*
+    ---
+    scrollTo: scroll to a location within the grid
+    ---    
+*/
+
+var ffMarkGrid__scrollTo = function(obj,distance,direction)
+{
+    $('.ff-mark-grid-results',obj).on("scroll",function()
+    {
+        if(obj.hasClass('ff-mark-grid-fixed-header'))
+        {
+            var position = $('.ff-mark-grid-results-body',this).position();
+            $('.ff-mark-grid-header ol',this).css('left',position.left);
+            console.log(position.left);
+        }
+        
+    });
+}
 
 /*
     ---
@@ -97,7 +143,6 @@ var ffPopover__hide = function()
 }
 
 
-
 /*
     ---
     Call when dom is ready / resize event fires.
@@ -114,6 +159,7 @@ $(function()
         $that = $(this);
         ffMarkGrid__isSmall($that);
         ffMarkGrid__fixHeader($that);
+        ffMarkGrid__scrollTo($that);
     }); 
     
     $( window ).resize(function()

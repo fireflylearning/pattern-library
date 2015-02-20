@@ -1,5 +1,21 @@
 <li data-student="jon" class="ff-popover-trigger">
+    
+    {% if include.display == 'mark' %}
+    <div class="ff-mark-grid-result ff-mark-grid-result-mark">{{ include.mark }}/{{ include.outof }}</div>
+    {% elsif include.display == 'grade' %}
+    <div class="ff-mark-grid-result ff-mark-grid-result-grade">{{ include.grade }}</div> 
+    {% elsif include.display == 'excused' %}
+    <div class="ff-mark-grid-result ff-mark-grid-result-excused ff-icon ff-icon-excuse" title="Excused"><span>Excused</span></div>
+    {% elsif include.display == 'unmarked' %}
+    <div class="ff-mark-grid-result ff-mark-grid-result-unmarked" title="Awaiting Mark"><span>Awaiting Mark</span></div>
+    {% elsif include.display == 'unsubmitted' %}
+    <div class="ff-mark-grid-result ff-mark-grid-result-unsubmitted" title="Awaiting Response"><span>Awaiting Response</span></div> 
+    {% elsif include.display == 'unrecorded' %}
+    <div class="ff-mark-grid-result ff-mark-grid-result-unrecorded" title="Mark not recorded for this task"><span>Unrecorded</span></div> 
+    {% else %}
     <div class="ff-mark-grid-result ff-mark-grid-result-{{ include.percent }}">{{ include.percent }}%</div>
+    {% endif %}
+    
     <div class="ff-popover ff-popover-js-template">
         <div class="ff-popover-header">
             {{ include.name }}

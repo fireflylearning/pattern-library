@@ -3,12 +3,36 @@ title: Markbook
 layout: standalone
 ---
 
-<div class="ff-mark-grid">
+<div class="ff-ui-heading">
+    <h1>Markbook</h1>
+    <div class="ff-ui-actions">
+        <a class="ff-ui-button ff-button-primary ff-icon ff-icon-task-add">Add completed tasks</a>
+    </div>
+</div>
+
+<div class="ff-ui-actions ff-mark-grid-actions">
+        <div class="ff-actions-secondary">
+            <div class="ff-ui-nav-switch ff-nav-switch-icons-only">
+                <ul class="ff-nav-switch-items">
+                    <li><a href="#" class="ff-icon ff-icon-arrow-left-double" data-ff-markbook-control="back-10"><span>Jump 10 Tasks</span></a></li>
+                    <li><a href="#" class="ff-icon ff-icon-arrow-left" data-ff-markbook-control="back-1"><span>Back 1 Task</span></a></li>
+                </ul>
+            </div>
+            <div class="ff-ui-nav-switch ff-nav-switch-icons-only">
+                <ul class="ff-nav-switch-items">
+                    <li><a href="#" class="ff-icon ff-icon-arrow-right" data-ff-markbook-control="forward-10"><span>Forward 1 Task</span></a></li>
+                    <li><a href="#" class="ff-icon ff-icon-arrow-right-double" data-ff-markbook-control="forward-10"><span>Jump 10 Tasks</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<div class="ff-mark-grid" data-ff-mark-grid-tasks="100">
     
     <div class="ff-mark-grid-students">
         
         <div class="ff-mark-grid-header">
-            <ul class="ff-dropdown ff-button ff-button-dropdown ff-button-bookmark">
+            <ul class="ff-ui-dropdown ff-ui-button">
                 <li class="ff-icon ff-icon-dropdown"><span class="ff-dropdown-label">Class 8y/En2</span>
                     <ul class="ff-dropdown-items">
                         <li class=""><a href="#"><span>Class 10z/En2</span></a></li>
@@ -23,14 +47,19 @@ layout: standalone
             {% include_relative markbook_includes/student-detail.html id="katie" name="Katie Sellwood" target="" %}
             {% include_relative markbook_includes/student-detail.html id="catherine" name="Catherine Hyslop" target="Average" %}
             {% include_relative markbook_includes/student-detail.html id="david" name="David Gavin James White" target="55%" %}
+            {% include_relative markbook_includes/student-detail.html id="chrisitian" name="Christian Powell" target="60%" %}
             {% include_relative markbook_includes/student-detail.html id="ellie" name="Ellie Rose" target="C/D" %}
             {% include_relative markbook_includes/student-detail.html id="kamran" name="Kamran Kahn" target="Anything will do!" %}
+            {% include_relative markbook_includes/student-detail.html id="annie" name="Annie Baskerville" target="D" %}
+            {% include_relative markbook_includes/student-detail.html id="clive" name="Clive Fuller" target="A" %}
         </ol>
     </div>
     
-    <div class="ff-mark-grid-results">
+    <div class="ff-mark-grid-results"><div class="ff-mark-grid-results-wrapper">
+        
+        
         <div class="ff-mark-grid-header ff-mark-grid-choose-task">
-            <ul class="ff-dropdown ff-button ff-button-dropdown ff-button-bookmark">
+            <ul class="ff-ui-dropdown ff-ui-button">
                 <li class="ff-icon ff-icon-dropdown"><span class="ff-dropdown-label">Choose a task</span>
                     <ul class="ff-dropdown-items">
                         <li class=""><a href="#ff-mark-grid-task-uid1"><span>Mon 1st Feb</span></a></li>
@@ -39,25 +68,38 @@ layout: standalone
                 </li>
             </ul>
         </div>
-        <ol>
-            
-            {% assign num = 100 %}
-            
+        
+        {% assign num = 100 %}
+        
+        <div class="ff-mark-grid-header">
+            <ol>
+                {% for i in (1..num) %}
+                <li id="ff-mark-grid-task-uid1" {% if i == 2 %}class="ff-mark-grid-highlight"{% endif %}>
+                    {% include_relative markbook_includes/task-header.html date=i %}
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        
+        <div class="ff-mark-grid-results-body">
             {% for i in (1..num) %}
-            <li id="ff-mark-grid-task-uid1" {% if i == 2 %}class="ff-mark-grid-highlight"{% endif %}>
-                {% include_relative markbook_includes/task-header.html date="Mon 1st Feb" %}
-                <ol>
-                    {% include_relative markbook_includes/student-mark.html id="jon" name="Jonathan Roobottom" percent="100" mark="10" outof="10" grade="A" %}
-                    {% include_relative markbook_includes/student-mark.html id="katie" name="Katie Sellwood" percent="80" mark="8" outof="10" grade="B" %}
-                    {% include_relative markbook_includes/student-mark.html id="catherine" name="Catherine Hyslop" percent="60" mark="6" outof="10" grade="C" %}
+                <ol id="ff-mark-grid-task-uid1" {% if i == 2 %}class="ff-mark-grid-highlight"{% endif %}>
+                    {% include_relative markbook_includes/student-mark.html id="jon" name="Jonathan Roobottom" percent="100" mark="10" outof="10" grade="A" display="mark" %}
+                    {% include_relative markbook_includes/student-mark.html id="katie" name="Katie Sellwood" percent="80" mark="8" outof="10" grade="B" display="grade" %}
+                    {% include_relative markbook_includes/student-mark.html id="catherine" name="Catherine Hyslop" percent="60" mark="6" outof="10" grade="C" display="excused" %}
                     {% include_relative markbook_includes/student-mark.html id="david" name="David Gavin James White" percent="40" mark="4" outof="10" grade="D" %}
+                    {% include_relative markbook_includes/student-mark.html id="chrisitian" name="Chrisitian Powell" percent="20" mark="2" outof="10" grade="E" display="unmarked" %}
                     {% include_relative markbook_includes/student-mark.html id="ellie" name="Ellie Rose" percent="20" mark="2" outof="10" grade="E" %}
                     {% include_relative markbook_includes/student-mark.html id="kamran" name="Kamran Kahn" percent="0" mark="0" outof="10" grade="F" %}
+                    {% include_relative markbook_includes/student-mark.html id="annie" name="Annie Baskerville" percent="76" mark="76" outof="100" grade="C" display="unsubmitted" %}
+                    {% include_relative markbook_includes/student-mark.html id="clive" name="Clive Fuller" percent="80" mark="8" outof="10" grade="A" display="unrecorded" %}
                 </ol>
-            </li>
             {% endfor %}            
-        </ol>
-    </div>
+        </div>
+    
+    
+    </div></div><!-- /results panel -->
+    
     
 </div>
 

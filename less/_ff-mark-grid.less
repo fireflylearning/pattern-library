@@ -15,6 +15,7 @@
     
     #ff > .clearfix();
     border: 1px solid red;
+    overflow: hidden;
     
     //general list styling
     ol {
@@ -52,13 +53,44 @@
         position: relative;
         overflow-x: auto;
         
-        > ol > li {
-            display: table-cell;
-            width: @ff_makrbook_cell_width * 1px;
-            width: @ff_makrbook_cell_width * 1rem/@ff_b;
-            max-width: @ff_makrbook_cell_width * 1px;
-            max-width: @ff_makrbook_cell_width * 1rem/@ff_b;
+        .ff-mark-grid-results-wrapper {
+            //width: 6000px;//set by js
         }
+        
+        .ff-mark-grid-results-body {
+            overflow: hidden;
+        }
+        
+        //header wrapper
+        .ff-mark-grid-header {
+            
+            ol > li {
+                display: block;
+                float: left;
+                width: @ff_makrbook_cell_width * 1px;
+                width: @ff_makrbook_cell_width * 1rem/@ff_b;
+                max-width: @ff_makrbook_cell_width * 1px;
+                max-width: @ff_makrbook_cell_width * 1rem/@ff_b;
+            }
+            
+        }
+        
+        .ff-mark-grid-results-body {
+            
+            ol {
+                float: left;
+            }
+            
+            ol > li {
+                display: block;
+                width: @ff_makrbook_cell_width * 1px;
+                width: @ff_makrbook_cell_width * 1rem/@ff_b;
+                max-width: @ff_makrbook_cell_width * 1px;
+                max-width: @ff_makrbook_cell_width * 1rem/@ff_b;
+            }
+        }
+        
+        
         
         
         
@@ -66,11 +98,6 @@
     
     
     //"cell" sizing
-    .ff-mark-grid-header
-     {
-        padding: 5px;
-        #ff > .box-sizing();
-    }
     .ff-mark-grid-student {
         font-size: @ff_markbook_cell_text * 1px;
         font-size: @ff_markbook_cell_text * 1rem/@ff_b;
@@ -90,9 +117,11 @@
         height: @ff_markbook_header_height * 1rem/@ff_b;
         display: block;
         background-color: @ff_dashboard_c_bg;
+        padding: 5px 0;
+        #ff > .box-sizing();
     }
     
-    //choose a task, just for the reposnive view — added in with js?
+    //choose a task, just for the reposnive view
     .ff-mark-grid-choose-task {
         display: none;
     }
@@ -107,7 +136,7 @@
         padding: (((@ff_markbook_result_height - @ff_markbook_cell_text)/2) - 1) * 1rem/@ff_b;//-1 for border
         margin: (((@ff_markbok_cell_height - @ff_markbook_result_height) / 2) * 1px) 2px;
         margin: (((@ff_markbok_cell_height - @ff_markbook_result_height) / 2) * 1rem/@ff_b) 2rem/@ff_b;
-        border: 1px solid transparent;
+        border: 1px solid @ff_markbook_c_result_100;
         
         //#ff > .box-sizing();
         white-space: nowrap;
@@ -117,6 +146,9 @@
         color: white;
         #ff > .rounded(5px);
         
+        #ff > .transform(rotate(0deg)); //force nice drawing of highlighted cells
+        
+        //% colours
         .result-colours(@index,@colour) when (@index >= 0) {
             &.ff-mark-grid-result-@{index} {
                 background-color: lighten(@colour,@index);
@@ -131,6 +163,54 @@
             color: @colour;
         }
         .result-colours(100,@ff_markbook_c_result_100);
+        
+        //marks & grades
+        &.ff-mark-grid-result-mark,
+        &.ff-mark-grid-result-grade {
+            background-color: @ff_markbook_c_result_grade;
+            color: darken(@ff_markbook_c_result_grade,40%);
+            border-color: @ff_markbook_c_result_grade;
+        }
+        
+        
+        span {
+            color: transparent;
+        }
+        
+        &.ff-mark-grid-result-excused {
+            background-color: @ff_markbook_c_result_grade;
+            color: darken(@ff_markbook_c_result_grade,40%);
+            border-color: @ff_markbook_c_result_grade;
+            &:before {
+              position: absolute;
+              left: 0;
+              width: 100%; 
+              text-align: center; 
+            }
+        }
+        
+        &.ff-mark-grid-result-unmarked {
+            background-color: transparent;
+            cursor: pointer;
+        }
+        
+        &.ff-mark-grid-result-unsubmitted {
+           border-color: @ff_markbook_c_result_grade;
+           background-color: transparent;
+        }
+        
+        &.ff-mark-grid-result-unrecorded {
+            border-color: @ff_markbook_c_result_grade;
+            background: repeating-linear-gradient(
+              45deg,
+              @ff_markbook_c_result_grade,
+              @ff_markbook_c_result_grade 10px,
+              darken(@ff_markbook_c_result_grade,10%) 10px,
+              darken(@ff_markbook_c_result_grade,10%) 20px
+            );
+        }
+        
+        
     }
     
     //highlights
@@ -236,7 +316,7 @@
             min-width: 60px;
             position: static;
             
-            >ol>li {
+           .ff-mark-grid-results-body ol > li {
                 display: none;
                 width: auto;
                 
@@ -293,8 +373,10 @@
         
         .ff-mark-grid-results {
             .ff-mark-grid-header {
-                width: @ff_makrbook_cell_width * 1px;
-                width: @ff_makrbook_cell_width * 1rem/@ff_b;
+                overflow: hidden;
+                ol {
+                    position: relative;
+                }
             }
         }
         

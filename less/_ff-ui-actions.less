@@ -1,7 +1,7 @@
 // ------------------------------------------------------------- //
 // .ff-actions (group controls)
 // ------------------------------------------------------------- //
-.ff-actions {
+.ff-ui-actions {
   #ff > .clearfix();
   #ff_dashboard > .normalise();
   margin-bottom: @ff_dashboard_spacing*2;
@@ -54,4 +54,11 @@
     }
   
   
+}
+
+//special case inside .ff-ui-heading
+
+.ff-ui-heading .ff-ui-actions {
+    float: right;
+    margin-bottom: 0;
 }

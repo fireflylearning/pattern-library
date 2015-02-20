@@ -4,7 +4,7 @@ body {
       background-color: #F7F7F7;
   }
   &.standalone {
-      padding: 20px;
+      padding: 80px;
   }
 }
 
@@ -330,10 +330,19 @@ i, em {
 	#ff > .clearfix();
 }
 
-@import "_ff-button";
-@import "_ff-actions";
-@import "_ff-nav-switch";
-@import "_ff-dropdown";
+//ff-ui elements can be used alongside existing elements
+@import "_ff-ui-nav-switch";
+@import "_ff-ui-button";
+@import "_ff-ui-actions";
+@import "_ff-ui-heading";
+@import "_ff-ui-dropdown";
+
+//needed for markbook
+@import "_ff-mark-grid";
+@import "_ff-popover";
+@import "_ff-summary";
+
+
 @import "_ff-button-with-dropdown";
 @import "_ff-nav-filter";
 @import "_ff-nav-filter";
@@ -350,7 +359,6 @@ i, em {
 @import "_ff-label";
 @import "_ff-pagination";
 @import "_ff-filter";
-@import "_ff-heading";
 @import "_ff-tags";
 @import "_ff-post-footer";
 @import "_ff-interface-form";
@@ -358,6 +366,3 @@ i, em {
 @import "_ff-table";
 @import "_ff-file-list";
 @import "_ff-alert";
-@import "_ff-mark-grid";
-@import "_ff-popover";
-@import "_ff-summary";
