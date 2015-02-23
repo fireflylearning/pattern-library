@@ -1,4 +1,5 @@
 //temp js to help with markup...
+//@Ben — most of this is probably bonkers
 
 /*
     ---
@@ -42,18 +43,21 @@ var ffMarkGrid__fixHeader = function(obj)
             var headerWidth = $('.ff-mark-grid-results',obj).outerWidth(false);	
             var totalTasks = obj.attr('data-ff-mark-grid-tasks'); 
             var tasksWidth = 60 * totalTasks;
-            if ($(window).scrollTop() > aboveHeight && $(window).scrollTop() < (aboveHeight + objHeight)) 
+            if ($(window).scrollTop() > aboveHeight && $(window).scrollTop() < (aboveHeight + objHeight)) //fix header
             {
                 obj.addClass('ff-mark-grid-fixed-header');
                 $('.ff-mark-grid-results .ff-mark-grid-header',obj).css('width',headerWidth);
                 $('.ff-mark-grid-results .ff-mark-grid-header > ol',obj).css('width',tasksWidth);
             }
-            else
+            else //release header
             {
                 obj.removeClass('ff-mark-grid-fixed-header');
                 $('.ff-mark-grid-results .ff-mark-grid-header',obj).css('width','');
                 $('.ff-mark-grid-results .ff-mark-grid-header > ol',obj).css('width','');
             }
+            
+           ffMarkGrid__syncScrollPosition(obj);
+            
       }
       else
       {
@@ -82,23 +86,71 @@ var ffMarkGrid__releaseWidth = function(obj)
 
 /*
     ---
-    scrollTo: scroll to a location within the grid
+    controlScroll: contolling all things scroll.
     ---    
 */
 
-var ffMarkGrid__scrollTo = function(obj,distance,direction)
+var ffMarkGrid__controlScroll = function(obj)
 {
+    //watch the scroll position of the grid and react when in fixed mode.
     $('.ff-mark-grid-results',obj).on("scroll",function()
     {
         if(obj.hasClass('ff-mark-grid-fixed-header'))
         {
-            var position = $('.ff-mark-grid-results-body',this).position();
-            $('.ff-mark-grid-header ol',this).css('left',position.left);
-            console.log(position.left);
+            ffMarkGrid__syncScrollPosition(obj);
         }
         
     });
+    
+    
+    $('[data-ff-markbook-control]').on("click",function() 
+    {
+       var str = $(this).attr('data-ff-markbook-control'); 
+       var options = str.split(',');
+       var direction = options[0];
+       var distance = options[1];
+       
+       ffMarkGrid__scrollTo(obj,direction,distance);
+    });
+    
 }
+
+/*
+    ---
+    syncScrollPosition: syncs the scroll left / right position when user scrolls with the mouse OR when we switch from/to fixed header mode.
+    ---    
+*/
+
+var ffMarkGrid__syncScrollPosition = function(obj)
+{
+    var position = $('.ff-mark-grid-results-body',obj).position();
+    $('.ff-mark-grid-header ol',obj).css('left',position.left);
+}
+
+/*
+    ---
+    scrollTo: Manual Scroll using the buttons.
+    ---    
+*/
+
+var ffMarkGrid__scrollTo = function(obj,direction,distance)
+{
+    var target = $('.ff-mark-grid-results',obj);
+    var markWidth = 60;
+    if(direction == 'forward')
+    {
+        target.animate({
+            scrollLeft: '+=' + (markWidth * distance)
+        },300,'swing');
+    }
+    else
+    {
+        target.animate({
+            scrollLeft: '-=' + (markWidth * distance)
+        },300,'swing');
+    }
+}
+
 
 /*
     ---
@@ -136,6 +188,8 @@ var ffPopover__show = function(obj)
     }
 }
 
+
+
 var ffPopover__hide = function()
 {
     $('.ff-popover').hide();
@@ -159,7 +213,7 @@ $(function()
         $that = $(this);
         ffMarkGrid__isSmall($that);
         ffMarkGrid__fixHeader($that);
-        ffMarkGrid__scrollTo($that);
+        ffMarkGrid__controlScroll($that);
     }); 
     
     $( window ).resize(function()

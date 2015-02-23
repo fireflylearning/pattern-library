@@ -963,6 +963,7 @@ table {
   width: auto;
   position: relative;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .ff-mark-grid .ff-mark-grid-results .ff-mark-grid-results-body {
   overflow: hidden;
