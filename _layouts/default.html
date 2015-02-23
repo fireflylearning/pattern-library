@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="{{ site.baseurl }}/css/styles.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" charset="utf-8">
         <title>{{ page.title }} - Firefly Core Pattern Library. Beta.</title>
     </head>
     <body class="{{ page.title | slugify }}">
@@ -10,7 +10,7 @@
             <ul>
                 <li><span class="nav-heading">All Controls</span>
                     <ul>
-                        <l><a href="/">All Controls</a></l>
+                        <l><a href="{{ ">All Controls</a></l>
                         
                         {% assign target_patterns = site.patterns %}
                         {% assign group = '' %}
@@ -24,7 +24,7 @@
                                 
                                 {% if current_group != group %}
                                 {% assign group = current_group %}
-                                <li><a href="/#group-{{current_group[1]}}" data-scroll-nav="{% increment nav_counter %}">{{ current_group[1] | capitalize }}</a></li>
+                                <li><a href="{{ site.baseurl }}#group-{{current_group[1]}}">{{ current_group[1] | capitalize }}</a></li>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}  
@@ -34,7 +34,7 @@
                 <li><span class="nav-heading">Example Pages</span>
                     <ul>
                         {% for example in site.examples %}
-                        <li><a href="{{ example.url }}">{{ example.title }}</a></li>
+                        <li><a href="{{ site.baseurl }}{{ example.url }}">{{ example.title }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -47,8 +47,7 @@
         
               
     <!-- js -->
-    <script src="{{ site.baseurl }}/js/jquery-1.11.2.min.js" type="text/javascript"></script>
-    <script src="{{ site.baseurl }}/js/scroll.js" type="text/javascript"></script>
-    <script src="{{ site.baseurl }}/js/pattern-library.js" type="text/javascript"></script>
+    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="js/pattern-library.js" type="text/javascript"></script>
     </body>
 </html>
