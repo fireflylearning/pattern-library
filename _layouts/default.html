@@ -10,7 +10,7 @@
             <ul>
                 <li><span class="nav-heading">All Controls</span>
                     <ul>
-                        <l><a href="{{ ">All Controls</a></l>
+                        <li><a href="{{ site.baseurl }}/">All Controls</a></li>
                         
                         {% assign target_patterns = site.patterns %}
                         {% assign group = '' %}
@@ -34,7 +34,7 @@
                 <li><span class="nav-heading">Example Pages</span>
                     <ul>
                         {% for example in site.examples %}
-                        <li><a href="{{ site.baseurl }}{{ example.url }}">{{ example.title }}</a></li>
+                        <li><a href="{{ site.baseurl }}/{{ example.url }}">{{ example.title }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>

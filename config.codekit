@@ -664,7 +664,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-<<<<<<< HEAD
 	"\/_site\/examples\/markbook_includes\/student-detail.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -692,8 +691,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-=======
->>>>>>> origin/gh-pages
 	"\/_site\/examples\/open-office-document.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -721,6 +718,94 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/_site\/images\/group.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 3582,
+		"inputAbbreviatedPath": "\/_site\/images\/group.jpg",
+		"outputAbbreviatedPath": "\/_site\/images\/group.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/_site\/images\/person.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2110,
+		"inputAbbreviatedPath": "\/_site\/images\/person.jpg",
+		"outputAbbreviatedPath": "\/_site\/images\/person.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/_site\/images\/sally-student.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 11149,
+		"inputAbbreviatedPath": "\/_site\/images\/sally-student.jpg",
+		"outputAbbreviatedPath": "\/_site\/images\/sally-student.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/_site\/images\/tag-disabled.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 729,
+		"inputAbbreviatedPath": "\/_site\/images\/tag-disabled.png",
+		"outputAbbreviatedPath": "\/_site\/images\/tag-disabled.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/_site\/images\/tag-disabled@2x.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1366,
+		"inputAbbreviatedPath": "\/_site\/images\/tag-disabled@2x.png",
+		"outputAbbreviatedPath": "\/_site\/images\/tag-disabled@2x.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/_site\/images\/tag.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 552,
+		"inputAbbreviatedPath": "\/_site\/images\/tag.png",
+		"outputAbbreviatedPath": "\/_site\/images\/tag.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/_site\/images\/tag@0.5x.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 557,
+		"inputAbbreviatedPath": "\/_site\/images\/tag@0.5x.png",
+		"outputAbbreviatedPath": "\/_site\/images\/tag@0.5x.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/_site\/images\/tag@2x.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 900,
+		"inputAbbreviatedPath": "\/_site\/images\/tag@2x.png",
+		"outputAbbreviatedPath": "\/_site\/images\/tag@2x.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/_site\/index.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -730,7 +815,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-<<<<<<< HEAD
 	"\/_site\/js\/jquery-1.11.2.min.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -876,8 +960,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-=======
->>>>>>> origin/gh-pages
 	"\/css\/styles.css": {
 		"fileType": 16,
 		"ignore": 1,
@@ -1911,7 +1993,7 @@
 	"jadeAutoOutputPathStyle": 0,
 	"jadeCompileDebug": 1,
 	"jadeOutputStyle": 0,
-	"javascriptAutoOutputPathEnabled": 0,
+	"javascriptAutoOutputPathEnabled": 1,
 	"javascriptAutoOutputPathFilenamePattern": "*-min.js",
 	"javascriptAutoOutputPathRelativePath": "\/min",
 	"javascriptAutoOutputPathReplace1": "",
@@ -1919,7 +2001,7 @@
 	"javascriptAutoOutputPathStyle": 2,
 	"javascriptCreateSourceMap": 1,
 	"javascriptOutputStyle": 1,
-	"javascriptSyntaxCheckerStyle": 0,
+	"javascriptSyntaxCheckerStyle": 1,
 	"jsCheckerReservedNamesString": "",
 	"jsHintFlags2": {
 		"asi": {
