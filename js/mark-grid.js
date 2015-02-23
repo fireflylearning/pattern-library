@@ -103,8 +103,9 @@ var ffMarkGrid__controlScroll = function(obj)
     });
     
     
-    $('[data-ff-markbook-control]').on("click",function() 
+    $('[data-ff-markbook-control]').on("click",function(e) 
     {
+        e.preventDefault();
        var str = $(this).attr('data-ff-markbook-control'); 
        var options = str.split(',');
        var direction = options[0];
