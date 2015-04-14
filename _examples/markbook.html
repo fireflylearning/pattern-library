@@ -3,6 +3,8 @@ title: Markbook
 layout: standalone
 ---
 
+{% assign num = 10 %}
+
 <div class="ff-ui-heading">
     <h1>Markbook</h1>
     <div class="ff-ui-actions">
@@ -27,7 +29,7 @@ layout: standalone
         </div>
     </div>
 
-<div class="ff-mark-grid" data-ff-mark-grid-tasks="100">
+<div class="ff-mark-grid" data-ff-mark-grid-tasks="{{ num }}">
     
     <div class="ff-mark-grid-students">
         
@@ -69,13 +71,11 @@ layout: standalone
             </ul>
         </div>
         
-        {% assign num = 100 %}
-        
         <div class="ff-mark-grid-header">
             <ol>
                 {% for i in (1..num) %}
                 <li id="ff-mark-grid-task-uid1" {% if i == 2 %}class="ff-mark-grid-highlight"{% endif %}>
-                    {% include_relative markbook_includes/task-header.html date=i %}
+                    {% include_relative markbook_includes/task-header.html date=i title="Write 500 a word on the process of quantum interactions within the chloroplasts of plants" %}
                 </li>
                 {% endfor %}
             </ol>

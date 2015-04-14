@@ -1,0 +1,24 @@
+// ------------------------------------------------------------- //
+// .ff-button-with-dropdown
+// ------------------------------------------------------------- //
+
+.ff-ui-button-with-dropdown {
+  #ff > .clearfix();
+  
+  .ff-primary-action {
+    float: left;
+    border-right: none;
+    #ff > .border-radius(0,0,@ff_dashboard_rounded,@ff_dashboard_rounded);
+  }
+  
+  .ff-secondary-actions {
+    float: left;
+    #ff > .border-radius(@ff_dashboard_rounded,@ff_dashboard_rounded,0,0);
+    
+    &.ff-ui-dropdown .ff-dropdown-label {
+      display: none;
+    }
+    
+  }
+  
+}

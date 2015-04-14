@@ -877,6 +877,7 @@ table {
   position: absolute;
   width: 100%;
   right: -1px;
+  min-width: 160px;
   top: 100%;
   border: 1px solid #b4b4b4;
   background: #def1fa;
@@ -965,26 +966,26 @@ table {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-.ff-mark-grid .ff-mark-grid-results .ff-mark-grid-results-body {
+.ff-mark-grid .ff-mark-grid-results .ff-mark-grid-header {
   overflow: hidden;
 }
 .ff-mark-grid .ff-mark-grid-results .ff-mark-grid-header ol > li {
   display: block;
   float: left;
-  width: 60px;
-  width: 3.75rem;
-  max-width: 60px;
-  max-width: 3.75rem;
+  width: 160px;
+  width: 10rem;
+  max-width: 160px;
+  max-width: 10rem;
 }
 .ff-mark-grid .ff-mark-grid-results .ff-mark-grid-results-body ol {
   float: left;
 }
 .ff-mark-grid .ff-mark-grid-results .ff-mark-grid-results-body ol > li {
   display: block;
-  width: 60px;
-  width: 3.75rem;
-  max-width: 60px;
-  max-width: 3.75rem;
+  width: 160px;
+  width: 10rem;
+  max-width: 160px;
+  max-width: 10rem;
 }
 .ff-mark-grid .ff-mark-grid-student {
   font-size: 16px;
@@ -1730,7 +1731,7 @@ table {
   border-width: 0 12px 12px 0;
   border-color: transparent #edeb56 transparent transparent;
 }
-.ff-mark-grid .ff-mark-grid-date {
+.ff-mark-grid .ff-mark-grid-task-title {
   text-align: center;
   display: block;
   cursor: context-menu;
@@ -1743,7 +1744,7 @@ table {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-.ff-mark-grid .ff-mark-grid-date:hover {
+.ff-mark-grid .ff-mark-grid-task-title:hover {
   color: #366797;
 }
 .ff-mark-grid .ff-mark-grid-student {
@@ -1947,18 +1948,18 @@ table {
 .ff-summary .ff-summary-excerpt {
   cursor: help;
 }
-.ff-button-with-dropdown {
+.ff-ui-button-with-dropdown {
   zoom: 1;
 }
-.ff-button-with-dropdown:after,
-.ff-button-with-dropdown:before {
+.ff-ui-button-with-dropdown:after,
+.ff-ui-button-with-dropdown:before {
   content: "";
   display: table;
 }
-.ff-button-with-dropdown:after {
+.ff-ui-button-with-dropdown:after {
   clear: both;
 }
-.ff-button-with-dropdown .ff-primary-action {
+.ff-ui-button-with-dropdown .ff-primary-action {
   float: left;
   border-right: none;
   -webkit-border-top-right-radius: 0;
@@ -1977,7 +1978,7 @@ table {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-.ff-button-with-dropdown .ff-secondary-actions {
+.ff-ui-button-with-dropdown .ff-secondary-actions {
   float: left;
   -webkit-border-top-right-radius: 2px;
   -webkit-border-bottom-right-radius: 2px;
@@ -1995,7 +1996,7 @@ table {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-.ff-button-with-dropdown .ff-secondary-actions.ff-dropdown .ff-dropdown-label {
+.ff-ui-button-with-dropdown .ff-secondary-actions.ff-ui-dropdown .ff-dropdown-label {
   display: none;
 }
 .ff-nav-filter {

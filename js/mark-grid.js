@@ -7,6 +7,8 @@
     ---    
 */
 
+var ffMarkGrid_markBlockWidth = 160;
+
 var ffMarkGrid__isSmall = function(obj)
 {
     var breakpoint = 800;
@@ -42,7 +44,7 @@ var ffMarkGrid__fixHeader = function(obj)
             var objHeight = obj.outerHeight(false);
             var headerWidth = $('.ff-mark-grid-results',obj).outerWidth(false);	
             var totalTasks = obj.attr('data-ff-mark-grid-tasks'); 
-            var tasksWidth = 60 * totalTasks;
+            var tasksWidth = ffMarkGrid_markBlockWidth * totalTasks;
             if ($(window).scrollTop() > aboveHeight && $(window).scrollTop() < (aboveHeight + objHeight)) //fix header
             {
                 obj.addClass('ff-mark-grid-fixed-header');
@@ -76,7 +78,7 @@ var ffMarkGrid__fixHeader = function(obj)
 var ffMarkGrid__setWidth = function(obj)
 {
     totalTasks = obj.attr('data-ff-mark-grid-tasks');
-    width = 60 * totalTasks;
+    width = ffMarkGrid_markBlockWidth * totalTasks;
     $('.ff-mark-grid-results-wrapper').css('width',width);
 }
 var ffMarkGrid__releaseWidth = function(obj)
@@ -137,7 +139,7 @@ var ffMarkGrid__syncScrollPosition = function(obj)
 var ffMarkGrid__scrollTo = function(obj,direction,distance)
 {
     var target = $('.ff-mark-grid-results',obj);
-    var markWidth = 60;
+    var markWidth = ffMarkGrid_markBlockWidth;
     if(direction == 'forward')
     {
         target.animate({
