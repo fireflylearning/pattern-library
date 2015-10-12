@@ -2,7 +2,7 @@
 
 The full list of controls for Firefly's Interface.
 
-**Please not this does not include any editor interface elements**
+**Please note this does not include any editor interface elements**
 
 ## How this works
 
