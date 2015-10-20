@@ -1,0 +1,66 @@
+#ptn-button {
+    .sm() {
+        font-size: 12rem;
+        display: flex;
+    }
+    .md() {
+        .sm();
+        background-color: blue;
+    }
+    .lg() {
+
+    }
+}
+
+.ptn-button {
+    #ptn-button .md();
+}
+
+
+#ff_mix-base-box() {
+    .sm() {
+        padding: .5rem;
+        border-radius: .5rem;
+    }
+    .md() {
+        padding: 1.2rem;
+        border-radius: 1rem;
+    }
+    .sm-secondary() {
+        padding: .3rem;
+        border-radius: .3rem;
+    }
+    .md-secondary() {
+        padding: .6rem;
+        border-radius: .6rem;
+    }
+}
+
+#ff_mix-base-accent() {
+    .default() {
+        background-colour: blue;
+    }
+    .secondary() {
+        background-colour: white;
+    }
+}
+
+
+
+.ff_module-button {
+    #ff_mix-base-box > .sm();
+    #ff_mix-base-accent > .default();
+
+    @media all and (min-width:30em) {
+        #ff_mix-base-box > .md();
+    }
+}
+
+.ff_module-button--secondary {
+    #ff_mix-base-box > .sm-secondary();
+    #ff_mix-base-accent > .secondary();
+
+    @media all and (min-width:30em) {
+        #ff_mix-base-box > .md-secondary();
+    }
+}

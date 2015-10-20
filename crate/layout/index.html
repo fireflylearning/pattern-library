@@ -1,0 +1,13 @@
+{% extends './crate/layout/base.html' %}
+
+{% block body %}
+
+<h1>{{title}}</h1>
+
+{{ contents|safe }}
+
+{% include './crate/layout/partials/block-list.html' %}
+
+{% include './crate/layout/partials/file-list.html' %}
+
+{% endblock %}

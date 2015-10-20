@@ -1,0 +1,33 @@
+.ptn-button {
+  font-size: 12rem;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: blue;
+}
+.ff_module-button {
+  padding: .5rem;
+  border-radius: .5rem;
+  background-colour: blue;
+}
+@media all and (min-width: 30em) {
+  .ff_module-button {
+    padding: 1.2rem;
+    border-radius: 1rem;
+  }
+}
+.ff_module-button--secondary {
+  padding: .3rem;
+  border-radius: .3rem;
+  background-colour: white;
+}
+@media all and (min-width: 30em) {
+  .ff_module-button--secondary {
+    padding: .6rem;
+    border-radius: .6rem;
+  }
+}
+
+.ff_module-title {
+  font-size: 2rem;
+}

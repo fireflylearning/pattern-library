@@ -1,0 +1,13 @@
+.test() {
+    background: red;
+}
+
+#ns-test() {
+    .one() {
+        background-color: purple;
+    }
+}
+
+.ns-test {
+    #ns-test > .one();
+}

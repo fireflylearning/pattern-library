@@ -1,0 +1,9 @@
+<ul class="file_list">
+    {% for file in filelist %}
+    <li>
+    {{file.basename}}
+
+    <a href="{{file.link}}">View page</a>
+    </li>
+    {% endfor %}
+</ul>

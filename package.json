@@ -1,0 +1,34 @@
+{
+  "name": "firefly-pattern-lib",
+  "version": "0.0.1",
+  "description": "Source files and build tools for Firefly front-end development patterns.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Danielle Huntrods (https://github.com/dkhuntrods)",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^2.0.2",
+    "event-stream": "^3.3.1",
+    "glob": "^5.0.15",
+    "gulp": "^3.9.0",
+    "gulp-apply-template": "0.0.2",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-data": "^1.2.0",
+    "gulp-debug": "^2.1.2",
+    "gulp-filenames": "^2.0.0",
+    "gulp-front-matter": "^1.2.3",
+    "gulp-less": "^3.0.3",
+    "gulp-load-plugins": "^1.0.0",
+    "gulp-markdown": "^1.1.0",
+    "gulp-nunjucks-html": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-size": "^2.0.0",
+    "gulp-tap": "^0.1.3",
+    "gulp-util": "^3.0.6",
+    "gulp-webserver": "^0.9.1",
+    "nunjucks": "^2.1.0"
+  }
+}
