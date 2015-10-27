@@ -310,3 +310,4 @@ gulp.task('watch:content', ['build:content'], browserSync.reload);
 
 gulp.task('webpack:watch', ['webpack']);
 gulp.task('dev', ['build', 'serve', 'watch']);
+gulp.task('default', ['dev']);
