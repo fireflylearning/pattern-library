@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Firefly Pattern Library:Main page</title>
+    <title>:Main page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -18,7 +18,7 @@
 <body>
     
 
-<h1>Firefly Pattern Library: Main page</h1>
+<h1>: Main page</h1>
 
 <h2 id="welcome-to-the-pattern-library">Welcome to the pattern library</h2>
 <p>Some detailed information about the pattern library</p>
@@ -28,80 +28,22 @@
 <div class="nav-crate-blocks">
     <ul class="nav-crate-blocks__list">
         
-        <li class="nav-crate-blocks__list-item">
-            <p><a href="/blocks/core/ff_module/ff_module-stepping-stones/ff_module-stepping-stones.html">ff_module-stepping-stones</a></p>
-        </li>
-        
-        <li class="nav-crate-blocks__list-item">
-            <p><a href="/blocks/core/ff_module/ff_module-button/ff_module-button.html">ff_module-button</a></p>
-        </li>
-        
-        <li class="nav-crate-blocks__list-item">
-            <p><a href="/blocks/core/ff_module/ff_module-title/ff_module-title.html">ff_module-title</a></p>
-        </li>
-        
-        <li class="nav-crate-blocks__list-item">
-            <p><a href="/blocks/core/ff_module/ff_module-button/ff_module-button--wide/ff_module-button--wide.html">ff_module-button--wide</a></p>
-        </li>
-        
     </ul>
 </div>
+
+
+<h2>All Blocks</h2>
+<form action="" method="post" id="pattern" class="xx-pattern-jump">
+    <select name="section" id="pattern-select" class="nav-section-select">
+        <option value="">Jump to…</option>
+            
+    </select>
+    <button type="submit" id="pattern-submit" style="display: none;">Go</button>
+</form>
 
 
 <h2>Block previews</h2>
 <div class="crate_blocks">
-    
-    <div class="crate_blocks__item">
-        <h3>ff_module-stepping-stones</h3>
-        <div class="crate_blocks__layout">
-            <div class="ff_module-stepping-stones">
-    <ul>
-        <li>Step 1</li>
-        <li>Step 2</li>
-        <li>Step 3</li>
-        <li>Step 4</li>
-    </ul>
-    <p>Stepping stone</p>
-
-</div>
-
-        </div>
-        <a href="/blocks/core/ff_module/ff_module-stepping-stones/ff_module-stepping-stones.html">View block...</a>
-    </div>
-    
-    <div class="crate_blocks__item">
-        <h3>ff_module-button</h3>
-        <div class="crate_blocks__layout">
-            <div class="ff_module-button">
-    <button>Button text</button>
-</div>
-
-        </div>
-        <a href="/blocks/core/ff_module/ff_module-button/ff_module-button.html">View block...</a>
-    </div>
-    
-    <div class="crate_blocks__item">
-        <h3>ff_module-title</h3>
-        <div class="crate_blocks__layout">
-            <div class="ff_module-title">
-    <h1>Title text</h1>
-    
-</div>
-
-        </div>
-        <a href="/blocks/core/ff_module/ff_module-title/ff_module-title.html">View block...</a>
-    </div>
-    
-    <div class="crate_blocks__item">
-        <h3>ff_module-button--wide</h3>
-        <div class="crate_blocks__layout">
-            <div class="ff_module-button ff_module-button--wide">
-    <button>Button text</button>
-</div>
-
-        </div>
-        <a href="/blocks/core/ff_module/ff_module-button/ff_module-button--wide/ff_module-button--wide.html">View block...</a>
-    </div>
     
 </div>
 
@@ -109,36 +51,31 @@
 <h2>All pages</h2>
 <ul class="file-list">
     
-    <li class="file-list__item">
-    ff_module-button.long-text <a href="/content/ff_module-button.long-text.html">View Basic Button (long text)</a>
-    </li>
-    
-    <li class="file-list__item">
-    ff_module-button <a href="/content/ff_module-button.html">View Basic Button</a>
-    </li>
-    
-    <li class="file-list__item">
-    ff_module-button.variations <a href="/content/ff_module-button.variations.html">View Basic Button (text variations)</a>
-    </li>
-    
-    <li class="file-list__item">
-    listings <a href="/content/test/listings.html">View Listings</a>
-    </li>
-    
-    <li class="file-list__item">
-    listings2 <a href="/content/test/listings2.html">View Listings 2</a>
-    </li>
-    
-    <li class="file-list__item">
-    newfile <a href="/content/test/newfile.html">View Test of folders</a>
-    </li>
-    
 </ul>
 
 
 
-    <script src="/vendor/js/jquery-1.11.3.js"></script>
     <script src="/js/blocks.js"></script>
+    <script>
+        // Adds class of svg to the html tag if svg is enabled
+        (function flagSVG() {
+            var ns = {'svg': 'http://www.w3.org/2000/svg'};
+            if(document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) {document.getElementsByTagName('html')[0].className += ' svg';}
+        })();
+
+        (function (document, undefined) {
+            // Pattern selector
+            document.getElementById('pattern-submit').style.display = 'none';
+            document.getElementById('pattern-select').onchange = function() {
+                //document.location=this.options[this.selectedIndex].value;
+                var val = this.value;
+                if (val !== "") {
+                    window.location = val;
+                }
+            }
+        })(document);
+
+    </script>
 </body>
 
 </html>

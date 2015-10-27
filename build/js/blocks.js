@@ -67,8 +67,8 @@
 
 	/* jshint node: true */
 	'use strict';
-	var utils = __webpack_require__(3);
-	var $ = __webpack_require__(4);
+	var utils = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"core/shared/utils\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var $ = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"jquery\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	module.exports = function() {
 	    utils.output('ff_module-title running!');
@@ -77,28 +77,6 @@
 	    });
 	};
 
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	/* jshint node: true */
-	'use strict';
-
-	function output(text) {
-	    console.log(text);
-	}
-
-	module.exports = {
-	    output: output
-	};
-
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	module.exports = jQuery;
 
 /***/ }
 /******/ ]);
