@@ -1,0 +1,17 @@
+{% extends './crate/layout/base.html' %}
+
+{% block body %}
+
+<h1>{{title}}</h1>
+
+
+{% include './blocks/core/ff_module/ff_module-title/ff_module-title.html' %}
+{% for block in blocks %}
+
+    {% for context in block.contexts %}
+        {{context.text}}
+        {#{% include './blocks/core/ff_module/ff_module-title/ff_module-title.html' %}#}
+    {% endfor %}
+{% endfor %}
+
+{% endblock %}

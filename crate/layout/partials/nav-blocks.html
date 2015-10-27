@@ -1,0 +1,9 @@
+<div class="nav-crate-blocks">
+    <ul class="nav-crate-blocks__list">
+        {% for file in blocklist %}
+        <li class="nav-crate-blocks__list-item">
+            <p><a href="{{file.link}}">{{file.title}}</a></p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

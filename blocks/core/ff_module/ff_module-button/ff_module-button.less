@@ -1,0 +1,40 @@
+#ff_mix-base-box() {
+    .sm() {
+        padding: .5rem;
+        border-radius: .5rem;
+        border-width: 0;
+    }
+    .md() {
+        padding: 1rem;
+    }
+    .sm--wide() {
+        padding: .5rem .3rem;
+        border-radius: .3rem;
+    }
+    .md--wide() {
+        padding: .6rem;
+    }
+}
+
+#ff_mix-base-accent() {
+    .default() {
+        background-color: lightblue;
+    }
+    .secondary() {
+        background-color: white;
+    }
+    .wide(){
+        background-color: lightgreen;
+    }
+}
+
+.ff_module-button {
+    button {
+        #ff_mix-base-box > .sm();
+        #ff_mix-base-accent > .default();
+        @media all and (min-width: 30em) {
+            #ff_mix-base-box > .md();
+        }
+    }
+}
+

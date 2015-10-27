@@ -1,7 +1,7 @@
 ---
-title: "Firefly Pattern Library: Basic Button (long text)"
-layout: './crate/layout/view-block.html'
-blockItem: './core_blocks/ff_module-button/ff_module-button.html'
+title: "Basic Button (long text)"
+layout: view-block
+block: ff_module-button
 text: MD test with really long words and things
 ---
 

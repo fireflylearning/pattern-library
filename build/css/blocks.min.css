@@ -1,33 +1,4 @@
-.ptn-button {
-  font-size: 12rem;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: blue;
-}
-.ff_module-button {
-  padding: .5rem;
-  border-radius: .5rem;
-  background-colour: blue;
-}
-@media all and (min-width: 30em) {
-  .ff_module-button {
-    padding: 1.2rem;
-    border-radius: 1rem;
-  }
-}
-.ff_module-button--secondary {
-  padding: .3rem;
-  border-radius: .3rem;
-  background-colour: white;
-}
-@media all and (min-width: 30em) {
-  .ff_module-button--secondary {
-    padding: .6rem;
-    border-radius: .6rem;
-  }
-}
-
-.ff_module-title {
-  font-size: 2rem;
-}
+.ff_module-button button{padding:.5rem;border-radius:.5rem;border-width:0;background-color:#add8e6}@media all and (min-width:30em){.ff_module-button button{padding:1rem}}
+.ff_module-stepping-stones{background-color:#ff0}
+.ff_module-title{font-size:1.4rem;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}
+.ff_module-button--wide{width:300px}.ff_module-button--wide button{width:100%;background-color:#90ee90}

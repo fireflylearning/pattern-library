@@ -1,10 +1,8 @@
 ---
-title: "Firefly Pattern Library: Main page"
-layout: './crate/layout/index.html'
+title: "Main page"
+layout: index
 ---
 
-## Welcome to this thing
+## Welcome to the pattern library
 
-I like words
-
-<h2>Heading test</h2>
+Some detailed information about the pattern library

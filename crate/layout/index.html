@@ -6,8 +6,14 @@
 
 {{ contents|safe }}
 
-{% include './crate/layout/partials/block-list.html' %}
+{{ site.title }}
+<h2>All Blocks</h2>
+{% include './crate/layout/partials/nav-blocks.html' %}
 
-{% include './crate/layout/partials/file-list.html' %}
+<h2>Block previews</h2>
+{% include './crate/layout/partials/list-blocks.html' %}
+
+<h2>All pages</h2>
+{% include './crate/layout/partials/list-files.html' %}
 
 {% endblock %}

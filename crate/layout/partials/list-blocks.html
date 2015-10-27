@@ -1,0 +1,11 @@
+<div class="crate_blocks">
+    {% for file in blocklist %}
+    <div class="crate_blocks__item">
+        <h3>{{file.title}}</h3>
+        <div class="crate_blocks__layout">
+            {% include file.path %}
+        </div>
+        <a href="{{file.link}}">View block...</a>
+    </div>
+    {% endfor %}
+</div>
