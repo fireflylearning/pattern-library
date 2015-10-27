@@ -2,11 +2,10 @@
 
 {% block body %}
 
-<h1>{{title}}</h1>
+<h1>{{ site.title }}: {{title}}</h1>
 
 {{ contents|safe }}
 
-{{ site.title }}
 <h2>All Blocks</h2>
 {% include './crate/layout/partials/nav-blocks.html' %}
 

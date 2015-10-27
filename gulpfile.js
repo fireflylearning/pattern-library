@@ -3,7 +3,6 @@
 
 var gulp = require('gulp');
 
-
 var es = require('event-stream'),
     gutil = require('gulp-util'),
     path = require('path'),
@@ -231,9 +230,9 @@ gulp.task('build:content', ['clean:content', 'info'], function() {
             context: function(file) {
                 if (file.data.blocks) file.data.blocks = normaliseBlocks(file.data.blocks);
                 file.data.blockItem = getBlockPath(file.data.block);
-                console.log(file.data.blockItem);
                 file.data.filelist = filelist;
                 file.data.blocklist = blocklist;
+                file.data.site = siteData;
                 return file.data;
             }
         }))
@@ -299,11 +298,17 @@ gulp.task('audit', function() {
     // .pipe(gulp.dest('.tests/wcag'));
 });
 
+gulp.task('assets', function(){
+    return gulp.src(paths.assets.src)
+    .pipe(gulp.dest(paths.assets.dest))
+    .pipe(browserSync.stream());
+});
+
 gulp.task('info', ['info:blocks', 'info:files']);
 
 gulp.task('styles', ['build:css:blocks', 'build:css:crate']);
 
-gulp.task('build', ['build:content', 'build:blocks', 'styles', 'webpack']);
+gulp.task('build', ['build:content', 'build:blocks', 'styles', 'assets','webpack']);
 
 gulp.task('watch:blocks', ['build:blocks'], browserSync.reload);
 gulp.task('watch:content', ['build:content'], browserSync.reload);

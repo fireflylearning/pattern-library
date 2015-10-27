@@ -1,7 +1,8 @@
 var basePaths = {
     blocks: 'blocks/',
     dest: 'build/',
-    crate: 'crate/'
+    crate: 'crate/',
+    assets: 'assets/'
 };
 
 var paths = {
@@ -51,8 +52,9 @@ var paths = {
         dest: basePaths.dest + 'js/'
     },
 
-    sprite: {
-        src: basePaths.blocks + 'sprite/*'
+    assets: {
+        src: basePaths.assets + '**/*',
+        dest: basePaths.dest
     }
 };
 

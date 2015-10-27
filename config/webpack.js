@@ -1,4 +1,5 @@
 var paths = require('./paths.js');
+var webpack = require('webpack');
 
 module.exports = {
     entry: {
@@ -6,6 +7,16 @@ module.exports = {
     },
     output: {
         path: paths.scripts.dest,
-        filename: 'blocks.js',
-    }
+        filename: '[name].js'
+    },
+    resolve: {
+        modulesDirectories: ['node_modules', 'src',  'blocks'],
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery'
+        })
+    ],
+    externals: { jquery: 'jQuery' }
 };

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && gulp dev"
+    "start": "npm install && gulp"
   },
   "author": "Danielle Huntrods (https://github.com/dkhuntrods)",
   "license": "ISC",
