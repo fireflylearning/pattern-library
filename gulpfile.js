@@ -4,6 +4,7 @@
 var gulp = require('gulp');
 
 var es = require('event-stream'),
+    fs = require('fs'),
     gutil = require('gulp-util'),
     path = require('path'),
     del = require('del'),
@@ -62,6 +63,7 @@ function buildCss(src, name, dest) {
         .pipe(plugins.concat(name))
         .pipe(plugins.size())
         .pipe(gulp.dest(dest))
+        .pipe(gulp.dest('wwwroot/css'))
         .pipe(browserSync.stream());
 }
 
@@ -171,7 +173,9 @@ gulp.task('output:info:blocks', ['info:blocks'], function(cb) {
     cb();
 });
 
-gulp.task('build:blocks', ['clean:blocks'], function() {
+
+
+gulp.task('build:blocks', ['clean:blocks', 'info'], function() {
 
     return gulp.src(paths.blocks.layout.src, {
             base: '.'
@@ -180,12 +184,16 @@ gulp.task('build:blocks', ['clean:blocks'], function() {
         // .pipe(plugins.frontMatter())
         .pipe(plugins.data(function(file) {
             var p = './' + path.relative(root, file.path);
-            return require(p.replace(/\.[^/.]+$/, '.json'));
+            var jsonData = require(p.replace(/\.[^/.]+$/, '.json'));
+
+            return _.merge(jsonData, {
+                site: siteData
+            });
         }))
         // .pipe(plugins.markdown())
         .pipe(plugins.nunjucksHtml())
         .pipe(plugins.applyTemplate({
-            engine: 'nunjucks',
+            engine: 'swig',
             template: './crate/layout/view-block-isolate.html',
             context: function(file) {
                 return file.data;
@@ -199,6 +207,7 @@ gulp.task('build:blocks', ['clean:blocks'], function() {
 
 function normaliseBlocks(blocks) {
     blocks = [].concat(blocks);
+    console.log(blocks);
     var nb = [];
     blocks.forEach(function(block) {
 
@@ -210,6 +219,7 @@ function normaliseBlocks(blocks) {
             });
         }
     });
+    console.log(nb);
     return nb;
 }
 
@@ -222,17 +232,29 @@ gulp.task('build:content', ['clean:content', 'info'], function() {
             remove: true
         }))
         .pipe(plugins.markdown())
+        .pipe(plugins.data(function(file) {
+            console.log('blocks: %j', file.data.blocks);
+            var attrs = file.data;
+            return _.merge(attrs, {
+                blockItem: getBlockPath(file.data.block),
+                filelist: filelist,
+                blocklist: blocklist,
+                // blocks: normaliseBlocks(file.data.blocks),
+                site: siteData
+            });
+        }))
+        // .pipe(plugins.wrap(function(context) {
+        //     console.log('context: %j', context.file.data.layout);
+        //     return getLayoutPath(context.file.data.layout);
+        // }, {}, {
+        //     engine: 'nunjucks'
+        // }))
         .pipe(plugins.applyTemplate({
-            engine: 'nunjucks',
+            engine: 'swig',
             template: function(context) {
                 return getLayoutPath(context.data.layout);
             },
             context: function(file) {
-                if (file.data.blocks) file.data.blocks = normaliseBlocks(file.data.blocks);
-                file.data.blockItem = getBlockPath(file.data.block);
-                file.data.filelist = filelist;
-                file.data.blocklist = blocklist;
-                file.data.site = siteData;
                 return file.data;
             }
         }))
@@ -258,7 +280,7 @@ gulp.task('build:css:crate', function() {
 
 gulp.task('webpack', function(callback) {
     devCompiler.run(function(err, stats) {
-        if (err) throw new gutil.PluginError('webpack:build-dev', err);
+        if (err) throw new gutil.PluginError('webpack', err);
         gutil.log('[webpack]', stats.toString({
             colors: true
         }));
@@ -290,6 +312,165 @@ gulp.task('watch', ['build', 'serve'], function() {
 
 });
 
+var b1 = [{
+    'ff_module-title': [{
+        'text': 'List item title',
+        'subtitle': 'List Subtitle'
+    }]
+}, {
+    'ff_module-button': [{
+        'text': 'Module btn text'
+    }, {
+        'text': 'Module btn yexdf'
+    }]
+}, {
+    'ff_module-title': [{
+        'text': 'Single object title',
+        'subtitle': 'Single object subtitle'
+    }]
+}];
+var b2 = [{
+    contexts: [{
+        text: 'Block 1 context 1'
+    }, {
+        text: 'Block 1 context 2'
+    }]
+}, {
+    contexts: [{
+        text: 'Block 2'
+    }]
+}];
+gulp.task('test', function() {
+    var cons = require('consolidate');
+    cons.swig('crate/layout/test.html', {
+        title: 'Test title',
+        blocks: b1
+    }, function(err, html) {
+        if (err) throw err;
+        console.log(html);
+    });
+});
+
+
+// var libxslt = require('libxslt');
+
+
+// function gulpXSLT(template, config) {
+//     if (!template) throw new Error('Template option missing');
+
+//     var parameters = [];
+
+//     if (config) {
+//         Object.keys(config).forEach(function(item) {
+//             parameters.push(item, config[item]);
+//         });
+//     }
+
+//     parameters = parameters || [];
+//     var stylesheet;
+
+//     try {
+//         var stylesheetSource = fs.readFileSync(template, 'utf8');
+//         // console.log(stylesheetSource);
+
+//         stylesheet = libxslt.parse(stylesheetSource);
+//         // console.log(stylesheet);
+//     } catch (e) {
+//         throw new Error(e.message);
+//     }
+
+//     function modifyContents(file, cb) {
+
+//         console.log(file.isBuffer());
+
+//         function throwError(message) {
+//             return cb(new gutil.PluginError('gulp-xslt', message));
+//         }
+
+//         if (file.isNull()) {
+//             return cb(null, file);
+//         }
+
+//         if (file.isStream()) {
+//             return throwError('Streaming not supported');
+//         }
+
+//         if (file.isBuffer()) {
+//             try {
+
+//                 // console.log(libxmljs);
+
+//                 var document = file.contents.toString();
+//                 // console.log(document);
+//                 stylesheet.apply('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="test.xsl"?><class><student>Jack</student><student>Harry</student><student>Rebecca</student><teacher>Mr. Bean</teacher></class>', function(err, result) {
+//                     console.log(err, result);
+//                 });
+//                 // stylesheet.apply(document, function(err, result) {
+//                 //     console.log(err, result);
+//                 //     // if(err) return throwError(err);
+//                 //     file.contents = new Buffer(result);
+//                 //     return cb(null, file);
+//                 // });
+//                 return cb(null, file);
+
+//             } catch (e) {
+//                 return throwError(e.message);
+//             }
+
+//         }
+
+
+//     }
+
+//     return es.map(modifyContents);
+// }
+
+
+// var xslt4node = require('xslt4node');
+// xslt4node.addLibrary('./lib/saxon9he.jar');
+
+// function xsltNode(cb) {
+//     var config = {
+//         xsltPath: './blocks-xslt/test.xsl',
+//         sourcePath: './blocks-xslt/test.xml',
+//         result: './blocks-xslt/result.xml',
+//         params: {
+//             discount: '2014/08/01'
+//         },
+//         props: {
+//             indent: 'yes'
+//         }
+//     };
+
+//     xslt4node.transform(config, function(err, result) {
+//         if (err) {
+//             console.log(err);
+//             return cb(err);
+//         }
+//         cb(null);
+//     });
+// }
+
+gulp.task('merge:xml', function(){
+    return gulp.src('blocks-xslt/**/*.xml')
+    .pipe(plugins.concat('blocks.xml'))
+    .pipe(plugins.wrap('<?xml version="1.0" encoding="UTF-8"?><page><%= contents %></page>'))
+    .pipe(gulp.dest('wwwroot/content/'));
+});
+
+gulp.task('xslt', function(cb) {
+    var xml = [__dirname,'blocks-xslt','test.xml'].join('/');
+    var out = [__dirname,'blocks-xslt','out'].join('/');
+
+  return gulp.src(xml).pipe(plugins.saxon({
+    jarPath: [__dirname,'lib','saxon9he.jar'].join('/'),
+    xslPath: [__dirname,'blocks-xslt','test2.xslt'].join('/'),
+    outputType: '.html',
+    timeout: 5000
+  })).pipe(gulp.dest(out));
+
+});
+
 gulp.task('audit', function() {
     return gulp.src(paths.dest.layout)
         // .pipe(plugins.debug())
@@ -298,17 +479,19 @@ gulp.task('audit', function() {
     // .pipe(gulp.dest('.tests/wcag'));
 });
 
-gulp.task('assets', function(){
+gulp.task('assets', function() {
     return gulp.src(paths.assets.src)
-    .pipe(gulp.dest(paths.assets.dest))
-    .pipe(browserSync.stream());
+        .pipe(gulp.dest(paths.assets.dest))
+        .pipe(gulp.dest('wwwroot/'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('info', ['info:blocks', 'info:files']);
 
 gulp.task('styles', ['build:css:blocks', 'build:css:crate']);
+gulp.task('scripts', ['webpack']);
 
-gulp.task('build', ['build:content', 'build:blocks', 'styles', 'assets','webpack']);
+gulp.task('build', ['build:content', 'build:blocks', 'styles', 'assets', 'webpack']);
 
 gulp.task('watch:blocks', ['build:blocks'], browserSync.reload);
 gulp.task('watch:content', ['build:content'], browserSync.reload);

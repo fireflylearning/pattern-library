@@ -9,8 +9,8 @@ blocks:
         - text: Module btn text
         - text: Module btn yexdf 
     - ff_module-title:
-        text: Single object title
-        subtitle: Single object subtitle
+        - text: Single object title
+          subtitle: Single object subtitle
 ---
 
 Testing nested content

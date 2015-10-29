@@ -1,16 +1,19 @@
-{% extends './crate/layout/base.html' %}
+{% extends './base.html' %}
 
 {% block body %}
 
 <h1>{{title}}</h1>
 
 
-{% include './blocks/core/ff_module/ff_module-title/ff_module-title.html' %}
-{% for block in blocks %}
+% for block in blocks %}
+    {% for name, contexts in block %}
+        {% for context in contexts %}
 
-    {% for context in block.contexts %}
-        {{context.text}}
-        {#{% include './blocks/core/ff_module/ff_module-title/ff_module-title.html' %}#}
+            {% set p = '../../blocks/core/ff_module/' + name +'/' + name + '.html' %}
+
+            {% include p with context only %}
+
+        {% endfor %}
     {% endfor %}
 {% endfor %}
 

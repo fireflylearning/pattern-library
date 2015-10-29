@@ -6,7 +6,7 @@ module.exports = {
         blocks: './blocks/core/index.js'
     },
     output: {
-        path: paths.scripts.dest,
+        path: './wwwroot/js',//paths.scripts.dest,
         filename: '[name].js'
     },
     resolve: {

@@ -1,11 +1,11 @@
-{% extends './crate/layout/base.html' %}
+{% extends './base.html' %}
 
 {% block body %}
 
 <h1>{{title}}</h1>
 
 {{ contents|safe }}
-
-{% include blockItem %}
+{{blockItem}}
+{#{% include blockItem %}#}
 
 {% endblock %}

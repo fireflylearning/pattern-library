@@ -1,0 +1,21 @@
+{% extends './base.html' %}
+
+{% block body %}
+
+<h1>{{title}}</h1>
+
+
+{% include 'partials/test.html' %}
+{% for block in blocks %}
+    {% for name, contexts in block %}
+    {% for context in contexts %}
+
+        {% set p = '../../blocks/core/ff_module/' + name +'/' + name + '.html' %}
+
+        {% include p with context only %}
+
+    {% endfor %}
+{% endfor %}
+{% endfor %}
+
+{% endblock %}
