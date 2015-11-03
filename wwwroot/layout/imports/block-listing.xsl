@@ -8,20 +8,7 @@
         <div class="crate_blocks">
             
 
-                <div class="crate_blocks__item">
-                    <h3 class="crate_blocks__item__heading">ff_module-button</h3>
-
-                    <div class="crate_blocks__content">
-                        <xsl:call-template name="call-ff_module-button"/>
-                    </div>
-
-                    <a href="/blocks-x/ff_module-button/ff_module-button.xml" class="crate_blocks__item__link"><span class="crate_blocks__item__link__text">View block</span></a>
-
-                </div>
-
-            
-
-                <div class="crate_blocks__item">
+                <div class="crate_blocks__item" id="ff_module-title">
                     <h3 class="crate_blocks__item__heading">ff_module-title</h3>
 
                     <div class="crate_blocks__content">
@@ -34,7 +21,20 @@
 
             
 
-                <div class="crate_blocks__item">
+                <div class="crate_blocks__item" id="ff_module-button">
+                    <h3 class="crate_blocks__item__heading">ff_module-button</h3>
+
+                    <div class="crate_blocks__content">
+                        <xsl:call-template name="call-ff_module-button"/>
+                    </div>
+
+                    <a href="/blocks-x/ff_module-button/ff_module-button.xml" class="crate_blocks__item__link"><span class="crate_blocks__item__link__text">View block</span></a>
+
+                </div>
+
+            
+
+                <div class="crate_blocks__item" id="ff_module-button--wide">
                     <h3 class="crate_blocks__item__heading">ff_module-button--wide</h3>
 
                     <div class="crate_blocks__content">

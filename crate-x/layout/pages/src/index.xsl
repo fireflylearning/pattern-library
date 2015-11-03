@@ -8,6 +8,8 @@
 
     <xsl:import href="/layout/imports/block-listing.xsl"/>
 
+    <xsl:import href="/layout/imports/dropdown-files.xsl"/>
+
     <xsl:template match="/">
 
         <html class="no-js" lang="">
@@ -26,9 +28,30 @@
         <body>
 
             <xsl:apply-templates/>
+            <xsl:call-template name="dropdown-files" />
 
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>
+            <script>
+        // Adds class of svg to the html tag if svg is enabled
+        (function flagSVG() {
+            var ns = {'svg': 'http://www.w3.org/2000/svg'};
+            if(document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) {document.getElementsByTagName('html')[0].className += ' svg';}
+        })();
+
+        (function (document, undefined) {
+            // Pattern selector
+            document.getElementById('pattern-submit').style.display = 'none';
+            document.getElementById('pattern-select').onchange = function() {
+                //document.location=this.options[this.selectedIndex].value;
+                var val = this.value;
+                if (val !== "") {
+                    window.location = val;
+                }
+            }
+        })(document);
+
+    </script>
         </body>
         </html>
     </xsl:template>

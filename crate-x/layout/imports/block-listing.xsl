@@ -8,7 +8,7 @@
         <div class="crate_blocks">
             {% for block in blocklist %}
 
-                <div class="crate_blocks__item">
+                <div class="crate_blocks__item" id="{{block.basename}}">
                     <h3 class="crate_blocks__item__heading">{{block.basename}}</h3>
 
                     <div class="crate_blocks__content">
