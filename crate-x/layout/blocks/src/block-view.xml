@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="/blocks-x/{{name}}/{{name}}.xsl"?>
+<?xml-stylesheet type="text/xsl" href="/{{basepath}}.xsl"?>
 
 <blocks xmlns:ff_module="http://www.fireflylearning/module">
 
-<block link="{{link}}" id="{{name}}">
+<block link="{{link}}" id="{{basename}}">
 {{contents|safe}}
 </block>
 

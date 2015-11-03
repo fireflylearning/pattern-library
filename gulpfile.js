@@ -8,7 +8,6 @@ var es = require('event-stream'),
     gutil = require('gulp-util'),
     path = require('path'),
     del = require('del'),
-    fm = require('front-matter'),
     _ = require('lodash-node'),
     lazypipe = require('lazypipe'),
     LessAutoprefixer = require('less-plugin-autoprefix'),
@@ -111,51 +110,57 @@ gulp.task('docs', function() {
 
 
 var blocklist;
+// var bLPath = paths.blocks.layout.src;
+var blPath = 'blocks-x/**/*.xml';
+
+
 gulp.task('info:blocks', function() {
     blocklist = [];
-    return gulp.src(paths.blocks.layout.src)
+    return gulp.src(blPath)
         .pipe(plugins.debug())
+        .pipe(fmPipe())
         .pipe(plugins.tap(function(file) {
-            var ext = path.extname(file.path);
-            var basename = path.basename(file.path, ext);
-            var relpath = path.relative(root, file.path);
-            var p = './' + relpath;
-            var data = require(p.replace(/\.[^/.]+$/, '.json'));
+            // console.log(file.data, String(file.contents));
+            //require(p.replace(/\.[^/.]+$/, '.json'));
+
             var bdata = _.merge({
-                basename: basename,
-                path: relpath,
-                link: '/' + relpath,
-                site: siteData
-            }, data);
+                basename: path.basename(file.path, path.extname(file.path)),
+                path: path.relative(path.join(root, ''), file.path),
+                link: path.join('/', path.relative(path.join(root, ''), file.path)),
+                site: siteData,
+                contents: String(file.contents)
+            }, file.data || {});
 
             blocklist.push(bdata);
         }));
 });
 
+
 var filelist;
+// var ifPath = paths.crate.content.src;
+var fLPath = 'crate-x/content/**/*.md';
+
 gulp.task('info:files', function() {
     filelist = [];
-    return gulp.src(paths.crate.content.src)
+    return gulp.src(fLPath, {
+            base: '.'
+        })
         .pipe(plugins.debug())
         .pipe(fmPipe())
+        .pipe(plugins.rename({
+            extname: '.xml'
+        }))
         .pipe(plugins.tap(function(file) {
-            // console.log(file);
             var fdata;
-            var ext = path.extname(file.path);
-            var basename = path.basename(file.path, ext);
-            var relpath = path.relative(path.join(root, paths.crate.base), file.path);
-            relpath = relpath.replace(/\.[^/.]+$/, '.html');
-            var content = fm(String(file.contents));
-            var attrs = content.attributes;
-
+            var basename = path.basename(file.path, path.extname(file.path));
             if (basename !== 'index') {
-                fdata = _.merge({
-                    path: relpath,
-                    extname: ext,
+                fdata = _.merge(file.data, {
+                    path: path.relative(path.join(root, 'crate-x/content'), file.path),
                     basename: basename,
-                    link: '/' + relpath,
-                    site: siteData
-                }, attrs);
+                    link: path.join('/', path.relative(path.join(root, 'crate-x/content'), file.path)),
+                    site: siteData,
+                    contents: String(file.contents)
+                });
             }
 
             if (fdata) filelist.push(fdata);
@@ -193,7 +198,7 @@ gulp.task('build:blocks', ['clean:blocks', 'info'], function() {
             });
         }))
         // .pipe(plugins.markdown())
-        .pipe(plugins.nunjucksHtml())
+        .pipe(plugins.swig())
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: './crate/layout/view-block-isolate.html',
@@ -208,20 +213,23 @@ gulp.task('build:blocks', ['clean:blocks', 'info'], function() {
 });
 
 function normaliseBlocks(blocks) {
-    blocks = [].concat(blocks);
-    console.log(blocks);
+
+    if (blocks === undefined || blocks === null) return null;
     var nb = [];
+
     blocks.forEach(function(block) {
 
         for (var name in block) {
+            console.log(name);
             nb.push({
-                name: name,
-                blockpath: '/' + getBlockPath(name),
+                basename: name,
+                path: getBlockPath(name),
+                link: '/' + getBlockPath(name),
                 contexts: [].concat(block[name])
             });
         }
     });
-    console.log(nb);
+    // console.log('%j', nb);
     return nb;
 }
 
@@ -313,132 +321,6 @@ gulp.task('watch', ['build', 'serve'], function() {
 
 
 
-// var libxslt = require('libxslt');
-
-
-// function gulpXSLT(template, config) {
-//     if (!template) throw new Error('Template option missing');
-
-//     var parameters = [];
-
-//     if (config) {
-//         Object.keys(config).forEach(function(item) {
-//             parameters.push(item, config[item]);
-//         });
-//     }
-
-//     parameters = parameters || [];
-//     var stylesheet;
-
-//     try {
-//         var stylesheetSource = fs.readFileSync(template, 'utf8');
-//         // console.log(stylesheetSource);
-
-//         stylesheet = libxslt.parse(stylesheetSource);
-//         // console.log(stylesheet);
-//     } catch (e) {
-//         throw new Error(e.message);
-//     }
-
-//     function modifyContents(file, cb) {
-
-//         console.log(file.isBuffer());
-
-//         function throwError(message) {
-//             return cb(new gutil.PluginError('gulp-xslt', message));
-//         }
-
-//         if (file.isNull()) {
-//             return cb(null, file);
-//         }
-
-//         if (file.isStream()) {
-//             return throwError('Streaming not supported');
-//         }
-
-//         if (file.isBuffer()) {
-//             try {
-
-//                 // console.log(libxmljs);
-
-//                 var document = file.contents.toString();
-//                 // console.log(document);
-//                 stylesheet.apply('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="test.xsl"?><class><student>Jack</student><student>Harry</student><student>Rebecca</student><teacher>Mr. Bean</teacher></class>', function(err, result) {
-//                     console.log(err, result);
-//                 });
-//                 // stylesheet.apply(document, function(err, result) {
-//                 //     console.log(err, result);
-//                 //     // if(err) return throwError(err);
-//                 //     file.contents = new Buffer(result);
-//                 //     return cb(null, file);
-//                 // });
-//                 return cb(null, file);
-
-//             } catch (e) {
-//                 return throwError(e.message);
-//             }
-
-//         }
-
-
-//     }
-
-//     return es.map(modifyContents);
-// }
-
-
-// var xslt4node = require('xslt4node');
-// xslt4node.addLibrary('./lib/saxon9he.jar');
-
-// function xsltNode(cb) {
-//     var config = {
-//         xsltPath: './blocks-xslt/test.xsl',
-//         sourcePath: './blocks-xslt/test.xml',
-//         result: './blocks-xslt/result.xml',
-//         params: {
-//             discount: '2014/08/01'
-//         },
-//         props: {
-//             indent: 'yes'
-//         }
-//     };
-
-//     xslt4node.transform(config, function(err, result) {
-//         if (err) {
-//             console.log(err);
-//             return cb(err);
-//         }
-//         cb(null);
-//     });
-// }
-//
-
-var blist = [{
-    name: 'ff_module-button',
-    link: 'blocks-x/ff_module-button/ff_module-button.xml'
-}, {
-    name: 'ff_module-title',
-    link: 'blocks-x/ff_module-title/ff_module-title.xml'
-}];
-
-var plist = [{
-    title: 'Long button text'
-}];
-
-function getFileData(file) {
-    var ext = path.extname(file.path),
-        basename = path.basename(file.path, ext),
-        relpath = path.relative(root, file.path);
-
-    return _.merge(file.data, {
-        name: basename,
-        path: relpath,
-        link: '/' + relpath,
-        site: siteData,
-        blocklist: blist,
-        pagelist: plist
-    });
-}
 
 var fmPipe = lazypipe()
     .pipe(plugins.frontMatter, {
@@ -452,6 +334,25 @@ var fileDataPipe = lazypipe()
     });
 
 
+var preProcessPipe = lazypipe()
+    .pipe(fmPipe)
+    .pipe(fileDataPipe)
+    // .pipe(plugins.markdown)
+    // .pipe(plugins.rename,{
+    //     extname: '.xml'
+    // });
+    .pipe(plugins.swig);
+
+var pageProc = lazypipe()
+    .pipe(preProcessPipe)
+    .pipe(plugins.data, function(file) {
+        if (file.data && file.data.blocks) {
+            file.data.blocks = normaliseBlocks(file.data.blocks);
+        }
+        // console.log('blocks: %j', file.data.blocks);
+        return file.data;
+    });
+
 var xblockroot = 'blocks-x';
 var xcrateroot = 'crate-x';
 var xdestroot = 'wwwroot';
@@ -461,136 +362,120 @@ var xmlsrc = [xblockroot, '**/*.xml'].join('/');
 var xslsrc = [xblockroot, '**/*.xsl'].join('/');
 var xcontentXMLsrc = [xcrateroot, 'content', '**/*.xml'].join('/');
 var xcontentMDsrc = [xcrateroot, 'content', '**/*.md'].join('/');
-var xstylessrc = [xcrateroot, 'layout', 'xstyles', '**/*.xsl'].join('/');
+var xstylessrc = [xcrateroot, 'layout', '**/*.xsl'].join('/');
+
+function getFileData(file) {
+    var ext = path.extname(file.path),
+        dirname = path.dirname(file.path),
+        basename = path.basename(file.path, ext),
+        relpath = path.relative(root, file.path),
+        basepath = path.relative(root, path.join(dirname, basename));
+
+    return _.merge(file.data, {
+        basename: basename,
+        basepath: basepath,
+        path: relpath,
+        link: '/' + relpath,
+        site: siteData,
+        blocklist: blocklist,
+        filelist: filelist
+    });
+}
+
+function getLayoutRootPath(layoutname, ext) {
+    ext = ext || '.xml';
+    var layoutroot = path.join(root, xcrateroot, 'layout', 'pages', 'src');
+    var layoutpath = layoutroot + '/' + layoutname + ext;
+    // console.log(layoutpath);
+    return layoutpath;
+}
+
+function getAbsPath(layoutpath) {
+    var p = path.relative(root, layoutpath);
+    // console.log(p);
+    return p;
+}
 
 
 gulp.task('clean:xml', function() {
     return del([xdestroot + '/**/*.xml', xdestroot + '/**/*.xsl']);
 });
 
-gulp.task('clean:xcontent', function() {
+gulp.task('clean:pagesx', function() {
     return del(xdestroot + '/pages');
 });
 
-gulp.task('merge:xml', ['clean:xml'], function() {
-    return gulp.src(xmlsrc)
-        .pipe(preProcessPipe())
-        .pipe(plugins.applyTemplate({
-            engine: 'swig',
-            template: function(context) {
-                // return getRelativePath(getPartialRootPath('block-wrap'), context.file.path);
-                return templateroot + '/partials/block-wrap.xml';
-            },
-            context: function(file) {
-                return file.data;
-            }
-        }))
-        .pipe(plugins.concat('all.xml'))
-        .pipe(plugins.wrap('<?xml version="1.0" encoding="UTF-8"?><blocks xmlns:ff_module="http://www.fireflylearning/module"><%= contents %></blocks>'))
-        .pipe(gulp.dest(xdestroot + '/blocks-x/'));
-});
-
-gulp.task('merge:xsl', ['clean:xml'], function() {
+gulp.task('blocksx:generate:xsl', ['clean:xml', 'info'], function() {
     var xsl = gulp.src(xslsrc)
-        .pipe(preProcessPipe());
+        .pipe(preProcessPipe())
+        .pipe(plugins.rename({
+            extname: '.xsl'
+        }));
 
     var merged = xsl
         .pipe(plugins.concat('all.xsl'))
-        .pipe(plugins.wrap('<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ff_module="http://www.fireflylearning/module"><%= contents %></xsl:stylesheet>'))
-        .pipe(gulp.dest(xdestroot + '/blocks-x/'));
+        .pipe(plugins.wrap('<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ff_module="http://www.fireflylearning/module"><%= contents %></xsl:stylesheet>'));
 
     var wrapped = xsl
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: function(context) {
-                // return getRelativePath(getPartialRootPath('block-wrap'), context.file.path);
-                return templateroot + '/xstyles/partials/block-wrap.xsl';
-            },
-            context: function(file) {
-                return file.data;
-            }
-        }))
-        .pipe(gulp.dest(xdestroot + '/blocks-x/'));
-
-    return es.merge(merged, wrapped);
-
-});
-
-gulp.task('xml:addmeta', ['clean:xml'], function() {
-    return gulp.src(xmlsrc)
-        .pipe(preProcessPipe())
-        .pipe(plugins.applyTemplate({
-            engine: 'swig',
-            template: templateroot + '/block-isolate.xml',
-            context: function(file) {
-                return file.data;
-            }
-        }))
-        .pipe(gulp.dest(xdestroot + '/blocks-x/'));
-});
-
-function getPartialRootPath(layoutname) {
-    var layoutroot = path.join(root, xcrateroot, 'layout');
-    var layoutpath = layoutroot + '/partials/' + layoutname + '.xml';
-    console.log(layoutpath);
-    return layoutpath;
-}
-
-function getLayoutRootPath(layoutname, ext) {
-    ext = ext || '.xml';
-    var layoutroot = path.join(root, xcrateroot, 'layout');
-    var layoutpath = layoutroot + '/' + layoutname + ext;
-    console.log(layoutpath);
-    return layoutpath;
-}
-
-function getAbsPath(layoutpath) {
-    var p = path.relative(root, layoutpath);
-    console.log(p);
-    return p;
-}
-
-function getRelativePath(layoutpath, filepath) {
-
-    console.log(layoutpath, filepath);
-    var p1 = path.relative(root, filepath);
-    var p2 = path.relative(root, layoutpath);
-    var p1p2 = path.relative(p1, p2);
-    var p2p1 = path.relative(p2, p1);
-    var relpath = path.relative(filepath, layoutpath);
-    var relpath2 = path.relative(layoutpath, filepath);
-    // console.log(relpath, relpath2);
-    console.log(p1p2, p2p1);
-    return relpath2;
-    // return relpath + '/' + layoutname + '.xml';
-    // return path.join(xcrateroot, 'layout', layoutname) + '.xml';
-}
-gulp.task('xcontent', ['clean:xcontent'], function() {
-    var content = gulp.src(xcontentMDsrc)
-        .pipe(preProcessPipe())
-        .pipe(plugins.applyTemplate({
-            engine: 'swig',
-            template: function(context) {
-                console.log(context.data.blocks);
-                return getAbsPath(getLayoutRootPath(context.data.layout));
+                return templateroot + '/blocks/src/block-view.xsl';
             },
             context: function(file) {
                 return file.data;
             }
         }));
 
-    var layout = content
+    return es.merge(merged, wrapped)
+        .pipe(gulp.dest(xdestroot + '/blocks-x/'));
+
+});
+
+gulp.task('blocksx:generate:xml', ['clean:xml', 'info'], function() {
+    return gulp.src(xmlsrc)
+        .pipe(preProcessPipe())
+        .pipe(plugins.applyTemplate({
+            engine: 'swig',
+            template: templateroot + '/blocks/src/block-view.xml',
+            context: function(file) {
+                return file.data;
+            }
+        }))
+        .pipe(plugins.rename({
+            extname: '.xml'
+        }))
+        .pipe(gulp.dest(xdestroot + '/blocks-x/'));
+});
+
+
+
+gulp.task('pagesx:generate:xml', ['clean:pagesx', 'info'], function() {
+    return gulp.src(xcontentMDsrc)
+        .pipe(pageProc())
+        .pipe(plugins.applyTemplate({
+            engine: 'swig',
+            template: function(context) {
+                return getAbsPath(getLayoutRootPath(context.data.layout, '.xml')); // typically, page-view
+            },
+            context: function(file) {
+                return file.data;
+            }
+        }))
         .pipe(plugins.rename({
             extname: '.xml'
         }))
         .pipe(gulp.dest(xdestroot));
 
-    var style = content
+});
+
+gulp.task('pagesx:generate:xsl', ['clean:pagesx', 'info'], function() {
+    return gulp.src(xcontentMDsrc)
+        .pipe(pageProc())
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: function(context) {
-                console.log(context.data.blocks);
-                return getAbsPath(getLayoutRootPath('/xstyles/partials/page-view-blocklist', '.xsl'));
+                return getAbsPath(getLayoutRootPath(context.data.layout, '.xsl'));
             },
             context: function(file) {
                 return file.data;
@@ -600,49 +485,36 @@ gulp.task('xcontent', ['clean:xcontent'], function() {
             extname: '.xsl'
         }))
         .pipe(gulp.dest(xdestroot));
-
-        return es.merge(layout, style);
 });
 
-gulp.task('xml:copy', ['clean:xml'], function() {
-    return gulp.src(xstylessrc, {
+gulp.task('pagesx', ['pagesx:generate:xml', 'pagesx:generate:xsl']);
+
+gulp.task('shared:process:xsl', ['clean:xml', 'info'], function() {
+    // ['app/**', '!app/{_tmp,_tmp/**}']
+    // ['crate-x', 'layout', '**/*.xsl'].join('/')
+
+    return gulp.src([xstylessrc, '!crate-x/layout/*/src/**/*.xsl'], {
             base: 'crate-x'
         })
         .pipe(preProcessPipe())
+        .pipe(plugins.rename({
+            extname: '.xsl'
+        }))
         .pipe(gulp.dest(xdestroot));
 });
 
-var preProcessPipe = lazypipe()
-    .pipe(fmPipe)
-    .pipe(fileDataPipe)
-    // .pipe(plugins.markdown)
-    // .pipe(plugins.rename,{
-    //     extname: '.xml'
-    // });
-    .pipe(plugins.nunjucksHtml);
-
-gulp.task('xml:build', ['merge:xml', 'merge:xsl', 'xml:copy', 'xml:addmeta', 'xcontent'], function() {
+gulp.task('shared:process:xml', ['clean:xml', 'info'], function() {
     return gulp.src([xcontentXMLsrc, xcrateroot + '/index.xml'])
         .pipe(preProcessPipe())
+        .pipe(plugins.rename({
+            extname: '.xml'
+        }))
         .pipe(gulp.dest(xdestroot));
 });
 
 
-gulp.task('merge', ['merge:xml', 'merge:xsl']);
+gulp.task('xml:build', ['output:info:files', 'output:info:blocks', 'shared:process:xsl', 'shared:process:xsl', 'blocksx:generate:xsl', 'blocksx:generate:xml', 'pagesx']);
 
-
-// gulp.task('xslt', function(cb) {
-//     var xml = [__dirname,'blocks-xslt','test.xml'].join('/');
-//     var out = [__dirname,'blocks-xslt','out'].join('/');
-
-//   return gulp.src(xml).pipe(plugins.saxon({
-//     jarPath: [__dirname,'lib','saxon9he.jar'].join('/'),
-//     xslPath: [__dirname,'blocks-xslt','test2.xslt'].join('/'),
-//     outputType: '.html',
-//     timeout: 5000
-//   })).pipe(gulp.dest(out));
-
-// });
 
 gulp.task('audit', function() {
     return gulp.src(paths.dest.layout)
@@ -665,6 +537,7 @@ gulp.task('info', ['info:blocks', 'info:files']);
 gulp.task('styles', ['build:css:blocks', 'build:css:crate']);
 gulp.task('scripts', ['webpack']);
 
+gulp.task('xbuild', ['xml:build', 'styles', 'assets', 'webpack']);
 gulp.task('build', ['build:content', 'build:blocks', 'styles', 'assets', 'webpack']);
 
 gulp.task('watch:blocks', ['build:blocks'], browserSync.reload);

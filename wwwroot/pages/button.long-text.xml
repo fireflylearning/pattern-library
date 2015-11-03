@@ -8,24 +8,22 @@
 
             <blocks>
                 
-                
-                
-                
-                <block link="ff_module-button" id="ff_module-button">
-                    <div class="ff_module-button">
-    <button>Really long text from the md file</button>
-</div>
+                    
+                    
+                        <block id="ff_module-button">
+                            
+<text>Really long text from the md file</text>
 
-                </block>
-                
-                
-                <block link="ff_module-button" id="ff_module-button">
-                    <div class="ff_module-button">
-    <button>Some more text that&#39;s long</button>
-</div>
 
-                </block>
-                
+                        </block>
+                    
+                        <block id="ff_module-button">
+                            
+<text>Some more text that&#39;s long</text>
+
+
+                        </block>
+                    
                 
             </blocks>
         </page>

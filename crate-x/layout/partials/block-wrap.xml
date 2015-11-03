@@ -1,4 +1,0 @@
-
-<block link="{{link}}" id="{{name}}">
-{{contents|safe}}
-</block>

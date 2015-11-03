@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <?xml-stylesheet type="text/xsl" href="{{basename}}.xsl"?>
+
+        <page xmlns:ff_module="http://www.fireflylearning/module">
+            <title>{{title}}: {{basename}}</title>
+            <content>{{contents|safe}}</content>
+
+            <blocks>
+                {% for block in blocks %}
+                    {% set p = '../../../../' + block.path %}
+                    {% for context in block.contexts %}
+                        <block id="{{block.basename}}">
+                            {% include p with context only %}
+                        </block>
+                    {% endfor %}
+                {% endfor %}
+            </blocks>
+        </page>

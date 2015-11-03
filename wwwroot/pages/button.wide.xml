@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <?xml-stylesheet type="text/xsl" href="button.wide.xsl"?>
+
+        <page xmlns:ff_module="http://www.fireflylearning/module">
+            <title>Basic Button (wide): button.wide</title>
+            <content>Some intro or explanatory text here
+</content>
+
+            <blocks>
+                
+                    
+                    
+                        <block id="ff_module-button">
+                            
+<text>Short text</text>
+
+
+                        </block>
+                    
+                
+                    
+                    
+                        <block id="ff_module-button--wide">
+                            
+<text>Really long text from the md file</text>
+<classes>ff_util-clearfix</classes>
+<attributes>data-value="test-value"</attributes>
+
+                        </block>
+                    
+                        <block id="ff_module-button--wide">
+                            
+<text>Some more text that&#39;s long</text>
+<classes>ff_util-clearfix</classes>
+<attributes>data-value="test-value"</attributes>
+
+                        </block>
+                    
+                
+            </blocks>
+        </page>

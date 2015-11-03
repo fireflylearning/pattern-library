@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <?xml-stylesheet type="text/xsl" href="{{basename}}.xsl"?>
+
+        <page>
+            <title>{{title}} : {{site.title}}</title>
+            <content>{{contents|safe}}</content>
+            <blocks>
+                {% for block in blocklist %}
+                <block link="{{block.link}}" id="{{block.basename}}">
+                    {% set p = '../../../../' + block.path %}
+                    {% include p %}
+                </block>
+                {% endfor %}
+            </blocks>
+
+        </page>

@@ -3,8 +3,10 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ff_module="http://www.fireflylearning/module">
 
-    <xsl:import href="partials/page_title.xsl"/>
-    <xsl:import href="partials/page_content.xsl"/>
+    <xsl:import href="/layout/imports/page-title.xsl"/>
+    <xsl:import href="/layout/imports/page-content.xsl"/>
+
+    <xsl:import href="/layout/imports/block-listing.xsl"/>
 
     <xsl:template match="/">
 
@@ -25,12 +27,10 @@
 
             <xsl:apply-templates/>
 
-            <a href="/index.xml">Back</a>
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>
         </body>
         </html>
     </xsl:template>
-
 
 </xsl:stylesheet>

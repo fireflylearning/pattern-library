@@ -1,0 +1,4 @@
+
+<text>{{text| default('Click me, wide!', false)}}</text>
+<classes>ff_util-clearfix</classes>
+<attributes>data-value="test-value"</attributes>
