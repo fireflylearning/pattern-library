@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/blocks-x/{{name}}/{{name}}.xsl"?>
+
+<blocks xmlns:ff_module="http://www.fireflylearning/module">
+
+<block link="{{link}}" id="{{name}}">
+{{contents|safe}}
+</block>
+
+
+</blocks>

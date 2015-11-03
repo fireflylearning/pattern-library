@@ -1,13 +1,12 @@
 <?xml version="1.0" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:ff_module="http://www.fireflylearning/module">
 
     <xsl:import href="partials/page_title.xsl"/>
-
     <xsl:import href="partials/page_content.xsl"/>
 
     <xsl:import href="partials/block_listing.xsl"/>
-
-
 
     <xsl:template match="/">
 
@@ -25,7 +24,9 @@
 
         </head>
         <body>
+
             <xsl:apply-templates/>
+
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>
         </body>

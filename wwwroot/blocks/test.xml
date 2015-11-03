@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><page><?xml version="1.0" encoding="UTF-8"?>
-    <?xml-stylesheet type="text/xsl" href="test.xsl"?>
-        <class>
-            <student>Jack</student>
-            <student>Harry</student>
-            <student>Rebecca</student>
-            <teacher>Mr. Bean</teacher>
-        </class>
-</page>

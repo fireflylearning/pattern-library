@@ -13,15 +13,11 @@
                 ]]>
             </content>
             <blocks>
-            
-            <block link="blocks-x/ff_module-button/ff_module-button.xml" id="ff_module-button">
-            
+            {% for block in blocklist %}
+            <block link="{{block.link}}" id="{{block.name}}">
+            {{block.contents|safe}}
             </block>
-            
-            <block link="blocks-x/ff_module-title/ff_module-title.xml" id="ff_module-title">
-            
-            </block>
-            
+            {% endfor %}
         </blocks>
             &blocks;
         </page>

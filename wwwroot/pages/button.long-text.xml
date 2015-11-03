@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <?xml-stylesheet type="text/xsl" href="button.long-text.xsl"?>
+
+        <page xmlns:ff_module="http://www.fireflylearning/module">
+            <title>Basic Button (long text): button.long-text</title>
+            <content>Some intro or explanatory text here
+</content>
+
+            <blocks>
+                
+                
+                
+                
+                <block link="ff_module-button" id="ff_module-button">
+                    <div class="ff_module-button">
+    <button>Really long text from the md file</button>
+</div>
+
+                </block>
+                
+                
+                <block link="ff_module-button" id="ff_module-button">
+                    <div class="ff_module-button">
+    <button>Some more text that&#39;s long</button>
+</div>
+
+                </block>
+                
+                
+            </blocks>
+        </page>
