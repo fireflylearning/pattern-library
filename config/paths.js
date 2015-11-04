@@ -27,6 +27,7 @@ function getPaths(mode) {
     var paths = {
         temp: '.tmp/',
         blocklist: basePaths.blocklist,
+        dest: basePaths.dest,
         crate: {
             base: basePaths.crate,
             content: {
@@ -63,16 +64,27 @@ function getPaths(mode) {
                 dest: basePaths.dest + basePaths.blocks
             },
             scripts: {
+                src: basePaths.blocks + '**/*.js',
                 entry: './' + basePaths.blocks + 'index.js',
                 output: './' + basePaths.dest + 'js/'
             }
         },
-        dest: {
+        clean: {
             base: basePaths.dest,
-            layout: basePaths.dest + '**/*.html',
-            pages: basePaths.dest + 'pages',
-            xml: basePaths.dest + '**/*.xml',
-            xsl: basePaths.dest + '**/*.xsl',
+            blocks: {
+                xml: basePaths.dest + basePaths.blocks + '**/*.xml',
+                xsl: basePaths.dest + basePaths.blocks + '**/*.xsl',
+                html: basePaths.dest + basePaths.blocks + '**/*.html'
+            },
+            content: {
+                pages: {
+                    xml: basePaths.dest + 'pages/**/*.xml',
+                    xsl: basePaths.dest + 'pages/**/*.xsl',
+                },
+                imports: {
+                    xsl: basePaths.dest + 'layout/imports/**/*.xsl'
+                }
+            },
             styles: basePaths.dest + '**/*.css',
         },
 

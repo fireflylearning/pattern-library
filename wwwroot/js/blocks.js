@@ -50,7 +50,6 @@
 	__webpack_require__(2)();
 
 
-
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
