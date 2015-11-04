@@ -1,9 +1,0 @@
-{% for name, contexts in block %}
-    {% for context in contexts %}
-
-        {% set p = '../../../blocks/core/ff_module/' + name +'/' + name + '.html' %}
-
-        {% include p with context only %}
-
-    {% endfor %}
-{% endfor %}

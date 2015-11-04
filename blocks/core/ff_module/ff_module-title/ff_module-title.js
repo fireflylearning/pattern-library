@@ -1,6 +1,6 @@
 /* jshint node: true */
 'use strict';
-var utils = require('core/shared/utils');
+var utils = require('../../../shared/utils');
 var $ = require('jquery');
 
 module.exports = function() {

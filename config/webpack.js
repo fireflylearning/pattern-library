@@ -3,10 +3,10 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        blocks: './blocks/core/index.js'
+        blocks: paths.blocks.scripts.entry
     },
     output: {
-        path: './wwwroot/js',//paths.scripts.dest,
+        path: paths.blocks.scripts.output,
         filename: '[name].js'
     },
     resolve: {

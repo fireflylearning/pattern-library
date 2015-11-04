@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/blocks/core/ff_module/ff_module-button/ff_module-button.xsl"?>
+
+<blocks xmlns:ff_module="http://www.fireflylearning/module">
+
+<block link="/blocks/core/ff_module/ff_module-button/ff_module-button.xml" id="ff_module-button">
+
+<text>Click me!</text>
+
+
+</block>
+
+
+</blocks>
