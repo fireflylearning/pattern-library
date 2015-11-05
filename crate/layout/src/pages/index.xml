@@ -8,7 +8,7 @@
                 {% for block in blocklist %}
                 <block link="{{block.link}}" id="{{block.basename}}">
                     {% set p = '../../../../' + block.path %}
-                    {% include p %}
+                    {% include p with block only %}
                 </block>
                 {% endfor %}
             </blocks>

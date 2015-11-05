@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <?xml-stylesheet type="text/xsl" href="{{basename}}.xsl"?>
 
-        <page xmlns:ff_module="http://www.fireflylearning/module">
+        <page>
             <title>{{title}}: {{basename}}</title>
             <content>{{contents|safe}}</content>
 

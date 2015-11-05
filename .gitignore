@@ -5,3 +5,4 @@ tmp
 build
 wwwroot
 config/options.local.js
+npm-debug.log

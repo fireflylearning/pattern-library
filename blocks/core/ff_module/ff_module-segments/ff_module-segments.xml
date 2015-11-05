@@ -1,0 +1,6 @@
+<items>
+    {% set itemlist = items || ['A', 'B', 'C'] %}
+    {% for item in itemlist %}
+    <item>{{item | default('Item One')}}</item>
+    {% endfor %}
+</items>

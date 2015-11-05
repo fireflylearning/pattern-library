@@ -8,12 +8,13 @@ TODO
 ## Dependencies
 - Node
 - npm
+- Xcode Command Line Tools (for running some modules on Mac, PC should be OK)
+- Java for cross-platform XSLT (using Saxon)
 
 ## Technologies used
 - Swig for template compilation
 - Webpack for bundling javascript modules
-- Karma for unit testing
-- x for end-to-end testing
+- Karma, Mocha, Chai and Sinon for testing
 - js-hint for js linting
 - x for css linting
 - less compiler

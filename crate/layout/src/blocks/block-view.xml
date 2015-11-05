@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/{{basepath}}.xsl"?>
 
-<blocks xmlns:ff_module="http://www.fireflylearning/module">
+<blocks>
 
+{% set p = '../../../../' + path %}
 <block link="{{link}}" id="{{basename}}">
-{{contents|safe}}
+    {% include p  %}
 </block>
+
 
 
 </blocks>

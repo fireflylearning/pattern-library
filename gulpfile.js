@@ -151,6 +151,7 @@ function getFileBaseData(file) {
         basename = path.basename(file.path, ext),
         relpath = path.relative(root, file.path),
         basepath = path.relative(root, path.join(dirname, basename));
+        // jsondata = require(basename + '.json');
 
     return _.merge(file.data, {
         basename: basename,
@@ -158,7 +159,7 @@ function getFileBaseData(file) {
         path: relpath,
         link: '/' + relpath,
         site: siteData,
-        contents:(file.contents ? String(file.contents) : '')
+        contents: (file.contents ? String(file.contents) : '')
     });
 }
 
@@ -353,7 +354,28 @@ gulp.task('process:imports:xsl', ['clean:imports:xsl', 'info'], function() {
         .pipe(browserSync.stream());
 });
 
+// var saxon = require('saxon-stream2');
 
+gulp.task('xslt', function() {
+
+    var xml = ['wwwroot/*.xml', 'wwwroot/blocks/**/*.xml', 'wwwroot/pages/**/*.xml'];
+
+    return gulp.src(xml, {
+            base: 'wwwroot'
+        })
+        .pipe(plugins.changedInPlace({firstPass:false}))
+        .pipe(plugins.saxon({
+            jarPath: __dirname + '/lib/saxon9he.jar',
+            xslPath: function(file) {
+                var xslPath = gutil.replaceExtension(file.path, '.xsl');
+                console.log(xslPath);
+                return gutil.replaceExtension(file.path, '.xsl');
+            },
+            outputType: '.html',
+            timeout: 5000
+        })).pipe(gulp.dest('out'));
+
+});
 
 
 

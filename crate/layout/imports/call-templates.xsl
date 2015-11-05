@@ -3,29 +3,13 @@
 
     <xsl:import href="/blocks/all.xsl"/>
 
-
-    <xsl:template name="call-ff_module-button">
-        <xsl:for-each select="block[@id='ff_module-button']">
-            <xsl:call-template name="ff_module-button">
+    {% for block in blocklist %}
+    <xsl:template name="call-{{block.basename}}">
+        <xsl:for-each select="block[@id='{{block.basename}}']">
+            <xsl:call-template name="{{block.basename}}">
                 <xsl:with-param name="data" select="."/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
-
-    <xsl:template name="call-ff_module-title">
-        <xsl:for-each select="block[@id='ff_module-title']">
-            <xsl:call-template name="ff_module-title">
-                <xsl:with-param name="data" select="."/>
-            </xsl:call-template>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xsl:template name="call-ff_module-button--wide">
-        <xsl:for-each select="block[@id='ff_module-button--wide']">
-            <xsl:call-template name="ff_module-button--wide">
-                <xsl:with-param name="data" select="."/>
-            </xsl:call-template>
-        </xsl:for-each>
-    </xsl:template>
-
+    {% endfor %}
 </xsl:stylesheet>

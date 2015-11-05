@@ -6,46 +6,20 @@
     <xsl:template match="page/blocks">
 
         <div class="crate_blocks">
-            
+            {% for block in blocklist %}
 
-                <div class="crate_blocks__item" id="ff_module-button">
-                    <h3 class="crate_blocks__item__heading">ff_module-button</h3>
+                <div class="crate_blocks__item" id="{{block.basename}}">
+                    <h3 class="crate_blocks__item__heading">{{block.basename}}</h3>
 
                     <div class="crate_blocks__content">
-                        <xsl:call-template name="call-ff_module-button"/>
+                        <xsl:call-template name="call-{{block.basename}}"/>
                     </div>
 
-                    <a href="/blocks/core/ff_module/ff_module-button/ff_module-button.xml" class="crate_blocks__item__link"><span class="crate_blocks__item__link__text">View block</span></a>
+                    <a href="{{block.link}}" class="crate_blocks__item__link"><span class="crate_blocks__item__link__text">View block</span></a>
 
                 </div>
 
-            
-
-                <div class="crate_blocks__item" id="ff_module-title">
-                    <h3 class="crate_blocks__item__heading">ff_module-title</h3>
-
-                    <div class="crate_blocks__content">
-                        <xsl:call-template name="call-ff_module-title"/>
-                    </div>
-
-                    <a href="/blocks/core/ff_module/ff_module-title/ff_module-title.xml" class="crate_blocks__item__link"><span class="crate_blocks__item__link__text">View block</span></a>
-
-                </div>
-
-            
-
-                <div class="crate_blocks__item" id="ff_module-button--wide">
-                    <h3 class="crate_blocks__item__heading">ff_module-button--wide</h3>
-
-                    <div class="crate_blocks__content">
-                        <xsl:call-template name="call-ff_module-button--wide"/>
-                    </div>
-
-                    <a href="/blocks/core/ff_module/ff_module-button/ff_module-button--wide/ff_module-button--wide.xml" class="crate_blocks__item__link"><span class="crate_blocks__item__link__text">View block</span></a>
-
-                </div>
-
-            
+            {% endfor %}
         </div>
     </xsl:template>
 
