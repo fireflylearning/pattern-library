@@ -9,7 +9,7 @@
     <xsl:template match="/">
 
         <html class="no-js" lang="">
-            <head>
+        <head>
             <meta charset="utf-8"/>
             <meta http-equiv="x-ua-compatible" content="ie=edge"/>
             <title><xsl:value-of select="page/title"/></title>
@@ -23,8 +23,14 @@
         </head>
         <body>
 
-            <xsl:apply-templates select="page/title"/>
-            <xsl:apply-templates select="page/content"/>
+            <xsl:call-template name="page-title">
+                <xsl:with-param name="text" select="page/title"/>
+            </xsl:call-template>
+
+            <xsl:call-template name="page-content">
+                <xsl:with-param name="content" select="page/content"/>
+            </xsl:call-template>
+
             <xsl:apply-templates select="page/blocks"/>
 
             <a href="/index.xml">Back</a>

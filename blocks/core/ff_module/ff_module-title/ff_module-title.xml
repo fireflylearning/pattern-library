@@ -1,4 +1,4 @@
 
-<title>{{modtitle|default('This is a title')}}</title>
-<subtitle>{{modsubtitle|default('With a subtitle')}}</subtitle>
+<title>{{title|default('This is a title')}}</title>
+<subtitle>{{subtitle|default('With a subtitle')}}</subtitle>
 

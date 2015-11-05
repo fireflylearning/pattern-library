@@ -7,8 +7,13 @@
     <xsl:import href="/layout/imports/page-content.xsl"/>
 
     <xsl:import href="/layout/imports/block-listing.xsl"/>
+    <xsl:import href="/layout/imports/page-listing.xsl"/>
 
     <xsl:import href="/layout/imports/dropdown-files.xsl"/>
+
+    <xsl:template match="page/blocks" mode="listing">
+        <xsl:call-template name="block-listing" />
+    </xsl:template>
 
     <xsl:template match="/">
 
@@ -27,7 +32,23 @@
         </head>
         <body>
 
-            <xsl:apply-templates/>
+            <xsl:call-template name="page-title">
+                <xsl:with-param name="text" select="page/title"/>
+            </xsl:call-template>
+
+            <xsl:call-template name="page-content">
+                <xsl:with-param name="content" select="page/content"/>
+            </xsl:call-template>
+
+            <h3>Blocks</h3>
+
+            <xsl:apply-templates select="page/blocks" mode="listing"/>
+
+
+
+            <h3>Pages</h3>
+            <xsl:call-template name="page-listing" />
+
             <xsl:call-template name="dropdown-files" />
 
             <script src="/vendor/js/jquery-1.11.3.js"></script>
