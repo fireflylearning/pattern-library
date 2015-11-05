@@ -10,7 +10,7 @@ TODO
 - npm
 
 ## Technologies used
-- Nunjucks for template compilation
+- Swig for template compilation
 - Webpack for bundling javascript modules
 - Karma for unit testing
 - x for end-to-end testing

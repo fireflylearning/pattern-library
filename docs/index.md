@@ -12,7 +12,7 @@
 
 ### Blocks
 The file structure is based on the BEM (Block Element Modifier) convention.
-A directory contains all the patterns(blocks) used within the site, each within their own folder. Inside this folder live all the files relevant to that pattern, such as .html(xslt?), .less, .js, and any metadata.
+A directory contains all the patterns(blocks) used within the site, each within their own folder. Inside this folder live all the files relevant to that pattern, such as .html/.xslt/.xml, .less, .js, and any metadata.
 
     +-- blocks/    
         +-- pattern_name/

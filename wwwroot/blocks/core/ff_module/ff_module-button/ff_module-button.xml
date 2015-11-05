@@ -5,7 +5,7 @@
 
 <block link="/blocks/core/ff_module/ff_module-button/ff_module-button.xml" id="ff_module-button">
 
-<text>Click me!</text>
+<text>{{text| default('Click me!', false)}}</text>
 
 
 </block>

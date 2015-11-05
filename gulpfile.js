@@ -41,6 +41,49 @@ var blockCssOut = 'blocks.min.css',
 
 var devCompiler = webpack(webpackConfig);
 
+
+var fmPipe = lazypipe()
+    .pipe(plugins.frontMatter, {
+        property: 'data',
+        remove: true
+    });
+
+var reXML = lazypipe()
+    .pipe(plugins.rename, {
+        extname: '.xml'
+    });
+
+var reXSL = lazypipe()
+    .pipe(plugins.rename, {
+        extname: '.xsl'
+    });
+
+var fileDataPipe = lazypipe()
+    .pipe(plugins.data, function(file) {
+        return getFileSiteData(file);
+    });
+
+var preProcessPipe = lazypipe()
+    .pipe(plugins.debug)
+    .pipe(fmPipe)
+    .pipe(fileDataPipe)
+    // .pipe(plugins.markdown)
+    // .pipe(plugins.rename,{
+    //     extname: '.xml'
+    // });
+    .pipe(plugins.swig);
+
+var pageProc = lazypipe()
+    .pipe(preProcessPipe)
+    .pipe(plugins.data, function(file) {
+        if (file.data && file.data.blocks) {
+            file.data.blocks = normaliseBlocks(file.data.blocks);
+        }
+        // console.log('blocks: %j', file.data.blocks);
+        return file.data;
+    });
+
+
 function changeEvent(evt) {
     gutil.log('File', gutil.colors.cyan(evt.path.replace(new RegExp('/.*(?=/' + paths.blocks.base + ')/'), '')), 'was', gutil.colors.magenta(evt.type));
 }
@@ -102,159 +145,7 @@ function normaliseBlocks(blocks) {
     return nb;
 }
 
-var blocklist = [];
-gulp.task('info:blocks', function() {
-    blocklist = [];
-    return gulp.src(paths.blocklist)
-        .pipe(plugins.debug())
-        .pipe(fmPipe())
-        .pipe(plugins.tap(function(file) {
-            // console.log(file.data, String(file.contents));
-            //require(p.replace(/\.[^/.]+$/, '.json'));
-
-            var bdata = _.merge({
-                basename: path.basename(file.path, path.extname(file.path)),
-                path: path.relative(path.join(root, ''), file.path),
-                link: path.join('/', path.relative(path.join(root, ''), file.path)),
-                site: siteData,
-                contents: String(file.contents)
-            }, file.data || {});
-
-            blocklist.push(bdata);
-        }));
-});
-
-
-var filelist;
-gulp.task('info:files', function() {
-    filelist = [];
-    return gulp.src(paths.crate.content.src, {
-            base: '.'
-        })
-        .pipe(plugins.debug())
-        .pipe(fmPipe())
-        .pipe(reXML())
-        .pipe(plugins.tap(function(file) {
-            var fdata;
-            var basename = path.basename(file.path, path.extname(file.path));
-            if (basename !== 'index') {
-                fdata = _.merge(file.data, {
-                    path: path.relative(path.join(root, paths.crate.content.base), file.path),
-                    basename: basename,
-                    link: path.join('/', path.relative(path.join(root, paths.crate.content.base), file.path)),
-                    site: siteData,
-                    contents: String(file.contents)
-                });
-            }
-
-            if (fdata) filelist.push(fdata);
-
-        }));
-
-});
-
-
-gulp.task('output:info:files', ['info:files', 'info:blocks'], function(cb) {
-    console.log(filelist);
-    cb();
-});
-
-gulp.task('output:info:blocks', ['info:blocks'], function(cb) {
-    console.log(blocklist);
-    cb();
-});
-
-
-
-
-
-
-// gulp.task('build:content', ['clean:content', 'info'], function() {
-
-//     return gulp.src(paths.crate.content.src)
-//         .on('error', logApplyTemplateErr)
-//         .pipe(pageProc())
-//         .pipe(plugins.applyTemplate({
-//             engine: 'swig',
-//             template: function(context) {
-//                 var d = getContentGeneratorRootPath(context.data.layout, '.html');
-//                 // console.log(d);
-//                 return d;
-//                 // return getContentGeneratorRootPath(context.data.layout, '.html');
-//             },
-//             context: getFileContext
-//         }))
-//         .pipe(reHTML())
-//         .pipe(gulp.dest(paths.crate.content.dest));
-//     // .pipe(browserSync.stream());
-// });
-
-gulp.task('build:css:blocks', function() {
-    return buildCss(paths.blocks.styles.src, blockCssOut, paths.blocks.styles.dest);
-});
-
-
-gulp.task('build:css:crate', function() {
-    return buildCss(paths.crate.styles.src, crateCssOut, paths.crate.styles.dest);
-});
-
-
-
-
-function logApplyTemplateErr(err) {
-    new gutil.PluginError('ApplyTemplate', err, {
-        showStack: true
-    });
-}
-
-var fmPipe = lazypipe()
-    .pipe(plugins.frontMatter, {
-        property: 'data',
-        remove: true
-    });
-
-var reXML = lazypipe()
-    .pipe(plugins.rename, {
-        extname: '.xml'
-    });
-
-var reXSL = lazypipe()
-    .pipe(plugins.rename, {
-        extname: '.xsl'
-    });
-
-var reHTML = lazypipe()
-    .pipe(plugins.rename, {
-        extname: '.html'
-    });
-
-var fileDataPipe = lazypipe()
-    .pipe(plugins.data, function(file) {
-        return getFileData(file);
-    });
-
-var preProcessPipe = lazypipe()
-    .pipe(plugins.debug)
-    .pipe(fmPipe)
-    .pipe(fileDataPipe)
-    // .pipe(plugins.markdown)
-    // .pipe(plugins.rename,{
-    //     extname: '.xml'
-    // });
-    .pipe(plugins.swig);
-
-var pageProc = lazypipe()
-    .pipe(preProcessPipe)
-    .pipe(plugins.data, function(file) {
-        if (file.data && file.data.blocks) {
-            file.data.blocks = normaliseBlocks(file.data.blocks);
-        }
-        // console.log('blocks: %j', file.data.blocks);
-        return file.data;
-    });
-
-
-function getFileData(file) {
+function getFileBaseData(file) {
     var ext = path.extname(file.path),
         dirname = path.dirname(file.path),
         basename = path.basename(file.path, ext),
@@ -267,6 +158,12 @@ function getFileData(file) {
         path: relpath,
         link: '/' + relpath,
         site: siteData,
+        contents:(file.contents ? String(file.contents) : '')
+    });
+}
+
+function getFileSiteData(file) {
+    return _.merge(getFileBaseData(file), {
         blocklist: blocklist,
         filelist: filelist
     });
@@ -297,6 +194,65 @@ function getAbsPath(layoutpath) {
 function getFileContext(file) {
     return file.data;
 }
+
+
+var blocklist = [];
+gulp.task('info:blocks', function() {
+    blocklist = [];
+    return gulp.src(paths.blocklist)
+        .pipe(plugins.debug())
+        .pipe(fmPipe())
+        .pipe(plugins.tap(function(file) {
+            blocklist.push(getFileBaseData(file));
+        }));
+});
+
+
+var filelist;
+gulp.task('info:files', function() {
+    filelist = [];
+    return gulp.src(paths.crate.content.src, {
+            base: '.'
+        })
+        .pipe(plugins.debug())
+        .pipe(fmPipe())
+        .pipe(reXML())
+        .pipe(plugins.tap(function(file) {
+            var fdata = getFileBaseData(file);
+            var relpath = path.relative(path.join(root, paths.crate.content.base), file.path);
+            if (fdata.basename !== 'index') {
+                fdata = getFileBaseData(file);
+                fdata.path = relpath;
+                fdata.link = path.join('/', relpath);
+                filelist.push(fdata);
+            }
+        }));
+
+});
+
+
+gulp.task('output:info:files', ['info:files', 'info:blocks'], function(cb) {
+    console.log(filelist);
+    cb();
+});
+
+gulp.task('output:info:blocks', ['info:blocks'], function(cb) {
+    console.log(blocklist);
+    cb();
+});
+
+
+
+gulp.task('build:css:blocks', function() {
+    return buildCss(paths.blocks.styles.src, blockCssOut, paths.blocks.styles.dest);
+});
+
+
+gulp.task('build:css:crate', function() {
+    return buildCss(paths.crate.styles.src, crateCssOut, paths.crate.styles.dest);
+});
+
+
 
 
 
@@ -482,7 +438,6 @@ gulp.task('watch', ['build', 'serve'], function() {
 
 });
 
-gulp.task('clean', ['clean:blocks', 'clean:templates']);
 gulp.task('info', ['info:blocks', 'info:files']);
 
 gulp.task('styles', ['build:css:blocks', 'build:css:crate']);
@@ -496,7 +451,6 @@ gulp.task('build', ['output:info:files', 'output:info:blocks', 'content', 'block
 gulp.task('watch:blocks', ['blocks'], browserSync.reload);
 gulp.task('watch:content', ['content'], browserSync.reload);
 gulp.task('watch:styles', ['styles'], browserSync.reload);
-
 gulp.task('watch:webpack', ['webpack'], browserSync.reload);
 
 gulp.task('dev', ['build', 'serve', 'watch']);

@@ -19,8 +19,8 @@
     
 
 <div class="ff_module-title">
-    <h1>Title text</h1>
-    
+    <h1>{{text|default('Title text', false)}}</h1>
+    {% if subtitle %}<p>{{subtitle}}</p>{% endif %}
 </div>
 
 
