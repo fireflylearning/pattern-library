@@ -3,4 +3,5 @@ node_modules
 tmp
 .tmp
 build
+wwwroot
 config/options.local.js
