@@ -344,9 +344,6 @@ gulp.task('generate:pages:xsl', ['clean:pages:xsl', 'info'], function() {
 
 
 gulp.task('process:imports:xsl', ['clean:imports:xsl', 'info'], function() {
-    // ['app/**', '!app/{_tmp,_tmp/**}']
-    // ['crate-x', 'layout', '**/*.xsl'].join('/')
-
     return gulp.src(paths.crate.layout.src, {
             base: paths.crate.base
         })
