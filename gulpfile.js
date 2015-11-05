@@ -151,7 +151,6 @@ function getFileBaseData(file) {
         basename = path.basename(file.path, ext),
         relpath = path.relative(root, file.path),
         basepath = path.relative(root, path.join(dirname, basename));
-        // jsondata = require(basename + '.json');
 
     return _.merge(file.data, {
         basename: basename,
@@ -203,6 +202,7 @@ gulp.task('info:blocks', function() {
     return gulp.src(paths.blocklist)
         .pipe(plugins.debug())
         .pipe(fmPipe())
+        .pipe(jsonPipe())
         .pipe(plugins.tap(function(file) {
             blocklist.push(getFileBaseData(file));
         }));
@@ -253,7 +253,23 @@ gulp.task('build:css:crate', function() {
     return buildCss(paths.crate.styles.src, crateCssOut, paths.crate.styles.dest);
 });
 
-
+var jsonPipe = lazypipe()
+    .pipe(plugins.tap, function(file) {
+        var basepath = path.relative(root, path.join(path.dirname(file.path), path.basename(file.path, path.extname(file.path))));
+        var p = './' + basepath + '.json',
+            jsondata;
+        // console.log(p);
+        try {
+            jsondata = require(p);
+            if (jsondata) {
+                file.data = _.merge(jsondata, file.data);
+                // console.log('%j', jsondata);
+            }
+        } catch (e) {
+            // console.log(e);
+        }
+        //
+    });
 
 
 
@@ -299,6 +315,7 @@ gulp.task('generate:blocks:xsl', ['clean:blocks:xsl', 'info'], function() {
 gulp.task('generate:blocks:xml', ['clean:blocks:xml', 'info'], function() {
     return gulp.src(paths.blocks.xml.src)
         .pipe(preProcessPipe())
+        .pipe(jsonPipe())
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: getBlockGeneratorRootPath('block-view', '.xml'),
@@ -363,7 +380,9 @@ gulp.task('xslt', function() {
     return gulp.src(xml, {
             base: 'wwwroot'
         })
-        .pipe(plugins.changedInPlace({firstPass:false}))
+        .pipe(plugins.changedInPlace({
+            firstPass: false
+        }))
         .pipe(plugins.saxon({
             jarPath: __dirname + '/lib/saxon9he.jar',
             xslPath: function(file) {
