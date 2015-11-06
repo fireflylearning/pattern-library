@@ -1,12 +1,19 @@
 {
     "items":[
         {
-            "name":"A1",
-            "url":"#"
+            "name":"Segment A",
+            "url":"#",
+            "active":"true"
         },
         {
-            "name":"A2",
-            "url":"#"
+            "name":"Segment B",
+            "url":"#",
+            "active":"false"
+        },
+        {
+            "name":"Segment C",
+            "url":"#",
+            "active":"false"
         }
     ]
 }

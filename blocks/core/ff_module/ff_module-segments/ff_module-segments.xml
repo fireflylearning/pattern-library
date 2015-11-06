@@ -1,6 +1,5 @@
 <items>
-    {% set itemlist = items || ['A', 'B', 'C'] %}
-    {% for item in itemlist %}
-    <item>{{item | default('Item One')}}</item>
+    {% for item in items %}
+    <item url="{{item.url | default('#')}}" active="{{item.active | default('false')}}">{{item.name | default('Item One')}}</item>
     {% endfor %}
 </items>
