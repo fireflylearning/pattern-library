@@ -3,6 +3,6 @@ node_modules
 tmp
 .tmp
 build
-./wwwroot
+wwwroot
 config/options.local.js
 npm-debug.log
