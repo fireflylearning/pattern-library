@@ -3,7 +3,7 @@
 
     <xsl:import href="/layout/imports/call-templates.xsl"/>
 
-    <xsl:template match="page/blocks">
+    <xsl:template name="block-listing">
 
         <div class="crate_blocks">
             {% for block in blocklist %}

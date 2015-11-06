@@ -27,6 +27,7 @@
 
             <xsl:apply-templates select="blocks"/>
 
+
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>
         </body>

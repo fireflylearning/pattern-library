@@ -279,6 +279,7 @@ gulp.task('generate:blocks:html', ['clean:blocks:html', 'info'], function() {
             base: '.'
         })
         .pipe(preProcessPipe())
+        .pipe(jsonPipe())
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: getBlockGeneratorRootPath('block-view', '.html'),
@@ -347,6 +348,11 @@ gulp.task('generate:pages:xml', ['clean:pages:xml', 'info'], function() {
 gulp.task('generate:pages:xsl', ['clean:pages:xsl', 'info'], function() {
     return gulp.src(paths.crate.content.src)
         .pipe(pageProc())
+        .pipe(plugins.tap(function(file){
+            var data = file.data;
+            var xslPath = gutil.replaceExtension(file.path, '.xsl');
+            console.log('xslPath:', xslPath);
+        }))
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: function(context) {
@@ -375,24 +381,25 @@ gulp.task('process:imports:xsl', ['clean:imports:xsl', 'info'], function() {
 
 gulp.task('xslt', function() {
 
-    var xml = ['wwwroot/*.xml', 'wwwroot/blocks/**/*.xml', 'wwwroot/pages/**/*.xml'];
+    //TODO: Resolve pathing issue
+    // var xml = ['wwwroot/*.xml'];//, 'wwwroot/blocks/**/*.xml', 'wwwroot/pages/**/*.xml'];
 
-    return gulp.src(xml, {
-            base: 'wwwroot'
-        })
-        .pipe(plugins.changedInPlace({
-            firstPass: false
-        }))
-        .pipe(plugins.saxon({
-            jarPath: __dirname + '/lib/saxon9he.jar',
-            xslPath: function(file) {
-                var xslPath = gutil.replaceExtension(file.path, '.xsl');
-                console.log(xslPath);
-                return gutil.replaceExtension(file.path, '.xsl');
-            },
-            outputType: '.html',
-            timeout: 5000
-        })).pipe(gulp.dest('out'));
+    // return gulp.src(xml, {
+    //         base: 'wwwroot'
+    //     })
+    //     .pipe(plugins.changedInPlace({
+    //         firstPass: true
+    //     }))
+    //     .pipe(plugins.saxon({
+    //         jarPath: __dirname + '/lib/saxon9he.jar',
+    //         xslPath: function(file) {
+    //             var xslPath = gutil.replaceExtension(file.path, '.xsl');
+    //             console.log(xslPath);
+    //             return gutil.replaceExtension(file.path, '.xsl');
+    //         },
+    //         outputType: '.html',
+    //         timeout: 5000
+    //     })).pipe(gulp.dest('out'));
 
 });
 
