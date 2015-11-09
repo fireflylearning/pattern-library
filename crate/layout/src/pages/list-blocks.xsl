@@ -2,9 +2,9 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 
-    <xsl:import href="/layout/imports/page-title.xsl"/>
-    <xsl:import href="/layout/imports/page-content.xsl"/>
-    <xsl:import href="/layout/imports/call-templates.xsl"/>
+    <xsl:import href="{{xslRoot}}layout/imports/page-title.xsl"/>
+    <xsl:import href="{{xslRoot}}layout/imports/page-content.xsl"/>
+    <xsl:import href="{{xslRoot}}layout/imports/call-templates.xsl"/>
 
     <xsl:template match="/">
 
@@ -33,7 +33,7 @@
 
             <xsl:apply-templates select="page/blocks"/>
 
-            <a href="/index.xml">Back</a>
+            <a href="/">Back</a>
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>
         </body>

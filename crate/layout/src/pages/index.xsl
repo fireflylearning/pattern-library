@@ -3,13 +3,13 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ff_module="http://www.fireflylearning/module">
 
-    <xsl:import href="/layout/imports/page-title.xsl"/>
-    <xsl:import href="/layout/imports/page-content.xsl"/>
+    <xsl:import href="{{xslRoot}}layout/imports/page-title.xsl"/>
+    <xsl:import href="{{xslRoot}}layout/imports/page-content.xsl"/>
 
-    <xsl:import href="/layout/imports/block-listing.xsl"/>
-    <xsl:import href="/layout/imports/page-listing.xsl"/>
+    <xsl:import href="{{xslRoot}}layout/imports/block-listing.xsl"/>
+    <xsl:import href="{{xslRoot}}layout/imports/page-listing.xsl"/>
 
-    <xsl:import href="/layout/imports/dropdown-files.xsl"/>
+    <xsl:import href="{{xslRoot}}layout/imports/dropdown-files.xsl"/>
 
     <xsl:template match="page/blocks" mode="listing">
         <xsl:call-template name="block-listing" />

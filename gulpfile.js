@@ -6,6 +6,8 @@ var gulp = require('gulp');
 var es = require('event-stream'),
     gutil = require('gulp-util'),
     path = require('path'),
+    yaml = require('js-yaml'),
+    fs = require('fs'),
     del = require('del'),
     _ = require('lodash-node'),
     lazypipe = require('lazypipe'),
@@ -66,12 +68,12 @@ var fileDataPipe = lazypipe()
 var preProcessPipe = lazypipe()
     .pipe(plugins.debug)
     .pipe(fmPipe)
-    .pipe(fileDataPipe)
-    // .pipe(plugins.markdown)
-    // .pipe(plugins.rename,{
-    //     extname: '.xml'
-    // });
-    .pipe(plugins.swig);
+    .pipe(fileDataPipe);
+// .pipe(plugins.markdown)
+// .pipe(plugins.rename,{
+//     extname: '.xml'
+// });
+// .pipe(plugins.swig);
 
 var pageProc = lazypipe()
     .pipe(preProcessPipe)
@@ -83,20 +85,19 @@ var pageProc = lazypipe()
         return file.data;
     });
 
-var jsonPipe = lazypipe()
+var defaultDataPipe = lazypipe()
     .pipe(plugins.tap, function(file) {
-        var basepath = path.relative(root, path.join(path.dirname(file.path), path.basename(file.path, path.extname(file.path))));
-        var p = './' + basepath + '.json',
-            jsondata;
-        // console.log(p);
+        // var basepath = path.relative(root, path.join(path.dirname(file.path), path.basename(file.path, path.extname(file.path))));
+        var yamlPath = './' + gutil.replaceExtension(path.relative(root, file.path), '.yaml'),
+            yamlFile;
+
+        // console.log('\n[%s]\n[%s]\n', p, gutil.replaceExtension(file.path, '.json'));
+        console.log('\n[%s]\n', yamlPath);
         try {
-            jsondata = require(p);
-            if (jsondata) {
-                file.data = _.merge(jsondata, file.data);
-                // console.log('%j', jsondata);
-            }
+            var yamlFile = yaml.safeLoad(fs.readFileSync(yamlPath, 'utf8'));
+            file.data = _.merge(yamlFile, file.data);
         } catch (e) {
-            // console.log(e);
+            console.log(e);
         }
         //
     });
@@ -173,7 +174,7 @@ function getFileBaseData(file) {
         basename: basename,
         basepath: basepath,
         path: relpath,
-        link: '/' + relpath,
+        link: '/' + gutil.replaceExtension(relpath, '.html'),
         site: siteData,
         contents: (file.contents ? String(file.contents) : '')
     });
@@ -219,7 +220,7 @@ gulp.task('info:blocks', function() {
     return gulp.src(paths.blocklist)
         .pipe(plugins.debug())
         .pipe(fmPipe())
-        .pipe(jsonPipe())
+        .pipe(defaultDataPipe())
         .pipe(plugins.tap(function(file) {
             blocklist.push(getFileBaseData(file));
         }));
@@ -234,14 +235,14 @@ gulp.task('info:files', function() {
         })
         .pipe(plugins.debug())
         .pipe(fmPipe())
-        .pipe(reXML())
+        // .pipe(reXML())
         .pipe(plugins.tap(function(file) {
             var fdata = getFileBaseData(file);
             var relpath = path.relative(path.join(root, paths.crate.content.base), file.path);
             if (fdata.basename !== 'index') {
                 fdata = getFileBaseData(file);
                 fdata.path = relpath; // overwriting to get path relative to crate
-                fdata.link = path.join('/', relpath);
+                fdata.link = path.join('/', gutil.replaceExtension(relpath, '.html'));
                 filelist.push(fdata);
             }
         }));
@@ -280,14 +281,13 @@ gulp.task('generate:blocks:html', ['clean:blocks:html', 'info'], function() {
             base: '.'
         })
         .pipe(preProcessPipe())
-        .pipe(jsonPipe())
+        .pipe(defaultDataPipe())
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: getBlockGeneratorRootPath('block-view', '.html'),
             context: getFileContext
         }))
         .pipe(plugins.size())
-        .pipe(gulp.dest(paths.temp))
         .pipe(gulp.dest(paths.blocks.html.dest))
         .pipe(browserSync.stream());
 });
@@ -295,6 +295,8 @@ gulp.task('generate:blocks:html', ['clean:blocks:html', 'info'], function() {
 gulp.task('generate:blocks:xsl', ['clean:blocks:xsl', 'info'], function() {
     var xsl = gulp.src(paths.blocks.xsl.src)
         .pipe(preProcessPipe())
+        .pipe(xslRootPipe())
+        .pipe(plugins.swig())
         .pipe(reXSL());
 
     var merged = xsl
@@ -317,7 +319,8 @@ gulp.task('generate:blocks:xsl', ['clean:blocks:xsl', 'info'], function() {
 gulp.task('generate:blocks:xml', ['clean:blocks:xml', 'info'], function() {
     return gulp.src(paths.blocks.xml.src)
         .pipe(preProcessPipe())
-        .pipe(jsonPipe())
+        .pipe(xslRootPipe())
+        .pipe(defaultDataPipe())
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: getBlockGeneratorRootPath('block-view', '.xml'),
@@ -329,16 +332,23 @@ gulp.task('generate:blocks:xml', ['clean:blocks:xml', 'info'], function() {
 });
 
 
+var xslRootPipe = lazypipe()
+    .pipe(plugins.data, function(file) {
+        var xslProcTemp = paths.temp;
+        var rel = path.relative(path.join(root, 'crate'), file.path);
+        rel = path.join(root, xslProcTemp, rel);
+        rel = gutil.replaceExtension(rel, '.xsl');
+        // console.log('\n[%s]\n', rel);
+        return _.merge(file.data, {
+            xslPath: rel,
+            xslRoot: path.join(root, xslProcTemp, '/')
+        });
+    });
 
 gulp.task('generate:pages:xml', ['clean:pages:xml', 'info'], function() {
     return gulp.src(paths.crate.content.src)
         .pipe(pageProc())
-        .pipe(plugins.tap(function(file) {
-            var rel = path.relative(path.join(root, 'crate', 'content'), file.data.path);
-            rel = path.join(root, 'wwwroot', rel);
-            rel = gutil.replaceExtension(rel, '.xsl');
-            file.data.xslPath = rel;
-        }))
+        .pipe(xslRootPipe())
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: function(context) {
@@ -355,6 +365,7 @@ gulp.task('generate:pages:xml', ['clean:pages:xml', 'info'], function() {
 gulp.task('generate:pages:xsl', ['clean:pages:xsl', 'info'], function() {
     return gulp.src(paths.crate.content.src)
         .pipe(pageProc())
+        .pipe(xslRootPipe())
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: function(context) {
@@ -368,39 +379,40 @@ gulp.task('generate:pages:xsl', ['clean:pages:xsl', 'info'], function() {
 });
 
 
-
 gulp.task('process:imports:xsl', ['clean:imports:xsl', 'info'], function() {
     return gulp.src(paths.crate.layout.src, {
             base: paths.crate.base
         })
         .pipe(preProcessPipe())
+        .pipe(xslRootPipe())
+        .pipe(plugins.swig())
         .pipe(reXSL())
         .pipe(gulp.dest(paths.crate.layout.dest))
         .pipe(browserSync.stream());
 });
 
 
-gulp.task('xslt', ['build'],function() {
+gulp.task('xslt', ['build'], function() {
 
-    //TODO: Resolve pathing issue
-    var xml = ['wwwroot/*.xml'];//, 'wwwroot/blocks/**/*.xml', 'wwwroot/pages/**/*.xml'];
+    var xslProcTemp = paths.temp;
+    var xml = [xslProcTemp + '*.xml', xslProcTemp + 'blocks/**/*.xml', xslProcTemp + 'pages/**/*.xml'];
 
     return gulp.src(xml, {
-            base: 'wwwroot'
+            base: xslProcTemp
         })
-        .pipe(plugins.changedInPlace({
-            firstPass: true
-        }))
+        // .pipe(plugins.changedInPlace({
+        //     firstPass: true
+        // }))
         .pipe(plugins.saxon({
             jarPath: __dirname + '/lib/saxon9he.jar',
             xslPath: function(file) {
                 var xslPath = gutil.replaceExtension(file.path, '.xsl');
-                console.log(xslPath);
+                // console.log('\n[%s]\n', xslPath);
                 return gutil.replaceExtension(file.path, '.xsl');
             },
             outputType: '.html',
             timeout: 5000
-        })).pipe(gulp.dest('out'));
+        })).pipe(gulp.dest(paths.dest));
 
 });
 

@@ -21,11 +21,12 @@ function getPaths(mode) {
         content: base.content,
         layout: base.layout,
 
+        temp: '.tmp/',
         assets: 'assets/',
     };
 
     var paths = {
-        temp: '.tmp/',
+        temp: basePaths.temp,
         blocklist: basePaths.blocklist,
         dest: basePaths.dest,
         crate: {
@@ -33,12 +34,12 @@ function getPaths(mode) {
             content: {
                 base: basePaths.content,
                 src: basePaths.content + '**/*.md',
-                dest: basePaths.dest
+                dest: basePaths.temp
             },
             layout: {
                 base: basePaths.layout,
                 src: [basePaths.layout + '**/*.xsl', '!' + basePaths.layout + 'src/**/*.xsl'],
-                dest: basePaths.dest
+                dest: basePaths.temp
             },
             styles: {
                 src: [basePaths.crate+'less/base.less', basePaths.crate + '**/*.less'],
@@ -49,7 +50,7 @@ function getPaths(mode) {
             base: basePaths.blocks,
             html: {
                 src: basePaths.blocks + '**/*.html',
-                dest: basePaths.dest
+                dest: basePaths.temp
             },
             styles: {
                 src: basePaths.blocks + '**/*.less',
@@ -57,11 +58,11 @@ function getPaths(mode) {
             },
             xml: {
                 src: basePaths.blocks + '**/*.xml',
-                dest: basePaths.dest + basePaths.blocks
+                dest: basePaths.temp + basePaths.blocks
             },
             xsl: {
                 src: basePaths.blocks + '**/*.xsl',
-                dest: basePaths.dest + basePaths.blocks
+                dest: basePaths.temp + basePaths.blocks
             },
             scripts: {
                 src: basePaths.blocks + '**/*.js',
@@ -72,17 +73,17 @@ function getPaths(mode) {
         clean: {
             base: basePaths.dest,
             blocks: {
-                xml: basePaths.dest + basePaths.blocks + '**/*.xml',
-                xsl: basePaths.dest + basePaths.blocks + '**/*.xsl',
-                html: basePaths.dest + basePaths.blocks + '**/*.html'
+                xml: basePaths.temp + basePaths.blocks + '**/*.xml',
+                xsl: basePaths.temp + basePaths.blocks + '**/*.xsl',
+                html: basePaths.temp + basePaths.blocks + '**/*.html'
             },
             content: {
                 pages: {
-                    xml: basePaths.dest + 'pages/**/*.xml',
-                    xsl: basePaths.dest + 'pages/**/*.xsl',
+                    xml: basePaths.temp + 'pages/**/*.xml',
+                    xsl: basePaths.temp + 'pages/**/*.xsl',
                 },
                 imports: {
-                    xsl: basePaths.dest + 'layout/imports/**/*.xsl'
+                    xsl: basePaths.temp + 'layout/imports/**/*.xsl'
                 }
             },
             styles: basePaths.dest + '**/*.css',
