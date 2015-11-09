@@ -41,7 +41,7 @@ function getPaths(mode) {
                 dest: basePaths.dest
             },
             styles: {
-                src: basePaths.crate + '**/*.less',
+                src: [basePaths.crate+'less/base.less', basePaths.crate + '**/*.less'],
                 dest: basePaths.dest + 'css/'
             }
         },

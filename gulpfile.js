@@ -83,6 +83,23 @@ var pageProc = lazypipe()
         return file.data;
     });
 
+var jsonPipe = lazypipe()
+    .pipe(plugins.tap, function(file) {
+        var basepath = path.relative(root, path.join(path.dirname(file.path), path.basename(file.path, path.extname(file.path))));
+        var p = './' + basepath + '.json',
+            jsondata;
+        // console.log(p);
+        try {
+            jsondata = require(p);
+            if (jsondata) {
+                file.data = _.merge(jsondata, file.data);
+                // console.log('%j', jsondata);
+            }
+        } catch (e) {
+            // console.log(e);
+        }
+        //
+    });
 
 function changeEvent(evt) {
     gutil.log('File', gutil.colors.cyan(evt.path.replace(new RegExp('/.*(?=/' + paths.blocks.base + ')/'), '')), 'was', gutil.colors.magenta(evt.type));
@@ -111,12 +128,12 @@ function buildCss(src, name, dest) {
         .pipe(plugins.concat(name))
         .pipe(plugins.size())
         .pipe(gulp.dest(dest))
-        .pipe(gulp.dest('wwwroot/css'))
         .pipe(browserSync.stream());
 }
 
-// TODO: Error handling
 function getBlockPath(basename) {
+    if (!blocklist) return '';
+    if (!basename) return '';
     var blocknames = blocklist.filter(function(block) {
             return block.basename === basename;
         })
@@ -128,7 +145,7 @@ function getBlockPath(basename) {
 }
 
 function normaliseBlocks(blocks) {
-    if (blocks === undefined || blocks === null) return null;
+    if (!blocks) return [];
     var nb = [];
 
     blocks.forEach(function(block) {
@@ -209,7 +226,7 @@ gulp.task('info:blocks', function() {
 });
 
 
-var filelist;
+var filelist = [];
 gulp.task('info:files', function() {
     filelist = [];
     return gulp.src(paths.crate.content.src, {
@@ -223,7 +240,7 @@ gulp.task('info:files', function() {
             var relpath = path.relative(path.join(root, paths.crate.content.base), file.path);
             if (fdata.basename !== 'index') {
                 fdata = getFileBaseData(file);
-                fdata.path = relpath;
+                fdata.path = relpath; // overwriting to get path relative to crate
                 fdata.link = path.join('/', relpath);
                 filelist.push(fdata);
             }
@@ -253,23 +270,7 @@ gulp.task('build:css:crate', function() {
     return buildCss(paths.crate.styles.src, crateCssOut, paths.crate.styles.dest);
 });
 
-var jsonPipe = lazypipe()
-    .pipe(plugins.tap, function(file) {
-        var basepath = path.relative(root, path.join(path.dirname(file.path), path.basename(file.path, path.extname(file.path))));
-        var p = './' + basepath + '.json',
-            jsondata;
-        // console.log(p);
-        try {
-            jsondata = require(p);
-            if (jsondata) {
-                file.data = _.merge(jsondata, file.data);
-                // console.log('%j', jsondata);
-            }
-        } catch (e) {
-            // console.log(e);
-        }
-        //
-    });
+
 
 
 
@@ -332,6 +333,12 @@ gulp.task('generate:blocks:xml', ['clean:blocks:xml', 'info'], function() {
 gulp.task('generate:pages:xml', ['clean:pages:xml', 'info'], function() {
     return gulp.src(paths.crate.content.src)
         .pipe(pageProc())
+        .pipe(plugins.tap(function(file) {
+            var rel = path.relative(path.join(root, 'crate', 'content'), file.data.path);
+            rel = path.join(root, 'wwwroot', rel);
+            rel = gutil.replaceExtension(rel, '.xsl');
+            file.data.xslPath = rel;
+        }))
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: function(context) {
@@ -348,11 +355,6 @@ gulp.task('generate:pages:xml', ['clean:pages:xml', 'info'], function() {
 gulp.task('generate:pages:xsl', ['clean:pages:xsl', 'info'], function() {
     return gulp.src(paths.crate.content.src)
         .pipe(pageProc())
-        .pipe(plugins.tap(function(file){
-            var data = file.data;
-            var xslPath = gutil.replaceExtension(file.path, '.xsl');
-            console.log('xslPath:', xslPath);
-        }))
         .pipe(plugins.applyTemplate({
             engine: 'swig',
             template: function(context) {
@@ -377,29 +379,28 @@ gulp.task('process:imports:xsl', ['clean:imports:xsl', 'info'], function() {
         .pipe(browserSync.stream());
 });
 
-// var saxon = require('saxon-stream2');
 
-gulp.task('xslt', function() {
+gulp.task('xslt', ['build'],function() {
 
     //TODO: Resolve pathing issue
-    // var xml = ['wwwroot/*.xml'];//, 'wwwroot/blocks/**/*.xml', 'wwwroot/pages/**/*.xml'];
+    var xml = ['wwwroot/*.xml'];//, 'wwwroot/blocks/**/*.xml', 'wwwroot/pages/**/*.xml'];
 
-    // return gulp.src(xml, {
-    //         base: 'wwwroot'
-    //     })
-    //     .pipe(plugins.changedInPlace({
-    //         firstPass: true
-    //     }))
-    //     .pipe(plugins.saxon({
-    //         jarPath: __dirname + '/lib/saxon9he.jar',
-    //         xslPath: function(file) {
-    //             var xslPath = gutil.replaceExtension(file.path, '.xsl');
-    //             console.log(xslPath);
-    //             return gutil.replaceExtension(file.path, '.xsl');
-    //         },
-    //         outputType: '.html',
-    //         timeout: 5000
-    //     })).pipe(gulp.dest('out'));
+    return gulp.src(xml, {
+            base: 'wwwroot'
+        })
+        .pipe(plugins.changedInPlace({
+            firstPass: true
+        }))
+        .pipe(plugins.saxon({
+            jarPath: __dirname + '/lib/saxon9he.jar',
+            xslPath: function(file) {
+                var xslPath = gutil.replaceExtension(file.path, '.xsl');
+                console.log(xslPath);
+                return gutil.replaceExtension(file.path, '.xsl');
+            },
+            outputType: '.html',
+            timeout: 5000
+        })).pipe(gulp.dest('out'));
 
 });
 
@@ -491,7 +492,7 @@ gulp.task('scripts', ['webpack']);
 gulp.task('blocks', ['generate:blocks:xsl', 'generate:blocks:xml', 'generate:blocks:html']);
 gulp.task('content', ['generate:pages:xml', 'generate:pages:xsl', 'process:imports:xsl']);
 
-gulp.task('build', ['output:info:files', 'output:info:blocks', 'content', 'blocks', 'styles', 'assets', 'webpack']);
+gulp.task('build', ['content', 'blocks', 'styles', 'assets', 'webpack']);
 
 gulp.task('watch:blocks', ['blocks'], browserSync.reload);
 gulp.task('watch:content', ['content'], browserSync.reload);
