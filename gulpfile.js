@@ -17,11 +17,13 @@ var es = require('event-stream'),
     }),
 
     webpack = require('webpack'),
+    swig = require('swig'),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
     }),
     saxon = require('./lib/node_modules/gulp-saxon'),
+    applyTemplate = require('./lib/node_modules/gulp-apply-template'),
     paths = require('./config/paths.js'),
     webpackConfig = require('./config/webpack.js'),
     siteData = require('./config/crate.js'),
@@ -305,7 +307,7 @@ gulp.task('generate:blocks:xsl', ['clean:blocks:xsl', 'info'], function() {
         .pipe(plugins.wrap('<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ff_module="http://www.fireflylearning/module"><%= contents %></xsl:stylesheet>'));
 
     var wrapped = xsl
-        .pipe(plugins.applyTemplate({
+        .pipe(applyTemplate({
             engine: 'swig',
             template: getBlockGeneratorRootPath('block-view', '.xsl'),
             context: getFileContext
@@ -322,7 +324,7 @@ gulp.task('generate:blocks:xml', ['clean:blocks:xml', 'info'], function() {
         .pipe(preProcessPipe())
         .pipe(xslRootPipe())
         .pipe(defaultDataPipe())
-        .pipe(plugins.applyTemplate({
+        .pipe(applyTemplate({
             engine: 'swig',
             template: getBlockGeneratorRootPath('block-view', '.xml'),
             context: getFileContext
@@ -367,7 +369,7 @@ gulp.task('generate:pages:xsl', ['clean:pages:xsl', 'info'], function() {
     return gulp.src(paths.crate.content.src)
         .pipe(pageProc())
         .pipe(xslRootPipe())
-        .pipe(plugins.applyTemplate({
+        .pipe(applyTemplate({
             engine: 'swig',
             template: function(context) {
                 return getContentGeneratorRootPath(context.data.layout, '.xsl');
