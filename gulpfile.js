@@ -311,7 +311,6 @@ gulp.task('build:css:crate', function() {
 
 gulp.task('generate:blocks:xsl', ['info'], function() {
     var xsl = gulp.src(paths.blocks.xsl.src)
-        .pipe(plugins.changed(paths.blocks.xsl.dest))
         .pipe(errorPipe())
         .pipe(preProcessPipe())
         .pipe(xslRootPipe())
