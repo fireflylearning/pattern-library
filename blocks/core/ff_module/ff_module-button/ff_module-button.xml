@@ -1,3 +1,2 @@
-
-<text>{{text| default('Click me!', false)}}</text>
+<text>{{text| default('Click me?')}}</text>
 
