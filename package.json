@@ -28,7 +28,6 @@
     "gulp-markdown": "^1.1.0",
     "gulp-minify-css": "^1.2.1",
     "gulp-rename": "^1.2.2",
-    "gulp-saxon": "0.0.3",
     "gulp-size": "^2.0.0",
     "gulp-swig": "^0.7.4",
     "gulp-tap": "^0.1.3",

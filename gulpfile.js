@@ -21,6 +21,7 @@ var es = require('event-stream'),
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
     }),
+    saxon = require('./lib/node_modules/gulp-saxon'),
     paths = require('./config/paths.js'),
     webpackConfig = require('./config/webpack.js'),
     siteData = require('./config/crate.js'),
@@ -403,7 +404,7 @@ gulp.task('xslt', ['build'], function() {
         // .pipe(plugins.changedInPlace({
         //     firstPass: true
         // }))
-        .pipe(plugins.saxon({
+        .pipe(saxon({
             jarPath: __dirname + '/lib/saxon9he.jar',
             xslPath: function(file) {
                 var xslPath = gutil.replaceExtension(file.path, '.xsl');
