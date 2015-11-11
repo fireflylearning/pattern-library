@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ff_module="http://www.fireflylearning/module">
 
-    <xsl:import href="{{xslRoot}}layout/imports/call-templates.xsl"/>
-
+    {% include '../includes/call-template.xsl' with { blocks: [{ basepath: basepath, basename: basename }]} %}
 
     <xsl:template match="blocks">
         <xsl:call-template name="call-{{basename}}"/>

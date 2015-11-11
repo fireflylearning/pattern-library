@@ -1,10 +1,7 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-
-    <xsl:import href="{{xslRoot}}layout/imports/page-title.xsl"/>
-    <xsl:import href="{{xslRoot}}layout/imports/page-content.xsl"/>
-    <xsl:import href="{{xslRoot}}layout/imports/call-templates.xsl"/>
+    {% include '../includes/call-template.xsl' with blocks %}
 
     <xsl:template match="/">
 
@@ -23,13 +20,9 @@
         </head>
         <body>
 
-            <xsl:call-template name="page-title">
-                <xsl:with-param name="text" select="page/title"/>
-            </xsl:call-template>
+            <h1>{{title}} : {{site.title}}</h1>
 
-            <xsl:call-template name="page-content">
-                <xsl:with-param name="content" select="page/content"/>
-            </xsl:call-template>
+            <div class="contents">{{contents|safe}}</div>
 
             <xsl:apply-templates select="page/blocks"/>
 

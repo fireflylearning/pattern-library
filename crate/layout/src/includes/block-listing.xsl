@@ -1,10 +1,7 @@
-<?xml version="1.0" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
-    <xsl:template name="block-listing">
+<xsl:template name="block-listing" match="page/blocks">
 
         <div class="crate_blocks">
-            {% for block in blocklist %}
+            {% for block in blocks %}
 
                 <div class="crate_blocks__item" id="{{block.basename}}">
                     <h3 class="crate_blocks__item__heading">{{block.basename}}</h3>
@@ -20,7 +17,3 @@
             {% endfor %}
         </div>
     </xsl:template>
-
-
-</xsl:stylesheet>
-

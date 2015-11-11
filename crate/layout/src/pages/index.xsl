@@ -3,17 +3,8 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ff_module="http://www.fireflylearning/module">
 
-    <xsl:import href="{{xslRoot}}layout/imports/page-title.xsl"/>
-    <xsl:import href="{{xslRoot}}layout/imports/page-content.xsl"/>
-
-    <xsl:import href="{{xslRoot}}layout/imports/block-listing.xsl"/>
-    <xsl:import href="{{xslRoot}}layout/imports/page-listing.xsl"/>
-
-    <xsl:import href="{{xslRoot}}layout/imports/dropdown-files.xsl"/>
-
-    <xsl:template match="page/blocks" mode="listing">
-        <xsl:call-template name="block-listing" />
-    </xsl:template>
+    {% include '../includes/call-template.xsl' with { blocks: blocklist } %}
+    {% include '../includes/block-listing.xsl' with { blocks: blocklist } %}
 
     <xsl:template match="/">
 
@@ -21,7 +12,7 @@
             <head>
             <meta charset="utf-8"/>
             <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-            <title><xsl:value-of select="page/title"/></title>
+            <title>{{title}} : {{site.title}}</title>
             <meta name="description" content=""/>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -32,24 +23,19 @@
         </head>
         <body>
 
-            <xsl:call-template name="page-title">
-                <xsl:with-param name="text" select="page/title"/>
-            </xsl:call-template>
+            <h1>{{title}} : {{site.title}}</h1>
 
-            <xsl:call-template name="page-content">
-                <xsl:with-param name="content" select="page/content"/>
-            </xsl:call-template>
+            <div class="contents">{{contents|safe}}</div>
 
             <h3>Blocks</h3>
-
-            <xsl:apply-templates select="page/blocks" mode="listing"/>
-
+            <xsl:apply-templates select="page/blocks"/>
 
 
             <h3>Pages</h3>
-            <xsl:call-template name="page-listing" />
+            {% include '../includes/page-listing.xsl' %}
 
-            <xsl:call-template name="dropdown-files" />
+
+            {% include '../includes/dropdown-files.xsl' %}
 
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>
