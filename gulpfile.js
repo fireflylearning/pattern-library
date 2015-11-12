@@ -537,5 +537,5 @@ gulp.task('watch:webpack', ['webpack'], function(callback) {
     callback();
 });
 
-gulp.task('dev', ['xslt', 'serve', 'watch']);
+gulp.task('dev', ['build', 'serve', 'watch']);
 gulp.task('default', ['dev']);
