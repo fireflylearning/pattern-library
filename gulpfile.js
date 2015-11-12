@@ -121,7 +121,7 @@ var pageProc = lazypipe()
 
 var defaultDataPipe = lazypipe()
     .pipe(plugins.tap, function(file) {
-        // var basepath = path.relative(root, path.join(path.dirname(file.path), path.basename(file.path, path.extname(file.path))));
+
         var yamlPath = './' + gutil.replaceExtension(path.relative(root, file.path), '.yaml'),
             yamlFile;
 
@@ -406,7 +406,7 @@ gulp.task('generate:pages:xsl', ['info'], function() {
 
 
 gulp.task('clean', function() {
-    return del([paths.temp, paths.dest]);
+    return del(paths.clean);
 });
 
 gulp.task('xslt', ['content', 'blocks'], function() {
@@ -435,7 +435,7 @@ gulp.task('xslt', ['content', 'blocks'], function() {
 
 });
 
-//TODO: Improve
+//TODO: Get working
 gulp.task('audit', ['xslt'], function() {
     return gulp.src(paths.dest)
         // .pipe(debugPipe())
@@ -446,9 +446,15 @@ gulp.task('audit', ['xslt'], function() {
 });
 
 gulp.task('csslint', ['styles'], function() {
-    gulp.src(paths.clean.styles)
+    gulp.src(paths.lint.styles)
         .pipe(plugins.csslint())
         .pipe(plugins.csslint.reporter());
+});
+
+gulp.task('jshint', ['scripts'], function() {
+    gulp.src(paths.lint.scripts)
+        .pipe(plugins.jshint())
+        .pipe(plugins.jshint.reporter());
 });
 
 gulp.task('assets', function() {
@@ -469,7 +475,6 @@ gulp.task('docs', function() {
 gulp.task('webpack', function(callback) {
     devCompiler.run(function(err, stats) {
         if (err) gutil.log(gutil.colors.yellow('Webpack error:', err.message));
-        // if (err) throw new gutil.PluginError('webpack', err);
         if (isDebugging) {
             gutil.log('[webpack]', stats.toString({
                 colors: true

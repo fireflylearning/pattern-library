@@ -1,8 +1,5 @@
-/* jshint node: true */
 'use strict';
-
 var webpack = require('webpack');
-
 
 module.exports = function(paths, options) {
     return {

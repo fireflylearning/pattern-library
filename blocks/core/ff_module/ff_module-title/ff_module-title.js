@@ -1,5 +1,5 @@
-/* jshint node: true */
 'use strict';
+
 var utils = require('../../../shared/utils');
 var $ = require('jquery');
 

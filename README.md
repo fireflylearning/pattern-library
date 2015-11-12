@@ -2,6 +2,14 @@
 
 This repo contains the source files for Firefly front-end development patterns.
 
+## Installation & build
+Ensure all dependencies are met, then:
+
+Run the command `npm start` to automatically install, build, serve, and watch development files.
+
+After initial install, the command `gulp` will perform the build, serve, and watching operations.
+
+
 ## Dependencies
 - Node
 - npm
@@ -18,12 +26,10 @@ This repo contains the source files for Firefly front-end development patterns.
 - Swig for template compilation
 - BrowserSync for hot-reloading and syncing
 - Webpack for bundling javascript modules
+- Less with gulp-less for less > css transpiling
 - gulp-jshint for js linting
-- gulp-less for less > css transpiling
 - css-lint for css linting
 - Karma, Mocha, Chai and Sinon for testing
 - x for regression testing
 
-## Building the Patterns
-Run the command `npm start` to automatically install, build, serve, and watch development files.
-After initial install, the command `gulp` will perform the build, serve, and watching operations.
+

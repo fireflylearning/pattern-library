@@ -1,4 +1,4 @@
-/* jshint node: true */
+
 'use strict';
 
 function output(text) {

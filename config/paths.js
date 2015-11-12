@@ -1,7 +1,5 @@
-/* jshint node: true */
-'use strict';
-
 function getPaths(mode) {
+    'use strict';
 
     var base = {
         blocks: 'blocks/',
@@ -70,25 +68,11 @@ function getPaths(mode) {
                 output: './' + basePaths.dest + 'js/'
             }
         },
-        clean: {
-            base: basePaths.dest,
-            blocks: {
-                xml: basePaths.temp + basePaths.blocks + '**/*.xml',
-                xsl: basePaths.temp + basePaths.blocks + '**/*.xsl',
-                html: basePaths.temp + basePaths.blocks + '**/*.html'
-            },
-            content: {
-                pages: {
-                    xml: basePaths.temp + 'pages/**/*.xml',
-                    xsl: basePaths.temp + 'pages/**/*.xsl',
-                },
-                imports: {
-                    xsl: basePaths.temp + 'layout/imports/**/*.xsl'
-                }
-            },
+        clean: [basePaths.temp, basePaths.dest],
+        lint: {
             styles: basePaths.dest + '**/*.css',
+            scripts: basePaths.blocks + '**/*.js',
         },
-
         images: {
             src: basePaths.blocks + '**/*.{jpg, jpeg, png, svg, gif}',
             dest: basePaths.dest + 'images/'
