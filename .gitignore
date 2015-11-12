@@ -2,6 +2,7 @@ node_modules
 !lib/node_modules
 
 .tern-port
+.jshintrc
 tmp
 .tmp
 build

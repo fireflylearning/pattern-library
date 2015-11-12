@@ -3,13 +3,11 @@
 
 var gulp = require('gulp');
 
-var es = require('event-stream'),
-    gutil = require('gulp-util'),
+var gutil = require('gulp-util'),
     path = require('path'),
     yaml = require('js-yaml'),
     fs = require('fs'),
     del = require('del'),
-    async = require('async'),
     _ = require('lodash-node'),
     lazypipe = require('lazypipe'),
     LessAutoprefixer = require('less-plugin-autoprefix'),
@@ -18,7 +16,6 @@ var es = require('event-stream'),
     }),
 
     webpack = require('webpack'),
-    swig = require('swig'),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
@@ -26,11 +23,23 @@ var es = require('event-stream'),
     saxon = require('./lib/node_modules/gulp-saxon'),
     applyTemplate = require('./lib/node_modules/gulp-apply-template'),
     paths = require('./config/paths.js'),
-    webpackConfig = require('./config/webpack.js'),
+    getWebpackConfig = require('./config/webpack.js'),
     siteData = require('./config/crate.js'),
-    options = require('./config/options.default.js');
+    options = require('./config/options.default.js'),
 
-var debugPipe,
+    changedHelpers = require('./lib/gulp-changed-helpers'),
+    root = path.join(__dirname),
+    blockCssOut = 'blocks.min.css',
+    crateCssOut = 'crate.min.css';
+
+var isDebugging,
+    debugPipe,
+    isProduction,
+    sourceMapsStart,
+    sourceMapsEnd,
+    browserSync,
+    devCompiler,
+    webpackConfig,
     locals = {};
 
 try {
@@ -39,38 +48,40 @@ try {
 
 var options = _.defaults(locals, options);
 
-if (options.debug) {
+isDebugging = options.isDebugging;
+isProduction = options.isProduction;
+
+if (isDebugging) {
     debugPipe = lazypipe()
-        .pipe(plugins.debug);
+        .pipe(plugins.debug)
+        .pipe(plugins.size);
 } else {
     debugPipe = lazypipe()
         .pipe(gutil.noop);
 }
 
-var browserSync = require('browser-sync').create();
 
+if (isProduction) {
+    sourceMapsStart = sourceMapsEnd = lazypipe()
+        .pipe(gutil.noop);
+} else {
+    sourceMapsStart = lazypipe()
+        .pipe(plugins.sourcemaps.init);
+    sourceMapsEnd = lazypipe()
+        .pipe(plugins.sourcemaps.write, './');
+}
 
-var root = path.join(__dirname);
-
-var blockCssOut = 'blocks.min.css',
-    crateCssOut = 'crate.min.css';
-
-var devCompiler = webpack(webpackConfig);
-
+browserSync = require('browser-sync').create();
+webpackConfig = getWebpackConfig(paths, options);
+devCompiler = webpack(webpackConfig);
 
 var errorPipe = lazypipe()
     .pipe(plugins.plumber, {
-        errorHandler: function(err) {
-            gutil.beep();
-            console.log(err);
-        }
+        errorHandler: plugins.notify.onError({
+            message: '<%= error.message %>',
+            title: 'Error'
+        })
     });
-// .pipe(plugins.plumber, {
-//     errorHandler: plugins.notify.onError({
-//         message: '<%= error.message %>',
-//         title: 'Error'
-//     })
-// });
 
 var fmPipe = lazypipe()
     .pipe(plugins.frontMatter, {
@@ -97,11 +108,6 @@ var preProcessPipe = lazypipe()
     .pipe(debugPipe)
     .pipe(fmPipe)
     .pipe(fileDataPipe);
-// .pipe(plugins.markdown)
-// .pipe(plugins.rename,{
-//     extname: '.xml'
-// });
-// .pipe(plugins.swig);
 
 var pageProc = lazypipe()
     .pipe(preProcessPipe)
@@ -109,7 +115,7 @@ var pageProc = lazypipe()
         if (file.data && file.data.blocks) {
             file.data.blocks = normaliseBlocks(file.data.blocks);
         }
-        // console.log('blocks: %j', file.data.blocks);
+
         return file.data;
     });
 
@@ -119,8 +125,6 @@ var defaultDataPipe = lazypipe()
         var yamlPath = './' + gutil.replaceExtension(path.relative(root, file.path), '.yaml'),
             yamlFile;
 
-        // console.log('\n[%s]\n[%s]\n', p, gutil.replaceExtension(file.path, '.json'));
-        // console.log('\n[%s]\n', yamlPath);
         try {
             yamlFile = yaml.safeLoad(fs.readFileSync(yamlPath, 'utf8'));
             file.data = _.merge(yamlFile, file.data);
@@ -136,7 +140,6 @@ var xslRootPipe = lazypipe()
         var rel = path.relative(path.join(root, 'crate'), file.path);
         rel = path.join(root, xslProcTemp, rel);
         rel = gutil.replaceExtension(rel, '.xsl');
-        // console.log('\n[%s]\n', rel);
         return _.merge(file.data, {
             xslPath: rel,
             xslRoot: path.join(root, xslProcTemp, '/')
@@ -145,10 +148,9 @@ var xslRootPipe = lazypipe()
 
 function changeEvent(name) {
     return function(evt) {
-        gutil.log(name, 'file', gutil.colors.cyan(evt.path.replace(new RegExp('/.*(?=/' + paths.blocks.base + ')/'), '')), 'was', gutil.colors.magenta(evt.type));
-    }
+        gutil.log(name, 'file', '\'' + gutil.colors.cyan(evt.path.replace(new RegExp('/.*(?=/' + paths.blocks.base + ')/'), '')) + '\'', 'was', gutil.colors.magenta(evt.type));
+    };
 }
-
 
 function buildCss(src, name, dest) {
     return gulp.src(src, {
@@ -156,16 +158,13 @@ function buildCss(src, name, dest) {
         })
         .pipe(errorPipe())
         .pipe(debugPipe())
+        .pipe(sourceMapsStart())
         .pipe(plugins.concat(name))
         .pipe(plugins.less({
             plugins: [autoprefix]
         }))
-        // .pipe(isProduction ? plugins.combineMediaQueries({
-        //     log: true
-        // }) : gutil.noop())
-        // .pipe(isProduction ? plugins.cssmin() : gutil.noop())
         .pipe(plugins.minifyCss())
-        .pipe(plugins.size())
+        .pipe(sourceMapsEnd())
         .pipe(gulp.dest(dest))
         .pipe(browserSync.stream());
 }
@@ -233,7 +232,6 @@ function getGenPath(name, ext, type) {
     ext = ext || '.xml';
     var layoutroot = path.join(root, paths.crate.layout.base, 'src', type);
     var layoutpath = layoutroot + '/' + name + ext;
-    // console.log(layoutpath);
     return layoutpath;
 }
 
@@ -247,7 +245,6 @@ function getBlockGeneratorRootPath(layoutname, ext) {
 
 function getAbsPath(layoutpath) {
     var p = path.relative(root, layoutpath);
-    // console.log(p);
     return p;
 }
 
@@ -259,64 +256,7 @@ function getFileContext(file) {
 
 
 
-function fsOperationFailed(stream, sourceFile, err) {
-    if (err) {
-        if (err.code !== 'ENOENT') {
-            stream.emit('error', new gutil.PluginError('gulp-changed', err, {
-                fileName: sourceFile.path
-            }));
-        }
-        stream.push(sourceFile);
-    }
-    return err;
-}
 
-function compareToBlocks(stream, callback, sourceFile, targetPath) {
-    var blocks = sourceFile.data.blocks || blocklist;
-    var sourcePaths = [];
-    if (blocks) {
-        blocks.forEach(function(b) {
-            var base = path.join(root, b.basepath);
-            sourcePaths.push(base + '.xsl');
-            sourcePaths.push(base + '.xml');
-            sourcePaths.push(sourceFile.path);
-        });
-    }
-    // console.log(sourceFile.relative);
-
-    fs.stat(targetPath, function(err, targetStat) {
-
-        if (!fsOperationFailed(stream, sourceFile, err)) {
-
-            async.detect(sourcePaths, function(sourcePath, cb) {
-
-                fs.stat(sourcePath, function(err, sourceStat) {
-                    var passthrough = false;
-                    if (fsOperationFailed(stream, sourceFile, err)) {
-                        passthrough = true;
-                    } else {
-                        if (sourceStat.mtime > targetStat.mtime) {
-                            passthrough = true;
-                        }
-                    }
-                    cb(passthrough);
-                });
-            }, function(results) {
-                // console.log('   %j', results);
-                if (results && results.length > 1) {
-                    stream.push(sourceFile);
-                }
-                callback();
-            });
-        } else {
-            callback();
-        }
-
-
-
-    });
-    // console.log('paths %j',laterpaths);
-}
 
 
 var blocklist = [];
@@ -324,9 +264,11 @@ gulp.task('info:blocks', function() {
     blocklist = [];
     return gulp.src(paths.blocklist)
         .pipe(errorPipe())
+        .pipe(plugins.cached('blocks'))
         .pipe(debugPipe())
         .pipe(fmPipe())
         .pipe(defaultDataPipe())
+        .pipe(plugins.remember('blocks'))
         .pipe(plugins.tap(function(file) {
             blocklist.push(getFileBaseData(file));
         }));
@@ -340,9 +282,10 @@ gulp.task('info:files', function() {
             base: '.'
         })
         .pipe(errorPipe())
+        .pipe(plugins.cached('files'))
         .pipe(debugPipe())
         .pipe(fmPipe())
-        // .pipe(reXML())
+        .pipe(plugins.remember('files'))
         .pipe(plugins.tap(function(file) {
             var fdata = getFileBaseData(file);
             var relpath = path.relative(path.join(root, paths.crate.content.base), file.path);
@@ -357,13 +300,13 @@ gulp.task('info:files', function() {
 });
 
 
-gulp.task('output:info:files', ['info:files', 'info:blocks'], function(cb) {
-    console.log('%j', filelist);
+gulp.task('output:filelist', ['info:files', 'info:blocks'], function(cb) {
+    console.log(gutil.colors.dim('%j'), filelist);
     cb();
 });
 
-gulp.task('output:info:blocks', ['info:blocks'], function(cb) {
-    console.log('%j', blocklist);
+gulp.task('output:blocklist', ['info:blocks'], function(cb) {
+    console.log(gutil.colors.dim('%j'), blocklist);
     cb();
 });
 
@@ -383,21 +326,8 @@ gulp.task('build:css:crate', function() {
 
 gulp.task('generate:blocks:xsl', ['info'], function() {
 
-    var xsl = gulp.src(paths.blocks.xsl.src);
-    // .pipe(errorPipe());
-
-    var merged = xsl
-        .pipe(preProcessPipe())
-        .pipe(xslRootPipe())
-        .pipe(plugins.swig({
-            defaults: {
-                cache: false
-            }
-        }))
-        .pipe(plugins.concat('all.xsl'))
-        .pipe(plugins.wrap('<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ff_module="http://www.fireflylearning/module"><%= contents %></xsl:stylesheet>'));
-
-    var wrapped = xsl
+    return gulp.src(paths.blocks.xsl.src)
+        .pipe(errorPipe())
         .pipe(plugins.changed(paths.blocks.xsl.dest))
         .pipe(debugPipe())
         .pipe(fmPipe())
@@ -405,17 +335,11 @@ gulp.task('generate:blocks:xsl', ['info'], function() {
         .pipe(fileDataPipe())
         .pipe(xslRootPipe())
         .pipe(reXSL())
-        // .pipe(plugins.tap(function(file) {
-        //     console.log(file.data.path);
-        // }))
         .pipe(applyTemplate({
             engine: 'swig',
             template: getBlockGeneratorRootPath('block-view', '.xsl'),
             context: getFileContext
-        }));
-
-    // return es.merge(merged, wrapped)
-    return wrapped
+        }))
         .pipe(gulp.dest(paths.blocks.xsl.dest));
 
 });
@@ -440,17 +364,16 @@ gulp.task('generate:blocks:xml', ['info'], function() {
 gulp.task('generate:pages:xml', ['info'], function() {
 
     return gulp.src(paths.crate.content.src)
+        .pipe(plugins.cached('content'))
         .pipe(errorPipe())
         .pipe(pageProc())
         .pipe(plugins.changed(paths.crate.content.dest, {
             extension: '.xml',
-            hasChanged: compareToBlocks
+            hasChanged: changedHelpers.compareToBlocks(root, blocklist)
         }))
         .pipe(applyTemplate({
             engine: 'swig',
             template: function(context) {
-                // console.log(context.basename);
-                // console.log(context);
                 return getContentGeneratorRootPath(context.data.layout, '.xml'); // typically, page-view
             },
             context: getFileContext
@@ -467,14 +390,12 @@ gulp.task('generate:pages:xsl', ['info'], function() {
         .pipe(pageProc())
         .pipe(plugins.changed(paths.crate.content.dest, {
             extension: '.xsl',
-            hasChanged: compareToBlocks
+            hasChanged: changedHelpers.compareToBlocks(root, blocklist)
         }))
         .pipe(xslRootPipe())
         .pipe(applyTemplate({
             engine: 'swig',
             template: function(context) {
-                // console.log(context.basename);
-                // console.log('%j', context.blocklist);
                 return getContentGeneratorRootPath(context.data.layout, '.xsl');
             },
             context: getFileContext
@@ -483,23 +404,6 @@ gulp.task('generate:pages:xsl', ['info'], function() {
         .pipe(gulp.dest(paths.crate.content.dest));
 });
 
-
-// gulp.task('process:imports:xsl', ['info'], function() {
-//     return gulp.src(paths.crate.layout.src, {
-//             base: paths.crate.base
-//         })
-//         .pipe(errorPipe())
-//         // .pipe(plugins.changed(paths.crate.layout.dest))
-//         .pipe(preProcessPipe())
-//         .pipe(xslRootPipe())
-//         .pipe(plugins.swig({
-//             defaults: {
-//                 cache: false
-//             }
-//         }))
-//         .pipe(reXSL())
-//         .pipe(gulp.dest(paths.crate.layout.dest));
-// });
 
 gulp.task('clean', function() {
     return del([paths.temp, paths.dest]);
@@ -515,13 +419,12 @@ gulp.task('xslt', ['content', 'blocks'], function() {
         })
         .pipe(errorPipe())
         .pipe(plugins.changed(paths.dest, {
-            extension: '.html'
+            extension: '.html',
+            hasChanged: changedHelpers.compareToXSL
         }))
         .pipe(saxon({
             jarPath: __dirname + '/lib/saxon9he.jar',
             xslPath: function(file) {
-                // var xslPath = gutil.replaceExtension(file.path, '.xsl');
-                // console.log('\n[%s]\n', xslPath);
                 return gutil.replaceExtension(file.path, '.xsl');
             },
             outputType: '.html',
@@ -532,16 +435,9 @@ gulp.task('xslt', ['content', 'blocks'], function() {
 
 });
 
-
-//blocks xsl
-//blocks xml
-//content xsl
-//contenxt xml
-//
-//html
-
-gulp.task('audit', function() {
-    return gulp.src(paths.dest.layout)
+//TODO: Improve
+gulp.task('audit', ['xslt'], function() {
+    return gulp.src(paths.dest)
         // .pipe(debugPipe())
         .pipe(plugins.a11y())
         .pipe(plugins.a11y.reporter());
@@ -549,8 +445,15 @@ gulp.task('audit', function() {
     // .pipe(gulp.dest('.tests/wcag'));
 });
 
+gulp.task('csslint', ['styles'], function() {
+    gulp.src(paths.clean.styles)
+        .pipe(plugins.csslint())
+        .pipe(plugins.csslint.reporter());
+});
+
 gulp.task('assets', function() {
     return gulp.src(paths.assets.src)
+        .pipe(plugins.watch(paths.assets.src))
         .pipe(errorPipe())
         .pipe(gulp.dest(paths.assets.dest))
         .pipe(browserSync.stream());
@@ -567,14 +470,17 @@ gulp.task('webpack', function(callback) {
     devCompiler.run(function(err, stats) {
         if (err) gutil.log(gutil.colors.yellow('Webpack error:', err.message));
         // if (err) throw new gutil.PluginError('webpack', err);
-        gutil.log('[webpack]', stats.toString({
-            colors: true
-        }));
+        if (isDebugging) {
+            gutil.log('[webpack]', stats.toString({
+                colors: true
+            }));
+        }
+
         callback();
     });
 });
 
-gulp.task('serve', ['build'], function() {
+gulp.task('serve', ['xslt'], function() {
     browserSync.init(options.browserSync);
 });
 
@@ -621,7 +527,10 @@ gulp.task('watch:xslt', ['xslt']);
 gulp.task('watch:blocks', ['xslt']);
 gulp.task('watch:content', ['xslt']);
 gulp.task('watch:styles', ['styles']);
-gulp.task('watch:webpack', ['webpack'], browserSync.reload);
+gulp.task('watch:webpack', ['webpack'], function(callback) {
+    browserSync.reload('*.js');
+    callback();
+});
 
 gulp.task('dev', ['xslt', 'serve', 'watch']);
 gulp.task('default', ['dev']);

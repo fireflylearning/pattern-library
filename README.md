@@ -2,22 +2,26 @@
 
 This repo contains the source files for Firefly front-end development patterns.
 
-## Table of Contents
-TODO
-
 ## Dependencies
 - Node
 - npm
 - Xcode Command Line Tools (for running some modules on Mac, PC should be OK)
 - Java for cross-platform XSLT (using Saxon)
+    
+    OSX on Yosemite+ will need to either install from the apple support page, or install the standard Java runtime, then add 'JAVA_HOME' to paths.
+
+    Follow these [instructions to install](http://osxdaily.com/2014/10/21/get-java-os-x-yosemite/).
+
+    And see this [link for instruction on setting path variables](http://stackoverflow.com/questions/1348842/what-should-i-set-java-home-to-on-osx).
 
 ## Technologies used
 - Swig for template compilation
+- BrowserSync for hot-reloading and syncing
 - Webpack for bundling javascript modules
+- gulp-jshint for js linting
+- gulp-less for less > css transpiling
+- css-lint for css linting
 - Karma, Mocha, Chai and Sinon for testing
-- js-hint for js linting
-- x for css linting
-- less compiler
 - x for regression testing
 
 ## Building the Patterns
