@@ -40,7 +40,7 @@ function getPaths(mode) {
                 dest: basePaths.temp
             },
             styles: {
-                src: [basePaths.crate+'less/base.less', basePaths.crate + '**/*.less'],
+                src: [basePaths.crate + 'less/base.less', basePaths.crate + '**/*.less'],
                 dest: basePaths.dest + 'css/'
             }
         },
@@ -51,7 +51,12 @@ function getPaths(mode) {
                 dest: basePaths.temp
             },
             styles: {
-                src: [basePaths.blocks + 'shared/**/*.less', basePaths.blocks + '*.less', basePaths.blocks + '**/*.less'],
+                src: [basePaths.blocks + 'shared/**/*.less',
+                    basePaths.blocks + '*/shared/outputs.less',
+                    basePaths.blocks + '*/shared/settings.less',
+                    basePaths.blocks + '*/shared/*.less',
+                    basePaths.blocks + '**/*.less'
+                ],
                 dest: basePaths.dest + 'css/'
             },
             xml: {

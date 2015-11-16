@@ -51,12 +51,16 @@ isDebugging = options.isDebugging;
 isProduction = options.isProduction;
 
 if (isDebugging) {
-    debugPipe = lazypipe()
-        .pipe(plugins.debug)
-        .pipe(plugins.size);
+    debugPipe = function(debugOpts) {
+        return lazypipe()
+            .pipe(plugins.debug, debugOpts)
+            .pipe(plugins.size, debugOpts);
+    };
 } else {
-    debugPipe = lazypipe()
-        .pipe(gutil.noop);
+    debugPipe = function(debugOpts) {
+        return lazypipe()
+            .pipe(gutil.noop);
+    };
 }
 
 
@@ -124,7 +128,6 @@ var pageProc = lazypipe()
 
 var defaultDataPipe = lazypipe()
     .pipe(errorPipe)
-    .pipe(debugPipe)
     .pipe(plugins.tap, function(file) {
 
         var yamlPath = './' + gutil.replaceExtension(path.relative(root, file.path), '.yaml'),
@@ -162,7 +165,9 @@ function buildCss(src, name, dest) {
             base: '.'
         })
         .pipe(errorPipe())
-        .pipe(debugPipe())
+        .pipe(debugPipe({
+            title: name
+        })())
         .pipe(sourceMapsStart())
         .pipe(plugins.concat(name))
         .pipe(plugins.less({
@@ -267,7 +272,7 @@ gulp.task('info:blocks', function() {
 
     return gulp.src(paths.blocklist)
         .pipe(errorPipe())
-        .pipe(debugPipe())
+        .pipe(debugPipe({title: 'info:blocks'})())
         .pipe(fmPipe())
         .pipe(defaultDataPipe())
         .pipe(plugins.tap(function(file) {
@@ -284,7 +289,7 @@ gulp.task('info:files', function() {
         })
         .pipe(errorPipe())
         .pipe(plugins.cached('files'))
-        .pipe(debugPipe())
+        .pipe(debugPipe({title: 'info:files'})())
         .pipe(fmPipe())
         .pipe(plugins.remember('files'))
         .pipe(plugins.tap(function(file) {
@@ -299,18 +304,6 @@ gulp.task('info:files', function() {
         }));
 
 });
-
-
-gulp.task('output:filelist', ['info:files', 'info:blocks'], function(cb) {
-    console.log(gutil.colors.dim('%j'), filelist);
-    cb();
-});
-
-gulp.task('output:blocklist', ['info:blocks'], function(cb) {
-    console.log(gutil.colors.dim('%j'), blocklist);
-    cb();
-});
-
 
 
 gulp.task('build:css:blocks', function() {
@@ -333,7 +326,7 @@ gulp.task('generate:blocks:xsl', ['info'], function() {
         .pipe(plugins.changed(paths.blocks.xsl.dest, {
             hasChanged: changedHelpers.compareToAdjacentSrcs(['.xml', '.xsl', '.yaml'])
         }))
-        .pipe(debugPipe())
+        .pipe(debugPipe({title: 'generate:blocks:xsl'})())
         .pipe(fmPipe())
         .pipe(reXSL())
         .pipe(fileDataPipe())
@@ -355,7 +348,7 @@ gulp.task('generate:blocks:xml', ['info'], function() {
         .pipe(plugins.changed(paths.blocks.xml.dest, {
             hasChanged: changedHelpers.compareToAdjacentSrcs(['.xml', '.xsl', '.yaml'])
         }))
-        .pipe(debugPipe())
+        .pipe(debugPipe({title: 'generate:blocks:xml'})())
         .pipe(preProcessPipe())
         .pipe(xslRootPipe())
         .pipe(defaultDataPipe())
@@ -372,8 +365,8 @@ gulp.task('generate:pages:xml', ['info'], function() {
 
     return gulp.src(paths.crate.content.src)
         .pipe(errorPipe())
-        .pipe(plugins.cached('content'))
-        .pipe(debugPipe())
+        // .pipe(plugins.cached('content'))
+        .pipe(debugPipe({title: 'generate:pages:xml'})())
         .pipe(pageProc())
         .pipe(plugins.changed(paths.crate.content.dest, {
             extension: '.xml',
@@ -400,7 +393,7 @@ gulp.task('generate:pages:xsl', ['info'], function() {
             extension: '.xsl',
             hasChanged: changedHelpers.compareToBlocks(root, blocklist)
         }))
-        .pipe(debugPipe())
+        .pipe(debugPipe({title: 'generate:pages:xsl'})())
         .pipe(xslRootPipe())
         .pipe(applyTemplate({
             engine: 'swig',
@@ -431,7 +424,7 @@ gulp.task('xslt', ['content', 'blocks'], function() {
             extension: '.html',
             hasChanged: changedHelpers.compareToAdjacentSrcs(['.xml', '.xsl'])
         }))
-        .pipe(debugPipe())
+        .pipe(debugPipe({title: 'xslt'})())
         .pipe(saxon({
             jarPath: __dirname + '/lib/saxon9he.jar',
             xslPath: function(file) {
@@ -470,7 +463,7 @@ gulp.task('jshint', ['scripts'], function() {
 gulp.task('assets', function() {
     return gulp.src(paths.assets.src)
         .pipe(plugins.watch(paths.assets.src))
-        .pipe(debugPipe())
+        .pipe(debugPipe({title: 'assets'})())
         .pipe(errorPipe())
         .pipe(gulp.dest(paths.assets.dest))
         .pipe(browserSync.stream());
@@ -478,7 +471,7 @@ gulp.task('assets', function() {
 
 gulp.task('docs', function() {
     gulp.src('./docs/**/*.md')
-        .pipe(debugPipe())
+        .pipe(debugPipe({title: 'docs'})())
         .pipe(plugins.markdown())
         .pipe(gulp.dest('./build/docs'));
 });
@@ -528,6 +521,18 @@ gulp.task('watch', ['xslt', 'serve'], function() {
     ], ['watch:webpack']).on('change', changeEvent('Scripts'));
 
 });
+
+
+gulp.task('output:filelist', ['info:files', 'info:blocks'], function(cb) {
+    console.log(gutil.colors.dim('%j'), filelist);
+    cb();
+});
+
+gulp.task('output:blocklist', ['info:blocks'], function(cb) {
+    console.log(gutil.colors.dim('%j'), blocklist);
+    cb();
+});
+
 
 gulp.task('info', ['info:blocks', 'info:files']);
 
