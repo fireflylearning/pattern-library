@@ -1,29 +1,22 @@
+/* This is for crate styles *only* */
+
 @color-red1: #ac1d1d;
 @color-red2: #550e0e;
+@crate-font-stack: "Helvetica",
+"Arial";
+@crate-font-base: 15px;
+@crate-spacing-base: 20px;
 
-.test() {
-    background: red;
-}
-
-#ns-test() {
-    .one() {
-        background-color: purple;
-    }
-}
-
-.ns-test {
-    #ns-test > .one();
-}
 
 body {
     background-color: #fcfcfc;
-    font-family: "Lucida Grande", "Helvetica", "Arial";
-    font-size: 15px;
-    padding: 20px;
+    font-family: @crate-font-stack;
+    font-size: @crate-font-base;
+    padding: @crate-spacing-base;
     margin: 0;
 }
 
-.xx-pattern-jump {
+.crate_pattern-jump {
     position: fixed;
     height: 30px;
     background-color: #ccc;
@@ -78,13 +71,22 @@ body {
     }
 }
 
+.crate_link {
+    display: block;
+    margin-top: 2*@crate-spacing-base;
+    padding: @crate-spacing-base 0;
+    border-top: 1px solid #eee;
+    a {
+        text-decoration: none;
+    }
+}
+
 .crate_blocks__item__link__text {
     display: none;
 }
 
 .crate-block__source {
     background-color: #f0f0f0;
-    border-top:1px solid #dedede;
-
+    border-top: 1px solid #dedede;
     padding: 10px;
 }

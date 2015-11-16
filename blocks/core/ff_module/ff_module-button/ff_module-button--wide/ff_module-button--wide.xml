@@ -1,4 +1,0 @@
-
-<text>{{text | default('other text')}}</text>
-<classes>ff_util-clearfix</classes>
-<attributes>data-value="test-value"</attributes>

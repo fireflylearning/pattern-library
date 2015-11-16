@@ -4,7 +4,6 @@
 
     <xsl:template match="blocks">
         <xsl:call-template name="call-{{basename}}"/>
-        <a href="/">Back</a>
     </xsl:template>
 
     <xsl:template match="/">
@@ -23,9 +22,13 @@
 
         </head>
         <body>
+            <div class="crate_block">
+                <xsl:apply-templates select="blocks"/>
+            </div>
 
-            <xsl:apply-templates select="blocks"/>
-
+            <div class="crate_link">
+                <a href="/">&lt; Back</a>
+            </div>
 
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>

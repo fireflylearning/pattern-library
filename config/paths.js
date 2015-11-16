@@ -51,7 +51,7 @@ function getPaths(mode) {
                 dest: basePaths.temp
             },
             styles: {
-                src: [basePaths.blocks + '**/outputs.less', basePaths.blocks + '**/settings.less', basePaths.blocks + 'shared/**/*.less', basePaths.blocks + '**/*.less'],
+                src: [basePaths.blocks + 'shared/**/*.less', basePaths.blocks + '*.less', basePaths.blocks + '**/*.less'],
                 dest: basePaths.dest + 'css/'
             },
             xml: {

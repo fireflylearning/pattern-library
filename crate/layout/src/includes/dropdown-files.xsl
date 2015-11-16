@@ -1,4 +1,4 @@
-<form action="" method="post" id="pattern" class="xx-pattern-jump">
+<form action="" method="post" id="pattern" class="crate_pattern-jump">
     <select name="section" id="pattern-select" class="nav-section-select">
         <option value="">Jump to…</option>
         {% for block in blocklist %}
