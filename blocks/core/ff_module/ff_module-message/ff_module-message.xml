@@ -1,0 +1,5 @@
+<messages>
+    {% for message in messages %}
+        <message text="{{ message.text }}" url="{{ message.url }}" author="{{ message.author }}" author_profile="{{ author.profile }}" date="{{ message.date }}" nice_date="{{ message.nice_date }}" important="{{ message.important }}"/>
+    {% endfor %}
+</messages>
