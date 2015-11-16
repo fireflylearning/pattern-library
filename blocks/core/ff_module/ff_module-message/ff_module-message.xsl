@@ -3,7 +3,7 @@
     
     <xsl:for-each select="$data/messages/message">
         <div class="ff_module-message">
-            <div class="ff_module-message__text">
+            <div class="ff_module-message__text ff_util-prose">
                 <p><a href="{@url}"><xsl:value-of select="@text"/></a></p>
             </div>
             <div class="ff_module-message__meta">
