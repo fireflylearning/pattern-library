@@ -74,12 +74,17 @@ browserSync = require('browser-sync').create();
 webpackConfig = getWebpackConfig(paths, options);
 devCompiler = webpack(webpackConfig);
 
+var errorHandler = isDebugging ? function(err) {
+    gutil.beep();
+    console.log(err);
+} : plugins.notify.onError({
+    message: '<%= error.message %>',
+    title: 'Error'
+});
+
 var errorPipe = lazypipe()
     .pipe(plugins.plumber, {
-        errorHandler: plugins.notify.onError({
-            message: '<%= error.message %>',
-            title: 'Error'
-        })
+        errorHandler: errorHandler
     });
 
 var fmPipe = lazypipe()
@@ -104,7 +109,6 @@ var fileDataPipe = lazypipe()
     });
 
 var preProcessPipe = lazypipe()
-    .pipe(debugPipe)
     .pipe(fmPipe)
     .pipe(fileDataPipe);
 
@@ -119,6 +123,8 @@ var pageProc = lazypipe()
     });
 
 var defaultDataPipe = lazypipe()
+    .pipe(errorPipe)
+    .pipe(debugPipe)
     .pipe(plugins.tap, function(file) {
 
         var yamlPath = './' + gutil.replaceExtension(path.relative(root, file.path), '.yaml'),
@@ -255,19 +261,15 @@ function getFileContext(file) {
 
 
 
-
-
-
 var blocklist = [];
 gulp.task('info:blocks', function() {
     blocklist = [];
+
     return gulp.src(paths.blocklist)
         .pipe(errorPipe())
-        .pipe(plugins.cached('blocks'))
         .pipe(debugPipe())
         .pipe(fmPipe())
         .pipe(defaultDataPipe())
-        .pipe(plugins.remember('blocks'))
         .pipe(plugins.tap(function(file) {
             blocklist.push(getFileBaseData(file));
         }));
@@ -324,10 +326,13 @@ gulp.task('build:css:crate', function() {
 
 
 gulp.task('generate:blocks:xsl', ['info'], function() {
+    // console.log('%j',blocklist);
 
     return gulp.src(paths.blocks.xsl.src)
         .pipe(errorPipe())
-        .pipe(plugins.changed(paths.blocks.xsl.dest))
+        .pipe(plugins.changed(paths.blocks.xsl.dest, {
+            hasChanged: changedHelpers.compareToAdjacentSrcs(['.xml', '.xsl', '.yaml'])
+        }))
         .pipe(debugPipe())
         .pipe(fmPipe())
         .pipe(reXSL())
@@ -347,7 +352,10 @@ gulp.task('generate:blocks:xml', ['info'], function() {
 
     return gulp.src(paths.blocks.xml.src)
         .pipe(errorPipe())
-        .pipe(plugins.changed(paths.blocks.xml.dest))
+        .pipe(plugins.changed(paths.blocks.xml.dest, {
+            hasChanged: changedHelpers.compareToAdjacentSrcs(['.xml', '.xsl', '.yaml'])
+        }))
+        .pipe(debugPipe())
         .pipe(preProcessPipe())
         .pipe(xslRootPipe())
         .pipe(defaultDataPipe())
@@ -363,8 +371,9 @@ gulp.task('generate:blocks:xml', ['info'], function() {
 gulp.task('generate:pages:xml', ['info'], function() {
 
     return gulp.src(paths.crate.content.src)
-        .pipe(plugins.cached('content'))
         .pipe(errorPipe())
+        .pipe(plugins.cached('content'))
+        .pipe(debugPipe())
         .pipe(pageProc())
         .pipe(plugins.changed(paths.crate.content.dest, {
             extension: '.xml',
@@ -391,6 +400,7 @@ gulp.task('generate:pages:xsl', ['info'], function() {
             extension: '.xsl',
             hasChanged: changedHelpers.compareToBlocks(root, blocklist)
         }))
+        .pipe(debugPipe())
         .pipe(xslRootPipe())
         .pipe(applyTemplate({
             engine: 'swig',
@@ -411,16 +421,17 @@ gulp.task('clean', function() {
 gulp.task('xslt', ['content', 'blocks'], function() {
 
     var xslProcTemp = paths.temp;
-    var xml = [xslProcTemp + 'blocks/**/*.xml', xslProcTemp + '*.xml', xslProcTemp + 'pages/**/*.xml'];
+    var xmlSrc = [xslProcTemp + 'blocks/**/*.xml', xslProcTemp + 'index.xml', xslProcTemp + 'pages/**/*.xml'];
 
-    return gulp.src(xml, {
+    return gulp.src(xmlSrc, {
             base: xslProcTemp
         })
         .pipe(errorPipe())
         .pipe(plugins.changed(paths.dest, {
             extension: '.html',
-            hasChanged: changedHelpers.compareToXSL
+            hasChanged: changedHelpers.compareToAdjacentSrcs(['.xml', '.xsl'])
         }))
+        .pipe(debugPipe())
         .pipe(saxon({
             jarPath: __dirname + '/lib/saxon9he.jar',
             xslPath: function(file) {
@@ -459,6 +470,7 @@ gulp.task('jshint', ['scripts'], function() {
 gulp.task('assets', function() {
     return gulp.src(paths.assets.src)
         .pipe(plugins.watch(paths.assets.src))
+        .pipe(debugPipe())
         .pipe(errorPipe())
         .pipe(gulp.dest(paths.assets.dest))
         .pipe(browserSync.stream());
