@@ -1,7 +1,5 @@
-/* jshint node: true */
-'use strict';
-
 function getPaths(mode) {
+    'use strict';
 
     var base = {
         blocks: 'blocks/',
@@ -9,7 +7,7 @@ function getPaths(mode) {
         dest: 'wwwroot/',
         content: 'crate/content/',
         layout: 'crate/layout/',
-        blocklist: 'blocks/' + '**/*.xml'
+        blocklist: 'blocks/**/*.xml'
     };
 
     var basePaths = {
@@ -53,7 +51,7 @@ function getPaths(mode) {
                 dest: basePaths.temp
             },
             styles: {
-                src: [basePaths.blocks + '**/outputs.less', basePaths.blocks + '**/settings.less', basePaths.blocks + '**/*.less'],
+                src: [basePaths.blocks + 'shared/**/*.less', basePaths.blocks + '*.less', basePaths.blocks + '**/*.less'],
                 dest: basePaths.dest + 'css/'
             },
             xml: {
@@ -70,25 +68,11 @@ function getPaths(mode) {
                 output: './' + basePaths.dest + 'js/'
             }
         },
-        clean: {
-            base: basePaths.dest,
-            blocks: {
-                xml: basePaths.temp + basePaths.blocks + '**/*.xml',
-                xsl: basePaths.temp + basePaths.blocks + '**/*.xsl',
-                html: basePaths.temp + basePaths.blocks + '**/*.html'
-            },
-            content: {
-                pages: {
-                    xml: basePaths.temp + 'pages/**/*.xml',
-                    xsl: basePaths.temp + 'pages/**/*.xsl',
-                },
-                imports: {
-                    xsl: basePaths.temp + 'layout/imports/**/*.xsl'
-                }
-            },
+        clean: [basePaths.temp, basePaths.dest],
+        lint: {
             styles: basePaths.dest + '**/*.css',
+            scripts: basePaths.blocks + '**/*.js',
         },
-
         images: {
             src: basePaths.blocks + '**/*.{jpg, jpeg, png, svg, gif}',
             dest: basePaths.dest + 'images/'

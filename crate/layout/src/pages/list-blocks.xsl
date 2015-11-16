@@ -26,7 +26,10 @@
 
             <xsl:apply-templates select="page/blocks"/>
 
-            <a href="/">Back</a>
+            <div class="crate_link">
+                <a href="/">&lt; Back</a>
+            </div>
+
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>
         </body>
@@ -39,8 +42,6 @@
 
                 <h3>{{block.basename}}</h3>
                 <xsl:call-template name="call-{{block.basename}}"/>
-
-                <hr/>
             {% endfor %}
 
     </xsl:template>

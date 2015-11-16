@@ -1,0 +1,30 @@
+#ff_mix-base-box() {
+    .default() {
+        padding: @ff_size_control_padding;
+        background-color: @ff_colour_control_bg;
+    }
+    .medium() {
+        // padding: 1.25rem;
+    }
+    .isolate() {
+        border: 1px solid @ff_colour_control_border;
+        border-radius: @ff_size_control_rounding;
+    }
+    .list-item() {
+        border-right: 1px solid @ff_colour_control_border;
+        &:last-of-type {
+            border-right: none;
+        }
+    }
+}
+
+#ff_mix-base-links() {
+    .default() {
+        color: @ff_color_control_link;
+        text-decoration: none;
+    }
+    .active() {
+        color: white;
+        text-shadow: 0 1px 0 fade(black,20%);
+    }
+}
