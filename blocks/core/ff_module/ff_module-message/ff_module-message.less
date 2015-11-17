@@ -1,5 +1,6 @@
 .ff_module-message {
     padding: @ff_size_control_padding;
+    position: relative;
 }
 
 .ff_module-message__text a {
@@ -10,4 +11,10 @@
     #ff_mix-base-text > .small();
     #ff_mix-base-text > .quiet();
     margin-top: @ff_size_prose_spacing/4;
+}
+
+.ff_module-message__controls {
+    position: absolute;
+    top: @ff_size_control_padding;
+    right: @ff_size_control_padding;
 }

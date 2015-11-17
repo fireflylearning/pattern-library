@@ -7,4 +7,4 @@ messages:
     author_profile: "#"
     date: "09/11/2015 12:16"
     nice_date: "Wednesday 9th November 2015 at 12:16pm"
-    important: true
+    importance: 2

@@ -1,17 +1,22 @@
 <xsl:template name="ff_module-message">
     <xsl:param name="data" />
     
-    <xsl:for-each select="$data/messages/message">
-        <div class="ff_module-message">
+    <xsl:for-each select="$data/messages/notice">
+        <div class="ff_module-message" id="@id">
             <div class="ff_module-message__text ff_util-prose">
-                <p><a href="{@url}"><xsl:value-of select="@text"/></a></p>
+                <p><a href="{@url}"><xsl:value-of select="htmlMessage"/></a></p>
             </div>
             <div class="ff_module-message__meta ff_util-prose">
                 <p>
-                    <a href="{@author_profile}"><xsl:value-of select="@author"/></a>
+                    <a href="{@from_href}"><xsl:value-of select="@from"/></a>
                     <xsl:text> </xsl:text>
-                    <time datetime="{@date}"><xsl:value-of select="@nice_date"/></time>
+                    <time datetime="{@isodate}"><xsl:value-of select="@date"/></time>
                 </p>
+            </div>
+            <div class="ff_module-message__controls">
+                <xsl:if test="@can_archive = 'yes'">
+                    <a href="#" class="ff_module-message__archive">Archive</a>
+                </xsl:if>
             </div>
         </div>
     </xsl:for-each>
