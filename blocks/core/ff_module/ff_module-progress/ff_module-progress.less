@@ -1,4 +1,24 @@
-.ff_module-progress {
+//progress bars
+.ff-module-progress__stacked {
     border: 1px solid @ff_colour_control_border;
     border-radius: @ff_size_control_rounding;
+    height: @ff_size_control_vertical * 2;
+    overflow: hidden;
+    padding: 1px;
+}
+
+.ff-module-progress__meta {
+    display: none;
+}
+
+.ff-module-progress__bar {
+    float: left;
+    background: @ff_colour_primary;
+    height: 100%;
+}
+
+.ff-module-progress__bar--marked {
+    background: darken(@ff_colour_primary,15%);
+    border-top-left-radius: @ff_size_control_rounding;
+    border-bottom-left-radius: @ff_size_control_rounding;
 }
