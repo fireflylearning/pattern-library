@@ -29,3 +29,21 @@
         text-shadow: 0 1px 0 fade(black, 20%);
     }
 }
+
+#ff_mix-base-text() {
+    .small() {
+        font-size: 60%;   
+    }
+    .quiet() {
+        &, a {
+            color: @ff_colour_control_border;
+            text-decoration: none;
+        } 
+    }
+}
+
+.ff_mix-clearfix() {
+  zoom:1;
+  &:before, &:after{ content:""; display:table; }
+  &:after{ clear: both; }
+}
