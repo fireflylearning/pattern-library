@@ -6,7 +6,7 @@
             <div class="ff_module-message__text ff_util-prose">
                 <p><a href="{@url}"><xsl:value-of select="@text"/></a></p>
             </div>
-            <div class="ff_module-message__meta">
+            <div class="ff_module-message__meta ff_util-prose">
                 <p>
                     <a href="{@author_profile}"><xsl:value-of select="@author"/></a>
                     <xsl:text> </xsl:text>
