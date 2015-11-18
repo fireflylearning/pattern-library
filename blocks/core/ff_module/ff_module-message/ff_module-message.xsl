@@ -4,7 +4,7 @@
     <xsl:for-each select="$data/messages/notice">
         <div class="ff_module-message" id="@id">
             <div class="ff_module-message__text ff_util-prose">
-                <p><a href="{@url}"><xsl:value-of select="htmlMessage"/></a></p>
+                <p><a href="{@url}" class="ff_module-message__link"><xsl:value-of select="htmlMessage"/></a></p>
             </div>
             <div class="ff_module-message__meta ff_util-prose">
                 <p>

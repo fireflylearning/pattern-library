@@ -12,18 +12,18 @@
     </xsl:variable>
     
     <div class="ff_module-progress">
-        <div class="ff-module-progress__stacked">
-            <div class="ff-module-progress__bar ff-module-progress__bar--marked" style="width: {$marked};">
-                <span class="ff-module-progress__meta"><xsl:value-of select="$marked"/> Marked</span>
+        <div class="ff_module-progress__stacked">
+            <div class="ff_module-progress__bar ff_module-progress__bar--marked" style="width: {$marked};" title="{$marked} Marked">
+                <span class="ff_module-progress__meta"><xsl:value-of select="$marked"/> Marked</span>
             </div> 
-            <div class="ff-module-progress__bar ff-module-progress__bar--completed" style="width: {$marked-diff};">
-                <span class="ff-module-progress__meta"><xsl:value-of select="$completed"/> Completed</span>
+            <div class="ff_module-progress__bar ff_module-progress__bar--completed" style="width: {$marked-diff};" title="{$completed} Completed">
+                <span class="ff_module-progress__meta"><xsl:value-of select="$completed"/> Completed</span>
             </div>
         </div>
-        <ul class="ff-module-progress__key">
-            <li class="ff-module-progress__label ff-module-progress__label--marked"><xsl:value-of select="$data/progress/@marked"/> Marked</li>
-            <li class="ff-module-progress__label ff-module-progress__label--completed"><xsl:value-of select="$data/progress/@completed_by"/> Completed</li>
-            <li class="ff-module-progress__label ff-module-progress__label--total"><xsl:value-of select="$data/progress/@sent_to"/> Total</li>
+        <ul class="ff_module-progress__key">
+            <li class="ff_module-progress__label ff_module-progress__label--marked"><xsl:value-of select="$data/progress/@marked"/> Marked</li>
+            <li class="ff_module-progress__label ff_module-progress__label--completed"><xsl:value-of select="$data/progress/@completed_by"/> Completed</li>
+            <li class="ff_module-progress__label ff_module-progress__label--total"><xsl:value-of select="$data/progress/@sent_to"/> Total</li>
         </ul>
     </div>
     
