@@ -1,10 +1,8 @@
-<messages>
-    {% for message in messages %}
-        <notice id="msg-1"  notice_archived="no" isosenttime="{{ message.date }}" postback_href="{{ message.url }}" type="message" from="{{ message.author }}" from_href="{{ author.profile }}" can_archive="yes" date="{{ message.nice_date }}" importance="{{ message.importance }}">
-            <message>{{ message.text }}</message>
-            <htmlMessage>{{ message.text }}</htmlMessage>
-            <description/>
-            <attachments/>
-        </notice>
-    {% endfor %}
-</messages>
+{% for message in messages %}
+    <notice id="msg-1"  notice_archived="no" isosenttime="{{ message.date }}" postback_href="{{ message.url }}" type="message" from="{{ message.author }}" from_href="{{ author.profile }}" can_archive="yes" date="{{ message.nice_date }}" importance="{{ message.importance }}">
+        <message>{{ message.text }}</message>
+        <htmlMessage>{{ message.text }}</htmlMessage>
+        <description/>
+        <attachments/>
+    </notice>
+{% endfor %}
