@@ -1,10 +1,11 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:ff_module="http://www.fireflylearning/module">
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+    xmlns:ext="http://exslt.org/common">
 
-    {% include '../includes/call-template.xsl' with { blocks: blocklist } %}
-    {% include '../includes/block-listing.xsl' with { blocks: blocklist } %}
+    {% include '../includes/call-template.xsl' with { blocks: site.blocks } %}
+    {% include '../includes/block-listing.xsl' with { blocks: site.blocks } %}
 
     <xsl:template match="/">
 
@@ -12,7 +13,7 @@
             <head>
             <meta charset="utf-8"/>
             <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-            <title>{{title}} : {{site.title}}</title>
+            <title>{{page.title}} : {{site.title}}</title>
             <meta name="description" content=""/>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -23,7 +24,7 @@
         </head>
         <body>
 
-            <h1>{{title}} : {{site.title}}</h1>
+            <h1>{{page.title}} : {{site.title}}</h1>
 
             <div class="contents">{{contents|safe}}</div>
 

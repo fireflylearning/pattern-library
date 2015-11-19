@@ -1,0 +1,8 @@
+{% for block in blocks %}
+{% set p = '../../../../' + block.info.basepath + '.xml' %}
+{% for data in block.data %}
+<block link="{{block.info.url}}" id="{{block.info.basename}}">
+    {% include p with data only %}
+</block>
+{% endfor %}
+{% endfor %}

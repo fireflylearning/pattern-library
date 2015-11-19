@@ -1,7 +1,14 @@
-<?xml version="1.0" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+    xmlns:ext="http://exslt.org/common">
 
-    {% include '../includes/call-template.xsl' with blocks %}
+    {% include '../includes/call-template.xsl' with { blocks:page.blocks } %}
+
+    {% if requires %}
+    {% include '../includes/require-template.xsl' with {blocks:requires} %}
+    {% endif %}
 
     <xsl:template match="/">
 
@@ -9,7 +16,7 @@
         <head>
             <meta charset="utf-8"/>
             <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-            <title><xsl:value-of select="page/title"/></title>
+            <title>{{page.title}} : {{site.title}}</title>
             <meta name="description" content=""/>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -20,11 +27,13 @@
         </head>
         <body>
 
-            <h1>{{title}} : {{site.title}}</h1>
+            <h1>{{page.title}} : {{site.title}}</h1>
 
             <div class="contents">{{contents|safe}}</div>
 
-            <xsl:apply-templates select="page/blocks"/>
+            <div class="crate_block">
+                <xsl:apply-templates select="page/blocks"/>
+            </div>
 
             <div class="crate_link">
                 <a href="/">&lt; Back</a>
@@ -38,10 +47,11 @@
 
     <xsl:template match="page/blocks">
 
-            {% for block in blocks %}
+            {% for block in page.blocks %}
 
-                <h3>{{block.basename}}</h3>
-                <xsl:call-template name="call-{{block.basename}}"/>
+                <h3>{{block.info.basename}}</h3>
+                <xsl:call-template name="call-{{block.info.basename}}"/>
+                <br/>
             {% endfor %}
 
     </xsl:template>
