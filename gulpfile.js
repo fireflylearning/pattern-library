@@ -4,9 +4,6 @@ var gulp = require('gulp');
 
 var gutil = require('gulp-util'),
     path = require('path'),
-    fm = require('front-matter'),
-    markdown = require('markdown').markdown,
-    fs = require('fs'),
     del = require('del'),
     _ = require('lodash-node'),
     lazypipe = require('lazypipe'),
@@ -634,7 +631,7 @@ gulp.task('watch', ['runwatchxslt'], function() {
         .on('change', changeEvent('Blocks:md'));
 
     gulp.watch([
-
+            paths.blocks.xml.src
         ], ['watch:blocks:xml', 'watch:content'])
         .on('change', changeEvent('Blocks:xml'));
 
