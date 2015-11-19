@@ -1,1 +1,1 @@
-<progress sent_to="23" no_excused="2" completed_by="20" marked="5"/>
+<progress sent_to="{{ marked }}" no_excused="{{ no_excused }}" completed_by="{{ completed_by }}" marked="{{ marked }}"/>

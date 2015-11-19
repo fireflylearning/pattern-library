@@ -1,9 +1,1 @@
-<dashboard-items>
-    {% for item in dashboard_items %}
-    <item title="{{item.title | default('Container Title')}}" more-page-text="{{item.more_page_text | default('more') }}" more-page-link="{{ item.more_page_link | default('#') }}">
-        {% for module in item.items %}
-            <p>{{ module }}</p>
-        {% endfor %}
-    </item>
-    {% endfor %}
-</dashboard-items>
+<item title="{{title | default('Container Title')}}" more-page-text="{{more_page_text | default('more') }}" more-page-link="{{ more_page_link | default('#') }}"/>

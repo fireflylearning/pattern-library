@@ -1,11 +1,9 @@
-{% for bookmark in bookmarks %}
-    {% if bookmark.type == 'personal' %}
-        <bookmark type="personal" href="{{ bookmark.href }}">
-            <label>{{ bookmark.label }}</label>
-        </bookmark>
-    {% else %}
-        <bookmark type="recommended" href="{{ bookmark.href }}" from="{{ bookmark.from }}" from_href="{{ bookmark.from_href }}" date="{{ bookmark.date }}">
-            <label>{{ bookmark.label }}</label>
-        </bookmark>
-    {% endif %}
-{% endfor %}
+{% if type == 'personal' %}
+    <bookmark type="personal" href="{{ bookmark.href }}">
+        <label>{{ label }}</label>
+    </bookmark>
+{% else %}
+    <bookmark type="recommended" href="{{ href }}" from="{{ from }}" from_href="{{ from_href }}" date="{{ date }}">
+        <label>{{ label }}</label>
+    </bookmark>
+{% endif %}

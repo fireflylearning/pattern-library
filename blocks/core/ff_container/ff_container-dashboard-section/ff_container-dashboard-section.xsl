@@ -2,7 +2,7 @@
     <xsl:param name="data" />
     <section class="ff_conatiner-dashboard-section">
         <header class="ff_container-dashboard-section__header">
-            <h2 class="ff_container-dashboard-section__title">Example Header</h2>
+            <h2 class="ff_container-dashboard-section__title"><xsl:value-of select="$data/item/@title"/></h2>
         </header>
         <div class="ff_container-dashboard-section__main">
             <p>Modules Go here</p>
