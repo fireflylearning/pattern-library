@@ -542,7 +542,7 @@ gulp.task('serve', ['xslt'], function() {
     browserSync.init(options.browserSync);
 });
 
-gulp.task('watch', ['runwatchxslt'], function() {
+gulp.task('watch', function() {
 
     gulp.watch([
             paths.assets.src
