@@ -12,7 +12,11 @@
 
     <div class="ff_module-planner-note">
         <xsl:if test="$data/note != ''">
-        <xsl:value-of select="$data/note" disable-output-escaping="yes"/></xsl:if>
+        <div class="ff_util-prose">
+            <xsl:value-of select="$data/note" disable-output-escaping="yes"/>
+        </div>
+        </xsl:if>
+
         <xsl:if test="not($data/note != '')">
             <xsl:call-template name="ff_module-button">
                 <xsl:with-param name="data" select="$ui-buttons/button[@id='lesson']"/>

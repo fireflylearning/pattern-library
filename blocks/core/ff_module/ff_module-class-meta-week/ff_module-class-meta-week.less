@@ -1,0 +1,24 @@
+.ff_module-class-meta-week {
+    #ff_mix-class-meta > .default();
+    &__item {
+        #ff_mix-class-meta-item > .default();
+        #ff_mix-class-meta-item > .small();
+        display: none;
+        &--subject {
+            display: list-item;
+        }
+    }
+    &__link {
+        #ff_mix-base-links > .default();
+    }
+    @media screen and (min-width:30em) {
+        &__item {
+            #ff_mix-class-meta-item > .default();
+            #ff_mix-class-meta-item > .small();
+            display: list-item;
+            &--loc {
+                #ff_mix-base-text > .quiet();
+            }
+        }
+    }
+}
