@@ -1,8 +1,8 @@
 ---
 data:
-    text: "Button YAML text 3"
+    text: "Button YAML text"
 page: 
-    title: FF 6 Module Button
+    title: FF Module Button
 ---
 ## Usage
 Add `<div class="ff_module-button">` around button element to apply styles.
