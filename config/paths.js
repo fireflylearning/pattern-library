@@ -7,19 +7,17 @@ function getPaths(mode) {
         dest: 'wwwroot/',
         content: 'crate/content/',
         layout: 'crate/layout/',
-        blocklist: 'blocks/**/*.xml'
     };
 
     var basePaths = {
         blocks: base.blocks,
-        blocklist: base.blocklist,
         dest: base.dest,
 
         crate: base.crate,
         content: base.content,
         layout: base.layout,
 
-        temp: '.tmp/',
+        temp: 'tmp/',
         assets: 'assets/',
     };
 
@@ -36,7 +34,7 @@ function getPaths(mode) {
             },
             layout: {
                 base: basePaths.layout,
-                src: [basePaths.layout + '**/*.xsl', '!' + basePaths.layout + 'src/**/*.xsl'],
+                src: [basePaths.layout + '**/*.*', '!' + basePaths.layout + 'src/**/*.*'],
                 dest: basePaths.temp
             },
             styles: {
@@ -58,6 +56,10 @@ function getPaths(mode) {
                     basePaths.blocks + '**/*.less'
                 ],
                 dest: basePaths.dest + 'css/'
+            },
+            md:{
+                src: basePaths.blocks + '**/*.md',
+                dest: basePaths.temp + basePaths.blocks
             },
             xml: {
                 src: basePaths.blocks + '**/*.xml',
@@ -84,7 +86,7 @@ function getPaths(mode) {
         },
 
         assets: {
-            src: basePaths.assets + '**/*',
+            src: basePaths.assets + '**/*.*',
             dest: basePaths.dest
         }
     };

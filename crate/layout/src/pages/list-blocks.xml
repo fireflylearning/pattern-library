@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <?xml-stylesheet type="text/xsl" href="{{xslPath}}"?>
-
-        <page>
-            <blocks>
-                {% for block in blocks %}
-                    {% set p = '../../../../' + block.path %}
-                    {% for context in block.contexts %}
-                        <block id="{{block.basename}}">
-                            {% include p with context only %}
-                        </block>
-                    {% endfor %}
-                {% endfor %}
-            </blocks>
-        </page>
+<page>
+    <blocks>
+        {% include '../includes/block-xml-template.xml' with { blocks:page.blocks } %}
+    </blocks>
+</page>

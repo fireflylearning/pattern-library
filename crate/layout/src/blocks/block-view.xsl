@@ -1,9 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ff_module="http://www.fireflylearning/module">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+    xmlns:ext="http://exslt.org/common">
 
-    {% include '../includes/call-template.xsl' with { blocks: [{ basepath: basepath, basename: basename }]} %}
+    {% include '../includes/call-template.xsl' with { blocks:page.blocks } %}
+
+    {% if requires %}
+    {% include '../includes/require-template.xsl' with {blocks:requires} %}
+    {% endif %}
 
     <xsl:template match="blocks">
-        <xsl:call-template name="call-{{basename}}"/>
+        <xsl:call-template name="call-{{info.basename}}"/>
     </xsl:template>
 
     <xsl:template match="/">
@@ -12,7 +20,7 @@
             <head>
             <meta charset="utf-8"/>
             <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-            <title>{{basename}}</title>
+            <title>{{page.title}} ::: {{site.title}}</title>
             <meta name="description" content=""/>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -22,6 +30,7 @@
 
         </head>
         <body>
+            <div class="content">{{contents|safe}}</div>
             <div class="crate_block">
                 <xsl:apply-templates select="blocks"/>
             </div>

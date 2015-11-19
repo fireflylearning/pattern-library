@@ -1,7 +1,8 @@
 ---
-title: Segments son
-layout: list-blocks
-blocks:
+page:
+    title: Segments son
+    layout: list-blocks
+data:
   - ff_module-segments:
     - items:
       - A

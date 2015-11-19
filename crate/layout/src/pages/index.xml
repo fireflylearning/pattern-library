@@ -3,12 +3,6 @@
 
         <page>
             <blocks>
-                {% for block in blocklist %}
-                <block link="{{block.link}}" id="{{block.basename}}">
-                    {% set p = '../../../../' + block.path %}
-                    {% include p with block only %}
-                </block>
-                {% endfor %}
+                {% include '../includes/block-xml-template.xml' with { blocks:site.blocks } %}
             </blocks>
-
         </page>
