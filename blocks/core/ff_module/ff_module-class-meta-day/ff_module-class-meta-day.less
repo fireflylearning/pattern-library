@@ -1,0 +1,14 @@
+.ff_module-class-meta-day {
+    #ff_mix-class-meta > .default();
+    &__item {
+        #ff_mix-class-meta-item > .default();
+    }
+    &__link {
+        #ff_mix-base-links > .default();
+    }
+    @media screen and (min-width:30em) {
+        &__item:nth-child(n+2) {
+            #ff_mix-class-meta-item > .inline()
+        }
+    }
+}
