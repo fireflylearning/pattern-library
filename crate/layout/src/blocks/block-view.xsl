@@ -30,10 +30,10 @@
 
         </head>
         <body>
-            <div class="content">{{contents|safe}}</div>
             <div class="crate_block">
                 <xsl:apply-templates select="blocks"/>
             </div>
+            <div class="content">{{contents|safe}}</div>
 
             <div class="crate_link">
                 <a href="/">&lt; Back</a>

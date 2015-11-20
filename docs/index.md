@@ -1,5 +1,12 @@
 # Front end build process
 
+//TODO
+### API 
+gulp
+    - builds, serves and watches for changes
+gulp clean
+    - cleans the temporary and output directories
+
 ## Rationale
 
 - For large, complex systems, front-end development requires many steps such as less to css processing, image and file minification, build output, unit- and end-to-end testing, etc. 
@@ -24,13 +31,13 @@ A directory contains all the patterns(blocks) used within the site, each within 
 In this setup the styles are written in Less, though any css pre-processor could be used.
 
 #### Templates
-The templating language here is Nunjucks; each block is written primarily as an HTML file and uses a `.html` extension. Areas of variable content are marked by tags as defined by the templating language used.
+The templating language here is Swig; each block is written primarily as an `xsl` file and uses a `.xsl` extension. Areas of variable content are marked by `{{` and `}}` tags as defined by the templating language used.
 
 #### Scripts
 Here the scripts are in plain javascript; ideally the component script styles are written in a module format (such as CommonJS) with all dependencies clearly defined and a single export source.
 
 
-### Layout
+### Crate
 A collection of layout files for presenting these patterns in a variety of ways and with a variety of content. For instance, the developer can view the pattern in the context of all other patterns for comparison purposes; in isolation for development and testing; with a variety of text in different lengths and languages.
 
 ## Process
@@ -61,11 +68,5 @@ The gulp task will run and traverse the directory, performing the following task
 - Any additional assets such as pre-existing source files are copied to the build folder.
  
 
-## Integration
 
-As the build process can describe any combination of transformation and destination, it should be possible to output the core patterns and styles to a destination and in a format that the exisiting Firefly implementation can utilise.
-For instance, the core blocks could be written in xslt, and transformed to html only for display within the pattern library. These core blocks could then be output to another destination accessible to the Firefly system. A separate build script could describe this process, so that only the resources required by Firefly would be built.
-
-### API
-Do it?
 

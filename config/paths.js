@@ -17,7 +17,7 @@ function getPaths(mode) {
         content: base.content,
         layout: base.layout,
 
-        temp: 'tmp/',
+        temp: '.tmp/',
         assets: 'assets/',
     };
 
@@ -49,10 +49,10 @@ function getPaths(mode) {
                 dest: basePaths.temp
             },
             styles: {
-                src: [basePaths.blocks + 'shared/**/*.less',
-                    basePaths.blocks + '*/shared/outputs.less',
-                    basePaths.blocks + '*/shared/settings.less',
-                    basePaths.blocks + '*/shared/*.less',
+                src: [basePaths.blocks + '_shared/**/*.less',
+                    basePaths.blocks + '*/_shared/outputs.less',
+                    basePaths.blocks + '*/_shared/settings.less',
+                    basePaths.blocks + '*/_shared/*.less',
                     basePaths.blocks + '**/*.less'
                 ],
                 dest: basePaths.dest + 'css/'

@@ -1,6 +1,6 @@
 ---
 page:
-    title: "Basic Button (text variations 1)"
+    title: "Basic Button (text variations)"
     layout: list-blocks
 data: 
   - 

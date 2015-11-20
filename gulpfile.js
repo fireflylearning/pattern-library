@@ -542,51 +542,7 @@ gulp.task('serve', ['xslt'], function() {
     browserSync.init(options.browserSync);
 });
 
-
-// gulp.task('watch', ['xslt', 'serve'], function() {
-//
-// gulp.watch([
-//         paths.assets.src
-//     ], ['watch:assets'])
-//     .on('change', changeEvent('Assets'));
-
-// gulp.watch([
-//         paths.crate.content.src
-//     ], ['watch:content'])
-//     .on('change', changeEvent('Content'));
-
-//     gulp.watch([
-//         paths.crate.layout.base + 'src/pages/**/*.*',
-//         paths.crate.layout.base + 'src/includes/**/*.*'
-//     ], ['watch:content:layout'])
-//     .on('change', changeEvent('Layout:content '));
-
-// gulp.watch([
-//         paths.crate.layout.base + 'src/blocks/**/*.*',
-//         paths.crate.layout.base + 'src/includes/**/*.*'
-//     ], ['watch:blocks:layout'])
-//     .on('change', changeEvent('Layout:blocks'));
-
-//     gulp.watch([
-//         paths.blocks.base + '**/*.xml',
-//         paths.blocks.base + '**/*.html',
-//         paths.blocks.base + '**/*.yaml',
-//         paths.blocks.base + '**/*.xsl'
-//     ], ['watch:blocks', 'watch:content']).on('change', changeEvent('Blocks'));
-
-//     gulp.watch([
-//         paths.blocks.styles.src,
-//         paths.crate.styles.src
-//     ], ['watch:styles']).on('change', changeEvent('Styles'));
-
-//     gulp.watch([
-//         paths.temp + '**/*'
-//     ], ['watch:xslt']).on('change', changeEvent('Tmp'));
-
-// });
-
-
-gulp.task('watch', ['runwatchxslt'], function() {
+gulp.task('watch', function() {
 
     gulp.watch([
             paths.assets.src
@@ -693,14 +649,6 @@ gulp.task('watch:blocks:layout', ['xslt:nocache']);
 gulp.task('watch:content:layout', ['xslt:nocache']);
 
 gulp.task('watch:xslt', ['xslt']);
-gulp.task('runwatchxslt', function() {
-    gulp.watch([
-            paths.temp + '**/*',
-        ], ['watch:xslt'])
-        .on('change', changeEvent('Xslt'));
-});
-// gulp.task('watch:blocks', ['xslt']);
-// gulp.task('watch:content', ['xslt']);
 
 
 
