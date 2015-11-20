@@ -11,8 +11,10 @@ data:
     setdate: "20/08/2018"
     startdate: "20/08/2018"
     display_date_type: "due"
-    sent_to: "23"
+    sent_to: "32"
     no_excused: "2" 
     completed_by: "20" 
-    marked: "5"
+    marked: "20"
+
+requires: ff_module-progress
 ---
