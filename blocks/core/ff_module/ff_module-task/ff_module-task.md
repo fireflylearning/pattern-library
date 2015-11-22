@@ -14,7 +14,7 @@ data:
     sent_to: "32"
     no_excused: "2" 
     completed_by: "20" 
-    marked: "20"
+    marked: "19"
 
 requires: ff_module-progress
 ---
