@@ -1,6 +1,6 @@
 node_modules
 !lib/node_modules
-
+!lib/node_modules/**/node_modules
 .tern-port
 .jshintrc
 tmp
