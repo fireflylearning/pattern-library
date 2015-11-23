@@ -2,7 +2,7 @@
     <xsl:param name="data" />
     <ul class="ff_module-class-meta-week">
         <li class="ff_module-class-meta-week__item ff_module-class-meta-week__item--time">
-        <xsl:call-template name="formateTimeRange">
+        <xsl:call-template name="formateTimeRange-wk">
             <xsl:with-param name="startdate" select="$data/event/@isostartdate" />
             <xsl:with-param name="enddate" select="$data/event/@isoenddate" />
         </xsl:call-template>
@@ -14,7 +14,7 @@
 </xsl:template>
 
 
-<xsl:template name="formatTime">
+<xsl:template name="formatTime-wk">
     <xsl:param name="dateTime" />
     <xsl:variable name="time" select="substring-after($dateTime,'T')" />
     <xsl:variable name="hh" select="substring($time,1,2)" />
@@ -23,14 +23,14 @@
     <xsl:value-of select="$hh"/><xsl:value-of select="':'"/><xsl:value-of select="$mm"/>
 </xsl:template>
 
-<xsl:template name="formateTimeRange">
+<xsl:template name="formateTimeRange-wk">
     <xsl:param name="startdate"/>
     <xsl:param name="enddate"/>
-    <xsl:call-template name="formatTime">
+    <xsl:call-template name="formatTime-wk">
         <xsl:with-param name="dateTime" select="$startdate" />
     </xsl:call-template>
     <xsl:value-of select="'-'"/>
-    <xsl:call-template name="formatTime">
+    <xsl:call-template name="formatTime-wk">
         <xsl:with-param name="dateTime" select="$enddate" />
     </xsl:call-template>
 </xsl:template>

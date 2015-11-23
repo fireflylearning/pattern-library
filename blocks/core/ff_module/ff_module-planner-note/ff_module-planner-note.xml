@@ -1,0 +1,9 @@
+{% if note %}
+<note>
+<![CDATA[
+{{ note | safe }}
+]]>
+</note>
+{% else %}
+<note/>
+{% endif %}

@@ -1,0 +1,5 @@
+<events>
+{% for event in events %}
+<event subject="{{event.subject}}" isostartdate="{{event.isostartdate}}" isoenddate="{{event.isoenddate}}" description="{{event.description}}" url="{{event.url}}" colour="{{event.colour}}" location="{{event.location}}" minutelength="60" minutestart="240" />
+{% endfor %}
+</events>
