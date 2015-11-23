@@ -5,13 +5,16 @@ function getPaths(mode) {
         blocks: 'blocks/',
         crate: 'crate/',
         dest: 'wwwroot/',
+        export: 'export/',
+
         content: 'crate/content/',
-        layout: 'crate/layout/',
+        layout: 'crate/layout/'
     };
 
     var basePaths = {
         blocks: base.blocks,
         dest: base.dest,
+        export: base.export,
 
         crate: base.crate,
         content: base.content,
@@ -76,6 +79,7 @@ function getPaths(mode) {
             }
         },
         clean: [basePaths.temp, basePaths.dest],
+        export: basePaths.export,
         lint: {
             styles: basePaths.dest + '**/*.css',
             scripts: basePaths.blocks + '**/*.js',

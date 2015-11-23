@@ -4,6 +4,7 @@
     xmlns:msxsl="urn:schemas-microsoft-com:xslt"
     xmlns:ext="http://exslt.org/common">
 
+    {% include '../includes/base-file.xsl' with { blocks:page.blocks } %}
     {% include '../includes/call-template.xsl' with { blocks:page.blocks } %}
 
     {% if requires %}
@@ -22,7 +23,7 @@
             <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
             <!-- Place favicon.ico in the root directory -->
             <link rel="stylesheet" href="/css/crate.min.css"/>
-            <link rel="stylesheet" href="/css/blocks.min.css"/>
+            <link rel="stylesheet" href="/css/blocks.core.css"/>
 
         </head>
         <body>
@@ -31,6 +32,7 @@
 
             <div class="contents">{{contents|safe}}</div>
 
+            {% include '../includes/crate-theme-select.xsl' with { themes: site.themes} %}
             <div class="crate_block">
                 <xsl:apply-templates select="page/blocks"/>
             </div>
@@ -41,6 +43,7 @@
 
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/js/blocks.js"></script>
+            {% include '../includes/inline-scripts.xsl' %}
         </body>
         </html>
     </xsl:template>

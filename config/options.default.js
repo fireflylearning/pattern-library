@@ -11,6 +11,13 @@ module.exports = {
         }
     },
     isDebugging: true,
-    isProduction: false
+    isProduction: false,
+
+    /**
+     * Set this option in local options file
+     * `options.local.js` to override, eg:
+     * exportPath:'export/'
+     *
+     */
 
 };
