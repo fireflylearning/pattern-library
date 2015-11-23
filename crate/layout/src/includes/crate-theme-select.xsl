@@ -1,4 +1,4 @@
-<form action="" method="post" id="pattern" class="crate_theme-select">
+<form action="" method="post" id="crate_theme-form" class="crate_theme-select">
     <select name="section" id="theme-select" class="nav-section-select">
         <option value="">Select theme…</option>
         {% for theme in themes %}
