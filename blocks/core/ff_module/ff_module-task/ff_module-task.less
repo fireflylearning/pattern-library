@@ -1,11 +1,9 @@
-@ff_bp_narrow: 800px;
-
 .ff_module-task {
     margin: 0;
 }
 
 .ff_module-task__item {
-    margin: 0 0 @ff_size_control_padding 0;
+    margin: 0 0 @ff_size_control_vertical 0;
     #ff_mix-base-text > .label();
     @media (min-width: @ff_bp_narrow) {
         float: left;//flexbox backup
@@ -37,6 +35,6 @@
 
 .ff_module-task__meta {
     #ff_mix-base-text > .quiet();
-    margin-top: @ff_size_control_padding;
+    margin-top: @ff_size_control_vertical;
     display: block;
 }

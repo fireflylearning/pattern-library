@@ -1,0 +1,7 @@
+{% for event in events %}
+    <event subject="{{ event.subject }}" description="{{ event.description }}" location="{{ event.location }}" url="{{ event.location }}" starttime="{{ event.starttime }}" endtime="{{ event.endtime }}" minutelength="{{ event.minutelength }}" minutestart="{{ event.minutestart }}" date="{{ event.date }}" label="{{ event.label }}">
+        {% for attendee in event.attendees %}
+        <attendee name="{{attendee.name}}" role="{{ attendee.role }}" url="{{ attendee.url }}" member="{{ attendee.member }}" />
+        {% endfor %}
+    </event>
+{% endfor %}

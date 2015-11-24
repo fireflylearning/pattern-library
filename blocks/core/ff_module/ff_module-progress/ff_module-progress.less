@@ -14,7 +14,7 @@
 .ff_module-progress__stacked {
     border: 1px solid @ff_colour_control_border;
     border-radius: @ff_size_control_rounding;
-    height: @ff_size_control_padding * 2;
+    height: @ff_size_control_vertical * 2;
     overflow: hidden;
     #ff_module-progress > .total();
 }
@@ -38,7 +38,7 @@
 
 //key
 .ff_module-progress__key {
-    margin: @ff_size_control_padding 0 0;
+    margin: @ff_size_control_vertical 0 0;
     padding: 0;
 }
 
@@ -48,7 +48,7 @@
     #ff_mix-base-text > .small();
     #ff_mix-base-text > .quiet();
     
-    margin-right: @ff_size_control_padding;
+    margin-right: @ff_size_control_vertical;
     &:last-child {margin-right: 0;}
     
     &:before {
@@ -59,7 +59,7 @@
         float: left;
         border-radius: 50%;
         border: 1px solid @ff_colour_control_border;
-        margin-right: @ff_size_control_padding;
+        margin-right: @ff_size_control_vertical;
     }
     
 }
