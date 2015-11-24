@@ -65,7 +65,7 @@ function getPaths(mode) {
                 dest: basePaths.temp + basePaths.blocks
             },
             xml: {
-                src: basePaths.blocks + '**/*.xml',
+                src: [basePaths.blocks + '**/*.xml', '!'+basePaths.blocks + '**/_shared/**/*.xml'],
                 dest: basePaths.temp + basePaths.blocks
             },
             xsl: {
