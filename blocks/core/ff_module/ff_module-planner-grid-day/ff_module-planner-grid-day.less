@@ -1,6 +1,12 @@
 @planner-grid-brdr-dk: #b4b4b4;
 @planner-grid-brdr-md: #e1e1e1;
 @planner-grid-brdr-lt: #eaeaea;
+@planner-grid-hrd-brdr-md: #d8d8d8;
+
+@header-bg-sm: #575757;
+@header-bg-md: #ededed;
+@base-color: #444;
+@base-bg: #f8f8f8;
 
 #ff_mix-planner-grid() {
     .table {
@@ -8,7 +14,8 @@
             display: block;
             border-collapse: separate;
             border-spacing: 0;
-            border: 1px solid #B4B4B4;
+            border: 1px solid @planner-grid-brdr-dk;
+            color: @base-color;
             tbody {
                 display: block;
             }
@@ -43,17 +50,17 @@
     .header {
         .sm {
             display: block;
-            background-color: #575757;
+            background-color: @header-bg-sm;
             color: #fff;
-            border-bottom: 1px solid #d8d8d8;
+            border-bottom: 1px solid @planner-grid-hrd-brdr-md;
             font-weight: normal;
             padding: @ff_size_control_vertical @ff_size_control_horizontal;
         }
         .md {
             display: table-cell;
             vertical-align: top;
-            color: #000;
-            background-color: #ededed;
+            color: @base-color;
+            background-color: @header-bg-md;
             border-right: 1px solid #FFFFFF;
             position: relative;
             width: 18%;
@@ -69,7 +76,7 @@
     .item {
         .sm {
             display: block;
-            border-bottom: 1px solid #d8d8d8;
+            border-bottom: 1px solid @planner-grid-hrd-brdr-md;
             &:last-child {
                 border-bottom: none;
             }
@@ -78,11 +85,11 @@
             padding: @ff_size_control_vertical @ff_size_control_horizontal @ff_size_control_vertical*1.5 @ff_size_control_horizontal;
         }
         .sm--note {
-            background-color: #f8f8f8;
+            background-color: @base-bg;
         }
         .sm--empty {
-            background-color: #f8f8f8;
-            border-left: 10px solid #f8f8f8;
+            background-color: @base-bg;
+            border-left: 10px solid @base-bg;
         }
         .md {
             display: table-cell;
