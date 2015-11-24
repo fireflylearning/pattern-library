@@ -1,12 +1,12 @@
-@planner-grid-brdr-dk: #b4b4b4;
-@planner-grid-brdr-md: #e1e1e1;
-@planner-grid-brdr-lt: #eaeaea;
-@planner-grid-hrd-brdr-md: #d8d8d8;
+@planner-grid-brdr-dk: @ff_colour_control_border; //#b4b4b4;
+@planner-grid-brdr-md: lighten(@planner-grid-brdr-dk, 17.8);;
+@planner-grid-brdr-lt: lighten(@planner-grid-brdr-dk, 21);
+@planner-grid-hrd-brdr-md: lighten(@planner-grid-brdr-dk, 14);
 
-@header-bg-sm: #575757;
-@header-bg-md: #ededed;
-@base-color: #444;
-@base-bg: #f8f8f8;
+@header-bg-sm: darken(@ff_colour_control_bg, 55);
+@header-bg-md: @ff_colour_control_bg;
+@base-color: @ff_color_control_text;
+@base-bg: lighten(@ff_colour_control_bg, 8.4);
 
 #ff_mix-planner-grid() {
     .table {
