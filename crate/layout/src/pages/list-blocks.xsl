@@ -4,6 +4,9 @@
     xmlns:msxsl="urn:schemas-microsoft-com:xslt"
     xmlns:ext="http://exslt.org/common">
 
+    <xsl:output method="html" omit-xml-declaration="yes" indent="yes"
+     encoding="utf-8"/>
+
     {% include '../includes/base-file.xsl' with { blocks:page.blocks } %}
     {% include '../includes/call-template.xsl' with { blocks:page.blocks } %}
 
@@ -12,7 +15,7 @@
     {% endif %}
 
     <xsl:template match="/">
-
+        <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text>
         <html class="no-js" lang="">
         <head>
             <meta charset="utf-8"/>
