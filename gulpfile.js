@@ -11,7 +11,7 @@ var gutil = require('gulp-util'),
     autoprefix = new LessAutoprefixer({
         browsers: ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', 'Firefox >= 4']
     }),
-
+    es = require('event-stream'),
     webpack = require('webpack'),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
@@ -32,6 +32,7 @@ var gutil = require('gulp-util'),
 var isDebugging,
     debugPipe,
     isProduction,
+    exportPath,
     sourceMapsStart,
     sourceMapsEnd,
     browserSync,
@@ -51,6 +52,7 @@ var options = _.defaults(locals, options);
 
 isDebugging = options.isDebugging;
 isProduction = options.isProduction;
+exportPath = options.exportPath || paths.export;
 
 if (isDebugging) {
     debugPipe = function(debugOpts) {
@@ -133,6 +135,10 @@ function getDataForFile(file, srclist) {
 
     fileData.site.blocks = blockSet;
     fileData.site.pages = pageSet;
+
+    // TODO: Obtain from fs!
+    fileData.site.themes = [{name: 'Core', filepath: '/css/blocks.core.css'}, {name: 'Melody', filepath: '/css/blocks.melody.css'}];
+
     return fileData;
 }
 
@@ -291,8 +297,9 @@ function generateContent(ext, doCache) {
 }
 
 
-function generateBlocks(src, dest, ext, doCache) {
+function generateBlocks(src, dest, ext, doCache, view) {
     doCache = doCache === undefined ? true : doCache;
+    view = view || 'block-view';
     return gulp.src(src)
         .pipe(errorPipe())
         .pipe(plugins.if(doCache, plugins.changed(dest, {
@@ -306,13 +313,42 @@ function generateBlocks(src, dest, ext, doCache) {
         .pipe(plugins.data(getReqsForFile))
         .pipe(applyTemplate({
             engine: 'swig',
-            template: getBlockGeneratorRootPath('block-view', ext),
+            template: getBlockGeneratorRootPath(view, ext),
             context: getFileContext
         }))
         .pipe(plugins.rename({
             extname: ext
         }))
         .pipe(gulp.dest(dest));
+}
+
+
+function runxslt() {
+    var xslProcTemp = paths.temp;
+    var xmlSrc = [xslProcTemp + 'blocks/**/*.xml', xslProcTemp + 'index.xml', xslProcTemp + 'pages/**/*.xml'];
+
+    return gulp.src(xmlSrc, {
+            base: xslProcTemp
+        })
+        .pipe(errorPipe())
+        // .pipe(plugins.changed(paths.dest, {hasChanged: plugins.changed.compareSha1Digest}))
+        .pipe(plugins.changed(paths.dest, {
+            extension: '.html',
+            hasChanged: changedHelpers.compareToAdjacentSrcs(['.xml', '.xsl'])
+        }))
+        .pipe(debugPipe({
+            title: 'xslt'
+        })())
+        .pipe(saxon({
+            jarPath: root + '/lib/saxon9he.jar',
+            xslPath: function(file) {
+                return gutil.replaceExtension(file.path, '.xsl');
+            },
+            outputType: '.html',
+            timeout: 5000
+        }))
+        .pipe(gulp.dest(paths.dest))
+        .pipe(browserSync.stream());
 }
 
 
@@ -399,10 +435,10 @@ gulp.task('info:content', ['info:blocks'], function() {
         }));
 });
 
-
-gulp.task('build:css:blocks', function() {
-    return buildCss(paths.blocks.styles.src, blockCssOut, paths.blocks.styles.dest);
-});
+var pathToFolder = 'blocks';
+gulp.task('build:css:blocks', plugins.folders(pathToFolder, function(folder){
+    return buildCss([path.join(pathToFolder, 'core', '**/*.less'), path.join(pathToFolder, folder, '**/*.less')], 'blocks.'+folder + '.css', paths.blocks.styles.dest);
+}));
 
 
 gulp.task('build:css:crate', function() {
@@ -448,38 +484,11 @@ gulp.task('generate:content:xsl:nocache', ['info'], function() {
 });
 
 gulp.task('clean', function() {
-    return del(paths.clean);
+    return del([exportPath].concat(paths.clean));
 });
 
-function runxslt() {
-    var xslProcTemp = paths.temp;
-    var xmlSrc = [xslProcTemp + 'blocks/**/*.xml', xslProcTemp + 'index.xml', xslProcTemp + 'pages/**/*.xml'];
 
-    return gulp.src(xmlSrc, {
-            base: xslProcTemp
-        })
-        .pipe(errorPipe())
-        // .pipe(plugins.changed(paths.dest, {hasChanged: plugins.changed.compareSha1Digest}))
-        .pipe(plugins.changed(paths.dest, {
-            extension: '.html',
-            hasChanged: changedHelpers.compareToAdjacentSrcs(['.xml', '.xsl'])
-        }))
-        .pipe(debugPipe({
-            title: 'xslt'
-        })())
-        .pipe(saxon({
-            jarPath: root + '/lib/saxon9he.jar',
-            xslPath: function(file) {
-                return gutil.replaceExtension(file.path, '.xsl');
-            },
-            outputType: '.html',
-            timeout: 5000
-        }))
-        .pipe(gulp.dest(paths.dest))
-        .pipe(browserSync.stream());
-}
-
-gulp.task('xslt', ['content', 'blocks'], runxslt);
+gulp.task('xslt', ['content', 'blocks', 'info'], runxslt);
 gulp.task('xslt:nocache', ['content:nocache', 'blocks:nocache'], runxslt);
 
 //TODO: Get working
@@ -603,6 +612,11 @@ gulp.task('watch', function() {
 
 });
 
+gulp.task('export', ['info'], function(){
+    var blocks = generateBlocks(paths.blocks.xsl.src, exportPath, '.xsl', false, 'export-view');
+    var css = buildCss(paths.blocks.styles.src, blockCssOut, path.join(exportPath, 'css'));
+    return es.merge(blocks, css);
+});
 
 gulp.task('output:site:pages', ['info:content', 'info:blocks'], function(cb) {
     console.log(gutil.colors.dim('%j'), site.pages);
