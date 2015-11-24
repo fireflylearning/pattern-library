@@ -74,7 +74,7 @@ function getPaths(mode) {
             },
             scripts: {
                 src: basePaths.blocks + '**/*.js',
-                entry: './' + basePaths.blocks + 'index.js',
+                entry: './' + basePaths.blocks + 'core/_shared/index.js',
                 output: './' + basePaths.dest + 'js/'
             }
         },
