@@ -17,7 +17,7 @@
 <xsl:template name="formatTime-wk">
     <xsl:param name="dateTime" />
     <xsl:variable name="time" select="substring-after($dateTime,'T')" />
-    <xsl:variable name="hh" select="substring($time,1,2)" />
+    <xsl:variable name="hh" select="number(substring($time,1,2))" />
     <xsl:variable name="mm" select="substring($time,4,2)" />
     <xsl:variable name="ss" select="substring($time,7,2)" />
     <xsl:value-of select="$hh"/><xsl:value-of select="':'"/><xsl:value-of select="$mm"/>

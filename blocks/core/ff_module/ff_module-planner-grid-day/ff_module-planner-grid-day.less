@@ -1,19 +1,18 @@
 @planner-grid-brdr-dk: @ff_colour_control_border; //#b4b4b4;
-@planner-grid-brdr-md: lighten(@planner-grid-brdr-dk, 17.8);;
+@planner-grid-brdr-md: lighten(@planner-grid-brdr-dk, 17.8);
+;
 @planner-grid-brdr-lt: lighten(@planner-grid-brdr-dk, 21);
 @planner-grid-hrd-brdr-md: lighten(@planner-grid-brdr-dk, 14);
-
 @header-bg-sm: darken(@ff_colour_control_bg, 55);
 @header-bg-md: @ff_colour_control_bg;
 @base-color: @ff_color_control_text;
 @base-bg: lighten(@ff_colour_control_bg, 8.4);
-
 #ff_mix-planner-grid() {
     .table {
         .sm {
             display: block;
-            border-collapse: separate;
-            border-spacing: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
             border: 1px solid @planner-grid-brdr-dk;
             color: @base-color;
             tbody {
@@ -76,7 +75,7 @@
     .item {
         .sm {
             display: block;
-            border-bottom: 1px solid @planner-grid-hrd-brdr-md;
+            position: relative;
             &:last-child {
                 border-bottom: none;
             }
@@ -86,10 +85,14 @@
         }
         .sm--note {
             background-color: @base-bg;
+            #ff_mix-class-view > .color-block-md();
         }
         .sm--empty {
             background-color: @base-bg;
             border-left: 10px solid @base-bg;
+        }
+        .sm--event {
+            #ff_mix-class-view > .color-block-md();
         }
         .md {
             display: table-cell;
@@ -105,13 +108,24 @@
             #ff_mix-class-view > .color-block-md();
             width: 28%;
         }
+        .md--note {
+            #ff_mix-class-view > .undo-color-block();
+        }
         .lg {}
         .lg--event {
             width: 24%;
         }
     }
     .borders {
-        .header {
+        .item-sep {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-top: 1px solid @planner-grid-hrd-brdr-md;
+        }
+        .header-sep {
             content: " ";
             position: absolute;
             top: 0px;
@@ -119,7 +133,7 @@
             right: 0px;
             border-right: 1.5px solid #fff;
         }
-        .top {
+        .top-sep {
             content: " ";
             position: absolute;
             top: -1px;
@@ -127,7 +141,7 @@
             width: 10px;
             border-top: 1px solid @planner-grid-brdr-md;
         }
-        .bottom {
+        .bottom-sep {
             content: " ";
             position: absolute;
             bottom: -1px;
@@ -154,12 +168,16 @@
     &__item--note {
         #ff_mix-planner-grid > .item > .sm--note();
     }
-    &__item--event,
-    &__item--empty {
+    &__item--event {
         #ff_mix-planner-grid > .item > .sm--def();
+        #ff_mix-planner-grid > .item > .sm--event();
     }
     &__item--empty {
+        #ff_mix-planner-grid > .item > .sm--def();
         #ff_mix-planner-grid > .item > .sm--empty();
+    }
+    &__item:before {
+        #ff_mix-planner-grid > .borders > .item-sep();
     }
     @media screen and (min-width:@ff_bp_mij) {
         &__content {
@@ -175,12 +193,12 @@
             border-bottom: none;
         }
         &__row:last-child &__header + &__item:after {
-            #ff_mix-planner-grid > .borders > .bottom();
+            #ff_mix-planner-grid > .borders > .bottom-sep();
         }
         &__header {
             #ff_mix-planner-grid > .header > .md();
             &:after {
-                #ff_mix-planner-grid > .borders > .header();
+                #ff_mix-planner-grid > .borders > .header-sep();
             }
         }
         &__item {
@@ -189,8 +207,15 @@
         &__item--event {
             #ff_mix-planner-grid > .item > .md--event();
         }
+        &__item--note {
+            #ff_mix-planner-grid > .item > .md--note();
+        }
+        &__item:before {
+            content:none;
+            border-width:0;
+        }
         &__header + &__item:before {
-            #ff_mix-planner-grid > .borders > .top();
+            #ff_mix-planner-grid > .borders > .top-sep();
         }
     }
     @media screen and (min-width:@ff_bp_max) {

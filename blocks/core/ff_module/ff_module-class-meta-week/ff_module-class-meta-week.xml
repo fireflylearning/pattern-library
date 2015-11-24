@@ -1,2 +1,1 @@
-<event subject="{{subject}}" isostartdate="{{isostartdate}}" isoenddate="{{isoenddate}}" description="{{description}}" url="{{url}}" colour="{{colour}}" location="{{location}}" minutelength="60" minutestart="240" />
-
+{% include '../_shared/ff_module-class-meta.xml' %}

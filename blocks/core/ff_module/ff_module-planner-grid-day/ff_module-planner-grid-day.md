@@ -31,7 +31,6 @@ data:
             isoenddate: "2015-11-11T12:15:00"
 requires: 
     - ff_module-class-meta-day
-    - ff_module-class-view-day
     - ff_module-planner-note
     - ff_module-button
 ---

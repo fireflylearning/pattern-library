@@ -12,8 +12,6 @@
                     <xsl:copy-of select="."/>
                 </xsl:variable>
 
-
-
                 <tr class="ff_module-planner-grid-day__row">
 
                     <th scope="row" class="ff_module-planner-grid-day__header">
@@ -29,9 +27,9 @@
                             <xsl:with-param name="data" select="$event"/>
                         </xsl:call-template>
                     </td>
-                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--note">
+                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--note"  style="border-left-color:{@colour}">
                         <xsl:call-template name="ff_module-planner-note">
-                            <xsl:with-param name="data" select="."/>
+                            <xsl:with-param name="data" select="$event"/>
                         </xsl:call-template>
                     </td>
                     </xsl:if>
@@ -39,8 +37,6 @@
                     <xsl:if test="not(@subject != '')">
                         <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--empty" colspan="2">No lesson in timetable</td>
                     </xsl:if>
-
-
                 </tr>
             </xsl:for-each>
             </tbody>

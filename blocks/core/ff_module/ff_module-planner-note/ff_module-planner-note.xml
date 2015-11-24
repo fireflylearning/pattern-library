@@ -1,9 +1,11 @@
-{% if note %}
+<event>
+{% if event.note %}
 <note>
 <![CDATA[
-{{ note | safe }}
+{{ event.note | safe }}
 ]]>
 </note>
 {% else %}
 <note/>
 {% endif %}
+</event>
