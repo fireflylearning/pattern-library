@@ -1,11 +1,13 @@
 # Front end build process
 
-//TODO
+// TODO
 ### API 
 gulp
     - builds, serves and watches for changes
 gulp clean
     - cleans the temporary and output directories
+gulp export 
+    - build and exports the xsl and css files to `export` directory. The location can be overriden in `config/options.local.js`.
 
 ## Rationale
 
