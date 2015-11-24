@@ -1,6 +1,6 @@
 ---
 data:
-    text: "Button YAML text"
+    text: "default button"
 page: 
     title: FF Module Button
 ---

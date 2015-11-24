@@ -1,5 +1,19 @@
 .ff_module-button {
-    button {
-        background-color: red;
+    background-color: @melody_colour_default;
+    color: @melody_colour_control_text;
+    border-radius: @melody_size_rounding;
+    border: 1px solid @melody_colour_default;
+    padding: (@melody_size_vertical * .85)  (@melody_size_horizontal * 1.5);
+    
+    &--primary {
+        background-color: @melody_colour_primary;
+        font-weight: bold;
+        border-color: @melody_colour_primary;
+    }
+    
+    &--disabled {
+        color: @melody_colour_default;
+        background-color: @melody_colour_quiet;
+        border-color: @melody_colour_default;
     }
 }
