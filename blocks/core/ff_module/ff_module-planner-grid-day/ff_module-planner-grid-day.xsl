@@ -1,27 +1,49 @@
 <xsl:template name="ff_module-planner-grid-day">
     <xsl:param name="data" />
+
     <div class="ff_module-planner-grid-day">
         <table class="ff_module-planner-grid-day__content">
-            <xsl:for-each select="$data/events/event">
+
+            <tbody>
+            <xsl:for-each select="$data//event">
+                <xsl:sort select="@isostartdate"/>
+
+                <xsl:variable name="event">
+                    <xsl:copy-of select="."/>
+                </xsl:variable>
+
+
+
                 <tr class="ff_module-planner-grid-day__row">
-                    <td class="ff_module-planner-grid-day__item">
+
+                    <th scope="row" class="ff_module-planner-grid-day__header">
                         <xsl:call-template name="formateTimeRange-dy">
                             <xsl:with-param name="startdate" select="@isostartdate" />
                             <xsl:with-param name="enddate" select="@isoenddate" />
                         </xsl:call-template>
-                    </td>
-                    <td class="ff_module-planner-grid-day__item">
-                        <xsl:call-template name="ff_module-class-view-day">
-                            <xsl:with-param name="data" select="."/>
+                    </th>
+
+                    <xsl:if test="@subject != ''">
+                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--event" style="border-left-color:{@colour}">
+                        <xsl:call-template name="ff_module-class-meta-day">
+                            <xsl:with-param name="data" select="$event"/>
                         </xsl:call-template>
                     </td>
-                    <td class="ff_module-planner-grid-day__item">
+                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--note">
                         <xsl:call-template name="ff_module-planner-note">
                             <xsl:with-param name="data" select="."/>
                         </xsl:call-template>
                     </td>
+                    </xsl:if>
+
+                    <xsl:if test="not(@subject != '')">
+                        <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--empty" colspan="2">No lesson in timetable</td>
+                    </xsl:if>
+
+
                 </tr>
             </xsl:for-each>
+            </tbody>
         </table>
     </div>
 </xsl:template>
@@ -29,7 +51,7 @@
 <xsl:template name="formatTime-dy">
     <xsl:param name="dateTime" />
     <xsl:variable name="time" select="substring-after($dateTime,'T')" />
-    <xsl:variable name="hh" select="substring($time,1,2)" />
+    <xsl:variable name="hh" select="number(substring($time,1,2))" />
     <xsl:variable name="mm" select="substring($time,4,2)" />
     <xsl:variable name="ss" select="substring($time,7,2)" />
     <xsl:value-of select="$hh"/><xsl:value-of select="':'"/><xsl:value-of select="$mm"/>
