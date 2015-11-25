@@ -9,4 +9,5 @@
             <link rel="stylesheet" href="/vendor/css/jquery-ui-1.10.3.custom.min.css"/>
             <link rel="stylesheet" href="/css/crate.min.css"/>
             <link rel="stylesheet" href="/css/blocks.core.css"/>
+            <link id="crate_theme-switch" rel="stylesheet" href="/css/blocks.core.css"/>
         </head>
