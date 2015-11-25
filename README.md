@@ -4,13 +4,19 @@ This repo contains the source files for Firefly front-end development patterns.
 
 // TODO: Complete API
 ### API 
-gulp
-    - builds, serves and watches for changes
-gulp clean
-    - cleans the temporary and output directories
-gulp export 
-    - build and exports the xsl and css files to `export` directory. The location can be overriden in `config/options.local.js`.
-    - 
+- gulp
+    
+    builds, serves and watches for changes
+
+- gulp clean
+
+    cleans the temporary and output directories
+    
+- gulp export 
+
+    build and exports the xsl and css files to `export` directory. The location can be overriden in `config/options.local.js`.
+    
+    
 ## Installation & build
 Ensure all dependencies are met, then:
 
