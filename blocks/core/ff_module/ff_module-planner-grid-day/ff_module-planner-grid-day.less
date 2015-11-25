@@ -85,15 +85,12 @@
         }
         .sm--note {
             background-color: @base-bg;
-            #ff_mix-class-view > .color-block-md();
         }
         .sm--empty {
             background-color: @base-bg;
             border-left: 10px solid @base-bg;
         }
-        .sm--event {
-            #ff_mix-class-view > .color-block-md();
-        }
+        .sm--event {}
         .md {
             display: table-cell;
             vertical-align: top;
@@ -105,12 +102,9 @@
             }
         }
         .md--event {
-            #ff_mix-class-view > .color-block-md();
             width: 28%;
         }
-        .md--note {
-            #ff_mix-class-view > .undo-color-block();
-        }
+        .md--note {}
         .lg {}
         .lg--event {
             width: 24%;
@@ -167,10 +161,12 @@
     }
     &__item--note {
         #ff_mix-planner-grid > .item > .sm--note();
+        #ff_mix-class-view > .color-block-md();
     }
     &__item--event {
         #ff_mix-planner-grid > .item > .sm--def();
         #ff_mix-planner-grid > .item > .sm--event();
+        #ff_mix-class-view > .color-block-md();
     }
     &__item--empty {
         #ff_mix-planner-grid > .item > .sm--def();
@@ -206,13 +202,15 @@
         }
         &__item--event {
             #ff_mix-planner-grid > .item > .md--event();
+            #ff_mix-class-view > .color-block-md();
         }
         &__item--note {
             #ff_mix-planner-grid > .item > .md--note();
+            #ff_mix-class-view > .undo-color-block();
         }
         &__item:before {
-            content:none;
-            border-width:0;
+            content: none;
+            border-width: 0;
         }
         &__header + &__item:before {
             #ff_mix-planner-grid > .borders > .top-sep();

@@ -3,8 +3,32 @@
 
     <div class="ff_module-planner-grid-week">
         <table class="ff_module-planner-grid-week__content">
-
+            <thead>
+                <tr class="ff_module-planner-grid-week__row">
+                    <th class="ff_module-planner-grid-week__header"> </th>
+                    <th class="ff_module-planner-grid-week__header">Monday</th>
+                    <th class="ff_module-planner-grid-week__header">Tuesday</th>
+                    <th class="ff_module-planner-grid-week__header">Wednesday</th>
+                    <th class="ff_module-planner-grid-week__header">Thursday</th>
+                    <th class="ff_module-planner-grid-week__header">Friday</th>
+                </tr>
+            </thead>
             <tbody>
+
+            <xsl:for-each select="$data//time">
+                <xsl:sort select="@start"/>
+                <tr class="ff_module-planner-grid-week__row">
+                    <th class="ff_module-planner-grid-week__header"><time><xsl:value-of select="@start"/></time>
+                    <xsl:value-of select="'-'"/>
+                    <time><xsl:value-of select="@end"/></time></th>
+                    <td class="ff_module-planner-grid-week__item"> .</td>
+                    <td class="ff_module-planner-grid-week__item"> .</td>
+                    <td class="ff_module-planner-grid-week__item"> .</td>
+                    <td class="ff_module-planner-grid-week__item">.</td>
+                    <td class="ff_module-planner-grid-week__item">.</td>
+                </tr>
+            </xsl:for-each>
+
             <xsl:for-each select="$data//event">
                 <xsl:sort select="@isostartdate"/>
 
@@ -12,33 +36,13 @@
                     <xsl:copy-of select="."/>
                 </xsl:variable>
 
-                <tr class="ff_module-planner-grid-week__row">
-
-                    <th scope="row" class="ff_module-planner-grid-week__header">
-                        <xsl:call-template name="formateTimeRange-wk">
-                            <xsl:with-param name="startdate" select="@isostartdate" />
-                            <xsl:with-param name="enddate" select="@isoenddate" />
-                        </xsl:call-template>
-                    </th>
-
-                    <xsl:if test="@subject != ''">
-                    <td class="ff_module-planner-grid-week__item ff_module-planner-grid-week__item--event">
-                        <xsl:call-template name="ff_module-class-view-week">
+                <!-- <xsl:call-template name="ff_module-class-view-week">
                             <xsl:with-param name="data" select="$event"/>
                         </xsl:call-template>
-                    </td>
-                    <td class="ff_module-planner-grid-week__item ff_module-planner-grid-week__item--note">
-                        <xsl:call-template name="ff_module-planner-note">
-                            <xsl:with-param name="data" select="$event"/>
-                        </xsl:call-template>
-                    </td>
-                    </xsl:if>
-
-                    <xsl:if test="not(@subject != '')">
-                        <td class="ff_module-planner-grid-week__item ff_module-planner-grid-week__item--empty" colspan="2">No lesson in timetable</td>
-                    </xsl:if>
-                </tr>
+                </tr> -->
             </xsl:for-each>
+
+
             </tbody>
         </table>
     </div>
