@@ -3,7 +3,7 @@
 	<div class="ff_module-filter">
 		<div class="ff_module-filter__label">
 			<span><xsl:value-of select="label"/></span>
-			<span class="ff_icon ff_icon-test ff_icon-arrow"></span>
+			<span class="ff_icon ff_icon-arrow pull-right"></span>
 		</div>
 		<div class="ff_module-filter__content">
 			<xsl:value-of select="content" />
