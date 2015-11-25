@@ -443,9 +443,19 @@ gulp.task('info:content', ['info:blocks'], function() {
         }));
 });
 
-var pathToFolder = 'blocks';
+var pathToFolder = paths.blocks.base;
+var buildCssGlobPaths = [
+        '**/outputs.less',
+        '**/settings.less',
+        '**/mixins.less',
+        '**/_shared/**/*.less',
+        '**/*.less'
+    ];
 gulp.task('build:css:blocks', plugins.folders(pathToFolder, function(folder) {
-    return buildCss([path.join(pathToFolder, 'core', '**/*.less'), path.join(pathToFolder, folder, '**/*.less')], 'blocks.' + folder + '.css', paths.blocks.styles.dest);
+    var lPaths = buildCssGlobPaths.map(function(cPath){
+        return path.join(pathToFolder, folder, cPath);
+    });
+    return buildCss(lPaths, 'blocks.' + folder + '.css', paths.blocks.styles.dest);
 }));
 
 
@@ -624,9 +634,20 @@ gulp.task('export:blocks', ['info'], function() {
     return generateBlocks(paths.blocks.xsl.src, exportPath, '.xsl', false, 'export-view');
 });
 
+var exportCssGlobPaths = [
+        '**/settings.less',
+        '**/mixins.less',
+        '**/_shared/**/*.less',
+        '**/*.less',
+        '!**/outputs.less',
+    ];
 gulp.task('export:less', plugins.folders(pathToFolder, function(folder) {
-    return gulp.src([path.join(pathToFolder, 'core', '**/*.less'), path.join(pathToFolder, folder, '**/*.less'), '!**/outputs.less'])
-        .pipe(plugins.concat(folder+'.less'))
+    var lPaths = exportCssGlobPaths.map(function(cPath){
+        return path.join(pathToFolder, folder, cPath);
+    });
+
+    return gulp.src(lPaths)
+        .pipe(plugins.concat(folder + '.less'))
         .pipe(gulp.dest(path.join(exportPath, folder, 'less')));
 }));
 

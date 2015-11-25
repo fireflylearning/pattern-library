@@ -30,14 +30,15 @@
           if (parts.length == 2) return parts.pop().split(";").shift();
         }
 
-        function changeCSS(cssFile, cssLinkIndex) {
+        function changeCSS(cssFile, linkId) {
 
-            var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
-
+            var oldlink = document.getElementById(linkId);
+            console.log(oldlink);
             var newlink = document.createElement("link");
             newlink.setAttribute("rel", "stylesheet");
             newlink.setAttribute("type", "text/css");
             newlink.setAttribute("href", cssFile);
+            newlink.setAttribute("id", linkId);
 
             document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
         }
@@ -45,7 +46,8 @@
         if (document.getElementById('theme-select')) {
             document.getElementById('theme-select').onchange = function() {
                 var val = this.value;
-                changeCSS(val, 2);
+                if (!val) return;
+                changeCSS(val, 'crate_theme-switch');
                 setCookie('theme', val);
                 console.log(getCookie('theme'));
             }
@@ -53,7 +55,8 @@
 
         var theme = getCookie('theme');
         if (theme) {
-            changeCSS(theme, 2);
+            changeCSS(theme, 'crate_theme-switch');
+            document.getElementById('theme-select').value = theme;
         }
 
     })(document);
