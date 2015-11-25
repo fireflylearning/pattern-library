@@ -1,0 +1,16 @@
+.ff_container-item-repeater__items {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.ff_container-item-repeater__item {
+	border: 1px solid @ff_colour_control_border;
+	border-bottom: 0;
+	&:first-child {
+		border-radius: @ff_size_control_rounding @ff_size_control_rounding 0 0; // top left, top right, bottom right, bottom left
+	}
+	&:last-child {
+		border-bottom: 1px solid @ff_colour_control_border;
+		border-radius: 0 0 @ff_size_control_rounding @ff_size_control_rounding;
+	}
+}
