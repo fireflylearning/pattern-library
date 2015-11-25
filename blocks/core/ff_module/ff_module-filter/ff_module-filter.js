@@ -5,7 +5,7 @@ $(function(){
 		var filterLabel = $(this),
 		      filterIcon = filterLabel.children(".ff_icon-arrow"),
 		      filterContent = filterLabel.next();
-		filterIcon.toggleClass("ff_icon-arrow--closed"); // toggle arrow modifier
+		filterIcon.toggleClass("ff_icon-arrow--closed");
 		filterContent.slideToggle();
 	});
 });
