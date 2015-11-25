@@ -14,18 +14,8 @@
     <xsl:template match="/">
         <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text>
         <html class="no-js" lang="">
-        <head>
-            <meta charset="utf-8"/>
-            <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-            <title>{{page.title}} : {{site.title}}</title>
-            <meta name="description" content=""/>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
-            <!-- Place favicon.ico in the root directory -->
-            <link rel="stylesheet" href="/css/crate.min.css"/>
-            <link rel="stylesheet" href="/css/blocks.core.css"/>
 
-        </head>
+        {% include '../includes/head.xsl' %}
         <body>
 
             {% include '../includes/crate-theme-select.xsl' with { themes: site.themes} %}
@@ -43,9 +33,8 @@
 
             {% include '../includes/dropdown-files.xsl' %}
 
-            <script src="/vendor/js/jquery-1.11.3.js"></script>
-            <script src="/js/blocks.js"></script>
-            {% include '../includes/inline-scripts.xsl' %}
+            {% include '../includes/foot.xsl' %}
+
         </body>
         </html>
     </xsl:template>

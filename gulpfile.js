@@ -8,9 +8,7 @@ var gutil = require('gulp-util'),
     _ = require('lodash-node'),
     lazypipe = require('lazypipe'),
     LessAutoprefixer = require('less-plugin-autoprefix'),
-    autoprefix = new LessAutoprefixer({
-        browsers: ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', 'Firefox >= 4']
-    }),
+
     es = require('event-stream'),
     webpack = require('webpack'),
     plugins = require('gulp-load-plugins')({
@@ -53,6 +51,10 @@ var options = _.defaults(locals, options);
 isDebugging = options.isDebugging;
 isProduction = options.isProduction;
 exportPath = options.exportPath || paths.export;
+
+var autoprefix = new LessAutoprefixer({
+    browsers: options.browserList
+});
 
 if (isDebugging) {
     debugPipe = function(debugOpts) {
@@ -137,7 +139,13 @@ function getDataForFile(file, srclist) {
     fileData.site.pages = pageSet;
 
     // TODO: Obtain from fs!
-    fileData.site.themes = [{name: 'Core', filepath: '/css/blocks.core.css'}, {name: 'Melody', filepath: '/css/blocks.melody.css'}];
+    fileData.site.themes = [{
+        name: 'Core',
+        filepath: '/css/blocks.core.css'
+    }, {
+        name: 'Melody',
+        filepath: '/css/blocks.melody.css'
+    }];
 
     return fileData;
 }
@@ -436,8 +444,8 @@ gulp.task('info:content', ['info:blocks'], function() {
 });
 
 var pathToFolder = 'blocks';
-gulp.task('build:css:blocks', plugins.folders(pathToFolder, function(folder){
-    return buildCss([path.join(pathToFolder, 'core', '**/*.less'), path.join(pathToFolder, folder, '**/*.less')], 'blocks.'+folder + '.css', paths.blocks.styles.dest);
+gulp.task('build:css:blocks', plugins.folders(pathToFolder, function(folder) {
+    return buildCss([path.join(pathToFolder, 'core', '**/*.less'), path.join(pathToFolder, folder, '**/*.less')], 'blocks.' + folder + '.css', paths.blocks.styles.dest);
 }));
 
 
@@ -612,11 +620,17 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('export', ['info'], function(){
-    var blocks = generateBlocks(paths.blocks.xsl.src, exportPath, '.xsl', false, 'export-view');
-    var css = buildCss(paths.blocks.styles.src, blockCssOut, path.join(exportPath, 'css'));
-    return es.merge(blocks, css);
+gulp.task('export:blocks', ['info'], function() {
+    return generateBlocks(paths.blocks.xsl.src, exportPath, '.xsl', false, 'export-view');
 });
+
+gulp.task('export:less', plugins.folders(pathToFolder, function(folder) {
+    return gulp.src([path.join(pathToFolder, 'core', '**/*.less'), path.join(pathToFolder, folder, '**/*.less'), '!**/outputs.less'])
+        .pipe(plugins.concat(folder+'.less'))
+        .pipe(gulp.dest(path.join(exportPath, folder, 'less')));
+}));
+
+gulp.task('export', ['export:blocks', 'export:less']);
 
 gulp.task('output:site:pages', ['info:content', 'info:blocks'], function(cb) {
     console.log(gutil.colors.dim('%j'), site.pages);

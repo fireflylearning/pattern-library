@@ -45,7 +45,7 @@
         if (document.getElementById('theme-select')) {
             document.getElementById('theme-select').onchange = function() {
                 var val = this.value;
-                changeCSS(val, 1);
+                changeCSS(val, 2);
                 setCookie('theme', val);
                 console.log(getCookie('theme'));
             }
@@ -53,7 +53,7 @@
 
         var theme = getCookie('theme');
         if (theme) {
-            changeCSS(theme, 1);
+            changeCSS(theme, 2);
         }
 
     })(document);
