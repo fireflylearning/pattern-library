@@ -6,7 +6,7 @@
 			<span class="ff_icon ff_icon-test ff_icon-arrow"></span>
 		</div>
 		<div class="ff_module-filter__content">
-			<span>test</span>
+			<xsl:value-of select="content" />
 		</div>
 	</div>
 </xsl:template>
