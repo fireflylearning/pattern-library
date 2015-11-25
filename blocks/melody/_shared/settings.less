@@ -3,9 +3,9 @@ and shared between all themes */
 @ff_base: 16;
 
 //colours
-@ff_colour_primary:                                 #809CB4;
-@ff_colour_secondary:                               #298DE0;
-@ff_colour_quiet:                                   #E1E7EA;
+@ff_colour_primary:                                 #809CB4;//light blue
+@ff_colour_secondary:                               #298DE0;//dark blue
+@ff_colour_quiet:                                   #E1E7EA;//very light blue
 
 @ff_colour_label_grey:								#999999;
 @ff_colour_label_red:								#D35447;
@@ -18,9 +18,13 @@ and shared between all themes */
 
 @ff_colour_control_bg:                              @ff_colour_quiet;
 @ff_colour_control_bg_selected:                     darken(@ff_colour_quiet,10%);
-@ff_colour_control_border:                          @ff_colour_secondary;
-@ff_color_control_link:                             @ff_colour_primary;
+@ff_colour_control_border:                          #CCCCCC;
+@ff_color_control_link:                             @ff_templatesetting_colour_links;
 @ff_colour_control_text:                            #FFFFFF;
+
+//text colours
+@ff_colour_text_quiet:                              #888888;
+@ff_color_text_link:                                @ff_templatesetting_colour_links;                             
 
 //sizing
 @ff_size_spacing_min:               .625rem;//10px

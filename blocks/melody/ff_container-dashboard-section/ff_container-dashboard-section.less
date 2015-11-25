@@ -2,33 +2,43 @@
 .ff_container-dashboard-section__header {
     padding: @ff_size_control_vertical;
     background-color: @ff_templatesetting_section-01-colour;
-    border: 1px solid red;
+    border: none;
     border-top-left-radius: @ff_size_control_rounding;
     border-top-right-radius: @ff_size_control_rounding;
 }
 
-/*
+.ff_container-dashboard-section--messages .ff_container-dashboard-section__header {
+    background-color: @ff_templatesetting_section-02-colour;
+}
+.ff_container-dashboard-section--planner .ff_container-dashboard-section__header {
+    background-color: @ff_templatesetting_section-03-colour;
+}
+.ff_container-dashboard-section--tasks .ff_container-dashboard-section__header {
+    background-color: @ff_templatesetting_section-04-colour;
+}
+
 .ff_container-dashboard-section__title {
-    font-size: 1rem;
-    margin: 0;
+    color: @ff_colour_control_text;
 }
 
 //main
 .ff_container-dashboard-section__main {
-   border-right: 1px solid @ff_colour_control_border;
-   border-left: 1px solid @ff_colour_control_border;
-   .ff_mix-clearfix(); 
+   border: none;
+}
+
+.ff_container-dashboard-section__main--no-footer {
+   border-bottom-left-radius: @ff_size_control_rounding;
+   border-bottom-right-radius: @ff_size_control_rounding; 
 }
 
 //footer
 .ff_container-dashboard-section__footer {
     padding: @ff_size_control_vertical;
     background-color: @ff_colour_control_bg;
-    border: 1px solid @ff_colour_control_border;
+    border: none;
     border-bottom-left-radius: @ff_size_control_rounding;
     border-bottom-right-radius: @ff_size_control_rounding;
 }
 .ff_container-dashboard-section__more-link {
     #ff_mix-base-links > .default();
 }
-*/

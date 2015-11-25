@@ -1,1 +1,1 @@
-<item title="{{title | default('Container Title')}}" more-page-text="{{more_page_text | default('more') }}" more-page-link="{{ more_page_link | default('#') }}"/>
+<item title="{{title | default('Container Title')}}" more-page-text="{{pagetext}}" more-page-link="{{ pagelink | default('#') }}" show-footer="{{ showfooter | default('yes') }}" modifiers="{{ modifiers }}"/>

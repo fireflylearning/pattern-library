@@ -19,7 +19,7 @@
                 </xsl:if>              
         </xsl:for-each>
         
-        <ol class="ff_module-planner-preview__events ff_module-planner-preview__events--later">
+        <ol class="ff_module-planner-preview__events ff_module-planner-preview__events--Later">
         <xsl:for-each select="$data/event">
             <xsl:if test="@label = 'Now' or @label = 'Next'">
                 <li class="ff_module-planner-preview__event">
