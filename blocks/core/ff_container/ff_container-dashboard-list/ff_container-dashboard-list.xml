@@ -1,0 +1,5 @@
+<items>
+{% for item in items %}
+    <item>{{ item }}</item>
+{% endfor %}
+</items>
