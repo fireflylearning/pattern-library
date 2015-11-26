@@ -1,9 +1,9 @@
 #ff_module-progress() {
     .marked() {
-        background-color: darken(@ff_colour_label_green,10%);
+        background-color: darken(@ff_colour_progress,10%);
     }
     .completed() {
-        background-color: @ff_colour_label_green;
+        background-color: @ff_colour_progress;
     }
     .total() {
         background-color: @ff_colour_control_bg;
@@ -47,10 +47,10 @@
     display: inline-block;
     #ff_mix-base-text > .small();
     #ff_mix-base-text > .quiet();
-    
+
     margin-right: @ff_size_control_vertical;
     &:last-child {margin-right: 0;}
-    
+
     &:before {
         content: "";
         width: 1em;
@@ -61,7 +61,7 @@
         border: 1px solid @ff_colour_control_border;
         margin-right: @ff_size_control_vertical;
     }
-    
+
 }
 
 .ff_module-progress__label--completed:before {
