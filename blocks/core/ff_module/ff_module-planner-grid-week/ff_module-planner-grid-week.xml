@@ -1,26 +1,133 @@
-<planner date="2015-11-11" today-url="planner" previous-day-url="planner/day/2015-11-10" next-day-url="planner/day/2015-11-12">
-
-    <timeranges>
-        {% for time in timeranges %}
-        <time start="{{time.start}}" end="{{time.end}}" />
-        {% endfor%}
-    </timeranges>
-    <events>
-
-    {% for event in events %}
-    <event subject="{{event.subject}}" isostartdate="{{event.isostartdate}}" isoenddate="{{event.isoenddate}}" description="{{event.description}}" url="{{event.url}}" colour="{{event.colour}}" location="{{event.location}}" minutelength="60" minutestart="240" >
-
-        {% if event.note %}
-        <note>
-        <![CDATA[
-        {{ event.note | safe }}
-        ]]>
-        </note>
-        {% else %}
-        <note/>
-        {% endif %}
-
-    </event>
-    {% endfor %}
-</events>
+<planner type="week" date="2015-01-05" date-url-prefix="planner/week/" now-url="planner/week" previous-url="planner/week/2014-12-29" next-url="planner/week/2015-01-12" day-url="planner" week-url="planner/week" is-now="true">
+    <timetable type="calendar">
+        <calendar display="timetable">
+            <weekconfiguration>
+                <weekstartday>Monday</weekstartday>
+                <weekenddays>
+                    <weekendday>Saturday</weekendday>
+                    <weekendday>Sunday</weekendday>
+                </weekenddays>
+            </weekconfiguration>
+            <group type="week" niceweek="46 Weeks Ago" startdate="05/01/2015">
+                <day firstdaymo="1" dispmode="standard" dayofweek="Monday" dayofmonth="5" date="05/01/2015" month="January" nicedate="05/01/2015">
+                    <events>
+                        <event subject="Religious Ed" isostartdate="2015-01-05T09:15:00" isoenddate="2015-01-05T10:15:00" minutelength="60" minutestart="555" starttime="09:15" endtime="10:15" description="7D/Re" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8130" guid="8130:37058">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8130" name="Class 7D/Re" url="/profile?guid=DB:SIMS:8130" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-05T10:15:00" isoenddate="2015-01-05T11:15:00" minutelength="60" minutestart="615" starttime="10:15" endtime="11:15" description="11y/Hi2" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8462" guid="8462:37059">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8462" name="Class 11y/Hi2" url="/profile?guid=DB:SIMS:8462" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-05T11:35:00" isoenddate="2015-01-05T12:35:00" minutelength="60" minutestart="695" starttime="11:35" endtime="12:35" description="13C/Hi1" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8529" guid="8529:37060">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8529" name="Class 13C/Hi1" url="/profile?guid=DB:SIMS:8529" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-05T12:35:00" isoenddate="2015-01-05T13:35:00" minutelength="60" minutestart="755" starttime="12:35" endtime="13:35" description="13C/Hi1" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8529" guid="8529:37061">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8529" name="Class 13C/Hi1" url="/profile?guid=DB:SIMS:8529" member="no" />
+                        </event>
+                    </events>
+                </day>
+                <day dispmode="standard" dayofweek="Tuesday" dayofmonth="6" date="06/01/2015" month="January" nicedate="06/01/2015" today="yes">
+                    <events>
+                        <event subject="History" isostartdate="2015-01-06T10:15:00" isoenddate="2015-01-06T11:15:00" minutelength="60" minutestart="615" now="yes" starttime="10:15" endtime="11:15" description="7C/Hi" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8106"
+                        guid="8106:37065">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8106" name="Class 7C/Hi" url="/profile?guid=DB:SIMS:8106" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-06T11:35:00" isoenddate="2015-01-06T12:35:00" minutelength="60" minutestart="695" starttime="11:35" endtime="12:35" description="13C/Hi1" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8529" guid="8529:37066">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8529" name="Class 13C/Hi1" url="/profile?guid=DB:SIMS:8529" member="no" />
+                        </event>
+                        <event subject="Religious Ed" isostartdate="2015-01-06T12:35:00" isoenddate="2015-01-06T13:35:00" minutelength="60" minutestart="755" starttime="12:35" endtime="13:35" description="7A/Re" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8090" guid="8090:37067">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8090" name="Class 7A/Re" url="/profile?guid=DB:SIMS:8090" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-06T14:30:00" isoenddate="2015-01-06T15:30:00" minutelength="60" minutestart="870" starttime="14:30" endtime="15:30" description="11y/Hi2" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8462" guid="8462:37068">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8462" name="Class 11y/Hi2" url="/profile?guid=DB:SIMS:8462" member="no" />
+                        </event>
+                    </events>
+                </day>
+                <day dispmode="standard" dayofweek="Wednesday" dayofmonth="7" date="07/01/2015" month="January" nicedate="07/01/2015">
+                    <events>
+                        <event subject="History" isostartdate="2015-01-07T09:15:00" isoenddate="2015-01-07T10:15:00" minutelength="60" minutestart="555" starttime="09:15" endtime="10:15" description="9Y2/Hi" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8303" guid="8303:37070">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8303" name="Class 9Y2/Hi" url="/profile?guid=DB:SIMS:8303" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-07T14:30:00" isoenddate="2015-01-07T15:30:00" minutelength="60" minutestart="870" starttime="14:30" endtime="15:30" description="13C/Hi1" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8529" guid="8529:37074">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8529" name="Class 13C/Hi1" url="/profile?guid=DB:SIMS:8529" member="no" />
+                        </event>
+                    </events>
+                </day>
+                <day dispmode="standard" dayofweek="Thursday" dayofmonth="8" date="08/01/2015" month="January" nicedate="08/01/2015">
+                    <events>
+                        <event subject="History" isostartdate="2015-01-08T09:15:00" isoenddate="2015-01-08T10:15:00" minutelength="60" minutestart="555" starttime="09:15" endtime="10:15" description="11y/Hi2" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8462" guid="8462:37076">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8462" name="Class 11y/Hi2" url="/profile?guid=DB:SIMS:8462" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-08T10:15:00" isoenddate="2015-01-08T11:15:00" minutelength="60" minutestart="615" starttime="10:15" endtime="11:15" description="7D/Hi" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8128" guid="8128:37077">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8128" name="Class 7D/Hi" url="/profile?guid=DB:SIMS:8128" member="no" />
+                        </event>
+                        <event subject="Religious Ed" isostartdate="2015-01-08T11:35:00" isoenddate="2015-01-08T12:35:00" minutelength="60" minutestart="695" starttime="11:35" endtime="12:35" description="7C/Re" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8108" guid="8108:37078">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8108" name="Class 7C/Re" url="/profile?guid=DB:SIMS:8108" member="no" />
+                        </event>
+                        <event subject="Religious Ed" isostartdate="2015-01-08T12:35:00" isoenddate="2015-01-08T13:35:00" minutelength="60" minutestart="755" starttime="12:35" endtime="13:35" description="9X2/Re" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8261"
+                        guid="8261:37079">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8261" name="Class 9X2/Re" url="/profile?guid=DB:SIMS:8261" member="no" />
+                        </event>
+                        <event subject="PSE" isostartdate="2015-01-08T14:30:00" isoenddate="2015-01-08T15:30:00" minutelength="60" minutestart="870" starttime="14:30" endtime="15:30" description="10B/Ps" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8330" guid="8330:37080">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8330" name="Class 10B/Ps" url="/profile?guid=DB:SIMS:8330" member="no" />
+                        </event>
+                    </events>
+                </day>
+                <day dispmode="standard" dayofweek="Friday" dayofmonth="9" date="09/01/2015" month="January" nicedate="09/01/2015">
+                    <events>
+                        <event subject="Geography" isostartdate="2015-01-09T09:15:00" isoenddate="2015-01-09T10:15:00" minutelength="60" minutestart="555" starttime="09:15" endtime="10:15" description="9X2/Gg" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8259" guid="8259:37082">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8259" name="Class 9X2/Gg" url="/profile?guid=DB:SIMS:8259" member="no" />
+                        </event>
+                        <event subject="Geography" isostartdate="2015-01-09T10:15:00" isoenddate="2015-01-09T11:15:00" minutelength="60" minutestart="615" starttime="10:15" endtime="11:15" description="8A/Gg" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8169" guid="8169:37083">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8169" name="Class 8A/Gg" url="/profile?guid=DB:SIMS:8169" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-09T11:35:00" isoenddate="2015-01-09T12:35:00" minutelength="60" minutestart="695" starttime="11:35" endtime="12:35" description="9X2/Hi" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8260" guid="8260:37084">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8260" name="Class 9X2/Hi" url="/profile?guid=DB:SIMS:8260" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-09T12:35:00" isoenddate="2015-01-09T13:35:00" minutelength="60" minutestart="755" starttime="12:35" endtime="13:35" description="13C/Hi1" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8529" guid="8529:37085">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8529" name="Class 13C/Hi1" url="/profile?guid=DB:SIMS:8529" member="no" />
+                        </event>
+                        <event subject="History" isostartdate="2015-01-09T14:30:00" isoenddate="2015-01-09T15:30:00" minutelength="60" minutestart="870" starttime="14:30" endtime="15:30" description="8C/Hi" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8178" guid="8178:37086">
+                            <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />
+                            <attendee role="required" guid="DB:SIMS:8178" name="Class 8C/Hi" url="/profile?guid=DB:SIMS:8178" member="no" />
+                        </event>
+                    </events>
+                </day>
+                <day dispmode="standard" dayofweek="Saturday" dayofmonth="10" date="10/01/2015" month="January" nicedate="10/01/2015" hide="yes">
+                    <events/>
+                </day>
+                <day dispmode="standard" dayofweek="Sunday" dayofmonth="11" date="11/01/2015" month="January" nicedate="11/01/2015" hide="yes">
+                    <events/>
+                </day>
+                <weekseparator/>
+                <timeIndex>
+                    <item name="9:15 - 10:15" minutelength="60" minutestart="555" />
+                    <item name="10:15 - 11:15" minutelength="60" minutestart="615" />
+                    <item type="gapindex" name="11:15 - 11:35" minutelength="20" minutestart="675" />
+                    <item name="11:35 - 12:35" minutelength="60" minutestart="695" />
+                    <item name="12:35 - 13:35" minutelength="60" minutestart="755" />
+                    <item type="gapindex" name="13:35 - 14:30" minutelength="55" minutestart="815" />
+                    <item name="14:30 - 15:30" minutelength="60" minutestart="870" />
+                </timeIndex>
+            </group>
+        </calendar>
+    </timetable>
 </planner>

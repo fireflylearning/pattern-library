@@ -1,3 +1,4 @@
+@ff_icon_dims: 20px;
 .ff_module-date-picker-button {
     color: @ff_color_control_link;
     #ff_mix-buttons > .with-icon;
@@ -11,11 +12,19 @@
         #ff_mix-base-text > .vertical-align;
         margin-left: @ff_size_control_horizontal * 1.25;
         position: relative;
+        width: @ff_icon_dims;
+        height:@ff_icon_dims;
     }
     &__cal {
         position: absolute;
         right: 0;
-        width:100%;
+        left:0;
+        top:0;
+        bottom: 0;
+        width:@ff_icon_dims;
+        background-color: transparent;
+        color: transparent;
+        border: none;
     }
     .ui-datepicker-inline {
 

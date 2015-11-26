@@ -12,8 +12,9 @@
             </xsl:choose>
         </span>
         <div class="ff_module-date-picker-button__icon">
-            <span class="ff_icon ff_icon-cal"></span>
-            <input class="ff_module-date-picker-button__cal" data-component="date-picker"/>
+            <input class="ff_module-date-picker-button__cal" data-component="date-picker">
+                <span class="ff_icon ff_icon-cal"></span>
+            </input>
         </div>
     </button>
 </xsl:template>

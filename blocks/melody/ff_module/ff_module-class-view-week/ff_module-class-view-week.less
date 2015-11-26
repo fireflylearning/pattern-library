@@ -1,19 +1,19 @@
 
 .ff_module-class-view-week {
     border: 1px solid @ff_colour_control_border;
-    border-radius: 2px;
-    background-color: #f8f8f8;
+    border-radius: 3px;
+    background-color: #fff;
     overflow: hidden;
     &__content {
-        padding: @ff_size_control_vertical*0.75 0;
+        padding: @ff_size_spacing_min*0.5;
         #ff_mix-class-view > .color-block-sm();
-        padding-left: @ff_size_control_horizontal*0.5;
+        // padding-left: @ff_size_control_horizontal*0.5;
     }
     @media screen and (min-width:@ff_planner_week_bp_med) {
         &__content {
-            padding: @ff_size_control_vertical 0;
+            // padding: @ff_size_control_vertical 0;
             #ff_mix-class-view > .color-block-md();
-            padding-left: @ff_size_control_horizontal;
+            // padding-left: @ff_size_control_horizontal;
         }
     }
 }
