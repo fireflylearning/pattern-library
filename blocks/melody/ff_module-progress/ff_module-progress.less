@@ -1,9 +1,9 @@
 #ff_module-progress() {
     .marked() {
-        background-color: @ff_colour_secondary;
+        background-color: @ff_colour_progress;
     }
     .completed() {
-        background-color: lighten(@ff_colour_secondary,10%);
+        background-color: lighten(@ff_colour_progress,10%);
     }
     .total() {
         background-color: #FFFFFF;
@@ -32,7 +32,7 @@
 .ff_module-progress__bar--completed {
     #ff_module-progress > .completed();
     border-top-right-radius: @ff_size_control_rounding;
-    border-bottom-right-radius: @ff_size_control_rounding; 
+    border-bottom-right-radius: @ff_size_control_rounding;
 }
 
 .ff_module-progress__bar--marked {
@@ -52,10 +52,10 @@
     display: inline-block;
     #ff_mix-base-text > .small();
     #ff_mix-base-text > .quiet();
-    
+
     margin-right: @ff_size_control_vertical;
     &:last-child {margin-right: 0;}
-    
+
     &:before {
         content: "";
         width: 1em;
@@ -66,7 +66,7 @@
         border: 1px solid @ff_colour_control_border;
         margin-right: @ff_size_control_vertical;
     }
-    
+
 }
 
 .ff_module-progress__label--completed:before {

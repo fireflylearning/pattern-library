@@ -3,18 +3,23 @@ and shared between all themes */
 @ff_base: 16;
 
 //colours
-@ff_colour_primary:                                 #809CB4;//light blue
-@ff_colour_secondary:                               #298DE0;//dark blue
-@ff_colour_quiet:                                   #E1E7EA;//very light blue
 
-@ff_colour_label_grey:                              #999999;
-@ff_colour_label_red:                               #D35447;
-@ff_colour_label_blue:                              #2B97CE;
-@ff_colour_label_yellow:                            #FFCD00;
-@ff_colour_label_green:                             #98CE1E;
-@ff_colour_label_orange:                            #FF9A00;
-@ff_colour_label_pink:                              #FF97CC;
-@ff_colour_label_purple:                            #9A63CE;
+@ff_colour_green:           #98CE1E;
+@ff_colour_red:             #D35447;
+@ff_colour_yellow:          #FFCD00;
+
+@ff_colour_melody_md_blue:  #809CB4; //med blue
+@ff_colour_melody_dk_blue:  #298DE0; //dark blue
+@ff_colour_melody_lt_blue:  #E1E7EA; //light blue
+
+@ff_colour_success:         @ff_colour_green;
+@ff_colour_error:           @ff_colour_red;
+@ff_colour_notify:          @ff_colour_yellow;
+@ff_colour_progress:        @ff_colour_melody_dk_blue;
+
+@ff_colour_default:         @ff_colour_melody_md_blue;
+@ff_colour_primary:         @ff_colour_melody_dk_blue;
+@ff_colour_quiet:           @ff_colour_melody_lt_blue;
 
 @ff_colour_control_bg:                              @ff_colour_quiet;
 @ff_colour_control_bg_selected:                     darken(@ff_colour_quiet,10%);
