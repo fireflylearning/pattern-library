@@ -1,23 +1,23 @@
 .ff_util-prose {
-    
+
     //basic text sizing
     h1 {
-        
+
     }
     h2 {
-        
+
     }
     h3 {
-        
+
     }
     h4 {
-        
+
     }
     h5 {
-        
+
     }
     h6 {
-        
+
     }
     p, li, dl, time {
         line-height: 1.4;
@@ -31,7 +31,26 @@
         margin-top: @ff_size_prose_spacing;
     }  
     
+    //basic text styling
+    a, a:visited {
+      text-decoration: underline;
+    }
+
+
+    h1,h2,h3,h4,h5,h6 {
+      a, a:visited {
+          text-decoration: none;
+      }
+    }
+
+    //spacing
+
+    figure, img, p, ul, ol, hr, table, h2, h3, h4, h5 {
+        margin-bottom: @ff_size_prose_spacing;
+    }
+
     //lists
+
     ul  {
         list-style: disc;
         ul {
@@ -41,7 +60,7 @@
           }
         }
     }
-    
+
     ol {
         list-style: decimal;
         ol {
@@ -51,33 +70,33 @@
           }
         }
     }
-    
+
     ul ul, ul ol, ol ol, ol ul {
         margin-left: @ff_size_prose_spacing;
     }
-    
+
     ul, ol {
       list-style-position: inside;
     }
-  
-  
-  
+
+
+
     //media
-    
+
     img {
     	display: block;
     	max-width: 100%;
     }
-    
+
     figure {
-    	
+
     	figcaption {
     		font-size: 70%;
-    		color: @ff_colour_secondary;
+    		color: @ff_colour_primary;
     		font-style: italic;
             border-bottom: 1px solid @ff_colour_control_border;
     	}
-    	
-    }  
-    
+
+    }
+
 }
