@@ -1,5 +1,51 @@
+#ff_module-button() {
+    .primary() {
+        background-color: @ff_colour_primary;
+        font-weight: bold;
+        border-color: @ff_colour_primary;
+    }
+    .large() {
+        padding: (@ff_size_spacing_min * 1.35) @ff_size_spacing_max;
+    }
+    .block() {
+        width: 100%;
+    }
+}
+
 .ff_module-button {
-    button {
-        background-color: red;
+    background-color: @ff_colour_secondary;
+    color: @ff_colour_control_text;
+    border-radius: @ff_size_control_rounding;
+    border: 1px solid @ff_colour_secondary;
+    padding: (@ff_size_spacing_min * .85)  @ff_size_spacing_med;
+
+    &--primary {
+        #ff_module-button > .primary();
+    }
+
+    &--large {
+       #ff_module-button > .large();
+    }
+
+    &--primary-large {
+        #ff_module-button > .primary();
+        #ff_module-button > .large();
+    }
+
+    &--block {
+       #ff_module-button > .block();
+    }
+    &--primary-block {
+       #ff_module-button > .block();
+       #ff_module-button > .primary();
+    }
+    &--large-block {
+       #ff_module-button > .block();
+       #ff_module-button > .large();
+    }
+    &--primary-large-block {
+        #ff_module-button > .block();
+        #ff_module-button > .primary();
+        #ff_module-button > .large();
     }
 }
