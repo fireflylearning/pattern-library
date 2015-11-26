@@ -1,41 +1,39 @@
 /* This file is for core less variables that are hard-coded in the environment
 and shared between all themes */
+
 @ff_base: 16;
 
+@ff_colour_green:           #98CE1E;
+@ff_colour_red:             #D35447;
+@ff_colour_yellow:          #FFCD00;
+
+@ff_colour_success:         @ff_colour_green;
+@ff_colour_error:           @ff_colour_red;
+@ff_colour_notify:          @ff_colour_yellow;
+
 //colours
-@ff_colour_primary:                                 #297FCF;
-@ff_colour_secondary:                               #B4B4B4;
-@ff_colour_quiet:                                   #E3E3E3;
+@ff_colour_default:         #297FCF;
+@ff_colour_primary:       #B4B4B4;
+@ff_colour_quiet:           #E3E3E3;
 
-@ff_colour_label_grey:								#999999;
-@ff_colour_label_red:								#D35447;
-@ff_colour_label_blue:								#2B97CE;
-@ff_colour_label_yellow:							#FFCD00;
-@ff_colour_label_green:								#98CE1E;
-@ff_colour_label_orange:							#FF9A00;
-@ff_colour_label_pink:								#FF97CC;
-@ff_colour_label_purple:							#9A63CE;
 
-@ff_colour_control_bg:                              @ff_colour_quiet;
-@ff_colour_control_bg_selected:                     darken(@ff_colour_quiet,10%);
-@ff_colour_control_border:                          @ff_colour_secondary;
-@ff_color_control_link:                             @ff_colour_primary;
-@ff_colour_control_text:                            #333333;
-
+@ff_colour_control_bg: @ff_colour_quiet;
+@ff_colour_control_bg_selected: darken(@ff_colour_quiet, 10%);
+@ff_colour_control_border: @ff_colour_primary;
+@ff_color_control_link: @ff_colour_default;
+@ff_colour_control_text: #333333;
 
 //text colours
-@ff_colour_text_quiet:                              #CCCCCC;
-@ff_color_text_link:                                @ff_color_control_link;
+@ff_colour_text_quiet: #CCCCCC;
+@ff_color_text_link: @ff_color_control_link;
 
 //sizing
-@ff_size_spacing_min:               .625rem;//10px
-@ff_size_spacing_med:               1rem;//16px
-@ff_size_spacing_max:               1.25rem;//20px
-
+@ff_size_spacing_min: .625rem; //10px
+@ff_size_spacing_med: 1rem; //16px
+@ff_size_spacing_max: 1.25rem; //20px
 @ff_size_control_horizontal: @ff_size_spacing_med;
 @ff_size_control_vertical: @ff_size_spacing_min;
 @ff_size_control_rounding: 5rem/@ff_base;
-
 @ff_size_prose_spacing: 2rem;
 
 //breakpoint — we may wish to do this differently
