@@ -1,35 +1,41 @@
 //header
 .ff_container-dashboard-section__header {
     padding: @ff_size_control_vertical @ff_size_control_horizontal;
-    background-color: @ff_colour_control_bg;
-    border: 1px solid @ff_colour_control_border;
+    background-color: @ff_templatesetting_section-01-colour;
+    border: none;
     border-top-left-radius: @ff_size_control_rounding;
     border-top-right-radius: @ff_size_control_rounding;
 }
 
+.ff_container-dashboard-section--messages .ff_container-dashboard-section__header {
+    background-color: @ff_templatesetting_section-02-colour;
+}
+.ff_container-dashboard-section--planner .ff_container-dashboard-section__header {
+    background-color: @ff_templatesetting_section-03-colour;
+}
+.ff_container-dashboard-section--tasks .ff_container-dashboard-section__header {
+    background-color: @ff_templatesetting_section-04-colour;
+}
+
 .ff_container-dashboard-section__title {
-    margin: 0;
+    color: @ff_colour_control_text;
 }
 
 //main
 .ff_container-dashboard-section__main {
-    background-color: #FFFFFF;
-   border-right: 1px solid @ff_colour_control_border;
-   border-left: 1px solid @ff_colour_control_border;
-   .ff_mix-clearfix(); 
+   border: none;
 }
 
 .ff_container-dashboard-section__main--no-footer {
    border-bottom-left-radius: @ff_size_control_rounding;
    border-bottom-right-radius: @ff_size_control_rounding; 
-   overflow: hidden;
 }
 
 //footer
 .ff_container-dashboard-section__footer {
-    padding: @ff_size_control_vertical;
+    padding: @ff_size_control_vertical * 1.5 @ff_size_control_horizontal;
     background-color: @ff_colour_control_bg;
-    border: 1px solid @ff_colour_control_border;
+    border: none;
     border-bottom-left-radius: @ff_size_control_rounding;
     border-bottom-right-radius: @ff_size_control_rounding;
 }

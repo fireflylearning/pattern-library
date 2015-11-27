@@ -19,21 +19,43 @@
         }
     })(document);
 
-    (function(document, undefined){
+    (function(document, window, undefined){
+        var cookies;
 
-        function setCookie(key, val) {
-            document.cookie = key + "=" +val;
+        function setCookie(name,value,days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime()+(days*24*60*60*1000));
+                var expires = "; expires="+date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name+"="+value+expires+"; path=/";
         }
-        function getCookie(name) {
-          var value = "; " + document.cookie;
-          var parts = value.split("; " + name + "=");
-          if (parts.length == 2) return parts.pop().split(";").shift();
+
+        function getCookie(name,c,C,i){
+            if(cookies){ return cookies[name]; }
+
+            c = document.cookie.split('; ');
+            cookies = {};
+
+            for(i=c.length-1; i>=0; i--){
+               C = c[i].split('=');
+               cookies[C[0]] = C[1];
+            }
+
+            return cookies[name];
         }
+
+        window.getCookie = getCookie;
+        window.setCookie = setCookie;
+
+    })(document, window);
+
+    (function(window, document, undefined){
 
         function changeCSS(cssFile, linkId) {
 
             var oldlink = document.getElementById(linkId);
-            console.log(oldlink);
             var newlink = document.createElement("link");
             newlink.setAttribute("rel", "stylesheet");
             newlink.setAttribute("type", "text/css");
@@ -48,18 +70,18 @@
                 var val = this.value;
                 if (!val) return;
                 changeCSS(val, 'crate_theme-switch');
-                setCookie('theme', val);
+                window.setCookie('theme', val);
                 console.log(getCookie('theme'));
             }
         }
 
-        var theme = getCookie('theme');
+        var theme = window.getCookie('theme');
         if (theme) {
             changeCSS(theme, 'crate_theme-switch');
             document.getElementById('theme-select').value = theme;
         }
 
-    })(document);
+    })(window, document);
 
 
 </script>

@@ -638,6 +638,7 @@ var exportCssGlobPaths = [
         '**/settings.less',
         '**/mixins.less',
         '**/_shared/**/*.less',
+        '!**/_shared/**/outputs.less',
         '**/*.less',
         '!**/outputs.less',
     ];
