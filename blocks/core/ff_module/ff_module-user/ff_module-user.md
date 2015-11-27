@@ -1,6 +1,6 @@
 ---
 data:
     name: "Sally Student"
-    url: "#"
+    profile_url: "#"
     picture: "#"
 ---

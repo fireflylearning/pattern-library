@@ -1,1 +1,3 @@
-
+<name>{{item.name | default('Default user')}}</name>
+<profile_url>{{item.url | default('#')}}</profile_url>
+<picture>{{item.picture | default('#')}}</picture>
