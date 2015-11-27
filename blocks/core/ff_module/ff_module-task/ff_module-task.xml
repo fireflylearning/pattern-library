@@ -1,0 +1,4 @@
+<notice id="{{ id }}" display_date_type="{{ display_date_type }}" sent_to="{{ sent_to }}" no_excused="{{ no_excused }}" handedin="{{ completed_by }}" marked="{{ marked }}" type="onlinetask" from="{{ from }}" from_href="{{ from_href }}" link_href="{{ link_href }}" to="{{ to }}" duedate="{{ duedate }}" startdate="{{ startdate }}" setdate="{{ setdate }}">
+    <message>{{ message }}</message>
+    <htmlMessage>{{ message }}</htmlMessage>
+</notice>

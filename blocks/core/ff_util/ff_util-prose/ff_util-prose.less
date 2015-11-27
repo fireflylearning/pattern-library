@@ -20,9 +20,17 @@
 
     }
     p, li, dl, time {
-        line-height: 1.3;
-        font-size: 1rem;
+        line-height: 1.4;
+        font-size: 1em;
+        margin: 0;
     }
+
+
+    //spacing
+    figure, img, p+p, ul, ol, hr, table, h2, h3, h4, h5 {
+        margin-top: @ff_size_prose_spacing;
+    }
+
 
     //basic text styling
     a, a:visited {
@@ -36,14 +44,7 @@
       }
     }
 
-    //spacing
-
-    figure, img, p, ul, ol, hr, table, h2, h3, h4, h5 {
-        margin-bottom: @ff_size_prose_spacing;
-    }
-
     //lists
-
     ul  {
         list-style: disc;
         ul {

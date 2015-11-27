@@ -1,0 +1,82 @@
+#ff_module-progress() {
+    .marked() {
+        background-color: @ff_colour_progress;
+    }
+    .completed() {
+        background-color: lighten(@ff_colour_progress,10%);
+    }
+    .total() {
+        background-color: #FFFFFF;
+    }
+}
+
+//progress bars
+.ff_module-progress__stacked {
+    border: 1px solid @ff_colour_control_border;
+    border-radius: @ff_size_control_rounding;
+    height: @ff_size_spacing_med;
+    overflow: hidden;
+    #ff_module-progress > .total();
+    padding: 1px;
+}
+
+.ff_module-progress__meta {
+    display: none;
+}
+
+.ff_module-progress__bar {
+    float: left;
+    height: 100%;
+}
+
+.ff_module-progress__bar--completed {
+    #ff_module-progress > .completed();
+    border-top-right-radius: @ff_size_control_rounding;
+    border-bottom-right-radius: @ff_size_control_rounding;
+}
+
+.ff_module-progress__bar--marked {
+    #ff_module-progress > .marked();
+    border-top-left-radius: @ff_size_control_rounding;
+    border-bottom-left-radius: @ff_size_control_rounding;
+}
+
+//key
+.ff_module-progress__key {
+    margin: @ff_size_control_vertical 0 0;
+    padding: 0;
+}
+
+.ff_module-progress__label {
+    list-style: none;
+    display: inline-block;
+    #ff_mix-base-text > .small();
+    #ff_mix-base-text > .quiet();
+
+    margin-right: @ff_size_control_vertical;
+    &:last-child {margin-right: 0;}
+
+    &:before {
+        content: "";
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        float: left;
+        border-radius: 50%;
+        border: 1px solid @ff_colour_control_border;
+        margin-right: @ff_size_control_vertical;
+    }
+
+}
+
+.ff_module-progress__label--completed:before {
+    #ff_module-progress > .completed();
+}
+
+.ff_module-progress__label--marked:before {
+    #ff_module-progress > .marked();
+}
+
+.ff_module-progress__label--total:before {
+    #ff_module-progress > .total();
+}
