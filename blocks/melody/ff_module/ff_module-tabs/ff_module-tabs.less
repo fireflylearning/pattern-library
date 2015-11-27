@@ -1,0 +1,24 @@
+.ff_module-tabs__navigation {
+	.ff_mix-clearfix();
+	border-radius: @ff_size_control_rounding  @ff_size_control_rounding 0  0;
+	display: inline-block;
+	border: 1px solid @ff_colour_control_border;
+	border-bottom: 0;
+	overflow: hidden;
+}
+.ff_module-tabs__tab {
+	float: left;
+	padding: @ff_size_control_vertical;
+	background: @ff_colour_control_bg;
+	border-right: 1px solid @ff_colour_control_border;
+	&:last-child {
+		border-right: none;
+	}
+}
+.ff_module-tabs__link {
+	text-decoration: none;
+	color: @ff_colour_default;
+}
+.ff_module-tabs__tab--active {
+	background: white;
+}
