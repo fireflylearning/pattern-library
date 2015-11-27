@@ -2,5 +2,5 @@
 data:
     name: "Sally Student"
     profile_url: "#"
-    picture: "#"
+    picture: "images/default_picture.png"
 ---
