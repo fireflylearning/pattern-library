@@ -18,6 +18,21 @@
     }
 }
 
+#ff_mix-base-text() {
+    .in-list() {
+        margin: @ff_size_control_vertical 0 0 0;
+        &:first-of-type {
+            margin: 0;
+        }
+    }
+    .in-tight-list() {
+        margin: @ff_size_control_vertical/2 0 0 0;
+        &:first-of-type {
+            margin: 0;
+        }
+    }
+}
+
 
 .ff_mix-clearfix() {
     zoom: 1;
