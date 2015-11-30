@@ -1,0 +1,1 @@
+<input value="{{value}}" id="{{id}}">{{name}}</input>

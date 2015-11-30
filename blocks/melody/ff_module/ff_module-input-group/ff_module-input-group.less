@@ -1,0 +1,17 @@
+@ff_input-group-padding-vertical:7.5rem/@ff_base;
+
+.ff_module-input-group {
+    border: 1px solid @ff_color_control_link;
+    border-radius: @ff_size_control_rounding;
+
+    background-color: screen(@ff_color_control_link, #bfbfbf);
+
+    &__name {
+        padding: @ff_input-group-padding-vertical @ff_size_control_horizontal @ff_input-group-padding-vertical @ff_size_spacing_min;
+        font-size: 16rem/@ff_base;
+        color: @ff_colour_control_text;
+    }
+    &__delete {
+        padding: @ff_input-group-padding-vertical @ff_size_spacing_min @ff_input-group-padding-vertical 0;
+    }
+}
