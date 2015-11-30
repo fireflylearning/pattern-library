@@ -1,3 +1,16 @@
+.ff_module-tabs__navigation {
+    .ff_mix-clearfix();
+    border-radius: @ff_size_control_rounding  @ff_size_control_rounding 0  0;
+    border: 1px solid @ff_colour_control_border;
+}
+.ff_module-tabs__tab {
+    padding: unit(12/@ff_base, rem) unit(20/@ff_base,rem);
+    background: @ff_colour_control_bg;
+    #ff_mix-base-box > .list-item()
+}
 .ff_module-tabs__link {
-	color: @ff_colour_default;
+    color: @ff_colour_control_text;
+}
+.ff_module-tabs__tab--active {
+    background: white;
 }
