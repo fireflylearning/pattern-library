@@ -1,0 +1,30 @@
+@ff_input-group-padding-vertical: 7.5rem/@ff_base;
+
+#ff_module-input() {
+    .box-style {
+        .layout {
+            border-radius: @ff_size_control_rounding;
+            display: inline-block;
+            line-height: 1;
+            overflow: hidden;
+        }
+        .border {
+            border: 1px solid @ff_color_control_link;
+        }
+        .bg {
+            background-color: screen(@ff_color_control_link, #bfbfbf);
+        }
+        .label {
+            font-size: 1rem;
+            color: @ff_colour_control_text;
+            display: inline-block;
+        }
+        .delete {
+            #ff_mix-buttons > .with-icon();
+            float:right;
+            margin-left: 2rem;
+            padding: @ff_input-group-padding-vertical @ff_size_spacing_min @ff_input-group-padding-vertical 0;
+        }
+    }
+
+}

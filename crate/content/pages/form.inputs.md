@@ -12,5 +12,9 @@ data:
         - 
             name: "Group editable input name"
             id: "input-group-id-editable"
+    ff_module-input-member:
+        - 
+            name: "Member input name"
+            id: "input-member-id"
     
 ---
