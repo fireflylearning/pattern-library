@@ -159,7 +159,6 @@ function getReqsForFile(file) {
 }
 
 function getDataForBlocks(file) {
-    console.log(site.blocks);
     return getDataForFile(file, site.blocks);
 }
 
@@ -215,8 +214,8 @@ function getContentByBasename(basename, datalist, selection) {
 function normaliseBlocks(blocks, blocklist, selection) {
     if (!blocks) return [];
     blocklist = blocklist || site.blocks;
-    var nb = [];
-    selection = selection || ['site', 'page', 'info', 'data', 'requires'];
+    var nb = [],
+        selection = selection || ['site', 'page', 'info', 'data', 'requires'];
 
     blocks.forEach(function(block) {
         if (_.isObject(block)) {
