@@ -1,12 +1,12 @@
 'use strict';
 
 $(function(){ 
-	$("[data-control='filter-dropdown']").click(function(){
+	$("[data-ff-action='filter-control']").click(function(){
 		var filterDropdown = $(this),
-		      filterIcon = filterDropdown.find("[data-icon='filter-dropdown-icon']"),
-		      filterContent = filterDropdown.next();
+		      filterIcon = filterDropdown.find("[data-ff-icon='filter-dropdown-icon']"),
+		      filterContent = filterDropdown.closest("[data-ff='filter']").find("[data-ff='filter-content']");
 		      
 		filterIcon.toggleClass("ff_icon-arrow--closed");
-		filterContent.slideToggle();
+		filterContent.slideToggle(200);
 	});
 });

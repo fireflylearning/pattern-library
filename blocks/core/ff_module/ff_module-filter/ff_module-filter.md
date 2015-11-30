@@ -1,6 +1,6 @@
 ---
 data:
     label: "Filter by date"
-    content: "Yesterday"
+    content: "Content would be here"
 ---
 
