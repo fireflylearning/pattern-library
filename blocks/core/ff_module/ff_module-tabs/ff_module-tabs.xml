@@ -1,0 +1,9 @@
+<items>
+	{% for item in items %}
+		<item>
+			<label>{{item.label | default('item label')}}</label>
+			<active>{{item.active | default('false')}}</active>
+			<id>{{item.id}}</id>
+		</item>
+	{% endfor %}
+</items>

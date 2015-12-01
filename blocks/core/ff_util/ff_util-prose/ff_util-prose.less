@@ -1,3 +1,62 @@
+#ff_mix-util-prose() {
+    .heading-default {
+        color: @ff_colour_control_text;
+    }
+
+    .h1 {}
+    .text-default {
+        line-height: 1.3;
+        font-size: 1rem;
+        color: @ff_colour_control_text;
+    }
+    .a-text {
+        .default {
+            text-decoration: underline;
+        }
+        .active {
+
+        }
+        .visited {
+
+        }
+    }
+    .a-heading {
+        .default {
+            text-decoration: none;
+        }
+        .active {
+
+        }
+        .visited {
+
+        }
+    }
+    .spacing {
+        margin-bottom: @ff_size_prose_spacing;
+    }
+    .list-parent {
+        list-style-position: inside;
+        // margin-left: @ff_size_prose_spacing;
+        // list-style-position: inside;
+    }
+    .list-child {
+        margin-left: @ff_size_prose_spacing;
+    }
+    .img-default {
+        display: block;
+        max-width: 100%;
+    }
+    .caption {
+        font-size: 70%;
+        color: @ff_colour_primary;
+        font-style: italic;
+        border-bottom: 1px solid @ff_colour_control_border;
+    }
+}
+
+
+
+
 .ff_util-prose {
     &>*:first-child {
         margin-top:0;
@@ -7,6 +66,9 @@
     }
 
     //basic text sizing
+    h1, h2, h3, h4, h5, h6 {
+        #ff_mix-util-prose > .heading-default();
+    }
     h1 {
 
     }
@@ -26,26 +88,25 @@
 
     }
     p, li, dl, time {
-        line-height: 1.3;
-        font-size: 1rem;
+        #ff_mix-util-prose > .text-default();
     }
 
     //basic text styling
     a, a:visited {
-      text-decoration: underline;
+      #ff_mix-util-prose > .a-text > .default();
     }
 
 
     h1,h2,h3,h4,h5,h6 {
       a, a:visited {
-          text-decoration: none;
+          #ff_mix-util-prose > .a-heading > .default();
       }
     }
 
     //spacing
 
     figure, img, p, ul, ol, hr, table, h2, h3, h4, h5 {
-        margin-bottom: @ff_size_prose_spacing;
+        #ff_mix-util-prose > .spacing();
     }
 
     //lists
@@ -71,11 +132,12 @@
     }
 
     ul ul, ul ol, ol ol, ol ul {
-        margin-left: @ff_size_prose_spacing;
+        #ff_mix-util-prose > .list-child();
     }
 
     ul, ol {
-      list-style-position: inside;
+        #ff_mix-util-prose > .list-parent();
+        #ff_mix-util-prose > .text-default();
     }
 
 
@@ -83,17 +145,13 @@
     //media
 
     img {
-    	display: block;
-    	max-width: 100%;
+    	#ff_mix-util-prose > .img-default();
     }
 
     figure {
 
     	figcaption {
-    		font-size: 70%;
-    		color: @ff_colour_primary;
-    		font-style: italic;
-            border-bottom: 1px solid @ff_colour_control_border;
+    		#ff_mix-util-prose > .caption();
     	}
 
     }
