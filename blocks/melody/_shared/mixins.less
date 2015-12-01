@@ -18,6 +18,19 @@
     }
 }
 
+#ff_mix-decoration() {
+    .circle(@diam; @border-color: @ff_colour_control_border){
+        margin: 0;
+        width: @diam;
+        height: @diam;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: 2px solid @border-color;
+        overflow: hidden;
+    }
+}
+
 #ff_mix-base-text() {
     .in-list() {
         margin: @ff_size_control_vertical 0 0 0;

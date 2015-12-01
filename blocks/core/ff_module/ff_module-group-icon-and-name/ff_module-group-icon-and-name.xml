@@ -1,0 +1,2 @@
+<name>{{name | default('Group name')}}</name>
+<url>{{url | default('#')}}</url>
