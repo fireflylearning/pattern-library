@@ -1,3 +1,13 @@
 <text>{{text | default('Click me?')}}</text>
 {% if icon %}<icon>{{icon}}</icon>{% endif %}
 {% if modifiers %} <modifiers>{{modifiers}}</modifiers>{% endif %}
+{% if id %} <id>{{id}}</id>{% endif %}
+{#<!--
+    TODO: modify button html to something more sensible like:
+<button
+    {% if id %}         id="{{id}}"                 {% endif %}
+    {% if modifiers %}  modifiers="{{modifiers}}"   {% endif %}
+    {% if icon %}       icon="{{icon}}"             {% endif %}
+    >{{text | default('Click me?')}}
+</button>
+-->#}
