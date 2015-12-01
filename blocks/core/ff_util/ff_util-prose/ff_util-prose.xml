@@ -1,0 +1,5 @@
+<content>
+    <![CDATA[
+        {{content|safe}}
+    ]]>
+</content>

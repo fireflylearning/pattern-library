@@ -1,12 +1,12 @@
 <xsl:template name="ff_module-message">
     <xsl:param name="data" />
-    
+
     <div class="ff_module-message" id="{$data/notice/@id}">
         <p class="ff_module-message__label"><a href="{$data/notice/@url}" class="ff_module-message__link"><xsl:value-of select="$data/notice/htmlMessage"/></a></p>
         <p class="ff_module-message__label ff_module-message__label--meta">
-            <a href="{@from_href}"><xsl:value-of select="$data/notice/@from"/></a>
+            Recommended on <time datetime="{$data/notice/@isodate}"><xsl:value-of select="$data/notice/@date"/></time>
             <xsl:text> </xsl:text>
-            <time datetime="{$data/notice/@isodate}"><xsl:value-of select="$data/notice/@date"/></time>
+            <a href="{@from_href}">by <xsl:value-of select="$data/notice/@from"/></a>
         </p>
         <div class="ff_module-message__controls">
             <xsl:if test="$data/notice/@can_archive = 'yes'">
@@ -14,5 +14,5 @@
             </xsl:if>
         </div>
     </div>
-    
+
 </xsl:template>
