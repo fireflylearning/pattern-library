@@ -1,0 +1,9 @@
+{% if type == 'personal' %}
+    <bookmark type="personal" href="{{ bookmark.href }}">
+        <label>{{ label }}</label>
+    </bookmark>
+{% else %}
+    <bookmark type="recommended" href="{{ href }}" from="{{ from }}" from_href="{{ from_href }}" date="{{ date }}">
+        <label>{{ label }}</label>
+    </bookmark>
+{% endif %}

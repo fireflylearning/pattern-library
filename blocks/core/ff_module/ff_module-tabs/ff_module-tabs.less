@@ -11,12 +11,10 @@
 }
 .ff_module-tabs__tab {
 	float: left;
-	padding: @ff_size_control_vertical;
+    line-height: 1;
+	padding: unit(12/@ff_base, rem) unit(20/@ff_base,rem);
 	background: @ff_colour_control_bg;
-	border-right: 1px solid @ff_colour_control_border;
-	&:last-child {
-		border-right: none;
-	}
+	#ff_mix-base-box > .list-item()
 }
 .ff_module-tabs__link {
 	text-decoration: none;
