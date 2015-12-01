@@ -1,13 +1,12 @@
 @formstep-diam: 50px;
 @formstep-fg-color: #fff;
 @formstep-bg-color: @ff_colour_primary;
-// .circle(@diam; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent)
+
 .ff_module-formsteps {
     margin: 0;
     padding: 0;
     list-style: none;
-    // box-sizing: border-box;
-    // background: #333;
+    // background-color: @ff_colour_primary
 }
 
 .ff_module-formstep {
@@ -52,6 +51,6 @@
         #ff_mix-decoration > .circle(@formstep-diam, 2px, @formstep-fg-color, @formstep-fg-color);
     }
     &--completed &__icon {
-        #ff_mix-decoration > .circle(@formstep-diam, 2px, @formstep-fg-color, fade(@formstep-fg-color, 30%));
+        #ff_mix-decoration > .circle(@formstep-diam, 0px, @formstep-fg-color, fade(@formstep-fg-color, 30%));
     }
 }
