@@ -1,5 +1,0 @@
-<items>
-    {% for item in items %}
-   	 <item url="{{item.url | default('#')}}" active="{{item.status | default('default')}}">{{item.name}}</item>
-    {% endfor %}
-</items>
