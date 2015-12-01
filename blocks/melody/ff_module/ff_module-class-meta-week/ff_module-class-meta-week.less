@@ -11,7 +11,7 @@
         display: list-item;
     }
     &__link {
-        #ff_mix-base-links > .default();
+        #ff_mix-util-prose > .link-no-decoration();
     }
     @media screen and (min-width:@ff_bp_narrow) {
         font-size: 11px;
@@ -29,7 +29,8 @@
             display: list-item;
         }
         &__item--loc {
-            #ff_mix-base-text > .quiet();
+            // #ff_mix-util-prose > .text-default();
+            #ff_mix-util-prose > .text-quiet();
         }
     }
 }

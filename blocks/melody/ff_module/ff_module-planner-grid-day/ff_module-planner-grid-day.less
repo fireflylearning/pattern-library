@@ -1,4 +1,4 @@
-@planner-grid-brdr-dk: @ff_colour_control_border; //#b4b4b4;
+@planner-grid-brdr-dk: darken(@ff_colour_control_border, 10%); // root probably needs tweaking
 @planner-grid-brdr-md: lighten(@planner-grid-brdr-dk, 17.8);
 @planner-grid-brdr-lt: lighten(@planner-grid-brdr-dk, 21);
 @planner-grid-hrd-brdr-md: lighten(@planner-grid-brdr-dk, 14);
@@ -6,7 +6,6 @@
 @header-bg-md: @ff_colour_control_bg;
 @base-color: @ff_colour_control_text;
 @base-bg: lighten(@ff_colour_control_bg, 8.4);
-
 
 #ff_mix-planner-grid() {
     .table {
