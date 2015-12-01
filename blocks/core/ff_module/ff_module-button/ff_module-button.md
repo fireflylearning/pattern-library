@@ -1,6 +1,7 @@
 ---
 data:
     text: "default button"
+    id: btn-id-1
 page: 
     title: FF Module Button
 ---

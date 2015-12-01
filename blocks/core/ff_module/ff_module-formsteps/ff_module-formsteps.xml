@@ -1,0 +1,5 @@
+<items>
+    {% for item in items %}
+   	 <item url="{{item.url | default('#')}}" state="{{item.state | default('default')}}">{{item.name}}</item>
+    {% endfor %}
+</items>

@@ -1,17 +1,29 @@
 ---
 page:
-    title: Segments son
+    title: Segment Variation
     layout: list-blocks
 data:
   - ff_module-segments:
-    - items:
-      - A
-      - B
-      - C
-    - items:
-      - Barry
-      - Sally
-      - Bob
-      - Terry
-      - Sarah
+    - 
+        items:
+          -
+            name: "Segment A"
+            url: "#"
+          -
+            name: "Segment B"
+            url: "#"
+            active: true
+          -
+            name: "Segment C"
+            url: "#"
+    - 
+        modifiers: "ff_module-segments--large"
+        items:
+          -
+            name: "Segment A"
+            url: "#"
+          -
+            name: "Segment C"
+            url: "#"
+            active: true
 ---

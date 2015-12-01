@@ -59,6 +59,20 @@ data:
         text: "primary large block button with icon"
         modifiers: "ff_module-button--primary-large-block"
         icon: "test"
+      -
+        text: "tertiary button"
+        modifiers: "ff_module-button--tertiary"
+      -
+        text: "tertiary button with icon"
+        modifiers: "ff_module-button--tertiary"
+        icon: "test"
+      -
+        text: "tertiary large button"
+        modifiers: "ff_module-button--tertiary-large"
+      -
+        text: "tertiary large button with icon"
+        modifiers: "ff_module-button--tertiary-large"
+        icon: "test"
   - 
     ff_module-button--is-disabled: 
       - 
@@ -114,6 +128,20 @@ data:
       -
         text: "primary large block button with icon"
         modifiers: "ff_module-button--primary-large-block"
+        icon: "test"
+      -
+        text: "tertiary button"
+        modifiers: "ff_module-button--tertiary"
+      -
+        text: "tertiary button with icon"
+        modifiers: "ff_module-button--tertiary"
+        icon: "test"
+      -
+        text: "tertiary large button"
+        modifiers: "ff_module-button--tertiary-large"
+      -
+        text: "tertiary large button with icon"
+        modifiers: "ff_module-button--tertiary-large"
         icon: "test"
 ---
 All possible buttons
