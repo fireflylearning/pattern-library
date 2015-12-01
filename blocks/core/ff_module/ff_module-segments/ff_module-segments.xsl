@@ -1,6 +1,6 @@
 <xsl:template name="ff_module-segments">
    <xsl:param name="data" />
-   <div class="ff_module-segments {$data/classes}">
+   <div class="ff_module-segments {$data/items/@modifiers}">
        <ul class="ff_module-segments__list">
            <xsl:for-each select="$data/items/item">
                 <li class="ff_module-segments__item">
@@ -11,6 +11,9 @@
                                 <xsl:otherwise>ff_module-segments__link</xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
+                        <xsl:if test="@active = 'true'">
+                        <span class="ff_icon ff_icon-test ff_icon-left" />
+                        </xsl:if>
                         <xsl:value-of select="."/>
                     </a>
                 </li>

@@ -1,5 +1,3 @@
-
-
 #ff_mix-segments() {
     //width settings
     .width--narrow() {
@@ -20,7 +18,13 @@
 }
 
 .ff_module-segments {
-    #ff_mix-segments > .width--narrow()
+    
+    &--large .ff_module-segments__link {
+    }
+    
+    &--narrow {
+      #ff_mix-segments > .width--narrow();  
+    }
 }
 
 .ff_module-segments__list {

@@ -50,14 +50,14 @@
             color: lighten(@ff_color_control_link, 10%);
         }
     }
-    .link-no-decoration {
+    .link-no-decoration(@color:@ff_color_control_link) {
         text-decoration: none;
-        color: @ff_color_control_link;
+        color: @color;
         &:visited {
-            color: darken(@ff_color_control_link, 10%);
+            color: darken(@color, 10%);
         }
         &:active, &:hover {
-            color: lighten(@ff_color_control_link, 10%);
+            color: lighten(@color, 10%);
         }
     }
     .spacing {
@@ -93,7 +93,9 @@
 
 
 .ff_util-prose {
-
+    *:last-child {
+        margin-bottom: 0;
+    }
     // Headings
     h1, h2, h3, h4, h5, h6,
     &__panel-heading,
