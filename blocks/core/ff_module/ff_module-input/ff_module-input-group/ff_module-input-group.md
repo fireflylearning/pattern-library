@@ -1,5 +1,8 @@
 ---
 data:
-    name: "Group input name"
+    label: "Group input name"
     id: "input-group-id"
 ---
+
+State options:
+- editable

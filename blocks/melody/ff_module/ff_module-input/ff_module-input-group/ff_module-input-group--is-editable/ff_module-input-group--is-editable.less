@@ -1,8 +1,9 @@
 .ff_module-input-group--is-editable {
-    .ff_module-input-group__name {
+    .ff_module-input-group__label {
         padding-left: @ff_size_spacing_min;
     }
-    &__edit {
-        #ff_module-input > .box-style > .edit();
+    .ff_module-input-group__edit {
+        #ff_mix-input-box > .edit();
+        display: inline-block;
     }
 }

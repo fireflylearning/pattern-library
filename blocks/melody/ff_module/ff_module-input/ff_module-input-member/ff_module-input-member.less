@@ -1,15 +1,18 @@
 
-
 .ff_module-input-member {
 
-    #ff_module-input > .box-style > .layout();
-    #ff_module-input > .box-style > .bg();
+    #ff_mix-input > .root();
+    #ff_mix-input-box > .layout();
+    #ff_mix-input-box > .bg();
 
-    &__name {
+    &__label {
+        #ff_mix-label > .text();
         padding: @ff_input-group-padding-vertical @ff_size_control_horizontal @ff_input-group-padding-vertical @ff_size_spacing_min;
-        #ff_module-input > .box-style > .label();
     }
     &__delete {
-        #ff_module-input > .box-style > .delete();
+        #ff_mix-input-box > .delete();
+    }
+    &__edit {
+        display: none;
     }
 }

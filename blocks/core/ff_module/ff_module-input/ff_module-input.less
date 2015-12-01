@@ -1,37 +1,66 @@
 @ff_input-group-padding-vertical: 7.5rem/@ff_base;
 
-#ff_module-input() {
-    .box-style {
-        .layout {
-            border-radius: @ff_size_control_rounding;
-            display: inline-block;
-            line-height: 1;
-            overflow: hidden;
-        }
-        .border {
-            border: 1px solid @ff_color_control_link;
-        }
-        .bg {
-            background-color: screen(@ff_color_control_link, #bfbfbf);
-        }
-        .label {
-            font-size: 1rem;
-            color: @ff_colour_control_text;
-            display: inline-block;
-        }
-        .delete {
-            #ff_mix-buttons > .with-icon();
-            float:right;
-            margin-left: 2rem;
-            padding: @ff_input-group-padding-vertical @ff_size_spacing_min @ff_input-group-padding-vertical 0;
-        }
-        .edit {
-            #ff_mix-buttons > .with-icon();
-            border-right: 1px solid @ff_color_control_link;
-            background-color: #fff;
-            padding: @ff_input-group-padding-vertical;
-            float:left;
-        }
+#ff_mix-input-box() {
+
+    .layout {
+        border-radius: @ff_size_control_rounding;
+        display: inline-block;
+        line-height: 1;
+        overflow: hidden;
+    }
+    .border {
+        border: 1px solid @ff_color_control_link;
+    }
+    .bg {
+        background-color: screen(@ff_color_control_link, #bfbfbf);
+    }
+    .delete {
+        #ff_mix-buttons > .with-icon();
+        float:right;
+        margin-left: 2rem;
+        padding: @ff_input-group-padding-vertical @ff_size_spacing_min @ff_input-group-padding-vertical 0;
+    }
+    .edit {
+        #ff_mix-buttons > .with-icon();
+        border-right: 1px solid @ff_color_control_link;
+        background-color: #fff;
+        padding: @ff_input-group-padding-vertical;
+        float:left;
     }
 
+}
+
+
+#ff_mix-input() {
+    .root() {
+        box-sizing: border-box;
+        position: relative;
+        font-size: 1rem;
+        color: @ff_colour_control_text;
+    }
+    .default() {
+        border: 1px solid @ff_colour_control_border;
+        border-radius: @ff_size_control_rounding;
+        padding: @ff_size_spacing_min;
+        box-sizing: border-box;
+    }
+    .stacked {
+        display: block;
+        width: 100%;
+    }
+    .inline {
+        display: inline-block;
+    }
+}
+
+#ff_mix-label(){
+    .text {
+        display: inline-block;
+        padding: @ff_size_spacing_min @ff_size_spacing_min @ff_size_spacing_min 0;
+    }
+    .heading {
+        display: inline-block;
+        font-weight: bold;
+        padding: @ff_size_spacing_min @ff_size_spacing_min @ff_size_spacing_med 0;
+    }
 }

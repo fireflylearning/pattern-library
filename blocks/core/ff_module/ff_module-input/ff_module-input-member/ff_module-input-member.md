@@ -1,5 +1,5 @@
 ---
 data:
-    name: "Group input name"
-    id: "input-group-id"
+    label: "Member input name"
+    id: "input-member-id"
 ---

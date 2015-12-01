@@ -1,0 +1,15 @@
+.ff_module-input-radio-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    &__item, &__item--inline {
+        display: inline-block;
+    }
+
+    &__item--stacked {
+        display: block;
+    }
+    &__item--stacked:nth-last-child(n+2) {
+        margin-right: @ff_size_spacing_min * 0.6;
+    }
+}
