@@ -59,6 +59,13 @@
 
 .ff_util-prose {
 
+    &>*:first-child {
+        margin-top:0;
+    }
+    &>*:last-child {
+        margin-bottom: 0;
+    }
+
     //basic text sizing
     h1, h2, h3, h4, h5, h6 {
         #ff_mix-util-prose > .heading-default();
