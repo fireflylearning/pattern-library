@@ -1,0 +1,4 @@
+---
+data:
+  title: "Page title"
+---
