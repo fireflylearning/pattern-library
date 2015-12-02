@@ -3,9 +3,18 @@
     #ff_mix-input > .root();
 
     &__label {
-        display: inline-block;
-        #ff_mix-label > .text();
+        #ff_mix-label > .default();
     }
+    &__label--stacked {
+        #ff_mix-label > .stacked();
+    }
+    &__label--heading-stacked, &__label--heading-inline {
+        #ff_mix-label > .heading();
+    }
+    &__label--heading-stacked {
+        #ff_mix-label > .heading-stacked();
+    }
+
     &__input {
         #ff_mix-input > .default();
         #ff_mix-input > .inline(); // default
@@ -16,12 +25,4 @@
         #ff_mix-input > .stacked();
     }
 
-    &__input--inline, &__input--heading-inline {
-        #ff_mix-input > .default();
-        #ff_mix-input > .inline();
-    }
-
-    &__label--heading-stacked, &__label--heading-inline {
-        #ff_mix-label > .heading();
-    }
 }

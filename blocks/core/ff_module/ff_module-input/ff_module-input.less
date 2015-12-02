@@ -25,6 +25,7 @@
         border-right: 1px solid @ff_color_control_link;
         background-color: #fff;
         padding: @ff_input-group-padding-vertical;
+        display: inline-block;
         float:left;
     }
 
@@ -50,17 +51,30 @@
     }
     .inline {
         display: inline-block;
+        vertical-align: middle;
+    }
+    .ch-rdo-default {
+        margin-right: 0;
     }
 }
 
 #ff_mix-label(){
-    .text {
+    .default {
         display: inline-block;
-        padding: @ff_size_spacing_min @ff_size_spacing_min @ff_size_spacing_min 0;
+        vertical-align: middle;
+        padding-right: @ff_size_spacing_min;
+    }
+    .right {
+        padding-right: 0;
+        padding-left: @ff_size_spacing_min;
+    }
+    .stacked {
+        padding-bottom: @ff_size_spacing_min;
     }
     .heading {
-        display: inline-block;
         font-weight: bold;
-        padding: @ff_size_spacing_min @ff_size_spacing_min @ff_size_spacing_med 0;
+    }
+    .heading-stacked {
+        padding-bottom:@ff_size_spacing_med;
     }
 }

@@ -1,5 +1,0 @@
-<inputs modifier="{{modifier}}">
-{% for input in inputs %}
-<input modifier="{{input.modifier}}" value="{{input.value}}" id="{{input.id}}" name="{{input.name}}" checked="{{input.checked}}">{{input.label}}</input>
-{% endfor %}
-</inputs>

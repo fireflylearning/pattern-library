@@ -1,4 +1,4 @@
-.ff_module-input-radio-group {
+.ff_module-input-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -6,10 +6,15 @@
         display: inline-block;
     }
 
+    &__item--inline {
+        margin-right: @ff_size_spacing_min * 2.5;
+    }
+
     &__item--stacked {
         display: block;
     }
     &__item--stacked:nth-last-child(n+2) {
-        margin-right: @ff_size_spacing_min * 0.6;
+
+        margin-bottom: @ff_size_spacing_min * 0.5;
     }
 }
