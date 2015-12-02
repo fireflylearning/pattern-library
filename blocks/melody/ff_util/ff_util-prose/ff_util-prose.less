@@ -1,5 +1,5 @@
 #ff_mix-util-prose() {
-    .heading-default {
+    .h-default {
         color: @ff_colour_control_text;
         font-weight: normal;
         #ff_mix-util-prose > .spacing();
@@ -106,8 +106,9 @@
     &__panel-heading,
     &__sub-heading,
     &__column-heading,
+    &__section-heading,
     &__text--big {
-        #ff_mix-util-prose > .heading-default();
+        #ff_mix-util-prose > .h-default();
     }
     h1, &__panel-heading {
         #ff_mix-util-prose > .h1();
@@ -118,7 +119,7 @@
     h3, &__column-heading, &__text--big {
         #ff_mix-util-prose > .h3();
     }
-    h4 {
+    h4, &__section-heading {
         #ff_mix-util-prose > .h4();
     }
 
@@ -153,6 +154,7 @@
     &__panel-heading,
     &__sub-heading,
     &__column-heading,
+    &__section-heading,
     &__text--big {
         a {
           #ff_mix-util-prose > .link-no-decoration();
