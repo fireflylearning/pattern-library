@@ -5,30 +5,40 @@
 
     .h1 {}
     .text-default {
-        line-height: 1.3;
-        font-size: 1rem;
+        line-height: 21/@ff_base;
+        font-size: 16rem/@ff_base;
         color: @ff_colour_control_text;
     }
-    .a-text {
-        .default {
-            text-decoration: underline;
+    .text-small {
+        font-size: 14rem/@ff_base;
+        line-height: 16/14;
+    }
+    .text-left-blank {
+        font-size: 12rem/@ff_base;
+        line-height: 14/12;
+        font-style: italic;
+    }
+    .text-quiet {
+        color: @ff_colour_text_quiet;
+    }
+    .link-with-decoration {
+        text-decoration: underline;
+        color: @ff_color_control_link;
+        &:visited {
+            color: darken(@ff_color_control_link, 10%);
         }
-        .active {
-
-        }
-        .visited {
-
+        &:active, &:hover {
+            color: lighten(@ff_color_control_link, 10%);
         }
     }
-    .a-heading {
-        .default {
-            text-decoration: none;
+    .link-no-decoration(@color:@ff_color_control_link) {
+        text-decoration: none;
+        color: @color;
+        &:visited {
+            color: darken(@color, 10%);
         }
-        .active {
-
-        }
-        .visited {
-
+        &:active, &:hover {
+            color: lighten(@color, 10%);
         }
     }
     .spacing {
@@ -93,15 +103,16 @@
     }
 
     //basic text styling
-    a, a:visited {
-      #ff_mix-util-prose > .a-text > .default();
+    a {
+      #ff_mix-util-prose > .link-with-decoration();
     }
 
 
-    h1,h2,h3,h4,h5,h6 {
-      a, a:visited {
-          #ff_mix-util-prose > .a-heading > .default();
-      }
+    h1,h2,h3,h4,h5,h6,
+    {
+        a {
+          #ff_mix-util-prose > .link-no-decoration();
+        }
     }
 
     //spacing
