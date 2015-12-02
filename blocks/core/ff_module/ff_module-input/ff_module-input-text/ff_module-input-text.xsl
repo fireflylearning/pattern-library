@@ -1,30 +1,17 @@
 <xsl:template name="ff_module-input-text">
     <xsl:param name="data" />
     <xsl:variable name="input" select="$data//input"/>
-    <xsl:variable name="label-modifier">
+    <xsl:variable name="modifier">
         <xsl:choose>
-            <xsl:when test="not($input/@modifier = '')">
-                ff_module-input-text__label--<xsl:value-of select="$input/@modifier" />
+            <xsl:when test="not($data//input/@modifier = '')">
+                <xsl:value-of select="$data//input/@modifier" />
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:text></xsl:text>
-            </xsl:otherwise>
+            <xsl:otherwise>default</xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
 
-    <xsl:variable name="input-modifier">
-        <xsl:choose>
-            <xsl:when test="not($input/@modifier = '')">
-                ff_module-input-text__input--<xsl:value-of select="$input/@modifier" />
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text></xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
-
-    <div class="ff_module-input-text">
-        <label class="ff_module-input-text__label {$label-modifier}">
+    <div class="ff_module-input-text ff_module-input-text--{$modifier}">
+        <label class="ff_module-input-text__label ff_module-input-text__label--{$modifier}">
             <xsl:attribute name="for">
                <xsl:choose>
                    <xsl:when test="not($input/@id='')"><xsl:value-of select="$input/@id"/></xsl:when>
@@ -32,7 +19,7 @@
             </xsl:attribute>
             <xsl:value-of select="$input" />
         </label>
-        <input type="text" class="ff_module-input-text__input {$input-modifier}">
+        <input type="text" class="ff_module-input-text__input ff_module-input-text__input--{$modifier}">
             <xsl:attribute name="id">
                <xsl:choose>
                    <xsl:when test="not($input/@id='')"><xsl:value-of select="$input/@id"/></xsl:when>
