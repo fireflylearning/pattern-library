@@ -144,9 +144,7 @@
     }
 }
 
-
 .ff_util-prose {
-
     &>*:first-child {
         margin-top:0;
     }
@@ -155,45 +153,30 @@
     }
 
     // Headings
-    h1, h2, h3, h4, h5, h6,
-    &__panel-heading,
-    &__sub-heading,
-    &__column-heading,
-    &__section-heading,
-    &__text--big {
+    h1, h2, h3, h4, h5, h6 {
         #ff_mix-util-prose > .h-default();
+
     }
-    h1, &__panel-heading {
+    h1 {
         #ff_mix-util-prose > .h1();
     }
-    h2, &__sub-heading {
+    h2 {
         #ff_mix-util-prose > .h2();
     }
-    h3, &__column-heading, &__text--big {
+    h3 {
         #ff_mix-util-prose > .h3();
     }
-    h4, &__section-heading {
+    h4 {
         #ff_mix-util-prose > .h4();
     }
 
     // Basic text
 
-    p, &__text, &__text--small, &__left-blank,
+    p,
     dl,
-    time, &__time, &__time--supporting {
+    time {
         #ff_mix-util-prose > .text-default();
         #ff_mix-util-prose > .spacing();
-    }
-
-    &__text--small {
-        #ff_mix-util-prose > .text-small();
-    }
-    &__time--supporting {
-        #ff_mix-util-prose > .text-quiet();
-    }
-    &__left-blank {
-        #ff_mix-util-prose > .text-quiet();
-        #ff_mix-util-prose > .text-left-blank();
     }
 
     // Link styles
@@ -203,18 +186,11 @@
     }
 
 
-    h1,h2,h3,h4,h5,h6,
-    &__panel-heading,
-    &__sub-heading,
-    &__column-heading,
-    &__section-heading,
-    &__text--big {
+    h1,h2,h3,h4,h5,h6 {
         a {
           #ff_mix-util-prose > .link-no-decoration();
         }
     }
-
-
 
     // lists
     ul, ol {
@@ -229,8 +205,6 @@
     dl {
         #ff_mix-util-prose > .definition-list();
     }
-
-
 
 
     // media
@@ -255,5 +229,54 @@
 
     > time {
         display: inline-block;
+    }
+}
+
+
+// Individual styles to be called when element has no parent module
+.ff_util-prose {
+
+    // Headings
+
+    &__panel-heading,
+    &__sub-heading,
+    &__column-heading,
+    &__section-heading,
+    &__text--big {
+        #ff_mix-util-prose > .h-default();
+        a {
+          #ff_mix-util-prose > .link-no-decoration();
+        }
+    }
+    &__panel-heading {
+        #ff_mix-util-prose > .h1();
+    }
+    &__sub-heading {
+        #ff_mix-util-prose > .h2();
+    }
+    &__column-heading, &__text--big {
+        #ff_mix-util-prose > .h3();
+    }
+    &__section-heading {
+        #ff_mix-util-prose > .h4();
+    }
+
+    // Basic text
+
+    &__text, &__text--small, &__left-blank,
+    &__time, &__time--supporting {
+        #ff_mix-util-prose > .text-default();
+        #ff_mix-util-prose > .spacing();
+    }
+
+    &__text--small {
+        #ff_mix-util-prose > .text-small();
+    }
+    &__time--supporting {
+        #ff_mix-util-prose > .text-quiet();
+    }
+    &__left-blank {
+        #ff_mix-util-prose > .text-quiet();
+        #ff_mix-util-prose > .text-left-blank();
     }
 }
