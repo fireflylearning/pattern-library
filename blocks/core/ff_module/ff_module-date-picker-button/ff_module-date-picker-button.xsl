@@ -12,7 +12,7 @@
             </xsl:choose>
         </span>
         <div class="ff_module-date-picker-button__icon">
-            <input class="ff_module-date-picker-button__cal" data-component="date-picker">
+            <input class="ff_module-date-picker-button__cal" data-component="date-picker" data-url-prefix="{$data//planner/@dateUrlPrefix}">
                 <span class="ff_icon ff_icon-cal"></span>
             </input>
         </div>

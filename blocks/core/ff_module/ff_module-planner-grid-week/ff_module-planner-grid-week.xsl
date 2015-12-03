@@ -82,7 +82,7 @@
                         <td class="ff_module-planner-grid-week__item ff_module-planner-grid-week__item--{$dayTypeClass}">
                             <xsl:if test="ext:node-set($event)/event">
                                 <xsl:call-template name="ff_module-class-view-week">
-                                    <xsl:with-param name="data" select="$event"/>
+                                    <xsl:with-param name="data" select="ext:node-set($event)"/>
                                 </xsl:call-template>
                             </xsl:if>
                         </td>
