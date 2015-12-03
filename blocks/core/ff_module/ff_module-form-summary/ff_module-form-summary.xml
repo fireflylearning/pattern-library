@@ -1,10 +1,13 @@
 <summary title="{{title}}">
     <items>
         {% for item in items %}
-        <item>
-            <title>{{item.title}}</title>
+        <item title="{{item.title}}">
             {% for data in item.data %}
-            <data>{{data}}</data>
+            <data
+                {% if data.url %} url="{{data.url}}" {% endif %}
+                >
+                {{data.value}}
+            </data>
             {% endfor %}
         </item>
         {% endfor %}

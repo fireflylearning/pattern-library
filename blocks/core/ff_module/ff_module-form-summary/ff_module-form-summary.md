@@ -1,20 +1,23 @@
 ---
 data:
-    title: "Form summary"
+    title: "Task summary"
     items: 
         - 
             title: Recipients
             data: 
-                - Class 1, Class 2
+                - 
+                    url: "#class1"
+                    value: Class 1
+                - 
+                    url: "#class2"
+                    value: Class 2
         - 
             title: Title
             data: 
                 - 
-                    Lorem ispum dolor sit amet, consecteteur adipiscing elit velit.
-                - 
-                    Dolor sit amet, consecteteur adipiscing elit velit.
+                    value: Lorem ispum dolor sit amet, consecteteur adipiscing elit velit.
         - 
             title: Submission
             data: 
-                - Online or offline
+                - value: Online or offline
 ---
