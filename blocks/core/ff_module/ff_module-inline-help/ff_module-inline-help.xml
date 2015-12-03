@@ -1,0 +1,6 @@
+<help
+    {% if id %} id="{{id}}" {% endif %}
+    {% if target %} target="{{target}}" {% endif %}
+    >
+    {{text}}
+</help>

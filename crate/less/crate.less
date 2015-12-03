@@ -6,11 +6,12 @@
 "Arial";
 @crate-font-base: 15px;
 @crate-spacing-base: 20px;
+
 body {
     background-color: #F1F1F1;
     font-family: @crate-font-stack;
     font-size: @crate-font-base;
-    padding: @crate-spacing-base;
+    padding: 2.5*@crate-spacing-base @crate-spacing-base;
     margin: 0;
 }
 
@@ -29,11 +30,11 @@ body {
 }
 
 .crate_blocks__item {
-    background-color: #fff;
+    background-color: #fafafa;
     border: 1px solid #ddd;
     margin: 2.5em 0;
     overflow: hidden;
-    border-radius: 3px;
+    // border-radius: 3px;
     color: #333;
     clear: both;
     position: relative;
@@ -44,11 +45,11 @@ body {
 }
 
 .crate_blocks__item__heading {
-    background-image: linear-gradient(@color-red1 95.4%, @color-red2 100%);
+    background-image: linear-gradient(#ddd 95.4%, #ccc 100%);
     margin: 0;
     padding: 8px 10px;
-    color: #fff;
-    border-radius: 2px 2px 0 0;
+    color: #777;
+    // border-radius: 2px 2px 0 0;
     font-weight: normal;
     font-size: 14px;
 }
@@ -93,4 +94,12 @@ body {
     position: absolute;
     right: 1em;
     top: 1em;
+}
+
+.crate_util-block {
+    background-color: #FECFD1;
+    padding: 20px;
+    display: block;
+    text-align: center;
+    color: #FC0D1B;
 }

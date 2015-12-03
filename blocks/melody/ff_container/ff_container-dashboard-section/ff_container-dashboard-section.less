@@ -1,6 +1,6 @@
 //header
 .ff_container-dashboard-section__header {
-    padding: @ff_size_control_vertical;
+    padding: @ff_size_spacing_max @ff_size_control_horizontal;
     background-color: @ff_templatesetting_section-01-colour;
     border: none;
     border-top-left-radius: @ff_size_control_rounding;
@@ -18,7 +18,9 @@
 }
 
 .ff_container-dashboard-section__title {
-    color: @ff_colour_control_text;
+    color: white;
+    #ff_mix-util-prose > .h2();
+    font-weight: normal;
 }
 
 //main
@@ -33,7 +35,7 @@
 
 //footer
 .ff_container-dashboard-section__footer {
-    padding: @ff_size_control_vertical;
+    padding: @ff_size_spacing_max @ff_size_control_horizontal;
     background-color: @ff_colour_control_bg;
     border: none;
     border-bottom-left-radius: @ff_size_control_rounding;

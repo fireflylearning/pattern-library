@@ -1,0 +1,25 @@
+@formstep-diam: 50px;
+
+.ff_module-formsteps {
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+.ff_module-formstep {
+    display: inline-block;
+    text-align: center;
+    max-width: 8rem;
+    min-width: 5.625rem;
+    vertical-align: top;
+    margin-right: 2rem;
+    position: relative;
+
+    &__link {
+        #ff_mix-util-prose > .link-no-decoration;
+        display: block;
+    }
+    &__icon {
+        #ff_mix-decoration > .circle(@formstep-diam);
+    }
+}

@@ -1,9 +1,15 @@
 <xsl:template name="ff_module-button">
     <xsl:param name="data" />
-        <button class="ff_module-button {$data/modifiers}">
-            <xsl:if test="$data/icon">
-                <span class="ff_icon ff_icon-left ff_icon-{$data/icon}" />
+        <button type="button" class="ff_module-button {$data/modifiers}">
+            <xsl:if test="$data/id">
+                <xsl:attribute name="id">
+                    <xsl:value-of select="$data/id"/>
+                </xsl:attribute>
             </xsl:if>
-            <xsl:value-of select="$data/text" />
+
+            <xsl:if test="$data/icon">
+                <span class="ff_icon ff_icon-left ff_icon-{$data/icon}"/>
+            </xsl:if>
+            <span class="ff_module-button__content"><xsl:value-of select="$data/text"  /></span>
         </button>
 </xsl:template>

@@ -9,8 +9,12 @@ but don't belong specifically to the blocks */
 .crate_blocks, .crate_block {
     font-family: @core-font-stack;
     font-size: @core-font-base;
-    & button {
+    & button, & input {
         font-family: @core-font-stack;
         font-size: @core-font-base;
     }
+}
+
+.crate_block > [class*="ff_container-"] {
+    outline: 1px dotted #CCC;
 }

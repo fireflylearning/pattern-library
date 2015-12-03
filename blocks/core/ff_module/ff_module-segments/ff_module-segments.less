@@ -1,5 +1,3 @@
-
-
 #ff_mix-segments() {
     //width settings
     .width--narrow() {
@@ -14,12 +12,19 @@
     .link--active() {
         background: @ff_colour_control_bg_selected;
         box-shadow: inset 2px 2px 2px fade(black,10%);
+        text-shadow: 0 1px 0 fade(black, 20%);
         #ff_mix-base-links > .active();
     }
 }
 
 .ff_module-segments {
-    #ff_mix-segments > .width--narrow()
+    
+    &--large .ff_module-segments__link {
+    }
+    
+    &--narrow {
+      #ff_mix-segments > .width--narrow();  
+    }
 }
 
 .ff_module-segments__list {

@@ -1,0 +1,1 @@
+<input modifier="{{modifier}}" value="{{value}}" id="{{id}}">{{label}}</input>
