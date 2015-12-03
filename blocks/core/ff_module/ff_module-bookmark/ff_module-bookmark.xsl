@@ -1,6 +1,6 @@
 <xsl:template name="ff_module-bookmark">
     <xsl:param name="data" />
-
+    
     <div class="ff_module-bookmark ff_module-bookmark--{$data/bookmark/@type}">
       <p class="ff_module-bookmark__label"><a href="{$data/bookmark/@href}" class="ff_module-bookmark__link"><xsl:value-of select="$data/bookmark/label"/></a></p>
       <xsl:if test="$data/bookmark/@type = 'recommended'">

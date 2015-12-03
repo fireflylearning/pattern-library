@@ -17,7 +17,6 @@
         }
     }
 }
-
 #ff_mix-title-box() {
     .border {
         border: 1px solid @ff_colour_control_border;
@@ -30,6 +29,45 @@
         background: #fff;
         padding-top: @ff_size_control_vertical;
         padding-bottom: @ff_size_control_vertical;
+    }
+}
+
+#ff_mix-base-links() {
+    .default() {
+        text-decoration: none;
+        color: @ff_color_control_link;
+    }
+    .active() {
+        color: white;
+        text-shadow: 0 1px 0 fade(black, 20%);
+    }
+}
+
+#ff_mix-base-text() {
+    .in-list() {
+        margin: @ff_size_control_vertical 0 0 0;
+        &:first-of-type {
+            margin: 0;
+        }
+    }
+    .in-tight-list() {
+        margin: @ff_size_control_vertical/2 0 0 0;
+        &:first-of-type {
+            margin: 0;
+        }
+    }
+    .label() {
+        line-height: 21/16;
+    }
+    .small() {
+        font-size: 90%;
+    }
+    .quiet() {
+        &,
+        a {
+            color: @ff_colour_text_quiet;
+            text-decoration: none;
+        }
     }
 }
 
@@ -48,23 +86,6 @@
     }
 }
 
-#ff_mix-base-text() {
-    .in-list() {
-        margin: @ff_size_control_vertical 0 0 0;
-        &:first-of-type {
-            margin: 0;
-        }
-    }
-    .in-tight-list() {
-        margin: @ff_size_control_vertical/2 0 0 0;
-        &:first-of-type {
-            margin: 0;
-        }
-    }
-}
-
-
-
 
 #ff_mix-buttons() {
     .clear {
@@ -74,5 +95,3 @@
         // outline: none;
     }
 }
-
-

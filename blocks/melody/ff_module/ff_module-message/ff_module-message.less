@@ -1,10 +1,13 @@
 .ff_module-message {
     padding: @ff_size_control_vertical @ff_size_control_horizontal;
-    position: relative;
 }
 
 .ff_module-message__label {
     #ff_mix-util-prose > .text-default();
+}
+
+.ff_module-message__label {
+    #ff_mix-base-text > .label();
     #ff_mix-base-text > .in-list();
 }
 
@@ -18,7 +21,6 @@
 }
 
 .ff_module-message__controls {
-    position: absolute;
     top: @ff_size_control_vertical;
     right: @ff_size_control_vertical;
 }
