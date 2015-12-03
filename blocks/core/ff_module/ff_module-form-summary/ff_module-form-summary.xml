@@ -1,0 +1,12 @@
+<summary title="{{title}}">
+    <items>
+        {% for item in items %}
+        <item>
+            <title>{{item.title}}</title>
+            {% for data in item.data %}
+            <data>{{data}}</data>
+            {% endfor %}
+        </item>
+        {% endfor %}
+    </items>
+</summary>
