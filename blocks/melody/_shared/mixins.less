@@ -18,6 +18,21 @@
     }
 }
 
+#ff_mix-title-box() {
+    .border {
+        border: 1px solid @ff_colour_control_border;
+    }
+    .header {
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        background: @ff_colour_control_bg;
+    }
+    .content {
+        background: #fff;
+        padding-top: @ff_size_control_vertical;
+        padding-bottom: @ff_size_control_vertical;
+    }
+}
+
 #ff_mix-decoration() {
     .circle(@diam; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent){
         margin: 0;
@@ -50,5 +65,14 @@
 
 
 
+
+#ff_mix-buttons() {
+    .clear {
+        border: none;
+        background: none;
+        line-height: 1;
+        // outline: none;
+    }
+}
 
 

@@ -16,3 +16,9 @@ data:
         name: "Description"
         url: "#"
 ---
+
+State options:
+
+- default
+- completed
+- current

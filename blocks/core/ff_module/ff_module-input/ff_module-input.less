@@ -1,0 +1,91 @@
+@ff_input-group-padding-vertical: 7.5rem/@ff_base;
+
+#ff_mix-input-box() {
+
+    .layout {
+        border-radius: @ff_size_control_rounding;
+        display: inline-block;
+        line-height: 1;
+        overflow: hidden;
+    }
+    .border {
+        border: 1px solid @ff_color_control_link;
+    }
+    .bg {
+        background-color: screen(@ff_color_control_link, #bfbfbf);
+    }
+    .delete {
+        #ff_mix-buttons > .clear();
+        float:right;
+        margin-left: 2rem;
+        padding: @ff_input-group-padding-vertical @ff_size_spacing_min @ff_input-group-padding-vertical 0;
+    }
+    .edit {
+        #ff_mix-buttons > .clear();
+        border-right: 1px solid @ff_color_control_link;
+        background-color: #fff;
+        padding: @ff_input-group-padding-vertical;
+        display: inline-block;
+        float:left;
+    }
+
+}
+
+
+#ff_mix-input() {
+    .root() {
+        box-sizing: border-box;
+        position: relative;
+        font-size: 1rem;
+        color: @ff_colour_control_text;
+    }
+    .root-unconstrained {
+        display: flex;
+    }
+    .default() {
+        border: 1px solid @ff_colour_control_border;
+        border-radius: @ff_size_control_rounding;
+        padding: @ff_size_spacing_min;
+        box-sizing: border-box;
+    }
+    .stacked {
+        display: block;
+        width: 100%;
+    }
+    .inline {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .unconstrained {
+        flex-grow: 1;
+    }
+    .constrained {
+        max-width: 200px;
+        flex-grow: 0;
+    }
+    .ch-rdo-default {
+        margin-right: 0;
+    }
+}
+
+#ff_mix-label(){
+    .default {
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: @ff_size_spacing_min;
+    }
+    .text {
+        padding-top: @ff_size_spacing_min;
+        padding-bottom: @ff_size_spacing_min;
+    }
+    .right {
+        padding-right: 0;
+        padding-left: @ff_size_spacing_min;
+    }
+    .heading {
+        font-weight: bold;
+    }
+    .stacked-heading {
+        padding-bottom:@ff_size_spacing_med;
+    }
+}
