@@ -69,21 +69,24 @@
     }
 }
 
-.ff_mix-clearfix() {
-    zoom: 1;
-    &:before,
-    &:after {
-        content: "";
-        display: table;
-    }
-    &:after {
-        clear: both;
+#ff_mix-decoration() {
+    .circle(@diam; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent){
+        margin: 0;
+        width: @diam;
+        height: @diam;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: @border-width solid @border-color;
+        overflow: hidden;
+        background-color: @background-color;
+        line-height: @diam - @border-width;
     }
 
 }
 
 #ff_mix-buttons() {
-    .with-icon {
+    .clear {
         border: none;
         background: none;
         // outline: none;
