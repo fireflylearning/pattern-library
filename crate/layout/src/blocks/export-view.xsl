@@ -4,7 +4,7 @@
     xmlns:msxsl="urn:schemas-microsoft-com:xslt"
     xmlns:ext="http://exslt.org/common">
 
-{% include '../includes/base-file.xsl' with { blocks:page.blocks } %}
+{{contents|safe}}
 
 
 </xsl:stylesheet>
