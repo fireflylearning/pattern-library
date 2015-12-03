@@ -9,7 +9,6 @@ var gutil = require('gulp-util'),
     lazypipe = require('lazypipe'),
     LessAutoprefixer = require('less-plugin-autoprefix'),
 
-    es = require('event-stream'),
     webpack = require('webpack'),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
@@ -24,7 +23,6 @@ var gutil = require('gulp-util'),
 
     changedHelpers = require('./lib/gulp-changed-helpers'),
     root = path.join(__dirname),
-    blockCssOut = 'blocks.min.css',
     crateCssOut = 'crate.min.css';
 
 var isDebugging,
@@ -127,7 +125,8 @@ function getDataForFile(file, srclist) {
     // fileData.data = undefined;
 
     fileData = fileData.length ? fileData[0] : {
-        info: fileInfo
+        info: fileInfo,
+        site: {}
     };
 
     var blockSet = _.map(site.blocks, function getBaseInfo(file) {
@@ -451,6 +450,7 @@ var buildCssGlobPaths = [
         '**/_shared/**/*.less',
         '**/*.less'
     ];
+
 gulp.task('build:css:blocks', plugins.folders(pathToFolder, function(folder) {
     var lPaths = buildCssGlobPaths.map(function(cPath){
         return path.join(pathToFolder, folder, cPath);
@@ -631,7 +631,15 @@ gulp.task('watch', function() {
 });
 
 gulp.task('export:blocks', ['info'], function() {
-    return generateBlocks(paths.blocks.xsl.src, exportPath, '.xsl', false, 'export-view');
+    return gulp.src(paths.blocks.xsl.src)
+        .pipe(plugins.concat('blocks.xsl'))
+        .pipe(plugins.replace('ext:node-set', 'msxsl:node-set'))
+        .pipe(applyTemplate({
+            engine: 'swig',
+            template: getBlockGeneratorRootPath('export-view', '.xsl'),
+            context: getFileContext
+        }))
+        .pipe(gulp.dest(exportPath));
 });
 
 var exportCssGlobPaths = [
