@@ -1,17 +1,13 @@
 .ff_module-task {
     margin: 0;
+    padding: @ff_size_control_vertical @ff_size_control_horizontal;
 }
 
 .ff_module-task__item {
-    margin: 0 0 @ff_size_control_vertical 0;
-    #ff_mix-base-text > .label();
-    @media (min-width: @ff_bp_narrow) {
-        float: left;//flexbox backup
-        margin-bottom: 0;
-    }
+    margin: 0;
 }
 
-@media (min-width: @ff_bp_narrow) {
+@media (min-width: @ff_bp_medium) {
     .ff_module-task {
         display: flex;
         justify-content: space-between;
@@ -30,11 +26,9 @@
 
 
 .ff_module-task__link {
-    #ff_mix-base-links > .default();
+
 }
 
 .ff_module-task__meta {
-    #ff_mix-base-text > .quiet();
-    margin-top: @ff_size_control_vertical;
     display: block;
 }
