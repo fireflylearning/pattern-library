@@ -1,0 +1,17 @@
+<form-pair id="{{id}}" modifier="{{modifier}}">
+    {% for item in items %}
+    {% if item.type == 'label' %}
+    <label modifier="{{item.modifier}}" for="{{id}}">{{item.text}}</label>
+    {% else %}
+    <input type="{{item.type}}" modifier="{{item.modifier}}" value="{{item.value}}" id="{{id}}" name="{{item.name}}" checked="{{item.checked}}" disabled="{{item.disabled}}" >
+        {% if item.options %}
+        <options>
+            {% for option in item.options %}
+            <option value="{{option.value}}">{{option.text}}</option>
+            {% endfor %}
+        </options>
+        {% endif %}
+    </input>
+    {% endif %}
+    {% endfor %}
+</form-pair>

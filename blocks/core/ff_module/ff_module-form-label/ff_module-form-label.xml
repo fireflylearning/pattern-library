@@ -1,0 +1,1 @@
+<label modifier="{{modifier}}" for="{{forId}}">{{text}}</label>
