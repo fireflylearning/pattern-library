@@ -1,7 +1,7 @@
-<ul class="crate_contentlist">
+<ul class="crate_pagelist">
     {% for content in site.pages %}
         {% if content.info.basename !== 'index' %}
-        <li class="crate_contentlist__item"><a href="{{content.info.url}}">{{content.page.title | default(content.info.basename)}}</a></li>
+        <li class="crate_pagelist__item"><a href="{{content.info.url}}">{{content.page.title | default(content.info.basename)}}</a></li>
         {% endif %}
     {% endfor %}
 </ul>
