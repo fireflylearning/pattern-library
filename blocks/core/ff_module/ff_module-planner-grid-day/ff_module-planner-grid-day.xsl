@@ -12,7 +12,7 @@
                     <xsl:copy-of select="."/>
                 </xsl:variable>
 
-                <tr class="ff_module-planner-grid-day__row">
+                <tr class="ff_module-planner-grid-day__row" data-ff="planner-event">
 
                     <th scope="row" class="ff_module-planner-grid-day__header">
                         <xsl:call-template name="formateTimeRange-dy">
