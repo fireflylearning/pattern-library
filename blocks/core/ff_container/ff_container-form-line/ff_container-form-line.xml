@@ -1,0 +1,7 @@
+<form-line>
+    {% for item in items %}
+
+    <item modifier="{{item.modifier}}">{{item.text}}</item>
+
+    {% endfor %}
+</form-line>

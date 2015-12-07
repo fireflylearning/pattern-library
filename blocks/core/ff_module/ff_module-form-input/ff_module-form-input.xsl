@@ -83,6 +83,14 @@
             </xsl:if>
         </xsl:if>
 
+        <xsl:if test="$input/data">
+            <xsl:for-each select="$input/data">
+                <xsl:attribute name="{./@attr}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
+            </xsl:for-each>
+        </xsl:if>
+
     </input>
 </xsl:template>
 
@@ -102,6 +110,14 @@
             <xsl:attribute name="name">
                <xsl:value-of select="$input/@name"/>
             </xsl:attribute>
+        </xsl:if>
+
+        <xsl:if test="$input/data">
+            <xsl:for-each select="$input/data">
+                <xsl:attribute name="{./@attr}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
+            </xsl:for-each>
         </xsl:if>
 
         <xsl:for-each select="$input//option">

@@ -1,0 +1,33 @@
+.ff_container-form-line {
+    #ff_mix-form-pair > .root-fullwidth;
+
+    &__item {
+        #ff_mix-form-pair > .item;
+    }
+    >*:nth-last-child(+n+2){
+        margin-left:0;
+        margin-right: @ff_size_spacing_min;
+    }
+
+    &__item--fullwidth {
+        #ff_mix-form-pair > .fullwidth;
+    }
+
+    &__item--constrained {
+        #ff_mix-form-pair > .constrained;
+    }
+
+    &__item--stacked {
+        #ff_mix-form-pair > .stacked;
+    }
+
+    &__item--stacked-constrained {
+        #ff_mix-form-pair > .stacked;
+        #ff_mix-form-pair > .constrained;
+    }
+
+    &__item--stacked-fullwidth {
+        #ff_mix-form-pair > .stacked;
+        #ff_mix-form-pair > .fullwidth;
+    }
+}
