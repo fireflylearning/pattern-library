@@ -5,37 +5,51 @@ page:
 data:
   - ff_container-form-line:
     -
-        modifier: "has-fullwidth"
         items: 
           - 
-            text: "Label"  
+            modifier: stacked
+            text: "Label stacked"  
           -              
-            modifier: stacked-constrained
-            text: "Input"
+            modifier: constrained
+            text: "Input constrained"
           - text: "Button"
     -
-        modifier: "has-fullwidth"
         items: 
           - 
-            text: "Label"  
-          -              
             modifier: stacked
-            text: "Input"
+            text: "Label stacked"  
+          -              
+            text: "Input natural"
     -
-        modifier: "has-fullwidth"
         items: 
           - 
             text: "Label"  
           -              
             modifier: fullwidth
-            text: "Input"
+            text: "Input fullwidth"
     -
-        modifier: "has-fullwidth"
+        items: 
+          - 
+            text: "Label"  
+          -              
+            modifier: fullwidth
+            text: "Input fullwidth with button"
+          - text: "Button"
+    -
         items: 
           - 
             text: "Label"  
           -              
             modifier: constrained
-            text: "Input"
+            text: "Input constrained"
+          - text: "Button"
+    -
+        items: 
+          - 
+            modifier: stacked
+            text: "Label stacked"  
+          -              
+            modifier: fullwidth
+            text: "Input fullwidth"
           - text: "Button"
 ---

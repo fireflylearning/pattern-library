@@ -1,16 +1,8 @@
 <xsl:template name="ff_container-form-line">
     <xsl:param name="data" />
     <xsl:variable name="line" select="$data//form-line"/>
-    <xsl:variable name="root-modifier">
-        <xsl:choose>
-            <xsl:when test="not($line/@modifier = '')">
-                <xsl:value-of select="$line/@modifier" />
-            </xsl:when>
-            <xsl:otherwise>default</xsl:otherwise>
-        </xsl:choose>
-    </xsl:variable>
 
-    <div class="ff_container-form-line ff_container-form-line--{$root-modifier}">
+    <div class="ff_container-form-line">
         <xsl:for-each select="$line/*">
 
             <xsl:variable name="classes">

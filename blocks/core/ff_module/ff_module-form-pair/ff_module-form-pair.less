@@ -1,9 +1,9 @@
 #ff_mix-form-pair() {
-    .root-fullwidth {
+    .root {
+        margin: @ff_size_spacing_max 0;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        margin: @ff_size_spacing_max 0;
     }
     .item {
         display: inline-block;
@@ -18,8 +18,9 @@
         flex-grow: 1;
     }
     .stacked {
-        margin-top: @ff_size_spacing_min;
-        width: 100%;
+        margin-bottom: @ff_size_spacing_min;
+        flex-grow: 1;
+        width:100%;
     }
 }
 
@@ -33,7 +34,7 @@
         margin-right: @ff_size_spacing_min;
     }
     &--fullwidth {
-        #ff_mix-form-pair > .root-fullwidth;
+        #ff_mix-form-pair > .root;
     }
     &--fullwidth &__item {
         #ff_mix-form-pair > .fullwidth;
