@@ -4,7 +4,6 @@
 			<label>{{item.label | default('Item Label')}}</label>
 			<active>{{item.active | default('false')}}</active>
 			<id>{{item.id}}</id>
-            <content><![CDATA[{{item.content | default('<p>Item Content</p>') | safe}}]]></content>
 		</item>
 	{% endfor %}
 </items>
