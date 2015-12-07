@@ -1,0 +1,9 @@
+<input type="{{type}}" modifier="{{modifier}}" value="{{value}}" id="{{id}}" name="{{name}}" checked="{{checked}}" disabled="{{disabled}}">
+    {% if options %}
+    <options>
+        {% for option in options %}
+        <option value="{{option.value}}">{{option.text}}</option>
+        {% endfor %}
+    </options>
+    {% endif %}
+</input>
