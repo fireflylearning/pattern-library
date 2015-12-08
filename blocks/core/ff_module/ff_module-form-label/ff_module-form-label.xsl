@@ -16,7 +16,18 @@
                 <xsl:value-of select="$label/@for"/>
             </xsl:attribute>
         </xsl:if>
-        <xsl:value-of select="$label" />
+        <xsl:if test="$label/data">
+            <xsl:for-each select="$label/data">
+                <xsl:attribute name="{./@attr}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
+            </xsl:for-each>
+        </xsl:if>
+        <xsl:value-of select="$label/text" />
+        <xsl:if test="$label/@required='false'">
+            <span class="ff_module-form-label__optional"> (optional)</span>
+        </xsl:if>
+
     </label>
 
 </xsl:template>

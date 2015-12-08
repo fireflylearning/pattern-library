@@ -1,1 +1,6 @@
-<label modifier="{{modifier}}" for="{{forId}}">{{text}}</label>
+<label modifier="{{modifier}}" for="{{id}}" required="{{required | default('true')}}">
+    <text>{{text | default('Label text')}}</text>
+    {% for d in data %}
+    <data attr="{{d.attr}}">{{d.value}}</data>
+    {% endfor %}
+</label>

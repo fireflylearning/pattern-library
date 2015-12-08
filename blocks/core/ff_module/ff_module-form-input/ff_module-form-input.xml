@@ -6,4 +6,7 @@
         {% endfor %}
     </options>
     {% endif %}
+    {% for d in data %}
+    <data attr="{{d.attr}}">{{d.value}}</data>
+    {% endfor %}
 </input>

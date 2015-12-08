@@ -1,17 +1,10 @@
 <form-pair id="{{id}}" modifier="{{modifier}}">
     {% for item in items %}
-    {% if item.type == 'label' %}
-    <label modifier="{{item.modifier}}" for="{{id}}">{{item.text}}</label>
-    {% else %}
-    <input type="{{item.type}}" modifier="{{item.modifier}}" value="{{item.value}}" id="{{id}}" name="{{item.name}}" checked="{{item.checked}}" disabled="{{item.disabled}}" >
-        {% if item.options %}
-        <options>
-            {% for option in item.options %}
-            <option value="{{option.value}}">{{option.text}}</option>
-            {% endfor %}
-        </options>
+        {% set item.id = id %}
+        {% if item.type == 'label' %}
+            {% include '../ff_module-form-label/ff_module-form-label.xml' with item %}
+        {% else %}
+            {% include '../ff_module-form-input/ff_module-form-input.xml' with item %}
         {% endif %}
-    </input>
-    {% endif %}
     {% endfor %}
 </form-pair>
