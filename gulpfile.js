@@ -30,7 +30,9 @@ var gutil = require('gulp-util'),
     folderTaskParallel = require('./lib/per-folder-utils').folderParallel,
     changedHandlers = require('./lib/gulp-changed-handlers'),
     templatePathUtils = require('./lib/template-path-utils')(root, paths.crate.layout.base),
-    crateCssOut = 'crate.min.css';
+    crateCssOut = 'crate.min.css',
+    
+    argv = require("minimist")(process.argv.slice(2));
 
 var isDebugging,
     debugPipe,
@@ -56,7 +58,7 @@ var options = _.defaults(locals, options);
 
 isDebugging = options.isDebugging;
 isProduction = options.isProduction;
-exportPath = options.exportPath || paths.export;
+exportPath = argv["export-path"] || options.exportPath || paths.export;
 
 var autoprefix = new LessAutoprefixer({
     browsers: options.browserList
