@@ -4,8 +4,8 @@
 
     <xsl:variable name="modifier">
         <xsl:choose>
-            <xsl:when test="not($data/inputs/@modifier = '')">
-                ff_module-form-checkable-list__item--<xsl:value-of select="$data/inputs/@modifier" />
+            <xsl:when test="not($data/form-pairs/@modifier = '')">
+                ff_module-form-checkable-list__item--<xsl:value-of select="$data/form-pairs/@modifier" />
             </xsl:when>
             <xsl:otherwise>
                 <xsl:text></xsl:text>

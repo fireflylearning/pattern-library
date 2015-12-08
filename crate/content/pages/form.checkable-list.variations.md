@@ -12,18 +12,21 @@ data:
             inputs: 
                 - 
                     label: "Radio item 1 (inline)"
+                    type: radio
                     id: "radio-id-1a"
                     value: "radio-value-1a"
                     name: "radio-list-group-a"
                     checked: false
                 - 
                     label: "Radio item 2 (inline)"
+                    type: radio
                     id: "radio-id-2a"
                     value: "radio-value-2a"
                     name: "radio-list-group-a"
                     checked: false
                 - 
                     label: "Radio item 3 (inline)"
+                    type: radio
                     id: "radio-id-3a"
                     value: "radio-value-3a"
                     name: "radio-list-group-a"
@@ -34,18 +37,21 @@ data:
             inputs: 
                 - 
                     label: "Radio item 1 (stacked)"
+                    type: radio
                     id: "radio-id-1b"
                     value: "radio-value-1b"
                     name: "radio-list-group-b"
                     checked: false
                 - 
                     label: "Radio item 2 (stacked)"
+                    type: radio
                     id: "radio-id-2b"
                     value: "radio-value-2b"
                     name: "radio-list-group-b"
                     checked: true
                 - 
                     label: "Radio item 3 (stacked)"
+                    type: radio
                     id: "radio-id-3b"
                     value: "radio-value-3b"
                     name: "radio-list-group-b"

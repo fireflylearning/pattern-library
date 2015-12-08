@@ -1,6 +1,6 @@
 ---
 page:
-    title: Form Variations
+    title: Form-line Variations
     layout: list-blocks
 data:
   - ff_container-form-line:

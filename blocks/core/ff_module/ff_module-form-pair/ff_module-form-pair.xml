@@ -1,25 +1,10 @@
 <form-pair id="{{id}}" modifier="{{modifier}}">
     {% for item in items %}
-    {% if item.type == 'label' %}
-    <label modifier="{{item.modifier}}" for="{{item.forId}}" required="{{item.required | default('true')}}">
-        <text>{{item.text | default('Label text')}}</text>
-        {% for d in item.data %}
-        <data attr="{{d.attr}}">{{d.value}}</data>
-        {% endfor %}
-    </label>
-    {% else %}
-    <input type="{{item.type}}" modifier="{{item.modifier}}" value="{{item.value}}" id="{{item.id}}" name="{{item.name}}" checked="{{checked}}" disabled="{{item.disabled}}">
-        {% if item.options %}
-        <options>
-            {% for option in options %}
-            <option value="{{option.value}}">{{option.text}}</option>
-            {% endfor %}
-        </options>
+        {% set item.id = id %}
+        {% if item.type == 'label' %}
+            {% include '../ff_module-form-label/ff_module-form-label.xml' with item %}
+        {% else %}
+            {% include '../ff_module-form-input/ff_module-form-input.xml' with item %}
         {% endif %}
-        {% for d in item.data %}
-        <data attr="{{d.attr}}">{{d.value}}</data>
-        {% endfor %}
-    </input>
-    {% endif %}
     {% endfor %}
 </form-pair>

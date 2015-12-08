@@ -1,7 +1,7 @@
 ---
 data:
     text: "Stacked text input name"
-    forId: "label-id"
+    id: "label-id"
     required: false
     data: 
         -
@@ -12,13 +12,14 @@ data:
 ## Modifier options:
 
 - heading
-- required
+
+
 
 Data-attributes are set by attr:value pairs, eg
 ```
     id: "input-id"
-    value: "Form input"
-    name: "input-name"
+    text: "Form input"
+    required: false
     data:
         -
             attr: data-ff-attr
