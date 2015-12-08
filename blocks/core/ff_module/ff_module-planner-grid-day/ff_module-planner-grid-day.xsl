@@ -35,7 +35,7 @@
                     </xsl:if>
 
                     <xsl:if test="not(@subject != '')">
-                        <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--empty" colspan="2">No lesson in timetable</td>
+                        <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--empty" colspan="2"><span class="ff_util-prose__left-blank">No lesson in timetable</span></td>
                     </xsl:if>
                 </tr>
             </xsl:for-each>
