@@ -23,7 +23,9 @@ var gutil = require('gulp-util'),
 
     changedHelpers = require('./lib/gulp-changed-helpers'),
     root = path.join(__dirname),
-    crateCssOut = 'crate.min.css';
+    crateCssOut = 'crate.min.css',
+    
+    argv = require("minimist")(process.argv.slice(2));
 
 var isDebugging,
     debugPipe,
@@ -48,7 +50,7 @@ var options = _.defaults(locals, options);
 
 isDebugging = options.isDebugging;
 isProduction = options.isProduction;
-exportPath = options.exportPath || paths.export;
+exportPath = argv["export-path"] || options.exportPath || paths.export;
 
 var autoprefix = new LessAutoprefixer({
     browsers: options.browserList
