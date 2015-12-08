@@ -442,6 +442,13 @@ gulp.task('info:content', ['info:blocks'], function() {
         }));
 });
 
+
+gulp.task('build:react', function(){
+    gulp.src('blocks/**/*.rt')
+    .pipe(plugins.reactTemplates({modules: 'commonjs'}))
+    .pipe(gulp.dest('blocks'));
+});
+
 var pathToFolder = paths.blocks.base;
 var buildCssGlobPaths = [
     '**/outputs.less',
