@@ -6,10 +6,10 @@ data:
   - ff_module-profile-picture-and-name:
     - 
         name: "Sally Student"
-        profile_url: "#"
+        url: "#"
         picture: "/images/default_picture.png"
     - 
         name: "Group 7D/En"
-        profile_url: "#"
+        url: "#"
         picture: "/images/group-icon.png"
 ---

@@ -506,7 +506,7 @@ gulp.task('clean', function() {
 });
 
 
-gulp.task('xslt', ['content', 'blocks', 'info'], runxslt);
+gulp.task('xslt', ['content', 'blocks'], runxslt);
 gulp.task('xslt:nocache', ['content:nocache', 'blocks:nocache'], runxslt);
 
 //TODO: Get working
