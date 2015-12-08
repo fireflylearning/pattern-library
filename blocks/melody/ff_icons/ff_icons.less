@@ -1,15 +1,30 @@
 .ff_icon {
-    display: inline-block;
     width: 1em;
     height: 1em;
+    button& {
+        border: none;
+        cursor: pointer;
+    }
     vertical-align: middle;
+    position: relative;
+    top:-0.05em;
 }
 
-.ff_icon-prev, .ff_icon-prev {
+.ff_icon-prev,
+.ff_icon-prev {
     background-color: @ff_colour_default;
     border-radius: 50%;
 }
 
 .ff_icon-cal {
+    background-color: @ff_colour_default;
+}
+
+
+.ff_icon-delete {
+    background-color: #2B81D3;
+}
+
+.ff_icon-edit-input-group {
     background-color: @ff_colour_default;
 }

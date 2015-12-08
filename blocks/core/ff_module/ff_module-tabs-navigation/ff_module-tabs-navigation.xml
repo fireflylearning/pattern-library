@@ -1,7 +1,7 @@
 <items>
 	{% for item in items %}
 		<item>
-			<label>{{item.label | default('item label')}}</label>
+			<label>{{item.label | default('Item Label')}}</label>
 			<active>{{item.active | default('false')}}</active>
 			<id>{{item.id}}</id>
 		</item>

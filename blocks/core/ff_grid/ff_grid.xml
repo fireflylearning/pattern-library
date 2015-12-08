@@ -1,0 +1,5 @@
+<grid modifier="{{ modifiers }}">
+    {% for column in columns %}
+        <column name="{{ column.name }}"/>
+    {% endfor %}
+</grid>

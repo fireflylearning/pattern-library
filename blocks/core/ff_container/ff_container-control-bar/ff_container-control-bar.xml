@@ -1,0 +1,9 @@
+<control-bar modifiers="{{ modifiers }}">
+    {% for set in sets %}
+        <set{% if set.title %} title="{{ set.title }}"{% endif %}>
+            {% for module in set.modules %}
+                <module>{{ module }}</module>
+            {% endfor %}
+        </set>
+    {% endfor %}
+</control-bar>

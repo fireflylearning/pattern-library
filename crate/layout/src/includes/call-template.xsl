@@ -4,7 +4,6 @@
         <xsl:call-template name="{{block.info.basename}}">
             <xsl:with-param name="data" select="."/>
         </xsl:call-template>
-        <br/>
     </xsl:for-each>
 </xsl:template>
 {% endfor %}

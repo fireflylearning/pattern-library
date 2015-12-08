@@ -1,0 +1,20 @@
+.ff_module-form-checkable-list {
+    #ff_mix-util-prose > .list-remove-defaults;
+
+    display: inline-block;
+
+    &__item, &__item--inline {
+        display: inline-block;
+    }
+
+    &__item--inline {
+        margin-right: @ff_size_spacing_min * 2.5;
+    }
+
+    &__item--stacked {
+        display: block;
+    }
+    &__item--stacked:nth-last-child(n+2) {
+        margin-bottom: @ff_size_spacing_min * 0.5;
+    }
+}
