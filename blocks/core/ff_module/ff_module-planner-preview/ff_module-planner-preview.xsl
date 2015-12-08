@@ -45,7 +45,7 @@
     <xsl:param name="location"/>
     <li class="ff_module-planner-preview__event">
         <p class="ff_module-planner-preview__label"><xsl:value-of select="$label"/></p>
-        <p class="ff_module-planner-preview__data ff_module-planner-preview__data--subject"><a href="#" class="ff_module-planner-preview__link"><xsl:value-of select="$subject"/><xsl:text> with </xsl:text><xsl:value-of select="$description"/></a></p>
+        <p class="ff_module-planner-preview__data ff_module-planner-preview__data--subject"><a href="#" class="ff_module-planner-preview__link"><span data-ff="planner-event-subject"><xsl:value-of select="$subject"/></span><xsl:text> with </xsl:text><xsl:value-of select="$description"/></a></p>
         <p class="ff_module-planner-preview__data ff_module-planner-preview__data--date"><xsl:value-of select="$date"/></p>
         <p class="ff_module-planner-preview__data ff_module-planner-preview__data--time"><xsl:value-of select="$starttime"/><xsl:text> - </xsl:text><xsl:value-of select="$endtime"/></p>
         <p class="ff_module-planner-preview__data ff_module-planner-preview__data--location"><xsl:value-of select="$location"/></p>
