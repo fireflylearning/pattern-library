@@ -1,20 +1,14 @@
-@ff_icon_dims: 20px;
-.ff_module-date-picker-button {
-    color: @ff_color_control_link;
-    #ff_mix-buttons > .with-icon;
-    cursor: pointer;
-    padding: @ff_size_control_vertical @ff_size_control_horizontal;
-    box-sizing: border-box;
-    &__text {
-        #ff_mix-base-text > .vertical-align;
+
+.ff_module-date-picker-jumpto {
+    &__link {
+        #ff_mix-util-prose > .link-no-decoration();   
     }
     &__icon {
         #ff_mix-base-text > .vertical-align;
         margin-left: @ff_size_control_horizontal * 1.25;
         position: relative;
-        width: @ff_icon_dims;
-        height:@ff_icon_dims;
         cursor: pointer;
+        vertical-align: baseline;
     }
     &__cal {
         position: absolute;
@@ -28,9 +22,7 @@
         border: none;
         cursor: pointer;
     }
-    .ui-datepicker-inline {
 
-    }
 }
 
 .hasDatepicker .ff_icon-cal {
