@@ -2,7 +2,7 @@
 
 require('../ff_module/ff_module-button/ff_module-button')();
 require('../ff_module/ff_module-filter/ff_module-filter')();
-require('../ff_module/ff_module-tabs/ff_module-tabs')();
+require('../ff_module/ff_module-tabs-navigation/ff_module-tabs-navigation')();
 
 // var editFac = require('../ff_module/ff_module-inline-edit/stubControl.js');
 // require('../ff_module/ff_module-inline-edit/ff_module-inline-edit')(editFac);
