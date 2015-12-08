@@ -21,7 +21,7 @@
         
         <ol class="ff_module-planner-preview__events ff_module-planner-preview__events--Later">
         <xsl:for-each select="$data/event">
-            <xsl:if test="@label = 'Now' or @label = 'Next'">
+            <xsl:if test="@label = 'Later'">
                 <li class="ff_module-planner-preview__event">
                     <p class="ff_module-planner-preview__label">Later</p>
                     <p class="ff_module-planner-preview__data ff_module-planner-preview__data--subject"><a href="#" class="ff_module-planner-preview__link"><xsl:value-of select="@subject"/><xsl:text> with </xsl:text><xsl:value-of select="@description"/></a></p>
