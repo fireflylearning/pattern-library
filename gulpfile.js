@@ -34,7 +34,8 @@ var isDebugging,
     sourceMapsStart,
     sourceMapsEnd,
     browserSync,
-    devCompiler,
+    devJsCompiler,
+    exportJsCompiler,
     webpackConfig,
     site = _.merge({}, siteConfigData, {
         blocks: [],
@@ -84,7 +85,40 @@ if (isProduction) {
 
 browserSync = require('browser-sync').create();
 webpackConfig = getWebpackConfig(paths, options);
-devCompiler = webpack(webpackConfig);
+devJsCompiler = webpack(webpackConfig);
+exportJsCompiler = webpack({
+    entry: {
+        blocks: './.tmp/js/blocks-export.js'
+    },
+    cache: false,
+    output: {
+        path: path.join(exportPath,'js'),
+        filename: '[name].js'
+    },
+    resolve: {
+        modulesDirectories: ['./node_modules', 'src', './blocks'],
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            React: 'react',
+            _: 'lodash'
+        })
+    ],
+    externals: {
+        jquery: 'jQuery',
+        react: 'React',
+        'react/addons': 'React',
+        lodash: '_'
+    }
+});
+
+function camelCase(input) {
+    return input.toLowerCase().replace(/-(.)/g, function(match, group1) {
+        return group1.toUpperCase();
+    });
+}
 
 var errorHandler = isDebugging ? function(err) {
     gutil.beep();
@@ -326,9 +360,11 @@ gulp.task('build:reactrt', function() {
         .pipe(plugins.reactTemplates({
             modules: 'commonjs'
         }))
+        .pipe(plugins.rename({
+            prefix: '_'
+        }))
         .pipe(gulp.dest(paths.blocks.rt.dest));
 });
-
 
 gulp.task('build:css:blocks', plugins.folders(paths.blocks.base, function(folder) {
     var lPaths = paths.blocks.styles.buildPriority.map(function(cPath) {
@@ -432,8 +468,9 @@ gulp.task('docs', function() {
         .pipe(gulp.dest(path.join(paths.dest, 'docs')));
 });
 
-gulp.task('webpack', function(callback) {
-    devCompiler.run(function(err, stats) {
+gulp.task('webpack', ['build:reactrt'], function(callback) {
+    devJsCompiler.run(function(err, stats) {
+
         if (err) return callback(err);
         if (isDebugging) {
             gutil.log('[webpack]', stats.toString({
@@ -508,6 +545,10 @@ gulp.task('watch', function() {
         ], ['watch:xslt'])
         .on('change', changeEvent('Xslt'));
 
+    gulp.watch([
+            paths.blocks.rt.src
+        ], ['watch:reactrt'])
+        .on('change', changeEvent('ReactRt:xsl'));
 });
 
 gulp.task('export:blocks', ['info'], function() {
@@ -516,7 +557,7 @@ gulp.task('export:blocks', ['info'], function() {
         .pipe(plugins.replace('ext:node-set', 'msxsl:node-set'))
         .pipe(applyTemplate({
             engine: 'swig',
-            template: templatePathUtils.getBlockLayoutRootPath('export-view', '.xsl'),
+            template: './crate/layout/export/blocks/main.xsl',
             context: getTemplateFileContext
         }))
         .pipe(gulp.dest(exportPath));
@@ -533,7 +574,43 @@ gulp.task('export:less', plugins.folders(paths.blocks.base, function(folder) {
         .pipe(gulp.dest(path.join(exportPath, folder, 'less')));
 }));
 
-gulp.task('export', ['export:blocks', 'export:less']);
+gulp.task('export:js', ['export:js:one'], function(callback) {
+    exportJsCompiler.run(function(err, stats) {
+        if (err) return callback(err);
+        if (isDebugging) {
+            gutil.log('[webpack]', stats.toString({
+                colors: true
+            }));
+        }
+
+        callback();
+    });
+});
+
+gulp.task('export:js:one', function() {
+    return gulp.src([
+            paths.blocks.base + '**/[^_]*.js',
+            '!'+paths.blocks.base + '**/{index,utils}.js'])
+            .pipe(applyTemplate({
+            engine: 'swig',
+            template: './crate/layout/export/js/main.js',
+            context: function(file) {
+                var baseName = path.basename(file.path, '.js');
+                var name = camelCase(baseName).replace('.', '_');
+                var filePath = path.relative(path.join(root, './.tmp/js'), file.path);
+                console.log(name, filePath);
+                return {
+                    varName: name,
+                    filePath: filePath
+                };
+            }
+        }))
+        .pipe(plugins.concat(path.join('blocks-export.js')))
+        .pipe(gulp.dest(path.join('./.tmp/js')));
+
+});
+
+gulp.task('export', ['export:blocks', 'export:less', 'export:js']);
 
 gulp.task('output:site:pages', ['info:content', 'info:blocks'], function(cb) {
     console.log(gutil.colors.dim('%j'), site.pages);
@@ -556,7 +633,7 @@ gulp.task('blocks:nocache', ['generate:blocks:xsl:nocache', 'generate:blocks:xml
 gulp.task('content', ['generate:content:xml', 'generate:content:xsl']);
 gulp.task('content:nocache', ['generate:content:xml:nocache', 'generate:content:xsl:nocache']);
 
-gulp.task('build', ['xslt', 'styles', 'assets', 'webpack']);
+gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt','webpack']);
 
 gulp.task('watch:assets', ['assets']);
 gulp.task('watch:info:blocks', ['info:blocks']);
@@ -581,7 +658,7 @@ gulp.task('watch:content:layout', ['xslt:nocache']);
 
 gulp.task('watch:xslt', ['watchxslt']);
 
-
+gulp.task('watch:reactrt', ['build:reactrt']);
 
 gulp.task('dev', ['build', 'serve', 'watch']);
 gulp.task('default', ['dev']);

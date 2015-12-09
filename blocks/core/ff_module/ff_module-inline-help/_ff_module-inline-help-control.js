@@ -9,9 +9,6 @@ function helpControlStub(){
         },
         closeHelp: function(target) {
             console.log('Close help', target);
-        },
-        getTarget: function(selector) {
-            return $(selector).get(0);
         }
     };
 }
