@@ -46,7 +46,9 @@
 
     <input class="ff_module-form-input ff_module-form-input--{$modifier} {$input/@classes}">
 
-        <xsl:attribute name="type" select="$type"/>
+        <xsl:attribute name="type">
+            <xsl:value-of select="$type"/>
+        </xsl:attribute>
 
         <xsl:if test="not($input/@id='')">
             <xsl:attribute name="id">

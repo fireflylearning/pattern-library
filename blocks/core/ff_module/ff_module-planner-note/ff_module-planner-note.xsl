@@ -27,8 +27,8 @@
         <div data-ff="editor-inline-toolbar"></div>
         <div data-ff="editor-inline-content">
             <xsl:attribute name="class">
-                <xsl:text>ff_util-prose ff_module-planner-note_content</xsl:text>
-                <xsl:if test="not($has-a-note = 'true')"> ff_module-planner-note_content--empty</xsl:if>
+                <xsl:text>ff_util-prose ff_module-planner-note__content</xsl:text>
+                <xsl:if test="not($has-a-note = 'true')"> ff_module-planner-note__content--empty</xsl:if>
             </xsl:attribute>
             <xsl:value-of select="$data/event/note" disable-output-escaping="yes"/>
         </div>
