@@ -33,7 +33,7 @@
             <xsl:call-template name="ff_module-form-input__input">
                 <xsl:with-param name="input" select="$input-node"/>
                 <xsl:with-param name="modifier" select="$modifier"/>
-                <xsl:with-param name="type" select="$type"/>
+                <xsl:with-param name="type"><xsl:value-of select="$type"/></xsl:with-param>
             </xsl:call-template>
         </xsl:otherwise>
     </xsl:choose>

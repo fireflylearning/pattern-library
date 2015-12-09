@@ -11,14 +11,14 @@
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:apply-templates select="$data/control-bar/set" mode="ff_contianer-control-bar"/>
+                <xsl:apply-templates select="$data/control-bar/set" mode="ff_container-control-bar"/>
             </xsl:otherwise>
         </xsl:choose>
     </div>
 
 </xsl:template>
 
-<xsl:template match="set" mode="ff_contianer-control-bar">
+<xsl:template match="set" mode="ff_container-control-bar">
     <xsl:if test="@title">
        <h3 class="ff_util-prose__section-heading"><xsl:value-of select="@title"/></h3> 
     </xsl:if>
