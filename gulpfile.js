@@ -610,7 +610,7 @@ gulp.task('export:js:one', function() {
 
 });
 
-gulp.task('export', ['export:blocks', 'export:less']);
+gulp.task('export', ['export:blocks', 'export:less', 'export:js']);
 
 gulp.task('output:site:pages', ['info:content', 'info:blocks'], function(cb) {
     console.log(gutil.colors.dim('%j'), site.pages);
