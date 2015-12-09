@@ -429,7 +429,7 @@ gulp.task('docs', function() {
             title: 'docs'
         })())
         .pipe(plugins.markdown())
-        .pipe(gulp.dest('./build/docs'));
+        .pipe(gulp.dest(path.join(paths.dest, 'docs')));
 });
 
 gulp.task('webpack', function(callback) {
@@ -445,7 +445,7 @@ gulp.task('webpack', function(callback) {
     });
 });
 
-gulp.task('serve', ['xslt'], function() {
+gulp.task('serve', ['build'], function() {
     browserSync.init(options.browserSync);
 });
 
@@ -585,3 +585,4 @@ gulp.task('watch:xslt', ['watchxslt']);
 
 gulp.task('dev', ['build', 'serve', 'watch']);
 gulp.task('default', ['dev']);
+
