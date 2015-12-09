@@ -2,7 +2,7 @@
 var React = require('react/addons');
 var _ = require('lodash');
 function repeatRecipient1(recipient, recipientIndex) {
-    return React.createElement('li', {}, React.createElement('div', {
+    return React.createElement('li', { 'className': 'ff_module-recipient-picker-selected-list__item' }, React.createElement('div', {
         'className': 'ff_module-form-box-member',
         'id': recipient.guid
     }, React.createElement('button', {
@@ -33,17 +33,17 @@ function repeatResult3(result, resultIndex) {
     }, result.label)));
 }
 module.exports = function () {
-    return React.createElement('div', { 'className': 'ff_module-recipient-picker' }, React.createElement('div', { 'className': 'ff_module-recipient-picker__content' }, React.createElement.apply(this, [
+    return React.createElement('div', { 'className': 'ff_module-recipient-picker' }, React.createElement('div', { 'className': 'ff_module-recipient-picker__main' }, React.createElement.apply(this, [
         'ul',
-        { 'className': 'ff_module-recipient-picker__selected' },
+        { 'className': 'ff_module-recipient-picker-selected-list' },
         _.map(this.state.selected, repeatRecipient1.bind(this))
     ]), React.createElement('input', {
-        'className': 'ff_module-recipient-picker__input',
+        'className': 'ff_module-recipient-picker__input ff_module-form-input ff_module-form-input--invisible',
         'name': 'recipient-picker-query',
         'onChange': this.handleInputChange
-    })), React.createElement.apply(this, [
+    })), React.createElement('div', { 'className': 'ff_module-recipient-picker__selectable' }, React.createElement.apply(this, [
         'ul',
         { 'className': 'ff_module-recipient-button-list' },
         _.map(this.state.results, repeatResult3.bind(this))
-    ]));
+    ])));
 };

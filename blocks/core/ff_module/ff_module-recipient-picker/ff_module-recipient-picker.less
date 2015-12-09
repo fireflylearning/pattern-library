@@ -1,7 +1,23 @@
 
 
 .ff_module-recipient-picker {
-    #ff_mix-input > .root;
-    #ff_mix-input > .default;
 
+    &__main {
+        #ff_mix-input > .root;
+        #ff_mix-input > .default;
+        background: #fff;
+    }
+    &__selectable {
+        #ff_mix-input > .root;
+        #ff_mix-input > .default;
+        background: #fff;
+        margin:0 20px;
+
+        &, &:not([type="radio"]), &:not([type="checkbox"]){
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-top:none;
+        }
+
+    }
 }
