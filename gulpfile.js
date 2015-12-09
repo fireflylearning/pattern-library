@@ -34,7 +34,8 @@ var isDebugging,
     sourceMapsStart,
     sourceMapsEnd,
     browserSync,
-    devCompiler,
+    devJsCompiler,
+    exportJsCompiler,
     webpackConfig,
     site = _.merge({}, siteConfigData, {
         blocks: [],
@@ -84,7 +85,40 @@ if (isProduction) {
 
 browserSync = require('browser-sync').create();
 webpackConfig = getWebpackConfig(paths, options);
-devCompiler = webpack(webpackConfig);
+devJsCompiler = webpack(webpackConfig);
+exportJsCompiler = webpack({
+    entry: {
+        blocks: './.tmp/js/blocks-export.js'
+    },
+    cache: false,
+    output: {
+        path: path.join(exportPath,'js'),
+        filename: '[name].js'
+    },
+    resolve: {
+        modulesDirectories: ['./node_modules', 'src', './blocks'],
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            React: 'react',
+            _: 'lodash'
+        })
+    ],
+    externals: {
+        jquery: 'jQuery',
+        react: 'React',
+        'react/addons': 'React',
+        lodash: '_'
+    }
+});
+
+function camelCase(input) {
+    return input.toLowerCase().replace(/-(.)/g, function(match, group1) {
+        return group1.toUpperCase();
+    });
+}
 
 var errorHandler = isDebugging ? function(err) {
     gutil.beep();
@@ -326,6 +360,9 @@ gulp.task('build:reactrt', function() {
         .pipe(plugins.reactTemplates({
             modules: 'commonjs'
         }))
+        .pipe(plugins.rename({
+            prefix: '_'
+        }))
         .pipe(gulp.dest(paths.blocks.rt.dest));
 });
 
@@ -433,7 +470,7 @@ gulp.task('docs', function() {
 });
 
 gulp.task('webpack', function(callback) {
-    devCompiler.run(function(err, stats) {
+    devJsCompiler.run(function(err, stats) {
         if (err) return callback(err);
         if (isDebugging) {
             gutil.log('[webpack]', stats.toString({
@@ -516,7 +553,7 @@ gulp.task('export:blocks', ['info'], function() {
         .pipe(plugins.replace('ext:node-set', 'msxsl:node-set'))
         .pipe(applyTemplate({
             engine: 'swig',
-            template: templatePathUtils.getBlockLayoutRootPath('export-view', '.xsl'),
+            template: './crate/layout/export/blocks/main.xsl',
             context: getTemplateFileContext
         }))
         .pipe(gulp.dest(exportPath));
@@ -532,6 +569,42 @@ gulp.task('export:less', plugins.folders(paths.blocks.base, function(folder) {
         .pipe(plugins.concat(folder + '.less'))
         .pipe(gulp.dest(path.join(exportPath, folder, 'less')));
 }));
+
+gulp.task('export:js', ['export:js:one'], function(callback) {
+    exportJsCompiler.run(function(err, stats) {
+        if (err) return callback(err);
+        if (isDebugging) {
+            gutil.log('[webpack]', stats.toString({
+                colors: true
+            }));
+        }
+
+        callback();
+    });
+});
+
+gulp.task('export:js:one', function() {
+    return gulp.src([
+            paths.blocks.base + '**/[^_]*.js',
+            '!'+paths.blocks.base + '**/{index,utils}.js'])
+            .pipe(applyTemplate({
+            engine: 'swig',
+            template: './crate/layout/export/js/main.js',
+            context: function(file) {
+                var baseName = path.basename(file.path, '.js');
+                var name = camelCase(baseName).replace('.', '_');
+                var filePath = path.relative(path.join(root, './.tmp/js'), file.path);
+                console.log(name, filePath);
+                return {
+                    varName: name,
+                    filePath: filePath
+                };
+            }
+        }))
+        .pipe(plugins.concat(path.join('blocks-export.js')))
+        .pipe(gulp.dest(path.join('./.tmp/js')));
+
+});
 
 gulp.task('export', ['export:blocks', 'export:less']);
 
@@ -556,7 +629,7 @@ gulp.task('blocks:nocache', ['generate:blocks:xsl:nocache', 'generate:blocks:xml
 gulp.task('content', ['generate:content:xml', 'generate:content:xsl']);
 gulp.task('content:nocache', ['generate:content:xml:nocache', 'generate:content:xsl:nocache']);
 
-gulp.task('build', ['xslt', 'styles', 'assets', 'webpack']);
+gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt','webpack']);
 
 gulp.task('watch:assets', ['assets']);
 gulp.task('watch:info:blocks', ['info:blocks']);
