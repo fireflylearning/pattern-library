@@ -366,7 +366,6 @@ gulp.task('build:reactrt', function() {
         .pipe(gulp.dest(paths.blocks.rt.dest));
 });
 
-
 gulp.task('build:css:blocks', plugins.folders(paths.blocks.base, function(folder) {
     var lPaths = paths.blocks.styles.buildPriority.map(function(cPath) {
         return path.join(paths.blocks.base, folder, cPath);
@@ -469,8 +468,9 @@ gulp.task('docs', function() {
         .pipe(gulp.dest(path.join(paths.dest, 'docs')));
 });
 
-gulp.task('webpack', function(callback) {
+gulp.task('webpack', ['build:reactrt'], function(callback) {
     devJsCompiler.run(function(err, stats) {
+
         if (err) return callback(err);
         if (isDebugging) {
             gutil.log('[webpack]', stats.toString({
@@ -545,6 +545,10 @@ gulp.task('watch', function() {
         ], ['watch:xslt'])
         .on('change', changeEvent('Xslt'));
 
+    gulp.watch([
+            paths.blocks.rt.src
+        ], ['watch:reactrt'])
+        .on('change', changeEvent('ReactRt:xsl'));
 });
 
 gulp.task('export:blocks', ['info'], function() {
@@ -654,7 +658,7 @@ gulp.task('watch:content:layout', ['xslt:nocache']);
 
 gulp.task('watch:xslt', ['watchxslt']);
 
-
+gulp.task('watch:reactrt', ['build:reactrt']);
 
 gulp.task('dev', ['serve', 'watch']);
 gulp.task('default', ['dev']);
