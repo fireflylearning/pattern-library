@@ -80,6 +80,10 @@ function getPaths() {
                 src: basePaths.blocks + '**/*.xsl',
                 dest: basePaths.temp + basePaths.blocks
             },
+            rt: {
+                src: basePaths.blocks + '**/*.rt',
+                dest: basePaths.blocks
+            },
             scripts: {
                 src: basePaths.blocks + '**/*.js',
                 entry: './' + basePaths.blocks + 'core/_shared/index.js',
