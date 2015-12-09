@@ -17,6 +17,7 @@
                 </div>
             </li>
         </ul>
+
         <input
             class="ff_module-recipient-picker__input ff_module-form-input ff_module-form-input--invisible"
             name="recipient-picker-query"

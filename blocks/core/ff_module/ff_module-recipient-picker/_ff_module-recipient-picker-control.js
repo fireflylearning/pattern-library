@@ -1,7 +1,5 @@
 'use strict';
 
-var $ = require('jquery');
-
 var dummySet = [{
     label: 'Sally Student',
     'guid': '122',
