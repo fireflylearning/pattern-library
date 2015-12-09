@@ -1,4 +1,4 @@
 <xsl:template name="ff_module-date-picker-calendar">
     <xsl:param name="data" />
-    <div data-component="date-picker" />
+    <div data-ff="date-picker" />
 </xsl:template>
