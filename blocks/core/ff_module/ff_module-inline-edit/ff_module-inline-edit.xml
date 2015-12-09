@@ -1,6 +1,7 @@
 <edit
     {% if id %} id="{{id}}" {% endif %}
-    {% if target %} target="{{target}}" {% endif %}
+    {% if url %} url="{{url}}" {% endif %}
+    {% if classtype %} class="{{classtype}}" {% endif %}
     >
     {{text}}
 </edit>

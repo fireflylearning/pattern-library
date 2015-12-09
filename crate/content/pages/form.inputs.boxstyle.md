@@ -4,7 +4,7 @@ page:
     layout: list-blocks
 data:
   - 
-    ff_module-input-group:
+    ff_module-form-box-group:
         - 
             label: "Group input name"
             id: "input-group-id"
@@ -13,7 +13,7 @@ data:
             id: "input-group-edit-id"
             state: editable
   -
-    ff_module-input-member:
+    ff_module-form-box-member:
         - 
             label: "Member input name"
             id: "input-group-id"

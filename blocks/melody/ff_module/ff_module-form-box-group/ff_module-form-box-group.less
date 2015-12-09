@@ -1,0 +1,55 @@
+@ff_input-group-padding-vertical: 7.5rem/@ff_base;
+
+#ff_mix-input-box() {
+
+    .layout {
+        border-radius: @ff_size_control_rounding;
+        display: inline-block;
+        line-height: 1;
+        overflow: hidden;
+    }
+    .label {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .border {
+        border: 1px solid @ff_color_control_link;
+    }
+    .bg {
+        background-color: screen(@ff_color_control_link, #bfbfbf);
+    }
+    .delete {
+        #ff_mix-buttons > .clear();
+        float:right;
+        margin-left: 2rem;
+        padding: @ff_input-group-padding-vertical @ff_size_spacing_min @ff_input-group-padding-vertical 0;
+    }
+    .edit {
+        #ff_mix-buttons > .clear();
+        border-right: 1px solid @ff_color_control_link;
+        background-color: #fff;
+        padding: @ff_input-group-padding-vertical;
+        display: inline-block;
+        float:left;
+    }
+
+}
+
+.ff_module-form-box-group {
+
+    #ff_mix-input > .root();
+    #ff_mix-input-box > .layout();
+    #ff_mix-input-box > .bg();
+    #ff_mix-input-box > .border();
+
+    &__label{
+        #ff_mix-input-box > .label();
+        padding: @ff_input-group-padding-vertical @ff_size_control_horizontal;
+    }
+    &__delete {
+        #ff_mix-input-box > .delete();
+    }
+    &__edit {
+        display: none;
+    }
+}

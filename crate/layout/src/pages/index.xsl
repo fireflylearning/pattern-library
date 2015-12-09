@@ -19,17 +19,24 @@
         <body>
 
             {% include '../includes/crate-theme-select.xsl' with { themes: site.themes} %}
+            <div class="crate-wrapper">
+                <div class="crate-main">
+                <h1>{{page.title}} : {{site.title}}</h1>
 
-            <h1>{{page.title}} : {{site.title}}</h1>
+                <div class="contents">{{contents|safe}}</div>
 
-            <div class="contents">{{contents|safe}}</div>
-
-            <h3>Blocks</h3>
-            <xsl:apply-templates select="page/blocks"/>
+                <xsl:apply-templates select="page/blocks"/>
+                </div>
 
 
-            <h3>Pages</h3>
-            {% include '../includes/page-listing.xsl' %}
+
+                <div class="crate-nav">
+                <h3>Blocks</h3>
+                {% include '../includes/block-nav-listing.xsl' %}
+                <h3>Pages</h3>
+                {% include '../includes/page-listing.xsl' %}
+                </div>
+            </div>
 
             {% include '../includes/dropdown-files.xsl' %}
 
