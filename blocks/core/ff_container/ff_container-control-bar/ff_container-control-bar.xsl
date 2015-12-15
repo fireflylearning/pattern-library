@@ -2,18 +2,11 @@
 	<xsl:param name="data" />
 
     <div class="ff_container-control-bar {$data/control-bar/@modifiers}">
-        <!-- <xsl:choose>
-            <xsl:when test="count($data/control-bar/set) &gt; 1"> -->
-                <xsl:for-each select="$data/control-bar/set">
-                    <div class="ff_container-control-bar__group" mode="ff_container-control-bar">
-                        <xsl:apply-templates select="." mode="ff_container-control-bar"/>
-                    </div>
-                </xsl:for-each>
-            <!-- </xsl:when>
-            <xsl:otherwise>
-                <xsl:apply-templates select="$data/control-bar/set" mode="ff_container-control-bar"/>
-            </xsl:otherwise>
-        </xsl:choose> -->
+        <xsl:for-each select="$data/control-bar/set">
+            <div class="ff_container-control-bar__group" mode="ff_container-control-bar">
+                <xsl:apply-templates select="." mode="ff_container-control-bar"/>
+            </div>
+        </xsl:for-each>
     </div>
 
 </xsl:template>
