@@ -25,7 +25,6 @@ data:
             checked: false
 
 requires: 
-    - ff_module-form-pair
     - ff_module-form-label
     - ff_module-form-input
 ---
