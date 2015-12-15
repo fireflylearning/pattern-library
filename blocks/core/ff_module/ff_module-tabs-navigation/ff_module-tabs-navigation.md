@@ -1,20 +1,20 @@
 ---
 data:
-    items:
+    tabs:
       -
         active: true
         label: "Overview"
-        id: "tab1"
+        id: "tab1b"
       -
         active: false
         label: "Details"
-        id: "tab2"
+        id: "tab2b"
       -
         active: false
         label: "Tasks"
-        id: "tab3"
+        id: "tab3b"
       -
         active: false
         label: "Students"
-        id: "tab4"
+        id: "tab4b"
 ---
