@@ -17,10 +17,14 @@ requires:
     - ff_container-control-bar
 ---
 
+Default display value is `block`.
+
+TODO: Options for top, bottom modifiers.
+
 ## Modifiers
 
-- **fixed**: positions fixed on page
-- **absolute**: positions absolutely, location dependent on closest parent with layout
+- **fixed**: positions fixed bottom fullwidth on page
+- **absolute**: positions absolutely, bottom fullwidth, location dependent on closest parent with layout
 
 ## Usage
 ```
