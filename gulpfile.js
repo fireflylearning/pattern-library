@@ -93,7 +93,9 @@ exportJsCompiler = webpack({
     cache: false,
     output: {
         path: path.join(exportPath,'js'),
-        filename: '[name].js'
+        filename: '[name].js',
+        library: 'ffBlocks',
+        libraryTarget: 'var'
     },
     resolve: {
         modulesDirectories: ['./node_modules', 'src', './blocks'],

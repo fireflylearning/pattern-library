@@ -1,1 +1,1 @@
-var {{varName}} = require('{{filePath}}');
+module.exports['{{varName}}'] = require('{{filePath}}');
