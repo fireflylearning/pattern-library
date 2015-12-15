@@ -8,4 +8,7 @@
             <xsl:with-param name="data" select="$data" />
         </xsl:call-template>
     </div>
+    <script>
+        <!-- $(document).ffTabs(); -->
+    </script>
 </xsl:template>

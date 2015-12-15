@@ -1,5 +1,6 @@
 ---
 data:
+    modifier: constrained-height
     tabs:
       -
         active: true
