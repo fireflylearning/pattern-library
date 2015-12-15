@@ -32,7 +32,7 @@
 .ff_module-progress__bar--completed {
     #ff_module-progress > .completed();
     border-top-right-radius: @ff_size_control_rounding;
-    border-bottom-right-radius: @ff_size_control_rounding; 
+    border-bottom-right-radius: @ff_size_control_rounding;
 }
 
 .ff_module-progress__bar--marked {
@@ -56,12 +56,13 @@
 .ff_module-progress__label {
     list-style: none;
     display: inline-block;
-    #ff_mix-base-text > .small();
-    #ff_mix-base-text > .quiet();
-    
+    #ff_mix-util-prose > .text-default();
+    #ff_mix-util-prose > .text-small();
+    #ff_mix-util-prose > .text-quiet();
+
     margin-right: @ff_size_control_vertical;
     &:last-child {margin-right: 0;}
-    
+
     &:before {
         content: "";
         width: 1em;
@@ -72,7 +73,7 @@
         border: 1px solid @ff_colour_control_border;
         margin-right: @ff_size_control_vertical;
     }
-    
+
 }
 
 .ff_module-progress__label-value {
