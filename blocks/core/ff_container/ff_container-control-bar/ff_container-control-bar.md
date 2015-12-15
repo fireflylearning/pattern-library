@@ -11,3 +11,12 @@ data:
         - "Module B"
         - "Module C"
 ---
+
+## Modifiers
+
+- left (default - group to left)
+- right (group to right)
+- split (groups to either end)
+- centered
+
+
