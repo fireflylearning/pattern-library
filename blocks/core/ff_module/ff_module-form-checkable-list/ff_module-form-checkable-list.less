@@ -1,3 +1,61 @@
+#ff_mix-form-pair() {
+    .root {
+        margin: @ff_size_spacing_max 0;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .item {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .constrained {
+        max-width: 200px;
+        flex-grow: 1;
+        box-sizing: border-box;
+    }
+    .fullwidth {
+        flex-grow: 1;
+    }
+    .stacked {
+        margin-bottom: @ff_size_spacing_min;
+        flex-grow: 1;
+        width:100%;
+    }
+}
+
+.ff_module-form-pair {
+    &__item,
+    &__label {
+        #ff_mix-form-pair > .item;
+    }
+    >*:nth-last-child(2) {
+        margin-left: 0;
+        margin-right: @ff_size_spacing_min;
+    }
+    &--fullwidth {
+        #ff_mix-form-pair > .root;
+    }
+    &--fullwidth &__item {
+        #ff_mix-form-pair > .fullwidth;
+    }
+    &--constrained &__item {
+        #ff_mix-form-pair > .constrained;
+    }
+    &--stacked &__item {
+        #ff_mix-form-pair > .stacked;
+    }
+    &--stacked-constrained &__item {
+        #ff_mix-form-pair > .stacked;
+        #ff_mix-form-pair > .constrained;
+    }
+    &--stacked-fullwidth &__item {
+        #ff_mix-form-pair > .fullwidth;
+        #ff_mix-form-pair > .stacked;
+    }
+}
+
+
 .ff_module-form-checkable-list {
     #ff_mix-util-prose > .list-remove-defaults;
 
@@ -18,3 +76,4 @@
         margin-bottom: @ff_size_spacing_min * 0.5;
     }
 }
+

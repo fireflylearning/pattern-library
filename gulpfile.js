@@ -93,7 +93,9 @@ exportJsCompiler = webpack({
     cache: false,
     output: {
         path: path.join(exportPath,'js'),
-        filename: '[name].js'
+        filename: '[name].js',
+        library: 'ffBlocks',
+        libraryTarget: 'var'
     },
     resolve: {
         modulesDirectories: ['./node_modules', 'src', './blocks'],
@@ -115,7 +117,7 @@ exportJsCompiler = webpack({
 });
 
 function camelCase(input) {
-    return input.toLowerCase().replace(/-(.)/g, function(match, group1) {
+    return input.toLowerCase().replace(/[-_]+(.)?/g, function(match, group1) {
         return group1.toUpperCase();
     });
 }
