@@ -1,8 +1,9 @@
 <xsl:template name="ff_container-control-bar">
 	<xsl:param name="data" />
 
-    <div class="ff_container-control-bar {$data/control-bar/@modifiers}">
-        <xsl:for-each select="$data/control-bar/set">
+    <div class="ff_container-control-bar {$data//control-bar/@modifiers}">
+        <xsl:for-each select="$data//control-bar/set">
+
             <div class="ff_container-control-bar__group" mode="ff_container-control-bar">
                 <xsl:apply-templates select="." mode="ff_container-control-bar"/>
             </div>
