@@ -1,22 +1,18 @@
 <xsl:template name="ff_module-planner-note">
     <xsl:param name="data" />
-    <xsl:variable name="ui-nodes">
-        <buttons>
-            <button id="lessonplan_add">
-                <text>Write lesson plan</text>
-                <icon>test</icon>
-                <action>editor-inline-start</action>
-                <modifiers>ff_module-button--tertiary</modifiers>
-            </button>
-            <button id="lessonplan_edit">
-                <text>Edit lesson plan</text>
-                <icon>test</icon>
-                <action>editor-inline-start</action>
-                <modifiers>ff_module-button--tertiary</modifiers>
-            </button>
-        </buttons>
+
+    <xsl:variable name="ui-button-lessonplan-add">
+        <button id="lessonplan_add" icon="test" modifier="tertiary">
+            <text>Write lesson plan</text>
+            <data attr="data-ff">editor-inline-start</data>
+        </button>
     </xsl:variable>
-    <xsl:variable name="ui-buttons" select="ext:node-set($ui-nodes)/buttons" />
+    <xsl:variable name="ui-button-lessonplan-edit">
+        <button id="lessonplan_edit" icon="test" modifier="tertiary">
+            <text>Edit lesson plan</text>
+            <data attr="data-ff">editor-inline-start</data>
+        </button>
+    </xsl:variable>
 
     <xsl:variable name="has-a-note">
         <xsl:if test="$data/event/note != ''">true</xsl:if>
@@ -37,12 +33,12 @@
             <xsl:choose>
                 <xsl:when test="not($has-a-note = 'true')">
                     <xsl:call-template name="ff_module-button">
-                        <xsl:with-param name="data" select="$ui-buttons/button[@id='lessonplan_add']"/>
+                        <xsl:with-param name="data" select="ext:node-set($ui-button-lessonplan-add)"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:call-template name="ff_module-button">
-                        <xsl:with-param name="data" select="$ui-buttons/button[@id='lessonplan_edit']"/>
+                        <xsl:with-param name="data" select="ext:node-set($ui-button-lessonplan-edit)"/>
                     </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
