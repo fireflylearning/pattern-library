@@ -1,4 +1,0 @@
-<text>{{text | default('Click me?')}}</text>
-{% if icon %}<icon>{{icon}}</icon>{% endif %}
-{% if modifiers %} <modifiers>{{modifiers}}</modifiers>{% endif %}
-{% if id %} <id>{{id}}</id>{% endif %}
