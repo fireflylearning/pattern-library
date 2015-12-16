@@ -31,6 +31,7 @@ function getPaths() {
 
         temp: '.tmp/',
         assets: 'assets/',
+        icons: 'icons/'
     };
 
     var paths = {
@@ -104,7 +105,19 @@ function getPaths() {
         assets: {
             src: basePaths.assets + '**/*.*',
             dest: basePaths.dest
+        },
+
+        optimise_svgs: {
+            src:  basePaths.icons +"svgs/*.svg",
+            dest: basePaths.icons + 'optimised_svgs',
+        },
+
+        icons: {
+            src: basePaths.icons + 'optimised_svgs/*.svg',
+            dest: basePaths.dest + 'css/',
+            templates: basePaths.icons + 'templates/default-css.hbs'
         }
+
     };
 
     return paths;

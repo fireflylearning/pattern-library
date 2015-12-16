@@ -22,6 +22,7 @@ var gutil = require('gulp-util'),
     options = require('./config/options.default.js'),
     gulpicon = require("./node_modules/gulpicon/tasks/gulpicon"),
     gulpiconConfig = require('./config/icons.js'),
+    glob = require('glob'),
 
     root = path.join(__dirname),
 
@@ -436,6 +437,14 @@ gulp.task('audit', ['xslt'], function() {
     // .pipe(plugins.rename('test.txt'))
     // .pipe(gulp.dest('.tests/wcag'));
 });
+
+gulp.task('optimise_svgs', function () {
+    return gulp.src(paths.optimise_svgs.src)
+        .pipe(plugins.svgmin())
+        .pipe(gulp.dest(paths.optimise_svgs.dest));
+});
+
+gulp.task("icons",['optimise_svgs'], gulpicon(glob.sync(paths.icons.src), gulpiconConfig));
 
 gulp.task('csslint', ['styles'], function() {
     gulp.src(paths.lint.styles)

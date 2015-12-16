@@ -1,4 +1,5 @@
-var path = require( "path" );
+var path = require( "path" ),
+      paths = require('./paths.js');
 
 module.exports = {
   // CSS filenames
@@ -6,8 +7,7 @@ module.exports = {
   datapngcss: "icons.png.css",
   urlpngcss: "icons.fallback.css",
 
-  // preview HTML filename
-  previewhtml: "preview.html",
+  dest: paths.icons.dest,
 
   // grunticon loader code snippet filename
   loadersnippet: "grunticon.loader.js",
@@ -39,10 +39,9 @@ module.exports = {
   // this defaults to "/" and will be placed before the "dest" path
   // when stylesheets are loaded. It allows root-relative referencing
   // of the CSS. If you don't want a prefix path, set to to ""
-  cssbasepath: "/",
+  cssbasepath: "./",
 
-  template: path.join( __dirname, "default-css.hbs" ),
-  previewTemplate: path.join( __dirname, "preview-custom.hbs" ),
+  template: paths.icons.templates,
 
   compressPNG: true
 };
