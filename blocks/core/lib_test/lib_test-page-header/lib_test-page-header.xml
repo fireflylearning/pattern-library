@@ -1,5 +1,1 @@
-<items>
-    {% for item in items %}
-   	 <item url="{{item.url | default('#')}}" state="{{item.state | default('default')}}">{{item.name}}</item>
-    {% endfor %}
-</items>
+{% include '../../ff_module/ff_module-formsteps/ff_module-formsteps.xml' %}

@@ -12,11 +12,11 @@
     max-width: 8rem;
     vertical-align: top;
     position: relative;
-    
+
     @media (min-width: @ff_bp_wide) {
         min-width: 5.5rem;
     }
-    
+
 
     &__link {
         #ff_mix-util-prose > .link-no-decoration;
@@ -25,14 +25,16 @@
     &__icon {
         #ff_mix-decoration > .circle(@formstep-diam);
     }
-    
+
     &__text {
         display: none;
+        line-height: 1;
+        margin-bottom: 0;
         @media (min-width: @ff_bp_wide) {
-            display: block;    
+            display: block;
         }
     }
-    
+
     @media (min-width: @ff_bp_medium) {
         margin-right: 2rem;
     }

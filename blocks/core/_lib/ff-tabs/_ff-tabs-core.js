@@ -5,8 +5,8 @@ var $ = require('jquery');
 var _options = {
     root: document,
     classFilter: identity,
-    linkSelRaw: 'data-ff-tabs-target',
-    contentSelRaw: 'data-ff-tabs-content',
+    linkSelBase: 'data-ff-tabs-target',
+    contentSelBase: 'data-ff-tabs-content',
     defaultLinkClass: 'ff_module-tabs-navigation__tab',
     defaultContentClass: 'ff_container-tabs-content',
     activeClassSuffix: '--is-active',
@@ -31,10 +31,10 @@ function identity(name) {
 }
 
 function getSwapStatesMethod($root, options) {
-    var contentRep = '[' + options.contentSelRaw + '="{val}"]',
-        linkRep = '[' + options.linkSelRaw + '="{val}"]',
-        linkSel = '[' + options.linkSelRaw + ']',
-        contentSel = '[' + options.contentSelRaw + ']',
+    var contentRep = '[' + options.contentSelBase + '="{val}"]',
+        linkRep = '[' + options.linkSelBase + '="{val}"]',
+        linkSel = '[' + options.linkSelBase + ']',
+        contentSel = '[' + options.contentSelBase + ']',
 
         activeClassSuffix = options.activeClassSuffix,
         completedClassSuffix = options.completedClassSuffix,
@@ -59,7 +59,7 @@ function getSwapStatesMethod($root, options) {
     }
 
     function removeActiveClasses($elements) {
-        return $elements.each(function(index, el){
+        return $elements.each(function(index, el) {
             removeActiveClass(el);
         });
     }
@@ -70,12 +70,12 @@ function getSwapStatesMethod($root, options) {
     }
 
 
-    function getActiveElements($root, selectors){
+    function getActiveElements($root, selectors) {
         return $root.find(selectors)
             .filter(hasActiveClass);
     }
 
-    function addClassPrefix($el, rootFallback, suffix, appendMethod) {
+    function addClassSuffix($el, rootFallback, suffix, appendMethod) {
         appendMethod = appendMethod || function appendSuffix(name) {
             return name + suffix;
         };
@@ -104,11 +104,11 @@ function getSwapStatesMethod($root, options) {
     }
 
     function addClasses($links, $content, suffix) {
-        $links.each(function(index, el){
-            addClassPrefix($(el), defaultLinkClass, suffix);
+        $links.each(function(index, el) {
+            addClassSuffix($(el), defaultLinkClass, suffix);
         });
-        $content.each(function(index, el){
-            addClassPrefix($(el), defaultContentClass, suffix);
+        $content.each(function(index, el) {
+            addClassSuffix($(el), defaultContentClass, suffix);
         });
     }
 
@@ -127,7 +127,7 @@ function getSwapStatesMethod($root, options) {
     return function swapStates(e) {
         e.preventDefault();
 
-        var target = $(this).attr(options.linkSelRaw),
+        var target = $(this).attr(options.linkSelBase),
             $selectedContent, $selectedLinks,
             $activeLinks, $activeContent,
             $lastLinks, $lastContent,
@@ -136,8 +136,8 @@ function getSwapStatesMethod($root, options) {
 
         if (!target) return;
 
-        selLinkTargets = contentRep.replace(/{val}/, target);
-        selContentTargets = linkRep.replace(/{val}/, target);
+        selLinkTargets = linkRep.replace(/{val}/, target);
+        selContentTargets = contentRep.replace(/{val}/, target);
 
         $selectedLinks = $root.find(selLinkTargets);
         $selectedContent = $root.find(selContentTargets);
@@ -153,15 +153,16 @@ function getSwapStatesMethod($root, options) {
             $lastContent = removeActiveClasses($activeContent);
             addVisitedClasses($lastLinks, $lastContent);
             addActiveClasses($selectedLinks, $selectedContent);
+            if (isComplete) {
+                addCompleteClasses($lastLinks, $lastContent);
+            }
         }
-        if (isComplete) {
-            addCompleteClasses($lastLinks, $lastContent);
-        }
+
     };
 }
 
 function setClickHandler($root, options) {
-    var linkSel = '[' + options.linkSelRaw + ']';
+    var linkSel = '[' + options.linkSelBase + ']';
     $root.on('click', linkSel, getSwapStatesMethod($root, options));
 }
 
@@ -169,5 +170,3 @@ module.exports = {
     setClickHandler: setClickHandler,
     defaultOptions: _options
 };
-
-
