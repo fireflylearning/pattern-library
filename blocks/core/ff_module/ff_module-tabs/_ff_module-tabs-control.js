@@ -7,8 +7,9 @@ module.exports = function() {
             return true;
         },
         canAdvance: function canAdvance($nextLink, $nextContent, $currentLink, $selectedContent) {
-            if ($nextLink.attr('data-ff-tabs-target') === 'tab2') return true;
-            return false;
+            // if ($nextLink.attr('data-ff-tabs-target') === 'tab2') return true;
+            // return false;
+            return true;
         }
     }
 };
