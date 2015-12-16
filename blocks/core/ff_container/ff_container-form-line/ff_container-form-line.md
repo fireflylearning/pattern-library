@@ -20,7 +20,7 @@ data:
 - `fullwidth` (takes up remaining space, will take into account trailing buttons, etc)
 
 ## Usage
-
+### As HTML
 ```
 <div class="ff_container-form-line">
     <label class="ff_container-form-line__item" for="input01">label</label>
@@ -28,3 +28,6 @@ data:
     <button class="ff_module-button ff_container-form-line__item">Date</button>
 </div>
 ```
+
+### In XSL
+Pass the `-form-line__item` class to the `-label` and `-input` modules with the attribute `classes`.
