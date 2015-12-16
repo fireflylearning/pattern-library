@@ -1,12 +1,5 @@
-#ff_module-button() {
-    .block() {
-        width: 100%;
-    }
-}
-
-.ff_module-button {
+.ff_module-dropdown-button {
     box-sizing: border-box;
-    cursor: pointer;
     #ff_mix-base-box > .default();
     #ff_mix-base-box > .isolate();
     #ff_mix-segments > .link--base();
@@ -49,12 +42,11 @@
     &--tertiary-large-block {
         #ff_module-button > .block();
     }
-    
+
 }
 
-.ff_module-button__content {
-    
-    &--hidden {
-        display: none;
+.ff_module-dropdown-button {
+    &__button {
+        #ff_mix-buttons > .clear;
     }
 }

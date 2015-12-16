@@ -14,7 +14,6 @@ data:
 - heading
 
 
-
 Data-attributes are set by attr:value pairs, eg
 ```
     id: "input-id"
