@@ -20,6 +20,8 @@ var gutil = require('gulp-util'),
     getWebpackConfig = require('./config/webpack.js'),
     siteConfigData = require('./config/crate.js'),
     options = require('./config/options.default.js'),
+    gulpicon = require("./node_modules/gulpicon/tasks/gulpicon"),
+    gulpiconConfig = require('./config/icons.js'),
 
     root = path.join(__dirname),
 
