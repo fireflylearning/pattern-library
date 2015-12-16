@@ -4,13 +4,13 @@
     <xsl:variable name="modifier">
         <xsl:choose>
             <xsl:when test="not($label/@modifier = '')">
-                <xsl:value-of select="$label/@modifier" />
+                ff_module-form-label--<xsl:value-of select="$label/@modifier" />
             </xsl:when>
-            <xsl:otherwise>default</xsl:otherwise>
+            <xsl:otherwise></xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
 
-    <label class="ff_module-form-label ff_module-form-label--{$modifier} {$label/@classes}">
+    <label class="ff_module-form-label {$modifier} {$label/@classes}">
         <xsl:if test="not($label/@for='')">
             <xsl:attribute name="for">
                 <xsl:value-of select="$label/@for"/>

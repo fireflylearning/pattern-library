@@ -7,7 +7,13 @@
             <xsl:when test="not($input/@modifier = '')">
                 <xsl:value-of select="$input/@modifier" />
             </xsl:when>
-            <xsl:otherwise>default</xsl:otherwise>
+            <xsl:otherwise></xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="className">
+        <xsl:choose>
+            <xsl:when test="not($modifier = '')"><xsl:text>ff_module-form-input ff_module-form-input--</xsl:text><xsl:value-of select="$modifier" /></xsl:when>
+            <xsl:otherwise><xsl:text>ff_module-form-input</xsl:text></xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
     <xsl:variable name="type">
@@ -25,14 +31,14 @@
         <xsl:when test="$type='select'">
             <xsl:call-template name="ff_module-form-input__select">
                 <xsl:with-param name="input" select="$input-node"/>
-                <xsl:with-param name="modifier" select="$modifier"/>
+                <xsl:with-param name="className" select="$className"/>
                 <xsl:with-param name="type" select="$type"/>
             </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
             <xsl:call-template name="ff_module-form-input__input">
                 <xsl:with-param name="input" select="$input-node"/>
-                <xsl:with-param name="modifier" select="$modifier"/>
+                <xsl:with-param name="className" select="$className"/>
                 <xsl:with-param name="type"><xsl:value-of select="$type"/></xsl:with-param>
             </xsl:call-template>
         </xsl:otherwise>
@@ -41,10 +47,10 @@
 
 <xsl:template name="ff_module-form-input__input">
     <xsl:param name="input" />
-    <xsl:param name="modifier" />
+    <xsl:param name="className" />
     <xsl:param name="type" />
 
-    <input class="ff_module-form-input ff_module-form-input--{$modifier} {$input/@classes}">
+    <input class="{$className} {$input/@classes}">
 
         <xsl:attribute name="type">
             <xsl:value-of select="$type"/>
@@ -71,16 +77,12 @@
         <xsl:if test="$input/@type='radio' or $input/@type='checkbox'">
             <xsl:if test="$input/@checked='true'">
                 <xsl:attribute name="checked">
-                   <xsl:text>
-                       true
-                   </xsl:text>
+                   <xsl:text>true</xsl:text>
                 </xsl:attribute>
             </xsl:if>
             <xsl:if test="$input/@disabled='true'">
                 <xsl:attribute name="disabled">
-                   <xsl:text>
-                       true
-                   </xsl:text>
+                   <xsl:text>true</xsl:text>
                 </xsl:attribute>
             </xsl:if>
         </xsl:if>
@@ -98,10 +100,10 @@
 
 <xsl:template name="ff_module-form-input__select">
     <xsl:param name="input" />
-    <xsl:param name="modifier" />
+    <xsl:param name="className" />
     <xsl:param name="type" />
 
-    <select class="ff_module-form-input ff_module-form-input--{$modifier} {$input/@classes}">
+    <select class="{$className} {$input/@classes}">
         <xsl:if test="not($input/@id='')">
             <xsl:attribute name="id">
                <xsl:value-of select="$input/@id"/>

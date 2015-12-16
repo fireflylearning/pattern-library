@@ -13,7 +13,7 @@ module.exports = function(controlFactory) {
             event.preventDefault();
             var $root = $(this),
                 targetSel = $root.data('ff-edit-target'),
-                target = editControl.getTarget(targetSel);
+                target = $(targetSel).get(0);
 
             if (target) {
                 editControl.startEdit(target);

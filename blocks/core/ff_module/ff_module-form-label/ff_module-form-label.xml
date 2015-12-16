@@ -1,4 +1,4 @@
-<label modifier="{{modifier}}" for="{{id}}" required="{{required | default('true')}}">
+<label modifier="{{modifier}}" for="{{id}}" required="{{required | default('true')}}" classes="{{classes}}">
     <text>{{text | default('Label text')}}</text>
     {% for d in data %}
     <data attr="{{d.attr}}">{{d.value}}</data>

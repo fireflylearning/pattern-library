@@ -9,9 +9,6 @@ function editControlStub(){
         },
         endEdit: function(target) {
             console.log('End editing', target);
-        },
-        getTarget: function(selector) {
-            return $(selector).get(0);
         }
     };
 }
