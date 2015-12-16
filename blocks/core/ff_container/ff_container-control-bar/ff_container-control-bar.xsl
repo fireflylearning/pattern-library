@@ -1,8 +1,18 @@
 <xsl:template name="ff_container-control-bar">
 	<xsl:param name="data" />
 
-    <div class="ff_container-control-bar {$data/control-bar/@modifiers}">
-        <xsl:for-each select="$data/control-bar/set">
+    <xsl:variable name="modifier"><xsl:value-of select="$data/control-bar/@modifier"/></xsl:variable>
+
+    <xsl:variable name="className">
+        <xsl:choose>
+            <xsl:when test="$modifier">ff_container-control-bar ff_container-control-bar--<xsl:value-of select="$modifier"/></xsl:when>
+            <xsl:otherwise>ff_container-control-bar</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
+    <div class="{$className}">
+        <xsl:for-each select="$data//control-bar/set">
+
             <div class="ff_container-control-bar__group" mode="ff_container-control-bar">
                 <xsl:apply-templates select="." mode="ff_container-control-bar"/>
             </div>

@@ -1,6 +1,6 @@
 ---
 data:
-  modifiers: "ff_container-control-bar--split"
+  modifier: "split"
   sets:
     -
       title: "Section Heading"
@@ -14,9 +14,9 @@ data:
 
 ## Modifiers
 
-- left (default - group to left)
-- right (group to right)
-- split (groups to either end)
-- centered
+- **left**: default - group to left
+- **right**: group to right
+- **split**: groups to either end
+- **centered**
 
 
