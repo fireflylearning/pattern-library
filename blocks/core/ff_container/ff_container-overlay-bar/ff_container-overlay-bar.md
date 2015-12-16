@@ -3,7 +3,7 @@ data:
   modifier: ""
   content: 
         name: control-bar
-        modifiers: "ff_container-control-bar--split"
+        modifier: "split"
         sets:
             -
               title: "Section Heading"

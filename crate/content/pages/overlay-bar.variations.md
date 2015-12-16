@@ -8,7 +8,7 @@ data:
         modifier: "fixed"
         content: 
             name: control-bar
-            modifiers: "ff_container-control-bar--split"
+            modifier: "split"
             sets:
                 -
                   title: "Section Heading"
@@ -17,5 +17,5 @@ data:
                 -
                   modules:
                     - "Module B"
-                - "Module C"
+                    - "Module C"
 ---
