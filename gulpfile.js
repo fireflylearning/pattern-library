@@ -646,7 +646,7 @@ gulp.task('blocks:nocache', ['generate:blocks:xsl:nocache', 'generate:blocks:xml
 gulp.task('content', ['generate:content:xml', 'generate:content:xsl']);
 gulp.task('content:nocache', ['generate:content:xml:nocache', 'generate:content:xsl:nocache']);
 
-gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt','webpack']);
+gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt','webpack','icons']);
 
 gulp.task('watch:assets', ['assets']);
 gulp.task('watch:info:blocks', ['info:blocks']);
