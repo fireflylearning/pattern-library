@@ -4,98 +4,165 @@ var $ = require('jquery');
 
 var _options = {
     root: document,
-    filter: identity,
+    classFilter: identity,
     linkSelRaw: 'data-ff-tabs-target',
     contentSelRaw: 'data-ff-tabs-content',
     defaultLinkClass: 'ff_module-tabs-navigation__tab',
-    activeClassSuffix: '--active',
+    defaultContentClass: 'ff_container-tabs-content',
+    activeClassSuffix: '--is-active',
+    completedClassSuffix: '--is-complete',
+    visitedClassSuffix: '--is-visited',
+    isComplete: isComplete,
+    canAdvance: canAdvance
 };
+
+function isComplete($nextLink, $nextContent, $currentLink, $selectedContent) {
+    if ($nextContent.length) return true;
+    return false;
+}
+
+function canAdvance($nextLink, $nextContent, $currentLink, $selectedContent) {
+    if ($nextContent.length) return true;
+    return false;
+}
 
 function identity(name) {
     return true;
 }
 
 function getSwapStatesMethod($root, options) {
-    var tabContentRep = '[' + options.contentSelRaw + '="{val}"]',
-        tabLinkSel = '[' + options.linkSelRaw + ']',
-        tabContentSel = '[' + options.contentSelRaw + ']',
+    var contentRep = '[' + options.contentSelRaw + '="{val}"]',
+        linkRep = '[' + options.linkSelRaw + '="{val}"]',
+        linkSel = '[' + options.linkSelRaw + ']',
+        contentSel = '[' + options.contentSelRaw + ']',
 
         activeClassSuffix = options.activeClassSuffix,
-        fallBackTabLinkClass = options.defaultLinkClass,
-        filterMethod = options.filter;
+        completedClassSuffix = options.completedClassSuffix,
+        visitedClassSuffix = options.visitedClassSuffix,
 
-    function removeActiveClasses($root) {
-        var $links = $root.find(tabLinkSel);
-        var $content = $root.find(tabContentSel);
-        $links.each(removeActiveClass);
-        $content.each(removeActiveClass);
-    }
+        defaultLinkClass = options.defaultLinkClass,
+        defaultContentClass = options.defaultContentClass,
 
-    function hasActiveClass(name) {
+        filterMethod = options.classFilter,
+        testIsComplete = options.isComplete,
+        testCanAdvance = options.canAdvance;
+
+
+
+    function isActiveClass(name) {
         return name.match(activeClassSuffix);
     }
 
-    function appendActiveClass(name) {
-        return name + activeClassSuffix;
+    function removeActiveClass(el) {
+        if (!el) return;
+        $(el).removeClass(el.getAttribute('class').split(' ').filter(isActiveClass).join(' '));
     }
 
-    function addActiveClass($el) {
+    function removeActiveClasses($elements) {
+        return $elements.each(function(index, el){
+            removeActiveClass(el);
+        });
+    }
+
+
+    function hasActiveClass(index, el) {
+        return el.getAttribute('class').split(' ').filter(isActiveClass).length > 0;
+    }
+
+
+    function getActiveElements($root, selectors){
+        return $root.find(selectors)
+            .filter(hasActiveClass);
+    }
+
+    function addClassPrefix($el, rootFallback, suffix, appendMethod) {
+        appendMethod = appendMethod || function appendSuffix(name) {
+            return name + suffix;
+        };
+
+        function alreadyHasClass(name) {
+            return !name.match(suffix);
+        }
+
         var currentClasses = $el.attr('class').split(' '),
             tabClasses,
-            className = fallBackTabLinkClass + activeClassSuffix; // fallback default name
+            className = rootFallback + activeClassSuffix; // fallback default name
 
         switch (currentClasses.length) {
             case 0:
                 $el.addClass(className);
                 break;
-            case 1:
-                className = currentClasses[0] + activeClassSuffix;
-                $el.addClass(className);
-                break;
             default:
                 tabClasses = currentClasses
+                    .filter(alreadyHasClass)
                     .filter(filterMethod)
-                    .map(appendActiveClass)
+                    .map(appendMethod)
                     .join(' ');
                 $el.addClass(tabClasses);
 
         }
     }
 
-    function addActiveClasses($link, $content) {
-        addActiveClass($link);
-        addActiveClass($content);
+    function addClasses($links, $content, suffix) {
+        $links.each(function(index, el){
+            addClassPrefix($(el), defaultLinkClass, suffix);
+        });
+        $content.each(function(index, el){
+            addClassPrefix($(el), defaultContentClass, suffix);
+        });
     }
 
-    function removeActiveClass(index, el) {
-        var $el = $(el),
-            activeClasses;
-        if (!$el.length) return;
-        activeClasses = $el.attr('class').split(' ').filter(hasActiveClass);
-        $el.removeClass(activeClasses.join(' '));
+    function addActiveClasses($links, $content) {
+        addClasses($links, $content, activeClassSuffix);
+    }
+
+    function addCompleteClasses($links, $content) {
+        addClasses($links, $content, completedClassSuffix);
+    }
+
+    function addVisitedClasses($links, $content) {
+        addClasses($links, $content, visitedClassSuffix);
     }
 
     return function swapStates(e) {
         e.preventDefault();
 
-        var $tabLink = $(this),
-            target = $tabLink.attr(options.linkSelRaw),
-            $content, contentSel;
+        var target = $(this).attr(options.linkSelRaw),
+            $selectedContent, $selectedLinks,
+            $activeLinks, $activeContent,
+            $lastLinks, $lastContent,
+            selLinkTargets, selContentTargets,
+            isComplete, canAdvance;
 
-        if (target) {
-            removeActiveClasses($root);
-            contentSel = tabContentRep.replace(/{val}/, target);
-            $content = $root.find(contentSel);
-            if ($content) {
-                addActiveClasses($tabLink, $content);
-            }
+        if (!target) return;
+
+        selLinkTargets = contentRep.replace(/{val}/, target);
+        selContentTargets = linkRep.replace(/{val}/, target);
+
+        $selectedLinks = $root.find(selLinkTargets);
+        $selectedContent = $root.find(selContentTargets);
+
+        $activeLinks = getActiveElements($root, linkSel);
+        $activeContent = getActiveElements($root, contentSel);
+
+        isComplete = testIsComplete($selectedLinks, $selectedContent, $activeLinks, $activeContent);
+        canAdvance = testCanAdvance($selectedLinks, $selectedContent, $activeLinks, $activeContent);
+
+        if (canAdvance) {
+            $lastLinks = removeActiveClasses($activeLinks);
+            $lastContent = removeActiveClasses($activeContent);
+            addVisitedClasses($lastLinks, $lastContent);
+            addActiveClasses($selectedLinks, $selectedContent);
+        }
+        if (isComplete) {
+            addCompleteClasses($lastLinks, $lastContent);
         }
     };
 }
 
 function setClickHandler($root, options) {
-    var tabLinkSel = '[' + options.linkSelRaw + ']';
-    $root.on('click', tabLinkSel, getSwapStatesMethod($root, options));
+    var linkSel = '[' + options.linkSelRaw + ']';
+    $root.on('click', linkSel, getSwapStatesMethod($root, options));
 }
 
 module.exports = {

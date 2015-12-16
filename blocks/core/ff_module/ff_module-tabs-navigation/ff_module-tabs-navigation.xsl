@@ -6,7 +6,7 @@
             <li data-ff-tabs-target="{@id}">
                 <xsl:attribute name="class">
                     <xsl:choose>
-                        <xsl:when test="@active='true'">ff_module-tabs-navigation__tab ff_module-tabs-navigation__tab--active</xsl:when>
+                        <xsl:when test="@active='true'">ff_module-tabs-navigation__tab ff_module-tabs-navigation__tab--is-active</xsl:when>
                         <xsl:otherwise>ff_module-tabs-navigation__tab</xsl:otherwise>
                     </xsl:choose>
                 </xsl:attribute>
