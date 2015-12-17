@@ -122,4 +122,7 @@ The gulp task will run and traverse the directory, performing the following task
     - and perform end-to-end tests.
 - Any additional assets such as pre-existing source files are copied to the build folder.
 
-
+## Icons
+The `icons` task should be runned separately. To optimise the `.svg` icons and build the CSS for each of those icons run:
+1. `gulp optimise_svgs`
+2. `gulp icons`
