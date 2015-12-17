@@ -4,6 +4,10 @@ function passThrough(className) {
     return true;
 }
 
+function filterNull(n){
+    return !!n;
+}
+
 function getClassMatchSuffix(classSuffix) {
     return function(className) {
         return className.search(classSuffix) !== -1;
@@ -34,12 +38,16 @@ function addClassSuffix($el, suffix, rootFallback, customFilter, appendMethod) {
     customFilter = customFilter || passThrough;
 
     var alreadyHasSuffix = getClassNotSuffix(suffix),
-        currentClasses = $el.attr('class').split(' '),
-        classes; // fallback default name
+        currentClasses = $el.attr('class')
+        .split(' ')
+        .filter(filterNull),
+        classes;
+
+    // console.log(currentClasses);
 
     switch (currentClasses.length) {
         case 0:
-            classes = rootFallback + suffix;
+            classes = rootFallback + suffix; // fallback default name
             break;
         default:
             classes = currentClasses
@@ -65,13 +73,11 @@ function getClassSuffixes($el) {
             var matches = className.match(/(--is-\w+)\b/g);
             return matches ? matches.join(' ') : '';
         })
-        .filter(function(n) {
-            return !!n;
-        }).join(' ').split(' ')
-        .filter(function(n, i, arr){
-            return i==arr.indexOf(n);
-        })
-        ;
+        .filter(filterNull)
+        .join(' ').split(' ') // flatten
+        .filter(function(n, i, arr) {
+            return i == arr.indexOf(n);
+        });
 }
 
 module.exports = {
