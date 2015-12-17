@@ -4,13 +4,13 @@
     <xsl:variable name="ui-button-lessonplan-add">
         <button id="lessonplan_add" icon="test" modifier="tertiary">
             <text>Write lesson plan</text>
-            <data attr="data-ff">editor-inline-start</data>
+            <data attr="data-ff-action">editor-inline-start</data>
         </button>
     </xsl:variable>
     <xsl:variable name="ui-button-lessonplan-edit">
         <button id="lessonplan_edit" icon="test" modifier="tertiary">
             <text>Edit lesson plan</text>
-            <data attr="data-ff">editor-inline-start</data>
+            <data attr="data-ff-action">editor-inline-start</data>
         </button>
     </xsl:variable>
 
