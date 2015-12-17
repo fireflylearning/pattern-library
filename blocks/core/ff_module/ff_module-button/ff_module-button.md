@@ -14,6 +14,22 @@ Call `ff_module-button` and pass-in the following XML:
 </button>
 ```
 
+### Example `yml`
+
+```
+data:
+    text: "default button"
+    modifier: primary
+    icon: calendar
+    classes "ff_module-example__item"
+    disabled: true
+    hide_text: true
+    data:
+      -
+        attr: ff-data-attr
+        value: value
+```
+
 ## Required nodes and attributes
 
 * `<text>`

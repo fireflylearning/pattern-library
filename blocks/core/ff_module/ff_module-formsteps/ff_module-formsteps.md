@@ -1,20 +1,21 @@
 ---
-# for example, if ff_module-segments.xsl uses ff_module-button template, specify here
-
 data:
-    items:
+    formsteps:
       -
-        state: "completed"
+        state: "complete"
         name: "Recipients"
         url: "#"
+        id: 'stepA'
       -
         state: "default"
         name: "Details"
         url: "#"
+        id: 'stepB'
       -
         state: "current"
         name: "Description"
         url: "#"
+        id: 'stepC'
 ---
 
 State options:

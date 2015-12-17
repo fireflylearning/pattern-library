@@ -1,12 +1,21 @@
 <xsl:template name="ff_module-button">
     <xsl:param name="data" />
         <button type="button" title="{$data/button/text}">
+        
             <xsl:attribute name="class">
                 <xsl:text>ff_module-button</xsl:text>
                 <xsl:text> ff_module-button--</xsl:text><xsl:value-of select="$data/button/@modifier"/>
                 <xsl:text> </xsl:text><xsl:value-of select="$data/button/@classes"/>
                 <xsl:if test="$data/button/@disabled"> ff_module-button--is-disabled</xsl:if>
             </xsl:attribute>
+            
+            <xsl:if test="$data/button/data">
+                <xsl:for-each select="$data/button/data">
+                    <xsl:attribute name="{./@attr}">
+                        <xsl:value-of select="."/>
+                    </xsl:attribute>
+                </xsl:for-each>
+            </xsl:if>
             
             <xsl:if test="$data/button/@disabled">
                 <xsl:attribute name="disabled">disabled</xsl:attribute>

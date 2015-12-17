@@ -5,20 +5,20 @@ page:
 data:
   - ff_container-control-bar:
     -
-        modifiers: "ff_container-control-bar"
+        modifier: ""
         sets:
             -
                 modules:
                 - "Default alignment"
     -
-        modifiers: "ff_container-control-bar"
+        modifier: ""
         sets:
             -
                 modules:
                 - "Module A"
                 - "Module B"
     -
-        modifiers: "ff_container-control-bar"
+        modifier: ""
         sets:
             -   
                 title: "Default, with title"
@@ -26,7 +26,7 @@ data:
                 - "Module B"
                 - "Module C"
     -
-        modifiers: "ff_container-control-bar"
+        modifier: ""
         sets:  
             -
                 title: "Default, with title"
@@ -36,7 +36,7 @@ data:
                 - "Module C"
                 - "Module D"
     -
-        modifiers: "ff_container-control-bar--split"
+        modifier: "split"
         sets:
             -
                 title: "Split, with title"
@@ -45,7 +45,7 @@ data:
                 - "Module B"
                 - "Module C"
     -
-        modifiers: "ff_container-control-bar--split"
+        modifier: "split"
         sets:
             -
                 title: "Split, with title"
@@ -55,7 +55,7 @@ data:
                 - "Module B"
                 - "Module C"
     -
-        modifiers: "ff_container-control-bar--split"
+        modifier: "split"
         sets:
             -
                 modules:
@@ -68,13 +68,13 @@ data:
                 - "Module E"
                 - "Module F"
     -
-        modifiers: "ff_container-control-bar--centered"
+        modifier: "centered"
         sets:
             -
                 modules:
                 - "Centered Module"
     -
-        modifiers: "ff_container-control-bar--centered"
+        modifier: "centered"
         sets:
             -
                 modules:
@@ -82,20 +82,20 @@ data:
                 - "Module B"
                 - "Module C"
     -
-        modifiers: "ff_container-control-bar--right"
+        modifier: "right"
         sets:
             -
                 modules:
                 - "Right-aligned Module"
     -
-        modifiers: "ff_container-control-bar--right"
+        modifier: "right"
         sets:
             -
                 modules:
                 - "Right-aligned Module A"
                 - "Right-aligned Module B"
     -
-        modifiers: "ff_container-control-bar--right"
+        modifier: "right"
         sets:
             -
                 modules:

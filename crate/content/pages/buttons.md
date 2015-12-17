@@ -6,7 +6,11 @@ data:
   - 
     ff_module-button: 
       - 
-        text: "default button"
+        text: "default button with data attrs"
+        data:
+          -
+            attr: data-ff-attr
+            value: true
       - 
         text: "default button with icon"
         icon: "test"
