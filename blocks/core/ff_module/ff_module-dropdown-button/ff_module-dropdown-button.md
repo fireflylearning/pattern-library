@@ -6,10 +6,10 @@ data:
     list: 
         - 
             href: "#"
-            text: "Item A"            
+            text: "Item A"   
         - 
             href: "#"
-            text: "Item B"           
+            text: "Item B" 
         - 
             href: "#"
             text: "Item C"
