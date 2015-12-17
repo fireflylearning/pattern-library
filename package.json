@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Source files and build tools for Firefly front-end development patterns.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fireflylearning/pattern-library.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm install && gulp"
