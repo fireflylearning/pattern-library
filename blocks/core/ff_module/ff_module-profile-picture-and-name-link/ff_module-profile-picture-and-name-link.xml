@@ -1,0 +1,1 @@
+<page type="{{type | default('profile')}}" title="{{title | default('Default user')}}" href="{{href | default('#')}}" pic_href="{{pic_href | default('#')}}" guid="{{guid | default('profile-guid')}}" />

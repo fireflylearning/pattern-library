@@ -1,21 +1,21 @@
 <xsl:template name="ff_module-formsteps">
 <xsl:param name="data" />
 <ul class="ff_module-formsteps">
-<xsl:for-each select="$data/items/item">
+<xsl:for-each select="$data/formsteps/step">
 	<xsl:variable name="state">
 		<xsl:choose>
 			<xsl:when test="@state = 'current'">
-				<xsl:text>ff_module-formstep--current</xsl:text>
+				<xsl:text>ff_module-formstep--is-current</xsl:text>
 			</xsl:when>
-			<xsl:when test="@state = 'completed' ">
-				<xsl:text>ff_module-formstep--completed</xsl:text>
+			<xsl:when test="@state = 'complete' ">
+				<xsl:text>ff_module-formstep--is-complete</xsl:text>
 			</xsl:when>
             <xsl:otherwise>
-                <xsl:text>ff_module-formstep--default</xsl:text>
+                <xsl:text></xsl:text>
             </xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
-	<li class="ff_module-formstep {$state}">
+	<li class="ff_module-formstep {$state}" data-ff-formsteps-target="{@id}">
 		<a class="ff_module-formstep__link" href="{@url}">
 			<span class="ff_module-formstep__icon">
 				<span class="ff_module-formstep__stepnumber"><xsl:number/></span>

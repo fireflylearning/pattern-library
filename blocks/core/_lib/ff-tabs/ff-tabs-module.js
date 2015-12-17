@@ -8,7 +8,7 @@ module.exports = function(options) {
     var __options = $.extend({}, ffTabsCore.defaultOptions, options);
 
     $(function() {
-        console.log(__options.linkSelRaw + ' activating', $(__options.root));
+        console.log(__options.linkSelBase + ' activating', $(__options.root));
 
         $(__options.root).each(function(index, tab) {
             ffTabsCore.setClickHandler($(tab), __options);

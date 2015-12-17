@@ -1,7 +1,0 @@
-{% for recipient in recipients %}
-<recipient>
-    <name>{{recipient.name | default('Default user')}}</name>
-    <url>{{recipient.url | default('#')}}</url>
-    <picture>{{recipient.picture | default('#')}}</picture>
-</recipient>
-{% endfor %}

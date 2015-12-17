@@ -7,8 +7,8 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="not($modifier='') and not(@active='true')">ff_container-tabs-content ff_container-tabs-content--<xsl:value-of select="$modifier"/></xsl:when>
-                    <xsl:when test="not($modifier='') and @active='true'">ff_container-tabs-content ff_container-tabs-content--<xsl:value-of select="$modifier"/> ff_container-tabs-content--active</xsl:when>
-                    <xsl:when test="$modifier='' and @active='true'">ff_container-tabs-content ff_container-tabs-content--active</xsl:when>
+                    <xsl:when test="not($modifier='') and @active='true'">ff_container-tabs-content ff_container-tabs-content--<xsl:value-of select="$modifier"/> ff_container-tabs-content--is-active</xsl:when>
+                    <xsl:when test="$modifier='' and @active='true'">ff_container-tabs-content ff_container-tabs-content--is-active</xsl:when>
                     <xsl:otherwise>ff_container-tabs-content</xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
