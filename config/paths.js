@@ -91,7 +91,7 @@ function getPaths() {
                 output: './' + basePaths.dest + 'js/'
             }
         },
-        clean: [basePaths.temp, basePaths.dest],
+        clean: [basePaths.temp, basePaths.dest, basePaths.icons + 'optimised_svgs/' ],
         export: basePaths.export,
         lint: {
             styles: basePaths.dest + '**/*.css',
