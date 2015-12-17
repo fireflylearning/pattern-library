@@ -446,7 +446,7 @@ gulp.task('optimise_svgs', function () {
         .pipe(gulp.dest(paths.optimise_svgs.dest));
 });
 
-gulp.task("icons",['optimise_svgs'], gulpicon(glob.sync(paths.icons.src), gulpiconConfig));
+gulp.task("icons", gulpicon(glob.sync(paths.icons.src), gulpiconConfig));
 
 gulp.task('csslint', ['styles'], function() {
     gulp.src(paths.lint.styles)
