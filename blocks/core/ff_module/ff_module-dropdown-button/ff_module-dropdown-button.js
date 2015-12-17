@@ -83,7 +83,7 @@ function activateDropdowns(options) {
         var triggerSels = triggerRep.replace(/{val}/, id),
             targetSels = targetRep.replace(/{val}/, id);
 
-        console.log(id, triggerSels, targetSels);
+        // console.log(id, triggerSels, targetSels);
         var $triggers = $root.find(triggerSels),
             $targets = $root.find(targetSels);
 
@@ -95,7 +95,6 @@ function activateDropdowns(options) {
     }
 
     $(function() {
-
         addSuffix($root.find(triggerSel), options.enabledClassSuffix, defaultTriggerClass);
         addSuffix($root.find(targetSel), options.enabledClassSuffix, defaultTargetClass);
 
