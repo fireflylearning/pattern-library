@@ -31,7 +31,9 @@ data:
                 href: "#"
                 text: "Item C"
       - 
+        id: dd0a
         text: "Dropdown button ltd"
+        modifier: block
         list: 
             - 
                 href: "#"
@@ -44,7 +46,7 @@ data:
                 text: "Item C with even longer text inside"
       - 
         id: dd3
-        modifier: is-enabled
+        state: is-enabled
         text: "Dropdown button e"
         list: 
             - 
@@ -59,7 +61,7 @@ data:
       - 
         id: dd4
         text: "Dropdown button lte"
-        modifier: is-enabled
+        state: is-enabled
         list: 
             - 
                 href: "#"
@@ -72,7 +74,7 @@ data:
                 text: "Item C with even longer text inside"
       - 
         id: dd5
-        modifier: is-open
+        state: is-open
         text: "Dropdown button o"
         list: 
             - 
@@ -87,7 +89,7 @@ data:
       - 
         id: dd6
         text: "Dropdown button lto"
-        modifier: is-open
+        state: is-open
         list: 
             - 
                 href: "#"
@@ -101,7 +103,7 @@ data:
       - 
         id: dd7
         text: "lto"
-        modifier: is-open
+        state: is-open
         list: 
             - 
                 href: "#"
