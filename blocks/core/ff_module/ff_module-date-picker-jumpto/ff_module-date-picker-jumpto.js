@@ -2,12 +2,15 @@
 var $ = require('jquery');
 
 module.exports = function() {
-    $('[data-ff="date-picker"]').each(function(index, element) {
-        $(element).datepicker({
-            dateFormat: "yy-mm-dd",
-            onSelect: function(date) {
-                location.href = $(element).attr("data-ff-url-prefix") + date;
-            }
+    $(function() {
+        return $('[data-ff="date-picker"]').each(function(index, element) {
+            $(element).datepicker({
+                dateFormat: "yy-mm-dd",
+                onSelect: function(date) {
+                    location.href = $(element).attr("data-ff-url-prefix") + date;
+                }
+            });
         });
     });
+
 };
