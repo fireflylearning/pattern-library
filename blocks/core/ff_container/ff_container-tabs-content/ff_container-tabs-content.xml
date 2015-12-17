@@ -1,0 +1,7 @@
+<tabs modifier="{{modifier}}">
+    {% for tab in tabs %}
+        <tab active="{{tab.active | default('false')}}" id="{{tab.id}}">
+            <content>{{tab.content | default('Tab Content')}}</content>
+        </tab>
+    {% endfor %}
+</tabs>

@@ -27,9 +27,9 @@
             </div>
         </div>
         <ul class="ff_module-progress__key">
-            <li class="ff_module-progress__label ff_module-progress__label--marked"><xsl:value-of select="$data/progress/@marked"/> Marked</li>
-            <li class="ff_module-progress__label ff_module-progress__label--completed"><xsl:value-of select="$data/progress/@completed_by"/> Completed</li>
-            <li class="ff_module-progress__label ff_module-progress__label--total"><xsl:value-of select="$data/progress/@sent_to"/> Total</li>
+            <li class="ff_module-progress__label ff_module-progress__label--marked"><span class="ff_module-progress__label-value"><xsl:value-of select="$data/progress/@marked"/></span> marked</li>
+            <li class="ff_module-progress__label ff_module-progress__label--completed"><span class="ff_module-progress__label-value"><xsl:value-of select="$data/progress/@completed_by"/></span> completed</li>
+            <li class="ff_module-progress__label ff_module-progress__label--total"><span class="ff_module-progress__label-value"><xsl:value-of select="$data/progress/@sent_to"/></span> total</li>
         </ul>
     </div>
     

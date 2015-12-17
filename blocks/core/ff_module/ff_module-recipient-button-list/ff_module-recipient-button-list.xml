@@ -1,0 +1,6 @@
+<results>
+    {% for recipient in recipients %}
+    {% include '../ff_module-profile-picture-and-name-link/ff_module-profile-picture-and-name-link.xml' with recipient %}
+    {% endfor %}
+</results>
+

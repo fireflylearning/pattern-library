@@ -1,21 +1,56 @@
-# Front end build process
+# Firefly Pattern Library
 
-// TODO
+This repo contains the source files for Firefly front-end development patterns.
+
+// TODO: Complete API
 ### API 
-gulp
-    - builds, serves and watches for changes
-gulp clean
-    - cleans the temporary and output directories
-gulp export 
-    - build and exports the xsl and css files to `export` directory. The location can be overriden in `config/options.local.js`.
+- gulp
+    
+    builds, serves and watches for changes
 
-## Rationale
+- gulp clean
 
-- For large, complex systems, front-end development requires many steps such as less to css processing, image and file minification, build output, unit- and end-to-end testing, etc. 
-- Automated build processes allow the developer to meet those requirements quickly and perfectly each time without needing to manually perform each step of the operation.
-- The build chain is complex and needs frequently change and evolve; as browsers change, so do the tools. As such, it is important for a front-end developer to have control over this build chain.
-- Automation makes well considered conventions and standards easier to follow, develop and maintain, makes code change and reuse much easier. 
-- Having a central, canonical version of a pattern ensures that unconsidered variations don't creep in, bloating the codebase, increasing complexity, and potentially introducing errors. 
+    cleans the temporary and output directories
+    
+- gulp export 
+
+    build and exports the xsl and css files to `export` directory. The location can be overriden in `config/options.local.js`.
+
+- gulp build
+     
+    build all resources without serving files.
+    
+    
+## Installation & build
+Ensure all dependencies are met, then:
+
+Run the command `npm start` to automatically install, build, serve, and watch development files.
+
+After initial install, the command `gulp` will perform the build, serve, and watching operations.
+
+
+## Dependencies
+- Node
+- npm
+- Xcode Command Line Tools (for running some modules on Mac, PC should be OK)
+- Java for cross-platform XSLT (using Saxon)
+    
+    OSX on Yosemite+ will need to either install from the apple support page, or install the standard Java runtime, then add 'JAVA_HOME' to paths.
+
+    Follow these [instructions to install](http://osxdaily.com/2014/10/21/get-java-os-x-yosemite/).
+
+    And see this [link for instruction on setting path variables](http://stackoverflow.com/questions/1348842/what-should-i-set-java-home-to-on-osx).
+
+## Technologies used
+- Swig for template compilation
+- BrowserSync for hot-reloading and syncing
+- Webpack for bundling javascript modules
+- Less with gulp-less for less > css transpiling
+- React Templates for compiling `.rt` templates files (html-like syntax) to `.js`
+- gulp-jshint for js linting
+- css-lint for css linting
+- Karma, Mocha, Chai and Sinon for testing
+- x for regression testing // TODO (1)
 
 ## Setup
 
@@ -33,11 +68,29 @@ A directory contains all the patterns(blocks) used within the site, each within 
 In this setup the styles are written in Less, though any css pre-processor could be used.
 
 #### Templates
-The templating language here is Swig; each block is written primarily as an `xsl` file and uses a `.xsl` extension. Areas of variable content are marked by `{{` and `}}` tags as defined by the templating language used.
+The templating language here is [Swig](http://paularmstrong.github.io/swig/); each block is written as an xsl file fragment and uses a `.xsl` extension. Areas of variable content are marked by `{{` and `}}` tags and control tags are marked by `{%` and `%}`. See the above link for more documentation.
+
+#### XSL & XSL
+##### Conventions
+**TBD** 
+
+- Modifier names
+- External class names
+- xml convention
 
 #### Scripts
 Here the scripts are in plain javascript; ideally the component script styles are written in a module format (such as CommonJS) with all dependencies clearly defined and a single export source.
 
+Typically, the core functionality -- whatever will be used directly by Firefly -- is created in a file that matches the directory/module name, eg. `ff_module.js`.
+
+Any script prefixed with an underscore, eg. `_ff_module-*.js` won't be `export`ed.
+
+If the core file requires other services or controls, we can mock them with an underscore prefixed file (`_ff_module-control.js`) to use within the library, and then call each file within a renderer file (`_ff_module-renderer.js`) file that combines required sources, without needlessly being exported to Firefly.
+
+Some modules use React; see below for more information.
+
+#### React
+The view templates use [React Templates](https://www.npmjs.com/package/gulp-react-templates) to transform html-like `.rt` files into compiled `.js` files for use in React view logic files.
 
 ### Crate
 A collection of layout files for presenting these patterns in a variety of ways and with a variety of content. For instance, the developer can view the pattern in the context of all other patterns for comparison purposes; in isolation for development and testing; with a variety of text in different lengths and languages.
@@ -68,7 +121,5 @@ The gulp task will run and traverse the directory, performing the following task
     - perform regression tests,
     - and perform end-to-end tests.
 - Any additional assets such as pre-existing source files are copied to the build folder.
- 
-
 
 

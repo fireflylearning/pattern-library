@@ -3,59 +3,71 @@ page:
     title: Tabs test
     layout: list-blocks
 data:
-  - ff_module-tabs:
+  - lib_test-tabs:
         -
-          items:
+          tabs:
               -
                 active: true
                 label: "Overview"
+                content: "Overview Content"
                 id: "tab1"
               -
                 active: false
                 label: "Details"
+                content: "Details Content"
                 id: "tab2"
               -
                 active: false
                 label: "Tasks"
+                content: "Tasks Content"
                 id: "tab3"
               -
                 active: false
                 label: "Students"
+                content: "Students Content"
                 id: "tab4"
         -  
-          items:
+          tabs:
               -
                 active: false
                 label: "Overview"
+                content: "Overview Content"
                 id: "tab1"
               -
                 active: true
                 label: "Details"
+                content: "Details Content"
                 id: "tab2"
               -
                 active: false
                 label: "Tasks"
+                content: "Tasks Content"
                 id: "tab3"
               -
                 active: false
                 label: "Students"
+                content: "Students Content"
                 id: "tab4"
         -  
-          items:
+          tabs:
               -
                 active: false
                 label: "Overview"
+                content: "Overview Content"
                 id: "tab1"
               -
                 active: false
                 label: "Details"
+                content: "Details Content"
                 id: "tab2"
               -
                 active: false
                 label: "Tasks"
+                content: "Tasks Content"
                 id: "tab3"
               -
                 active: true
                 label: "Students"
+                content: "Students Content"
                 id: "tab4"
 ---
