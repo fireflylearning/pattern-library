@@ -31,7 +31,7 @@
 
 
 <xsl:template match="text" mode="ff_module-dropdown-button">
-    <span class="ff_module-dropdown-button__content ff_module-dropdown-button__content"><xsl:value-of select="." /></span>
+    <span class="ff_module-dropdown-button__content"><xsl:value-of select="." /></span>
     <span class="ff_module-dropdown-button__icon ff_module-dropdown-button__icon--{../@modifier}" >
         <xsl:if test="boolean(../@id)">
             <xsl:attribute name="data-ff-dropdown-target">
@@ -43,15 +43,15 @@
 
 
 <xsl:template match="list" mode="ff_module-dropdown-button">
-    <div class="ff_module-dropdown-button__dropdown-container ff_module-dropdown-button__dropdown-container--{../@modifier}">
+    <div class="ff_module-dropdown-button__list-container ff_module-dropdown-button__list-container--{../@modifier}">
         <xsl:if test="boolean(../@id)">
             <xsl:attribute name="data-ff-dropdown-target">
                 <xsl:value-of select="../@id"/>
             </xsl:attribute>
         </xsl:if>
-        <ul class="ff_module-dropdown-button__dropdown ff_module-dropdown-button__dropdown">
+        <ul class="ff_module-dropdown-button__list">
             <xsl:for-each select="item">
-                <li><a href="{@href}" class="ff_module-dropdown-button__link ff_module-dropdown-button__link"><xsl:value-of select="." /></a></li>
+                <li><a href="{@href}" class="ff_module-dropdown-button__link"><xsl:value-of select="." /></a></li>
             </xsl:for-each>
         </ul>
     </div>

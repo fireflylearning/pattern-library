@@ -58,6 +58,7 @@
     &--is-open {
         #ff_module-button > .primary();
         font-weight: 400;
+        z-index:3;
     }
 }
 
@@ -70,7 +71,7 @@
     &__content {
         color: #fff;
     }
-    &__dropdown-container {
+    &__list-container {
         top: 2rem;
         left: 5px;
 
@@ -85,7 +86,7 @@
             min-width: 8rem;
         }
     }
-    &__dropdown {
+    &__list {
         // right: 5px;
         background-color: #fff;
         color: @ff_colour_default;
