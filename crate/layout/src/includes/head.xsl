@@ -16,7 +16,9 @@
             <script src="/js/blocks.js"></script>
             <script src="/css/grunticon.loader.js"></script>
             <script>
-            grunticon(["/css/icons.svg.css", "/css/icons.png.css", "/css/icons.fallback.css"], grunticon.svgLoadedCallback);
+            if (grunticon) {
+                grunticon(["/css/icons.svg.css", "/css/icons.png.css", "/css/icons.fallback.css"], grunticon.svgLoadedCallback);
+            }
             </script>
             <noscript><link href="/css/icons.fallback.css" rel="stylesheet"/></noscript>
 
