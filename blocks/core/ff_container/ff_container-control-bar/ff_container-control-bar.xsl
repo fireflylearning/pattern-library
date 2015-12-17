@@ -23,7 +23,7 @@
 
 <xsl:template match="set" mode="ff_container-control-bar">
     <xsl:if test="@title">
-       <h3 class="ff_util-prose__section-heading"><xsl:value-of select="@title"/></h3>
+       <h3 class="ff_container-control-bar__title"><xsl:value-of select="@title"/></h3>
     </xsl:if>
     <xsl:for-each select="module">
         <span class="crate_util-block"><xsl:value-of select="."/></span>
