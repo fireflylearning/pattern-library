@@ -108,8 +108,8 @@ function getPaths() {
         },
 
         optimise_svgs: {
-            src:  basePaths.icons +"svgs/*.svg",
-            dest: basePaths.icons + 'optimised_svgs',
+            src:  basePaths.icons + 'svgs/*.svg',
+            dest: basePaths.icons + 'optimised_svgs/',
         },
 
         icons: {

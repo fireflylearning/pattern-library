@@ -20,7 +20,7 @@ var gutil = require('gulp-util'),
     getWebpackConfig = require('./config/webpack.js'),
     siteConfigData = require('./config/crate.js'),
     options = require('./config/options.default.js'),
-    gulpicon = require("./node_modules/gulpicon/tasks/gulpicon"),
+    gulpicon = require('./node_modules/gulpicon/tasks/gulpicon'),
     gulpiconConfig = require('./config/icons.js'),
     glob = require('glob'),
 
@@ -446,7 +446,7 @@ gulp.task('optimise_svgs', function () {
         .pipe(gulp.dest(paths.optimise_svgs.dest));
 });
 
-gulp.task("icons", gulpicon(glob.sync(paths.icons.src), gulpiconConfig));
+gulp.task('icons', gulpicon(glob.sync(paths.icons.src), gulpiconConfig));
 
 gulp.task('csslint', ['styles'], function() {
     gulp.src(paths.lint.styles)
