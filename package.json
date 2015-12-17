@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Source files and build tools for Firefly front-end development patterns.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fireflylearning/pattern-library.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm install && gulp"
@@ -15,6 +19,7 @@
     "consolidate": "^0.13.1",
     "del": "^2.0.2",
     "event-stream": "^3.3.2",
+    "glob": "^6.0.1",
     "gulp": "^3.9.0",
     "gulp-a11y": "^0.1.1",
     "gulp-autoprefixer": "^3.1.0",
@@ -40,9 +45,11 @@
     "gulp-replace": "^0.5.4",
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-svgmin": "^1.2.0",
     "gulp-swig": "^0.7.4",
     "gulp-tap": "^0.1.3",
     "gulp-util": "^3.0.6",
+    "gulpicon": "^0.1.2",
     "lazypipe": "^1.0.1",
     "less-plugin-autoprefix": "^1.5.1",
     "lodash-node": "^3.10.1",

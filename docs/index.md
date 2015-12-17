@@ -95,6 +95,13 @@ The view templates use [React Templates](https://www.npmjs.com/package/gulp-reac
 ### Crate
 A collection of layout files for presenting these patterns in a variety of ways and with a variety of content. For instance, the developer can view the pattern in the context of all other patterns for comparison purposes; in isolation for development and testing; with a variety of text in different lengths and languages.
 
+### Icons
+The `icons` task should be run separately. To optimise the `.svg` icons and build the CSS for each of those icons run:
+
+1. `gulp optimise_svgs`
+2. `gulp icons`
+
+
 ## Process
 The gulp task will run and traverse the directory, performing the following tasks:
 
@@ -121,5 +128,4 @@ The gulp task will run and traverse the directory, performing the following task
     - perform regression tests,
     - and perform end-to-end tests.
 - Any additional assets such as pre-existing source files are copied to the build folder.
-
 
