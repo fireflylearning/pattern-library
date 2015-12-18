@@ -96,10 +96,9 @@ The view templates use [React Templates](https://www.npmjs.com/package/gulp-reac
 A collection of layout files for presenting these patterns in a variety of ways and with a variety of content. For instance, the developer can view the pattern in the context of all other patterns for comparison purposes; in isolation for development and testing; with a variety of text in different lengths and languages.
 
 ### Icons
-The `icons` task should be run separately. To optimise the `.svg` icons and build the CSS for each of those icons run:
+The `icons` task should (currently) be run separately, and will need to be run after each clean. To optimise the `.svg` icons and build the CSS for each of those icons run:
 
-1. `gulp optimise_svgs`
-2. `gulp icons`
+1. `gulp icons`
 
 
 ## Process
