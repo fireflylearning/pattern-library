@@ -120,6 +120,9 @@ function getSwapStatesMethod($root, options) {
 function setClickHandler($root, options) {
     var linkSel = '[' + options.linkSelBase + ']';
     $root.on('click', linkSel, getSwapStatesMethod($root, options));
+    // FIXME: this is an ugly hack to get the first step showing by default
+    // Either this method should be renamed or some other change is required
+    $root.find(linkSel).get(0).click();
 }
 
 module.exports = {
