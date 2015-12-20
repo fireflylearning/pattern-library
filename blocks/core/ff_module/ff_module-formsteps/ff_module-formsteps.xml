@@ -1,5 +1,5 @@
-<items>
-    {% for item in items %}
-   	 <item url="{{item.url | default('#')}}" state="{{item.state | default('default')}}">{{item.name}}</item>
+<formsteps>
+    {% for step in formsteps %}
+   	 <step url="{{step.url | default('#')}}" state="{{step.state | default('default')}}" id="{{step.id}}">{{step.name}}</step>
     {% endfor %}
-</items>
+</formsteps>

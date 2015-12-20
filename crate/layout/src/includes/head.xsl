@@ -13,9 +13,17 @@
 
             <script src="/vendor/js/jquery-1.11.3.js"></script>
             <script src="/vendor/js/jquery-ui-1.10.3.custom.min.js"></script>
+
             <script src="/vendor/js/react-with-addons.js"></script>
             <script src="/vendor/js/lodash.min.js"></script>
 
-
+            <script src="/js/blocks.js"></script>
+            <script src="/css/grunticon.loader.js"></script>
+            <script>
+            if (grunticon) {
+                grunticon(["/css/icons.svg.css", "/css/icons.png.css", "/css/icons.fallback.css"], grunticon.svgLoadedCallback);
+            }
+            </script>
+            <noscript><link href="/css/icons.fallback.css" rel="stylesheet"/></noscript>
 
         </head>

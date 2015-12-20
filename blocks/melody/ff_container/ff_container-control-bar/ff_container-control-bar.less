@@ -1,0 +1,29 @@
+.ff_container-control-bar {
+    display: flex;
+    width: 100%;
+
+    &--split {
+       justify-content: space-between;
+    }
+
+    &--centered {
+        justify-content: center;
+    }
+    &--right {
+        justify-content: flex-end;
+    }
+
+}
+
+.ff_container-control-bar__group {
+    display: flex;
+    align-items: center;
+    
+    >*+* {
+        margin-left: @ff_size_control_horizontal;
+    }
+    
+    >* {
+        float: left; //backup for no flexbox
+    }
+}
