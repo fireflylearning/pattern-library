@@ -15,30 +15,47 @@ module.exports = function() {
                     var selected = [];
                     return {
                         results: results,
+                        hasResults: (results && results.length),
                         selected: selected,
-                        query: ''
+                        hasSelection: false,
+                        isActive: false
                     };
                 },
                 select: function(result) {
                     console.log(result);
-                    var selected = _.unique(this.state.selected.concat(result));
+                    var newSelection = _.unique(this.state.selected.concat(result));
                     this.setState({
-                        selected: selected
+                        selected: newSelection,
+                        hasSelection: (newSelection && newSelection.length > 0)
+                    });
+                },
+                clearSelection: function(result) {
+                    var newSelection = _.without(this.state.selected, result);
+                    this.setState({
+                        selected: newSelection,
+                        hasSelection: (newSelection && newSelection.length > 0)
                     });
                 },
                 handleInputChange: function(e) {
                     console.log(e.target.value);
-                    var query = e.target.value;
-                    this.setState({
-                        query: query
-                    });
+                    var query = e.target.value,
+                        activeState;
+
+                    if (_.trim(query) === '') {
+                        activeState = false;
+                    } else {
+                        activeState = true;
+                    }
+
                     var resultfn = function(results) {
                         this.setState({
-                            results: results
+                            results: results,
+                            isActive: activeState,
+                            hasResults: (results && results.length > 0)
                         });
                     }.bind(this);
 
-                    service.getSearchResults(query, null, null, null, resultfn);
+                    service.getSearchResults(query, resultfn);
                 }
             });
         }

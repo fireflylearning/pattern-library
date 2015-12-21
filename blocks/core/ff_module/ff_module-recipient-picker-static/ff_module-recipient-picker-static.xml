@@ -1,4 +1,4 @@
-<profiles>
+<profiles state="{{state}}">
     <selected>
         {% for page in selected %}
         {% include '../_shared/ff_module-profile-page.xml' with page %}

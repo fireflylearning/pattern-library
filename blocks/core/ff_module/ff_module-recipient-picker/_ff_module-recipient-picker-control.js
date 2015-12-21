@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 var dummySet = [{
     label: 'Sally Student',
@@ -14,12 +15,19 @@ var dummySet = [{
     'pic_href': '/images/default_picture.png'
 }];
 
+
 module.exports = function() {
     var timer;
 
     return {
-        getSearchResults: function(query, allowusers, allowgroups, site_id, returnfn) {
+        getSearchResults: function(query, returnfn) {
             if (timer) clearTimeout(timer);
+
+            if (_.trim(query) === '' || query === 'noresults') {
+                clearTimeout(timer);
+                returnfn([]);
+                return;
+            }
 
             timer = setTimeout(function() {
                 returnfn(dummySet);
