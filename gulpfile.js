@@ -362,6 +362,11 @@ gulp.task('info:content', ['info:blocks'], function() {
 
 gulp.task('build:reactrt', function() {
     gulp.src(paths.blocks.rt.src)
+        .pipe(errorPipe())
+        .pipe(plugins.cached('reactrt'))
+        .pipe(debugPipe({
+            title: 'build:reactrt'
+        })())
         .pipe(plugins.reactTemplates({
             modules: 'commonjs'
         }))

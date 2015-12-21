@@ -1,0 +1,12 @@
+<profiles state="{{state}}">
+    <selected>
+        {% for page in selected %}
+        {% include '../_shared/ff_module-profile-page.xml' with page %}
+        {% endfor %}
+    </selected>
+    <results>
+        {% for page in results %}
+        {% include '../_shared/ff_module-profile-page.xml' with page %}
+        {% endfor %}
+    </results>
+</profiles>

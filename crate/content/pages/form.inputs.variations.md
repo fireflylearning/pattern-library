@@ -11,9 +11,10 @@ data:
         - 
             id: "test01b"
             name: "test01b"
+            value: Invisible input
             checked: false
             disabled: false
-            modifier: constrained
+            modifier: invisible
         - 
             id: "test02a"
             name: "test02a"
@@ -44,6 +45,5 @@ data:
             id: "test03b"
             name: "test03b"
             type: checkbox
-            modifier: inline
         
 ---

@@ -18,11 +18,16 @@ module.exports = function(paths, options) {
         plugins: [
             new webpack.ProvidePlugin({
                 jQuery: 'jquery',
-                $: 'jquery'
+                $: 'jquery',
+                React: 'react',
+                _:'lodash'
             })
         ],
         externals: {
-            jquery: 'jQuery'
+            jquery: 'jQuery',
+            react: 'React',
+            'react/addons': 'React',
+            lodash: '_'
         }
     };
 };
