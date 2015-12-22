@@ -1,5 +1,6 @@
 ---
 data: 
+    state: 'is-active'
     selected:
         -
             title: "Sally Student"

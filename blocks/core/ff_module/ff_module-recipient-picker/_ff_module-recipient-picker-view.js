@@ -21,8 +21,17 @@ module.exports = function() {
                         isActive: false
                     };
                 },
-                select: function(result) {
-                    console.log(result);
+                expandGroup: function(result) {
+                    var groupMembers = service.getMembersOfGroup(result.guid);
+                    var newSelection = _.chain(this.state.selected)
+                        .without(result)
+                        .union(groupMembers).value();
+                    this.setState({
+                        selected: newSelection,
+                        hasSelection: (newSelection && newSelection.length > 0)
+                    });
+                },
+                addRecipient: function(result) {
                     var newSelection = _.unique(this.state.selected.concat(result));
                     this.setState({
                         selected: newSelection,
@@ -30,6 +39,7 @@ module.exports = function() {
                     });
                 },
                 clearSelection: function(result) {
+                    console.log('clearing', result);
                     var newSelection = _.without(this.state.selected, result);
                     this.setState({
                         selected: newSelection,
