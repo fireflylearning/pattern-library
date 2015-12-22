@@ -20,6 +20,9 @@ var gutil = require('gulp-util'),
     getWebpackConfig = require('./config/webpack.js'),
     siteConfigData = require('./config/crate.js'),
     options = require('./config/options.default.js'),
+    gulpicon = require('./node_modules/gulpicon/tasks/gulpicon'),
+    gulpiconConfig = require('./config/icons.js'),
+    glob = require('glob'),
 
     root = path.join(__dirname),
 
@@ -92,7 +95,7 @@ exportJsCompiler = webpack({
     },
     cache: false,
     output: {
-        path: path.join(exportPath,'js'),
+        path: path.join(exportPath, 'js'),
         filename: '[name].js',
         library: 'ffBlocks',
         libraryTarget: 'var'
@@ -437,6 +440,21 @@ gulp.task('audit', ['xslt'], function() {
     // .pipe(gulp.dest('.tests/wcag'));
 });
 
+gulp.task('optimise_svgs', function() {
+    return gulp.src(paths.optimise_svgs.src)
+        .pipe(debugPipe({
+            title: 'optimise_svgs'
+        })())
+        .pipe(errorPipe())
+        .pipe(plugins.cached('optimise_svgs'))
+        .pipe(plugins.svgmin())
+        .pipe(gulp.dest(paths.optimise_svgs.dest));
+});
+
+gulp.task('icons', ['optimise_svgs'], function(callback) {
+    gulpicon(glob.sync(paths.icons.src), gulpiconConfig)(callback);
+});
+
 gulp.task('csslint', ['styles'], function() {
     gulp.src(paths.lint.styles)
         .pipe(plugins.csslint())
@@ -554,7 +572,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('export:blocks', ['info'], function() {
-    return gulp.src(paths.blocks.xsl.src)
+    return gulp.src([paths.blocks.xsl.src, '!'+ paths.blocks.base + '**/lib_test/**/*.xsl'])
         .pipe(plugins.concat('blocks.xsl'))
         .pipe(plugins.replace('ext:node-set', 'msxsl:node-set'))
         .pipe(applyTemplate({
@@ -592,8 +610,9 @@ gulp.task('export:js', ['export:js:one'], function(callback) {
 gulp.task('export:js:one', function() {
     return gulp.src([
             paths.blocks.base + '**/[^_]*.js',
-            '!'+paths.blocks.base + '**/{index,utils}.js'])
-            .pipe(applyTemplate({
+            '!' + paths.blocks.base + '**/{index,utils}.js'
+        ])
+        .pipe(applyTemplate({
             engine: 'swig',
             template: './crate/layout/export/js/main.js',
             context: function(file) {
@@ -635,7 +654,7 @@ gulp.task('blocks:nocache', ['generate:blocks:xsl:nocache', 'generate:blocks:xml
 gulp.task('content', ['generate:content:xml', 'generate:content:xsl']);
 gulp.task('content:nocache', ['generate:content:xml:nocache', 'generate:content:xsl:nocache']);
 
-gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt','webpack']);
+gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt', 'webpack']);
 
 gulp.task('watch:assets', ['assets']);
 gulp.task('watch:info:blocks', ['info:blocks']);

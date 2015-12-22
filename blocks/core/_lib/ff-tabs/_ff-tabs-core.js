@@ -1,10 +1,11 @@
 'use strict';
 
 var $ = require('jquery');
+var core = require('../ff-core/_ff-core.js');
 
 var _options = {
     root: document,
-    classFilter: identity,
+    classFilter: passThrough,
     linkSelBase: 'data-ff-tabs-target',
     contentSelBase: 'data-ff-tabs-content',
     defaultLinkClass: 'ff_module-tabs-navigation__tab',
@@ -26,7 +27,7 @@ function canAdvance($nextLink, $nextContent, $currentLink, $selectedContent) {
     return false;
 }
 
-function identity(name) {
+function passThrough(name) {
     return true;
 }
 
@@ -43,72 +44,27 @@ function getSwapStatesMethod($root, options) {
         defaultLinkClass = options.defaultLinkClass,
         defaultContentClass = options.defaultContentClass,
 
-        filterMethod = options.classFilter,
         testIsComplete = options.isComplete,
         testCanAdvance = options.canAdvance;
 
 
-
-    function isActiveClass(name) {
-        return name.match(activeClassSuffix);
-    }
-
-    function removeActiveClass(el) {
-        if (!el) return;
-        $(el).removeClass(el.getAttribute('class').split(' ').filter(isActiveClass).join(' '));
-    }
-
     function removeActiveClasses($elements) {
         return $elements.each(function(index, el) {
-            removeActiveClass(el);
+            core.removeClassSuffix($(el), activeClassSuffix);
         });
-    }
-
-
-    function hasActiveClass(index, el) {
-        return el.getAttribute('class').split(' ').filter(isActiveClass).length > 0;
     }
 
 
     function getActiveElements($root, selectors) {
-        return $root.find(selectors)
-            .filter(hasActiveClass);
-    }
-
-    function addClassSuffix($el, rootFallback, suffix, appendMethod) {
-        appendMethod = appendMethod || function appendSuffix(name) {
-            return name + suffix;
-        };
-
-        function alreadyHasClass(name) {
-            return !name.match(suffix);
-        }
-
-        var currentClasses = $el.attr('class').split(' '),
-            tabClasses,
-            className = rootFallback + activeClassSuffix; // fallback default name
-
-        switch (currentClasses.length) {
-            case 0:
-                $el.addClass(className);
-                break;
-            default:
-                tabClasses = currentClasses
-                    .filter(alreadyHasClass)
-                    .filter(filterMethod)
-                    .map(appendMethod)
-                    .join(' ');
-                $el.addClass(tabClasses);
-
-        }
+        return core.getElementsBySuffix($root.find(selectors), activeClassSuffix);
     }
 
     function addClasses($links, $content, suffix) {
         $links.each(function(index, el) {
-            addClassSuffix($(el), defaultLinkClass, suffix);
+            core.addClassSuffix($(el), suffix, defaultLinkClass, options.classFilter);
         });
         $content.each(function(index, el) {
-            addClassSuffix($(el), defaultContentClass, suffix);
+            core.addClassSuffix($(el), suffix, defaultContentClass, options.classFilter);
         });
     }
 

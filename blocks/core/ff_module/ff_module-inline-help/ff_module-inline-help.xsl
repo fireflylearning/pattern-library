@@ -17,6 +17,6 @@
             <span class="ff_module-inline-help__content">
                 <xsl:value-of select="$data/help" />
             </span>
-            <span class="ff_module-inline-help__icon ff_icon ff_icon-help"></span>
+            <span class="ff_module-inline-help__icon ff_icon ff_icon-help-blue"></span>
         </button>
 </xsl:template>
