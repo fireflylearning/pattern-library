@@ -15,8 +15,8 @@ var _options = {
     visitedClassSuffix: '--is-visited',
     isComplete: isComplete,
     canAdvance: canAdvance,
-    visitedCallback: function(){},
-    completeCallback: function(){},
+    visitedCallback: function() {},
+    completeCallback: function() {},
     selectedIndex: 0
 };
 
@@ -134,8 +134,10 @@ function getTabHandler($root, options) {
 
     function handleClick(e) {
         e.preventDefault();
+        var $triggers = $root.find(linkSel);
         /*jshint validthis:true */
-        setState(this);
+        var index = $triggers.index(this);
+        setActiveTab(index);
     }
 
 
@@ -152,6 +154,7 @@ function getTabHandler($root, options) {
         selectedIndex = testBounds(index, $triggers.length);
         var trigger = $triggers.get(selectedIndex);
         if (trigger) setState(trigger);
+        /*jshint validthis:true */
         return main;
     }
 
@@ -182,9 +185,7 @@ module.exports = {
     create: function(options) {
         options = $.extend({}, _options, options);
         var $root = $(options.root);
-        // if ($('[' + options.linkSelBase + ']').length === 0) return null;
 
-        console.log(options.linkSelBase + ' activating on', $root);
         return getTabHandler($root, options);
     }
 };

@@ -3,7 +3,7 @@
 var $ = require('jquery');
 var createFormSteps = require('../../_lib/ff-tabs/ff-tabs-module');
 
-var options = {
+var _options = {
     linkSelBase: 'data-ff-formsteps-target',
     contentSelBase: 'data-ff-formsteps-content',
     activeClassSuffix: '--is-current',
@@ -11,9 +11,10 @@ var options = {
     defaultContentClass: 'ff_container-formstep-content',
 };
 
-module.exports = function(stepsValidator) {
-    options.isComplete = stepsValidator && stepsValidator.isComplete;
-    options.canAdvance = stepsValidator && stepsValidator.canAdvance;
+module.exports = function(stepsValidator, options) {
+
+    options = $.extend({}, _options, options, stepsValidator);
+
     var formStepsHandler = createFormSteps(options);
 
     $(function() {
