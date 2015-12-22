@@ -9,7 +9,7 @@
             </xsl:choose> 
         </a>
         <div class="ff_module-date-picker-jumpto__icon">
-            <span class="ff_icon ff_icon-cal ff_module-date-picker-jumpto__trigger">
+            <span class="ff_icon ff_icon-calendar-blue ff_module-date-picker-jumpto__trigger">
                 <input class="ff_module-date-picker-jumpto__cal" data-ff="date-picker" data-ff-url-prefix="{$data//planner/@dateUrlPrefix}"/>
             </span>   
         </div>
