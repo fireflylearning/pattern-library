@@ -1,0 +1,48 @@
+.ff_module-date-picker-calendar {
+    
+    //restyling for jQuery datepicker
+    &, .ui-widget-content {
+        background: white;
+    }
+
+
+    .ui-widget-header {
+        background: none;
+        color: @ff_colour_control_text;
+        border: none;
+
+        a {
+            background-color: #F1F1F1;
+        }
+
+        .ui-state-hover {
+            border: none;
+            background-image: none;
+            background-color: #F1F1F1;
+        }
+
+    }
+
+    .ui-datepicker-calendar tbody {
+        border-top: 1px solid @ff_colour_control_border;
+        &:before {
+            content: "-";
+            display: block;
+            line-height: 6px;
+            color: transparent;
+        }
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        border: none;
+        background: none;
+        text-align: center;
+        color: @ff_color_text_link;
+        &:hover {
+            color: darken(@ff_color_text_link, 10%);
+        }
+    }
+    .ui-state-active, .ui-widget-content .ui-state-active {
+        background-color: #F1F1F1;
+    }
+}
