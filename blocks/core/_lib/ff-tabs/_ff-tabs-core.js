@@ -15,6 +15,8 @@ var _options = {
     visitedClassSuffix: '--is-visited',
     isComplete: isComplete,
     canAdvance: canAdvance,
+    visitedCallback: function(){},
+    completeCallback: function(){},
     selectedIndex: 0
 };
 
@@ -47,6 +49,9 @@ function getTabHandler($root, options) {
 
         testIsComplete = options.isComplete,
         testCanAdvance = options.canAdvance,
+
+        visitedCallback = options.visitedCallback,
+        completeCallback = options.completeCallback,
 
         selectedIndex = options.selectedIndex || 0,
         main = {};
@@ -118,8 +123,11 @@ function getTabHandler($root, options) {
             $lastContent = removeActiveClasses($activeContent);
             addVisitedClasses($lastLinks, $lastContent);
             addActiveClasses($selectedLinks, $selectedContent);
+            visitedCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
+
             if (isComplete) {
                 addCompleteClasses($lastLinks, $lastContent);
+                completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
             }
         }
     }
@@ -155,14 +163,14 @@ function getTabHandler($root, options) {
         return setActiveTab(selectedIndex + 1);
     }
 
-    function last() {
+    function previous() {
         return setActiveTab(selectedIndex - 1);
     }
 
-    main.handleClick = handleClick;
-    main.setActiveTab = setActiveTab;
+    // main.handleClick = handleClick;
+    // main.setActiveTab = setActiveTab;
     main.next = next;
-    main.last = last;
+    main.previous = previous;
     main.init = init;
 
     return main;

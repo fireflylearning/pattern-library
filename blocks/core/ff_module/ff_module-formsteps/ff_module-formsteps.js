@@ -18,6 +18,8 @@ module.exports = function(stepsValidator) {
 
     $(function() {
         formStepsHandler.init();
-        // formStepsHandler.(next | last)
+        // formStepsHandler.(next | previous)
     });
+    return formStepsHandler;
 };
+
