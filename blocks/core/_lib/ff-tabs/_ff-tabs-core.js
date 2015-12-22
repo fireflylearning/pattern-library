@@ -144,18 +144,19 @@ function getTabHandler($root, options) {
         selectedIndex = testBounds(index, $triggers.length);
         var trigger = $triggers.get(selectedIndex);
         if (trigger) setState(trigger);
+        return main;
     }
 
     function setInitialTab() {
-        setActiveTab(selectedIndex);
+        return setActiveTab(selectedIndex);
     }
 
     function next() {
-        setActiveTab(selectedIndex + 1);
+        return setActiveTab(selectedIndex + 1);
     }
 
     function last() {
-        setActiveTab(selectedIndex - 1);
+        return setActiveTab(selectedIndex - 1);
     }
 
     main.handleClick = handleClick;

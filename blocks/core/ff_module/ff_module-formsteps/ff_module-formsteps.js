@@ -12,8 +12,8 @@ var options = {
 };
 
 module.exports = function(stepsValidator) {
-    options.isComplete = stepsValidator.isComplete;
-    options.canAdvance = stepsValidator.canAdvance;
+    options.isComplete = stepsValidator && stepsValidator.isComplete;
+    options.canAdvance = stepsValidator && stepsValidator.canAdvance;
     var formStepsHandler = createFormSteps(options);
 
     $(function() {
