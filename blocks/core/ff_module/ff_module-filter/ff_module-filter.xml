@@ -1,2 +1,0 @@
-<label>{{label | default('Sort by')}}</label>
-<content>{{content | default('Default content')}}</content>
