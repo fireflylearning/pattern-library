@@ -1,28 +1,12 @@
-// .ff_module-planner-detail__time {
-//     background-color: #575757;
-//     color:#fff;
-//     padding:@ff_size_control_vertical @ff_size_control_horizontal;
-//     text-align: center;
-//     border-bottom: 1px solid #d8d8d8;
-// }
-// .ff_module-planner-detail__content {
-//     border-left: 10px solid #eee;
-//     border-right: 1px solid @ff_colour_control_border;
-//     border-bottom: 1px solid @ff_colour_control_border;
-// }
+.ff_module-planner-note {
 
-.ff_module-planner-note__content {
-    padding: @ff_size_control_vertical @ff_size_control_horizontal;
- }
- .ff_module-planner-note__content--empty {
-     padding: 0;
- }
- .ff_module-planner-note__actions {
-    padding: @ff_size_control_vertical @ff_size_control_horizontal; 
- }
+    &__content {
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        outline: none;
+    }
 
-//special case for the editor window in this context:
-.ff_module-planner-note__content.ff-texteditor-editing {
-    padding: @ff_size_control_vertical @ff_size_control_horizontal;
-    outline: none;
-}
+    &__actions {
+        padding: @ff_size_control_vertical @ff_size_control_horizontal; 
+     }
+ 
+ }

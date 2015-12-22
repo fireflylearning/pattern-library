@@ -27,7 +27,7 @@
 <xsl:template name="ff_module-planner-grid-week">
     <xsl:param name="data" />
 
-    <xsl:variable name="todayDate">Wednesday</xsl:variable>
+    <xsl:variable name="todayDate"><!-- this needs to be added in the XML --></xsl:variable>
 
     <div class="ff_module-planner-grid-week">
         <table class="ff_module-planner-grid-week__content">
