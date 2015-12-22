@@ -1,6 +1,7 @@
 'use strict';
 
-var tabsModule = require('../../_lib/ff-tabs/ff-tabs-module');
+var $ = require('jquery');
+var createFormSteps = require('../../_lib/ff-tabs/ff-tabs-module');
 
 var options = {
     linkSelBase: 'data-ff-formsteps-target',
@@ -11,7 +12,12 @@ var options = {
 };
 
 module.exports = function(stepsValidator) {
-    options.isComplete = stepsValidator.isComplete;
-    options.canAdvance = stepsValidator.canAdvance;
-    tabsModule(options);
+    options.isComplete = stepsValidator && stepsValidator.isComplete;
+    options.canAdvance = stepsValidator && stepsValidator.canAdvance;
+    var formStepsHandler = createFormSteps(options);
+
+    $(function() {
+        formStepsHandler.init();
+        // formStepsHandler.(next | last)
+    });
 };
