@@ -8,8 +8,11 @@ module.exports = function() {
                 dateFormat: "yy-mm-dd",
                 onSelect: function(date) {
                     location.href = $(element).attr("data-ff-url-prefix") + date;
+                },
+                beforeShow: function(input, inst) {
+                    $(inst.dpDiv).addClass('ff_module-date-picker-calendar');
                 }
-            });
+            })
         });
     });
 
