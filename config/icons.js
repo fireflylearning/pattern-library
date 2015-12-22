@@ -30,7 +30,8 @@ module.exports = {
   // define vars that can be used in filenames if desirable,
   // like foo.colors-primary-secondary.svg
   colors: {
-    primary: "black",
+    blue: "#297FCF",
+    grey: "#A9AEB6"
   },
 
   dynamicColorOnly: true,
