@@ -10,7 +10,7 @@
         </p>
         <div class="ff_module-message__controls">
             <xsl:if test="$data/notice/@can_archive = 'yes'">
-                <a href="#" class="ff_module-message__archive" title="Archive this message"><span class="ff_icon ff_icon-archive"></span></a>
+                <a href="#" class="ff_module-message__archive" title="Archive this message"><span class="ff_icon ff_icon-cancel-grey"></span></a>
             </xsl:if>
         </div>
     </div>
