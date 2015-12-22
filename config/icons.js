@@ -31,6 +31,7 @@ module.exports = {
   // like foo.colors-primary-secondary.svg
   colors: {
     blue: "#297FCF",
+    grey: "#A9AEB6"
   },
 
   dynamicColorOnly: true,
