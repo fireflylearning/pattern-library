@@ -6,7 +6,7 @@ module.exports = function(paths, options) {
         entry: {
             blocks: paths.blocks.scripts.entry
         },
-        cache:false,
+        cache: false,
         output: {
             path: paths.blocks.scripts.output,
             filename: '[name].js'
@@ -15,19 +15,23 @@ module.exports = function(paths, options) {
             modulesDirectories: ['node_modules', 'src', 'blocks'],
         },
         devtool: options.isProduction ? false : 'eval-source-map',
+        // alias: {
+        //     lodash: 'underscore',
+        // },
         plugins: [
             new webpack.ProvidePlugin({
                 jQuery: 'jquery',
                 $: 'jquery',
                 React: 'react',
-                _:'lodash'
+                _: 'underscore'
             })
         ],
         externals: {
             jquery: 'jQuery',
             react: 'React',
             'react/addons': 'React',
-            lodash: '_'
+            lodash: '_',
+            underscore: '_'
         }
     };
 };

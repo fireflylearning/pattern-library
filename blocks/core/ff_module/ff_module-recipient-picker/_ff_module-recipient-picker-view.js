@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var _ = require('lodash');
+var _ = require('underscore');
 
 module.exports = function() {
     return {
@@ -41,11 +41,7 @@ module.exports = function() {
                     var query = e.target.value,
                         activeState;
 
-                    if (_.trim(query) === '') {
-                        activeState = false;
-                    } else {
-                        activeState = true;
-                    }
+                    activeState = /\S+/.test(query);
 
                     var resultfn = function(results) {
                         this.setState({
