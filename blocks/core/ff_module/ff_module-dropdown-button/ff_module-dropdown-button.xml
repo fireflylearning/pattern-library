@@ -1,7 +1,8 @@
-<dropdown-button    {%- if id %}        id="{{id}}"                 {%- endif -%}
-                    {%- if modifier %}  modifier="{{modifier}}"     {%- endif -%}
-                    {%- if icon %}      icon="{{icon}}"             {%- endif -%}
-                    {%- if classes %}   classes="{{classes}}"       {%- endif -%}>
+<dropdown-button    {%- if id %} id="{{id}}"                    {%- endif -%}
+                    {%- if modifier %} modifier="{{modifier}}"  {%- endif -%}
+                    {%- if state %} state="{{state}}"           {%- endif -%}
+                    {%- if icon %} icon="{{icon}}"              {%- endif -%}
+                    {%- if classes %} classes="{{classes}}"     {%- endif -%}>
     <text>{{text | default('Dropdown Button')}}</text>
     <list>
         {% for item in list -%}

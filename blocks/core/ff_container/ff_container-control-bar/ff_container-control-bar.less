@@ -18,13 +18,8 @@
 .ff_container-control-bar__group {
     display: flex;
     align-items: center;
-    >* {
-        float: left; //backup for no flexbox
-    }
-    > *:nth-last-child(n+2) {
-        margin-right: @ff_size_control_horizontal;
-    }
-    > *:only-child {
-        margin-right: @ff_size_control_horizontal;
-    }
+}
+
+.ff_container-control-bar__title {
+    margin: 0;
 }
