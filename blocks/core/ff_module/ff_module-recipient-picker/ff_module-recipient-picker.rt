@@ -26,7 +26,6 @@
             onChange="{this.handleInputChange}"
             />
     </div>
-
     <div class="ff_module-recipient-picker__selectable{this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : ''}">
         <ul class="ff_module-recipient-button-list" rt-if="this.state.hasResults === true">
             <li class="ff_module-recipient-button-list__item"

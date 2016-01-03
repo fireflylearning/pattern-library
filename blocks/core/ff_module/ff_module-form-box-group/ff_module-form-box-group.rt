@@ -4,15 +4,14 @@
     data-edit="{this.props.guid}"
     onClick="{this.props.onExpand}"
     type="button">
-    <span class="ff_icon ff_icon-edit-input-box"></span>
+    <span class="ff_icon ff_icon-edit-blue"></span>
     </button>
 
     <span class="ff_module-form-box-group__label">{this.props.label}</span>
 
     <button class="ff_module-form-box-group__delete"
-    data-delete="{this.props.guid}"
     onClick="{this.props.onDelete}"
     type="button">
-    <span class="ff_icon ff_icon-delete"></span>
+    <span class="ff_icon ff_icon-cancel-open-blue"></span>
     </button>
 </div>

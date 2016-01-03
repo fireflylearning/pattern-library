@@ -21,11 +21,11 @@
            </xsl:choose>
         </xsl:attribute>
         <button class="ff_module-form-box-group__edit" data-edit="{$profile/@guid}" type="button" >
-            <span class="ff_icon ff_icon-edit-input-box"></span>
+            <span class="ff_icon ff_icon-edit-blue"></span>
         </button>
         <span class="ff_module-form-box-group__label"><xsl:value-of select="$profile/@title" /></span>
-        <button class="ff_module-form-box-group__delete ff_module-form-box-group__delete" data-delete="{$profile/@guid}" type="button">
-            <span class="ff_icon ff_icon-delete"></span>
+        <button class="ff_module-form-box-group__delete ff_module-form-box-group__delete" type="button">
+            <span class="ff_icon ff_icon-cancel-open-blue"></span>
         </button>
     </div>
 </xsl:template>

@@ -7,8 +7,7 @@ module.exports = function () {
         'id': this.props.guid
     }, React.createElement('span', { 'className': 'ff_module-form-box-member__label' }, this.props.label), React.createElement('button', {
         'className': 'ff_module-form-box-member__delete',
-        'data-delete': this.props.guid,
         'onClick': this.props.onDelete,
         'type': 'button'
-    }, React.createElement('span', { 'className': 'ff_icon ff_icon-delete' })));
+    }, React.createElement('span', { 'className': 'ff_icon ff_icon-cancel-open-blue' })));
 };
