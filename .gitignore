@@ -12,4 +12,4 @@ npm-debug.log
 out
 export
 !crate/layout/export
-icons/optimised_svgs
+blocks/**/_icons/optimised_svgs

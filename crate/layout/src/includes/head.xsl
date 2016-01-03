@@ -16,10 +16,13 @@
             <script src="/js/blocks.js"></script>
             <script src="/css/grunticon.loader.js"></script>
             <script>
+                // FIXME: For now, load all icons, but should update to only load theme icons
             if (grunticon) {
-                grunticon(["/css/icons.svg.css", "/css/icons.png.css", "/css/icons.fallback.css"], grunticon.svgLoadedCallback);
+                grunticon(["/css/icons.core.svg.css", "/css/icons.core.png.css", "/css/icons.core.fallback.css"], grunticon.svgLoadedCallback);
+                grunticon(["/css/icons.melody.svg.css", "/css/icons.melody.png.css", "/css/icons.melody.fallback.css"], grunticon.svgLoadedCallback);
             }
             </script>
-            <noscript><link href="/css/icons.fallback.css" rel="stylesheet"/></noscript>
+            <noscript><link href="/css/icons.core.fallback.css" rel="stylesheet"/></noscript>
+            <noscript><link href="/css/icons.melody.fallback.css" rel="stylesheet"/></noscript>
 
         </head>
