@@ -453,7 +453,6 @@ gulp.task('audit', ['xslt'], function() {
  * Icons
  */
 
-
 function updateIconConfig(iconConfig, folder) {
     var config = Object.create(iconConfig);
     config.datasvgcss = 'icons.' + folder + '.svg.css';
@@ -478,6 +477,16 @@ gulp.task('icons:optimise', plugins.folders(paths.optimise_svgs.base, function(f
         .pipe(errorPipe())
         .pipe(plugins.svgmin())
         .pipe(gulp.dest(epath));
+}));
+
+gulp.task('icons:export', ['icons:optimise'], folderTaskSeries(paths.icons.base, function(folder) {
+    var lPaths = [paths.icons.src].map(function(cPath) {
+        return path.join(paths.icons.base, folder, cPath);
+    }).join();
+
+    var tempConfig = updateIconConfig(gulpiconConfig, folder);
+    tempConfig.dest = path.join(paths.export, paths.icons.dest);
+    return gulpicon(glob.sync(lPaths), tempConfig);
 }));
 
 gulp.task('icons', ['icons:optimise'], folderTaskSeries(paths.icons.base, function(folder) {
@@ -632,7 +641,7 @@ gulp.task('export:less', plugins.folders(paths.blocks.base, function(folder) {
 
     return gulp.src(lPaths)
         .pipe(plugins.concat(folder + '.less'))
-        .pipe(gulp.dest(path.join(exportPath, folder, 'less')));
+        .pipe(gulp.dest(path.join(exportPath, 'less', folder)));
 }));
 
 gulp.task('export:js', ['export:js:one'], function(callback) {
@@ -672,7 +681,7 @@ gulp.task('export:js:one', function() {
 
 });
 
-gulp.task('export', ['export:blocks', 'export:less', 'export:js']);
+gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'icons:export']);
 
 gulp.task('output:site:pages', ['info:content', 'info:blocks'], function(cb) {
     console.log(gutil.colors.dim('%j'), site.pages);

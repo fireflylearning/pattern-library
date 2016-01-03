@@ -116,7 +116,7 @@ function getPaths() {
         icons: {
             base: basePaths.icons,
             src: '_icons/optimised_svgs/*.svg',
-            dest: 'css',
+            dest: 'css/icons',
             templates: 'crate/layout/icons/templates/default-css.hbs',
             previewTemplate: 'crate/layout/icons/templates/preview.hbs',
         }
