@@ -3,6 +3,8 @@
 var gulp = require('gulp');
 
 var gutil = require('gulp-util'),
+    async = require('async'),
+    fs = require('fs'),
     path = require('path'),
     del = require('del'),
     _ = require('lodash-node'),
@@ -25,7 +27,7 @@ var gutil = require('gulp-util'),
     glob = require('glob'),
 
     root = path.join(__dirname),
-
+    folderTaskSeries = require('./lib/per-folder-utils'),
     changedHandlers = require('./lib/gulp-changed-handlers'),
     templatePathUtils = require('./lib/template-path-utils')(root, paths.crate.layout.base),
     crateCssOut = 'crate.min.css';
@@ -362,6 +364,11 @@ gulp.task('info:content', ['info:blocks'], function() {
 
 gulp.task('build:reactrt', function() {
     gulp.src(paths.blocks.rt.src)
+        .pipe(errorPipe())
+        .pipe(plugins.cached('reactrt'))
+        .pipe(debugPipe({
+            title: 'build:reactrt'
+        })())
         .pipe(plugins.reactTemplates({
             modules: 'commonjs'
         }))
@@ -440,20 +447,58 @@ gulp.task('audit', ['xslt'], function() {
     // .pipe(gulp.dest('.tests/wcag'));
 });
 
-gulp.task('optimise_svgs', function() {
-    return gulp.src(paths.optimise_svgs.src)
+
+
+/***
+ * Icons
+ */
+
+function updateIconConfig(iconConfig, folder) {
+    var config = Object.create(iconConfig);
+    config.datasvgcss = 'icons.' + folder + '.svg.css';
+    config.datapngcss = 'icons.' + folder + '.png.css';
+    config.urlpngcss = 'icons.' + folder + '.fallback.css';
+    config.previewhtml = 'preview.' + folder + '.html';
+    config.dest = path.join(paths.dest, paths.icons.dest);
+    return config;
+}
+
+gulp.task('icons:optimise', plugins.folders(paths.optimise_svgs.base, function(folder) {
+    var lPaths = [paths.optimise_svgs.src].map(function(cPath) {
+        return path.join(paths.optimise_svgs.base, folder, cPath);
+    });
+    var epath = path.join(paths.optimise_svgs.base, folder, paths.optimise_svgs.dest);
+
+    return gulp.src(lPaths)
+        .pipe(plugins.changed(epath))
         .pipe(debugPipe({
-            title: 'optimise_svgs'
+            title: 'icons:optimise:' + folder
         })())
         .pipe(errorPipe())
-        .pipe(plugins.cached('optimise_svgs'))
         .pipe(plugins.svgmin())
-        .pipe(gulp.dest(paths.optimise_svgs.dest));
-});
+        .pipe(gulp.dest(epath));
+}));
 
-gulp.task('icons', ['optimise_svgs'], function(callback) {
-    gulpicon(glob.sync(paths.icons.src), gulpiconConfig)(callback);
-});
+gulp.task('icons:export', ['icons:optimise'], folderTaskSeries(paths.icons.base, function(folder) {
+    var lPaths = [paths.icons.src].map(function(cPath) {
+        return path.join(paths.icons.base, folder, cPath);
+    }).join();
+
+    var tempConfig = updateIconConfig(gulpiconConfig, folder);
+    tempConfig.dest = path.join(paths.export, paths.icons.dest);
+    return gulpicon(glob.sync(lPaths), tempConfig);
+}));
+
+gulp.task('icons', ['icons:optimise'], folderTaskSeries(paths.icons.base, function(folder) {
+    var lPaths = [paths.icons.src].map(function(cPath) {
+        return path.join(paths.icons.base, folder, cPath);
+    }).join();
+
+    var tempConfig = updateIconConfig(gulpiconConfig, folder);
+    return gulpicon(glob.sync(lPaths), tempConfig);
+}));
+
+
 
 gulp.task('csslint', ['styles'], function() {
     gulp.src(paths.lint.styles)
@@ -529,6 +574,11 @@ gulp.task('watch', function() {
         .on('change', changeEvent('Styles:block'));
 
     gulp.watch([
+            path.join(paths.optimise_svgs.base, '**', paths.optimise_svgs.src),
+        ], ['watch:icons'])
+        .on('change', changeEvent('Icons'));
+
+    gulp.watch([
             paths.crate.content.src
         ], ['watch:content'])
         .on('change', changeEvent('Content'));
@@ -572,7 +622,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('export:blocks', ['info'], function() {
-    return gulp.src([paths.blocks.xsl.src, '!'+ paths.blocks.base + '**/lib_test/**/*.xsl'])
+    return gulp.src([paths.blocks.xsl.src, '!' + paths.blocks.base + '**/lib_test/**/*.xsl'])
         .pipe(plugins.concat('blocks.xsl'))
         .pipe(plugins.replace('ext:node-set', 'msxsl:node-set'))
         .pipe(applyTemplate({
@@ -591,7 +641,7 @@ gulp.task('export:less', plugins.folders(paths.blocks.base, function(folder) {
 
     return gulp.src(lPaths)
         .pipe(plugins.concat(folder + '.less'))
-        .pipe(gulp.dest(path.join(exportPath, folder, 'less')));
+        .pipe(gulp.dest(path.join(exportPath, 'less', folder)));
 }));
 
 gulp.task('export:js', ['export:js:one'], function(callback) {
@@ -631,7 +681,7 @@ gulp.task('export:js:one', function() {
 
 });
 
-gulp.task('export', ['export:blocks', 'export:less', 'export:js']);
+gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'icons:export']);
 
 gulp.task('output:site:pages', ['info:content', 'info:blocks'], function(cb) {
     console.log(gutil.colors.dim('%j'), site.pages);
@@ -646,7 +696,7 @@ gulp.task('output:site:blocks', ['info:blocks'], function(cb) {
 
 gulp.task('info', ['info:blocks', 'info:content']);
 
-gulp.task('styles', ['build:css:blocks', 'build:css:crate']);
+gulp.task('styles', ['build:css:blocks', 'build:css:crate', 'icons']);
 gulp.task('scripts', ['webpack']);
 
 gulp.task('blocks', ['generate:blocks:xsl', 'generate:blocks:xml']);
@@ -657,6 +707,8 @@ gulp.task('content:nocache', ['generate:content:xml:nocache', 'generate:content:
 gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt', 'webpack']);
 
 gulp.task('watch:assets', ['assets']);
+gulp.task('watch:icons', ['icons']);
+
 gulp.task('watch:info:blocks', ['info:blocks']);
 gulp.task('watch:info:content', ['info:content']);
 

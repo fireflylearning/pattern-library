@@ -31,7 +31,7 @@ function getPaths() {
 
         temp: '.tmp/',
         assets: 'assets/',
-        icons: 'icons/'
+        icons: 'blocks/'
     };
 
     var paths = {
@@ -91,7 +91,7 @@ function getPaths() {
                 output: './' + basePaths.dest + 'js/'
             }
         },
-        clean: [basePaths.temp, basePaths.dest, basePaths.icons + 'optimised_svgs/' ],
+        clean: [basePaths.temp, basePaths.dest, basePaths.icons + '*/_icons/optimised_svgs/' ],
         export: basePaths.export,
         lint: {
             styles: basePaths.dest + '**/*.css',
@@ -108,14 +108,17 @@ function getPaths() {
         },
 
         optimise_svgs: {
-            src:  basePaths.icons + 'svgs/*.svg',
-            dest: basePaths.icons + 'optimised_svgs/',
+            base: basePaths.icons,
+            src:  '_icons/original_svgs/*.svg',
+            dest: '_icons/optimised_svgs',
         },
 
         icons: {
-            src: basePaths.icons + 'optimised_svgs/*.svg',
-            dest: basePaths.dest + 'css/',
-            templates: basePaths.icons + 'templates/default-css.hbs'
+            base: basePaths.icons,
+            src: '_icons/optimised_svgs/*.svg',
+            dest: 'css/icons',
+            templates: 'crate/layout/icons/templates/default-css.hbs',
+            previewTemplate: 'crate/layout/icons/templates/preview.hbs',
         }
 
     };
