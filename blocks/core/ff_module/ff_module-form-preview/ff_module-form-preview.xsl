@@ -20,13 +20,12 @@
                 <xsl:with-param name="data" select="ext:node-set($edit)" />
             </xsl:call-template>
             </dt>
-            <dd>
-                <xsl:attribute name="class">
-                    <xsl:text>ff_module-form-preview__list__data</xsl:text>
-                    <xsl:if test="@data-ff-attr">
-                        <xsl:text> data-ff-</xsl:text><xsl:value-of select="@data-ff-attr"/>
-                    </xsl:if>
-                </xsl:attribute>
+            <dd class="ff_module-form-preview__list__data">
+                <xsl:if test="@data-ff-attr">
+                    <xsl:attribute name="data-ff-preview-for">
+                        <xsl:value-of select="@data-ff-attr"/>
+                    </xsl:attribute>
+                </xsl:if>
             <xsl:choose>
                 <xsl:when test="./list">
                     <dl class="ff_module-form-preview__sublist">
@@ -50,13 +49,12 @@
     <dt class="ff_module-form-preview__sublist__title">
     <xsl:value-of select="./@title"/>
     </dt>
-    <dd>
-        <xsl:attribute name="class">
-            <xsl:text>ff_module-form-preview__sublist__data</xsl:text>
-            <xsl:if test="@data-ff-attr">
-                <xsl:text> data-ff-</xsl:text><xsl:value-of select="@data-ff-attr"/>
-            </xsl:if>
-        </xsl:attribute>
+    <dd class="ff_module-form-preview__sublist__data">
+        <xsl:if test="@data-ff-attr">
+            <xsl:attribute name="data-ff-preview-for">
+                <xsl:value-of select="@data-ff-attr"/>
+            </xsl:attribute>
+        </xsl:if>
         <xsl:value-of select="." />
     </dd>
 </xsl:template>
