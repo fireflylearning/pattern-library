@@ -18,9 +18,9 @@ requires:
     - ff_module-file
 ---
 
-When you want a list of individual files, each having their own link.
+# When you want a list of individual files, each having their own link.
 
-Call with the following xml (example for resources & pages):
+## Call with the following xml (example for resources & pages):
 
 ```
 <attachments classes="ff_other_component_class">
