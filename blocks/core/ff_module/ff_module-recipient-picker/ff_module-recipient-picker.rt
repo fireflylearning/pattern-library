@@ -1,7 +1,10 @@
 <rt-require dependency="../ff_module-form-box-group/_ff_module-form-box-group-view" as="RecipientGroup"/>
 <rt-require dependency="../ff_module-form-box-member/_ff_module-form-box-member-view" as="RecipientMember"/>
+<rt-require dependency="../ff_module-profile-picture-and-name-button/_ff_module-profile-picture-and-name-button-view" as="ResultButton"/>
 
-<div class="ff_module-recipient-picker">
+
+<div class="ff_module-recipient-picker"
+    onClick="{this.dropdownClickHandler}">
 
     <div class="ff_module-recipient-picker__main">
         <ul class="ff_module-recipient-picker-selected-list">
@@ -10,13 +13,13 @@
                 <RecipientGroup guid="{recipient.guid}"
                 rt-if="recipient.type === 'groupprofile'"
                 label="{recipient.label}"
-                onExpand="()=>this.expandGroup(recipient)"
-                onDelete="()=>this.clearSelection(recipient)" />
+                onExpand="()=>this.expandGroup(recipient.guid)"
+                onDelete="()=>this.clearSelection(recipient.guid)" />
 
                 <RecipientMember guid="{recipient.guid}"
                 rt-if="recipient.type === 'profile'"
                 label="{recipient.label}"
-                onDelete="()=>this.clearSelection(recipient)" />
+                onDelete="()=>this.clearSelection(recipient.guid)" />
 
             </li>
         </ul>
@@ -24,23 +27,21 @@
             class="ff_module-recipient-picker__input ff_module-form-input ff_module-form-input--invisible"
             name="recipient-picker-query"
             onChange="{this.handleInputChange}"
+            onClick="{this.triggerClickHandler}"
             />
     </div>
+
     <div class="ff_module-recipient-picker__selectable{this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : ''}">
         <ul class="ff_module-recipient-button-list" rt-if="this.state.hasResults === true">
             <li class="ff_module-recipient-button-list__item"
                 rt-repeat="result in this.state.results"
                 key="res-{result.guid}">
-                <button
-                    type="button"
-                    class="ff_module-profile-picture-and-name-button"
-                    data-guid="{result.guid}"
-                    onClick="()=>this.addRecipient(result)">
-                      <figure class="ff_module-profile-picture-and-name-button__picture">
-                        <img class="ff_module-profile-picture-and-name-button__image" src="{result.pic_href}">
-                      </figure>
-                      <span class="ff_module-profile-picture-and-name-button__title" href="#">{result.label}</span>
-                </button>
+
+                <ResultButton guid="{result.guid}"
+                label="{result.label}"
+                pic_href="{result.pic_href}"
+                isSelected="{this.checkIsSelected(result.guid, this.state.selected)}"
+                onSelect="()=>this.addRecipient(result.guid)" />
             </li>
         </ul>
         <p rt-if="this.state.hasResults === false">No results available</p>

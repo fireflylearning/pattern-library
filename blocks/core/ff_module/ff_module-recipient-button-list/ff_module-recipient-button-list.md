@@ -6,15 +6,17 @@ data:
             href: "#"
             pic_href: "/images/default_picture.png"
         - 
-            title: "Group 7D/En"
+            title: "Terry Teacher"
+            state: is-selected
             href: "#"
-            pic_href: "/images/group-icon.png"
+            pic_href: "/images/default_picture.png"
         - 
             title: "Group 8D/En"
             href: "#"
             pic_href: "/images/group-icon.png"
         - 
             title: "Group 9D/En"
+            state: is-selected
             href: "#"
             pic_href: "/images/group-icon.png"
 
