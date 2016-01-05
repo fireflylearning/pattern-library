@@ -12,7 +12,7 @@
             <span class="ff_module-task__meta">Set by <xsl:value-of select="$data/notice/@from"/></span>
         </dt>
         <dd class="ff_module-task__item ff_module-task__item--to"><xsl:value-of select="$data/notice/@to"/></dd>
-        <dd class="ff_module-task__item ff_module-task__item--date">Due <time><xsl:value-of select="$data/notice/@duedate"/></time></dd>
+        <dd class="ff_module-task__item ff_module-task__item--date"><xsl:if test="not($data/notice/@duedate = '')">Due </xsl:if><time><xsl:value-of select="$data/notice/@duedate"/></time></dd>
         <dd class="ff_module-task__item ff_module-task__item--progress">
             <xsl:call-template name="ff_module-progress">
                 <xsl:with-param name="data" select="$progress-bar"/>
