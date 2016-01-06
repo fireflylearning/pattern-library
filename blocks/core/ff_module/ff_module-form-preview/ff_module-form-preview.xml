@@ -1,12 +1,15 @@
 <preview>
     {% for item in items %}
-    <item title="{{item.title}}" url="{{item.url}}">
+    <item title="{{item.title}}" url="{{item.url}}"
+        {% if item.previewfor %} preview-for="{{item.previewfor}}" {% endif %}
+        >
 
         {% if item.list %}
         <list>
         {% for data in item.list %}
         <item
             {% if data.title %} title="{{data.title}}" {% endif %}
+            {% if data.previewfor %} preview-for="{{data.previewfor}}" {% endif %}
             >
             {{data.value}}
         </item>

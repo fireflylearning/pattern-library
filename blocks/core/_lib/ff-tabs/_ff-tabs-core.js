@@ -14,7 +14,10 @@ var _options = {
     completedClassSuffix: '--is-complete',
     visitedClassSuffix: '--is-visited',
     isComplete: isComplete,
-    canAdvance: canAdvance
+    canAdvance: canAdvance,
+    visitedCallback: function() {},
+    completeCallback: function() {},
+    selectedIndex: 0
 };
 
 function isComplete($nextLink, $nextContent, $currentLink, $selectedContent) {
@@ -31,7 +34,7 @@ function passThrough(name) {
     return true;
 }
 
-function getSwapStatesMethod($root, options) {
+function getTabHandler($root, options) {
     var contentRep = '[' + options.contentSelBase + '="{val}"]',
         linkRep = '[' + options.linkSelBase + '="{val}"]',
         linkSel = '[' + options.linkSelBase + ']',
@@ -45,7 +48,13 @@ function getSwapStatesMethod($root, options) {
         defaultContentClass = options.defaultContentClass,
 
         testIsComplete = options.isComplete,
-        testCanAdvance = options.canAdvance;
+        testCanAdvance = options.canAdvance,
+
+        visitedCallback = options.visitedCallback,
+        completeCallback = options.completeCallback,
+
+        selectedIndex = options.selectedIndex || 0,
+        main = {};
 
 
     function removeActiveClasses($elements) {
@@ -80,20 +89,25 @@ function getSwapStatesMethod($root, options) {
         addClasses($links, $content, visitedClassSuffix);
     }
 
-    return function swapStates(e) {
-        e.preventDefault();
+    function init() {
+        $root.on('click', linkSel, handleClick);
+        setInitialTab();
+        /*jshint validthis:true */
+        return main;
+    }
 
-        var target = $(this).attr(options.linkSelBase),
+    function setState(target) {
+        var targetId = $(target).attr(options.linkSelBase),
             $selectedContent, $selectedLinks,
             $activeLinks, $activeContent,
             $lastLinks, $lastContent,
             selLinkTargets, selContentTargets,
             isComplete, canAdvance;
 
-        if (!target) return;
+        if (!targetId) return;
 
-        selLinkTargets = linkRep.replace(/{val}/, target);
-        selContentTargets = contentRep.replace(/{val}/, target);
+        selLinkTargets = linkRep.replace(/{val}/, targetId);
+        selContentTargets = contentRep.replace(/{val}/, targetId);
 
         $selectedLinks = $root.find(selLinkTargets);
         $selectedContent = $root.find(selContentTargets);
@@ -109,20 +123,69 @@ function getSwapStatesMethod($root, options) {
             $lastContent = removeActiveClasses($activeContent);
             addVisitedClasses($lastLinks, $lastContent);
             addActiveClasses($selectedLinks, $selectedContent);
+            visitedCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
+
             if (isComplete) {
                 addCompleteClasses($lastLinks, $lastContent);
+                completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
             }
         }
+    }
 
-    };
+    function handleClick(e) {
+        e.preventDefault();
+        var $triggers = $root.find(linkSel);
+        /*jshint validthis:true */
+        var index = $triggers.index(this);
+        setActiveTab(index);
+    }
+
+
+    function testBounds(value, length) {
+        if (value < 0) {
+            return length - 1;
+        } else if (value >= length) {
+            return 0;
+        } else return value;
+    }
+
+    function setActiveTab(index) {
+        var $triggers = $root.find(linkSel);
+        selectedIndex = testBounds(index, $triggers.length);
+        var trigger = $triggers.get(selectedIndex);
+        if (trigger) setState(trigger);
+        /*jshint validthis:true */
+        return main;
+    }
+
+    function setInitialTab() {
+        return setActiveTab(selectedIndex);
+    }
+
+    function next() {
+        return setActiveTab(selectedIndex + 1);
+    }
+
+    function previous() {
+        return setActiveTab(selectedIndex - 1);
+    }
+
+    // main.handleClick = handleClick;
+    // main.setActiveTab = setActiveTab;
+    main.next = next;
+    main.previous = previous;
+    main.init = init;
+
+    return main;
 }
 
-function setClickHandler($root, options) {
-    var linkSel = '[' + options.linkSelBase + ']';
-    $root.on('click', linkSel, getSwapStatesMethod($root, options));
-}
 
 module.exports = {
-    setClickHandler: setClickHandler,
-    defaultOptions: _options
+    defaultOptions: _options,
+    create: function(options) {
+        options = $.extend({}, _options, options);
+        var $root = $(options.root);
+
+        return getTabHandler($root, options);
+    }
 };

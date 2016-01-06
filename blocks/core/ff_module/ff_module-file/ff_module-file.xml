@@ -1,0 +1,14 @@
+<attachment 
+    {% if id %} id="{{id}}" {% endif %}
+    {% if type %} type="{{type}}" {% endif %}
+    {% if resource_id %} resource_id="{{resource_id}}" {% endif %}
+    {% if page_id %} classes="{{page_id}}" {% endif %}
+    {% if title %} title="{{title}}" {% endif %}
+    {% if mimetype %} mimetype="{{mimetype}}" {% endif %}
+    {% if href %} href="{{href}}" {% endif %}
+    {% if classes %} classes="{{classes}}" {% endif %}
+    >
+    {% for d in data %}
+        <data attr="{{d.attr}}">{{d.value}}</data>
+    {% endfor %}
+</attachment>
