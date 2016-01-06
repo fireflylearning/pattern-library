@@ -1,0 +1,23 @@
+<attachments 
+    {% if classes %} classes="{{classes}}" {% endif %}
+>
+    {% for a in attachments %}
+        <attachment 
+            {% if a.id %} id="{{a.id}}" {% endif %}
+            {% if a.type %} type="{{a.type}}" {% endif %}
+            {% if a.resource_id %} resource_id="{{a.resource_id}}" {% endif %}
+            {% if a.page_id %} classes="{{a.page_id}}" {% endif %}
+            {% if a.title %} title="{{a.title}}" {% endif %}
+            {% if a.mimetype %} mimetype="{{a.mimetype}}" {% endif %}
+            {% if a.href %} href="{{a.href}}" {% endif %}
+            {% if a.classes %} classes="{{a.classes}}" {% endif %}
+            >
+            {% for d in a.data %}
+                <data attr="{{d.attr}}">{{d.value}}</data>
+            {% endfor %}
+        </attachment>
+    {% endfor %}
+    {% for d in data %}
+        <data attr="{{d.attr}}">{{d.value}}</data>
+    {% endfor %}
+</attachments>
