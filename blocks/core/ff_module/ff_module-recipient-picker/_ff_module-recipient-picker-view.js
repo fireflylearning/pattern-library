@@ -13,15 +13,7 @@ module.exports = function() {
                 render: template,
                 componentDidMount: function() {
                     document.addEventListener('click', this.documentClickHandler);
-
-                    var resultfn = function(results) {
-                        this.setState({
-                            results: results,
-                            hasResults: (results && results.length > 0)
-                        });
-                    }.bind(this);
-
-                    service.getInitialResults(resultfn);
+                    service.getInitialResults(this.setResults);
                 },
                 componentWillUnmount: function() {
                     document.removeEventListener('click', this.documentClickHandler);
@@ -39,7 +31,7 @@ module.exports = function() {
                 dropdownClickHandler: function(e) {
                     e.nativeEvent.stopImmediatePropagation();
                 },
-                getSelectedRecipients: function(){
+                getSelectedRecipients: function() {
                     return this.state.selected;
                 },
                 getInitialState: function() {
@@ -63,10 +55,7 @@ module.exports = function() {
                                 .value();
 
                             console.log(newSelection);
-                            this.setState({
-                                selected: newSelection,
-                                hasSelection: (newSelection && newSelection.length > 0)
-                            });
+                            this.setSelected(newSelection);
                         }
 
                     }.bind(this);
@@ -79,23 +68,32 @@ module.exports = function() {
                     if (!result) return;
                     var newSelection = _.unique(this.state.selected.concat(result));
                     // console.log(newSelection);
-                    this.setState({
-                        selected: newSelection,
-                        hasSelection: (newSelection && newSelection.length > 0)
-                    });
+                    this.setSelected(newSelection);
                 },
                 clearSelection: function(recipientId) {
                     var newSelection = _.reject(this.state.selected, function(recipient) {
                         return recipient.guid === recipientId;
                     });
-                    this.setState({
-                        selected: newSelection,
-                        hasSelection: (newSelection && newSelection.length > 0)
-                    });
+                    this.setSelected(newSelection);
                 },
                 checkIsSelected: function(resultId, selected) {
                     return _.find(selected, function(recipient) {
                         return recipient.guid === resultId;
+                    });
+                },
+                setResults: function(results) {
+                    console.log('Updating results:', results);
+                    results = [].concat(results);
+                    this.setState({
+                        results: results,
+                        hasResults: (results && results.length > 0)
+                    });
+                },
+                setSelected: function(selected){
+                    selected = [].concat(selected);
+                    this.setState({
+                        selected: selected,
+                        hasSelection: (selected && selected.length > 0)
                     });
                 },
                 handleInputChange: function(e) {
@@ -103,16 +101,12 @@ module.exports = function() {
                         hasQuery;
 
                     hasQuery = /\S+/.test(query);
-                    var resultfn = function(results) {
-                        this.setState({
-                            hasQuery: hasQuery,
-                            isActive: hasQuery,
-                            results: results,
-                            hasResults: (results && results.length > 0)
-                        });
-                    }.bind(this);
+                    this.setState({
+                        hasQuery: hasQuery,
+                        isActive: hasQuery
+                    });
 
-                    service.getSearchResults(query, resultfn);
+                    service.getSearchResults(query, this.setResults);
                 }
             });
         }

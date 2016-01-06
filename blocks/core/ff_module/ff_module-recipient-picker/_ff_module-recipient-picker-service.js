@@ -23,6 +23,17 @@ var dummyMembers = {
         'guid': '127',
         type: 'profile',
         'pic_href': '/images/default_picture.png'
+    }],
+    '101': [{
+        label: 'Fred Flintstone',
+        'guid': '128',
+        type: 'profile',
+        'pic_href': '/images/default_picture.png'
+    }, {
+        label: 'Sam Fulton',
+        'guid': '129',
+        type: 'profile',
+        'pic_href': '/images/default_picture.png'
     }]
 };
 
