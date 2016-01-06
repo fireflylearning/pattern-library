@@ -5,7 +5,7 @@ data:
             title: Recipients
             url: "#recipients"
             value: Class 1, Class 2
-            preview-for: input[name='recipients']
+            previewfor: "input[name='recipients']"
         - 
             title: Details
             url: "#details"
@@ -13,7 +13,7 @@ data:
                 - 
                     title: "Title"
                     value: "Volcano formation"
-                    preview-for: input[name='title']
+                    previewfor: "input[name='title']"
                 - 
                     title: "Due Date"
                     value: "16/05/2016"

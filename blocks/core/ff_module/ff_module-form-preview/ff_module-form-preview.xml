@@ -1,7 +1,7 @@
 <preview>
     {% for item in items %}
     <item title="{{item.title}}" url="{{item.url}}"
-        {% if item.preview-for %} preview-for="{{item.preview-for}}" {% endif %}
+        {% if item.previewfor %} preview-for="{{item.previewfor}}" {% endif %}
         >
 
         {% if item.list %}
@@ -9,7 +9,7 @@
         {% for data in item.list %}
         <item
             {% if data.title %} title="{{data.title}}" {% endif %}
-            {% if data.preview-for %} preview-for="{{data.preview-for}}" {% endif %}
+            {% if data.previewfor %} preview-for="{{data.previewfor}}" {% endif %}
             >
             {{data.value}}
         </item>
