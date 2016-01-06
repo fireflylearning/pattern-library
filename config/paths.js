@@ -129,7 +129,7 @@ function getPaths() {
                 dest: basePaths.dest + 'css/icons'
             },
             export:{
-                src: ['.icons/build/**/*.{png, css, js}'],
+                src: ['.icons/build/**/*'],
             }
         }
 
