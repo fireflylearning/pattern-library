@@ -1,11 +1,16 @@
 'use strict';
 
-var tabsModule = require('../../_lib/ff-tabs/ff-tabs-module');
+var $ = require('jquery');
+var createTabsModule = require('../../_lib/ff-tabs/ff-tabs-module');
 
-var options = {};
+module.exports = function(tabsValidator, options) {
+    options = $.extend({}, options, tabsValidator);
 
-module.exports = function(tabsValidator) {
-    options.isComplete = tabsValidator.isComplete;
-    options.canAdvance = tabsValidator.canAdvance;
-    tabsModule(options);
+    var tabsHandler = createTabsModule(options);
+
+    $(function() {
+        tabsHandler.init();
+        // tabsHandler.(next | previous)
+    });
+    return tabsHandler;
 };

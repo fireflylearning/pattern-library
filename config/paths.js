@@ -30,8 +30,7 @@ function getPaths() {
         ],
 
         temp: '.tmp/',
-        assets: 'assets/',
-        icons: 'icons/'
+        assets: 'assets/'
     };
 
     var paths = {
@@ -91,7 +90,7 @@ function getPaths() {
                 output: './' + basePaths.dest + 'js/'
             }
         },
-        clean: [basePaths.temp, basePaths.dest, basePaths.icons + 'optimised_svgs/' ],
+        clean: [basePaths.temp, basePaths.dest, basePaths.icons + '*/_icons/optimised_svgs/'],
         export: basePaths.export,
         lint: {
             styles: basePaths.dest + '**/*.css',
@@ -107,15 +106,31 @@ function getPaths() {
             dest: basePaths.dest
         },
 
-        optimise_svgs: {
-            src:  basePaths.icons + 'svgs/*.svg',
-            dest: basePaths.icons + 'optimised_svgs/',
-        },
 
         icons: {
-            src: basePaths.icons + 'optimised_svgs/*.svg',
-            dest: basePaths.dest + 'css/',
-            templates: basePaths.icons + 'templates/default-css.hbs'
+            //relative to each theme folder
+            optimise: {
+                src_base: basePaths.blocks,
+                dest_base: '.icons/optimised_svgs/',
+                src: '_icons/original_svgs/*.svg',
+                dest: '',
+            },
+            //relative to each theme folder
+            grumpicon: {
+                src_base: '.icons/optimised_svgs/',
+                dest_base: '.icons/',
+                src: '*.svg',
+                dest: 'build',
+                templates: 'crate/layout/icons/templates/default-css.hbs',
+                previewTemplate: 'crate/layout/icons/templates/preview.hbs',
+            },
+            copy: {
+                src: ['.icons/build/**/*'],
+                dest: basePaths.dest + 'css/icons'
+            },
+            export:{
+                src: ['.icons/build/**/*.{png, css, js}'],
+            }
         }
 
     };

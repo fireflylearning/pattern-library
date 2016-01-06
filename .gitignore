@@ -3,7 +3,6 @@ node_modules
 !lib/node_modules/**/node_modules
 .tern-port
 .jshintrc
-tmp
 .tmp
 build
 wwwroot
@@ -12,4 +11,4 @@ npm-debug.log
 out
 export
 !crate/layout/export
-icons/optimised_svgs
+blocks/**/_icons/optimised_svgs
