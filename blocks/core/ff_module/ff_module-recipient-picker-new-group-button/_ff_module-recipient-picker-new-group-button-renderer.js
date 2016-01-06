@@ -11,10 +11,8 @@ module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         var picker,
         pickerEl = document.querySelector('[data-ff-recipient-picker-ng]'); //Use jquery or sim in Firefly for backwards compat
-        // var el = document.getElementById('recipient-picker-container');
         if (pickerEl) {
             picker = React.render(React.createElement(recipientPickerComponent), pickerEl);
-            // picker.getSelectedRecipients();
         }
         var btnEl = document.querySelector('[data-ff-recipient-picker-new-group-button]');
         if (btnEl && picker){

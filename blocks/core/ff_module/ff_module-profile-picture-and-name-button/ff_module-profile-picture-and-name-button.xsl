@@ -9,6 +9,11 @@
                 <xsl:otherwise>ff_module-profile-picture-and-name-button</xsl:otherwise>
             </xsl:choose>
         </xsl:attribute>
+        <xsl:if test="$page/@guid">
+            <xsl:attribute name="data-ff-recipient-guid">
+                <xsl:value-of select="$page/@guid"/>
+            </xsl:attribute>
+        </xsl:if>
         <xsl:if test="boolean($isSelected)">
             <xsl:attribute name="disabled">true</xsl:attribute>
         </xsl:if>

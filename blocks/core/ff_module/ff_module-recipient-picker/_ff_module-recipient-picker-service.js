@@ -85,12 +85,12 @@ module.exports = function() {
     var timer;
 
     return {
-        getSearchResults: function(query, returnfn) {
+        getSearchResults: function(query, callback) {
             if (timer) clearTimeout(timer);
             var data = [];
             if (!(/\S+/.test(query))) {
                 clearTimeout(timer);
-                returnfn(data);
+                callback(data);
                 return;
             }
             if (query.length === 2) {
@@ -101,15 +101,15 @@ module.exports = function() {
             }
 
             timer = setTimeout(function() {
-                returnfn(data);
+                callback(data);
             }, 500);
         },
-        getInitialResults: function(returnfn) {
-            returnfn([]);
+        getInitialResults: function(callback) {
+            callback([]);
         },
-        getMembersOfGroup: function(guid, returnfn) {
+        getMembersOfGroup: function(guid, callback) {
             timer = setTimeout(function() {
-                returnfn(dummyMembers[guid]);
+                callback(dummyMembers[guid]);
             }, 500);
         }
     };

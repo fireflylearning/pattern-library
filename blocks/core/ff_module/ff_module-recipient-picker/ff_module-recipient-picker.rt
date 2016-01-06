@@ -1,7 +1,6 @@
 <rt-require dependency="../ff_module-form-box-group/_ff_module-form-box-group-view" as="RecipientGroup"/>
 <rt-require dependency="../ff_module-form-box-member/_ff_module-form-box-member-view" as="RecipientMember"/>
-<rt-require dependency="../ff_module-profile-picture-and-name-button/_ff_module-profile-picture-and-name-button-view" as="ResultButton"/>
-
+<rt-require dependency="../ff_module-recipient-button-list/_ff_module-recipient-button-list-view.js" as="RecipientButtonList"/>
 
 <div class="ff_module-recipient-picker"
     onClick="{this.dropdownClickHandler}">
@@ -14,12 +13,12 @@
                 rt-if="recipient.type === 'groupprofile'"
                 label="{recipient.label}"
                 onExpand="()=>this.expandGroup(recipient.guid)"
-                onDelete="()=>this.clearSelection(recipient.guid)" />
+                onDelete="()=>this.removeRecipientFromSelection(recipient.guid)" />
 
                 <RecipientMember guid="{recipient.guid}"
                 rt-if="recipient.type === 'profile'"
                 label="{recipient.label}"
-                onDelete="()=>this.clearSelection(recipient.guid)" />
+                onDelete="()=>this.removeRecipientFromSelection(recipient.guid)" />
 
             </li>
         </ul>
@@ -28,22 +27,22 @@
             name="recipient-picker-query"
             onChange="{this.handleInputChange}"
             onClick="{this.triggerClickHandler}"
+            ref="{function(ref){
+                //console.log(ref); TODO: Investigate why sometimes null
+                if(!ref) return;
+                this.textInput = ref.getDOMNode(); }.bind(this)}"
             />
     </div>
 
     <div class="ff_module-recipient-picker__selectable{this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : ''}">
-        <ul class="ff_module-recipient-button-list" rt-if="this.state.hasResults === true">
-            <li class="ff_module-recipient-button-list__item"
-                rt-repeat="result in this.state.results"
-                key="res-{result.guid}">
 
-                <ResultButton guid="{result.guid}"
-                label="{result.label}"
-                pic_href="{result.pic_href}"
-                isSelected="{this.checkIsSelected(result.guid, this.state.selected)}"
-                onSelect="()=>this.addRecipient(result.guid)" />
-            </li>
-        </ul>
+        <RecipientButtonList rt-if="this.state.hasResults === true"
+            results="{this.state.results}"
+            isSelected="{this.checkIsSelected}"
+            onSelect="{this.addRecipientByResultId}"
+            />
+
         <p rt-if="this.state.hasResults === false">No results available</p>
     </div>
 </div>
+

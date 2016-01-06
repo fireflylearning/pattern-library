@@ -13,9 +13,9 @@ module.exports = function() {
     var timer;
 
     return {
-        sendNewGroup: function(groupData, returnfn) {
+        createNewGroup: function(groupData, callback) {
             timer = setTimeout(function() {
-                returnfn(newGroup);
+                callback(newGroup);
             }, 500);
         }
     };

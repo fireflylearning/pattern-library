@@ -1,0 +1,7 @@
+<rt-require dependency="../../ff_module/ff_module-recipient-button-list/_ff_module-recipient-button-list-view.js" as="RecipientButtonList"/>
+
+<RecipientButtonList
+    results="{this.state.results}"
+    isSelected="{this.picker.checkIsSelected}"
+    onSelect="{this.addRecipientByResultId}"
+    />

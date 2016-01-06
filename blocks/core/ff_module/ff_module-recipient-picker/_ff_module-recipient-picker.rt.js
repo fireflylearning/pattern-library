@@ -3,15 +3,15 @@ var React = require('react/addons');
 var _ = require('lodash');
 var RecipientGroup = require('../ff_module-form-box-group/_ff_module-form-box-group-view');
 var RecipientMember = require('../ff_module-form-box-member/_ff_module-form-box-member-view');
-var ResultButton = require('../ff_module-profile-picture-and-name-button/_ff_module-profile-picture-and-name-button-view');
+var RecipientButtonList = require('../ff_module-recipient-button-list/_ff_module-recipient-button-list-view.js');
 function onExpand1(recipient, recipientIndex) {
     this.expandGroup(recipient.guid);
 }
 function onDelete2(recipient, recipientIndex) {
-    this.clearSelection(recipient.guid);
+    this.removeRecipientFromSelection(recipient.guid);
 }
 function onDelete3(recipient, recipientIndex) {
-    this.clearSelection(recipient.guid);
+    this.removeRecipientFromSelection(recipient.guid);
 }
 function repeatRecipient4(recipient, recipientIndex) {
     return React.createElement('li', {
@@ -28,21 +28,6 @@ function repeatRecipient4(recipient, recipientIndex) {
         'onDelete': onDelete3.bind(this, recipient, recipientIndex)
     }) : null);
 }
-function onSelect5(result, resultIndex) {
-    this.addRecipient(result.guid);
-}
-function repeatResult6(result, resultIndex) {
-    return React.createElement('li', {
-        'className': 'ff_module-recipient-button-list__item',
-        'key': 'res-' + result.guid
-    }, React.createElement(ResultButton, {
-        'guid': result.guid,
-        'label': result.label,
-        'pic_href': result.pic_href,
-        'isSelected': this.checkIsSelected(result.guid, this.state.selected),
-        'onSelect': onSelect5.bind(this, result, resultIndex)
-    }));
-}
 module.exports = function () {
     return React.createElement('div', {
         'className': 'ff_module-recipient-picker',
@@ -55,10 +40,16 @@ module.exports = function () {
         'className': 'ff_module-recipient-picker__input ff_module-form-input ff_module-form-input--invisible',
         'name': 'recipient-picker-query',
         'onChange': this.handleInputChange,
-        'onClick': this.triggerClickHandler
-    })), React.createElement('div', { 'className': 'ff_module-recipient-picker__selectable' + (this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : '') }, this.state.hasResults === true ? React.createElement.apply(this, [
-        'ul',
-        { 'className': 'ff_module-recipient-button-list' },
-        _.map(this.state.results, repeatResult6.bind(this))
-    ]) : null, this.state.hasResults === false ? React.createElement('p', {}, 'No results available') : null));
+        'onClick': this.triggerClickHandler,
+        'ref': function (ref) {
+            //console.log(ref); TODO: Investigate why sometimes null
+            if (!ref)
+                return;
+            this.textInput = ref.getDOMNode();
+        }.bind(this)
+    })), React.createElement('div', { 'className': 'ff_module-recipient-picker__selectable' + (this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : '') }, this.state.hasResults === true ? React.createElement(RecipientButtonList, {
+        'results': this.state.results,
+        'isSelected': this.checkIsSelected,
+        'onSelect': this.addRecipientByResultId
+    }) : null, this.state.hasResults === false ? React.createElement('p', {}, 'No results available') : null));
 };

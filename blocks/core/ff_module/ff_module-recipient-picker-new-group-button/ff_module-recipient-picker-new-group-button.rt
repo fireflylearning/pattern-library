@@ -1,3 +1,8 @@
 <button
+    type="button"
+    title="Create new group from list"
+    class="ff_module-button ff_module-button--large ff_module-button-new-recipient-group"
     onClick = '{this.onClick}'
->Create group from selection</button>
+>
+<span class="ff_module-button__content">Create new group from list</span>
+</button>

@@ -1,8 +1,8 @@
 'use strict';
 var React = require('react');
 
-var recipientPickerControl = require('./_ff_module-recipient-picker-service.js')();
-var recipientPicker = require('./ff_module-recipient-picker')(recipientPickerControl);
+var recipientPickerService = require('./_ff_module-recipient-picker-service.js')();
+var recipientPicker = require('./ff_module-recipient-picker')(recipientPickerService);
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {

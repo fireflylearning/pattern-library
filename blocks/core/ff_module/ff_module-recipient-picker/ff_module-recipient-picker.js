@@ -1,13 +1,11 @@
 'use strict';
 
-var getView = require('./_ff_module-recipient-picker-view.js');
+var createRecipientPicker = require('./_ff_module-recipient-picker-view.js');
 var rt = require('./_ff_module-recipient-picker.rt.js');
 
-module.exports = function(recipientPickerControl, recipientPickerTemplate) {
-    var recipientPickerView = getView();
-    recipientPickerTemplate = recipientPickerTemplate || rt;
+module.exports = function(service, template) {
 
-    var recipientPicker = recipientPickerView.createPeoplePicker(recipientPickerControl, recipientPickerTemplate);
+    var recipientPicker = createRecipientPicker(service, (template || rt));
 
     return recipientPicker;
 };
