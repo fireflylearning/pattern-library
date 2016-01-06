@@ -21,9 +21,9 @@
             </xsl:call-template>
             </dt>
             <dd class="ff_module-form-preview__list__data">
-                <xsl:if test="@data-ff-preview-for">
+                <xsl:if test="@preview-for">
                     <xsl:attribute name="data-ff-preview-for">
-                        <xsl:value-of select="@data-ff-preview-for"/>
+                        <xsl:value-of select="@preview-for"/>
                     </xsl:attribute>
                 </xsl:if>
             <xsl:choose>
@@ -50,9 +50,9 @@
     <xsl:value-of select="./@title"/>
     </dt>
     <dd class="ff_module-form-preview__sublist__data">
-        <xsl:if test="@data-ff-preview-for">
+        <xsl:if test="@preview-for">
             <xsl:attribute name="data-ff-preview-for">
-                <xsl:value-of select="@data-ff-preview-for"/>
+                <xsl:value-of select="@preview-for"/>
             </xsl:attribute>
         </xsl:if>
         <xsl:value-of select="." />
