@@ -4,7 +4,7 @@
             {% for block in blocks %}
 
                 <div class="crate_blocks__item" id="{{block.info.basename}}">
-                    <h3 class="crate_blocks__item__heading">{{block.info.basename}}</h3>
+                    <h3 class="crate_blocks__item__heading"><a href="{{block.info.url}}">{{block.info.basename}}</a></h3>
 
                     <div class="crate_blocks__content">
                         <xsl:call-template name="call-{{block.info.basename}}"/>

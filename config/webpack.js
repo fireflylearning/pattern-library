@@ -9,7 +9,9 @@ module.exports = function(paths, options) {
         cache:false,
         output: {
             path: paths.blocks.scripts.output,
-            filename: '[name].js'
+            filename: '[name].js',
+            library: 'ffBlocks',
+            libraryTarget: 'var'
         },
         resolve: {
             modulesDirectories: ['node_modules', 'src', 'blocks'],

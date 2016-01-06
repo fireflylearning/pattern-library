@@ -10,14 +10,20 @@
     .block() {
         width: 100%;
     }
+    .tertiary() {
+        border-color: @ff_colour_default;
+        color: @ff_colour_primary;
+        background-color: white;
+    }
 }
 
 .ff_module-button {
     background-color: @ff_colour_default;
-    color: @ff_colour_control_text;
+    color: #fff;
     border-radius: @ff_size_control_rounding;
     border: 1px solid @ff_colour_default;
     padding: (@ff_size_spacing_min * .85)  @ff_size_spacing_med;
+    cursor: pointer;
 
     &--primary {
         #ff_module-button > .primary();
@@ -29,6 +35,15 @@
 
     &--primary-large {
         #ff_module-button > .primary();
+        #ff_module-button > .large();
+    }
+    
+    //tertiary
+    &--tertiary {
+        #ff_module-button > .tertiary();
+    }
+    &--tertiary-large {
+        #ff_module-button > .tertiary();
         #ff_module-button > .large();
     }
 
@@ -48,4 +63,21 @@
         #ff_module-button > .primary();
         #ff_module-button > .large();
     }
+    &--tertiary-block {
+        #ff_module-button > .block(); 
+        #ff_module-button > .tertiary();
+    }
+    &--tertiary-large-block {
+        #ff_module-button > .block();
+        #ff_module-button > .tertiary();
+        #ff_module-button > .large(); 
+    }
+    
+    //disabled buttons
+    &--is-disabled {
+        background-color: @ff_colour_quiet;
+        border-color: @ff_colour_default;
+        color: @ff_colour_default;
+    }
+        
 }

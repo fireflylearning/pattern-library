@@ -6,11 +6,19 @@ but don't belong specifically to the blocks */
 @core-font-stack: "Lucida Grande", "Helvetica", "Arial";
 @core-font-base: 1rem;
 
-.crate_blocks, .crate_block {
+.crate_blocks__content, .crate_block {
     font-family: @core-font-stack;
     font-size: @core-font-base;
-    & button {
+    & button, & input, & select, & option, & textarea {
         font-family: @core-font-stack;
         font-size: @core-font-base;
     }
+}
+
+.crate_block > [class*="ff_container-"] {
+    outline: 1px dotted #CCC;
+}
+
+.crate_block > .ff_container-tabs-content {
+    outline: none;
 }

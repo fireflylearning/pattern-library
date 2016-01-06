@@ -1,0 +1,11 @@
+<overlay-bar modifier="{{ modifier }}">
+    <{{content.name}} modifier="{{content.modifier}}">
+    {% for set in content.sets %}
+        <set{% if set.title %} title="{{ set.title }}"{% endif %}>
+            {% for module in set.modules %}
+                <module>{{ module }}</module>
+            {% endfor %}
+        </set>
+    {% endfor %}
+    </{{content.name}}>
+</overlay-bar>

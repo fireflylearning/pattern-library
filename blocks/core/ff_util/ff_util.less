@@ -1,0 +1,28 @@
+#ff_util() {
+    .ir { // we may want to approach this differently
+        text-indent: -500px;
+        overflow: hidden;
+        font: 10px monospace;
+        letter-spacing: -10px;
+        position: absolute;
+    }
+    .row {
+        margin-bottom: @ff_size_control_vertical;
+    }
+}
+
+.ff_util-row {
+    #ff_util > .row();
+}
+
+.ff_mix-clearfix() {
+    zoom: 1;
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}

@@ -1,0 +1,7 @@
+<tabs>
+    {% for tab in tabs %}
+        <tab active="{{tab.active | default('false')}}" id="{{tab.id}}">
+            <label>{{tab.label | default('Tab Content')}}</label>
+        </tab>
+    {% endfor %}
+</tabs>

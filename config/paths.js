@@ -1,27 +1,37 @@
-function getPaths(mode) {
-    'use strict';
+'use strict';
 
-    var base = {
+var path = require('path');
+
+function getPaths() {
+
+
+    var basePaths = {
         blocks: 'blocks/',
-        crate: 'crate/',
         dest: 'wwwroot/',
         export: 'export/',
 
+        crate: 'crate/',
         content: 'crate/content/',
-        layout: 'crate/layout/'
-    };
-
-    var basePaths = {
-        blocks: base.blocks,
-        dest: base.dest,
-        export: base.export,
-
-        crate: base.crate,
-        content: base.content,
-        layout: base.layout,
+        layout: 'crate/layout/',
+        cssBuildPriority: [
+            '**/outputs.less',
+            '**/settings.less',
+            '**/mixins.less',
+            '**/_shared/**/*.less',
+            '**/*.less'
+        ],
+        cssExportPriority: [
+            '**/settings.less',
+            '**/mixins.less',
+            '**/_shared/**/*.less',
+            '!**/_shared/**/outputs.less',
+            '**/*.less',
+            '!**/outputs.less',
+        ],
 
         temp: '.tmp/',
         assets: 'assets/',
+        icons: 'blocks/'
     };
 
     var paths = {
@@ -52,25 +62,28 @@ function getPaths(mode) {
                 dest: basePaths.temp
             },
             styles: {
-                src: [basePaths.blocks + '_shared/**/*.less',
-                    basePaths.blocks + '*/_shared/outputs.less',
-                    basePaths.blocks + '*/_shared/settings.less',
-                    basePaths.blocks + '*/_shared/*.less',
-                    basePaths.blocks + '**/*.less'
-                ],
+                buildPriority: basePaths.cssBuildPriority,
+                exportPriority: basePaths.cssExportPriority,
+                src: basePaths.cssBuildPriority.map(function(cPath) {
+                    return path.join(basePaths.blocks, cPath);
+                }),
                 dest: basePaths.dest + 'css/'
             },
-            md:{
+            md: {
                 src: basePaths.blocks + '**/*.md',
                 dest: basePaths.temp + basePaths.blocks
             },
             xml: {
-                src: [basePaths.blocks + '**/*.xml', '!'+basePaths.blocks + '**/_shared/**/*.xml'],
+                src: [basePaths.blocks + '**/*.xml', '!' + basePaths.blocks + '**/_shared/**/*.xml'],
                 dest: basePaths.temp + basePaths.blocks
             },
             xsl: {
                 src: basePaths.blocks + '**/*.xsl',
                 dest: basePaths.temp + basePaths.blocks
+            },
+            rt: {
+                src: basePaths.blocks + '**/*.rt',
+                dest: basePaths.blocks
             },
             scripts: {
                 src: basePaths.blocks + '**/*.js',
@@ -78,7 +91,7 @@ function getPaths(mode) {
                 output: './' + basePaths.dest + 'js/'
             }
         },
-        clean: [basePaths.temp, basePaths.dest],
+        clean: [basePaths.temp, basePaths.dest, basePaths.icons + '*/_icons/optimised_svgs/' ],
         export: basePaths.export,
         lint: {
             styles: basePaths.dest + '**/*.css',
@@ -92,7 +105,22 @@ function getPaths(mode) {
         assets: {
             src: basePaths.assets + '**/*.*',
             dest: basePaths.dest
+        },
+
+        optimise_svgs: {
+            base: basePaths.icons,
+            src:  '_icons/original_svgs/*.svg',
+            dest: '_icons/optimised_svgs',
+        },
+
+        icons: {
+            base: basePaths.icons,
+            src: '_icons/optimised_svgs/*.svg',
+            dest: 'css/icons',
+            templates: 'crate/layout/icons/templates/default-css.hbs',
+            previewTemplate: 'crate/layout/icons/templates/preview.hbs',
         }
+
     };
 
     return paths;
