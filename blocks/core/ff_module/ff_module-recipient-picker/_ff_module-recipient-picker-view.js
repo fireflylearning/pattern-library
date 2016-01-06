@@ -39,6 +39,9 @@ module.exports = function() {
                 dropdownClickHandler: function(e) {
                     e.nativeEvent.stopImmediatePropagation();
                 },
+                getSelectedRecipients: function(){
+                    return this.state.selected;
+                },
                 getInitialState: function() {
                     return {
                         results: [],
@@ -75,7 +78,7 @@ module.exports = function() {
                     });
                     if (!result) return;
                     var newSelection = _.unique(this.state.selected.concat(result));
-                    console.log(newSelection);
+                    // console.log(newSelection);
                     this.setState({
                         selected: newSelection,
                         hasSelection: (newSelection && newSelection.length > 0)

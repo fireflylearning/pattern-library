@@ -10,9 +10,8 @@ module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         var el = document.getElementById('recipient-picker-container');
         if (el) {
-            React.render(React.createElement(recipientPicker), el);
+            var picker = React.render(React.createElement(recipientPicker), el);
+            // picker.getSelectedRecipients();
         }
     });
-
-
 };
