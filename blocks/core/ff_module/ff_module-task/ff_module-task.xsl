@@ -8,7 +8,7 @@
     
     <dl class="ff_module-task">
         <dt class="ff_module-task__item ff_module-task__item--title">
-            <a href="#" class="ff_module-task__link"><xsl:value-of select="$data/notice/htmlMessage"/></a>
+            <a href="{$data/notice/@href}" class="ff_module-task__link"><xsl:value-of select="$data/notice/htmlMessage"/></a>
             <span class="ff_module-task__meta">Set by <xsl:value-of select="$data/notice/@from"/></span>
         </dt>
         <dd class="ff_module-task__item ff_module-task__item--to"><xsl:value-of select="$data/notice/@to"/></dd>
