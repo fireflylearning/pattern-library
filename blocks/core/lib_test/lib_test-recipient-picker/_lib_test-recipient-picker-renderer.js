@@ -17,11 +17,11 @@ module.exports = function() {
 
     document.addEventListener('DOMContentLoaded', function(event) {
         console.log('tab-recipients');
-        var pickerEl = document.querySelector('[data-ff-recipient-picker-tabs]'); //Use jquery or sim in Firefly for backwards compat
+        var pickerEl = document.querySelector('[data-ff-recipient-picker-test]'); //Use jquery or sim in Firefly for backwards compat
         if (pickerEl) {
             picker = React.render(React.createElement(recipientPickerComponent), pickerEl);
         }
-        var btnEl = document.querySelector('[data-ff-recipient-picker-new-group-button-tabs]');
+        var btnEl = document.querySelector('[data-ff-recipient-picker-new-group-button-test]');
         if (btnEl && picker){
             var newGroupButtonComponent = createNewGroupButton(picker, groupButtonService);
             var newGroupButton = React.render(React.createElement(newGroupButtonComponent), btnEl);

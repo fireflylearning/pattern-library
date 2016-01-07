@@ -1,5 +1,11 @@
 <xsl:template name="ff_module-recipient-picker-component">
     <xsl:param name="data" />
 
-    <div data-ff-recipient-picker=""></div>
+    <div>
+        <xsl:for-each select="$data/picker" >
+            <xsl:attribute name="{./@dataattr}">
+                <xsl:text></xsl:text>
+            </xsl:attribute>
+        </xsl:for-each>
+    </div>
 </xsl:template>
