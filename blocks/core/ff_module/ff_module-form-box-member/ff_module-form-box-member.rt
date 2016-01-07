@@ -1,0 +1,10 @@
+<div class="ff_module-form-box-member" id="{this.props.guid}">
+
+    <span class="ff_module-form-box-member__label">{this.props.label}</span>
+
+    <button class="ff_module-form-box-member__delete"
+    onClick="{this.props.onDelete}"
+    type="button">
+    <span class="ff_icon ff_icon-cancel-open-blue"></span>
+    </button>
+</div>

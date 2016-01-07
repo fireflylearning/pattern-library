@@ -68,6 +68,15 @@
         text-decoration: none;
         color: @ff_colour_text_quiet;
     }
+    .link-disabled(@color:@ff_color_control_link) {
+        color: @color;
+        &:visited {
+            color: @color;
+        }
+        &:active, &:hover {
+            color: @color;
+        }
+    }
     .spacing {
         margin-bottom: @ff_size_prose_spacing;
     }

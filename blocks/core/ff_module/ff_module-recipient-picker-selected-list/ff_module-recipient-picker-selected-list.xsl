@@ -1,7 +1,9 @@
 <xsl:template name="ff_module-recipient-picker-selected-list">
 	<xsl:param name="data" />
 	<ul class="ff_module-recipient-picker-selected-list">
+        <xsl:value-of select="$data" disable-output-escaping="yes" />
         <xsl:for-each select="$data//page">
+
         <xsl:variable name="page">
             <xsl:copy-of select="." />
         </xsl:variable>

@@ -78,6 +78,7 @@ data:
             pic_href: "/images/group-icon.png"
         -
             title: "Sally Student"
+            state: 'is-selected'
             href: "#"
             pic_href: "/images/default_picture.png"
         - 

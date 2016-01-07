@@ -33,5 +33,9 @@
             border: none;
             background: none;
         }
+        &:focus, &:not([type="radio"]):focus, &:not([type="checkbox"]):focus{
+            outline: none;
+            // TODO: Find nice style that still indicates accessibility
+        }
     }
 }
