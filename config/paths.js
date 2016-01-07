@@ -97,7 +97,7 @@ function getPaths() {
             scripts: basePaths.blocks + '**/*.js',
         },
         images: {
-            src: basePaths.blocks + '**/*.{jpg, jpeg, png, svg, gif}',
+            src: basePaths.blocks + '**/*.{jpg,jpeg,png,svg,gif}',
             dest: basePaths.dest + 'images/'
         },
 
@@ -129,7 +129,7 @@ function getPaths() {
                 dest: basePaths.dest + 'css/icons'
             },
             export:{
-                src: ['.icons/build/**/*'],
+                src: ['.icons/build/**/*.{js,css,png}'], // Must have no spaces between commas in curly brackets!
             }
         }
 

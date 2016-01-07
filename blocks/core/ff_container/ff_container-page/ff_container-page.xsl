@@ -2,7 +2,7 @@
 	<xsl:param name="data" />
     
     <div class="ff_container-page">
-        <span class="crate_util-block">Page Content</span>
+        <xsl:copy-of select="$data/content/*"/>
     </div>
 
 </xsl:template>
