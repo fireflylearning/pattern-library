@@ -17,7 +17,6 @@ data:
 * `from` and `from_href` are optional. 
 * The `meta` attribute allows you to pass full-text, it's always placed ahead of `from` and `date`
 * the `from` attribute is auto-prepended with "by "
-* the `date` attribute is auto-prepended with "on "
 
 ## XML to call this module:
 

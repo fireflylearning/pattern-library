@@ -21,7 +21,7 @@
                     <xsl:value-of select="$data/bookmark/@from"/>
                 </a>
             </xsl:if>
-            <xsl:text> on </xsl:text>
+            <xsl:text> </xsl:text>
             <time datetime="{$data/bookmark/@date}">
                 <xsl:value-of select="$data/bookmark/@date"/>
             </time>
