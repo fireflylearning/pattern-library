@@ -3,19 +3,17 @@
 	
 	<dl class="ff_module-class">
 		<dt class="ff_module-class__item ff_module-class__item--name">
-			<xsl:value-of select="$data/class/@name">
+			<a class="ff_module-class__link" href="/{$data/class/@guid}"><xsl:value-of select="$data/class/@name" /></a>
 		</dt>
-		<dd class="ff_module-class__item ff_module-class__item--from">
-			<xsl:value-of select="$data/class/@from">
+		<dd class="ff_module-class__item ff_module-class__item--teacher">
+			<xsl:value-of select="$data/class/@teacher" />
 		</dd>
 		<dd class="ff_module-class__item ff_module-class__item--date">
-			<xsl:value-of select="$data/next-lesson/@date-time">
+			<xsl:value-of select="$data/class/next-lesson/@display-date-time" />
 		</dd>
 		<dd class="ff_module-class__item ff_module-class__item--location">
-			<xsl:value-of select="$data/next-lesson/@location">
+			<xsl:value-of select="$data/class/next-lesson/@location" />
 		</dd>
 	</dl>
-	
-	
 	
 </xsl:template>
