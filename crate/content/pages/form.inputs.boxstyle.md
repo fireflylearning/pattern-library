@@ -6,16 +6,16 @@ data:
   - 
     ff_module-form-box-group:
         - 
-            label: "Group input name"
-            id: "input-group-id"
+            title: "Group input name"
+            guid: "input-group-id"
         - 
-            label: "Group editable input name"
+            title: "Group editable input name"
             id: "input-group-edit-id"
             state: editable
   -
     ff_module-form-box-member:
         - 
-            label: "Member input name"
-            id: "input-group-id"
+            title: "Member input name"
+            guid: "input-group-id"
         
 ---

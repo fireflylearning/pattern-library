@@ -1,6 +1,10 @@
+.ff_module-bookmark {
+    padding: @ff_size_spacing_max @ff_size_control_horizontal;
+}
+
 .ff_module-bookmark__label {
-    #ff_mix-base-text > .in-list();
-    line-height: 21/16;
+    #ff_mix-util-prose > .text-default();
+    #ff_mix-util-prose > .summary-list();
 }
 
 .ff_module-bookmark__link {
@@ -8,12 +12,10 @@
 }
 
 .ff_module-bookmark__label--meta {
-    #ff_mix-util-prose > .text-default();
-    #ff_mix-util-prose > .text-small();
-}
-
-.ff_module-bookmark__label--meta__from {
-    #ff_mix-util-prose > .text-default();
     #ff_mix-util-prose > .text-small();
     #ff_mix-util-prose > .text-quiet();
+}
+
+.ff_module-bookmark__link--meta {
+    #ff_mix-util-prose > .link-quiet();
 }

@@ -1,0 +1,49 @@
+<div class="ff_module-recipient-picker">
+    <div class="ff_module-recipient-picker__main">
+        <ul class="ff_module-recipient-picker-selected-list">
+            <li class="ff_module-recipient-picker-selected-list__item" rt-repeat="recipient in this.state.selected" key="sel-{recipient.guid}">
+                <div class="ff_module-form-box-member" id="{recipient.guid}">
+
+                    <button class="ff_module-form-box-member__edit" data-edit="{recipient.guid}" type="button">
+                    <span class="ff_icon ff_icon-edit-input-box"></span>
+                    </button>
+
+                    <span class="ff_module-form-box-member__label">{recipient.label}</span>
+
+                    <button class="ff_module-form-box-member__delete"
+                    data-delete="{recipient.guid}"
+                    onClick="()=>this.clearSelection(recipient)"
+                    type="button">
+                    <span class="ff_icon ff_icon-delete"></span>
+                </button>
+
+                </div>
+            </li>
+        </ul>
+        <input
+            class="ff_module-recipient-picker__input ff_module-form-input ff_module-form-input--invisible"
+            name="recipient-picker-query"
+            onChange="{this.handleInputChange}"
+            />
+    </div>
+    <div class="ff_module-recipient-picker__selectable{this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : ''}">
+        <ul class="ff_module-recipient-button-list" rt-if="this.state.hasResults === true">
+            <li class="ff_module-recipient-button-list__item"
+                rt-repeat="result in this.state.results"
+                key="res-{result.guid}">
+                <button
+                    type="button"
+                    class="ff_module-profile-picture-and-name-button"
+                    data-guid="{result.guid}"
+                    onClick="()=>this.select(result)">
+                      <figure class="ff_module-profile-picture-and-name-button__picture">
+                        <img class="ff_module-profile-picture-and-name-button__image" src="{result.pic_href}">
+                      </figure>
+                      <span class="ff_module-profile-picture-and-name-button__title" href="#">{result.label}</span>
+                </button>
+            </li>
+        </ul>
+        <p rt-if="this.state.hasResults === false">No results available</p>
+    </div>
+</div>
+

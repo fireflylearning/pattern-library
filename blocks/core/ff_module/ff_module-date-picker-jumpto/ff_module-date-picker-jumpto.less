@@ -1,0 +1,31 @@
+@ff_icon_dims: 20px;
+.ff_module-date-picker-jumpto {
+    &__link {
+        #ff_mix-util-prose > .link-no-decoration();   
+    }
+    &__icon {
+        #ff_mix-base-text > .vertical-align;
+        margin-left: @ff_size_control_horizontal * 1.25;
+        position: relative;
+        cursor: pointer;
+        vertical-align: baseline;
+    }
+    &__cal {
+        position: absolute;
+        right: 0;
+        left:0;
+        top:0;
+        bottom: 0;
+        width:@ff_icon_dims;
+        background-color: transparent;
+        color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+
+}
+
+.hasDatepicker .ff_icon-cal {
+    display: none;
+}

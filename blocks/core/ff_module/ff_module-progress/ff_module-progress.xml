@@ -1,0 +1,1 @@
+<progress sent_to="{{ sent_to }}" no_excused="{{ no_excused }}" completed_by="{{ completed_by }}" marked="{{ marked }}"/>
