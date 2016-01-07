@@ -4,23 +4,23 @@ data:
     tabs:
       -
         active: true
-        label: Overview
-        content: "Overview Tab"
+        label: "Overview"
+        content: "<p>Overview Tab</p>"
         id: "tab1"
       -
         active: false
         label: Details
-        content: "Details Tab"
+        content: "<p>Details Tab</p>"
         id: "tab2"
       -
         active: false
         label: Tasks
-        content: "Tasks Tab"
+        content: "<p>Tasks Tab</p>"
         id: "tab3"
       -
         active: false
         label: Students
-        content: "Students Tab"
+        content: "<p>Students Tab</p>"
         id: "tab4"
 requires:   
     - ff_module-tabs-navigation
