@@ -1,0 +1,34 @@
+.ff_module-task {
+    margin: 0;
+    padding: @ff_size_control_vertical @ff_size_control_horizontal;
+}
+
+.ff_module-task__item {
+    margin: 0;
+}
+
+@media (min-width: @ff_bp_medium) {
+    .ff_module-task {
+        display: flex;
+        justify-content: space-between;
+    }
+    .ff_module-task__item--title {
+        width: 38%;
+    }
+    .ff_module-task__item--to,
+    .ff_module-task__item--date {
+        width: 15%;
+    }
+    .ff_module-task__item--progress {
+        width: 28%;
+    } 
+}
+
+
+.ff_module-task__link {
+
+}
+
+.ff_module-task__meta {
+    display: block;
+}
