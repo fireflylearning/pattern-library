@@ -5,7 +5,7 @@
 		<ol class="ff_container-item-repeater__items">
 			<xsl:for-each select="$data/items/item">
 				<li class="ff_container-item-repeater__item">
-					<xsl:value-of select="."/>
+					<xsl:copy-of select="node()"/>
 				</li>
 			</xsl:for-each>
 		</ol>
