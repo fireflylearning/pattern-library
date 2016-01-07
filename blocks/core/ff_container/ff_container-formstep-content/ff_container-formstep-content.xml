@@ -2,4 +2,5 @@
     {% for d in data %}
     <data attr="{{d.attr}}">{{d.value}}</data>
     {% endfor %}
+    <content>{{content|safe}}</content>
 </formstep-content>
