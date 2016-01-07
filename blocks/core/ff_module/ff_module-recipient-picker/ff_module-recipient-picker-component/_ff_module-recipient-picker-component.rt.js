@@ -31,10 +31,16 @@ function repeatRecipient4(recipient, recipientIndex) {
 module.exports = function () {
     return React.createElement('div', {
         'className': 'ff_module-recipient-picker',
-        'onClick': this.dropdownClickHandler
-    }, React.createElement('div', { 'className': 'ff_module-recipient-picker__main' }, React.createElement.apply(this, [
+        'onClick': this.stopEventPropagation
+    }, React.createElement('div', {
+        'className': 'ff_module-recipient-picker__main',
+        'onClick': this.resetInput
+    }, React.createElement.apply(this, [
         'ul',
-        { 'className': 'ff_module-recipient-picker-selected-list' },
+        {
+            'className': 'ff_module-recipient-picker-selected-list',
+            'onClick': this.stopEventPropagation
+        },
         _.map(this.state.selected, repeatRecipient4.bind(this))
     ]), React.createElement('input', {
         'className': 'ff_module-recipient-picker__input ff_module-form-input ff_module-form-input--invisible',

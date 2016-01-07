@@ -4,10 +4,10 @@
 
 
 <div class="ff_module-recipient-picker"
-    onClick="{this.dropdownClickHandler}">
+    onClick="{this.stopEventPropagation}">
 
-    <div class="ff_module-recipient-picker__main">
-        <ul class="ff_module-recipient-picker-selected-list">
+    <div class="ff_module-recipient-picker__main" onClick="{this.resetInput}">
+        <ul class="ff_module-recipient-picker-selected-list" onClick="{this.stopEventPropagation}">
             <li class="ff_module-recipient-picker-selected-list__item" rt-repeat="recipient in this.state.selected" key="sel-{recipient.guid}">
 
                 <RecipientGroup guid="{recipient.guid}"

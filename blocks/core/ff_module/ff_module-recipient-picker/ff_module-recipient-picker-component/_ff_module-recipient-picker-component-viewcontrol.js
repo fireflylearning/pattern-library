@@ -10,6 +10,7 @@ module.exports = function createRecipientPicker(service, template) {
         render: template,
         componentDidMount: function() {
             document.addEventListener('click', this.documentClickHandler);
+
             service.getInitialResults(this.setResults);
             this.resetInput();
         },
@@ -26,7 +27,7 @@ module.exports = function createRecipientPicker(service, template) {
                 isActive: !!(this.state.hasQuery)
             });
         },
-        dropdownClickHandler: function(e) {
+        stopEventPropagation: function(e) {
             e.nativeEvent.stopImmediatePropagation();
         },
         getSelectedRecipients: function() {
@@ -59,7 +60,6 @@ module.exports = function createRecipientPicker(service, template) {
                         .value();
 
                     this.setSelected(newSelection);
-                    this.resetInput();
                 }
             }.bind(this);
             service.getMembersOfGroup(recipientId, resultfn);
@@ -73,7 +73,7 @@ module.exports = function createRecipientPicker(service, template) {
             }.bind(this));
 
             var newSelection = (this.state.selected.concat(uniqueGroupMembers));
-            console.log(newSelection);
+            // console.log(newSelection);
             this.setSelected(newSelection);
         },
         addRecipientByResultId: function(resultId) {
@@ -83,7 +83,7 @@ module.exports = function createRecipientPicker(service, template) {
             if (!recipient) return;
             this.addRecipient(recipient);
 
-            this.resetInput();
+
 
         },
         _subscribers: [],
@@ -130,6 +130,7 @@ module.exports = function createRecipientPicker(service, template) {
             this._subscribers.forEach(function(subscription) {
                 subscription(selected);
             });
+            this.resetInput();
         },
         handleInputChange: function(e) {
             var query = e.target.value,

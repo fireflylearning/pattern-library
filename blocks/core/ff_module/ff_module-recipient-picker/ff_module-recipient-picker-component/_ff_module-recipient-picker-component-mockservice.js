@@ -96,7 +96,7 @@ module.exports = function() {
             if (query.length === 2) {
                 data = dummySet1;
             }
-            if (query.length === 3) {
+            if (query.length > 2) {
                 data = dummySet2;
             }
 

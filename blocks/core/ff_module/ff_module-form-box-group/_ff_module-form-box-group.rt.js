@@ -10,7 +10,7 @@ module.exports = function () {
         'data-edit': this.props.guid,
         'onClick': this.props.onExpand,
         'type': 'button'
-    }, React.createElement('span', { 'className': 'ff_icon ff_icon-edit-blue' })), React.createElement('span', { 'className': 'ff_module-form-box-group__label' }, this.props.label), React.createElement('button', {
+    }, React.createElement('span', { 'className': 'ff_icon ff_icon-add-open-blue' })), React.createElement('span', { 'className': 'ff_module-form-box-group__label' }, this.props.label), React.createElement('button', {
         'className': 'ff_module-form-box-group__delete',
         'onClick': this.props.onDelete,
         'type': 'button'
