@@ -6,3 +6,4 @@
         </tab>
     {% endfor %}
 </tabs>
+<picker/>

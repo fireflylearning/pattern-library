@@ -67,6 +67,15 @@
             color: lighten(@color, 10%);
         }
     }
+    .link-disabled(@color:@ff_color_control_link) {
+        color: @color;
+        &:visited {
+            color: @color;
+        }
+        &:active, &:hover {
+            color: @color;
+        }
+    }
     .spacing {
         margin-bottom: @ff_size_prose_spacing;
     }
@@ -88,7 +97,7 @@
     .list-item-spacing {
         margin-bottom: @ff_size_control_vertical;
     }
-    
+
     .summary-list {
         margin-top: @ff_size_spacing_min;
         &:first-of-type {margin-top: 0;}
