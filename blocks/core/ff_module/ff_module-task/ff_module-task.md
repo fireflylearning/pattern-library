@@ -1,6 +1,7 @@
 ---
 data:
   -
+    modifier: stacked
     id: "100"
     message: "Read pages 45-58 of your history coursework books, we'll discuss in class."
     link_href: "#"
