@@ -1,3 +1,5 @@
 <page-header title="Page title">
-    <controls title="Whut"/>
+    <controls title="{{title}}">
+        <content>{{content|safe}}</content>
+    </controls>
 </page-header>
