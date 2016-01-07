@@ -53,6 +53,7 @@
     "lazypipe": "^1.0.1",
     "less-plugin-autoprefix": "^1.5.1",
     "lodash-node": "^3.10.1",
+    "minimist": "^1.2.0",
     "swig": "^1.4.2",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"

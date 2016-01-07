@@ -1,0 +1,47 @@
+@border-width:8px;
+@ff_planner_week_bp_med: 800px;
+
+#ff_mix-class-view(){
+    .color-block-sm(){
+        border-left: @border-width solid #eee;
+        // padding-left: @ff_size_control_horizontal*0.5;
+    }
+    .color-block-md() { // requires `style="border-left-color:{$data/event/@colour}` on element"
+        border-left: @border-width solid #eee;
+        // padding-left: @ff_size_control_horizontal;
+    }
+    .undo-color-block(){
+        border-left-width:0;
+    }
+}
+
+#ff_mix-class-meta() {
+    .default() {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+#ff_mix-class-meta-item() {
+    .default() {
+        list-style: none;
+        &:first-child {
+            padding-top:0;
+        }
+        // &:last-child {
+        //     padding-bottom: 0;
+        // }
+    }
+    .small() {
+        font-size: 90%;
+    }
+    .inline() {
+        display: inline;
+        &:after {
+            content: ",";
+        }
+        &:last-child:after {
+            content: "";
+        }
+    }
+}

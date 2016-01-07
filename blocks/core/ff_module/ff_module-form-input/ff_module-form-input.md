@@ -16,6 +16,11 @@ data:
 - checked (Bool)
 - disabled (Bool)
 
+## Modifiers 
+
+- invisible
+
+
 Data-attributes are set by attr:value pairs, eg
 ```
     id: "input-id"

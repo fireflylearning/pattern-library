@@ -1,0 +1,11 @@
+<event>
+{% if event.note %}
+<note>
+<![CDATA[
+{{ event.note | safe }}
+]]>
+</note>
+{% else %}
+<note/>
+{% endif %}
+</event>

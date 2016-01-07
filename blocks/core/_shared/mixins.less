@@ -32,6 +32,14 @@
     }
 }
 
+#ff_mix-buttons() {
+    .with-icon {
+        border: none;
+        background: none;
+        // outline: none;
+    }
+}
+
 #ff_mix-base-links() {
     .default() {
         text-decoration: none;
@@ -65,9 +73,13 @@
     .quiet() {
         &,
         a {
-            color: @ff_colour_control_border;
+            color: @ff_colour_text_quiet;
             text-decoration: none;
         }
+    }
+    .vertical-align {
+        display: inline-block;
+        vertical-align: middle;
     }
 }
 
@@ -84,6 +96,7 @@
         background-color: @background-color;
         line-height: @diam - @border-width;
     }
+
 }
 
 #ff_mix-buttons() {

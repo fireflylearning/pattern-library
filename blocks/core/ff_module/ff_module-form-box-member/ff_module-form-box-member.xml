@@ -1,1 +1,1 @@
-<input value="{{value}}" id="{{id}}">{{label}}</input>
+{% include '../_shared/ff_module-profile-page.xml' %}

@@ -26,4 +26,12 @@
         font-size: 1rem;
         padding: @ff_size_spacing_min;
     }
+
+    &--invisible {
+
+        &, &:not([type="radio"]), &:not([type="checkbox"]){
+            border: none;
+            background: none;
+        }
+    }
 }

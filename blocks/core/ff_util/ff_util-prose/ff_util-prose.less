@@ -31,6 +31,7 @@
         margin: 0;
         padding: 0;
     }
+
     .text-small {
         font-size: 14rem/@ff_base;
         line-height: 16/14;
@@ -63,6 +64,10 @@
             color: lighten(@color, 10%);
         }
     }
+    .link-quiet {
+        text-decoration: none;
+        color: @ff_colour_text_quiet;
+    }
     .spacing {
         margin-bottom: @ff_size_prose_spacing;
     }
@@ -89,7 +94,7 @@
     .list-item-spacing {
         margin-bottom: @ff_size_control_vertical;
     }
-    
+
     .summary-list {
         margin-top: @ff_size_spacing_min;
         &:first-of-type {margin-top: 0;}

@@ -1,0 +1,35 @@
+.ff_module-class-meta-week {
+    #ff_mix-class-meta > .default();
+    font-size: 9px;
+    line-height: 1;
+    &__item {
+        #ff_mix-class-meta-item > .default();
+        display: none;
+    }
+    &__item--subject {
+        display: list-item;
+    }
+    &__link {
+        #ff_mix-util-prose > .link-no-decoration();
+    }
+    @media screen and (min-width:@ff_bp_narrow) {
+        font-size: 12px;
+        line-height: 13/12;
+    }
+    @media screen and (min-width:@ff_bp_medium) {
+        &__item--time {
+            display: list-item;
+        }
+    }
+    @media screen and (min-width:@ff_planner_week_bp_med) {
+        &__item {
+            #ff_mix-class-meta-item > .default();
+            // #ff_mix-class-meta-item > .small();
+            display: list-item;
+        }
+        &__item--loc {
+            // #ff_mix-util-prose > .text-default();
+            #ff_mix-util-prose > .text-quiet();
+        }
+    }
+}
