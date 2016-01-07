@@ -4,8 +4,14 @@
 //2col
 @ff_grid-2col-base: 100% - @ff_grid-gap-horizonal;
 @ff_grid-2col-equal: @ff_grid-2col-base / 2;
-@ff_grid-2col-narrow: @ff_grid-2col-base * (.3);
-@ff_grid-2col-wide: @ff_grid-2col-base * (.7);
+
+//width bases for wide and narrow
+@ff_grid-2col-wide-base: .75;
+@ff_grid-2col-narrow-base: 1 - @ff_grid-2col-wide-base;
+
+//set widths of wide and narrow columns
+@ff_grid-2col-narrow: @ff_grid-2col-base * (@ff_grid-2col-wide-base);
+@ff_grid-2col-wide: @ff_grid-2col-base * (@ff_grid-2col-narrow-base);
 
 .ff_grid {
   .ff_mix-clearfix();
