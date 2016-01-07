@@ -1,6 +1,6 @@
 'use strict';
 
-var createNewGroupButton = require('./_ff_module-recipient-picker-new-group-button-view.js');
+var createNewGroupButton = require('./_ff_module-recipient-picker-new-group-button-viewcontrol.js');
 var rt = require('./_ff_module-recipient-picker-new-group-button.rt.js');
 
 module.exports = function(recipientPicker, groupService, template) {

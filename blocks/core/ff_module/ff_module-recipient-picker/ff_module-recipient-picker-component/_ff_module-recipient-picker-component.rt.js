@@ -1,9 +1,9 @@
 'use strict';
 var React = require('react/addons');
 var _ = require('lodash');
-var RecipientGroup = require('../ff_module-form-box-group/_ff_module-form-box-group-view');
-var RecipientMember = require('../ff_module-form-box-member/_ff_module-form-box-member-view');
-var RecipientButtonList = require('../ff_module-recipient-button-list/_ff_module-recipient-button-list-view.js');
+var RecipientGroup = require('../../ff_module-form-box-group/_ff_module-form-box-group-view');
+var RecipientMember = require('../../ff_module-form-box-member/_ff_module-form-box-member-view');
+var RecipientButtonList = require('../../ff_module-recipient-button-list/ff_module-recipient-button-list-component/_ff_module-recipient-button-list-component-viewsimple.js');
 function onExpand1(recipient, recipientIndex) {
     this.expandGroup(recipient.guid);
 }

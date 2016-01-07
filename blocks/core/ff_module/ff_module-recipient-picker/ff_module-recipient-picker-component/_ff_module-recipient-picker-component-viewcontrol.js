@@ -105,9 +105,7 @@ module.exports = function createRecipientPicker(service, template) {
                 return recipient.guid === recipientId;
             });
             this.setSelected(newSelection);
-            this._subscribers.forEach(function(subscription) {
-                subscription(newSelection);
-            });
+
         },
         checkIsSelected: function(resultId) {
             return _.find(this.state.selected, function(recipient) {
@@ -127,6 +125,10 @@ module.exports = function createRecipientPicker(service, template) {
             this.setState({
                 selected: selected,
                 hasSelection: (selected && selected.length > 0)
+            });
+
+            this._subscribers.forEach(function(subscription) {
+                subscription(selected);
             });
         },
         handleInputChange: function(e) {

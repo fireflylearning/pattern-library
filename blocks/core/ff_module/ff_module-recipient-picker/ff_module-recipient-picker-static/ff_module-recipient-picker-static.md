@@ -49,7 +49,7 @@ data:
             pic_href: "/images/group-icon.png"
 requires: 
     - ff_module-recipient-picker-selected-list
-    - ff_module-recipient-button-list
+    - ff_module-recipient-button-list-static
     - ff_module-form-box-member
     - ff_module-profile-picture-and-name-button
 ---

@@ -1,4 +1,4 @@
-<rt-require dependency="../../ff_module/ff_module-recipient-button-list/_ff_module-recipient-button-list-view.js" as="RecipientButtonList"/>
+<rt-require dependency="./_ff_module-recipient-button-list-component-viewsimple.js" as="RecipientButtonList"/>
 
 <RecipientButtonList
     results="{this.state.results}"

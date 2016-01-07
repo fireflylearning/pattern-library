@@ -20,7 +20,7 @@
 
         </div>
         <div class="ff_module-recipient-picker__selectable {$state}">
-            <xsl:call-template name="ff_module-recipient-button-list">
+            <xsl:call-template name="ff_module-recipient-button-list-static">
                 <xsl:with-param name="data" >
                     <xsl:copy-of select="ext:node-set($data//results)"/>
                 </xsl:with-param>

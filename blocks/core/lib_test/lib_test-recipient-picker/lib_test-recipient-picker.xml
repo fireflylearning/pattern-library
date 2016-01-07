@@ -2,7 +2,6 @@
     {% for tab in tabs %}
         <tab active="{{tab.active | default('false')}}" id="{{tab.id}}">
             <label>{{tab.label | default('Tab Label')}}</label>
-            {% include '../../ff_module/ff_module-recipient-button-list/ff_module-recipient-button-list.xml' with { recipients: tab.recipients } only %}
         </tab>
     {% endfor %}
 </tabs>

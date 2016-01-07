@@ -1,4 +1,4 @@
-<xsl:template name="ff_module-recipient-button-list">
+<xsl:template name="ff_module-recipient-button-list-static">
 	<xsl:param name="data" />
 	<ul class="ff_module-recipient-button-list">
         <xsl:for-each select="$data//page">

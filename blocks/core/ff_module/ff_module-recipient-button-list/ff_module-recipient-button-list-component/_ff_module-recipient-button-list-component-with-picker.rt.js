@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react/addons');
 var _ = require('lodash');
-var RecipientButtonList = require('../../ff_module/ff_module-recipient-button-list/_ff_module-recipient-button-list-view.js');
+var RecipientButtonList = require('./_ff_module-recipient-button-list-component-viewsimple.js');
 module.exports = function () {
     return React.createElement(RecipientButtonList, {
         'results': this.state.results,

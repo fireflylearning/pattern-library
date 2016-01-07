@@ -80,5 +80,5 @@ data:
 requires:   
     - ff_module-tabs-navigation
     - ff_module-profile-picture-and-name-button
-    - ff_module-recipient-button-list
+    - ff_module-recipient-button-list-static
 ---

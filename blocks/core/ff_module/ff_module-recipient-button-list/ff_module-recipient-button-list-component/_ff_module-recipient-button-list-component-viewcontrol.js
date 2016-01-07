@@ -30,22 +30,11 @@ module.exports = function(picker, service, type, template) {
                 });
             }.bind(this));
         },
-        checkIsSelected: function(recipientId) {
-            var selected = picker.getSelectedRecipients();
-            var r = _.find(selected, function(recipient) {
-                return recipient.guid === recipientId;
-            });
-            // console.log(selected, r);
-            return r;
-        },
         addRecipientByResultId: function(recipientId) {
             var result = _.find(this.state.results, function(result) {
                 return result.guid === recipientId;
             });
             picker.addRecipient(result);
-            this.setState({
-                lastselected: result
-            });
         }
     });
 
