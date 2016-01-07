@@ -1,0 +1,3 @@
+<class name="{@name}" from="{@from}">
+	<next-lesson location="{@location}" display-date-time="{@date-time}"/>
+</class>
