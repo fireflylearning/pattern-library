@@ -3,7 +3,7 @@
     {% for set in content.sets %}
         <set{% if set.title %} title="{{ set.title }}"{% endif %}>
             {% for module in set.modules %}
-                <module>{{ module }}</module>
+                <module>{{ module | safe }}</module>
             {% endfor %}
         </set>
     {% endfor %}
