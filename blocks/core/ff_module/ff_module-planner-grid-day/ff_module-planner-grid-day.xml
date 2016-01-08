@@ -1,7 +1,7 @@
 <events>
 {% for event in events %}
 
-<event subject="{{event.subject}}" isostartdate="{{event.isostartdate}}" isoenddate="{{event.isoenddate}}" description="{{event.description}}" url="{{event.url}}" colour="{{event.colour}}" location="{{event.location}}" minutelength="60" minutestart="240" >
+<event subject="{{event.subject}}" isostartdate="{{event.isostartdate}}" isoenddate="{{event.isoenddate}}" description="{{event.description}}" url="{{event.url}}" color="{{event.colour}}" location="{{event.location}}" minutelength="60" minutestart="240" >
 
     {% if event.note %}
     <note>
