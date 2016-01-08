@@ -3,7 +3,7 @@ data:
     events:
         -   subject: English
             description: "Class 7D/En"
-            colour: "#C54E8B"
+            colour: "Forest"
             url: "#"
             location: "Room 6"
             isostartdate: "2015-11-11T10:15:00"
@@ -11,7 +11,7 @@ data:
             note: "<p> bbb Lorem ipsum dolor sit amet<br/>lorem tortor consectetur metus</p>"
         -   subject: Mathematics
             description: "Class 8D/En"
-            colour: "#149669"
+            colour: "Cerise"
             url: "#"
             location: "Room 8"
             isostartdate: "2015-11-11T14:00:00"
@@ -19,7 +19,7 @@ data:
             note: "<p> bbb Lorem ipsum dolor sit amet<br/>lorem tortor consectetur metus</p><ul><li>Some list text</li><li>And more list text</li></ul>"
         -   subject: English
             description: "Class 9D/En"
-            colour: "#3496D9"
+            colour: "Yellow"
             url: "#"
             location: "Room 6"
             isostartdate: "2015-11-11T12:15:00"

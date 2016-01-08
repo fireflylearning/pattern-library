@@ -22,12 +22,12 @@
                     </th>
 
                     <xsl:if test="@subject != ''">
-                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--event" style="border-left-color:{@colour}">
+                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--event ff_module-planner-grid-day__color--{@color}">
                         <xsl:call-template name="ff_module-class-meta-day">
                             <xsl:with-param name="data" select="ext:node-set($event)"/>
                         </xsl:call-template>
                     </td>
-                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--note"  style="border-left-color:{@colour}">
+                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--note ff_module-planner-grid-day__color--{@color}">
                         <xsl:call-template name="ff_module-planner-note">
                             <xsl:with-param name="data" select="ext:node-set($event)"/>
                         </xsl:call-template>

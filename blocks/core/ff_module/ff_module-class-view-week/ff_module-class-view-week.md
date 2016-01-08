@@ -3,7 +3,7 @@ data:
     event:
         subject: English
         description: "Class 7D/En"
-        colour: "#3496D9"
+        colour: "Red"
         url: "#"
         location: "Room 6"
         isostartdate: "2015-11-11T10:15:00"
