@@ -1,7 +1,5 @@
 'use strict';
 
-require('../ff_container/ff_container-filter-dropdown/ff_container-filter-dropdown')();
-
 require('../ff_module/ff_module-button/ff_module-button')();
 require('../ff_module/ff_module-dropdown-button/ff_module-dropdown-button')();
 
