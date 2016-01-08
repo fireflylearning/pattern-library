@@ -9,32 +9,32 @@ data:
         sets:
             -
                 modules:
-                - "Default alignment"
+                - "<span class=\"crate_util-block\">Default Alignment</span>"
     -
         modifier: ""
         sets:
             -
                 modules:
-                - "Module A"
-                - "Module B"
+                - "<span class=\"crate_util-block\">Module A</span>"
+                - "<span class=\"crate_util-block\">Module B</span>"
     -
         modifier: ""
         sets:
             -   
                 title: "Default, with title"
                 modules:
-                - "Module B"
-                - "Module C"
+                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module C</span>"
     -
         modifier: ""
         sets:  
             -
                 title: "Default, with title"
                 modules:
-                - "Module A"
-                - "Module B"
-                - "Module C"
-                - "Module D"
+                - "<span class=\"crate_util-block\">Module A</span>"
+                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module C</span>"
+                - "<span class=\"crate_util-block\">Module D</span>"
     -
         modifier: "split"
         sets:
@@ -42,65 +42,65 @@ data:
                 title: "Split, with title"
             -
                 modules:
-                - "Module B"
-                - "Module C"
+                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module C</span>"
     -
         modifier: "split"
         sets:
             -
                 title: "Split, with title"
-            -
                 modules:
-                - "Module A"
-                - "Module B"
-                - "Module C"
+                - "<span class=\"crate_util-block\">Module A</span>"
+            -
+                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module C</span>"
     -
         modifier: "split"
         sets:
             -
                 modules:
-                - "Module A"
-                - "Module B"
-                - "Module C"
+                - "<span class=\"crate_util-block\">Module A</span>"
+                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module C</span>"
             -
                 modules:
-                - "Module D"
-                - "Module E"
-                - "Module F"
+                - "<span class=\"crate_util-block\">Module D</span>"
+                - "<span class=\"crate_util-block\">Module E</span>"
+                - "<span class=\"crate_util-block\">Module F</span>"
     -
         modifier: "centered"
         sets:
             -
                 modules:
-                - "Centered Module"
+                - "<span class=\"crate_util-block\">Centred Module</span>"
     -
         modifier: "centered"
         sets:
             -
                 modules:
-                - "Module A"          
-                - "Module B"
-                - "Module C"
+                - "<span class=\"crate_util-block\">Module A</span>"     
+                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module C</span>"
     -
         modifier: "right"
         sets:
             -
                 modules:
-                - "Right-aligned Module"
+                - "<span class=\"crate_util-block\">Right Aligned</span>"
     -
         modifier: "right"
         sets:
             -
                 modules:
-                - "Right-aligned Module A"
-                - "Right-aligned Module B"
+                - "<span class=\"crate_util-block\">Right-aligned Module A</span>"
+                - "<span class=\"crate_util-block\">Right-aligned Module B</span>"
     -
         modifier: "right"
         sets:
             -
                 modules:
-                - "Module A"
-                - "Module B"
-                - "Module C"
-                - "Module D"
+                - "<span class=\"crate_util-block\">Module A</span>"
+                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module C</span>"
+                - "<span class=\"crate_util-block\">Module D</span>"
 ---
