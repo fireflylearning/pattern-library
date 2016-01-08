@@ -2,7 +2,7 @@
     <xsl:param name="data" />
 
     <xsl:variable name="ui-button-lessonplan-add">
-        <button id="lessonplan_add" icon="test" modifier="tertiary">
+        <button id="lessonplan_add" icon="edit-blue" modifier="tertiary">
             <text>Write lesson plan</text>
             <data attr="data-ff-action">editor-inline-start</data>
         </button>
