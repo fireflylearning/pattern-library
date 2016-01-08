@@ -8,7 +8,12 @@ module.exports = function() {
             $(element).datepicker({
                 dateFormat: "yy-mm-dd",
                 onSelect: function(date) {
-                    location.href = $(element).attr("data-ff-url-prefix") + date;
+					if ($(element).attr("data-ff-target-input-id")) {
+						document.getElementById($(element).attr("data-ff-target-input-id")).value = date;
+					}
+					if ($(element).attr("data-ff-url-prefix")) {
+						location.href = $(element).attr("data-ff-url-prefix") + date;
+					}
                 },
                 beforeShow: function(input, inst) {
                     $(inst.dpDiv).addClass('ff_module-date-picker-calendar');
