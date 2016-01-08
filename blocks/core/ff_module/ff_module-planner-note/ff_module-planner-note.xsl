@@ -8,7 +8,7 @@
         </button>
     </xsl:variable>
     <xsl:variable name="ui-button-lessonplan-edit">
-        <button id="lessonplan_edit" icon="test" modifier="tertiary">
+        <button id="lessonplan_edit" icon="edit-blue" modifier="tertiary">
             <text>Edit lesson plan</text>
             <data attr="data-ff-action">editor-inline-start</data>
         </button>
