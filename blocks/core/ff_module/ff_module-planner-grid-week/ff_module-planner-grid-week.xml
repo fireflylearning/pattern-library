@@ -9,7 +9,7 @@
                 </weekenddays>
             </weekconfiguration>
             <group type="week" niceweek="46 Weeks Ago" startdate="05/01/2015">
-                <day firstdaymo="1" dispmode="standard" dayofweek="Monday" dayofmonth="5" date="05/01/2015" month="January" nicedate="05/01/2015">
+                <day firstdaymo="1" dispmode="standard" dayofweek="Monday" dayofmonth="5" date="05/01/2015" month="January" nicedate="Today">
                     <events>
                         <event subject="Religious Ed" isostartdate="2015-01-05T09:15:00" isoenddate="2015-01-05T10:15:00" minutelength="60" minutestart="555" starttime="09:15" endtime="10:15" description="7D/Re" location="Humanities Room 5" url="/profile?guid=DB:SIMS:8130" guid="8130:37058">
                             <attendee role="chairperson" guid="u3416" name="Alistair Pinkney" url="/profile?guid=u3416" member="yes" />

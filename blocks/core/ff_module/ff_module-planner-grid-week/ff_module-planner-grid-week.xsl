@@ -1,5 +1,7 @@
 <xsl:template name="ff_module-planner-grid-week__header">
     <xsl:param name="day" />
+    <xsl:param name="date" />
+    <xsl:param name="nicedate" />
     <xsl:param name="weekstartday" />
     <xsl:param name="weekenddays" />
     <xsl:param name="dayIsToday" />
@@ -9,16 +11,27 @@
         <xsl:if test="not($dayIsToday)">not-today</xsl:if>
     </xsl:variable>
 
+    <xsl:variable name="smartDayLabel">
+        <xsl:choose>
+            <xsl:when test="not($date = $nicedate)">
+                <xsl:value-of select="$nicedate"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$day"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
     <xsl:choose>
         <xsl:when test="$day = $weekstartday">
             <th class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--empty"> </th>
-            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$day"/></th>
+            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$smartDayLabel"/></th>
         </xsl:when>
 
         <xsl:when test="$day = $weekenddays/*"></xsl:when>
 
         <xsl:otherwise>
-            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$day"/></th>
+            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$smartDayLabel"/></th>
         </xsl:otherwise>
     </xsl:choose>
 
@@ -27,7 +40,7 @@
 <xsl:template name="ff_module-planner-grid-week">
     <xsl:param name="data" />
 
-    <xsl:variable name="todayDate"><!-- this needs to be added in the XML --></xsl:variable>
+    <xsl:variable name="todayDate"><xsl:value-of select="$data//group/day[@nicedate = 'Today']/@dayofweek"/></xsl:variable>
 
     <div class="ff_module-planner-grid-week">
         <table class="ff_module-planner-grid-week__content">
@@ -36,6 +49,8 @@
                     <xsl:for-each select="$data//group/day">
                         <xsl:call-template name="ff_module-planner-grid-week__header">
                             <xsl:with-param name="day" select="@dayofweek"/>
+                            <xsl:with-param name="date" select="@date"/>
+                            <xsl:with-param name="nicedate" select="@nicedate"/> 
                             <xsl:with-param name="weekstartday" select="$data//weekconfiguration/weekstartday"/>
                             <xsl:with-param name="weekenddays" select="$data//weekconfiguration/weekenddays"/>
                             <xsl:with-param name="dayIsToday" select="boolean(@dayofweek = $todayDate)"/>
