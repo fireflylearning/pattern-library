@@ -4,7 +4,9 @@
 
     <div class="ff_grid {$data/grid/@modifier}">
         <xsl:for-each select="$data/grid/column">
-            <div class="ff_grid__column"><span class="crate_util-block"><xsl:value-of select="@name"/></span></div>
+            <div class="ff_grid__column">
+                <xsl:copy-of select="node()"/>
+            </div>
         </xsl:for-each>
     </div>
         

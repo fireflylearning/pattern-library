@@ -18,7 +18,7 @@
             <xsl:attribute name="id">
                 <xsl:value-of select="@id" />
             </xsl:attribute>
-            <xsl:copy-of select="content/*"/>
+            <xsl:copy-of select="content/node()"/>
         </div>
     </xsl:for-each>
 

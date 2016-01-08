@@ -26,6 +26,6 @@
        <h3 class="ff_container-control-bar__title"><xsl:value-of select="@title"/></h3>
     </xsl:if>
     <xsl:for-each select="module">
-        <span class="crate_util-block"><xsl:value-of select="."/></span>
+        <xsl:copy-of select="./*"/>
     </xsl:for-each>
 </xsl:template>
