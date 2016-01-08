@@ -11,6 +11,7 @@
         <xsl:if test="not($dayIsToday)">not-today</xsl:if>
     </xsl:variable>
 
+    <!-- currently unused, although could be useful in the future -->
     <xsl:variable name="smartDayLabel">
         <xsl:choose>
             <xsl:when test="not($date = $nicedate)">
@@ -25,13 +26,13 @@
     <xsl:choose>
         <xsl:when test="$day = $weekstartday">
             <th class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--empty"> </th>
-            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$smartDayLabel"/></th>
+            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$day"/></th>
         </xsl:when>
 
         <xsl:when test="$day = $weekenddays/*"></xsl:when>
 
         <xsl:otherwise>
-            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$smartDayLabel"/></th>
+            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$day"/></th>
         </xsl:otherwise>
     </xsl:choose>
 
