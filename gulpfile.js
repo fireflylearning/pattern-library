@@ -117,7 +117,8 @@ exportJsCompiler = webpack({
         jquery: 'jQuery',
         react: 'React',
         'react/addons': 'React',
-        lodash: '_'
+        lodash: '_',
+        underscore: "_"
     }
 });
 
