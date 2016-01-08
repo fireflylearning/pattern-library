@@ -1,8 +1,7 @@
 ---
 data:
     planner:
-        type: "day"
-        date: "2015-01-06"
+        title: "Today 21 Jun"
         dateUrlPrefix: "planner/day/"
         nowUrl: "planner" 
         previousUrl: "planner/day/2015-01-05" 
