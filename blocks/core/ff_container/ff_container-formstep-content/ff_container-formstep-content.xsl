@@ -10,8 +10,13 @@
 
     <xsl:for-each select="$data/formsteps/step">
 	    <fieldset id="{@id}">
+            <xsl:if test="content/@tab-attr-name">
+                <xsl:attribute name="{content/@tab-attr-name}">
+                    <xsl:value-of select="@id"/>
+                </xsl:attribute>
+            </xsl:if>
 
-    	    <xsl:if test="data">
+            <xsl:if test="data">
                 <xsl:for-each select="data/attr">
                     <xsl:attribute name="{@name}">
                         <xsl:value-of select="."/>

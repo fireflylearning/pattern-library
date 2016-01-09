@@ -1,8 +1,8 @@
 <formsteps>
     {% for step in steps %}
    	 <step url="{{step.url | default('#')}}" state="{{step.state | default('')}}" id="{{step.id}}">
-        <label>{{step.name}}</label>
-        <content></content>
+        <label tab-attr-name="data-ff-formsteps-trigger">{{step.label | default('Step Label')}}</label>
+        <content tab-attr-name="data-ff-formsteps-target">{{step.content | default('<p>Step Content</p>') | safe}}</content>
     </step>
     {% endfor %}
 </formsteps>

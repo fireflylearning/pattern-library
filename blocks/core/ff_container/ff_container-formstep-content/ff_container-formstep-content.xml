@@ -2,8 +2,8 @@
     >
     {% for step in steps %}
         <step state="{{step.state | default('')}}" id="{{step.id}}">
-            <label>{{step.label | default('Tab Label')}}</label>
-            <content>{{step.content | default('<p>Tab Content</p>') | safe}}</content>
+            <label tab-attr-name="data-ff-formsteps-trigger">{{step.label | default('Tab Label')}}</label>
+            <content tab-attr-name="data-ff-formsteps-target">{{step.content | default('<p>Tab Content</p>') | safe}}</content>
             {% if step.data -%}
             <data>
             {%- for d in step.data -%}
@@ -12,5 +12,5 @@
             </data>
             {%- endif %}
         </step>
-    {% endfor %}
+    {%- endfor %}
 </formsteps>

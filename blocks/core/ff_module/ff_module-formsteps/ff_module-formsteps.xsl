@@ -11,7 +11,12 @@
             </xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
-	<li class="{$classes}" data-ff-formsteps-target="{@id}">
+	<li class="{$classes}">
+        <xsl:if test="label/@tab-attr-name">
+            <xsl:attribute name="{label/@tab-attr-name}">
+                <xsl:value-of select="@id"/>
+            </xsl:attribute>
+        </xsl:if>
 		<a class="ff_module-formstep__link" href="{@url}">
 			<span class="ff_module-formstep__icon">
 				<span class="ff_module-formstep__stepnumber"><xsl:number/></span>
