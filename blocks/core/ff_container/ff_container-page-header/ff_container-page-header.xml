@@ -1,5 +1,5 @@
-<page-header title="Page title">
-    <controls title="{{title}}">
+<page-header title="{{title}}">
+    <controls>
         <content>{{content|safe}}</content>
     </controls>
 </page-header>
