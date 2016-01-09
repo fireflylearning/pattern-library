@@ -2,22 +2,22 @@
 data:
     tabs:
       -
-        active: true
+        state: 'is-active'
         label: "Overview"
         content: "<p>Overview Tab</p>"
         id: "tab1a"
       -
-        active: false
+        state: ''
         label: "Details"
         content: "<p>Details Tab</p>"
         id: "tab2a"
       -
-        active: false
+        state: ''
         label: "Tasks"
         content: "<p>Tasks Tab</p>"
         id: "tab3a"
       -
-        active: false
+        state: ''
         label: "Students"
         content: "<p>Students Tab</p>"
         id: "tab4a"
