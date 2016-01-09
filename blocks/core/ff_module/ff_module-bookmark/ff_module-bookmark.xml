@@ -1,9 +1,11 @@
-{% if type == 'personal' %}
-    <bookmark type="personal" href="{{ bookmark.href }}">
-        <label>{{ label }}</label>
-    </bookmark>
-{% else %}
-    <bookmark type="recommended" href="{{ href }}" from="{{ from }}" from_href="{{ from_href }}" date="{{ date }}">
-        <label>{{ label }}</label>
-    </bookmark>
-{% endif %}
+<bookmark 
+    type="{{type}}" 
+    href="{{href}}" 
+    {% if from %} from="{{from}}" {% endif %}
+    {% if from_href %} from-href="{{from_href}}" {% endif %}
+    date="{{date}}"
+    {% if meta %} meta="{{meta}}" {% endif %}
+    path="{{path}}"
+>
+    <label>{{ label }}</label>
+</bookmark>
