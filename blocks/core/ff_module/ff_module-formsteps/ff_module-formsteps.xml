@@ -1,5 +1,8 @@
 <formsteps>
-    {% for step in formsteps %}
-   	 <step url="{{step.url | default('#')}}" state="{{step.state | default('default')}}" id="{{step.id}}">{{step.name}}</step>
+    {% for step in steps %}
+   	 <step url="{{step.url | default('#')}}" state="{{step.state | default('')}}" id="{{step.id}}">
+        <label>{{step.name}}</label>
+        <content></content>
+    </step>
     {% endfor %}
 </formsteps>

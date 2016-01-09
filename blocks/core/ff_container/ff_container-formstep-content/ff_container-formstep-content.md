@@ -1,7 +1,7 @@
 ---
 data:
     modifier: "style-variation"
-    tabs: 
+    steps: 
       -
         state: 'is-current'
         label: "Recipients"
