@@ -27,6 +27,10 @@
                 </xsl:attribute>
             </xsl:if>
 
+            <xsl:if test="$data/action">
+                <xsl:attribute name="data-ff-action"><xsl:value-of select="$data/action"/></xsl:attribute>
+            </xsl:if>
+
             <xsl:if test="$data/button/@icon">
                 <span>
                     <xsl:attribute name="class">
@@ -34,6 +38,7 @@
                         <xsl:if test="not($data/button/@hide_text)"> ff_icon-left</xsl:if>
                     </xsl:attribute>
                 </span>
+
             </xsl:if>
             <span>
                 <xsl:attribute name="class">

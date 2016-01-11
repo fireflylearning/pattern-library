@@ -31,6 +31,7 @@
         margin: 0;
         padding: 0;
     }
+
     .text-small {
         font-size: 14rem/@ff_base;
         line-height: 16/14;
@@ -62,6 +63,10 @@
         &:active, &:hover {
             color: lighten(@color, 10%);
         }
+    }
+    .link-quiet {
+        text-decoration: none;
+        color: @ff_colour_text_quiet;
     }
     .link-disabled(@color:@ff_color_control_link) {
         color: @color;

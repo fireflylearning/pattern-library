@@ -781,5 +781,6 @@ gulp.task('watch:xslt', ['watchxslt']);
 
 gulp.task('watch:reactrt', ['build:reactrt']);
 
-gulp.task('dev', ['serve', 'watch']);
+gulp.task('dev', ['build', 'serve', 'watch']);
 gulp.task('default', ['dev']);
+
