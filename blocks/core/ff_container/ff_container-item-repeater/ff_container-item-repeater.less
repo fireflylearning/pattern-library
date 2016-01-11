@@ -7,10 +7,12 @@
 	border: 1px solid @ff_colour_control_border;
 	border-bottom: 0;
 	&:first-child {
-		border-radius: @ff_size_control_rounding @ff_size_control_rounding 0 0; // top left, top right, bottom right, bottom left
+		border-top-left-radius: @ff_size_control_rounding;
+        border-top-right-radius: @ff_size_control_rounding;
 	}
 	&:last-child {
 		border-bottom: 1px solid @ff_colour_control_border;
-		border-radius: 0 0 @ff_size_control_rounding @ff_size_control_rounding;
+		border-bottom-left-radius: @ff_size_control_rounding;
+        border-bottom-right-radius: @ff_size_control_rounding;
 	}
 }
