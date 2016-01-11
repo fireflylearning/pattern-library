@@ -1,13 +1,6 @@
 ---
 data:
-    planner:
-        type: "day"
-        date: "2015-01-06"
+    date-picker:
         dateUrlPrefix: "planner/day/"
-        nowUrl: "planner" 
-        previousUrl: "planner/day/2015-01-05" 
-        nextUrl: "planner/day/2015-01-07" 
-        dayUrl: "planner" 
-        weekUrl: "planner/week" 
-        isNow: "true"
+        target-input-id: "date-input-id" 
 ---

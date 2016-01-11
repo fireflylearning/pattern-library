@@ -1,1 +1,3 @@
-<planner type="{{planner.type}}" date="{{planner.date}}" dateUrlPrefix="{{planner.dateUrlPrefix}}" nowUrl="{{planner.nowUrl}}" previousUrl="{{planner.previousUrl}}" nextUrl="{{planner.nextUrl}}" dayUrl="{{planner.dayUrl}}" weekUrl="{{planner.weekUrl}}" isNow="{{planner.isNow}}"/>
+<date-picker dateUrlPrefix="{{date-picker.dateUrlPrefix}}" />
+
+<date-picker target-input-id="{{date-picker.date-input-id}}" />
