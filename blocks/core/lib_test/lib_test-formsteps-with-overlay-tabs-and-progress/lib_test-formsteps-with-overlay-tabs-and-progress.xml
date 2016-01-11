@@ -1,0 +1,7 @@
+{% include '../../ff_container/ff_container-tabs-content/ff_container-tabs-content.xml' with grouptab only %}
+
+{% include '../../ff_container/ff_container-formstep-content/ff_container-formstep-content.xml' with formstepheading only %}
+
+{% include '../../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-component/ff_module-recipient-picker-component.xml' with picker only %}
+
+{% include '../../ff_module/ff_module-recipient-picker-new-group-button/ff_module-recipient-picker-new-group-button.xml' with newgroupbtn only %}
