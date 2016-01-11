@@ -1,3 +1,1 @@
-<content>
-    <span class="crate_util-block">Bordered Content</span>
-</content>
+<content>{{content | default('<span class="crate_util-block">Bordered Content</span>') | safe}}</content>

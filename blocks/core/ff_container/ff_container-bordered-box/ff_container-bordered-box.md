@@ -1,4 +1,4 @@
 ---
 data:
-    content
+    content: "<span class="crate_util-block">Bordered Content</span>"
 ---
