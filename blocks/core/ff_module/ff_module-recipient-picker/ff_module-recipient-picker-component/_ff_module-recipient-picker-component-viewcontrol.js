@@ -137,12 +137,16 @@ module.exports = function createRecipientPicker(service, template) {
                 hasQuery;
 
             hasQuery = /\S+/.test(query);
-            this.setState({
-                hasQuery: hasQuery,
-                isActive: hasQuery
-            });
+            var resultsFn = function(results) {
+                this.setResults(results);
+                this.setState({
+                    hasQuery: hasQuery,
+                    isActive: hasQuery
+                });
+            }.bind(this);
 
-            service.getSearchResults(query, this.setResults);
+
+            service.getSearchResults(query, resultsFn);
         }
     });
 
