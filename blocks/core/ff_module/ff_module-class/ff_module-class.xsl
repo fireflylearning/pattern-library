@@ -3,7 +3,7 @@
 	
 	<dl class="ff_module-class">
 		<dt class="ff_module-class__item ff_module-class__item--name">
-			<a class="ff_module-class__link" href="/{$data/class/@guid}"><xsl:value-of select="$data/class/@name" /></a>
+			<a class="ff_module-class__link" href="/classes/{$data/class/@guid}"><xsl:value-of select="$data/class/@name" /></a>
 		</dt>
 		<dd class="ff_module-class__item ff_module-class__item--teacher">
 			<xsl:value-of select="$data/class/@teacher" />
