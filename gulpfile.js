@@ -621,10 +621,10 @@ gulp.task('watch', function() {
         ], ['watch:styles:blocks'])
         .on('change', changeEvent('Styles:block'));
 
-    gulp.watch([
-            path.join(paths.icons.optimise.src_base, '**', paths.icons.optimise.src),
-        ], ['watch:icons'])
-        .on('change', changeEvent('Icons'));
+    // gulp.watch([
+    //         path.join(paths.icons.optimise.src_base, '**', paths.icons.optimise.src),
+    //     ], ['watch:icons'])
+    //     .on('change', changeEvent('Icons'));
 
     gulp.watch([
             paths.crate.content.src
@@ -744,7 +744,7 @@ gulp.task('output:site:blocks', ['info:blocks'], function(cb) {
 
 gulp.task('info', ['info:blocks', 'info:content']);
 
-gulp.task('styles', ['build:css:blocks', 'build:css:crate', 'icons']);
+gulp.task('styles', ['build:css:blocks', 'build:css:crate']);
 gulp.task('scripts', ['webpack']);
 
 gulp.task('blocks', ['generate:blocks:xsl', 'generate:blocks:xml']);
@@ -755,7 +755,7 @@ gulp.task('content:nocache', ['generate:content:xml:nocache', 'generate:content:
 gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt', 'webpack']);
 
 gulp.task('watch:assets', ['assets']);
-gulp.task('watch:icons', ['icons']);
+// gulp.task('watch:icons', ['icons']);
 
 gulp.task('watch:info:blocks', ['info:blocks']);
 gulp.task('watch:info:content', ['info:content']);
