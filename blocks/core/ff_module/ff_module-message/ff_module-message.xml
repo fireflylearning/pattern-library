@@ -1,0 +1,6 @@
+<notice id="msg-1"  notice_archived="no" isosenttime="{{ date }}" postback_href="{{ url }}" type="message" from="{{ author }}" from_href="{{ profile }}" can_archive="yes" date="{{ nice_date }}" importance="{{ importance }}">
+    <message>{{ text }}</message>
+    <htmlMessage>{{ text }}</htmlMessage>
+    <description/>
+    <attachments/>
+</notice>
