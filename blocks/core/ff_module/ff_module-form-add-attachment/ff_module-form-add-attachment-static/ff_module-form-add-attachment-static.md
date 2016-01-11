@@ -17,7 +17,10 @@ data:
                         text: "From existing file" 
                     - 
                         href: "#"
-                        text: "From Google docs"
+                        text: "From Google Drive"
+                    - 
+                        href: "#"
+                        text: "From OneDrive"
         attachments:
           -
             type: "resource"
