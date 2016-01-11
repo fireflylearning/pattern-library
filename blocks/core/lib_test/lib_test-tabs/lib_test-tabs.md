@@ -3,22 +3,22 @@ data:
     modifier: constrained-height
     tabs:
       -
-        active: true
+        state: 'is-active'
         label: "Overview"
         content: "<p>Overview Tab</p>"
         id: "tab1"
       -
-        active: false
+        state: ''
         label: Details
         content: "<p>Details Tab</p>"
         id: "tab2"
       -
-        active: false
+        state: ''
         label: Tasks
         content: "<p>Tasks Tab</p>"
         id: "tab3"
       -
-        active: false
+        state: ''
         label: Students
         content: "<p>Students Tab</p>"
         id: "tab4"

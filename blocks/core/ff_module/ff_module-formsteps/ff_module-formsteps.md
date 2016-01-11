@@ -1,18 +1,18 @@
 ---
 data:
-    formsteps:
+    steps:
       -
-        state: "complete"
+        state: "is-complete"
         name: "Recipients"
         url: "#"
         id: 'stepA'
       -
-        state: "default"
+        state: ""
         name: "Details"
         url: "#"
         id: 'stepB'
       -
-        state: "current"
+        state: "is-current"
         name: "Description"
         url: "#"
         id: 'stepC'
@@ -20,6 +20,6 @@ data:
 
 State options:
 
-- default
-- completed
-- current
+- '' (default)
+- is-complete
+- is-current

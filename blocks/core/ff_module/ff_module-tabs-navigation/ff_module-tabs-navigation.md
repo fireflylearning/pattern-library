@@ -2,19 +2,19 @@
 data:
     tabs:
       -
-        active: true
+        state: 'is-active'
         label: "Overview"
-        id: "tab1b"
+        id: "tab1a"
       -
-        active: false
+        state: ''
         label: "Details"
-        id: "tab2b"
+        id: "tab2a"
       -
-        active: false
+        state: ''
         label: "Tasks"
-        id: "tab3b"
+        id: "tab3a"
       -
-        active: false
+        state: ''
         label: "Students"
-        id: "tab4b"
+        id: "tab4a"
 ---
