@@ -5,8 +5,8 @@
 
     <xsl:variable name="className">
         <xsl:choose>
-            <xsl:when test="$modifier">ff_container-bordered-box ff_container-bordered-box--<xsl:value-of select="$modifier"/></xsl:when>
-            <xsl:otherwise>ff_container-bordered-box</xsl:otherwise>
+            <xsl:when test="$modifier">ff_container-bordered-box ff_container-bordered-box--<xsl:value-of select="$modifier"/> <xsl:value-of select="$data/box/@classes"/></xsl:when>
+            <xsl:otherwise>ff_container-bordered-box <xsl:value-of select="$data/box/@classes"/></xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
     
