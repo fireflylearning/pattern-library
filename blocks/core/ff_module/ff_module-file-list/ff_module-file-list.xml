@@ -1,8 +1,8 @@
-<attachments 
-    {% if classes %} classes="{{classes}}" {% endif %}
+<attachments
+    {%- if classes %} classes="{{classes}}" {%- endif -%}
 >
-    {% for a in attachments %}
-        <attachment 
+    {%- for a in attachments %}
+        <attachment
             {% if a.id %} id="{{a.id}}" {% endif %}
             {% if a.type %} type="{{a.type}}" {% endif %}
             {% if a.resource_id %} resource_id="{{a.resource_id}}" {% endif %}
@@ -16,8 +16,8 @@
                 <data attr="{{d.attr}}">{{d.value}}</data>
             {% endfor %}
         </attachment>
-    {% endfor %}
-    {% for d in data %}
+    {%- endfor -%}
+    {%- for d in data %}
         <data attr="{{d.attr}}">{{d.value}}</data>
-    {% endfor %}
+    {%- endfor -%}
 </attachments>
