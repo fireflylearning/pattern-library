@@ -5,8 +5,8 @@
 
     <xsl:variable name="className">
         <xsl:choose>
-            <xsl:when test="$modifier">ff_container-control-bar ff_container-control-bar--<xsl:value-of select="$modifier"/></xsl:when>
-            <xsl:otherwise>ff_container-control-bar</xsl:otherwise>
+            <xsl:when test="$modifier">ff_container-control-bar ff_container-control-bar--<xsl:value-of select="$modifier"/> <xsl:value-of select="$data//control-bar/@classes"/></xsl:when>
+            <xsl:otherwise>ff_container-control-bar <xsl:value-of select="$data//control-bar/@classes"/></xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
 
