@@ -28,6 +28,12 @@ module.exports = function() {
 
                         if(curr_left != 'auto') {inst.dpDiv.css('left',new_left);}
                         if(curr_right != 'auto') {inst.dpDiv.css('right',new_right);}
+							
+						// fix date picker leaving the right side of the viewport
+						var buffer = 20;
+						var offset = inst.dpDiv.offset();
+						var viewport_adjustment = Math.max(0, offset.left + inst.dpDiv.outerWidth() + buffer - $(window).scrollLeft() - jQuery(window).width());
+						inst.dpDiv.css('left',parseInt(inst.dpDiv.css('left')) - viewport_adjustment);
                     }, 0);
                 }
             })
