@@ -12,7 +12,7 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="not(@state='')"><xsl:value-of select="$class-with-mod"/> ff_container-tabs-content--<xsl:value-of select="@state"/></xsl:when>
-                    <xsl:otherwise>ff_container-tabs-content</xsl:otherwise>
+                    <xsl:otherwise><xsl:value-of select="$class-with-mod"/></xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
             <xsl:attribute name="data-ff-tabs-content">
