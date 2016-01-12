@@ -5,7 +5,6 @@
         <h3 class="ff_module-date-stepper__title">
           <span class="ff_module-date-stepper__title">
             <xsl:value-of select="$data//planner/@titleType"/>
-            <xsl:text> </xsl:text>
           </span>
           <span class="ff_module-date-stepper__title">
             <xsl:value-of select="$data//planner/@titleDate"/>
