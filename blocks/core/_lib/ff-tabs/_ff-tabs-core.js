@@ -129,7 +129,9 @@ function getTabHandler($root, options) {
                 addCompleteClasses($lastLinks, $lastContent);
                 completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
             }
+            return true;
         }
+        return false;
     }
 
     function handleClick(e) {
@@ -151,9 +153,12 @@ function getTabHandler($root, options) {
 
     function setActiveTab(index) {
         var $triggers = $root.find(linkSel);
-        selectedIndex = testBounds(index, $triggers.length);
-        var trigger = $triggers.get(selectedIndex);
-        if (trigger) setState(trigger);
+        var attemptIndex = testBounds(index, $triggers.length);
+        var trigger = $triggers.get(attemptIndex);
+        if (trigger) {
+            var canAdvance = setState(trigger);
+            if (canAdvance) selectedIndex = attemptIndex;
+        }
         /*jshint validthis:true */
         return main;
     }
