@@ -16,9 +16,13 @@
 
             <dt class="ff_module-form-preview__list__title">
             <span class="ff_module-form-preview__list__title__text"><xsl:value-of select="./@title"/></span>
-            <xsl:call-template name="ff_module-inline-edit">
-                <xsl:with-param name="data" select="ext:node-set($edit)" />
-            </xsl:call-template>
+
+            <xsl:if test="not(./@url = '')">
+                <xsl:call-template name="ff_module-inline-edit">
+                    <xsl:with-param name="data" select="ext:node-set($edit)" />
+                </xsl:call-template>
+            </xsl:if>
+
             </dt>
             <dd class="ff_module-form-preview__list__data">
                 <xsl:if test="@preview-for">
@@ -60,7 +64,7 @@
 </xsl:template>
 
 <xsl:template match="html" mode="list-preview-html">
-    <div class="ff_module-form-preview__list__description ff_util-prose">
+    <div class="ff_module-form-preview__list__description">
     <xsl:value-of select="." disable-output-escaping="yes" />
     </div>
 </xsl:template>

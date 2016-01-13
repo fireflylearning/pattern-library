@@ -1,0 +1,3 @@
+<date-picker dateUrlPrefix="{{date-picker.dateUrlPrefix}}" />
+
+<date-picker target-input-id="{{date-picker.date-input-id}}" />

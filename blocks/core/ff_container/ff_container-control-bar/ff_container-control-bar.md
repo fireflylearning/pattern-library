@@ -1,6 +1,7 @@
 ---
 data:
   modifier: "split"
+  classes: "ff_module-other-class ff_utils-other-class"
   sets:
     -
       title: "Section Heading"
