@@ -8,13 +8,13 @@
         <xsl:value-of select="format-number(($data/progress/@marked div $data/progress/@sent_to) * 100, '#')"/><xsl:text>%</xsl:text>
     </xsl:variable>
     <xsl:variable name="marked-diff">
-        <xsl:value-of select="format-number(($data/progress/@completed_by div $data/progress/@sent_to) * 100, '#') - format-number(($data/progress/@marked div $data/progress/@sent_to) * 100, '#')"/><xsl:text>%</xsl:text>
+       <xsl:value-of select="format-number((($data/progress/@completed_by - $data/progress/@marked) div $data/progress/@sent_to) * 100, '#')"/><xsl:text>%</xsl:text>
     </xsl:variable>
     <xsl:variable name="completed_is_lonely">
-        <xsl:if test="$marked = '0%'">ff_module-progress__bar--lonely</xsl:if>
+        <xsl:if test="$data/progress/@marked = 0">ff_module-progress__bar--lonely</xsl:if>
     </xsl:variable>
     <xsl:variable name="marked_is_lonely">
-        <xsl:if test="$marked = '100%'">ff_module-progress__bar--lonely</xsl:if>
+        <xsl:if test="$data/progress/@marked = $data/progress/@sent_to">ff_module-progress__bar--lonely</xsl:if>
     </xsl:variable>
 
     <div class="ff_module-progress {$data/progress/@classes}">
