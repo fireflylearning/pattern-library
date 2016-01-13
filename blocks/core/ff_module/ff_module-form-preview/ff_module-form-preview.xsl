@@ -64,7 +64,7 @@
 </xsl:template>
 
 <xsl:template match="html" mode="list-preview-html">
-    <div class="ff_module-form-preview__list__description ff_util-prose">
+    <div class="ff_module-form-preview__list__description">
     <xsl:value-of select="." disable-output-escaping="yes" />
     </div>
 </xsl:template>
