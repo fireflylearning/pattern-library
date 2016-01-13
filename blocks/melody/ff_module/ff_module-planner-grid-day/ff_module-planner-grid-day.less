@@ -286,16 +286,9 @@
 
     //no events
     &__no-events {
-        margin: @ff_size_control_vertical @ff_size_control_horizontal;
-        #ff_mix-images > .planner-empty();
-        background-position: center center;
-        background-repeat: no-repeat;
-        padding: @ff_size_control_vertical*10 @ff_size_control_horizontal;
+        #ff_mix-no-events > .block();
     }
     &__no-events-message {
-        #ff_mix-util-prose > .text-default();
-        #ff_mix-util-prose > .text-quiet();
-        text-align: center;
-        padding-top: @ff_size_control_vertical*20;
+        #ff_mix-no-events > .message();
     }
 }
