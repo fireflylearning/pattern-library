@@ -23,6 +23,11 @@
 			</span>
 			<p class="ff_module-formstep__text"><xsl:value-of select="label" /></p>
 		</a>
+        <xsl:if test="position() != last()">
+            <span class="ff_module-formstep__separator">
+                <span class="ff_icon ff_icon-page-forward-open-lightblue"/>
+            </span>
+        </xsl:if>
 	</li>
 </xsl:for-each>
 </ul>

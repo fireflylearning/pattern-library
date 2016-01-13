@@ -3,7 +3,6 @@
 @formstep-fg-color: #fff;
 @formstep-bg-color: @ff_colour_primary;
 @formstep-border-width: 2px;
-
 .ff_module-formsteps {
     margin: 0;
     padding: 0;
@@ -17,22 +16,6 @@
     max-width: 8rem;
     vertical-align: top;
     position: relative;
-
-    &:nth-last-child(n+2) {
-        @media (min-width: @ff_bp_medium) {
-            .ff_module-formstep__icon {
-                overflow: visible;
-
-                &:after {
-                    content: '>';
-                    position: absolute;
-                    font-weight: bold;
-                    right: -1.6rem;
-                    color: fade(@formstep-fg-color, 30%);
-                }
-            }
-        }
-    }
 
     &__link {
         #ff_mix-util-prose > .link-no-decoration(@formstep-fg-color);
@@ -53,6 +36,25 @@
         font-size: 14rem/@ff_base;
         @media (min-width: @ff_bp_medium) {
             font-size: 21rem/@ff_base;
+        }
+    }
+
+    &__separator {
+        display: none;
+        position: absolute;
+        font-weight: bold;
+        right: -1.8rem;
+
+        .ff_icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        @media (min-width: @ff_bp_medium) {
+            top: 25%;
+            display: block;
+        }
+        @media (min-width: @ff_bp_wide) {
+            top: 17%;
         }
     }
 
