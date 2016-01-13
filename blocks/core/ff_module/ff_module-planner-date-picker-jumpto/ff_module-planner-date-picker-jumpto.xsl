@@ -10,7 +10,7 @@
         </a>
 		
 		<xsl:variable name="date-picker">
-			<date-picker dateUrlPrefix="{$data//planner/@dateUrlPrefix}" />
+			<date-picker dateUrlPrefix="{$data//planner/@dateUrlPrefix}" date="{$data//planner/@date}" />
 		</xsl:variable>
 		<xsl:call-template name="ff_module-date-picker-jumpto">
 			<xsl:with-param name="data" select="ext:node-set($date-picker)"/>

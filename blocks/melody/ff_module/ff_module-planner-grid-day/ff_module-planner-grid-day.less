@@ -85,6 +85,14 @@
         .sm--empty {
             background-color: @base-bg;
             border-left: 10px solid @base-bg;
+
+//      this needs removing post bett
+// ------------------------------------------- //
+            border-right: none !important; 
+// ------------------------------------------- //
+
+
+
         }
         .sm--event {}
         .md {
@@ -275,4 +283,12 @@
         }
     }
     //end: colours
+
+    //no events
+    &__no-events {
+        #ff_mix-no-events > .block();
+    }
+    &__no-events-message {
+        #ff_mix-no-events > .message();
+    }
 }

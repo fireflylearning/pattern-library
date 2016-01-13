@@ -84,7 +84,8 @@
         }
         .sm--empty {
             background-color: @base-bg;
-            border-left: 10px solid @base-bg;
+            border-left: 10px solid transparent;
+            border-right: none; //AFTER bett, find out why this doesn't work.
         }
         .sm--event {}
         .md {
@@ -234,7 +235,8 @@
             #ff_mix-planner-grid > .header > .lg();
             #ff_mix-planner-grid-day > .header > .lg();
         }
-        &__item--event {
+        &__item--event,
+        &__item--empty {
             #ff_mix-planner-grid > .item > .lg--event();
         }
     }

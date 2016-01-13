@@ -2,45 +2,62 @@
     <xsl:param name="data" />
 
     <div class="ff_module-planner-grid-day">
-        <table class="ff_module-planner-grid-day__content">
 
-            <tbody>
-            <xsl:for-each select="$data//event">
-                <xsl:sort select="@isostartdate"/>
+        <xsl:attribute name="class">
+            <xsl:text>ff_module-planner-grid-day</xsl:text>
+            <xsl:if test="not($data//event)"> ff_module-planner-grid-day--no-events</xsl:if>
+        </xsl:attribute>
 
-                <xsl:variable name="event">
-                    <xsl:copy-of select="."/>
-                </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="not($data//event)">
+                <div class="ff_module-planner-grid-day__no-events">
+                    <p class="ff_module-planner-grid-day__no-events-message">Nothing in the timetable today</p>
+                </div>
+            </xsl:when>
 
-                <tr class="ff_module-planner-grid-day__row" data-ff="planner-event" data-event-guid="{@guid}">
+            <xsl:otherwise>
+                <table class="ff_module-planner-grid-day__content">
 
-                    <th scope="row" class="ff_module-planner-grid-day__header">
-                        <xsl:call-template name="formateTimeRange-dy">
-                            <xsl:with-param name="startdate" select="@isostartdate" />
-                            <xsl:with-param name="enddate" select="@isoenddate" />
-                        </xsl:call-template>
-                    </th>
+                    <tbody>
+                    <xsl:for-each select="$data//event">
+                        <xsl:sort select="@isostartdate"/>
 
-                    <xsl:if test="@subject != ''">
-                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--event ff_module-planner-grid-day__color--{@color}">
-                        <xsl:call-template name="ff_module-class-meta-day">
-                            <xsl:with-param name="data" select="ext:node-set($event)"/>
-                        </xsl:call-template>
-                    </td>
-                    <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--note ff_module-planner-grid-day__color--{@color}">
-                        <xsl:call-template name="ff_module-planner-note">
-                            <xsl:with-param name="data" select="ext:node-set($event)"/>
-                        </xsl:call-template>
-                    </td>
-                    </xsl:if>
+                        <xsl:variable name="event">
+                            <xsl:copy-of select="."/>
+                        </xsl:variable>
 
-                    <xsl:if test="not(@subject != '')">
-                        <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--empty" colspan="2"><span class="ff_util-prose__left-blank">No lesson in timetable</span></td>
-                    </xsl:if>
-                </tr>
-            </xsl:for-each>
-            </tbody>
-        </table>
+                        <tr class="ff_module-planner-grid-day__row" data-ff="planner-event" data-event-guid="{@guid}">
+
+                            <th scope="row" class="ff_module-planner-grid-day__header">
+                                <xsl:call-template name="formateTimeRange-dy">
+                                    <xsl:with-param name="startdate" select="@isostartdate" />
+                                    <xsl:with-param name="enddate" select="@isoenddate" />
+                                </xsl:call-template>
+                            </th>
+
+                            <xsl:if test="@subject != ''">
+                            <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--event ff_module-planner-grid-day__color--{@color}">
+                                <xsl:call-template name="ff_module-class-meta-day">
+                                    <xsl:with-param name="data" select="ext:node-set($event)"/>
+                                </xsl:call-template>
+                            </td>
+                            <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--note">
+                                <xsl:call-template name="ff_module-planner-note">
+                                    <xsl:with-param name="data" select="ext:node-set($event)"/>
+                                </xsl:call-template>
+                            </td>
+                            </xsl:if>
+
+                            <xsl:if test="not(@subject != '')">
+                                <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--empty"><span class="ff_util-prose__left-blank">No lesson in timetable</span></td>
+                                <td class="ff_module-planner-grid-day__item ff_module-planner-grid-day__item--note"></td>
+                            </xsl:if>
+                        </tr>
+                    </xsl:for-each>
+                    </tbody>
+                </table>
+            </xsl:otherwise>
+        </xsl:choose> 
     </div>
 </xsl:template>
 
