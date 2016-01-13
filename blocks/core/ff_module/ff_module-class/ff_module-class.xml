@@ -1,0 +1,3 @@
+<class guid="{{guid}}" name="{{name}}" teacher="{{teacher}}">
+	<next-lesson location="{{location}}" display-date-time="{{date}}"/>
+</class>

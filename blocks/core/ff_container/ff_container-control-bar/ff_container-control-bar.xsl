@@ -5,8 +5,8 @@
 
     <xsl:variable name="className">
         <xsl:choose>
-            <xsl:when test="$modifier">ff_container-control-bar ff_container-control-bar--<xsl:value-of select="$modifier"/></xsl:when>
-            <xsl:otherwise>ff_container-control-bar</xsl:otherwise>
+            <xsl:when test="$modifier">ff_container-control-bar ff_container-control-bar--<xsl:value-of select="$modifier"/><xsl:text> </xsl:text><xsl:value-of select="$data//control-bar/@classes"/></xsl:when>
+            <xsl:otherwise>ff_container-control-bar<xsl:text> </xsl:text><xsl:value-of select="$data//control-bar/@classes"/></xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
 
@@ -26,6 +26,6 @@
        <h3 class="ff_container-control-bar__title"><xsl:value-of select="@title"/></h3>
     </xsl:if>
     <xsl:for-each select="module">
-        <span class="crate_util-block"><xsl:value-of select="."/></span>
+        <xsl:copy-of select="./*"/>
     </xsl:for-each>
 </xsl:template>

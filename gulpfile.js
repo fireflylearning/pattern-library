@@ -117,7 +117,8 @@ exportJsCompiler = webpack({
         jquery: 'jQuery',
         react: 'React',
         'react/addons': 'React',
-        lodash: '_'
+        lodash: '_',
+        underscore: "_"
     }
 });
 
@@ -528,14 +529,18 @@ gulp.task('icons:grumpicon', ['icons:checkmodified'], folderTaskParallel(paths.i
     return gulpicon(glob.sync(srcPaths), tempConfig);
 }));
 
-gulp.task('icons:copy', ['icons:grumpicon'], function() {
+function copyIcons(){
     return gulp.src(paths.icons.copy.src)
         .pipe(plugins.changed(paths.icons.copy.dest))
         .pipe(debugPipe({
             title: 'icons:copying'
         })())
         .pipe(gulp.dest(paths.icons.copy.dest));
-});
+}
+
+gulp.task('icons:grump:copy', ['icons:grumpicon'], copyIcons);
+
+gulp.task('icons:copy', copyIcons);
 
 gulp.task('icons:export', ['icons:grumpicon'], function() {
     return gulp.src(paths.icons.export.src)
@@ -545,7 +550,7 @@ gulp.task('icons:export', ['icons:grumpicon'], function() {
         .pipe(gulp.dest(path.join(exportPath, 'icons')));
 });
 
-gulp.task('icons', ['icons:copy']);
+gulp.task('icons', ['icons:grump:copy']);
 
 gulp.task('csslint', ['styles'], function() {
     gulp.src(paths.lint.styles)
@@ -621,7 +626,7 @@ gulp.task('watch', function() {
         .on('change', changeEvent('Styles:block'));
 
     gulp.watch([
-            path.join(paths.icons.optimise.src_base, '**', paths.icons.optimise.src),
+            paths.icons.copy.src,
         ], ['watch:icons'])
         .on('change', changeEvent('Icons'));
 
@@ -743,7 +748,7 @@ gulp.task('output:site:blocks', ['info:blocks'], function(cb) {
 
 gulp.task('info', ['info:blocks', 'info:content']);
 
-gulp.task('styles', ['build:css:blocks', 'build:css:crate', 'icons']);
+gulp.task('styles', ['build:css:blocks', 'build:css:crate']);
 gulp.task('scripts', ['webpack']);
 
 gulp.task('blocks', ['generate:blocks:xsl', 'generate:blocks:xml']);
@@ -751,10 +756,10 @@ gulp.task('blocks:nocache', ['generate:blocks:xsl:nocache', 'generate:blocks:xml
 gulp.task('content', ['generate:content:xml', 'generate:content:xsl']);
 gulp.task('content:nocache', ['generate:content:xml:nocache', 'generate:content:xsl:nocache']);
 
-gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt', 'webpack']);
+gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt', 'webpack', 'icons:copy']);
 
 gulp.task('watch:assets', ['assets']);
-gulp.task('watch:icons', ['icons']);
+gulp.task('watch:icons', ['icons:copy']);
 
 gulp.task('watch:info:blocks', ['info:blocks']);
 gulp.task('watch:info:content', ['info:content']);
