@@ -1,18 +1,53 @@
 #ff_util() {
-    .ir { // we may want to approach this differently
+    .ir {
+        // we may want to approach this differently
         text-indent: -500px;
         overflow: hidden;
         font: 10px monospace;
         letter-spacing: -10px;
         position: absolute;
     }
-    .row {
+    .row-bottom {
         margin-bottom: @ff_size_control_vertical;
+    }
+    .row-top {
+        margin-top: @ff_size_control_vertical;
+    }
+    .row-close-bottom {
+        margin-bottom: @ff_size_control_vertical*0.5;
+    }
+    .row-far-bottom {
+        margin-bottom: @ff_size_control_vertical*3;
+    }
+    .row-close-top {
+        margin-top: @ff_size_control_vertical*0.5;
+    }
+    .row-far-top {
+        margin-top: @ff_size_control_vertical*3;
     }
 }
 
-.ff_util-row {
-    #ff_util > .row();
+.ff_util-row, .ff_util-row-bottom {
+    #ff_util > .row-bottom();
+}
+.ff_util-row-top {
+    #ff_util > .row-top();
+}
+
+.ff_util-row-close-bottom {
+    #ff_util > .row-close-bottom();
+}
+
+.ff_util-row-far-bottom {
+    #ff_util > .row-far-bottom();
+}
+
+.ff_util-row-close-top {
+    #ff_util > .row-close-top();
+}
+
+.ff_util-row-far-top {
+    #ff_util > .row-far-top();
 }
 
 .ff_mix-clearfix() {
