@@ -47,7 +47,7 @@
         <xsl:choose>
             <xsl:when test="not($data//event)">
                 <div class="ff_module-planner-grid-week__no-events">
-                    <p class="ff_module-planner-grid-week__no-events-message">No lessons in the timetable this week</p> 
+                    <p class="ff_module-planner-grid-week__no-events-message">Nothing in the timetable this week</p> 
                 </div>
             </xsl:when>
             <xsl:otherwise>
