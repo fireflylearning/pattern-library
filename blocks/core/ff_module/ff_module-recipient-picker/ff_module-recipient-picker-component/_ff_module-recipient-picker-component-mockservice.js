@@ -1,6 +1,23 @@
 'use strict';
 var _ = require('underscore');
 
+var initialSelection = [{
+    label: 'Willy Wonka',
+    'guid': '12',
+    type: 'profile',
+    'pic_href': '/images/default_picture.png'
+}, {
+    label: 'James Holden',
+    'guid': '11',
+    type: 'profile',
+    'pic_href': '/images/default_picture.png'
+}, {
+    label: 'Group R2-D2',
+    'guid': '10',
+    type: 'groupprofile',
+    'pic_href': '/images/group-icon.png'
+}]
+
 var dummyMembers = {
     '125': [{
         label: 'Christine Collie',
@@ -32,6 +49,12 @@ var dummyMembers = {
     }, {
         label: 'Sam Fulton',
         'guid': '129',
+        type: 'profile',
+        'pic_href': '/images/default_picture.png'
+    }],
+    '10': [{
+        label: 'Jabba T. Hut',
+        'guid': '1280',
         type: 'profile',
         'pic_href': '/images/default_picture.png'
     }]
@@ -104,8 +127,11 @@ module.exports = function() {
                 callback(data);
             }, 500);
         },
-        getInitialResults: function(callback) {
+        getInitialSearchResults: function(callback) {
             callback([]);
+        },
+        getInitialSelectedRecipients: function(callback) {
+            callback(initialSelection);
         },
         getMembersOfGroup: function(guid, callback) {
             timer = setTimeout(function() {

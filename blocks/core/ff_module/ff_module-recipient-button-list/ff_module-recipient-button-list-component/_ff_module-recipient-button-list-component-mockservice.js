@@ -44,7 +44,7 @@ var groups = {
         type: 'groupprofile',
         'pic_href': '/images/group-icon.png'
     }]
-}
+};
 
 module.exports = function() {
     var timer;
@@ -58,4 +58,4 @@ module.exports = function() {
             }, 500);
         }
     };
-}
+};
