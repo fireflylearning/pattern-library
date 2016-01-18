@@ -13,5 +13,10 @@
 </xsl:template>
 
 <xsl:template match="*[string(@target-input-id)]" mode="ff_module-date-picker-jumpto-input">
-    <input class="ff_module-date-picker-jumpto__cal" data-ff="date-picker" data-ff-target-input-id="{@target-input-id}" value="{@date}"/>
+    <input
+      class="ff_module-date-picker-jumpto__cal"
+      data-ff="date-picker"
+      data-ff-target-input-id="{@target-input-id}"
+      data-ff-display-format="{@display-format}"
+      value="{@date}"/>
 </xsl:template>
