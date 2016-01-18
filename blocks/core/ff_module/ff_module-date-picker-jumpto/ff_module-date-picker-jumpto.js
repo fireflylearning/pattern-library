@@ -5,11 +5,30 @@ module.exports = function() {
     $(function() {
         $.extend($.datepicker,{_checkOffset:function(inst,offset,isFixed){return offset}});
         return $('[data-ff="date-picker"]').each(function(index, element) {
+            var valueFormat = "yy-mm-dd";
+            
+            var displayElement = $(document.getElementById($(element).attr("data-ff-target-input-id")));
+            if (displayElement) {
+                var displayFormat = $(element).attr("data-ff-display-format") || valueFormat;
+                var valueElement = $("<input type='hidden'>");
+                valueElement.attr("name", displayElement.attr("name"));
+                displayElement.attr("name", null);
+                displayElement.after(valueElement);
+                
+                updateTarget(displayElement.val());
+            }
+            
+            function updateTarget(date) {
+                valueElement.val(date);
+                var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
+                displayElement.val(displayDate);
+            }
+            
             $(element).datepicker({
-                dateFormat: "yy-mm-dd",
+                dateFormat: valueFormat,
                 onSelect: function(date) {
-                    if ($(element).attr("data-ff-target-input-id")) {
-                        document.getElementById($(element).attr("data-ff-target-input-id")).value = date;
+                    if (displayElement)) {
+                        updateTarget(date);
                     }
                     if ($(element).attr("data-ff-url-prefix")) {
                         location.href = $(element).attr("data-ff-url-prefix") + date;
