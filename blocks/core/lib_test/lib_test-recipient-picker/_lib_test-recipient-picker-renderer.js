@@ -26,12 +26,12 @@ module.exports = function() {
             var newGroupButtonComponent = createNewGroupButton(picker, groupButtonService);
             var newGroupButton = React.render(React.createElement(newGroupButtonComponent), btnEl);
         }
-        $('[data-ff-recipient-list-type]').each(function(){
+        $('[data-ff-recipient-list-type]').each(function(i){
 
             var $el = $(this);
             var type = $el.attr('data-ff-recipient-list-type');
             var newRecipientListComponent = createRecipientListComponent(picker, groupListService, type);
-            var newRecipientList = React.render(React.createElement(newRecipientListComponent), $el.get(0));
+            var newRecipientList = window['recipientList' + i] = React.render(React.createElement(newRecipientListComponent), $el.get(0));
         });
 
     });

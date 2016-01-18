@@ -11,7 +11,8 @@ module.exports = function createRecipientPicker(service, template) {
         componentDidMount: function() {
             document.addEventListener('click', this.documentClickHandler);
 
-            service.getInitialResults(this.setResults);
+            service.getInitialSearchResults(this.setResults);
+            service.getInitialSelectedRecipients(this.addRecipients);
             this.resetInput();
         },
         componentWillUnmount: function() {
@@ -64,27 +65,36 @@ module.exports = function createRecipientPicker(service, template) {
             }.bind(this);
             service.getMembersOfGroup(recipientId, resultfn);
         },
-        addRecipient: function(recipient) {
+        //FIXME: Naming add -> select
+        addRecipients: function(recipients) {
+            recipients = [].concat(recipients);
+            var uniqueGroupMembers;
 
-            var uniqueGroupMembers = _.reject([recipient], function(member) {
-                return _.any(this.state.selected, function(result) {
-                    return result.guid === member.guid;
-                });
-            }.bind(this));
+            if (this.state.selected.length) {
+                uniqueGroupMembers = _.reject(recipients, function(member) {
+                    return _.any(this.state.selected, function(result) {
+                        return result.guid === member.guid;
+                    });
+                }.bind(this));
+            } else {
+                uniqueGroupMembers = recipients;
+            }
 
             var newSelection = (this.state.selected.concat(uniqueGroupMembers));
             // console.log(newSelection);
             this.setSelected(newSelection);
         },
+        //FIXME: Naming add -> select
+        addRecipient: function(recipient) {
+            this.addRecipients(recipient);
+        },
+        //FIXME: Naming add -> select
         addRecipientByResultId: function(resultId) {
             var recipient = _.find(this.state.results, function(result) {
                 return result.guid === resultId;
             });
             if (!recipient) return;
             this.addRecipient(recipient);
-
-
-
         },
         _subscribers: [],
         addSubscriber: function(callback) {
