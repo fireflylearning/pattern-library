@@ -3,12 +3,12 @@ data:
     items: 
         - 
             title: Recipients
-            url: "#recipients"
+            url: ""
             value: Class 1, Class 2
             previewfor: "input[name='recipients']"
         - 
             title: Details
-            url: "#details"
+            url: ""
             list: 
                 - 
                     title: "Title"
