@@ -27,7 +27,7 @@ module.exports = function() {
             $(element).datepicker({
                 dateFormat: valueFormat,
                 onSelect: function(date) {
-                    if (displayElement)) {
+                    if (displayElement) {
                         updateTarget(date);
                     }
                     if ($(element).attr("data-ff-url-prefix")) {
