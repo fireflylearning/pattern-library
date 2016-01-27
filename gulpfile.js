@@ -688,9 +688,10 @@ gulp.task('export:blocks', ['info'], function() {
 
 gulp.task('export:less', plugins.folders(paths.blocks.base, function(folder) {
     var lPaths = paths.blocks.styles.exportPriority.map(function(cPath) {
-        return path.join(paths.blocks.base, folder, cPath);
+        var exclTest = cPath.substring(0, 1) === '!' ? '!' : '';
+        if (exclTest === '!') cPath = cPath.substring(1);
+        return path.join(exclTest+paths.blocks.base, folder, cPath);
     });
-
     return gulp.src(lPaths)
         .pipe(plugins.concat(folder + '.less'))
         .pipe(gulp.dest(path.join(exportPath, 'less', folder)));
