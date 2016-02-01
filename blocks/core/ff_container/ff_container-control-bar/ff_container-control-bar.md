@@ -1,15 +1,16 @@
 ---
 data:
   modifier: "split"
+  classes: "ff_module-other-class ff_utils-other-class"
   sets:
     -
       title: "Section Heading"
       modules:
-        - "Module A"
+        - "<span class=\"crate_util-block\">Module A</span>"
     -
       modules:
-        - "Module B"
-        - "Module C"
+        - "<span class=\"crate_util-block\">Module B</span>"
+        - "<span class=\"crate_util-block\">Module C</span>"
 ---
 
 ## Modifiers

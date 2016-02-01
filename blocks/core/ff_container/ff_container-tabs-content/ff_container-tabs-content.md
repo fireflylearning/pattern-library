@@ -3,19 +3,23 @@ data:
     tabs:
       -
         active: true
-        content: "Overview Tab"
+        label: "Overview"
+        content: "<p>Overview Tab</p>"
         id: "tab1a"
       -
         active: false
-        content: "Details Tab"
+        label: "Details"
+        content: "<p>Details Tab</p>"
         id: "tab2a"
       -
         active: false
-        content: "Tasks Tab"
+        label: "Tasks"
+        content: "<p>Tasks Tab</p>"
         id: "tab3a"
       -
         active: false
-        content: "Students Tab"
+        label: "Students"
+        content: "<p>Students Tab</p>"
         id: "tab4a"
 ---
 

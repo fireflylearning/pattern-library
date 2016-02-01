@@ -8,11 +8,11 @@ data:
             -
               title: "Section Heading"
               modules:
-                - "Module A"
+                - "<span class=\"crate_util-block\">Module A</span>"
             -
               modules:
-                - "Module B"
-                - "Module C"
+                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module C</span>"
 requires: 
     - ff_container-control-bar
 ---

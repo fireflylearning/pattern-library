@@ -15,7 +15,7 @@
                         </xsl:when>
                         <!-- events -->
                         <xsl:otherwise>
-                            <p class="ff_module-planner-preview__data ff_module-planner-preview__data--subject-important"><a href="{@url}" class="ff_module-planner-preview__link"><xsl:value-of select="@subject"/><xsl:text>, </xsl:text><xsl:value-of select="@description"/></a></p>
+                            <p class="ff_module-planner-preview__data ff_module-planner-preview__data--subject-important"><a href="{@url}" class="ff_module-planner-preview__link"><span data-ff="planner-event-subject"><xsl:value-of select="@subject"/></span><xsl:text>, </xsl:text><xsl:value-of select="@description"/></a></p>
                             <p class="ff_module-planner-preview__data ff_module-planner-preview__data--time"><xsl:value-of select="@starttime"/><xsl:text> - </xsl:text><xsl:value-of select="@endtime"/></p>
                             <p class="ff_module-planner-preview__data ff_module-planner-preview__data--location"><xsl:value-of select="@location"/></p>
                             <p class="ff_module-planner-preview__data ff_module-planner-preview__data--date"><xsl:value-of select="@start-date-display"/></p>
@@ -31,7 +31,7 @@
                 <xsl:if test="position() &lt;= 3">
                     <li class="ff_module-planner-preview__event">
                         <p class="ff_module-planner-preview__label">Later</p>
-                        <p class="ff_module-planner-preview__data ff_module-planner-preview__data--subject"><a href="{@url}" class="ff_module-planner-preview__link"><xsl:value-of select="@subject"/><xsl:text>, </xsl:text><xsl:value-of select="@description"/></a></p>
+                        <p class="ff_module-planner-preview__data ff_module-planner-preview__data--subject"><a href="{@url}" class="ff_module-planner-preview__link"><span data-ff="planner-event-subject"><xsl:value-of select="@subject"/></span><xsl:text>, </xsl:text><xsl:value-of select="@description"/></a></p>
                         <p class="ff_module-planner-preview__data ff_module-planner-preview__data--time"><xsl:value-of select="@starttime"/><xsl:text> - </xsl:text><xsl:value-of select="@endtime"/><xsl:text> </xsl:text><span class="ff_module-planner-preview__data--date"><xsl:value-of select="@start-date-display"/></span></p>
                     </li>
                 </xsl:if>

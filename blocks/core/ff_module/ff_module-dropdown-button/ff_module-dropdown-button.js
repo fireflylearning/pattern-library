@@ -94,6 +94,17 @@ function activateDropdowns(options) {
         addSuffix($targets, newState, defaultTargetClass);
     }
 
+    function hideAll(){
+        var $triggers = $(triggerSel);
+        var $targets = $(targetSel);
+
+        removeSuffix($triggers, openClassSuffix);
+        removeSuffix($targets, openClassSuffix);
+
+        addSuffix($triggers, enabledClassSuffix, defaultTriggerClass);
+        addSuffix($targets, enabledClassSuffix, defaultTargetClass);
+    }
+
     $(function() {
         addSuffix($root.find(triggerSel), options.enabledClassSuffix, defaultTriggerClass);
         addSuffix($root.find(targetSel), options.enabledClassSuffix, defaultTargetClass);
@@ -102,12 +113,18 @@ function activateDropdowns(options) {
             e.preventDefault();
             toggleState(this);
         });
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest(targetSel).length) {
+                hideAll();
+            }
+        });
+
     });
 
 }
 
 module.exports = function(options) {
-
     console.log('ff_module-dropdownbutton file is included');
     activateDropdowns(options);
 };

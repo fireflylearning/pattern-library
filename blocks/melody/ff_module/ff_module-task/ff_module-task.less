@@ -1,0 +1,26 @@
+.ff_module-task {
+    padding: @ff_size_spacing_max @ff_size_control_horizontal;
+}
+
+.ff_module-task__item {
+    #ff_mix-util-prose > .text-default();
+    margin-bottom: @ff_size_spacing_min;
+    @media (min-width: @ff_bp_medium) {
+        margin-bottom: 0;    
+    }
+}
+
+.ff_module-task__link {
+    #ff_mix-util-prose > .link-no-decoration();
+    display: block;
+    margin-bottom: @ff_size_spacing_min;
+}
+
+.ff_module-task--stacked .ff_module-task__link {
+    margin-bottom: 0;
+}
+
+.ff_module-task__meta {
+    #ff_mix-util-prose > .text-small();
+    #ff_mix-util-prose > .text-quiet();
+}

@@ -33,7 +33,8 @@ module.exports = {
     colors: {
         blue: '#297FCF',
         grey: '#A9AEB6',
-        white: '#FFF'
+        white: '#FFF',
+        greyblue: '#7F9CB5'
     },
 
     dynamicColorOnly: true,

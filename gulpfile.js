@@ -29,7 +29,7 @@ var gutil = require('gulp-util'),
     root = path.join(__dirname),
 
     argv = require('minimist')(process.argv.slice(2)),
-    folderTaskSeries = require('./lib/per-folder-utils'),
+    folderTaskParallel = require('./lib/per-folder-utils').folderParallel,
     changedHandlers = require('./lib/gulp-changed-handlers'),
     templatePathUtils = require('./lib/template-path-utils')(root, paths.crate.layout.base),
     crateCssOut = 'crate.min.css';
@@ -119,7 +119,8 @@ exportJsCompiler = webpack({
         jquery: 'jQuery',
         react: 'React',
         'react/addons': 'React',
-        lodash: '_'
+        lodash: '_',
+        underscore: "_"
     }
 });
 
@@ -451,6 +452,8 @@ gulp.task('audit', ['xslt'], function() {
 
 
 
+
+
 /***
  * Icons
  */
@@ -461,46 +464,95 @@ function updateIconConfig(iconConfig, folder) {
     config.datapngcss = 'icons.' + folder + '.png.css';
     config.urlpngcss = 'icons.' + folder + '.fallback.css';
     config.previewhtml = 'preview.' + folder + '.html';
-    config.dest = path.join(paths.dest, paths.icons.dest);
+    config.tmpDir = 'grunticon-tmp-' + folder;
     return config;
 }
 
-gulp.task('icons:optimise', plugins.folders(paths.optimise_svgs.base, function(folder) {
-    var lPaths = [paths.optimise_svgs.src].map(function(cPath) {
-        return path.join(paths.optimise_svgs.base, folder, cPath);
+gulp.task('icons:optimise', plugins.folders(paths.icons.optimise.src_base, function(folder) {
+    var srcPaths = [].concat(paths.icons.optimise.src).map(function(cPath) {
+        return path.join(paths.icons.optimise.src_base, folder, cPath);
     });
-    var epath = path.join(paths.optimise_svgs.base, folder, paths.optimise_svgs.dest);
+    var destPath = path.join(paths.icons.optimise.dest_base, folder, paths.icons.optimise.dest);
 
-    return gulp.src(lPaths)
-        .pipe(plugins.changed(epath))
+    return gulp.src(srcPaths)
+        .pipe(plugins.changed(destPath))
         .pipe(debugPipe({
             title: 'icons:optimise:' + folder
         })())
         .pipe(errorPipe())
         .pipe(plugins.svgmin())
-        .pipe(gulp.dest(epath));
+        .pipe(gulp.dest(destPath));
 }));
 
-gulp.task('icons:export', ['icons:optimise'], folderTaskSeries(paths.icons.base, function(folder) {
-    var lPaths = [paths.icons.src].map(function(cPath) {
-        return path.join(paths.icons.base, folder, cPath);
+
+var iconsChanged = {};
+gulp.task('icons:checkmodified', ['icons:optimise'], plugins.folders(paths.icons.grumpicon.src_base, function(folder) {
+    var srcPaths = [].concat(paths.icons.grumpicon.src).map(function(cPath) {
+        return path.join(paths.icons.grumpicon.src_base, folder, cPath);
+    }).join();
+
+    var destPath = path.join(paths.icons.grumpicon.dest_base, paths.icons.grumpicon.dest);
+    var changedPath = path.join(destPath, 'png/');
+    iconsChanged[folder] = [];
+
+    return gulp.src(srcPaths)
+        .pipe(plugins.rename(function(path) {
+            path.basename = path.basename.replace('.colors-', '-'); // Hack to account for gulpicon only renaming '.color' filenames
+        }))
+        .pipe(plugins.changed(changedPath, {
+            extension: '.png'
+        }))
+        .pipe(debugPipe({
+            title: 'icons:checkmodified:' + folder
+        })())
+        .pipe(errorPipe())
+        .pipe(plugins.tap(function(file) {
+            iconsChanged[folder].push(file);
+        }));
+}));
+
+
+gulp.task('icons:grumpicon', ['icons:checkmodified'], folderTaskParallel(paths.icons.grumpicon.src_base, function(folder) {
+    var hasntChanged = iconsChanged[folder] && iconsChanged[folder].length === 0;
+
+    gutil.log('Icons for '+folder+ (hasntChanged ? ' haven\'t ': ' have ')+ 'changed');
+
+    if (hasntChanged) return function(cb) {
+        cb();
+    };
+
+    var srcPaths = [].concat(paths.icons.grumpicon.src).map(function(cPath) {
+        return path.join(paths.icons.grumpicon.src_base, folder, cPath);
     }).join();
 
     var tempConfig = updateIconConfig(gulpiconConfig, folder);
-    tempConfig.dest = path.join(paths.export, paths.icons.dest);
-    return gulpicon(glob.sync(lPaths), tempConfig);
+    tempConfig.dest = path.join(paths.icons.grumpicon.dest_base, paths.icons.grumpicon.dest);
+
+    return gulpicon(glob.sync(srcPaths), tempConfig);
 }));
 
-gulp.task('icons', ['icons:optimise'], folderTaskSeries(paths.icons.base, function(folder) {
-    var lPaths = [paths.icons.src].map(function(cPath) {
-        return path.join(paths.icons.base, folder, cPath);
-    }).join();
+function copyIcons(){
+    return gulp.src(paths.icons.copy.src)
+        .pipe(plugins.changed(paths.icons.copy.dest))
+        .pipe(debugPipe({
+            title: 'icons:copying'
+        })())
+        .pipe(gulp.dest(paths.icons.copy.dest));
+}
 
-    var tempConfig = updateIconConfig(gulpiconConfig, folder);
-    return gulpicon(glob.sync(lPaths), tempConfig);
-}));
+gulp.task('icons:grump:copy', ['icons:grumpicon'], copyIcons);
 
+gulp.task('icons:copy', copyIcons);
 
+gulp.task('icons:export', ['icons:grumpicon'], function() {
+    return gulp.src(paths.icons.export.src)
+        .pipe(debugPipe({
+            title: 'icons:exporting'
+        })())
+        .pipe(gulp.dest(path.join(exportPath, 'icons')));
+});
+
+gulp.task('icons', ['icons:grump:copy']);
 
 gulp.task('csslint', ['styles'], function() {
     gulp.src(paths.lint.styles)
@@ -576,7 +628,7 @@ gulp.task('watch', function() {
         .on('change', changeEvent('Styles:block'));
 
     gulp.watch([
-            path.join(paths.optimise_svgs.base, '**', paths.optimise_svgs.src),
+            paths.icons.copy.src,
         ], ['watch:icons'])
         .on('change', changeEvent('Icons'));
 
@@ -638,9 +690,10 @@ gulp.task('export:blocks', ['info'], function() {
 
 gulp.task('export:less', plugins.folders(paths.blocks.base, function(folder) {
     var lPaths = paths.blocks.styles.exportPriority.map(function(cPath) {
-        return path.join(paths.blocks.base, folder, cPath);
+        var exclTest = cPath.substring(0, 1) === '!' ? '!' : '';
+        if (exclTest === '!') cPath = cPath.substring(1);
+        return path.join(exclTest+paths.blocks.base, folder, cPath);
     });
-
     return gulp.src(lPaths)
         .pipe(plugins.concat(folder + '.less'))
         .pipe(gulp.dest(path.join(exportPath, 'less', folder)));
@@ -698,7 +751,7 @@ gulp.task('output:site:blocks', ['info:blocks'], function(cb) {
 
 gulp.task('info', ['info:blocks', 'info:content']);
 
-gulp.task('styles', ['build:css:blocks', 'build:css:crate', 'icons']);
+gulp.task('styles', ['build:css:blocks', 'build:css:crate']);
 gulp.task('scripts', ['webpack']);
 
 gulp.task('blocks', ['generate:blocks:xsl', 'generate:blocks:xml']);
@@ -706,10 +759,10 @@ gulp.task('blocks:nocache', ['generate:blocks:xsl:nocache', 'generate:blocks:xml
 gulp.task('content', ['generate:content:xml', 'generate:content:xsl']);
 gulp.task('content:nocache', ['generate:content:xml:nocache', 'generate:content:xsl:nocache']);
 
-gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt', 'webpack']);
+gulp.task('build', ['xslt', 'styles', 'assets', 'build:reactrt', 'webpack', 'icons:copy']);
 
 gulp.task('watch:assets', ['assets']);
-gulp.task('watch:icons', ['icons']);
+gulp.task('watch:icons', ['icons:copy']);
 
 gulp.task('watch:info:blocks', ['info:blocks']);
 gulp.task('watch:info:content', ['info:content']);
