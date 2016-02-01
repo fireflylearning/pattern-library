@@ -1,24 +1,26 @@
 .ff_module-message {
-    padding: @ff_size_control_vertical @ff_size_control_horizontal;
-    position: relative;
+    padding: @ff_size_spacing_max @ff_size_control_horizontal;
 }
 
 .ff_module-message__label {
-    #ff_mix-base-text > .label();
-    #ff_mix-base-text > .in-list();
+    #ff_mix-util-prose > .text-default();
+    #ff_mix-util-prose > .summary-list();
 }
 
 .ff_module-message__link {
-    #ff_mix-base-links > .default();
+    #ff_mix-util-prose > .link-no-decoration();
 }
 
 .ff_module-message__label--meta {
-    #ff_mix-base-text > .small();
-    #ff_mix-base-text > .quiet();
+   #ff_mix-util-prose > .text-quiet();
+   #ff_mix-util-prose > .text-small();
+}
+
+.ff_module-message__link--meta {
+    #ff_mix-util-prose > .link-quiet();
 }
 
 .ff_module-message__controls {
-    position: absolute;
-    top: @ff_size_control_vertical;
-    right: @ff_size_control_vertical;
+    top: @ff_size_spacing_max;
+    right: @ff_size_control_horizontal;
 }
