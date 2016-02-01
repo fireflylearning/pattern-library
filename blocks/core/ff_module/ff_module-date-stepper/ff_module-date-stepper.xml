@@ -1,0 +1,1 @@
+<planner titleType="{{planner.titleType}}" titleDate="{{planner.titleDate}}" dateUrlPrefix="{{planner.dateUrlPrefix}}" nowUrl="{{planner.nowUrl}}" previousUrl="{{planner.previousUrl}}" nextUrl="{{planner.nextUrl}}" dayUrl="{{planner.dayUrl}}" weekUrl="{{planner.weekUrl}}" isNow="{{planner.isNow}}"/>

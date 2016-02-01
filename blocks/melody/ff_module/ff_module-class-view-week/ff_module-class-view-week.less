@@ -1,0 +1,55 @@
+
+.ff_module-class-view-week {
+    border: 1px solid @ff_colour_control_border;
+    border-radius: 3px;
+    background-color: #fff;
+    overflow: hidden;
+    &__content {
+        padding: @ff_size_spacing_min*0.5;
+        #ff_mix-class-view > .color-block-sm();
+        // padding-left: @ff_size_control_horizontal*0.5;
+    }
+    @media screen and (min-width:@ff_planner_week_bp_med) {
+        &__content {
+            // padding: @ff_size_control_vertical 0;
+            #ff_mix-class-view > .color-block-md();
+            // padding-left: @ff_size_control_horizontal;
+        }
+    }
+    //colors
+    &__color {
+        &--Red {
+            border-left-color: @ff_colour_class_Red;
+        }
+        &--Orange {
+            border-left-color: @ff_colour_class_Orange;
+        }
+        &--Indigo {
+            border-left-color: @ff_colour_class_Indigo;
+        }
+        &--Yellow {
+            border-left-color: @ff_colour_class_Yellow;
+        }
+        &--Lavender {
+            border-left-color: @ff_colour_class_Lavender;
+        }
+        &--Violet {
+            border-left-color: @ff_colour_class_Violet;
+        }
+        &--Green {
+            border-left-color: @ff_colour_class_Green;
+        }
+        &--Turquoise {
+            border-left-color: @ff_colour_class_Turquoise;
+        }
+        &--Pink {
+            border-left-color: @ff_colour_class_Pink;
+        }
+        &--Forest {
+            border-left-color: @ff_colour_class_Forest;
+        }
+        &--Cerise {
+            border-left-color: @ff_colour_class_Cerise;
+        }
+    }
+}
