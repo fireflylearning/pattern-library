@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="{{xslPath}}"?>
-
-<page>
-    <blocks>
-        {% include '../includes/block-xml-template.xml' with { blocks:site.blocks } %}
-    </blocks>
-</page>

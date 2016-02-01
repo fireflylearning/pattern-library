@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<page>
-    <blocks>
-        {% include '../includes/block-xml-template.xml' with { blocks:page.blocks } %}
-    </blocks>
-</page>

@@ -12,7 +12,8 @@ module.exports = {
     },
     isDebugging: true,
     isProduction: false,
-    browserList: ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', 'Firefox >= 4']
+    browserList: ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', 'Firefox >= 4'],
+    pagesCssName: 'pages.min.css'
 
     /**
      * Set this option in local options file

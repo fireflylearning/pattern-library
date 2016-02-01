@@ -4,15 +4,15 @@ var path = require('path');
 
 function getPaths() {
 
-
     var basePaths = {
-        blocks: 'blocks/',
         dest: 'wwwroot/',
+        pages: 'pages/',
+        blocks: 'blocks/',
+        core: 'core/',
         export: 'export/',
-
-        crate: 'crate/',
-        content: 'crate/content/',
-        layout: 'crate/layout/',
+        assets: 'assets/',
+        temp: '.tmp/',
+        templates: 'src/templates',
         cssBuildPriority: [
             '**/outputs.less',
             '**/settings.less',
@@ -28,97 +28,69 @@ function getPaths() {
             '**/*.less',
             '!**/outputs.less',
         ],
-
-        temp: '.tmp/',
-        assets: 'assets/'
+        blockSrcs: ['**/*.md', '**/*.xsl', '**/*.xml']
     };
-
     var paths = {
-        temp: basePaths.temp,
-        blocklist: basePaths.blocklist,
-        dest: basePaths.dest,
-        crate: {
-            base: basePaths.crate,
-            content: {
-                base: basePaths.content,
-                src: basePaths.content + '**/*.md',
-                dest: basePaths.temp
-            },
-            layout: {
-                base: basePaths.layout,
-                src: [basePaths.layout + '**/*.*', '!' + basePaths.layout + 'src/**/*.*'],
-                dest: basePaths.temp
+        export: basePaths.export,
+        clean: [basePaths.temp, basePaths.dest, basePaths.icons + '*/_icons/optimised_svgs/'],
+
+        pages: {
+            xslt: {
+                src: path.join(basePaths.pages, '**/*.md'),
+                dest: path.join(basePaths.dest)
             },
             styles: {
-                src: [basePaths.crate + 'less/base.less', basePaths.crate + '**/*.less'],
-                dest: basePaths.dest + 'css/'
-            }
+                src: [path.join(basePaths.pages, 'less', 'base.less'), path.join(basePaths.pages, 'less', '**/*.less')],
+                dest: path.join(basePaths.dest, 'css/')
+            },
+            watch: [path.join(basePaths.pages, '**/*.md')],
+            templates: {
+                watch: path.join(basePaths.templates, '**/*.{xsl,xml}')
+            },
         },
         blocks: {
-            base: basePaths.blocks,
-            html: {
-                src: basePaths.blocks + '**/*.html',
-                dest: basePaths.temp
+            dir: basePaths.blocks,
+            xslt: {
+                src: path.join(basePaths.blocks, basePaths.core, '**/*.md'),
+                dest: path.join(basePaths.dest, basePaths.blocks, basePaths.core)
             },
-            styles: {
-                buildPriority: basePaths.cssBuildPriority,
-                exportPriority: basePaths.cssExportPriority,
-                src: basePaths.cssBuildPriority.map(function(cPath) {
-                    return path.join(basePaths.blocks, cPath);
-                }),
-                dest: basePaths.dest + 'css/'
-            },
-            md: {
-                src: basePaths.blocks + '**/*.md',
-                dest: basePaths.temp + basePaths.blocks
-            },
-            xml: {
-                src: [basePaths.blocks + '**/*.xml', '!' + basePaths.blocks + '**/_shared/**/*.xml'],
-                dest: basePaths.temp + basePaths.blocks
-            },
-            xsl: {
-                src: basePaths.blocks + '**/*.xsl',
-                dest: basePaths.temp + basePaths.blocks
-            },
-            rt: {
-                src: basePaths.blocks + '**/*.rt',
-                dest: basePaths.blocks
+            export: {
+                src: [path.join(basePaths.blocks + '**/*.xsl'), '!' + basePaths.blocks + '**/lib_test/**/*.xsl'],
+                dest: basePaths.export+basePaths.blocks
             },
             scripts: {
                 src: basePaths.blocks + '**/*.js',
                 entry: './' + basePaths.blocks + 'core/_shared/index.js',
                 output: './' + basePaths.dest + 'js/'
-            }
+            },
+            styles: {
+                buildPriority: basePaths.cssBuildPriority,
+                exportPriority: basePaths.cssExportPriority,
+                dest: path.join(basePaths.dest, 'css/'),
+                watch: basePaths.cssBuildPriority.map(function(cPath) {
+                    return path.join(basePaths.blocks, cPath);
+                })
+            },
+            rt: {
+                src: basePaths.blocks + '**/*.rt',
+                dest: basePaths.blocks
+            },
+            watch: basePaths.blockSrcs.map(function(src) {
+                return path.join(basePaths.blocks, basePaths.core, src)
+            })
         },
-        clean: [basePaths.temp, basePaths.dest, basePaths.icons + '*/_icons/optimised_svgs/'],
-        export: basePaths.export,
-        lint: {
-            styles: basePaths.dest + '**/*.css',
-            scripts: basePaths.blocks + '**/*.js',
-        },
-        images: {
-            src: basePaths.blocks + '**/*.{jpg,jpeg,png,svg,gif}',
-            dest: basePaths.dest + 'images/'
-        },
-
-        assets: {
-            src: basePaths.assets + '**/*.*',
-            dest: basePaths.dest
-        },
-
-
         icons: {
             //relative to each theme folder
             optimise: {
-                src_base: basePaths.blocks,
-                dest_base: '.icons/optimised_svgs/',
+                srcDir: basePaths.blocks,
+                destDir: '.icons/optimised_svgs/',
                 src: '_icons/original_svgs/*.svg',
                 dest: '',
             },
             //relative to each theme folder
             grumpicon: {
-                src_base: '.icons/optimised_svgs/',
-                dest_base: '.icons/',
+                srcDir: '.icons/optimised_svgs/',
+                destDir: '.icons/',
                 src: '*.svg',
                 dest: 'build',
                 templates: 'crate/layout/icons/templates/default-css.hbs',
@@ -128,11 +100,15 @@ function getPaths() {
                 src: ['.icons/build/**/*'],
                 dest: basePaths.dest + 'css/icons'
             },
-            export:{
+            export: {
                 src: ['.icons/build/**/*.{js,css,png}'], // Must have no spaces between commas in curly brackets!
             }
+        },
+        assets: {
+            src: basePaths.assets + '**/*.*',
+            dest: basePaths.dest,
+            export: basePaths.assets + '**/*.{png,gif,svg,jpeg,jpg}',
         }
-
     };
 
     return paths;
