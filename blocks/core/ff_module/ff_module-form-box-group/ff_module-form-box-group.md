@@ -1,7 +1,8 @@
 ---
 data:
-    label: "Group input name"
-    id: "input-group-id"
+    title: "Group input name"
+    guid: "input-group-id"
+    type: groupprofile
 ---
 
 State options:

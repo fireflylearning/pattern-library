@@ -1,5 +1,6 @@
 ---
 data:
-    label: "Member input name"
-    id: "input-member-id"
+    title: "Member input name"
+    guid: "input-member-id"
+    type: profile
 ---

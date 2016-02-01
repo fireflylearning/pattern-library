@@ -19,5 +19,5 @@ data:
             pic_href: "/images/group-icon.png"
 
 requires: 
-    - ff_module-profile-picture-and-name-button
+    - ff_module-form-box-member
 ---

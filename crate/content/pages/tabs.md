@@ -7,66 +7,66 @@ data:
         -
           tabs:
               -
-                active: true
+                state: 'is-active'
                 label: "Overview"
                 content: "Overview Content"
                 id: "tab1"
               -
-                active: false
+                state: ''
                 label: "Details"
                 content: "Details Content"
                 id: "tab2"
               -
-                active: false
+                state: ''
                 label: "Tasks"
                 content: "Tasks Content"
                 id: "tab3"
               -
-                active: false
+                state: ''
                 label: "Students"
                 content: "Students Content"
                 id: "tab4"
         -  
           tabs:
               -
-                active: false
+                state: ''
                 label: "Overview"
                 content: "Overview Content"
                 id: "tab1"
               -
-                active: true
+                state: 'is-active'
                 label: "Details"
                 content: "Details Content"
                 id: "tab2"
               -
-                active: false
+                state: ''
                 label: "Tasks"
                 content: "Tasks Content"
                 id: "tab3"
               -
-                active: false
+                state: ''
                 label: "Students"
                 content: "Students Content"
                 id: "tab4"
         -  
           tabs:
               -
-                active: false
+                state: ''
                 label: "Overview"
                 content: "Overview Content"
                 id: "tab1"
               -
-                active: false
+                state: ''
                 label: "Details"
                 content: "Details Content"
                 id: "tab2"
               -
-                active: false
+                state: ''
                 label: "Tasks"
                 content: "Tasks Content"
                 id: "tab3"
               -
-                active: true
+                state: 'is-active'
                 label: "Students"
                 content: "Students Content"
                 id: "tab4"

@@ -3,7 +3,6 @@
 @formstep-fg-color: #fff;
 @formstep-bg-color: @ff_colour_primary;
 @formstep-border-width: 2px;
-
 .ff_module-formsteps {
     margin: 0;
     padding: 0;
@@ -17,22 +16,6 @@
     max-width: 8rem;
     vertical-align: top;
     position: relative;
-
-    &:nth-last-child(n+2) {
-        @media (min-width: @ff_bp_medium) {
-            .ff_module-formstep__icon {
-                overflow: visible;
-
-                &:after {
-                    content: '>';
-                    position: absolute;
-                    font-weight: bold;
-                    right: -1.6rem;
-                    color: fade(@formstep-fg-color, 30%);
-                }
-            }
-        }
-    }
 
     &__link {
         #ff_mix-util-prose > .link-no-decoration(@formstep-fg-color);
@@ -55,15 +38,26 @@
             font-size: 21rem/@ff_base;
         }
     }
-    &--is-current &__stepnumber {
-        #ff_mix-util-prose > .link-no-decoration(@formstep-bg-color);
-    }
-    &--is-current &__icon {
-        #ff_mix-decoration > .circle(@formstep-diam, @formstep-border-width, @formstep-fg-color, @formstep-fg-color);
+
+    &__separator {
+        display: none;
+        position: absolute;
+        font-weight: bold;
+        right: -1.8rem;
+
+        .ff_icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
         @media (min-width: @ff_bp_medium) {
-            #ff_mix-decoration > .circle(@formstep-diam_lg, @formstep-border-width, @formstep-fg-color, @formstep-fg-color);
+            top: 25%;
+            display: block;
+        }
+        @media (min-width: @ff_bp_wide) {
+            top: 17%;
         }
     }
+
     &--is-complete &__icon {
         #ff_mix-decoration > .circle(@formstep-diam + 2*@formstep-border-width, 0px, @formstep-fg-color, fade(@formstep-fg-color, 30%));
         @media (min-width: @ff_bp_medium) {
@@ -71,6 +65,15 @@
         }
     }
     &--is-complete--is-current &__icon {
+        #ff_mix-decoration > .circle(@formstep-diam, @formstep-border-width, @formstep-fg-color, @formstep-fg-color);
+        @media (min-width: @ff_bp_medium) {
+            #ff_mix-decoration > .circle(@formstep-diam_lg, @formstep-border-width, @formstep-fg-color, @formstep-fg-color);
+        }
+    }
+    &--is-current &__stepnumber {
+        #ff_mix-util-prose > .link-no-decoration(@formstep-bg-color);
+    }
+    &--is-current &__icon {
         #ff_mix-decoration > .circle(@formstep-diam, @formstep-border-width, @formstep-fg-color, @formstep-fg-color);
         @media (min-width: @ff_bp_medium) {
             #ff_mix-decoration > .circle(@formstep-diam_lg, @formstep-border-width, @formstep-fg-color, @formstep-fg-color);

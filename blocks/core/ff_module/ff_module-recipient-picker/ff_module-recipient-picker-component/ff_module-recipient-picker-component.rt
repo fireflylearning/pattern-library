@@ -1,0 +1,49 @@
+<rt-require dependency="../../ff_module-form-box-group/_ff_module-form-box-group-view" as="RecipientGroup"/>
+<rt-require dependency="../../ff_module-form-box-member/_ff_module-form-box-member-view" as="RecipientMember"/>
+<rt-require dependency="../../ff_module-recipient-button-list/ff_module-recipient-button-list-component/_ff_module-recipient-button-list-component-viewsimple.js" as="RecipientButtonList"/>
+
+
+<div class="ff_module-recipient-picker"
+    onClick="{this.stopEventPropagation}">
+
+    <div class="ff_module-recipient-picker__main" onClick="{this.resetInput}">
+        <ul class="ff_module-recipient-picker-selected-list" onClick="{this.stopEventPropagation}">
+            <li class="ff_module-recipient-picker-selected-list__item" rt-repeat="recipient in this.state.selected" key="sel-{recipient.guid}">
+
+                <RecipientGroup guid="{recipient.guid}"
+                rt-if="recipient.type === 'groupprofile'"
+                label="{recipient.label}"
+                onExpand="()=>this.expandGroup(recipient.guid)"
+                onDelete="()=>this.removeRecipientFromSelection(recipient.guid)" />
+
+                <RecipientMember guid="{recipient.guid}"
+                rt-if="recipient.type === 'profile'"
+                label="{recipient.label}"
+                onDelete="()=>this.removeRecipientFromSelection(recipient.guid)" />
+
+            </li>
+        </ul>
+        <input
+            class="ff_module-recipient-picker__input ff_module-form-input ff_module-form-input--invisible"
+            name="recipient-picker-query"
+            onChange="{this.handleInputChange}"
+            onClick="{this.triggerClickHandler}"
+            ref="{function(ref){
+                //console.log(ref); TODO: Investigate why sometimes null
+                if(!ref) return;
+                this.textInput = ref.getDOMNode(); }.bind(this)}"
+            />
+    </div>
+
+    <div class="ff_module-recipient-picker__selectable{this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : ''}">
+
+        <RecipientButtonList rt-if="this.state.hasResults === true"
+            results="{this.state.results}"
+            isSelected="{this.checkIsSelected}"
+            onSelect="{this.addRecipientByResultId}"
+            />
+
+        <p rt-if="this.state.hasResults === false">No results available</p>
+    </div>
+</div>
+
