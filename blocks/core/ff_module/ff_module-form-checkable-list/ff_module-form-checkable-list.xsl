@@ -55,7 +55,7 @@
                             <xsl:attribute name="classes">
                                 <xsl:text>ff_module-form-pair__label ff_module-form-pair__label--</xsl:text><xsl:value-of select="$modifier"/>
                             </xsl:attribute>
-                            <xsl:apply-templates select="@*|node()" />
+                            <xsl:apply-templates select="@*|node()" mode="ff_module-form-checkable-list__attribute-transform"/>
                         </xsl:copy>
                     </xsl:variable>
                     <xsl:call-template name="ff_module-form-label">
@@ -68,7 +68,7 @@
                             <xsl:attribute name="classes">
                                 <xsl:text>ff_module-form-pair__item ff_module-form-pair__item--</xsl:text><xsl:value-of select="$modifier"/>
                             </xsl:attribute>
-                            <xsl:apply-templates select="@*|node()" />
+                            <xsl:apply-templates select="@*|node()" mode="ff_module-form-checkable-list__attribute-transform"/>
                         </xsl:copy>
                     </xsl:variable>
                     <xsl:call-template name="ff_module-form-input">
@@ -81,7 +81,7 @@
     </div>
 </xsl:template>
 
-<xsl:template match="@*|node()">
+<xsl:template match="@*|node()" mode="ff_module-form-checkable-list__attribute-transform">
     <xsl:copy>
         <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
