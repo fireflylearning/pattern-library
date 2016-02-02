@@ -1,8 +1,6 @@
 'use strict';
 
 var gulp = require('gulp'),
-    // _ = require('lodash-node'),
-    // fs = require('fs'),
     path = require('path'),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],

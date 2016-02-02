@@ -9,3 +9,4 @@ export/
 config/options.local.js
 blocks/**/_icons/optimised_svgs
 npm-debug.log
+.DS_Store
