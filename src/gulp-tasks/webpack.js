@@ -21,6 +21,7 @@ module.exports = function(gulp, plugins, config) {
                     dir + '**/[^_]*.js',
                     '!' + dir + '**/{index,utils}.js'
                 ])
+                .pipe(plugins.plumber())
                 .pipe(plugins.applyTemplate({
                     engine: 'swig',
                     template: templatePath,

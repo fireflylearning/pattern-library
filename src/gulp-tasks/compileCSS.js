@@ -25,7 +25,7 @@ module.exports = function(gulp, plugins, config, utils, browserSync) {
         return gulp.src(src, {
                 base: '.'
             })
-            .pipe(utils.errorPipe())
+            .pipe(plugins.plumber())
             .pipe(plugins.cached(name))
             .pipe(utils.debugPipe({
                 title: name
@@ -60,6 +60,7 @@ module.exports = function(gulp, plugins, config, utils, browserSync) {
         return plugins.folders(dir, function(folder) {
             var paths = src.map(getPathsMethod(dir, folder));
             return gulp.src(paths)
+                .pipe(plugins.plumber())
                 .pipe(plugins.concat(folder + '.less'))
                 .pipe(gulp.dest(path.join(dest, 'less', folder)));
         });

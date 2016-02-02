@@ -5,6 +5,7 @@ module.exports = function(gulp, plugins) {
     return function getExportBlocks(src, dest, templatePath, fileName) {
         return function exportBlocks() {
             return gulp.src(src)
+                .pipe(plugins.plumber())
                 .pipe(plugins.concat(fileName))
                 .pipe(plugins.replace('ext:node-set', 'msxsl:node-set'))
                 .pipe(plugins.applyTemplate({
