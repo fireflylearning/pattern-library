@@ -1,6 +1,6 @@
 <rt-require dependency="../../ff_module-form-box-group/_ff_module-form-box-group-view" as="RecipientGroup"/>
 <rt-require dependency="../../ff_module-form-box-member/_ff_module-form-box-member-view" as="RecipientMember"/>
-<rt-require dependency="../../ff_module-recipient-button-list/ff_module-recipient-button-list-component/_ff_module-recipient-button-list-component-viewsimple.js" as="RecipientButtonList"/>
+<rt-require dependency="../ff_module-recipient-button-list/ff_module-recipient-button-list-component/_ff_module-recipient-button-list-component-viewsimple.js" as="RecipientButtonList"/>
 
 
 <div class="ff_module-recipient-picker"

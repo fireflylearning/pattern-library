@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react/addons');
 var _ = require('lodash');
-var ResultButton = require('../../ff_module-profile-picture-and-name-button/_ff_module-profile-picture-and-name-button-view');
+var ResultButton = require('../../../ff_module-profile-picture-and-name/ff_module-profile-picture-and-name-button/_ff_module-profile-picture-and-name-button-view');
 function onSelect1(result, resultIndex) {
     this.props.onSelect(result.guid);
 }

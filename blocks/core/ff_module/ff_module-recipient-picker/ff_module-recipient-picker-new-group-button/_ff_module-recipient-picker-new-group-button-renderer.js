@@ -4,7 +4,7 @@ var React = require('react');
 var groupService = require('./_ff_module-recipient-picker-new-group-button-mockservice')();
 var createNewGroupButton = require('./ff_module-recipient-picker-new-group-button');
 
-var getfakePicker = require('../ff_module-recipient-picker/ff_module-recipient-picker-component/_ff_module-recipient-picker-component-mockcomponent');
+var getfakePicker = require('../ff_module-recipient-picker-component/_ff_module-recipient-picker-component-mockcomponent');
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {

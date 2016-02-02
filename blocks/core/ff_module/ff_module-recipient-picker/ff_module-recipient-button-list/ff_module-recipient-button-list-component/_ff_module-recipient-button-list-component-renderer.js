@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var mockPicker = require('../../ff_module-recipient-picker/ff_module-recipient-picker-component/_ff_module-recipient-picker-component-mockcomponent')();
+var mockPicker = require('../../ff_module-recipient-picker-component/_ff_module-recipient-picker-component-mockcomponent')();
 var mockGroupListService = require('./_ff_module-recipient-button-list-component-mockservice')();
 var createRecipientListComponent = require('./ff_module-recipient-button-list-component-with-picker');
 

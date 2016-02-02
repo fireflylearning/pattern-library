@@ -4,8 +4,8 @@ require('../ff_module/ff_module-button/ff_module-button')();
 require('../ff_module/ff_module-dropdown-button/ff_module-dropdown-button')();
 
 require('../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-component/_ff_module-recipient-picker-component-renderer')();
-require('../ff_module/ff_module-recipient-picker-new-group-button/_ff_module-recipient-picker-new-group-button-renderer')();
-require('../ff_module/ff_module-recipient-button-list/ff_module-recipient-button-list-component/_ff_module-recipient-button-list-component-renderer')();
+require('../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-new-group-button/_ff_module-recipient-picker-new-group-button-renderer')();
+require('../ff_module/ff_module-recipient-picker/ff_module-recipient-button-list/ff_module-recipient-button-list-component/_ff_module-recipient-button-list-component-renderer')();
 
 require('../ff_module/ff_module-date-picker-jumpto/ff_module-date-picker-jumpto')();
 require('../ff_module/ff_module-tabs/_ff_module-tabs-renderer')();
