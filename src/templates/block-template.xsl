@@ -2,8 +2,6 @@
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:msxsl="urn:schemas-microsoft-com:xslt"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:exslt="http://exslt.org/common"
     xmlns:ext="http://exslt.org/common">
 
     <xsl:output method="html" omit-xml-declaration="yes" indent="yes"

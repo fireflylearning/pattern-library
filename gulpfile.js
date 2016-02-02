@@ -9,7 +9,8 @@ var gulp = require('gulp'),
         replaceString: /\bgulp[\-.]/
     }),
 
-    config = require('./config'),
+    argv = require("minimist")(process.argv.slice(2)),
+    config = require('./config')(argv),
     paths = config.paths,
 
 
@@ -34,6 +35,7 @@ var gulp = require('gulp'),
     iconTasks = require('./src/gulp-tasks/icons')(gulp, plugins, config, utils),
     assetTasks = require('./src/gulp-tasks/assets')(gulp, plugins, config, utils, browserSync),
     clean = require('./src/gulp-tasks/clean')(gulp, plugins);
+
 
 /**
  * Data
