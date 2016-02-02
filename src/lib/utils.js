@@ -22,7 +22,8 @@ module.exports = function(gulp, plugins, browserSync, config) {
         return debugPipe;
     }
 
-    function getErrorPipe(isDebugging) {
+    /** Unused due to cross-system unreliability */
+    /*function getErrorPipe(isDebugging) {
         var errorHandler;
 
         if (isDebugging) {
@@ -41,7 +42,7 @@ module.exports = function(gulp, plugins, browserSync, config) {
             .pipe(plugins.plumber, {
                 errorHandler: errorHandler
             });
-    }
+    }*/
 
     function getSourceMapMethods(isProduction) {
         var sourcemaps = {
@@ -85,7 +86,6 @@ module.exports = function(gulp, plugins, browserSync, config) {
 
     return {
         debugPipe: getDebugPipe(config.isDebugging),
-        errorPipe: getErrorPipe(config.isDebugging),
         sourcemaps: getSourceMapMethods(config.isProduction),
         changeEvent: changeEvent,
         callbackAfterBuild: callbackAfterBuild

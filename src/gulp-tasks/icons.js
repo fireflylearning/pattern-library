@@ -20,6 +20,7 @@ module.exports = function(gulp, plugins, config, utils) {
     function getCopyMethod(src, dest) {
         return function copyIcons() {
             return gulp.src(src)
+                .pipe(plugins.plumber())
                 .pipe(plugins.changed(dest))
                 .pipe(utils.debugPipe({
                     title: 'icons:copying'
@@ -49,11 +50,11 @@ module.exports = function(gulp, plugins, config, utils) {
                 // console.log(srcPaths);
 
                 return gulp.src(srcPaths)
+                    .pipe(plugins.plumber())
                     .pipe(plugins.changed(destPath))
                     .pipe(utils.debugPipe({
                         title: 'icons:optimise:' + folder
                     })())
-                    .pipe(utils.errorPipe())
                     .pipe(plugins.svgmin())
                     .pipe(gulp.dest(destPath));
             });
@@ -73,6 +74,7 @@ module.exports = function(gulp, plugins, config, utils) {
                 iconsChanged[folder] = [];
 
                 return gulp.src(srcPaths)
+                    .pipe(plugins.plumber())
                     .pipe(plugins.rename(function(path) {
                         var tmp = path.basename.split('.colors-');
                         var newpath = path.basename;
@@ -92,7 +94,6 @@ module.exports = function(gulp, plugins, config, utils) {
                     .pipe(utils.debugPipe({
                         title: 'icons:checkmodified:' + folder
                     })())
-                    .pipe(utils.errorPipe())
                     .pipe(plugins.tap(function(file) {
                         iconsChanged[folder].push(file);
                     }));

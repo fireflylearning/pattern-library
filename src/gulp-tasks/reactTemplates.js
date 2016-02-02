@@ -4,7 +4,7 @@ module.exports = function(gulp, plugins, config, utils) {
     return function(src, dest) {
         return function() {
             gulp.src(src)
-                .pipe(utils.errorPipe())
+                .pipe(plugins.plumber())
                 .pipe(plugins.cached('reactrt'))
                 .pipe(utils.debugPipe({
                     title: 'build:reactrt'

@@ -13,11 +13,11 @@ module.exports = function(gulp, plugins, config, utils, browserSync){
     function getDevelop(src, dest){
         return function() {
             return gulp.src(src)
+                .pipe(plugins.plumber())
                 .pipe(plugins.cached('assets'))
                 .pipe(utils.debugPipe({
                     title: 'assets'
                 })())
-                .pipe(utils.errorPipe())
                 .pipe(gulp.dest(dest))
                 .pipe(browserSync.stream());
         };
