@@ -33,7 +33,7 @@ function getPaths() {
     var paths = {
         export: basePaths.export,
         clean: [basePaths.temp, basePaths.dest, basePaths.icons + '*/_icons/optimised_svgs/'],
-
+        dest: basePaths.dest,
         pages: {
             xslt: {
                 src: path.join(basePaths.pages, '**/*.md'),
