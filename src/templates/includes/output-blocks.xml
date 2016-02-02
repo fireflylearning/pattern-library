@@ -1,0 +1,11 @@
+{% for block in blocks %}
+{% set includePath = '../../../'+block.name|resourcePath('.xml', 'absolute') %}
+{% if includePath %}
+{% for datum in block.data %}
+{% set datum.blockname = block.name %}
+<block id="{{block.name}}">
+    {% include includePath with datum only %}
+</block>
+{% endfor %}
+{% endif %}
+{% endfor %}

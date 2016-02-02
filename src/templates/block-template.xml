@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <page>
+        <blocks>
+            {% include './includes/output-blocks.xml' with { blocks: page.blocks}%}
+        </blocks>
+
+        <contents><![CDATA[{{page.contents|safe}}]]></contents>
+
+    </page>
