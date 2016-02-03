@@ -2,8 +2,11 @@
 
 var gulp = require('gulp'),
     child_process = require('child_process'),
+    crypto = require('crypto'),
     path = require('path'),
     bluebird = require('bluebird'),
+    findit = require('findit'),
+    readFile = bluebird.promisify(require('fs').readFile),
     writeFile = bluebird.promisify(require('fs').writeFile),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
@@ -261,15 +264,35 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
  * Export
  *********************************************/
 gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], function(cb) {
-    gitCommit()
-        .then(function(commit) {
-            var info = {
-                commit: commit
-            };
-            return writeFile(path.join(config.exportPath, "pattern-library.json"), JSON.stringify(info));
-        })
-        .asCallback(cb);
+    bluebird.resolve([
+        gitCommit(),
+        hashExportFiles()
+    ]).spread(function(commit, exportHashes) {
+        var info = {
+            commit: commit,
+            files: exportHashes
+        };
+        return writeFile(path.join(config.exportPath, "pattern-library.json"), JSON.stringify(info, null, 4));
+    }).asCallback(cb);
 });
+
+function hashExportFiles() {
+    return bluebird.props(new bluebird(function(resolve, reject) {
+        var files = {};
+        var finder = findit(config.exportPath);
+        finder.on("file", function(file, stat) {
+            files[file.replace(/\\/g, "/")] = readFile(file, "utf8").then(function(contents) {
+                var hash = crypto.createHash("sha1");
+                hash.update(contents);
+                return hash.digest("hex");
+            });
+        });
+        finder.on("end", function() {
+            resolve(files);
+        });
+        finder.on("error", reject);
+    }));
+}
 
 function gitCommit(callback) {
     return bluebird.resolve([
