@@ -15,9 +15,11 @@
   "license": "ISC",
   "dependencies": {
     "async": "^1.5.2",
+    "bluebird": "^3.2.1",
     "browser-sync": "^2.11.1",
     "del": "^2.2.0",
     "filewalker": "^0.1.2",
+    "findit2": "^2.2.3",
     "glob": "^6.0.4",
     "gray-matter": "^2.0.2",
     "gulp": "^3.9.0",
