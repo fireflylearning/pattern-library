@@ -266,7 +266,13 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
  *********************************************/
 gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], function(cb) {
     var infoPath = path.join(config.exportPath, "pattern-library.json");
-    unlink(infoPath).then(function() {
+    unlink(infoPath).catch(function(error) {
+        if (error.code === "ENOENT") {
+            return null;
+        } else {
+            return bluebird.reject(error);
+        }
+    }).then(function() {
         return [
             gitCommit(),
             hashExportFiles()
@@ -285,7 +291,8 @@ function hashExportFiles() {
         var files = {};
         var finder = findit(config.exportPath);
         finder.on("file", function(file, stat) {
-            files[file.replace(/\\/g, "/")] = readFile(file, "utf8").then(function(contents) {
+            var normalisedPath = path.relative(config.exportPath, file).replace(/\\/g, "/");
+            files[normalisedPath] = readFile(file).then(function(contents) {
                 var hash = crypto.createHash("sha1");
                 hash.update(contents);
                 return hash.digest("hex");
