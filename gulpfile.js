@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     findit = require('findit'),
     readFile = bluebird.promisify(require('fs').readFile),
     writeFile = bluebird.promisify(require('fs').writeFile),
+    unlink = bluebird.promisify(require('fs').unlink),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
@@ -264,15 +265,18 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
  * Export
  *********************************************/
 gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], function(cb) {
-    bluebird.resolve([
-        gitCommit(),
-        hashExportFiles()
-    ]).spread(function(commit, exportHashes) {
+    var infoPath = path.join(config.exportPath, "pattern-library.json");
+    unlink(infoPath).then(function() {
+        return [
+            gitCommit(),
+            hashExportFiles()
+        ]
+    }).spread(function(commit, exportHashes) {
         var info = {
             commit: commit,
             files: exportHashes
         };
-        return writeFile(path.join(config.exportPath, "pattern-library.json"), JSON.stringify(info, null, 4));
+        return writeFile(infoPath, JSON.stringify(info, null, 4));
     }).asCallback(cb);
 });
 
