@@ -292,7 +292,7 @@ function hashExportFiles() {
         var finder = findit(config.exportPath);
         finder.on("file", function(file, stat) {
             var normalisedPath = path.relative(config.exportPath, file).replace(/\\/g, "/");
-            files[normalisedPath] = readFile(file, "utf8").then(function(contents) {
+            files[normalisedPath] = readFile(file).then(function(contents) {
                 var hash = crypto.createHash("sha1");
                 hash.update(contents);
                 return hash.digest("hex");
