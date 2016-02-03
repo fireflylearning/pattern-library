@@ -1,7 +1,10 @@
 'use strict';
 
 var gulp = require('gulp'),
+    child_process = require('child_process'),
     path = require('path'),
+    bluebird = require('bluebird'),
+    writeFile = bluebird.promisify(require('fs').writeFile),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
@@ -257,7 +260,35 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
 /**
  * Export
  *********************************************/
-gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets']);
+gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], function(cb) {
+    gitCommit()
+        .then(function(commit) {
+            var info = {
+                commit: commit
+            };
+            return writeFile(path.join(config.exportPath, "pattern-library.json"), JSON.stringify(info));
+        })
+        .asCallback(cb);
+});
+
+function gitCommit(callback) {
+    return bluebird.resolve([
+        exec("git rev-parse --verify HEAD"),
+        exec("git status --porcelain")
+    ]).spread(function(revParseResult, statusResult) {
+        var commit = revParseResult.stdout.trim();
+        var isDirty = /\S/.test(statusResult.stdout);
+        return commit + (isDirty ? "-dirty" : "");
+    });
+}
+
+function exec(command, options) {
+    return bluebird.fromCallback(function(callback) {
+        child_process.exec(command, options, function(error, stdout, stderr) {
+            callback(error, {stdout: stdout, stderr: stderr});
+        });
+    });
+}
 
 
 /**
