@@ -266,7 +266,13 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
  *********************************************/
 gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], function(cb) {
     var infoPath = path.join(config.exportPath, "pattern-library.json");
-    unlink(infoPath).then(function() {
+    unlink(infoPath).catch(function(error) {
+        if (error.code === "ENOENT") {
+            return null;
+        } else {
+            return bluebird.reject(error);
+        }
+    }).then(function() {
         return [
             gitCommit(),
             hashExportFiles()
