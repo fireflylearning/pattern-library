@@ -1,1 +1,10 @@
-<content/>
+<filter-dropdown>
+	<label>{{label}}</label>
+	{% for set in sets %}
+		<set>
+			{% for module in set.modules %}
+				<module>{{ module | safe }}</module>
+			{% endfor %}
+		</set>
+	{% endfor %}
+</filter-dropdown>
