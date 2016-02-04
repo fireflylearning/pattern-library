@@ -14,7 +14,7 @@
             </xsl:if>
         </xsl:attribute>
         <dt class="ff_module-task__item ff_module-task__item--title">
-            <a href="{$data/notice/@href}" class="ff_module-task__link"><xsl:value-of select="$data/notice/htmlMessage"/></a>
+            <a href="{$data/notice/@link_href}" class="ff_module-task__link"><xsl:value-of select="$data/notice/htmlMessage"/></a>
             <xsl:if test="$data/notice/@from">
                 <span class="ff_module-task__meta">Set by <xsl:value-of select="$data/notice/@from"/></span>
             </xsl:if>
