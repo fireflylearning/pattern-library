@@ -2,10 +2,20 @@
 	<xsl:param name="data" />
 	<div class="ff_container-filter-dropdown" data-ff="filter">
 		<div class="ff_container-filter-dropdown__heading" data-ff-action="filter-control">
-			<label class="ff_container-filter-dropdown__label">Sort by</label>
+			<label class="ff_container-filter-dropdown__label"><xsl:value-of select="$data/filter-dropdown/label"/></label>
 		</div>
 		<div class="ff_container-filter-dropdown__content" data-ff="filter-content">
-			<span class="crate_util-block">Content</span>
+			<div class="ff_container-filter-dropdown__content" data-ff="filter-content">
+				<xsl:for-each select="$data//filter-dropdown/set">
+					<xsl:apply-templates select="." mode="ff_container-filter-dropdown"/>
+				</xsl:for-each>
+			</div>
 		</div>
 	</div>
+</xsl:template>
+
+<xsl:template match="set" mode="ff_container-filter-dropdown">
+	<xsl:for-each select="module">
+		<xsl:copy-of select="./node()"/>
+	</xsl:for-each>
 </xsl:template>
