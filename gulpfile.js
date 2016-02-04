@@ -292,7 +292,7 @@ function hashExportFiles() {
         var finder = findit(config.exportPath);
         finder.on("file", function(file, stat) {
             var normalisedPath = path.relative(config.exportPath, file).replace(/\\/g, "/");
-            files[normalisedPath] = readFile(file).then(function(contents) {
+            files[normalisedPath] = readNormalisedFile(file).then(function(contents) {
                 var hash = crypto.createHash("sha1");
                 hash.update(contents);
                 return hash.digest("hex");
@@ -304,6 +304,42 @@ function hashExportFiles() {
         finder.on("error", reject);
     }));
 }
+
+function readNormalisedFile(file) {
+    var fileType = fileTypes[path.extname(file)];
+    if (fileType === "text") {
+        return readFile(file, "utf8")
+            .then(stripBom)
+            .then(normaliseLineEndings)
+            .then(function(value) {
+                return new Buffer(value, "utf8");
+            })
+    } else if (fileType === "binary") {
+        return readFile(file);
+    } else {
+        return bluebird.reject("Could not determine file type of " + file);
+    }
+}
+
+function stripBom(value) {
+    if (value.charCodeAt(0) === 0xfeff) {
+        return value.slice(1);
+    } else {
+        return value;
+    }
+}
+
+function normaliseLineEndings(value) {
+    return value.replace(/\r\n/g, "\n");
+}
+
+var fileTypes = {
+    ".css": "text",
+    ".js": "text",
+    ".less": "text",
+    ".png": "binary",
+    ".xsl": "text"
+};
 
 function gitCommit(callback) {
     return bluebird.resolve([
