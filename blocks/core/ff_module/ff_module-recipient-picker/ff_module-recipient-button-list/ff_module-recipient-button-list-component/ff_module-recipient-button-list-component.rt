@@ -1,4 +1,4 @@
-<rt-require dependency="../../ff_module-profile-picture-and-name-button/_ff_module-profile-picture-and-name-button-view" as="ResultButton"/>
+<rt-require dependency="../../../ff_module-profile-picture-and-name/ff_module-profile-picture-and-name-button/_ff_module-profile-picture-and-name-button-view" as="ResultButton"/>
 
 
 <ul class="ff_module-recipient-button-list">

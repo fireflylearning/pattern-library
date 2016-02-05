@@ -1,11 +1,11 @@
-<xsl:template name="ff_module-recipient-link-list">
+<xsl:template name="ff_module-profile-picture-and-name-link-list">
 	<xsl:param name="data" />
-	<ul class="ff_module-recipient-link-list">
+	<ul class="ff_module-profile-picture-and-name-link-list">
         <xsl:for-each select="$data//page">
         <xsl:variable name="page">
             <xsl:copy-of select="." />
         </xsl:variable>
-		<li class="ff_module-recipient-link-list__item">
+		<li class="ff_module-profile-picture-and-name-link-list__item">
             <xsl:call-template name="ff_module-profile-picture-and-name-link">
                 <xsl:with-param name="data" select="ext:node-set($page)" />
             </xsl:call-template>

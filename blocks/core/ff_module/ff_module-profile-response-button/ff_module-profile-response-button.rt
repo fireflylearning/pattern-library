@@ -1,0 +1,12 @@
+<button
+    type="button"
+    class="ff_module-profile-response-button{this.props.isSelected ? ' ff_module-profile-response-button--is-selected' : ''}"
+    data-guid="{this.props.guid}"
+    onClick="{this.props.onSelect}"
+    disabled="{this.props.isSelected}"
+    >
+      <figure class="ff_module-profile-response-button__picture">
+        <img class="ff_module-profile-response-button__image" src="{this.props.pic_href}">
+      </figure>
+      <span class="ff_module-profile-response-button__title" href="#">{this.props.label}</span>
+</button>

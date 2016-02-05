@@ -4,4 +4,4 @@
 
 {% include '../../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-component/ff_module-recipient-picker-component.xml' with picker only %}
 
-{% include '../../ff_module/ff_module-recipient-picker-new-group-button/ff_module-recipient-picker-new-group-button.xml' with newgroupbtn only %}
+{% include '../../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-new-group-button/ff_module-recipient-picker-new-group-button.xml' with newgroupbtn only %}
