@@ -17,7 +17,7 @@
             </xsl:variable>
 
 
-            <span class="crate_util-block {$classes}"><xsl:value-of select="."/></span>
+            <xsl:copy-of select="node()"/>
 
 
         </xsl:for-each>
