@@ -2,10 +2,10 @@
 data:
     items: 
       - 
-        text: "Line label"  
+        content: "Line label"  
       -              
         modifier: fullwidth
-        text: "Line input"
+        content: "Line input"
 ---
 
 ## Modifiers
@@ -30,4 +30,10 @@ data:
 ```
 
 ### In XSL
-Pass the `-form-line__item` class to the `-label` and `-input` modules with the attribute `classes`.
+```
+<xsl:call-template name="ff_container-form-line">
+    <xsl:with-param name="data" select="msxsl:node-set($child-nodes)"/>
+</xsl:call-template>
+```
+
+Where `$child-nodes` is a variable contianing calls to other patterns.

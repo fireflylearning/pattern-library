@@ -1,7 +1,9 @@
 <form-line>
     {% for item in items %}
 
-    <item modifier="{{item.modifier}}">{{item.text}}</item>
+    <item modifier="{{item.modifier}}">
+        <span class="crate_util-block">{{ item.content }}</span>
+    </item>
 
     {% endfor %}
 </form-line>
