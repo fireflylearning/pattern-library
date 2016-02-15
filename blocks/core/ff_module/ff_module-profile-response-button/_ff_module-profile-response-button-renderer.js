@@ -10,9 +10,11 @@ module.exports = function() {
                 onSelect: function() {
                     console.log("onSelect");
                 },
-                isSelected: false,
+                uiState: "",
                 guid: "u42",
                 label: "Sally Student",
+                status: "Resubmission Requested",
+                mark: "B, 76%",
                 pic_href: "/images/default_picture.png"
             });
             React.render(element, domElement);

@@ -1,0 +1,50 @@
+.ff_module-profile-response-button {
+    padding: @ff_size_spacing_max @ff_size_spacing_min;
+    &__picture {
+        #ff_mix-decoration > .circle(32px);
+        vertical-align: top;
+        margin-top: 0.2*@ff_size_spacing_min;
+    }
+    &__title {
+        color: @ff_color_control_link;
+        font-weight: bold;
+    }
+    &__status,
+    &__mark {
+        color: @ff_color_control_link;
+        font-size: 0.875rem;
+    }
+}
+
+.ff_module-profile-response-button {
+    &--is-selected {
+        cursor: default;
+        background-color: screen(@ff_color_control_link, #bfbfbf);
+        .ff_module-profile-response-button__title {
+            color: @ff_colour_control_text;
+            font-weight: normal;
+        }
+        .ff_module-profile-response-button__status, .ff_module-profile-response-button__mark {
+            color: @ff_colour_control_text;
+        }
+    }
+    &--is-reviewed {
+        .ff_module-profile-response-button__title {
+            color: @ff_color_control_link;
+            font-weight: normal;
+        }
+        .ff_module-profile-response-button__status, .ff_module-profile-response-button__mark {
+            #ff_mix-util-prose > .text-quiet();
+            font-size: 0.875rem;
+        }
+    }
+    &--is-updated {
+        .ff_module-profile-response-button__title {
+            color: @ff_color_control_link;
+            font-weight: bold;
+        }
+        .ff_module-profile-response-button__status, .ff_module-profile-response-button__mark {
+            color: @ff_color_control_link;
+        }
+    }
+}

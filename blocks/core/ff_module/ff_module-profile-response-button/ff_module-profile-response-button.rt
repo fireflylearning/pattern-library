@@ -1,6 +1,6 @@
 <button
     type="button"
-    class="ff_module-profile-response-button{this.props.isSelected ? ' ff_module-profile-response-button--is-selected' : ''}"
+    class="ff_module-profile-response-button{this.props.uiState ? ' ff_module-profile-response-button--'+this.props.uiState : ''}"
     data-guid="{this.props.guid}"
     onClick="{this.props.onSelect}"
     disabled="{this.props.isSelected}"
@@ -8,5 +8,10 @@
       <figure class="ff_module-profile-response-button__picture">
         <img class="ff_module-profile-response-button__image" src="{this.props.pic_href}">
       </figure>
-      <span class="ff_module-profile-response-button__title" href="#">{this.props.label}</span>
+      <div class="ff_module-profile-response-button__caption">
+        <span class="ff_module-profile-response-button__title">{this.props.label}</span>
+        <span class="ff_module-profile-response-button__status">{this.props.status}</span>
+        <span class="ff_module-profile-response-button__mark">{this.props.mark}</span>
+      </div>
+
 </button>
