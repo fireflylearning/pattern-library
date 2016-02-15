@@ -6,8 +6,7 @@ module.exports = function () {
         'type': 'button',
         'className': 'ff_module-profile-response-button' + (this.props.uiState ? ' ff_module-profile-response-button--' + this.props.uiState : ''),
         'data-guid': this.props.guid,
-        'onClick': this.props.onSelect,
-        'disabled': this.props.isSelected
+        'onClick': this.props.onSelect
     }, React.createElement('figure', { 'className': 'ff_module-profile-response-button__picture' }, React.createElement('img', {
         'className': 'ff_module-profile-response-button__image',
         'src': this.props.pic_href

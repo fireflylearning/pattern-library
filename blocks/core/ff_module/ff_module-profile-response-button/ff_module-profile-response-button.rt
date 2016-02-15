@@ -3,7 +3,6 @@
     class="ff_module-profile-response-button{this.props.uiState ? ' ff_module-profile-response-button--'+this.props.uiState : ''}"
     data-guid="{this.props.guid}"
     onClick="{this.props.onSelect}"
-    disabled="{this.props.isSelected}"
     >
       <figure class="ff_module-profile-response-button__picture">
         <img class="ff_module-profile-response-button__image" src="{this.props.pic_href}">
