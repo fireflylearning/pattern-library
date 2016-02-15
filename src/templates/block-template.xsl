@@ -30,6 +30,9 @@
 
             {% include './includes/foot.xsl' %}
 
+            {% for _block in page.blocks %}
+                <script src="{{_block.name|jsUrlPath}}"></script>
+            {% endfor %}
         </body>
         </html>
     </xsl:template>

@@ -114,9 +114,9 @@ gulp.task('export:less',
 /**
  * Compile javascript
  */
-gulp.task('js', ['react:templates'],
-    webpackTasks.develop());
-
+var jsentries;
+gulp.task('js', ['react:templates', 'info'],
+    webpackTasks.develop(blockData));
 
 /**
  * Export javascript
