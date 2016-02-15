@@ -17,7 +17,7 @@
             <script src="/vendor/js/react-with-addons.js"></script>
             <script src="/vendor/js/underscore-min.js"></script>
 
-            <script src="/js/blocks.js"></script>
+            <!-- <script src="/js/blocks.js"></script> -->
             <script src="/css/icons/grunticon.loader.js"></script>
             <script>
             // FIXME: For now, load all icons, but should update to only load theme icons

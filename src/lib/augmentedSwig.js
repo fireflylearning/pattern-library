@@ -72,7 +72,7 @@ module.exports = function(blockData, pageData) {
     });
 
     swig.setFilter('jsUrlPath', function(name) {
-        var jsEntry, block, fileInfo, jsUrlPath = '/';
+        var jsEntry, block, fileInfo, jsUrlPath = '';
 
 
         block = blockData.getBlock(name)

@@ -32,6 +32,14 @@
 
             {% for _block in page.blocks %}
                 <script src="{{_block.name|jsUrlPath}}"></script>
+                <script>
+                    if (window.ffBlocks["{{_block.name}}"]) {
+                        console.log("{{_block.name}}");
+                        if (typeof(window.ffBlocks["{{_block.name}}"]) === "function") {
+                            window.ffBlocks["{{_block.name}}"]();
+                        }
+                    }
+                </script>
             {% endfor %}
         </body>
         </html>
