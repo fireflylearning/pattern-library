@@ -2,7 +2,7 @@
     <select name="section" id="pattern-select" class="nav-section-select">
         <option value="">Jump to…</option>
         {% for block in site.blocks %}
-        <option value="#{{block.info.basename}}">    {{block.info.basename}}</option>
+        <option value="#{{block.name}}">    {{block.name}}</option>
         {% endfor %}
     </select>
     <button type="submit" id="pattern-submit" style="display: none;">Go</button>

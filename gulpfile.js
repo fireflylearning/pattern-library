@@ -1,14 +1,7 @@
 'use strict';
 
 var gulp = require('gulp'),
-    child_process = require('child_process'),
-    crypto = require('crypto'),
     path = require('path'),
-    bluebird = require('bluebird'),
-    findit = require('findit2'),
-    readFile = bluebird.promisify(require('fs').readFile),
-    writeFile = bluebird.promisify(require('fs').writeFile),
-    unlink = bluebird.promisify(require('fs').unlink),
     plugins = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
@@ -31,6 +24,7 @@ var gulp = require('gulp'),
     getFileInfo = require('./src/gulp-tasks/fileInfo').getFileInfo,
     buildXSLT = require('./src/gulp-tasks/buildXSLT')(gulp, plugins),
     exportBlocks = require('./src/gulp-tasks/exportBlocks')(gulp, plugins),
+    exportStatus = require('./src/gulp-tasks/exportStatus')(gulp, plugins, config),
     server = require('./src/gulp-tasks/server')(gulp, plugins, config),
     browserSync = server.browserSync,
     utils = require('./src/lib/utils')(gulp, plugins, browserSync, config),
@@ -191,7 +185,7 @@ gulp.task('serve', ['build'], server.initBrowserSync());
 /**
  * Watching
  *********************************************/
-gulp.task('watch', ['build'], function(){
+gulp.task('watch', ['build'], function() {
 
     gulp.watch([
             paths.assets.src
@@ -264,101 +258,9 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
 /**
  * Export
  *********************************************/
-gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], function(cb) {
-    var infoPath = path.join(config.exportPath, "pattern-library.json");
-    unlink(infoPath).catch(function(error) {
-        if (error.code === "ENOENT") {
-            return null;
-        } else {
-            return bluebird.reject(error);
-        }
-    }).then(function() {
-        return [
-            gitCommit(),
-            hashExportFiles()
-        ]
-    }).spread(function(commit, exportHashes) {
-        var info = {
-            commit: commit,
-            files: exportHashes
-        };
-        return writeFile(infoPath, JSON.stringify(info, null, 4));
-    }).asCallback(cb);
-});
+gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], exportStatus());
 
-function hashExportFiles() {
-    return bluebird.props(new bluebird(function(resolve, reject) {
-        var files = {};
-        var finder = findit(config.exportPath);
-        finder.on("file", function(file, stat) {
-            var normalisedPath = path.relative(config.exportPath, file).replace(/\\/g, "/");
-            files[normalisedPath] = readNormalisedFile(file).then(function(contents) {
-                var hash = crypto.createHash("sha1");
-                hash.update(contents);
-                return hash.digest("hex");
-            });
-        });
-        finder.on("end", function() {
-            resolve(files);
-        });
-        finder.on("error", reject);
-    }));
-}
 
-function readNormalisedFile(file) {
-    var fileType = fileTypes[path.extname(file)];
-    if (fileType === "text") {
-        return readFile(file, "utf8")
-            .then(stripBom)
-            .then(normaliseLineEndings)
-            .then(function(value) {
-                return new Buffer(value, "utf8");
-            })
-    } else if (fileType === "binary") {
-        return readFile(file);
-    } else {
-        return bluebird.reject("Could not determine file type of " + file);
-    }
-}
-
-function stripBom(value) {
-    if (value.charCodeAt(0) === 0xfeff) {
-        return value.slice(1);
-    } else {
-        return value;
-    }
-}
-
-function normaliseLineEndings(value) {
-    return value.replace(/\r\n/g, "\n");
-}
-
-var fileTypes = {
-    ".css": "text",
-    ".js": "text",
-    ".less": "text",
-    ".png": "binary",
-    ".xsl": "text"
-};
-
-function gitCommit(callback) {
-    return bluebird.resolve([
-        exec("git rev-parse --verify HEAD"),
-        exec("git status --porcelain")
-    ]).spread(function(revParseResult, statusResult) {
-        var commit = revParseResult.stdout.trim();
-        var isDirty = /\S/.test(statusResult.stdout);
-        return commit + (isDirty ? "-dirty" : "");
-    });
-}
-
-function exec(command, options) {
-    return bluebird.fromCallback(function(callback) {
-        child_process.exec(command, options, function(error, stdout, stderr) {
-            callback(error, {stdout: stdout, stderr: stderr});
-        });
-    });
-}
 
 
 /**

@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-
+            {% include './includes/dropdown-files.xsl' %}
             {% include './includes/foot.xsl' %}
 
         </body>
