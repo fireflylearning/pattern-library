@@ -87,5 +87,21 @@ module.exports = function(blockData, pageData) {
         return jsUrlPath;
     });
 
+    swig.setFilter('jsEntry', function(name) {
+        var jsEntry, block, fileInfo, jsUrlPath = '';
+
+
+        block = blockData.getBlock(name)
+        if (!block) return jsUrlPath;
+
+        jsEntry = block.getJsEntry();
+        if (jsEntry) {
+            jsUrlPath = jsEntry.getInfo().name.replace('.js', ''); //TODO: make path more robust
+        }
+
+        // console.log('urlPath: ', data, name, fileInfo, urlPath);
+        return jsUrlPath;
+    });
+
     return swig;
 };

@@ -1,14 +1,16 @@
 
             {% include '../includes/inline-scripts.xsl' %}
             {% for _block in page.blocks %}
-                <script src="{{_block.name|jsUrlPath}}"></script>
+                {% set jsEntry = _block.name|jsEntry %}
+                {% set jsUrlPath = _block.name|jsUrlPath %}
+                <script src="{{jsUrlPath}}"></script>
                 <script>
                     <xsl:text disable-output-escaping="yes" >
                     <![CDATA[
-                    if (window.ffBlocks && window.ffBlocks["{{_block.name}}"]) {
-                        console.log("{{_block.name}}");
-                        if (typeof(window.ffBlocks["{{_block.name}}"]) === "function") {
-                            window.ffBlocks["{{_block.name}}"]();
+                    if (window.ffBlocks && window.ffBlocks["{{jsEntry}}"]) {
+                        console.log("[Including JS] {{jsUrlPath}}");
+                        if (typeof(window.ffBlocks["{{jsEntry}}"]) === "function") {
+                            window.ffBlocks["{{jsEntry}}"]();
                         }
                     }
                     ]]>
