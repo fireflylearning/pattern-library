@@ -1,6 +1,6 @@
 <xsl:template name="ff_module-pagination">
 	<xsl:param name="data" />
-	<div class="ff_module-pagination ff_module-pagination">
+	<div class="ff_module-pagination">
 		<ul class="ff_module-pagination__items">
 			<xsl:variable name="pages_count" select="count($data/pages/page)" />
 
@@ -8,11 +8,10 @@
 				<xsl:apply-templates select="$data/pages/page[@selected='true']" mode="ff_module-pagination-previous" />
 			</xsl:if>
 
-
 			<xsl:for-each select="$data/pages/page">
 				<xsl:variable name="is_current">
 					<xsl:text>ff_module-pagination__link</xsl:text>
-					<xsl:if test="@selected"> ff_module-pagination__link--current</xsl:if>
+					<xsl:if test="@selected='true'"> ff_module-pagination__link--current</xsl:if>
 				</xsl:variable>
 				<li class="ff_module-pagination__item">
 					<a href="{@href}" class="{$is_current}"><xsl:value-of select="@label"/></a>
@@ -30,12 +29,12 @@
 
 <xsl:template match="*" mode="ff_module-pagination-previous">
 	<li class="ff_module-pagination__item">
-		<a href="{preceding-sibling::page[1]/@href}">Previous</a>
+		<a href="{preceding-sibling::page[1]/@href}"><span class="ff_icon ff_icon-page-back-blue"></span></a>
 	</li>
 </xsl:template>
 
 <xsl:template match="*" mode="ff_module-pagination-following">
 	<li class="ff_module-pagination__item">
-		<a href="{following-sibling::page[1]/@href}">Next</a>
+		<a href="{following-sibling::page[1]/@href}"><span class="ff_icon ff_icon-page-forward-blue"></span></a>
 	</li>
 </xsl:template>
