@@ -44,7 +44,7 @@ module.exports = function(blockData, siteData, swig) {
         },
         renderer: swig,
         fileContext: getBlockFileContext,
-        debug: false
+        debug: true
     };
 
     return xsltTapBlocks;

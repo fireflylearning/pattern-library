@@ -1,9 +1,23 @@
-<form-line>
+<form-line
+    {% if error_message %} error_message="{{error_message}}"{% endif %}
+    {% if error_input_id %} error_input_id="{{error_input_id}}"{% endif %}
+>
     {% for item in items %}
 
-    <item modifier="{{item.modifier}}">
-        <span class="crate_util-block">{{ item.content }}</span>
+    <item {% if item.modifier %} modifier="{{item.modifier}}"{% endif %}>
+        {{item.content | safe}}
     </item>
+    {% if errors %}
+    <errors>
+        {% for error in errors %}
+        <error
+          {% if error.type %} error_type={{error.type}}{% endif %}
+          {% if error.show %} error_show={{error.show}}{% endif %}
+          {% if error.message %} error_message={{error.message}}{% endif %}
+          />
+        {% endfor %}
+    </errors>
+    {% endif %}
 
     {% endfor %}
 </form-line>

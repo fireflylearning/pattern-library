@@ -1,0 +1,27 @@
+.ff_container-form-line {
+
+  
+
+    &--has-error {
+        border: 1px solid @ff_colour_error;
+        background-color: lighten(@ff_colour_error,35%);
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        border-radius: @ff_size_control_rounding;
+    }
+
+    &__error-message {
+        #ff_mix-util-prose > .text-default();
+        width: 100%;
+        margin-top: @ff_size_control_vertical;
+        color: @ff_colour_error;
+        font-weight: bold;
+        display: none;
+    }
+
+    &--has-error &__error-message {
+        display: block;
+    }
+
+
+
+}

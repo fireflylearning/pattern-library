@@ -15,3 +15,5 @@ require('../ff_module/ff_module-inline-help/_ff_module-inline-help-renderer')();
 require('../ff_module/ff_module-profile-response-button/_ff_module-profile-response-button-renderer')();
 
 require('../lib_test/lib_test-recipient-picker/_lib_test-recipient-picker-renderer')();
+
+require('../ff_container/ff_container-form-line/ff_container-form-line')();
