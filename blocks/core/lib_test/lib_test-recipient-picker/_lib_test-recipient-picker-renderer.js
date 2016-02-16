@@ -12,6 +12,8 @@ var createNewGroupButton = require('../../ff_module/ff_module-recipient-picker/f
 var groupListService = require('../../ff_module/ff_module-recipient-picker/ff_module-recipient-button-list/ff_module-recipient-button-list-component/_ff_module-recipient-button-list-component-mockservice')();
 var createRecipientListComponent = require('../../ff_module/ff_module-recipient-picker/ff_module-recipient-button-list/ff_module-recipient-button-list-component/ff_module-recipient-button-list-component-with-picker');
 
+require('../../ff_module/ff_module-tabs/_ff_module-tabs-renderer')();
+
 module.exports = function() {
     var picker;
 

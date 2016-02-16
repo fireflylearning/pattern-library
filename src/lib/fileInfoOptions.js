@@ -66,11 +66,12 @@ module.exports = function(gulp, plugins) {
                 });
             },
             filterFile: function filterBlockFile(filePath) {
-                var pathTest = '_';
-                var isHidden = _.some(filePath.split(path.sep), function(part) {
-                    return part.charAt(0) === pathTest;
-                })
-                return !isHidden;
+                // var pathTest = '_';
+                // var isHidden = _.some(filePath.split(path.sep), function(part) {
+                //     return part.charAt(0) === pathTest;
+                // })
+                // return !isHidden;
+                return true;
             }
         },
         pages: {

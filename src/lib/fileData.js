@@ -44,6 +44,9 @@ function createFile(name, filepath) {
         getContent: function(){
             return _content;
         },
+        getAbsolutePath: function(){
+            return _absolutePath;
+        },
         getInfo: function() {
             return {
                 name: _name,
