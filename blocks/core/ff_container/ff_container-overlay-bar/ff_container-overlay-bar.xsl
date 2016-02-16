@@ -10,10 +10,19 @@
     </xsl:variable>
 
     <div class="{$className}">
+
+				<xsl:copy-of select="$data/overlay-bar/body/node()"/>
+
+				<!-- <div class="ff_conatiner-overlay-bar__body">
+					<xsl:for-each select="$data/body/item">
+						<xsl:copy-of select="./node()"/>
+					</xsl:for-each>
+				</div> -->
+
         <div class="ff_container-overlay-bar__content">
-        <xsl:call-template name="ff_container-control-bar">
-            <xsl:with-param name="data" select="$data" />
-        </xsl:call-template>
+	        <xsl:call-template name="ff_container-control-bar">
+	            <xsl:with-param name="data" select="$data" />
+	        </xsl:call-template>
         </div>
     </div>
 

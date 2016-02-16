@@ -1,7 +1,8 @@
 ---
 data:
   modifier: ""
-  content: 
+  body: "<span class=\"crate_util-block\">The body of the page</span>"
+  content:
         name: control-bar
         modifier: "split"
         sets:
@@ -13,7 +14,7 @@ data:
               modules:
                 - "<span class=\"crate_util-block\">Module B</span>"
                 - "<span class=\"crate_util-block\">Module C</span>"
-requires: 
+requires:
     - ff_container-control-bar
 ---
 

@@ -42,7 +42,7 @@ module.exports = function mdtoXSLT(options) {
     return through.obj(function(file, enc, callback) {
         var context = getContext(file);
         var t = this;
-        output(context);
+        // output(context);
         var templateXMLPath = getXMLPath(file, context);
         var templateXSLPath = getXSLPath(file, context);
         if(debug) gutil.log(templateXMLPath, templateXSLPath);
@@ -50,7 +50,7 @@ module.exports = function mdtoXSLT(options) {
         var documentString = renderer.renderFile(templateXMLPath, context);
         var stylesheetString = renderer.renderFile(templateXSLPath, context);
         output(documentString);
-        output(stylesheetString);
+        // output(stylesheetString);
 
         libxslt.parse(stylesheetString, function(err, stylesheet) {
 
@@ -90,7 +90,7 @@ module.exports = function mdtoXSLT(options) {
                 }
 
                 if (file.isBuffer()) {
-                    output(result);
+                    // output(result);
                     file.contents = new Buffer(result, 'utf-8');
                     t.push(file);
                     return callback();
