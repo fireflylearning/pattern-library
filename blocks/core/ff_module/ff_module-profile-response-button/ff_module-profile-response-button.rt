@@ -8,9 +8,8 @@
         <img class="ff_module-profile-response-button__image" src="{this.props.pic_href}">
       </figure>
       <div class="ff_module-profile-response-button__caption">
-        <span class="ff_module-profile-response-button__title">{this.props.label}</span>
+        <span class="ff_module-profile-response-button__label">{this.props.label}</span>
         <span class="ff_module-profile-response-button__status">{this.props.status}</span>
         <span class="ff_module-profile-response-button__mark">{this.props.mark}</span>
       </div>
-
 </button>
