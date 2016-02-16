@@ -51,7 +51,7 @@
     "lazypipe": "^1.0.1",
     "less-plugin-autoprefix": "^1.5.1",
     "libxslt": "^0.6.3",
-    "lodash-node": "^3.10.1",
+    "lodash": "^4.4.0",
     "marked": "^0.3.5",
     "minimist": "^1.2.0",
     "node-dir": "^0.1.11",

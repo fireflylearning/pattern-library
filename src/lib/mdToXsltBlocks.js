@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-    _ = require('lodash-node'),
+    _ = require('lodash'),
     util = require('util');
 
 function convertToPage(blockInfo) {
