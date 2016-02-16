@@ -24,7 +24,7 @@ var gulp = require('gulp'),
     getFileInfo = require('./src/gulp-tasks/fileInfo').getFileInfo,
     buildXSLT = require('./src/gulp-tasks/buildXSLT')(gulp, plugins),
     exportBlocks = require('./src/gulp-tasks/exportBlocks')(gulp, plugins),
-    commitStatusOnExport = require('./src/gulp-tasks/commitStatusOnExport')(gulp, plugins, config),
+    exportStatus = require('./src/gulp-tasks/exportStatus')(gulp, plugins, config),
     server = require('./src/gulp-tasks/server')(gulp, plugins, config),
     browserSync = server.browserSync,
     utils = require('./src/lib/utils')(gulp, plugins, browserSync, config),
@@ -258,7 +258,7 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
 /**
  * Export
  *********************************************/
-gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], commitStatusOnExport());
+gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], exportStatus());
 
 
 
