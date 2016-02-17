@@ -1,0 +1,15 @@
+<rt-require dependency="../ff_module-profile-response-button/ff_module-profile-response-button.js" as="ProfileResponseButton"/>
+<rt-require dependency="../../ff_container/ff_container-item-repeater/ff_container-item-repeater.js" as="ItemRepeater"/>
+
+<ItemRepeater modifier="separated">
+<ProfileResponseButton rt-repeat="response in this.props.responses"
+    key = "btn-{response.guid}"
+    uiState = "{response.uiState}"
+    guid = "{response.guid}"
+    label = "{response.label}"
+    status = "{response.status}"
+    mark="{response.mark}"
+    onSelect="{response.onSelect}"
+    pic_href="{response.pic_href}"
+    >
+</ItemRepeater>
