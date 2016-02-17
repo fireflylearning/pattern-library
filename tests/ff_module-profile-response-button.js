@@ -1,4 +1,3 @@
-var ReactDOM = require('react-dom');
 var React = require('react');
 require('./utils').bootstrapBrowser();
 var TestUtils = require('react-addons-test-utils');
@@ -17,7 +16,7 @@ var data = {
         mark: "B, 76%",
         pic_href: "/images/default_picture.png"
     },
-    generatedClass = 'ff_module-profile-response-button ff_module-profile-response-button--is-selected';
+    expectedClass = 'ff_module-profile-response-button ff_module-profile-response-button--is-selected';
 
 
 
@@ -31,9 +30,9 @@ describe('ProfileResponseButton', function() {
     it('should render', function() {
         expect(component).to.exist;
     });
-    it('should have a class of \'' + generatedClass + '\'', function() {
+    it('should have a class of \'' + expectedClass + '\'', function() {
         var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
-        expect(node.className).to.equal(generatedClass);
+        expect(node.className).to.equal(expectedClass);
     });
     it('should have a label of \'' + data.label + '\'', function() {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__label');
