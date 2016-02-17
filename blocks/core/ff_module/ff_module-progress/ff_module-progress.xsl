@@ -14,7 +14,7 @@
         <xsl:if test="$data/progress/@marked = 0">ff_module-progress__bar--lonely</xsl:if>
     </xsl:variable>
     <xsl:variable name="marked_is_lonely">
-        <xsl:if test="$data/progress/@marked = $data/progress/@sent_to">ff_module-progress__bar--lonely</xsl:if>
+        <xsl:if test="$data/progress/@marked = $data/progress/@completed_by or $data/progress/@completed_by = 0 ">ff_module-progress__bar--lonely</xsl:if>
     </xsl:variable>
 
     <div class="ff_module-progress {$data/progress/@classes}">
