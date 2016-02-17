@@ -1,7 +1,8 @@
 'use strict';
 
 var webpack = require('webpack'),
-    path = require('path');
+    path = require('path'),
+     _ = require('lodash-node');
 
 function camelCase(input) {
     return input.toLowerCase().replace(/[-_]+(.)?/g, function(match, group1) {
@@ -29,7 +30,7 @@ module.exports = function(gulp, plugins, config) {
                         var baseName = path.basename(file.path, '.js');
                         var name = camelCase(baseName).replace('.', '_');
                         var filePath = path.relative(path.join(process.cwd(), tmpDir), file.path);
-                        console.log(name, filePath);
+                        // console.log(name, filePath);
                         return {
                             varName: name,
                             filePath: filePath
@@ -41,9 +42,41 @@ module.exports = function(gulp, plugins, config) {
         };
     }
 
-    function getCompiler(compiler) {
+    function getCompiler(options, blockData) {
 
         return function(callback) {
+
+            var entries = blockData.getJsEntries();
+            entries = _.reduce(entries, function(result, entry) {
+                var info = entry.getInfo();
+
+                //TODO: make path more robust
+                result[info.name.replace('.js', '')] = path.join(process.cwd(),info.absolutePath);
+                return result;
+            }, {});
+
+            console.log('ENRT', entries);
+            options.entry = entries;
+
+            compilers.develop = webpack(options);
+
+            compilers.develop.run(function(err, stats) {
+
+                if (err) return callback(err);
+                if (config.isDebugging) {
+                    plugins.util.log('[webpack]', stats.toString({
+                        colors: true
+                    }));
+                }
+
+                callback();
+            });
+        };
+    }
+
+    function getExportCompiler(compiler) {
+        return function(callback) {
+
             compiler.run(function(err, stats) {
 
                 if (err) return callback(err);
@@ -59,11 +92,12 @@ module.exports = function(gulp, plugins, config) {
     }
 
     return {
-        develop: function() {
-            return getCompiler(compilers.develop);
+        develop: function(blockData) {
+            console.log(config.webpack.develop.entry);
+            return getCompiler(config.webpack.develop, blockData);
         },
         export: function() {
-            return getCompiler(compilers.export);
+            return getExportCompiler(compilers.export);
         },
         buildExportJs: buildExportJs
     };

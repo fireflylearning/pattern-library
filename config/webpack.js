@@ -11,9 +11,9 @@ module.exports = function(paths, config) {
             cache: false,
             output: {
                 path: paths.blocks.scripts.output,
-                filename: '[name].js',
-                library: 'ffBlocks',
-                libraryTarget: 'var'
+                filename: "[name].js",
+                library: ["ffBlocks", "[name]"],
+                libraryTarget: 'umd'
             },
             resolve: {
                 modulesDirectories: ['node_modules', 'src', 'blocks'],

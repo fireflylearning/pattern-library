@@ -1,6 +1,7 @@
 'use strict';
 
-var swig = require('swig');
+var swig = require('swig'),
+path = require('path');
 
 function getBackupInfo(ext) {
     return {
@@ -10,7 +11,9 @@ function getBackupInfo(ext) {
 }
 
 module.exports = function(blockData, pageData) {
-    swig.setDefaults({ cache: false });
+    swig.setDefaults({
+        cache: false
+    });
     swig.setFilter('resourcePath', function(blockname, extname, type) {
         type = type || 'absolute';
         extname = extname || '';
@@ -66,6 +69,38 @@ module.exports = function(blockData, pageData) {
         }
         // console.log('urlPath: ', data, name, fileInfo, urlPath);
         return urlPath;
+    });
+
+    swig.setFilter('jsUrlPath', function(name) {
+        var jsEntry, block, fileInfo, jsUrlPath = '';
+
+
+        block = blockData.getBlock(name)
+        if (!block) return jsUrlPath;
+
+        jsEntry = block.getJsEntry();
+        if (jsEntry) {
+            jsUrlPath = path.join('/js/', jsEntry.getInfo().name); //TODO: make path more robust
+        }
+
+        // console.log('urlPath: ', data, name, fileInfo, urlPath);
+        return jsUrlPath;
+    });
+
+    swig.setFilter('jsEntry', function(name) {
+        var jsEntry, block, fileInfo, jsUrlPath = '';
+
+
+        block = blockData.getBlock(name)
+        if (!block) return jsUrlPath;
+
+        jsEntry = block.getJsEntry();
+        if (jsEntry) {
+            jsUrlPath = jsEntry.getInfo().name.replace('.js', ''); //TODO: make path more robust
+        }
+
+        // console.log('urlPath: ', data, name, fileInfo, urlPath);
+        return jsUrlPath;
     });
 
     return swig;

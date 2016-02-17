@@ -74,6 +74,25 @@ function createBlock(name, resolvedname) {
             if (_data && _data.length) return [].concat(_data);
             return _.assign({}, _data);
         },
+        getJsEntry: function(){
+            if (_.isEmpty(_files)) return null;
+
+            var file = _.find(_files, function(file){
+                var path = file.getAbsolutePath(),
+                fileName = file.getInfo().name,
+
+                entryName = 'renderer',
+                rendererTest = /^_([\w-]+)-renderer\.js$/,
+                hasRenderer = rendererTest.test(fileName),
+                hasJs = name +'.js' === fileName;
+                // console.log(fileName, hasRenderer);
+                return hasRenderer || hasJs;
+
+            });
+
+            // console.log(file);
+            return file;
+        },
         clearData: function(){
             _data = [];
         }
@@ -106,6 +125,16 @@ module.exports = function() {
         }, []);
     }
 
+    function getJsEntries(names) {
+        var blocklist = (names.length) ? _.map(names, getBlock) : blocks;
+
+        return _.reduce(blocklist, function(arr, block) {
+            var entryFile = block.getJsEntry();
+            if (entryFile) arr.push(entryFile);
+            return arr;
+        }, []);
+    }
+
     function addBlock(name, resolvedname) {
         blocks[name] = createBlock(name, resolvedname);
         return blocks[name];
@@ -127,6 +156,10 @@ module.exports = function() {
         getBlocklistRequires( /* (optional) Array of names */ ) {
             var args = Array.prototype.slice.call(arguments);
             return getBlockListRequires(args);
+        },
+        getJsEntries(){
+            var args = Array.prototype.slice.call(arguments);
+            return getJsEntries(args);
         }
     };
 };
