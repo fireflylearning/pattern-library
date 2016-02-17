@@ -1,0 +1,6 @@
+<div
+    class="ff_module-task-event"
+    >
+    <p>{this.props.event.sent}</p>
+    <p>{this.props.event.author.name} set task</p>
+</div>
