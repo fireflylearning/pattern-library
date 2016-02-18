@@ -1,12 +1,8 @@
 <table class="ff_container-scrollable-list">
     <tbody>
         <tr class="ff_container-scrollable-list__row">
-            <td class="ff_container-scrollable-list__cell ff_container-scrollable-list__cell--sidebar">
-            {this.props.sidebar}
-            </td>
-            <td class="ff_container-scrollable-list__cell ff_container-scrollable-list__cell--main">
-            {this.props.main}
-            </td>
+            <td class="ff_container-scrollable-list__cell ff_container-scrollable-list__cell--sidebar">{this.props.sidebar}</td>
+            <td class="ff_container-scrollable-list__cell ff_container-scrollable-list__cell--main">{this.props.main}</td>
         </tr>
     </tbody>
 </table>
