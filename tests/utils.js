@@ -1,5 +1,6 @@
 'use strict';
 
+var React = require('react');
 var jsdom = require('jsdom');
 
 function propagateToGlobal(obj) {
@@ -18,5 +19,18 @@ function bootstrapBrowser() {
 
     propagateToGlobal(window);
 }
+
+// Workaround for Stateless Components as they don't yet work with TestUtils
+function wrap(statelessComponent) {
+    return React.createClass({
+        displayName: statelessComponent.name,
+        render: function() {
+            return statelessComponent(this.props);
+        }
+    });
+}
+
+
+exports.wrap = wrap;
 
 exports.bootstrapBrowser = bootstrapBrowser;
