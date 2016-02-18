@@ -3,8 +3,9 @@
 <div class="ff_container-task-event-repeater">
     <ol class="ff_container-task-event-repeater__items">
         <li class="ff_container-task-event-repeater__item"
+            key= "event-{eventIndex}"
             rt-repeat="event in this.props.events">
-            <TaskEvent event="{event}" />
+            <TaskEvent event="{event}"/>
         </li>
     </ol>
 </div>
