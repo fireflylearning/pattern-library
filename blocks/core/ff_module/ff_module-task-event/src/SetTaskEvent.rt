@@ -1,6 +1,6 @@
-<div
-    class="ff_module-task-event"
-    >
-    <p>{this.props.event.sent}</p>
-    <p>{this.props.event.author.name} set task</p>
-</div>
+<rt-require dependency="./_TaskEventContainer.js" as="TaskEventContainer"/>
+
+<TaskEventContainer event="{this.props.event}">
+    <p class="ff_module-task-event__author-action">{this.props.event.author.name} set a task:</p>
+    <p class="ff_module-task-event__task-title">{this.props.event.taskTitle}</p>
+</TaskEventContainer>

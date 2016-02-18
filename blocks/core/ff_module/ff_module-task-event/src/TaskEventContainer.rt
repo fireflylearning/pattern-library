@@ -1,0 +1,6 @@
+<div
+    class="ff_module-task-event ff_module-task-event--{this.props.event.type}"
+    >
+    <p class="ff_module-task-event__sent">{this.props.event.sent}</p>
+    {this.props.children}
+</div>
