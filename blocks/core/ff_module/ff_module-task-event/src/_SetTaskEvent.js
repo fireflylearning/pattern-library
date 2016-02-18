@@ -2,8 +2,9 @@
 
 var React = require('react');
 var template = require('./_SetTaskEvent.rt.js');
-var SetTaskEvent;
 
-module.exports = SetTaskEvent = React.createClass({
+
+module.exports = React.createClass({
+    displayName: 'SetTaskEvent',
     render: template
 });
