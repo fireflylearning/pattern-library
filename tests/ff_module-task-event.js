@@ -17,13 +17,19 @@ var events = [{
     type: 'stamp-response-as-seen',
     sent: '21:47',
     author: { name: 'Terry Teacher' }
+}, {
+    type: 'added-comment',
+    sent: 'Mon 7 Dec, 18:45',
+    author: { name: 'Terry Teacher' },
+    comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
 }];
 
 var testProps = _.omit(events, 'type');
 
 var classes = {
-    'set-task': { type: '', sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
-    'stamp-response-as-seen': { type: '', sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' }
+    'set-task': { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
+    'stamp-response-as-seen': { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
+    'added-comment': { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', comment: 'ff_module-task-event__comment' }
 };
 
 var expectedValues = [{
@@ -32,7 +38,11 @@ var expectedValues = [{
     taskTitle: 'Write an Essay'
 }, {
     sent: '21:47',
-    author: 'Terry Teacher stamped response as seen'
+    author: 'Terry Teacher stamped response as seen.'
+}, {
+    sent: 'Mon 7 Dec, 18:45',
+    author: 'Terry Teacher added a comment:',
+    comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
 }];
 
 describe('TaskEvent', function() {
