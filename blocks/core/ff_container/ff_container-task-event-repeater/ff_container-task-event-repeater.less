@@ -1,5 +1,6 @@
 .ff_container-task-event-repeater {
     background: @ff_colour_control_bg;
+    padding: @ff_size_spacing_min*0.5;
     &__items {
         list-style:none;
         margin:0;
@@ -7,5 +8,9 @@
     }
     &__item {
         overflow: auto;
+        margin-bottom: @ff_size_spacing_min*0.5;
+    }
+    &__item:last-child {
+        margin-bottom: 0;
     }
 }
