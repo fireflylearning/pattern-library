@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react');
 
-var TaskEventRepeater = require('./ff_container-task-event-repeater');
+var TaskEventRepeater = require('./ff_module-task-event-repeater');
 var events = [
     { type: 'set-task', sent: '20:40', author: { name: 'Sally Student' }, taskTitle: 'Write an Essay' }, {
         type: 'stamp-response-as-seen',
@@ -12,7 +12,7 @@ var events = [
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
-        var el = document.querySelector('[data-ff-container-task-event-repeater]'); //Use jquery or sim in Firefly for backwards compat
+        var el = document.querySelector('[data-ff_module-task-event-repeater]'); //Use jquery or sim in Firefly for backwards compat
         if (el) {
             var repeater = React.createElement(TaskEventRepeater, {events: events });
             React.render(repeater, el);

@@ -4,7 +4,7 @@ var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 var _ = require('lodash');
 
-var TaskEventRepeater = require('../blocks/core/ff_container/ff_container-task-event-repeater/ff_container-task-event-repeater');
+var TaskEventRepeater = require('../blocks/core/ff_module/ff_module-task-event-repeater/ff_module-task-event-repeater');
 
 
 var events = [
