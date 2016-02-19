@@ -1,0 +1,13 @@
+<link-button
+    {% if id %}         id="{{id}}"                 {% endif %}
+    {% if modifier %}   modifier="{{modifier}}"     {% endif %}
+    {% if icon %}       icon="{{icon}}"             {% endif %}
+    {% if disabled %}   disabled="{{disabled}}"     {% endif %}
+    {% if hide_text %}  hide_text="{{hide_text}}"   {% endif %}
+    >
+        <text>{{text | default('Click me?')}}</text>
+        <url>{{url | default('#')}}</url>
+        {% for d in data %}
+        <data attr="{{d.attr}}">{{d.value}}</data>
+        {% endfor %}
+</link-button> 
