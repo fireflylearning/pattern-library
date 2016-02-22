@@ -238,6 +238,8 @@
 
 .ff_icon-page-down-blue { background-image: url('png/ff_icon-page-down-blue.png'); background-repeat: no-repeat; }
 
+.ff_icon-page-down-open-blue { background-image: url('png/ff_icon-page-down-open-blue.png'); background-repeat: no-repeat; }
+
 .ff_icon-page-down-open-white { background-image: url('png/ff_icon-page-down-open-white.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-down-open { background-image: url('png/ff_icon-page-down-open.png'); background-repeat: no-repeat; }
@@ -246,11 +248,15 @@
 
 .ff_icon-page-forward-blue { background-image: url('png/ff_icon-page-forward-blue.png'); background-repeat: no-repeat; }
 
+.ff_icon-page-forward-open-blue { background-image: url('png/ff_icon-page-forward-open-blue.png'); background-repeat: no-repeat; }
+
 .ff_icon-page-forward-open-lightblue { background-image: url('png/ff_icon-page-forward-open-lightblue.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-forward-open { background-image: url('png/ff_icon-page-forward-open.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-forward { background-image: url('png/ff_icon-page-forward.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-up-open-blue { background-image: url('png/ff_icon-page-up-open-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-up-open-white { background-image: url('png/ff_icon-page-up-open-white.png'); background-repeat: no-repeat; }
 
