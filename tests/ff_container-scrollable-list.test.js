@@ -37,17 +37,5 @@ describe('ScrollableList', function() {
         var items = TestUtils.findRenderedDOMComponentWithClass(component, mainClass);
         expect(items.textContent).to.equal(mainText);
     });
-    // modifiers.forEach(function(modifier, i) {
-    //     it('should generate correct class for modifier \'' + modifier + '\'', function() {
-    //         var element = React.createElement(ItemRepeater, { modifier: modifier }, data.map(function(datum) {
-    //             return React.createElement('p', { key: datum.key, style: { margin: 0 } }, datum.text);
-    //         }));
-    //         var component = TestUtils.renderIntoDocument(element);
-    //         var items = TestUtils.scryRenderedDOMComponentsWithTag(component, 'li');
-    //         var allMatch = _.every(items, function(item) {
-    //             return item.className === expectedClasses[i];
-    //         });
-    //         expect(allMatch).to.be.true;
-    //     })
-    // });
+
 });
