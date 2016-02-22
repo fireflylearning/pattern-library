@@ -5,6 +5,7 @@ var _ = require('lodash');
 var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff_container-scrollable-list');
 var TaskEventRepeater = require('../../ff_module/ff_module-task-event-repeater/ff_module-task-event-repeater');
 var ResponseRecipientList = require('../../ff_module/ff_module-response-recipient-list/ff_module-response-recipient-list');
+var Button = require('../../ff_module/ff_module-button/ff_module-button');
 
 var events = [{
     type: 'set-task',
