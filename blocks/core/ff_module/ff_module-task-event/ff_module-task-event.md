@@ -1,8 +1,19 @@
-<div data-ff_module-task-event=""/>
+<div data-ff_module-task-event="added-comment"/>
+
+<br/>
+
+<div data-ff_module-task-event="set-task"/>
+
+<br/>
+
+<div data-ff_module-task-event="stamp-response-as-seen"/>
 
 # Task event
 
 This component renders a task event with different formats depending on the `type` property of the object passed to it.
+
+**Refer to `[firefly-webapp]/front-end/lib/task-responses/events.js` for the most up-to-date listing of Event types that Firefly expects.**
+
 
 ## Event Types with styling and tests
 - `added-comment`
