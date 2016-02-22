@@ -7,7 +7,7 @@ $(function(){
 		$("[data-ff='filter-content']").toggle();
 		$("[data-ff='filter-toggler-text']").text(filterTogglerText);
 
-		$("[data-icon='filter-toggler-icon']").toggleClass("ff_icon-page-down-blue").toggleClass("ff_icon-page-forward-blue");
+		$("[data-icon='filter-toggler-icon']").toggleClass("ff_icon-page-up-open-blue").toggleClass("ff_icon-page-down-open-blue");
 
 	});
 });
