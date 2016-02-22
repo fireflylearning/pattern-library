@@ -17,6 +17,7 @@ var events = [{
     sent: '21:47',
     author: { name: 'Terry Teacher' }
 }];
+
 var recipientData = [{
     onSelect: function() {
         console.log("onSelect is0");
