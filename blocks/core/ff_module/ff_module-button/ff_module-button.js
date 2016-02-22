@@ -1,6 +1,8 @@
 'use strict';
-var $ = require('jquery');
 
-module.exports = function() {
-    console.log('ff_module-button file is included');
-};
+var React = require('react');
+var template = require('./_ff_module-button.rt.js');
+
+module.exports = React.createClass({
+    render: template
+});

@@ -1,6 +1,7 @@
 ---
 data:
     text: "default button"
+    icon: calendar
 page: 
     title: FF Module Button
 ---
@@ -62,3 +63,7 @@ data:
 * `--primary-large-block`
 * `--tertiary-block`
 * `--tertiary-large-block`
+
+## React component
+
+<div data-ff_module-buttons="" />
