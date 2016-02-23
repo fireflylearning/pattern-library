@@ -1,13 +1,13 @@
-exports.stampResponseAsSeen = function stampResponseAsSeen({ sent, author, message }) {
-    return {
-        type: types.stampResponseAsSeen,
-        sent: sent,
-        author: author,
-        message: message
-    };
-}
+// exports.stampResponseAsSeen = function stampResponseAsSeen(event) {
+//     return {
+//         type: types.stampResponseAsSeen,
+//         sent: event.sent,
+//         author: event.author,
+//         message: event.message
+//     };
+// }
 
-exports.types = {
+module.exports.types = {
     setTask: "set-task",
     stampResponseAsSeen: "stamp-response-as-seen",
     requestResubmission: "request-resubmission",

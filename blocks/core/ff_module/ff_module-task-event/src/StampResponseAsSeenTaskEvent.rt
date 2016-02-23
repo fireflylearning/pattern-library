@@ -1,5 +1,0 @@
-<rt-require dependency="./_TaskEventContainer.js" as="TaskEventContainer"/>
-
-<TaskEventContainer event="{this.props.event}">
-    <p class="ff_module-task-event__author-action">{this.props.event.author.name} stamped response as seen.</p>
-</TaskEventContainer>
