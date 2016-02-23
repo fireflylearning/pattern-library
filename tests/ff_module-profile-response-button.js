@@ -10,7 +10,6 @@ var data = {
             console.log("onSelect is0");
         },
         uiState: "is-selected",
-        guid: "u42",
         label: "Sally Student",
         status: "Marked",
         markAndGrade: {

@@ -7,7 +7,6 @@ function repeatResponse1(response, responseIndex) {
     return React.createElement(ProfileResponseButton, {
         'key': 'list-profile-response-btn-' + response.guid,
         'uiState': response.uiState,
-        'guid': response.guid,
         'label': response.label,
         'status': response.status,
         'markAndGrade': response.markAndGrade,

@@ -5,7 +5,6 @@
 <ProfileResponseButton rt-repeat="response in this.props.responses"
     key = "list-profile-response-btn-{response.guid}"
     uiState = "{response.uiState}"
-    guid = "{response.guid}"
     label = "{response.label}"
     status = "{response.status}"
     markAndGrade="{response.markAndGrade}"

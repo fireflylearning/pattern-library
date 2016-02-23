@@ -10,7 +10,6 @@
 
 - `onSelect`: Function(): null
 - `uiState`: String; css defined for `is-selected`, `is-updated` (default), `is-reviewed` in Melody
-- `guid`: String; unique id
 - `label`: String; Name of Recipient
 - `status`: String; Response Status
 - `markAndGrade`: Object; { mark: [Number], markMax: [Number], grade: [String]}
@@ -23,7 +22,6 @@
         console.log("onSelect");
     },
     uiState: "is-selected",
-    guid: "u42",
     label: "Sally Student",
     status: "Resubmission Requested",
     markAndGrade: {
