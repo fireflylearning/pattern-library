@@ -9,11 +9,13 @@ var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/eve
 
 var events = [{
     type: eventTypes.setTask,
+    localEventId: 1,
     sent: '20:40',
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
+    localEventId: 2,
     sent: '21:47',
     author: { name: 'Terry Teacher' }
 }];

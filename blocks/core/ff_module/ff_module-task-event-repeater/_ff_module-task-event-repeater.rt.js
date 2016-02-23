@@ -5,7 +5,7 @@ var TaskEvent = require('../../ff_module/ff_module-task-event/ff_module-task-eve
 function repeatEvent1(event, eventIndex) {
     return React.createElement('li', {
         'className': 'ff_container-task-event-repeater__item',
-        'key': 'event-' + eventIndex
+        'key': 'event-' + event.localEventId
     }, React.createElement(TaskEvent, { 'event': event }));
 }
 module.exports = function () {
