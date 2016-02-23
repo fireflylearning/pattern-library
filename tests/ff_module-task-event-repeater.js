@@ -5,15 +5,18 @@ var expect = require('chai').expect;
 var _ = require('lodash');
 
 var TaskEventRepeater = require('../blocks/core/ff_module/ff_module-task-event-repeater/ff_module-task-event-repeater');
+var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;
 
-
-var events = [
-    { type: 'set-task', sent: '20:40', author: { name: 'Sally Student' }, taskTitle: 'Write an Essay' }, {
-        type: 'stamp-response-as-seen',
-        sent: '21:47',
-        author: { name: 'Terry Teacher' }
-    }
-];
+var events = [{
+    type: eventTypes.setTask,
+    sent: '20:40',
+    author: { name: 'Sally Student' },
+    taskTitle: 'Write an Essay'
+}, {
+    type: eventTypes.stampResponseAsSeen,
+    sent: '21:47',
+    author: { name: 'Terry Teacher' }
+}];
 
 describe('TaskEventRepeater', function() {
     var component;
@@ -33,4 +36,3 @@ describe('TaskEventRepeater', function() {
     });
 
 });
-

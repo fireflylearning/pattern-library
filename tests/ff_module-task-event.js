@@ -5,20 +5,21 @@ var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 var _ = require('lodash');
 
-var TaskEvent = require("../blocks/core/ff_module/ff_module-task-event/ff_module-task-event.js");
+var TaskEvent = require('../blocks/core/ff_module/ff_module-task-event/ff_module-task-event.js');
 var WrappedTaskEvent = wrap(TaskEvent);
+var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;
 
 var events = [{
-    type: 'set-task',
+    type: eventTypes.setTask,
     sent: '20:40',
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
-    type: 'stamp-response-as-seen',
+    type: eventTypes.stampResponseAsSeen,
     sent: '21:47',
     author: { name: 'Terry Teacher' }
 }, {
-    type: 'added-comment',
+    type: eventTypes.comment,
     sent: 'Mon 7 Dec, 18:45',
     author: { name: 'Terry Teacher' },
     comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
@@ -27,9 +28,9 @@ var events = [{
 var testProps = _.omit(events, 'type');
 
 var classes = {
-    'set-task': { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
-    'stamp-response-as-seen': { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
-    'added-comment': { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', comment: 'ff_module-task-event__comment' }
+    [eventTypes.setTask]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
+    [eventTypes.stampResponseAsSeen]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
+    [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', comment: 'ff_module-task-event__comment' }
 };
 
 var expectedValues = [{
