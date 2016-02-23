@@ -16,6 +16,14 @@
 - `markAndGrade`: Object; { mark: [Number], markMax: [Number], grade: [String]}
 - `pic_href`: String; Link to image href
 
+### CSS Modifiers 
+
+Generated from state props.
+
+- `is-selected`
+- `is-read`
+
+
 #### Eg:
 ```
 {

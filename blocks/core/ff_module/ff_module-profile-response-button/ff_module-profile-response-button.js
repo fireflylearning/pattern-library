@@ -12,7 +12,7 @@ module.exports = React.createClass({
             return 'ff_module-profile-response-button ff_module-profile-response-button--is-selected';
         }
         if (props.isRead) {
-            return 'ff_module-profile-response-button ff_module-profile-response-button--is-reviewed';
+            return 'ff_module-profile-response-button ff_module-profile-response-button--is-read';
         }
 
         return 'ff_module-profile-response-button';
