@@ -6,7 +6,8 @@ var ItemRepeater = require('../../ff_container/ff_container-item-repeater/ff_con
 function repeatResponse1(response, responseIndex) {
     return React.createElement(ProfileResponseButton, {
         'key': 'list-profile-response-btn-' + response.guid,
-        'uiState': response.uiState,
+        'isRead': response.isRead,
+        'isSelected': response.isSelected,
         'label': response.label,
         'status': response.status,
         'markAndGrade': response.markAndGrade,
