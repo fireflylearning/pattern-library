@@ -16,5 +16,17 @@ module.exports = React.createClass({
         }
 
         return 'ff_module-profile-response-button';
+    },
+    renderGrade: function(props){
+        var marksAll = props.markAndGrade;
+        if (!marksAll) return '';
+        if (marksAll.grade && marksAll.mark && marksAll.markMax) {
+            return marksAll.mark+'/'+marksAll.markMax+', '+ marksAll.grade;
+        } else if (marksAll.grade) {
+            return marksAll.grade;
+        } else if (marksAll.mark && marksAll.markMax) {
+            return marksAll.mark+'/'+marksAll.markMax;
+        }
+        return '';
     }
 });

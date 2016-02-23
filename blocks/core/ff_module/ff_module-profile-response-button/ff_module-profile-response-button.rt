@@ -9,8 +9,6 @@
       <dl class="ff_module-profile-response-button__caption">
         <dt class="ff_module-profile-response-button__label">{this.props.label}</dt>
         <dd class="ff_module-profile-response-button__status">{this.props.status}</dd>
-        <dd class="ff_module-profile-response-button__mark-and-grade" rt-if="this.props.markAndGrade">
-        <span class="ff_module-profile-response-button__mark" rt-if="this.props.markAndGrade.mark">{this.props.markAndGrade.mark}/{this.props.markAndGrade.markMax}</span><span class="ff_module-profile-response-button__grade" rt-if="this.props.markAndGrade.grade">, {this.props.markAndGrade.grade}</span>
-        </dd>
+        <dd class="ff_module-profile-response-button__mark-and-grade" rt-if="this.props.markAndGrade">{this.renderGrade(this.props)}</dd>
       </dl>
 </button>
