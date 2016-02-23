@@ -4,7 +4,8 @@ require('./lib/utils').bootstrapBrowser();
 var TestUtils = require('react-addons-test-utils'),
     expect = require('chai').expect,
     _ = require('lodash'),
-    sinon = require('sinon');
+    sinon = require('sinon'),
+    getTestFramework = require('./lib/framework').setUpTestFramework(React, TestUtils, expect);
 
 var Button = require('../blocks/core/ff_module/ff_module-button/ff_module-button');
 
@@ -89,32 +90,4 @@ var testDefs = {
     }
 }
 
-describe('Button', function() {
-
-    it('should render', function() {
-        var element = React.createElement(Button, buttonProps[0]);
-        var component = TestUtils.renderIntoDocument(element);
-        expect(component).to.exist;
-    });
-
-    buttonProps.forEach(function(props) {
-        describe(props.text, function() {
-            var component;
-
-            before(function() {
-                var element = React.createElement(Button, props);
-                component = TestUtils.renderIntoDocument(element);
-            });
-
-            Object.keys(props).forEach(function(key) {
-                it('should render \'' + key + '\' of \'' + props[key] + '\'', function() {
-
-                    testDefs[key](component, props[key], props);
-                });
-            })
-
-
-        })
-
-    });
-});
+describe('Button', getTestFramework(Button, buttonProps, testDefs, 'text'));
