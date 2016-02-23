@@ -2,12 +2,21 @@
 
 $(function(){ 
 	$("[data-ff-action='filter-toggler']").click(function(){
-		var filterTogglerText = $("[data-ff='filter-content']").is(':visible') ? 'Filter this list' : 'Hide filters' ;
-		
-		$("[data-ff='filter-content']").toggle();
-		$("[data-ff='filter-toggler-text']").text(filterTogglerText);
+		var $filterContent = $("[data-ff='filter-content']"),
+		$filterIcon = $("[data-icon='filter-toggler-icon']"),
+		$filterTogglerText = $("[data-ff='filter-toggler-text']");
 
-		$("[data-icon='filter-toggler-icon']").toggleClass("ff_icon-page-up-open-blue").toggleClass("ff_icon-page-down-open-blue");
+		var isVisible = $filterContent.is(":visible");
+		var newText = isVisible ? 'Filter this list' : 'Hide filters' ;
+
+		if (isVisible) {
+			$filterContent.hide();
+			$filterIcon.removeClass("ff_icon-page-up-open-blue").addClass("ff_icon-page-down-open-blue");
+		} else {
+			$filterContent.show();
+			$filterIcon.removeClass("ff_icon-page-up-open-blue").addClass("ff_icon-page-down-open-blue");
+		}
+		$filterTogglerText.text(newText);
 
 	});
 });
