@@ -9,7 +9,6 @@ var data = {
         onSelect: function() {
             console.log("onSelect is0");
         },
-        uiState: "",
         guid: "u42",
         label: "Sally Student",
         status: "Marked",
@@ -20,7 +19,7 @@ var data = {
         onSelect: function() {
             console.log("onSelect id1");
         },
-        uiState: "is-selected",
+        isSelected: true,
         guid: "u43",
         label: "Terry Teacher",
         status: "Resubmission Requested",
@@ -30,7 +29,7 @@ var data = {
         onSelect: function() {
             console.log("onSelect id2");
         },
-        uiState: "is-reviewed",
+        isRead: true,
         guid: "u44",
         label: "Joseph Goulden",
         status: "Awaiting Response",

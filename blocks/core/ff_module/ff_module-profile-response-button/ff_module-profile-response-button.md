@@ -9,7 +9,8 @@
 ### Props
 
 - `onSelect`: Function(): null
-- `uiState`: String; css defined for `is-selected`, `is-updated` (default), `is-reviewed` in Melody
+- `isSelected`: Boolean; Is the recipient currently selected?
+- `isRead`: Boolean; Have the recipient's responses been read?
 - `label`: String; Name of Recipient
 - `status`: String; Response Status
 - `markAndGrade`: Object; { mark: [Number], markMax: [Number], grade: [String]}
@@ -21,7 +22,8 @@
     onSelect: function() {
         console.log("onSelect");
     },
-    uiState: "is-selected",
+    isSelected: false,
+    isRead: true,
     label: "Sally Student",
     status: "Resubmission Requested",
     markAndGrade: {

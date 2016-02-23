@@ -1,6 +1,6 @@
 <button
     type="button"
-    class="ff_module-profile-response-button{this.props.uiState ? ' ff_module-profile-response-button--'+this.props.uiState : ''}"
+    class="{this.generateClass(this.props)}"
     onClick="{this.props.onSelect}"
     >
       <figure class="ff_module-profile-response-button__picture">

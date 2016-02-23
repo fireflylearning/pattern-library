@@ -9,7 +9,8 @@ var data = {
         onSelect: function() {
             console.log("onSelect is0");
         },
-        uiState: "is-selected",
+        isSelected: true,
+        isRead: true,
         label: "Sally Student",
         status: "Marked",
         markAndGrade: {
