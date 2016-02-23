@@ -6,16 +6,25 @@ var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff
 var TaskEventRepeater = require('../../ff_module/ff_module-task-event-repeater/ff_module-task-event-repeater');
 var ResponseRecipientList = require('../../ff_module/ff_module-response-recipient-list/ff_module-response-recipient-list');
 var Button = require('../../ff_module/ff_module-button/ff_module-button');
+var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types;
 
 var events = [{
-    type: 'set-task',
+    type: eventTypes.setTask,
+    localEventId: 2,
     sent: '20:40',
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
-    type: 'stamp-response-as-seen',
+    type: eventTypes.stampResponseAsSeen,
+    localEventId: 3,
     sent: '21:47',
     author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.comment,
+    localEventId: 1,
+    sent: 'Mon 7 Dec, 18:45',
+    author: { name: 'Sally Student' },
+    comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
 }];
 
 var recipientData = [{
