@@ -31,7 +31,6 @@ var recipientData = [{
     onSelect: function() {
         console.log("onSelect is0");
     },
-    uiState: "",
     guid: "u42",
     label: "Sally Student",
     status: "Marked",
@@ -41,7 +40,6 @@ var recipientData = [{
     onSelect: function() {
         console.log("onSelect is0");
     },
-    uiState: "",
     guid: "u42a",
     label: "Tally Student",
     status: "Marked",
@@ -51,7 +49,7 @@ var recipientData = [{
     onSelect: function() {
         console.log("onSelect id1");
     },
-    uiState: "is-selected",
+    isSelected: true,
     guid: "u43",
     label: "Terry Teacher",
     status: "Resubmission Requested",
@@ -60,7 +58,6 @@ var recipientData = [{
     onSelect: function() {
         console.log("onSelect id1");
     },
-    uiState: "",
     guid: "u43a",
     label: "Terry Teacher",
     status: "Resubmission Requested",
@@ -69,7 +66,6 @@ var recipientData = [{
     onSelect: function() {
         console.log("onSelect id1");
     },
-    uiState: "",
     guid: "u43b",
     label: "Terry Teacher",
     status: "Resubmission Requested",
@@ -78,7 +74,7 @@ var recipientData = [{
     onSelect: function() {
         console.log("onSelect id2");
     },
-    uiState: "is-reviewed",
+    isRead: true,
     guid: "u44",
     label: "Joseph Goulden",
     status: "Awaiting Response",
