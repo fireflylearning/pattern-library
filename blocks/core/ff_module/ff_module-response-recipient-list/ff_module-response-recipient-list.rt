@@ -3,12 +3,12 @@
 
 <ItemRepeater modifier="separated">
 <ProfileResponseButton rt-repeat="response in this.props.responses"
-    key = "btn-{response.guid}"
+    key = "list-profile-response-btn-{response.guid}"
     uiState = "{response.uiState}"
     guid = "{response.guid}"
     label = "{response.label}"
     status = "{response.status}"
-    mark="{response.mark}"
+    markAndGrade="{response.markAndGrade}"
     onSelect="{response.onSelect}"
     pic_href="{response.pic_href}"
     >

@@ -7,9 +7,11 @@
       <figure class="ff_module-profile-response-button__picture">
         <img class="ff_module-profile-response-button__image" src="{this.props.pic_href}">
       </figure>
-      <div class="ff_module-profile-response-button__caption">
-        <span class="ff_module-profile-response-button__label">{this.props.label}</span>
-        <span class="ff_module-profile-response-button__status">{this.props.status}</span>
-        <span class="ff_module-profile-response-button__mark">{this.props.mark}</span>
-      </div>
+      <dl class="ff_module-profile-response-button__caption">
+        <dt class="ff_module-profile-response-button__label">{this.props.label}</dt>
+        <dd class="ff_module-profile-response-button__status">{this.props.status}</dd>
+        <dd class="ff_module-profile-response-button__mark-and-grade" rt-if="this.props.markAndGrade">
+        <span class="ff_module-profile-response-button__mark" rt-if="this.props.markAndGrade.mark">{this.props.markAndGrade.mark}/{this.props.markAndGrade.markMax}</span><span class="ff_module-profile-response-button__grade" rt-if="this.props.markAndGrade.grade">, {this.props.markAndGrade.grade}</span>
+        </dd>
+      </dl>
 </button>

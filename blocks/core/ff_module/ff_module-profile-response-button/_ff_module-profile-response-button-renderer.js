@@ -10,11 +10,15 @@ module.exports = function() {
                 onSelect: function() {
                     console.log("onSelect");
                 },
-                uiState: "",
+                uiState: "is-updated",
                 guid: "u42",
                 label: "Sally Student",
                 status: "Resubmission Requested",
-                mark: "B, 76%",
+                markAndGrade: {
+                    mark: 7,
+                    markMax: 10,
+                    grade: "A"
+                },
                 pic_href: "/images/default_picture.png"
             });
             React.render(element, domElement);

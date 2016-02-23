@@ -13,7 +13,11 @@ var data = {
         guid: "u42",
         label: "Sally Student",
         status: "Marked",
-        mark: "B, 76%",
+        markAndGrade: {
+            mark: 7,
+            markMax: 10,
+            grade: "A"
+        },
         pic_href: "/images/default_picture.png"
     },
     expectedClass = 'ff_module-profile-response-button ff_module-profile-response-button--is-selected';
@@ -42,9 +46,13 @@ describe('ProfileResponseButton', function() {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
         expect(node.textContent).to.equal(data.status);
     });
-    it('should have a mark of \'' + data.mark + '\'', function() {
+    it('should have a mark of \'' + data.markAndGrade.mark+'/'+data.markAndGrade.markMax + '\'', function() {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__mark');
-        expect(node.textContent).to.equal(data.mark);
+        expect(node.textContent).to.equal(data.markAndGrade.mark+'/'+data.markAndGrade.markMax);
+    });
+    it('should have a grade of \'' + data.markAndGrade.grade + '\'', function() {
+        var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__grade');
+        expect(node.textContent).to.equal(', '+data.markAndGrade.grade);
     });
     it('should have an image with src attribute of \'' + data.pic_href + '\'', function() {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__image');

@@ -5,12 +5,12 @@ var ProfileResponseButton = require('../ff_module-profile-response-button/ff_mod
 var ItemRepeater = require('../../ff_container/ff_container-item-repeater/ff_container-item-repeater.js');
 function repeatResponse1(response, responseIndex) {
     return React.createElement(ProfileResponseButton, {
-        'key': 'btn-' + response.guid,
+        'key': 'list-profile-response-btn-' + response.guid,
         'uiState': response.uiState,
         'guid': response.guid,
         'label': response.label,
         'status': response.status,
-        'mark': response.mark,
+        'markAndGrade': response.markAndGrade,
         'onSelect': response.onSelect,
         'pic_href': response.pic_href
     });

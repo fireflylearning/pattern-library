@@ -8,25 +8,29 @@
 ```
 ### Props
 
-- `onSelect`: Function
+- `onSelect`: Function(): null
 - `uiState`: String; css defined for `is-selected`, `is-updated` (default), `is-reviewed` in Melody
 - `guid`: String; unique id
 - `label`: String; Name of Recipient
 - `status`: String; Response Status
-- `mark`: String; Grade or Percentage
+- `markAndGrade`: Object; { mark: [Number], markMax: [Number], grade: [String]}
 - `pic_href`: String; Link to image href
 
 #### Eg:
 ```
 {
-    onSelect: function(e) {
+    onSelect: function() {
         console.log("onSelect");
     },
     uiState: "is-selected",
     guid: "u42",
     label: "Sally Student",
     status: "Resubmission Requested",
-    mark: "B, 76%",
+    markAndGrade: {
+        mark: 7,
+        markMax: 10,
+        grade: "A"
+    },
     pic_href: "/images/default_picture.png"
 }
 ```
