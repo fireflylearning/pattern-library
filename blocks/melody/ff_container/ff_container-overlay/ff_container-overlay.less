@@ -1,0 +1,28 @@
+.ff_container-overlay-bar {
+
+    &__bar {
+      background-color: fade(mix(@ff_color_control_link, #ffffff, 25%), 85%);
+      min-height: 1rem;
+      z-index: @ff_fixed_control_z-index;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    &--absolute &__bar {
+        position: absolute;
+    }
+    &--fixed &__bar {
+        position: fixed;
+    }
+    &__content {
+        max-width: 87.5rem;
+        margin: 0 auto;
+        padding: 3*@ff_size_control_vertical 2.5*@ff_size_control_horizontal;
+    }
+
+    &--fixed &__body {
+      padding-bottom: 9*@ff_size_control_vertical;
+    }
+
+}
