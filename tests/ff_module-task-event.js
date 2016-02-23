@@ -1,6 +1,6 @@
 var React = require('react');
-require('./utils').bootstrapBrowser();
-var wrap = require('./utils').wrap;
+require('./lib/utils').bootstrapBrowser();
+var wrap = require('./lib/utils').wrap;
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 var _ = require('lodash');

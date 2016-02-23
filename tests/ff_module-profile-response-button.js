@@ -1,7 +1,9 @@
 var React = require('react');
-require('./utils').bootstrapBrowser();
-var TestUtils = require('react-addons-test-utils');
-var expect = require('chai').expect;
+require('./lib/utils').bootstrapBrowser();
+
+var TestUtils = require('react-addons-test-utils'),
+    expect = require('chai').expect,
+    sinon = require('sinon');
 
 var ProfileResponseButton = require("../blocks/core/ff_module/ff_module-profile-response-button/ff_module-profile-response-button.js");
 
