@@ -1,0 +1,5 @@
+<pages>
+	{% for page in pages %}
+		<page href="{{page.href}}" label="{{page.label}}" selected="{{page.selected}}"/>
+	{% endfor %}
+</pages>
