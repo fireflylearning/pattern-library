@@ -1,0 +1,19 @@
+.ff_container-expandable__dropdown {
+	padding: @ff_size_spacing_med;
+	border: 1px solid @ff_colour_melody_int_blue;
+	color: @ff_colour_melody_int_blue;
+	cursor: pointer;
+	background: white;
+}
+
+.ff_container-expandable__dropdown--small-screens {
+	@media all and (min-width: @ff_bp_medium) { 
+		display: none;
+	}
+}
+
+.ff_container-expandable__icon  {
+	width: 1.5em;
+	height: 1.5em;
+	float: right;
+}

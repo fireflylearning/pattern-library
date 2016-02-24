@@ -1,0 +1,3 @@
+<expandable open-text="{{open_text}}" closed-text="{{closed_text}}">
+	<content>{{content}}</content>
+</expandable>
