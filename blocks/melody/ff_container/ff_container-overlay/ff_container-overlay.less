@@ -1,28 +1,53 @@
-.ff_container-overlay-bar {
+.ff_container-overlay {
 
     &__bar {
       background-color: fade(mix(@ff_color_control_link, #ffffff, 25%), 85%);
       min-height: 1rem;
       z-index: @ff_fixed_control_z-index;
-      bottom: 0;
       left: 0;
       right: 0;
     }
 
-    &--absolute &__bar {
-        position: absolute;
-    }
-    &--fixed &__bar {
-        position: fixed;
-    }
-    &__content {
+    &__bar-content {
         max-width: 87.5rem;
         margin: 0 auto;
         padding: 3*@ff_size_control_vertical 2.5*@ff_size_control_horizontal;
     }
 
-    &--fixed &__body {
-      padding-bottom: 9*@ff_size_control_vertical;
+    //fixed-bottom
+    &--fixed-bottom &__bar {
+        position: fixed;
+        bottom: 0;
+    }
+    &--fixed-bottom &__body {
+      padding-bottom: 10*@ff_size_control_vertical;
+    }
+
+    //fixed-top
+    &--fixed-top &__bar {
+        position: fixed;
+        top: 0;
+    }
+    &--fixed-top &__body {
+      padding-top: 10*@ff_size_control_vertical;
+    }
+
+    //absolute-bottom (snigger)
+    &--absolute-bottom &__bar {
+        position: absolute;
+        bottom: 0;
+    }
+    &--absolute-bottom &__body {
+      padding-bottom: 10*@ff_size_control_vertical;
+    }
+
+    //absolute-top
+    &--absolute-top &__bar {
+        position: absolute;
+        top: 0;
+    }
+    &--absolute-top &__body {
+      padding-top: 10*@ff_size_control_vertical;
     }
 
 }

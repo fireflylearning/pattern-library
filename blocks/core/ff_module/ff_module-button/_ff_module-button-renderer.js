@@ -6,7 +6,7 @@ var Button = require('./ff_module-button');
 var buttonProps = [{
     text: 'Button default',
     id: 'btn-01'
-}{
+},{
     text: 'Button with icon',
     id: 'btn-01',
     modifier: 'large',
