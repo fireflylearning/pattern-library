@@ -17,7 +17,7 @@ $(function(){
 			$expandableIcon.removeClass("ff_icon-page-up-open-blue").addClass("ff_icon-page-down-open-blue");
 		} else {
 			$expandableContent.show();
-			$expandableIcon.removeClass("ff_icon-page-up-open-blue").addClass("ff_icon-page-up-open-blue");
+			$expandableIcon.removeClass("ff_icon-page-down-open-blue").addClass("ff_icon-page-up-open-blue");
 		}
 		$expandableText.text(newText);
 
