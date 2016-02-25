@@ -1,6 +1,8 @@
 'use strict';
 
-var dateFormatting = require('../blocks/core/_lib/_ui/dateFormatting');
+var _ = require('lodash');
+var dateFormattingFactory = require('../blocks/core/_lib/_ui/dateFormatting');
+var dateFormatting = dateFormattingFactory({});
 var expect = require('chai').expect;
 
 var methods = ['niceDate', 'niceDateFuzzy', 'getDateSuffix', 'niceWeek', 'toLocal', 'toLongDayString', 'toShortTimeString', 'toShortDateString'];
@@ -15,7 +17,8 @@ var msInS = 1000,
     mInY = 12,
     msInM = msInS * sInM,
     msInH = msInM * mInH,
-    msInD = msInH * hInD;
+    msInD = msInH * hInD,
+    msInW = msInD * dInW;
 
 
 
@@ -37,13 +40,13 @@ var testDates = [1, 2, 3, 21, 22, 23, 31, 4, 7, 20],
 var niceDateTests = {
     moments: function(now) {
         return {
-            test: [59.8, 50, 10, 1, 0.1],
+            test: [59.9, 50, 10, 1, 0.1],
             expected: [momentsAgoText, momentsAgoText, momentsAgoText, momentsAgoText, momentsAgoText]
         };
     },
     minutes: function(now) {
         return {
-            test: [59.9, 50, 10, 1, 0.1],
+            test: [59.99, 50, 10, 1, 0.1],
             expected: ['59 minutes ago', '50 minutes ago', '10 minutes ago', '1 minute ago', momentsAgoText]
         };
     },
@@ -233,6 +236,98 @@ var niceDateFuzzyTests = {
     }
 };
 
+
+function getOffsets(now, offsets, weekStartDay) {
+    var dayOfWeek = now.getDay(),
+        diff;
+
+    if (weekStartDay < dayOfWeek) {
+        diff = dayOfWeek - weekStartDay;
+    } else if (weekStartDay > dayOfWeek) {
+        diff = dayOfWeek + (dInW - weekStartDay);
+    } else {
+        diff = 0;
+    }
+
+    return offsets.map(function(offset) {
+        return offset + diff;
+    });
+}
+
+function getNWeeksAgo(weekStartDay) {
+    return function(now) {
+
+        var offsets = [28, 22, 21, 14, 13, 7];
+
+        return {
+            test: getOffsets(now, offsets, weekStartDay),
+            expected: ['4 Weeks Ago', '4 Weeks Ago', '3 Weeks Ago', '2 Weeks Ago', '2 Weeks Ago', 'Last Week']
+        };
+    };
+}
+
+
+function getLastWeek(weekStartDay) {
+    return function(now) {
+
+        var offsets = [7, 5, 3, 1];
+
+        return {
+            test: getOffsets(now, offsets, weekStartDay),
+            expected: ['Last Week', 'Last Week', 'Last Week', 'Last Week'] //['3 Weeks Ago', '2 Weeks Ago', 'Last Week', 'Last Week', 'Last Week']
+        };
+    };
+}
+
+function getThisWeek(weekStartDay) {
+    return function(now) {
+
+        var offsets = [0, -1, -3, -5, -6];
+
+        return {
+            test: getOffsets(now, offsets, weekStartDay),
+            expected: ['This Week', 'This Week', 'This Week', 'This Week', 'This Week']
+        };
+    };
+}
+
+function getNWeeksTime(weekStartDay) {
+    return function(now) {
+
+        var offsets = [-21, -14, -10];
+
+        return {
+            test: getOffsets(now, offsets, weekStartDay),
+            expected: ['3 Weeks\' Time', '2 Weeks\' Time', 'Next Week']
+        };
+    };
+}
+
+function getNextWeek(weekStartDay) {
+    return function(now) {
+
+        var offsets = [-6, -8, -11, -13, -14];
+
+        return {
+            test: getOffsets(now, offsets, weekStartDay),
+            expected: ['This Week', 'Next Week', 'Next Week', 'Next Week', '2 Weeks\' Time']
+        };
+    };
+}
+
+var niceWeekStartDays = [0, 1, (new Date().getDay() === 6 ? 6 : new Date().getDay() + 1)];
+var niceWeek = niceWeekStartDays.reduce(function(result, day) {
+    result[day] = {
+        nWeeksAgo: getNWeeksAgo(day),
+        lastWeek: getLastWeek(day),
+        thisWeek: getThisWeek(day),
+        nWeeksTime: getNWeeksTime(day),
+        nextWeek: getNextWeek(day)
+    };
+    return result;
+}, {});
+
+
 function getFuzzyDateMethod(now, contextUnknown) {
     return function getFuzzyDateExpecteds(offset) {
         var tempDate = new Date(now.getTime()),
@@ -336,19 +431,19 @@ describe('dateFormatting', function() {
 
     describe('niceDate', function() {
 
-        describe('should format dates under a minute in the past as "' + momentsAgoText + '"',
+        describe('should format dates less than a minutes ago as "' + momentsAgoText + '"',
             getTests(niceDateTests.moments, msInS, 'niceDate'));
 
-        describe('should format dates under an hour in the past as "[minutes] minute(s) ago"',
+        describe('should format dates less than an hour ago as "[minutes] minute(s) ago"',
             getTests(niceDateTests.minutes, msInM, 'niceDate'));
 
-        describe('should format dates under a day in the past, and still today\'s date, as "[hours] hours(s) ago"',
+        describe('should format dates less than a day ago and still today\'s date as "[hours] hours(s) ago"',
             getTests(niceDateTests.hours, msInH, 'niceDate'));
 
-        describe('should format dates under a day in the past, but not today\'s date, as "Yesterday at [shorttime]"',
+        describe('should format dates less than a day ago but not today\'s date as "Yesterday at [shorttime]"',
             getTests(niceDateTests.yesterday, msInH, 'niceDate'));
 
-        describe('should format dates under a week in the past as "[dayofweek] at [shorttime]"',
+        describe('should format dates under a week ago as "[dayofweek] at [shorttime]"',
             getTests(niceDateTests.days, msInD, 'niceDate'));
 
         describe('should format dates otherwise as "[shortdate] at [shorttime]"',
@@ -388,7 +483,41 @@ describe('dateFormatting', function() {
             getTests(niceDateFuzzyTests.otherwise, msInD, 'niceDateFuzzy'));
     });
 
+
     describe('niceWeek', function() {
+        var oldDateFormatting;
+        _.forEach(niceWeek, function(testGroup, weekStartDay) {
+
+            describe('From start of week with specified weekStartDay = [' + weekStartDay + ']', function() {
+
+                before(function() {
+                    oldDateFormatting = dateFormatting;
+                    dateFormatting = dateFormattingFactory({ weekStartDay: weekStartDay });
+                });
+
+                describe('should format dates over one week ago as "[numweeks] Weeks Ago"',
+                    getTests(testGroup.nWeeksAgo, msInD, 'niceWeek'));
+
+                describe('should format dates one week ago as "Last Week"',
+                    getTests(testGroup.lastWeek, msInD, 'niceWeek'));
+
+                describe('should format occurring in this week as "This Week"',
+                    getTests(testGroup.thisWeek, msInD, 'niceWeek'));
+
+                describe('should format dates occurring more than one week in the future as "[n] Weeks Time"',
+                    getTests(testGroup.nWeeksTime, msInD, 'niceWeek'));
+
+                describe('should format dates occurring next week as "Next Week"',
+                    getTests(testGroup.nextWeek, msInD, 'niceWeek'));
+            });
+
+            after(function() {
+                dateFormatting = oldDateFormatting;
+            });
+        });
+
+
+
 
     });
 
