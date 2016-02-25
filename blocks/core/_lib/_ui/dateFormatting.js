@@ -1,24 +1,22 @@
 'use strict';
 
-// var _ = require('underscore');
+var _ = require('lodash');
 
 var msInS = 1000,
     sInM = 60,
     mInH = 60,
     hInD = 24,
     dInW = 7,
-    mInY = 12,
     msInM = msInS * sInM,
     msInH = msInM * mInH,
     msInD = msInH * hInD,
-    msInW = msInD * dInW,
     weekNamesLong = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 var momentsAgo = 'A few moments ago',
     minutesAgo = '{mins} minute{suffix} ago',
     hoursAgo = '{hours} hour{suffix} ago',
     yesterdayAt = 'Yesterday at {time}',
-    simpleVal = '{value}',
+    simpleValue = '{value}',
     valueWithTime = '{value} at {time}',
     dayWithDate = '{day} {date}{suffix}',
     tomorrow = 'Tomorrow',
@@ -35,9 +33,42 @@ var momentsAgo = 'A few moments ago',
     nWeeksTime = '{numweeks} Weeks\' Time';
 
 
+var niceDateOperations = [
+    [isMomentsAgo, convertToMomentsAgo],
+    [isLessThanAnHourAgo, convertToMinutesAgo],
+    [isHoursAgoAndToday, convertToHoursAgo],
+    [isYesterday, convertToYesterdayAt],
+    [isLessThanAWeekAgo, convertToDayWithTime],
+    [isDefault, convertToDateWithTime]
+];
+
+function getNiceDateFuzzyOperations(contextUnknown) {
+    return [
+        [isExactlyOneWeekFromNow, contextUnknown ? convertToNextWeekDayWithDate : convertToNextWeekDay],
+        [isExactlyOneWeekAgo, contextUnknown ? convertToLastWeekDayWithDate : convertToLastWeekDay],
+        [isTomorrowFuzzy, convertToTomorrow],
+        [isYesterdayFuzzy, convertToYesterday],
+        [isToday, convertToToday],
+        [isWithinWeekPlusOrMinus, contextUnknown ? convertToDayWithDate : convertToDay],
+        [isDefault, convertToDate]
+    ];
+}
+
+
+var niceWeekOperations = [
+    [isMoreThanAWeekFromNow, convertToNWeeksTime],
+    [isNextWeek, convertToNextWeek],
+    [isThisWeek, convertToThisWeek],
+    [isMoreThanAWeekAgo, convertToNWeeksAgo],
+    [isLastWeek, convertToLastWeek],
+    [isDefault, convertToDate]
+];
 
 
 
+/**
+ * Comparions methods
+ */
 
 function isMomentsAgo(date, now) {
     return getSecDiff(date, now) < sInM;
@@ -59,7 +90,7 @@ function isYesterday(date, now) {
 
 
 function isMoreThanAWeekFromNow(date, now) {
-    return getDayDiff(date, now) <= -2*dInW;
+    return getDayDiff(date, now) <= -2 * dInW;
 }
 
 function isNextWeek(date, now) {
@@ -110,9 +141,9 @@ function isToday(date, now) {
     return getDayDiff(date, now) === 0;
 }
 
-
-
-
+function isDefault(date, now) {
+    return true;
+}
 
 
 
@@ -120,17 +151,18 @@ function convertToMomentsAgo(date, now) {
     return momentsAgo;
 }
 
+
 function convertToMinutesAgo(date, now) {
-    var mins = parseInt(Math.abs(now - date) / msInM, 10);
-    var suffix = mins === 1 ? '' : 's';
+    var mins = getMinDiff(date, now),
+        suffix = getNumSuffix(mins);
     return minutesAgo
         .replace('{mins}', mins)
         .replace('{suffix}', suffix);
 }
 
 function convertToHoursAgo(date, now) {
-    var hours = parseInt(Math.abs(now - date) / msInH, 10);
-    var suffix = hours === 1 ? '' : 's';
+    var hours = getHourDiff(date, now),
+        suffix = getNumSuffix(hours);
     return hoursAgo
         .replace('{hours}', hours)
         .replace('{suffix}', suffix);
@@ -142,7 +174,7 @@ function convertToYesterdayAt(date, now) {
 }
 
 function convertToDay(date, now) {
-    return simpleVal
+    return simpleValue
         .replace('{value}', toLongDayString(date));
 }
 
@@ -160,7 +192,7 @@ function convertToDayWithDate(date, now) {
 }
 
 function convertToDate(date) {
-    return simpleVal
+    return simpleValue
         .replace('{value}', toShortDateString(date));
 }
 
@@ -219,8 +251,8 @@ function convertToToday(date) {
 }
 
 function convertToNWeeksAgo(date, now) {
-    var weeksDiff = getWeekDiffCeil(date, now);
-    var suffix = weeksDiff === 1 ? '' : 's';
+    var weeksDiff = getWeekDiffCeil(date, now),
+        suffix = getNumSuffix(weeksDiff);
 
     return nWeeksAgo
         .replace('{numweeks}', weeksDiff)
@@ -236,88 +268,19 @@ function convertToNWeeksTime(date, now) {
 
 
 
-function getNiceDateFormat(date, now) {
-    var format = convertToDateWithTime;
-
-    switch (true) {
-        case isMomentsAgo(date, now):
-            format = convertToMomentsAgo;
-            break;
-        case isLessThanAnHourAgo(date, now):
-            format = convertToMinutesAgo;
-            break;
-        case isHoursAgoAndToday(date, now):
-            format = convertToHoursAgo;
-            break;
-        case isYesterday(date, now):
-            format = convertToYesterdayAt;
-            break;
-        case isLessThanAWeekAgo(date, now):
-            format = convertToDayWithTime;
-            break;
-    }
-
-    return format;
-}
-
-function getNiceDateFuzzyFormat(date, now, contextUnknown) {
-    var format = convertToDate;
-    switch (true) {
-        case isExactlyOneWeekFromNow(date, now):
-            format = contextUnknown ? convertToNextWeekDayWithDate : convertToNextWeekDay;
-            break;
-        case isExactlyOneWeekAgo(date, now):
-            format = contextUnknown ? convertToLastWeekDayWithDate : convertToLastWeekDay;
-            break;
-        case isTomorrowFuzzy(date, now):
-            format = convertToTomorrow;
-            break;
-        case isYesterdayFuzzy(date, now):
-            format = convertToYesterday;
-            break;
-        case isToday(date, now):
-            format = convertToToday;
-            break;
-        case isWithinWeekPlusOrMinus(date, now):
-            format = contextUnknown ? convertToDayWithDate : convertToDay;
-    }
-    return format;
-}
-
-function getNiceWeekFormat(date, now) {
-
-    var format = function(date, now) {
-        return 'NiceWeek Err';
-    };
-
-    switch (true) {
-        case isMoreThanAWeekFromNow(date, now):
-            format = convertToNWeeksTime;
-            break;
-        case isNextWeek(date, now):
-            format = convertToNextWeek;
-            break;
-        case isThisWeek(date, now):
-            format = convertToThisWeek;
-            break;
-        case isMoreThanAWeekAgo(date, now):
-            format = convertToNWeeksAgo;
-            break;
-        case isLastWeek(date, now):
-            format = convertToLastWeek;
-            break;
-
-    }
-    return format;
-}
 
 
+
+
+/**
+ * Primary methods
+ */
 
 function niceDate(date) {
     date = toLocal(date);
 
     var now = new Date(),
-        format = getNiceDateFormat(date, now);
+        format = getFormat(niceDateOperations, date, now);
 
     return format(date, now);
 }
@@ -328,7 +291,7 @@ function niceDateFuzzy(date, contextUnknown) {
     if (typeof contextUnknown === 'undefined' || contextUnknown === null) contextUnknown = false;
 
     var now = new Date(),
-        format = getNiceDateFuzzyFormat(date, now, contextUnknown);
+        format = getFormat(getNiceDateFuzzyOperations(contextUnknown), date, now);
 
     return format(date, now, contextUnknown);
 }
@@ -341,7 +304,7 @@ function getNiceWeek(config) {
 
         var now = new Date(),
             weekStart = getStartOfWeekForDate(now, weekStartDay),
-            format = getNiceWeekFormat(date, weekStart);
+            format = getFormat(niceWeekOperations, date, weekStart);
 
         return format(date, weekStart);
     };
@@ -350,7 +313,20 @@ function getNiceWeek(config) {
 
 
 
+/**
+ * Utils
+ */
 
+function getFormat(oerations, date, now) {
+    return _.find(oerations, function(testAndMethod) {
+        return testAndMethod[0](date, now);
+    })[1];
+}
+
+
+function getNumSuffix(value) {
+    return value === 1 ? '' : 's';
+}
 
 function getDateSuffix(date) {
     var day = date.getDate(),
@@ -381,6 +357,7 @@ function toLocal(date) {
 function getDiff(date, now, divisor) {
     return Math.floor(Math.floor((now.getTime() - date.getTime()) * 0.001) / divisor);
 }
+
 function getDiffCeil(date, now, divisor) {
     return Math.ceil(Math.floor((now.getTime() - date.getTime()) * 0.001) / divisor);
 }
