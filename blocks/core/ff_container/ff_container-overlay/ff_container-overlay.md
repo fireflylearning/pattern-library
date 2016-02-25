@@ -11,6 +11,10 @@ data:
 
 A layout container to allow you to fix one or more items to the side of the browser window and have the body clear the fixed item.
 
+## Please note:
+
+It is necessary to call **ALL** of your page contents within the `<body></body>` node. Otherwise objects could appear _underneath_ the fixed or absolute `<bar></bar>` items. This is bad.
+
 ## Modifiers
 
 - **fixed-bottom**: positions fixed bottom fullwidth on page
