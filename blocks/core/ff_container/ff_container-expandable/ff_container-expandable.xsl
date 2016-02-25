@@ -1,7 +1,7 @@
 <xsl:template name="ff_container-expandable">
 	<xsl:param name="data" />
 	<div class="ff_container-expandable">
-		<div class="ff_container-expandable__dropdown ff_container-expandable__dropdown--small-screens" data-ff-action="expandable">
+		<div data-ff-action="expandable">
 			<xsl:attribute name="class">
 				<xsl:text>ff_container-expandable__dropdown</xsl:text>
 				<xsl:if test="$data/expandable/@modifier">
