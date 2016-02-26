@@ -6,18 +6,21 @@ $(function(){
 		$expandableIcon = $("[data-icon='expandable-icon']"),
 		$expandableText = $("[data-ff='expandable-text']");
 		
-		var $expandableOpenText = $expandableText.attr("data-open-text"),
-		$expandableClosedText = $expandableText.attr("data-closed-text");
+		var $expandedText = $expandableText.attr("data-expanded-text"),
+		$collapsedText = $expandableText.attr("data-collapsed-text"),
+		$expandableText.attr("data-expanded-text"),
+		$collapsedIcon = $expandableIcon.attr("data-collapsed-icon"),
+		$expandedIcon = $expandableIcon.attr("data-expanded-icon");
 
 		var isVisible = $expandableContent.is(":visible");
-		var newText = isVisible ? $expandableClosedText : $expandableOpenText;
+		var newText = isVisible ? $collapsedText : $expandedText;
 
 		if (isVisible) {
 			$expandableContent.hide();
-			$expandableIcon.removeClass("ff_icon-page-up-open-blue").addClass("ff_icon-page-down-open-blue");
+			$expandableIcon.removeClass($expandedIcon).addClass($collapsedIcon);
 		} else {
 			$expandableContent.show();
-			$expandableIcon.removeClass("ff_icon-page-down-open-blue").addClass("ff_icon-page-up-open-blue");
+			$expandableIcon.removeClass($collapsedIcon).addClass($expandedIcon);
 		}
 		$expandableText.text(newText);
 

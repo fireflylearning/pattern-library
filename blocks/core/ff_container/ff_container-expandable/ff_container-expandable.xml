@@ -1,3 +1,3 @@
-<expandable open-text="{{open_text}}" closed-text="{{closed_text}}" modifier="{{modifier}}">
+<expandable collapsed-icon="{{icon_collapsed}}"  expanded-icon="{{icon_expanded}}" expanded-text="{{text_expanded}}" collapsed-text="{{text_collapsed}}" modifier="{{modifier}}">
 	<content>{{content}}</content>
 </expandable>
