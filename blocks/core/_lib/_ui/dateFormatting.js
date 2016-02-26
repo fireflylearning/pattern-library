@@ -34,34 +34,34 @@ var momentsAgo = 'A few moments ago',
 
 
 var niceDateOperations = [
-    [isMomentsAgo, convertToMomentsAgo],
-    [isLessThanAnHourAgo, convertToMinutesAgo],
-    [isHoursAgoAndToday, convertToHoursAgo],
-    [isYesterday, convertToYesterdayAt],
-    [isLessThanAWeekAgo, convertToDayWithTime],
-    [isDefault, convertToDateWithTime]
+    [isMomentsAgo, formatAsMomentsAgo],
+    [isLessThanAnHourAgo, formatAsMinutesAgo],
+    [isHoursAgoAndToday, formatAsHoursAgo],
+    [isYesterday, formatAsYesterdayAt],
+    [isLessThanAWeekAgo, formatAsDayWithTime],
+    [isDefault, formatAsDateWithTime]
 ];
 
 function getNiceDateFuzzyOperations(contextUnknown) {
     return [
-        [isExactlyOneWeekFromNow, contextUnknown ? convertToNextWeekDayWithDate : convertToNextWeekDay],
-        [isExactlyOneWeekAgo, contextUnknown ? convertToLastWeekDayWithDate : convertToLastWeekDay],
-        [isTomorrowFuzzy, convertToTomorrow],
-        [isYesterdayFuzzy, convertToYesterday],
-        [isToday, convertToToday],
-        [isWithinWeekPlusOrMinus, contextUnknown ? convertToDayWithDate : convertToDay],
-        [isDefault, convertToDate]
+        [isExactlyOneWeekFromNow, contextUnknown ? formatAsNextWeekDayWithDate : formatAsNextWeekDay],
+        [isExactlyOneWeekAgo, contextUnknown ? formatAsLastWeekDayWithDate : formatAsLastWeekDay],
+        [isTomorrowFuzzy, formatAsTomorrow],
+        [isYesterdayFuzzy, formatAsYesterday],
+        [isToday, formatAsToday],
+        [isWithinWeekPlusOrMinus, contextUnknown ? formatAsDayWithDate : formatAsDay],
+        [isDefault, formatAsDate]
     ];
 }
 
 
 var niceWeekOperations = [
-    [isMoreThanAWeekFromNow, convertToNWeeksTime],
-    [isNextWeek, convertToNextWeek],
-    [isThisWeek, convertToThisWeek],
-    [isMoreThanAWeekAgo, convertToNWeeksAgo],
-    [isLastWeek, convertToLastWeek],
-    [isDefault, convertToDate]
+    [isMoreThanAWeekFromNow, formatAsNWeeksTime],
+    [isNextWeek, formatAsNextWeek],
+    [isThisWeek, formatAsThisWeek],
+    [isMoreThanAWeekAgo, formatAsNWeeksAgo],
+    [isLastWeek, formatAsLastWeek],
+    [isDefault, formatAsDate]
 ];
 
 
@@ -85,7 +85,6 @@ function isHoursAgoAndToday(date, now) {
 function isYesterday(date, now) {
     return (getDayDiff(date, now) < 1) && (now.getDate() !== date.getDate());
 }
-
 
 
 
@@ -147,12 +146,12 @@ function isDefault(date, now) {
 
 
 
-function convertToMomentsAgo(date, now) {
+function formatAsMomentsAgo(date, now) {
     return momentsAgo;
 }
 
 
-function convertToMinutesAgo(date, now) {
+function formatAsMinutesAgo(date, now) {
     var mins = getMinDiff(date, now),
         suffix = getNumSuffix(mins);
     return minutesAgo
@@ -160,7 +159,7 @@ function convertToMinutesAgo(date, now) {
         .replace('{suffix}', suffix);
 }
 
-function convertToHoursAgo(date, now) {
+function formatAsHoursAgo(date, now) {
     var hours = getHourDiff(date, now),
         suffix = getNumSuffix(hours);
     return hoursAgo
@@ -168,89 +167,89 @@ function convertToHoursAgo(date, now) {
         .replace('{suffix}', suffix);
 }
 
-function convertToYesterdayAt(date, now) {
+function formatAsYesterdayAt(date, now) {
     return yesterdayAt
         .replace('{time}', toShortTimeString(date));
 }
 
-function convertToDay(date, now) {
+function formatAsDay(date, now) {
     return simpleValue
         .replace('{value}', toLongDayString(date));
 }
 
-function convertToDayWithTime(date, now) {
+function formatAsDayWithTime(date, now) {
     return valueWithTime
         .replace('{value}', toLongDayString(date))
         .replace('{time}', toShortTimeString(date));
 }
 
-function convertToDayWithDate(date, now) {
+function formatAsDayWithDate(date, now) {
     return dayWithDate
         .replace('{day}', toLongDayString(date))
         .replace('{date}', date.getDate())
         .replace('{suffix}', getDateSuffix(date));
 }
 
-function convertToDate(date) {
+function formatAsDate(date) {
     return simpleValue
         .replace('{value}', toShortDateString(date));
 }
 
-function convertToDateWithTime(date) {
+function formatAsDateWithTime(date) {
     return valueWithTime
         .replace('{value}', toShortDateString(date))
         .replace('{time}', toShortTimeString(date));
 }
 
-function convertToThisWeek(date) {
+function formatAsThisWeek(date) {
     return thisWeek;
 }
 
-function convertToNextWeek(date) {
+function formatAsNextWeek(date) {
     return nextWeek;
 }
 
-function convertToNextWeekDay(date) {
+function formatAsNextWeekDay(date) {
     return nextWeekDay
         .replace('{day}', toLongDayString(date));
 }
 
-function convertToLastWeek(date) {
+function formatAsLastWeek(date) {
     return lastWeek;
 }
 
-function convertToLastWeekDay(date) {
+function formatAsLastWeekDay(date) {
     return lastWeekDay
         .replace('{day}', toLongDayString(date));
 }
 
-function convertToNextWeekDayWithDate(date) {
+function formatAsNextWeekDayWithDate(date) {
     return nextWeekDayWithDate
         .replace('{day}', toLongDayString(date))
         .replace('{date}', date.getDate())
         .replace('{suffix}', getDateSuffix(date));
 }
 
-function convertToLastWeekDayWithDate(date) {
+function formatAsLastWeekDayWithDate(date) {
     return lastWeekDayWithDate
         .replace('{day}', toLongDayString(date))
         .replace('{date}', date.getDate())
         .replace('{suffix}', getDateSuffix(date));
 }
 
-function convertToTomorrow(date) {
+function formatAsTomorrow(date) {
     return tomorrow;
 }
 
-function convertToYesterday(date) {
+function formatAsYesterday(date) {
     return yesterday;
 }
 
-function convertToToday(date) {
+function formatAsToday(date) {
     return today;
 }
 
-function convertToNWeeksAgo(date, now) {
+function formatAsNWeeksAgo(date, now) {
     var weeksDiff = getWeekDiffCeil(date, now),
         suffix = getNumSuffix(weeksDiff);
 
@@ -259,7 +258,7 @@ function convertToNWeeksAgo(date, now) {
         .replace('{suffix}', suffix);
 }
 
-function convertToNWeeksTime(date, now) {
+function formatAsNWeeksTime(date, now) {
     var weeksDiff = Math.abs(getWeekDiffCeil(date, now));
 
     return nWeeksTime
