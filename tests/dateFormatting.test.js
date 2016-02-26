@@ -34,9 +34,9 @@ var testDates = [1, 2, 3, 21, 22, 23, 31, 4, 7, 20],
 
 
 var niceDateTests = {
-    seconds: ['should format dates less than a minutes ago as "' + momentsAgoText + '"', function(now) {
+    seconds: ['should format dates less than a minute ago as "' + momentsAgoText + '"', function(now) {
         return {
-            test: [59, 50, 10, 1, 0.1],
+            test: [58, 50, 10, 1, 0.1],
             expected: [momentsAgoText, momentsAgoText, momentsAgoText, momentsAgoText, momentsAgoText]
         };
     }, msInS],

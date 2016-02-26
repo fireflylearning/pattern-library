@@ -354,12 +354,9 @@ function toLocal(date) {
     return date;
 }
 
-function getDiff(date, now, divisor) {
-    return Math.floor(Math.floor((now.getTime() - date.getTime()) * 0.001) / divisor);
-}
 
-function getDiffCeil(date, now, divisor) {
-    return Math.ceil(Math.floor((now.getTime() - date.getTime()) * 0.001) / divisor);
+function getDiff(date, now, divisor) {
+    return Math.floor(parseInt((now.getTime() - date.getTime())/(divisor), 10) * 0.001);
 }
 
 function getSecDiff(date, now) {
@@ -383,7 +380,12 @@ function getWeekDiff(date, now) {
 }
 
 function getWeekDiffCeil(date, now) {
-    return getDiffCeil(date, now, (sInM * mInH * hInD * dInW));
+    var l = parseInt((now.getTime() - date.getTime())/(sInM * mInH * hInD * dInW), 10) * 0.001;
+    if (l >= 0) {
+        return Math.ceil(l);
+    } else {
+        return Math.floor(l);
+    }
 }
 
 
@@ -428,7 +430,6 @@ function getStartOfWeekForDate(date, weekStartDay) {
     }
     return new Date(todayTime - (diffDays * msInD));
 }
-
 
 module.exports = function(config) {
 
