@@ -8,7 +8,6 @@ $(function(){
 		
 		var $expandedText = $expandableText.attr("data-expanded-text"),
 		$collapsedText = $expandableText.attr("data-collapsed-text"),
-		$expandableText.attr("data-expanded-text"),
 		$collapsedIcon = $expandableIcon.attr("data-collapsed-icon"),
 		$expandedIcon = $expandableIcon.attr("data-expanded-icon");
 
