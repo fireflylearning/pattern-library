@@ -2,6 +2,7 @@
 
 var React = require('react');
 var template = require('./_TaskEventBase.rt.js');
+var dateFormatting = require('../../../_lib/_ui/dateFormatting')();
 
 module.exports = React.createClass({
     displayName: 'TaskEventBase',
@@ -11,7 +12,7 @@ module.exports = React.createClass({
             return date;
         }
         if (typeof date === 'object' && date.getTime) {
-            return date.getTime();
+            return dateFormatting.niceDate(date);
         }
     }
 });

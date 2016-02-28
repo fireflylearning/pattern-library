@@ -276,7 +276,11 @@ function formatAsNWeeksTime(date, now) {
  */
 
 function niceDate(date) {
-    date = toLocal(date);
+    try {
+        date = ensureIsDateObject(date);
+    } catch (e) {
+        return date;
+    }
 
     var now = new Date(),
         format = getFormat(niceDateOperations, date, now);
@@ -284,9 +288,14 @@ function niceDate(date) {
     return format(date, now);
 }
 
-
 function niceDateFuzzy(date, contextUnknown) {
-    date = toLocal(date);
+
+    try {
+        date = ensureIsDateObject(date);
+    } catch (e) {
+        return date;
+    }
+
     if (typeof contextUnknown === 'undefined' || contextUnknown === null) contextUnknown = false;
 
     var now = new Date(),
@@ -297,9 +306,14 @@ function niceDateFuzzy(date, contextUnknown) {
 
 function getNiceWeek(config) {
 
-    var weekStartDay = config.weekStartDay || 0;
+    var weekStartDay = config && config.weekStartDay || 0;
 
     return function niceWeek(date) {
+        try {
+            date = ensureIsDateObject(date);
+        } catch (e) {
+            return date;
+        }
 
         var now = new Date(),
             weekStart = getStartOfWeekForDate(now, weekStartDay),
@@ -349,13 +363,32 @@ function getDateSuffix(date) {
     return value;
 }
 
+function ensureIsDateObject(date) {
+    var cleanDate = date;
+    if (isDateObject(cleanDate)) {
+        cleanDate = toLocal(cleanDate);
+    } else if (typeof date === 'string' && !isNaN(Date.parse(date))) {
+        cleanDate = new Date(date);
+    } else {
+        throw new Error('Date is neither Date object nor valid Date String');
+    }
+
+    return cleanDate;
+}
+
+function isDateObject(date) {
+    if (typeof date === 'object' && date.getTime) {
+        return true;
+    }
+    return false;
+}
+
 function toLocal(date) {
     return date;
 }
 
-
 function getDiff(date, now, divisor) {
-    return Math.floor(parseInt((now.getTime() - date.getTime())/(divisor), 10) * 0.001);
+    return Math.floor(parseInt((now.getTime() - date.getTime()) / (divisor), 10) * 0.001);
 }
 
 function getSecDiff(date, now) {
@@ -379,7 +412,7 @@ function getWeekDiff(date, now) {
 }
 
 function getWeekDiffCeil(date, now) {
-    var l = parseInt((now.getTime() - date.getTime())/(sInM * mInH * hInD * dInW), 10) * 0.001;
+    var l = parseInt((now.getTime() - date.getTime()) / (sInM * mInH * hInD * dInW), 10) * 0.001;
     if (l >= 0) {
         return Math.ceil(l);
     } else {

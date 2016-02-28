@@ -1,4 +1,4 @@
-<div data-ff_module-task-event="added-comment"/>
+<div data-ff_module-task-event="comment"/>
 
 <br/>
 
