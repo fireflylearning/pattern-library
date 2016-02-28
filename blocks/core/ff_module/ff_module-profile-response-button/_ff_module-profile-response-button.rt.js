@@ -4,15 +4,10 @@ var _ = require('lodash');
 module.exports = function () {
     return React.createElement('button', {
         'type': 'button',
-        'className': 'ff_module-profile-response-button' + (this.props.isSelected ? ' ff_module-profile-response-button--is-selected' : ''),
-        'data-guid': this.props.guid,
-        'onClick': this.props.onSelect,
-        'disabled': this.props.isSelected
+        'className': this.generateClass(this.props),
+        'onClick': this.props.onSelect
     }, React.createElement('figure', { 'className': 'ff_module-profile-response-button__picture' }, React.createElement('img', {
         'className': 'ff_module-profile-response-button__image',
         'src': this.props.pic_href
-    })), React.createElement('span', {
-        'className': 'ff_module-profile-response-button__title',
-        'href': '#'
-    }, this.props.label));
+    })), React.createElement('dl', { 'className': 'ff_module-profile-response-button__caption' }, React.createElement('dt', { 'className': 'ff_module-profile-response-button__label' }, this.props.label), React.createElement('dd', { 'className': 'ff_module-profile-response-button__status' }, this.props.status), this.props.markAndGrade ? React.createElement('dd', { 'className': 'ff_module-profile-response-button__mark-and-grade' }, this.renderGrade(this.props)) : null));
 };

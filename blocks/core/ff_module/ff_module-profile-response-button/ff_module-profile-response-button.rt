@@ -1,12 +1,14 @@
 <button
     type="button"
-    class="ff_module-profile-response-button{this.props.isSelected ? ' ff_module-profile-response-button--is-selected' : ''}"
-    data-guid="{this.props.guid}"
+    class="{this.generateClass(this.props)}"
     onClick="{this.props.onSelect}"
-    disabled="{this.props.isSelected}"
     >
       <figure class="ff_module-profile-response-button__picture">
         <img class="ff_module-profile-response-button__image" src="{this.props.pic_href}">
       </figure>
-      <span class="ff_module-profile-response-button__title" href="#">{this.props.label}</span>
+      <dl class="ff_module-profile-response-button__caption">
+        <dt class="ff_module-profile-response-button__label">{this.props.label}</dt>
+        <dd class="ff_module-profile-response-button__status">{this.props.status}</dd>
+        <dd class="ff_module-profile-response-button__mark-and-grade" rt-if="this.props.markAndGrade">{this.renderGrade(this.props)}</dd>
+      </dl>
 </button>

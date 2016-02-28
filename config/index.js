@@ -3,7 +3,7 @@
 
 module.exports = function(argv) {
     var config = {},
-        _ = require('lodash-node'),
+        _ = require('lodash'),
         options, locals, getWebpackOptions, paths;
 
     options = require('./options.default.js');

@@ -2,7 +2,7 @@
 
 var webpack = require('webpack'),
     path = require('path'),
-     _ = require('lodash-node');
+     _ = require('lodash');
 
 function camelCase(input) {
     return input.toLowerCase().replace(/[-_]+(.)?/g, function(match, group1) {

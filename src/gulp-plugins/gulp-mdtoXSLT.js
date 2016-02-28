@@ -4,7 +4,7 @@ var through = require('through2');
 var libxslt = require('libxslt'),
     gutil = require('gulp-util'),
     PluginError = gutil.PluginError,
-    _ = require('lodash-node'),
+    _ = require('lodash'),
     swig = require('swig');
 
 function getDefaultTemplateFileContext(file) {

@@ -3,9 +3,9 @@ var React = require('react/addons');
 var _ = require('lodash');
 function repeatChild1(child, childIndex) {
     return React.createElement('li', {
-        'className': 'ff_container-item-repeater__item',
+        'className': 'ff_container-item-repeater__item' + (this.props.modifier ? ' ff_container-item-repeater__item--' + this.props.modifier : ''),
         'key': child.key
-    }, '\n            ', child, '\n        ');
+    }, child);
 }
 module.exports = function () {
     return React.createElement('div', { 'className': 'ff_container-item-repeater' }, React.createElement.apply(this, [

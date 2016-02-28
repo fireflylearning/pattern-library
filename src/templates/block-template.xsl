@@ -20,9 +20,12 @@
             {% include './includes/crate-theme-select.xsl' with { themes: site.themes} %}
 
             <div class="crate_block">
+                <div class="crate_block__item">
                 <xsl:apply-templates select="page/blocks"/>
+                </div>
+                <div class="crate_block__content">{{page.contents|safe}}</div>
             </div>
-            <div class="content">{{page.contents|safe}}</div>
+
 
             <div class="crate_link">
                 <a href="/">&lt; Back</a>
