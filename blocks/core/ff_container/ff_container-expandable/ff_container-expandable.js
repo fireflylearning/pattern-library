@@ -11,17 +11,16 @@ $(function(){
 		$collapsedIcon = $expandableIcon.attr("data-collapsed-icon"),
 		$expandedIcon = $expandableIcon.attr("data-expanded-icon");
 
-		var isVisible = $expandableContent.is(":visible");
-		var newText = isVisible ? $collapsedText : $expandedText;
+		var isHidden = $expandableContent.hasClass("ff_container-expandable__content--hidden");
+		var newText = isHidden ? $expandedText : $collapsedText;
 
-		if (isVisible) {
-			$expandableContent.hide();
-			$expandableIcon.removeClass($expandedIcon).addClass($collapsedIcon);
-		} else {
-			$expandableContent.show();
+		if (isHidden) {
+			$expandableContent.removeClass("ff_container-expandable__content--hidden");
 			$expandableIcon.removeClass($collapsedIcon).addClass($expandedIcon);
+		} else {
+			$expandableContent.addClass("ff_container-expandable__content--hidden");
+			$expandableIcon.removeClass($expandedIcon).addClass($collapsedIcon);
 		}
 		$expandableText.text(newText);
-
 	});
 });
