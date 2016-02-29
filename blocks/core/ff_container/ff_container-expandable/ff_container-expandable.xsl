@@ -14,7 +14,7 @@
 			<span data-icon="expandable-icon" data-collapsed-icon="{$data/expandable/@collapsed-icon}" data-expanded-icon="{$data/expandable/@expanded-icon}" class="ff_icon ff_container-expandable__icon {$data/expandable/@expanded-icon}"></span>
 		</div>
 		<div class="ff_container-expandable__content" data-ff="expandable-content">
-			<xsl:value-of select="$data/expandable/content" />
+			<xsl:copy-of select="$data/expandable/content/node()"/>
 		</div>
 	</div>
 </xsl:template>
