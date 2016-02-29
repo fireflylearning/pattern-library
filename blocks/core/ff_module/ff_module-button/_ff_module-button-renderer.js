@@ -4,9 +4,6 @@ var React = require('react');
 var Button = require('./ff_module-button');
 
 var buttonProps = [{
-    text: 'Button default',
-    id: 'btn-01'
-}, {
     text: 'Button large',
     id: 'btn-01',
     modifier: 'large'
@@ -36,7 +33,7 @@ module.exports = function() {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-buttons]'), function(domElement, index) {
             var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, buttonProps.map(function(props) {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
-                    React.createElement(Button, props))
+                    React.createElement(Button, props));
             }));
             React.render(root, domElement);
         });

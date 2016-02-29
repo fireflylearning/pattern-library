@@ -1,0 +1,14 @@
+<overlay modifier="{{ modifier }}">
+    <body>{{body | safe}}</body>
+    <bar>
+      <control-bar modifier="{{ bar.modifier }}" classes="{{bar.classes}}">
+          {% for set in bar.sets %}
+              <set{% if set.title %} title="{{ set.title }}"{% endif %}>
+                  {% for module in set.modules %}
+                      <module>{{ module | safe }}</module>
+                  {% endfor %}
+              </set>
+          {% endfor %}
+      </control-bar>
+    </bar>
+</overlay>

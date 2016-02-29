@@ -1,0 +1,12 @@
+<overlay modifier="{{ modifier }}">
+    <body>
+      {% for item in body %}
+        <item>{{item | safe}}</item>
+      {% endfor %}
+    </body>
+    <bar>
+      {% for item in bar %}
+        <item>{{item | safe}}</item>
+      {% endfor %}
+    </bar>
+</overlay>

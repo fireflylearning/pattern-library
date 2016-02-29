@@ -90,7 +90,7 @@ module.exports = function mdtoXSLT(options) {
                 }
 
                 if (file.isBuffer()) {
-                    output(result);
+                    // output(result);
                     file.contents = new Buffer(result, 'utf-8');
                     t.push(file);
                     return callback();
