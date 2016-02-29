@@ -2,13 +2,11 @@
 
 var React = require('react');
 require('./lib/utils').bootstrapBrowser();
-var wrap = require('./lib/utils').wrap;
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 var _ = require('lodash');
 
 var TaskEvent = require('../blocks/core/ff_module/ff_module-task-event/ff_module-task-event.js');
-var WrappedTaskEvent = wrap(TaskEvent);
 var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
 
@@ -47,7 +45,7 @@ var expectedValues = [{
     sent: 'Saturday at 3:28 AM',
     author: 'Terry Teacher stamped response as seen.'
 }, {
-    sent: '7 hours ago',
+    sent: 'Yesterday at 1:24 PM',
     author: 'Terry Teacher added a comment:',
     comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
 }];
@@ -56,7 +54,7 @@ describe('TaskEvent', function() {
     var component;
 
     before(function() {
-        var element = React.createElement(WrappedTaskEvent, { event: events[0] });
+        var element = React.createElement(TaskEvent, { event: events[0] });
         component = TestUtils.renderIntoDocument(element);
     });
 
@@ -75,14 +73,14 @@ describe('TaskEvent', function() {
                 if (!testClass) return null;
 
                 it('should render \'' + expectedValues[index][key] + '\' for prop \'' + key + '\' with value \'' + prop.toString() + '\'', function() {
-                    element = React.createElement(WrappedTaskEvent, { event: _event });
+                    element = React.createElement(TaskEvent, { event: _event });
                     component = TestUtils.renderIntoDocument(element);
 
                     var node = TestUtils.findRenderedDOMComponentWithClass(component, testClass);
                     expect(node.textContent).to.equal(expectedValues[index][key]);
                 });
             });
-        })
-    })
+        });
+    });
 
 });
