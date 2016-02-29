@@ -2,5 +2,5 @@
 
 <TaskEventBase event="{this.props.event}">
     <span class="ff_module-task-event__author-action">{this.props.event.author.name} added a comment:</span>
-    <blockquote class="ff_module-task-event__comment">{this.props.event.comment}</blockquote>
+    <blockquote class="ff_module-task-event__comment">&#8220;{this.props.event.comment}&#8221;</blockquote>
 </TaskEventBase>
