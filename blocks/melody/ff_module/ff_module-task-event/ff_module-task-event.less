@@ -1,0 +1,22 @@
+.ff_module-task-event {
+    background: #fff;
+    border: 1px solid @ff_colour_control_border;
+    border-radius: 0.5*@ff_size_control_rounding;
+    overflow: auto;
+    padding: @ff_size_spacing_min*0.5 @ff_size_spacing_med;
+    &>* {
+        margin: @ff_size_spacing_min*0.8 0;
+    }
+
+    &__sent {
+        float:right;
+        font-size: .875rem;
+        color: @ff_colour_text_quiet;
+    }
+    &__author-action {
+        font-size: .875rem;
+        color: @ff_colour_text_quiet;
+        display: block;
+    }
+
+}

@@ -1,5 +1,5 @@
 'use strict';
-var _ = require('lodash-node');
+var _ = require('lodash');
 
 module.exports = function(gulp, plugins) {
     return function getExportBlocks(src, dest, templatePath, fileName) {

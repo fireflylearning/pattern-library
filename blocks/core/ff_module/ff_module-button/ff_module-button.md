@@ -5,7 +5,13 @@ data:
 page: 
     title: FF Module Button
 ---
+
+## React component
+
+<div data-ff_module-buttons="" ></div>
+
 ## Usage
+
 Call `ff_module-button` and pass-in the following XML:
 
 ```
@@ -64,6 +70,7 @@ data:
 * `--tertiary-block`
 * `--tertiary-large-block`
 
-## React component
 
-<div data-ff_module-buttons="" />
+
+## React component 
+Supports the same values as the xsl, aside from arbitray attributes.

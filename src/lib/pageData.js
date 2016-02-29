@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash-node'),
+var _ = require('lodash'),
     path = require('path'),
     createFile = require('./fileData');
 

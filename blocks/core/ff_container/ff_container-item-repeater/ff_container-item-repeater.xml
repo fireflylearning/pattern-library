@@ -1,4 +1,4 @@
-<items>
+<items modifier="{{modifier}}">
 	{% for item in items %}
 		<item>{{item}}</item>
 	{% endfor %}
