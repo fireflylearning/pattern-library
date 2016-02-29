@@ -8,6 +8,7 @@ var eventTypes = require('./_src/events').types;
 var events = [{
     type: eventTypes.setTask,
     sent: new Date(dStrings[0]),
+    pending: true,
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
@@ -22,6 +23,7 @@ var events = [{
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
+    error: true,
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.confirmTaskIsComplete,
