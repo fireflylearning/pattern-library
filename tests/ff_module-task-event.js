@@ -9,7 +9,7 @@ var _ = require('lodash');
 var TaskEvent = require('../blocks/core/ff_module/ff_module-task-event/ff_module-task-event.js');
 var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
-
+var dExpected = ['Saturday at 3:24 AM', 'Saturday at 3:28 AM', 'Yesterday at 1:24 PM'];
 //TODO: Update tests to account for date/time of test run
 
 
@@ -27,27 +27,52 @@ var events = [{
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' },
     comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
+}, {
+    type: eventTypes.requestResubmission,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.confirmTaskIsComplete,
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.confirmStudentIsExcused,
+    sent: new Date(dStrings[2]),
+    author: { name: 'Terry Teacher' }
 }];
+
 
 var testProps = _.omit(events, 'type');
 
 var classes = {
     [eventTypes.setTask]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
     [eventTypes.stampResponseAsSeen]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
+    [eventTypes.requestResubmission]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
+    [eventTypes.confirmTaskIsComplete]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
+    [eventTypes.confirmStudentIsExcused]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
     [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', comment: 'ff_module-task-event__comment' }
 };
 
 var expectedValues = [{
-    sent: 'Saturday at 3:24 AM',
+    sent: dExpected[0],
     author: 'Sally Student set a task:',
     taskTitle: 'Write an Essay'
 }, {
-    sent: 'Saturday at 3:28 AM',
+    sent: dExpected[1],
     author: 'Terry Teacher stamped response as seen.'
 }, {
-    sent: 'Yesterday at 1:24 PM',
+    sent: dExpected[2],
     author: 'Terry Teacher added a comment:',
     comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
+}, {
+    sent: dExpected[0],
+    author: 'Terry Teacher requested resubmission.'
+}, {
+    sent: dExpected[1],
+    author: 'Terry Teacher confirmed completion.'
+}, {
+    sent: dExpected[2],
+    author: 'Terry Teacher confirmed student is excused.'
 }];
 
 describe('TaskEvent', function() {
