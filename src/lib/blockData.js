@@ -46,7 +46,7 @@ function createBlock(name, resolvedname) {
             _data = _.union(_data, [].concat(data));
             return this;
         },
-        setUrlPath: function(urlPath){
+        setUrlPath: function(urlPath) {
             _urlPath = urlPath;
             return this;
         },
@@ -74,17 +74,17 @@ function createBlock(name, resolvedname) {
             if (_data && _data.length) return [].concat(_data);
             return _.assign({}, _data);
         },
-        getJsEntry: function(){
+        getJsEntry: function() {
             if (_.isEmpty(_files)) return null;
 
-            var file = _.find(_files, function(file){
+            var file = _.find(_files, function(file) {
                 var path = file.getAbsolutePath(),
-                fileName = file.getInfo().name,
+                    fileName = file.getInfo().name,
 
-                entryName = 'renderer',
-                rendererTest = /^_([\w-]+)-renderer\.js$/,
-                hasRenderer = rendererTest.test(fileName),
-                hasJs = name +'.js' === fileName;
+                    entryName = 'renderer',
+                    rendererTest = /^_([\w-]+)-renderer\.js$/,
+                    hasRenderer = rendererTest.test(fileName),
+                    hasJs = name + '.js' === fileName;
                 // console.log(fileName, hasRenderer);
                 return hasRenderer || hasJs;
 
@@ -93,7 +93,7 @@ function createBlock(name, resolvedname) {
             // console.log(file);
             return file;
         },
-        clearData: function(){
+        clearData: function() {
             _data = [];
         }
     };
@@ -107,8 +107,17 @@ module.exports = function() {
         return blocks[name];
     }
 
+    function getBlockListFromArgs(names){
+        return (names && names.length) ? _.map(names, getBlock) : blocks;
+    }
+
+    function getBlockNameListFromArgs(names) {
+        return (names && names.length) ? names : blocks.map(function(block) {
+            return block.name; });
+    }
+
     function getBlocks(names) {
-        var blocklist = (names.length) ? _.map(names, getBlock) : blocks;
+        var blocklist = getBlockListFromArgs(names);
 
         return _.reduce(blocklist, function(arr, block) {
             arr.push(block.getInfo());
@@ -117,16 +126,17 @@ module.exports = function() {
     }
 
     function getBlockListRequires(names) {
-        var blocklist = (names.length) ? _.map(names, getBlock) : blocks;
+        var initialList = getBlockNameListFromArgs(names);
+        var blocklist = getBlockListFromArgs(names);
 
-        return _.reduce(blocklist, function(depsList, block) {
+        return _.difference(_.reduce(blocklist, function(depsList, block) {
             depsList = _.union(depsList, block.getDependencies());
             return depsList;
-        }, []);
+        }, []), initialList);
     }
 
     function getJsEntries(names) {
-        var blocklist = (names.length) ? _.map(names, getBlock) : blocks;
+        var blocklist = getBlockListFromArgs(names);
 
         return _.reduce(blocklist, function(arr, block) {
             var entryFile = block.getJsEntry();
@@ -151,15 +161,15 @@ module.exports = function() {
         },
         getAllData: function( /* (optional) Array of names */ ) {
             var args = Array.prototype.slice.call(arguments);
-            return getBlocks(args);
+            return getBlocks(args[0]);
         },
         getBlocklistRequires( /* (optional) Array of names */ ) {
             var args = Array.prototype.slice.call(arguments);
-            return getBlockListRequires(args);
+            return getBlockListRequires(args[0]);
         },
-        getJsEntries(){
+        getJsEntries() {
             var args = Array.prototype.slice.call(arguments);
-            return getJsEntries(args);
+            return getJsEntries(args[0]);
         }
     };
 };
