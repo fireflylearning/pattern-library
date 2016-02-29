@@ -38,7 +38,6 @@ var events = [{
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-event]'), function(domElement, index) {
-            var id = domElement.getAttribute('data-ff_module-task-event');
 
             var element = React.createElement(TaskEvent, {
                 event:events[index]
