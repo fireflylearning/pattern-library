@@ -4,8 +4,10 @@ data:
   body:
     - "<span class=\"crate_util-block\">The body of the page</span>"
   bar:
-    - "<span class=\"crate_util-block\">The control bar for the page</span>"
+    - "<span class=\"crate_util-block\">The overlay bar for the page</span>"
 ---
+## React Component 
+<div data-ff_container-overlay="" ></div>
 
 ## ff_container-overlay
 

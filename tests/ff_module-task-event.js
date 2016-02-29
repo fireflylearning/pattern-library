@@ -9,7 +9,7 @@ var _ = require('lodash');
 var TaskEvent = require('../blocks/core/ff_module/ff_module-task-event/ff_module-task-event.js');
 var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
-var dExpected = ['Saturday at 3:24 AM', 'Saturday at 3:28 AM', 'Yesterday at 1:24 PM'];
+var dExpected = ['Saturday at 3:24 AM', 'Saturday at 3:28 AM', 'Sunday at 1:24 PM'];
 //TODO: Update tests to account for date/time of test run
 
 
