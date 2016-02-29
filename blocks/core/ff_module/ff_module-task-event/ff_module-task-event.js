@@ -6,7 +6,8 @@ var StampResponseAsSeenTaskEvent = require('./_src/_StampResponseAsSeenTaskEvent
     AddedCommentEvent = require('./_src/_AddedCommentEvent.js'),
     RequestResubmissionTaskEvent = require('./_src/_RequestResubmissionTaskEvent'),
     ConfirmedCompleteTaskEvent = require('./_src/_ConfirmedCompleteTaskEvent'),
-    ConfirmedStudentExcusedTaskEvent = require('./_src/_ConfirmedStudentExcusedTaskEvent');
+    ConfirmedStudentExcusedTaskEvent = require('./_src/_ConfirmedStudentExcusedTaskEvent'),
+    MarkAndGradeTaskEvent = require('./_src/_MarkAndGradeTaskEvent');
 
 var eventTypes = require('./_src/events').types;
 
@@ -16,7 +17,8 @@ var eventComponents = {
     [eventTypes.comment]: AddedCommentEvent,
     [eventTypes.requestResubmission]: RequestResubmissionTaskEvent,
     [eventTypes.confirmTaskIsComplete]: ConfirmedCompleteTaskEvent,
-    [eventTypes.confirmStudentIsExcused]: ConfirmedStudentExcusedTaskEvent
+    [eventTypes.confirmStudentIsExcused]: ConfirmedStudentExcusedTaskEvent,
+    [eventTypes.markAndGrade]: MarkAndGradeTaskEvent
 };
 
 

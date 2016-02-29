@@ -33,6 +33,13 @@ var events = [{
     type: eventTypes.confirmStudentIsExcused,
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Terry Teacher' },
+    mark: 7,
+    markMax: 10,
+    grade: 'B'
 }];
 
 module.exports = function() {

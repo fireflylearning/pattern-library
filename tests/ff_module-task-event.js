@@ -19,6 +19,24 @@ var events = [{
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Sally Student' },
+    mark: 7,
+    markMax: 10,
+    grade: 'B'
+}, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Sally Student' },
+    grade: 'B'
+}, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Sally Student' },
+    mark: 7,
+    markMax: 10
+}, {
     type: eventTypes.stampResponseAsSeen,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
@@ -42,7 +60,7 @@ var events = [{
 }];
 
 
-var testProps = _.omit(events, 'type');
+var testProps = _.omit(events, ['type', 'maxMark']);
 
 var classes = {
     [eventTypes.setTask]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
@@ -50,13 +68,29 @@ var classes = {
     [eventTypes.requestResubmission]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
     [eventTypes.confirmTaskIsComplete]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
     [eventTypes.confirmStudentIsExcused]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
-    [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', comment: 'ff_module-task-event__comment' }
+    [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', comment: 'ff_module-task-event__comment' },
+    [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade' }
 };
 
 var expectedValues = [{
     sent: dExpected[0],
     author: 'Sally Student set a task:',
     taskTitle: 'Write an Essay'
+}, {
+    sent: dExpected[0],
+    author: 'Sally Student added a mark:',
+    mark:'7/10',
+    grade: ', B'
+}, {
+    sent: dExpected[0],
+    author: 'Sally Student added a mark:',
+    mark: '',
+    grade: 'B'
+}, {
+    sent: dExpected[0],
+    author: 'Sally Student added a mark:',
+    mark: '7/10',
+    grade: ''
 }, {
     sent: dExpected[1],
     author: 'Terry Teacher stamped response as seen.'
