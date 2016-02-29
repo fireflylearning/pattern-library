@@ -1,6 +1,6 @@
 ---
 data:
-  modifier: "split"
+  modifier: "left"
   classes: "ff_module-other-class ff_utils-other-class"
   sets:
     -
@@ -12,6 +12,10 @@ data:
         - "<span class=\"crate_util-block\">Module B</span>"
         - "<span class=\"crate_util-block\">Module C</span>"
 ---
+
+## React Component
+<div data-ff_container-control-bar=""></div>
+
 
 ## Modifiers
 
