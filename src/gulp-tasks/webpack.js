@@ -55,7 +55,7 @@ module.exports = function(gulp, plugins, config) {
                 return result;
             }, {});
 
-            console.log('ENRT', entries);
+            // console.log('ENRT', entries);
             options.entry = entries;
 
             compilers.develop = webpack(options);

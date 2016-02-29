@@ -1,11 +1,5 @@
-// exports.stampResponseAsSeen = function stampResponseAsSeen(event) {
-//     return {
-//         type: types.stampResponseAsSeen,
-//         sent: event.sent,
-//         author: event.author,
-//         message: event.message
-//     };
-// }
+'use strict';
+
 
 module.exports.types = {
     setTask: "set-task",
@@ -20,6 +14,6 @@ module.exports.types = {
 var nextEventId = 1;
 // Local event IDs are local to the client
 // They have no meaning except to uniquely identify events
-exports.generateLocalEventId = function generateLocalEventId() {
+module.exports.generateLocalEventId = function generateLocalEventId() {
     return nextEventId++;
 }
