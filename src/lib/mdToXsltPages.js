@@ -11,7 +11,6 @@ function convertToPage(pageInfo) {
         page: _.merge({}, pageInfo.meta, {
             name: pageInfo.name,
             urlPath: pageInfo.urlPath,
-            blocks: [pageInfo]
         })
     }
 }
@@ -57,12 +56,15 @@ module.exports = function(pageData, blockData, siteData, swig) {
         pageContext.page.contents = file.contents.toString();
         pageContext.page.blocks = convertPageDefToBlocks(page, blockData);
 
+        var reqlist = pageContext.page.blocks.map(function(block){
+            return block.name;
+        });
+
         pageContext.site.pages = pageData.getAllData();
         pageContext.site.blocks = blockData.getAllData();
+        pageContext.requires = blockData.getBlocklistRequires(reqlist);
 
         return pageContext;
-
-
     }
 
 
