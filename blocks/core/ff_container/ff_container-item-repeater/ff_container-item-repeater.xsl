@@ -2,7 +2,7 @@
 	<xsl:param name="data" />
     <xsl:variable name="item_class">
         <xsl:choose>
-            <xsl:when test="boolean($data/items/@modifier)">ff_container-item-repeater__item ff_container-item-repeater__item--<xsl:value-of select="$data/items/@modifier">$data/items/@modifier</xsl:value-of></xsl:when>
+            <xsl:when test="boolean($data/items/@modifier)">ff_container-item-repeater__item ff_container-item-repeater__item--<xsl:value-of select="$data/items/@modifier"/></xsl:when>
             <xsl:otherwise>ff_container-item-repeater__item</xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
