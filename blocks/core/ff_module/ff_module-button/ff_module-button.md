@@ -60,6 +60,7 @@ data:
 * `--primary-large`
 * `--tertiary`
 * `--tertiary-large`
+* `--link`
 
 ### "Block" styling, buttons fill their container:
 
@@ -69,6 +70,7 @@ data:
 * `--primary-large-block`
 * `--tertiary-block`
 * `--tertiary-large-block`
+* `--link-block`
 
 
 

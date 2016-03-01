@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react');
 require('./lib/utils').bootstrapBrowser();
 
@@ -27,19 +29,34 @@ var buttonProps = [{
     hide_text: true,
     onClick: sinon.spy()
 }, {
-    text: 'Button tertiary',
+    text: 'Button modifier: tertiary',
     id: 'btn-05',
     modifier: 'tertiary',
     icon: 'calendar',
     onClick: sinon.spy()
 }, {
-    text: 'Button primary',
+    text: 'Button modifier: primary',
     id: 'btn-06',
     modifier: 'primary',
     onClick: sinon.spy()
 }, {
-    text: 'Disabled Button primary',
+    text: 'Button modifier: link',
     id: 'btn-07',
+    modifier: 'link',
+    onClick: sinon.spy()
+}, {
+    text: 'Button modifier: block',
+    id: 'btn-08',
+    modifier: 'block',
+    onClick: sinon.spy()
+}, {
+    text: 'Button modifier: link-block',
+    id: 'btn-08',
+    modifier: 'link-block',
+    onClick: sinon.spy()
+}, {
+    text: 'Disabled Button primary',
+    id: 'btn-09',
     modifier: 'primary',
     disabled: true,
     onClick: sinon.spy()

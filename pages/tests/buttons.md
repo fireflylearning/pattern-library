@@ -77,6 +77,38 @@ data:
         text: "tertiary large button with icon"
         modifier: "tertiary-large"
         icon: "test"
+      -
+        text: "link button"
+        modifier: "link"      
+      -
+        text: "link block button"
+        modifier: "link-block"   
+      -
+        text: "link button with icon"
+        icon: "test"
+        modifier: "link"   
+      -
+        text: "link block button with icon"
+        icon: "test"
+        modifier: "link-block"  
+      -
+        text: "link button disabled"
+        modifier: "link"     
+        disabled: "true" 
+      -
+        text: "link block button disabled"
+        modifier: "link-block"   
+        disabled: "true"
+      -
+        text: "link button with icon disabled"
+        icon: "test"
+        modifier: "link"   
+        disabled: "true"
+      -
+        text: "link block button with icon disabled"
+        icon: "test"
+        modifier: "link-block"  
+        disabled: "true"
       - 
         text: "default button"
         disabled: "true"
