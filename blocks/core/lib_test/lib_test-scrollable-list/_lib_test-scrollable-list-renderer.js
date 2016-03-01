@@ -128,13 +128,9 @@ var buttonProps = [{
 }];
 
 var linkProps = [{
-    modules: [
-        { key: 'link2', text: 'Previous Student', onClick: function() { console.log('Click File Button'); } }
-    ]
+    modules: [{ key: 'link2', text: 'Previous Student', onClick: function() { console.log('Click File Button'); } }]
 }, {
-    modules: [
-        { key: 'link1', text: 'Next Student', onClick: function() { console.log('Click Mark/Grade Button'); } }
-    ]
+    modules: [{ key: 'link1', text: 'Next Student', onClick: function() { console.log('Click Mark/Grade Button'); } }]
 }];
 
 var controlBarUpper = React.createElement(ContainerControlBar, {
@@ -146,7 +142,7 @@ var controlBarUpper = React.createElement(ContainerControlBar, {
             return React.createElement(Button, props);
         });
         return buttonProp;
-    }).push(React.createElement())
+    })
 });
 
 var controlBarLower = React.createElement(ContainerControlBar, {
