@@ -107,21 +107,26 @@ module.exports = function() {
         return blocks[name];
     }
 
-    function getBlockListFromArgs(names){
+    function getBlockListFromArgs(names) {
         return (names && names.length) ? _.map(names, getBlock) : blocks;
     }
 
     function getBlockNameListFromArgs(names) {
         return (names && names.length) ? names : blocks.map(function(block) {
-            return block.name; });
+            return block.name;
+        });
     }
 
     function getBlocks(names) {
         var blocklist = getBlockListFromArgs(names);
 
-        return _.reduce(blocklist, function(arr, block) {
-            arr.push(block.getInfo());
-            return arr;
+        return _.reduce(blocklist, function(arr, block, index) {
+            try {
+                arr.push(block.getInfo());
+                return arr;
+            } catch (e) {
+                throw new Error('Block named \'' + names[index] + '\' could not be found');
+            }
         }, []);
     }
 
@@ -129,19 +134,28 @@ module.exports = function() {
         var initialList = getBlockNameListFromArgs(names);
         var blocklist = getBlockListFromArgs(names);
 
-        return _.difference(_.reduce(blocklist, function(depsList, block) {
-            depsList = _.union(depsList, block.getDependencies());
-            return depsList;
+        return _.difference(_.reduce(blocklist, function(depsList, block, index) {
+            try {
+                depsList = _.union(depsList, block.getDependencies());
+                return depsList;
+            } catch (e) {
+                throw new Error('Block named \'' + names[index] + '\' could not be found');
+            }
         }, []), initialList);
     }
 
     function getJsEntries(names) {
         var blocklist = getBlockListFromArgs(names);
 
-        return _.reduce(blocklist, function(arr, block) {
-            var entryFile = block.getJsEntry();
-            if (entryFile) arr.push(entryFile);
-            return arr;
+        return _.reduce(blocklist, function(arr, block, index) {
+            try {
+                var entryFile = block.getJsEntry();
+                if (entryFile) arr.push(entryFile);
+                return arr;
+            } catch (e) {
+                throw new Error('Block named \'' + names[index] + '\' could not be found');
+            }
+
         }, []);
     }
 
