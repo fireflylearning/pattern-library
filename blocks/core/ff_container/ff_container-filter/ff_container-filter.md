@@ -1,6 +1,7 @@
 ---
 data:
    label: "Sort by"
+   modifier: "fixed-height"
    sets:
     -
       title: "Section Heading"

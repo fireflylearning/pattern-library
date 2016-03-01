@@ -5,7 +5,13 @@
 			<div class="ff_container-filter__heading">
 				<label class="ff_container-filter__label"><xsl:value-of select="$data/filter/label"/></label>
 			</div>
-			<div class="ff_container-filter__items">
+			<div>
+				<xsl:attribute name="class">
+					<xsl:text>ff_container-filter__items</xsl:text>
+					<xsl:if test="$data/filter/@modifier">
+						<xsl:text> ff_container-filter__items--</xsl:text><xsl:value-of select="$data/filter/@modifier"/>
+					</xsl:if>
+				</xsl:attribute>
 				<xsl:for-each select="$data//filter/set">
 					<xsl:apply-templates select="." mode="ff_container-filter"/>
 				</xsl:for-each>

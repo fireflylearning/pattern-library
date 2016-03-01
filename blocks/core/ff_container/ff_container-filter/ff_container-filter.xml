@@ -1,4 +1,4 @@
-<filter>
+<filter modifier="{{modifier}}">
 	<label>{{label}}</label>
 	{% for set in sets %}
 		<set>
