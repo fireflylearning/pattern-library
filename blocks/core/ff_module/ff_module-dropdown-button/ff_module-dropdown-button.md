@@ -18,11 +18,12 @@ page:
 ---
 
 ## Examples
-See [the variations page](/pages/dropdown-buttons.html) for examples.
+See [the variations page](/tests/dropdown-buttons.html) for examples.
 
 ## Modifiers
 
 - **block**: Button will take up full width of page
+- **primary**: Button will take on standard primary button styling
 
 ## State
 

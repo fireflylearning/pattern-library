@@ -125,6 +125,9 @@ function activateDropdowns(options) {
 
 }
 
+/**
+ * Ensure exported method is called only once DOM is ready
+ */
 module.exports = function(options) {
     console.log('ff_module-dropdownbutton file is included');
     activateDropdowns(options);

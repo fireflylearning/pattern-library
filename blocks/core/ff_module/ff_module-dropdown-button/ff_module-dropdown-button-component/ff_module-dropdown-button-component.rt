@@ -1,0 +1,30 @@
+<div
+    rt-class="this.generateClass('ff_module-dropdown-button', this.props)"
+    data-ff-dropdown-target="{this.props.id}"
+    >
+    <button type="button"
+        rt-class="this.generateClass('ff_module-dropdown-button__button', this.props)"
+        rt-if="!this.props.isDisabled"
+        data-ff-dropdown-trigger="{this.props.id}">
+        <span class="ff_module-dropdown-button__content">{this.props.text}</span>
+        <span
+            rt-class="this.generateClass('ff_module-dropdown-button__icon', this.props)"
+            data-ff-dropdown-target="{this.props.id}"></span>
+    </button>
+    <button type="button"
+        rt-class="this.generateClass('ff_module-dropdown-button__button', this.props)"
+        rt-if="this.props.isDisabled"
+        disabled="true">
+        <span class="ff_module-dropdown-button__content">{this.props.text}</span>
+        <span
+            rt-class="this.generateClass('ff_module-dropdown-button__icon', this.props)"></span>
+    </button>
+    <div
+        rt-class="this.generateClass('ff_module-dropdown-button__list-container', this.props)"
+        rt-if="!this.props.isDisabled"
+        data-ff-dropdown-target="{this.props.id}">
+        <ul class="ff_module-dropdown-button__list">
+            <li rt-repeat="item in this.props.list" key="{itemIndex}"><a href="{item.href}" class="ff_module-dropdown-button__link">{item.text}</a></li>
+        </ul>
+    </div>
+</div>
