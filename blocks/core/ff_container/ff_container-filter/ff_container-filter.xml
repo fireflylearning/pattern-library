@@ -1,4 +1,4 @@
-<filter-dropdown>
+<filter modifier="{{modifier}}">
 	<label>{{label}}</label>
 	{% for set in sets %}
 		<set>
@@ -7,4 +7,4 @@
 			{% endfor %}
 		</set>
 	{% endfor %}
-</filter-dropdown>
+</filter>
