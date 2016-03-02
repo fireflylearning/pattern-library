@@ -1,19 +1,24 @@
 'use strict';
-var React = require('react');
-var _ = require('lodash');
 
-var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff_container-scrollable-list');
-var TaskEventRepeater = require('../../ff_module/ff_module-task-event-repeater/ff_module-task-event-repeater');
-var ResponseRecipientList = require('../../ff_module/ff_module-response-recipient-list/ff_module-response-recipient-list');
-var Button = require('../../ff_module/ff_module-button/ff_module-button');
-var ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar');
-var ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay');
-var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types;
+var React = require('react'),
+    _ = require('lodash');
 
+var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff_container-scrollable-list'),
+    TaskEventRepeater = require('../../ff_module/ff_module-task-event-repeater/ff_module-task-event-repeater'),
+    ResponseRecipientList = require('../../ff_module/ff_module-response-recipient-list/ff_module-response-recipient-list'),
+    Button = require('../../ff_module/ff_module-button/ff_module-button'),
+    DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
+    IncrementalNavigation = require('../../ff_module/ff_module-incremental-navigation/ff_module-incremental-navigation'),
+    ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
+    ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay');
+
+var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
+    activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
 
 var events = [{
     type: eventTypes.setTask,
     localEventId: '2',
+    pending: true,
     sent: '20:40',
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
@@ -32,6 +37,7 @@ var events = [{
     type: eventTypes.setTask,
     localEventId: '2a',
     sent: '20:40',
+    error: true,
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
@@ -119,48 +125,81 @@ var recipientData = [{
 }];
 
 
+var buttonTypes = {
+    button: 'button',
+    dropdownButton: 'dropdown-button'
+};
+
+var buttonDefs = {
+    [buttonTypes.button]: Button,
+    [buttonTypes.dropdownButton]: DropdownButton
+};
+
+function onEventChange(event) {
+    console.log('this.props.editEvent:', event);
+}
+
+
+
 var buttonProps = [{
-    modules: [
-        { key: 'button1', modifier: 'primary', text: 'Mark/Grade', onClick: function() { console.log('Click Mark/Grade Button'); } },
-        { key: 'button2', modifier: 'primary', text: 'File', onClick: function() { console.log('Click File Button'); } },
-        { key: 'button3', modifier: 'primary', text: 'Comment', onClick: function() { console.log('Click Comment Button'); } }
-    ]
+    modules: [{
+        type: buttonTypes.button,
+        key: eventTypes.markAndGrade,
+        modifier: 'primary',
+        text: 'Mark/Grade',
+        onClick: function() { onEventChange({ type: eventTypes.markAndGrade }); }
+    }, {
+        type: buttonTypes.button,
+        key: eventTypes.comment,
+        modifier: 'primary',
+        text: 'Comment',
+        onClick: function() { onEventChange({ type: eventTypes.comment }); }
+    }, {
+        type: buttonTypes.dropdownButton,
+        id: 'more-actions',
+        key: 'more-actions',
+        modifier: 'primary-right',
+        text: 'More',
+        list: [
+            { text: 'Stamp Response As Seen', key: eventTypes.stampResponseAsSeen, onClick: function() { onEventChange({ type: eventTypes.stampResponseAsSeen }); } },
+            { text: 'Request Resubmission', key: eventTypes.requestResubmission, onClick: function() { onEventChange({ type: eventTypes.requestResubmission }); } },
+            { text: 'Confirm Student is Excused', key: eventTypes.confirmStudentIsExcused, onClick: function() { onEventChange({ type: eventTypes.confirmStudentIsExcused }); } },
+            { text: 'Confirm Task Is Complete', key: eventTypes.confirmTaskIsComplete, onClick: function() { onEventChange({ type: eventTypes.confirmTaskIsComplete }); } },
+        ]
+    }]
 }];
 
-var linkProps = [{
-    modules: [{ key: 'link2', text: 'Previous Student', onClick: function() { console.log('Click File Button'); } }]
-}, {
-    modules: [{ key: 'link1', text: 'Next Student', onClick: function() { console.log('Click Mark/Grade Button'); } }]
-}];
 
 var controlBarUpper = React.createElement(ContainerControlBar, {
     modifier: 'right',
     classes: 'ff_container-control-bar--task-event-scrollable',
-    key: 'cb1',
+    key: 'controlBarUpper',
     sets: buttonProps.map(function(buttonProp) {
         buttonProp.modules = buttonProp.modules.map(function(props) {
-            return React.createElement(Button, props);
+            return React.createElement(buttonDefs[props.type], _.omit(props, ['type']));
         });
         return buttonProp;
     })
 });
 
-var controlBarLower = React.createElement(ContainerControlBar, {
-    modifier: 'split',
-    classes: 'ff_container-control-bar--next-prev-student',
-    key: 'cb1',
-    sets: linkProps.map(function(linkProp) {
-        linkProp.modules = linkProp.modules.map(function(props) {
-            return React.createElement('a', _.assign({}, props, { href: '#' }), props.text);
-        });
-        return linkProp;
-    })
+
+
+var recipientNavigation = React.createElement(IncrementalNavigation, {
+    nextText: 'Next Student',
+    previousText: 'Previous Student',
+    isFirst: true,
+    onNext: function() {
+        console.log('Click Next Student');
+    },
+    onPrevious: function() {
+        console.log('Click Previous Student');
+    }
 });
 
 
 var taskEventRepeater = React.createElement(TaskEventRepeater, { key: 'evnt1', events: events }),
     overlayInner = React.createElement(ContainerOverlay, { modifier: 'absolute-top', classes: 'ff_container-overlay--task-event-scrollable-top', body: taskEventRepeater, bar: controlBarUpper }),
-    overlayOuter = React.createElement(ContainerOverlay, { modifier: 'absolute-bottom', classes: 'ff_container-overlay--task-event-scrollable', body: overlayInner, bar: controlBarLower }),
+    overlayOuter = React.createElement(ContainerOverlay, { modifier: 'absolute-bottom', classes: 'ff_container-overlay--task-event-scrollable', body: overlayInner, bar: recipientNavigation }),
     sidebar = React.createElement(ResponseRecipientList, { responses: recipientData });
 
 
@@ -174,5 +213,6 @@ module.exports = function() {
             });
             React.render(element, el);
         }
+        activateDropdowns();
     });
 };
