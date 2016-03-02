@@ -12,12 +12,12 @@ module.exports = React.createClass({
     },
     render: template,
     generateClass: function(base, props) {
-        var classNames = {};
-        classNames[base] = true;
-        classNames[base + '--' + props.modifier] = props.modifier;
-        classNames[base + '--is-open'] = props.isOpen;
-        classNames[base + '--is-disabled'] = props.isDisabled;
-        classNames[props.classes] = props.classes;
-        return classNames;
+        var classNames = [];
+        classNames.push(base);
+        if (!!props.modifier) classNames.push(base + '--' + props.modifier);
+        if (!!props.isOpen) classNames.push(base + '--is-open');
+        if (!!props.isDisabled) classNames.push(base + '--is-disabled');
+        if (!!props.classes) classNames.push(props.classes);
+        return classNames.join(' ');
     }
 });

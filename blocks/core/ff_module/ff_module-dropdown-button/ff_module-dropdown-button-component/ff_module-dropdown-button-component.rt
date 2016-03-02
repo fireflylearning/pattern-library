@@ -1,7 +1,7 @@
 <rt-require dependency="../../ff_module-button/ff_module-button.js" as="Button"/>
 
 <div
-    rt-class="this.generateClass('ff_module-dropdown-button', this.props)"
+    class="this.generateClass('ff_module-dropdown-button', this.props)"
     data-ff-dropdown-target="{this.props.id}"
     >
     <button type="button"
