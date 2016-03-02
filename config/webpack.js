@@ -44,7 +44,7 @@ module.exports = function(paths, config) {
                 path: path.join(config.exportPath, 'js'),
                 filename: '[name].js',
                 library: 'ffBlocks',
-                libraryTarget: 'var'
+                libraryTarget: 'umd'
             },
             resolve: {
                 modulesDirectories: ['./node_modules', 'src', './blocks'],
