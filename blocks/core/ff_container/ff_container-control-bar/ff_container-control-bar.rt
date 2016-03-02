@@ -1,5 +1,8 @@
+<rt-require dependency="./_src/_ControlBarSet.js" as="ControlBarSet"/>
+
 <div class="ff_container-control-bar{this.props.modifier ? ' ff_container-control-bar--' + this.props.modifier : ''}{ this.props.classes ? ' '+this.props.classes: ''}">
-    <div class="ff_container-control-bar__group" rt-repeat="set in this.props.sets" key="{setIndex}">
-        <h3 class="ff_container-control-bar__title" rt-if="set.title" >{set.title}</h3>{set.modules}</div>
-</div>
+    <ControlBarSet
+        rt-repeat="set in this.props.sets"
+        title="{set.title}"
+        key="{setIndex}">{set.modules}</ControlBarSet>{this.props.children}</div>
 
