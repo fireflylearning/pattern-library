@@ -33,16 +33,19 @@ module.exports = function mdtoXSLT(options) {
 
     function output(val) {
         if (debug) {
-            console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~');
-            console.log(val);
-            console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~\n');
+            alwaysOutput(val);
         }
+    }
+    function alwaysOutput(val){
+        console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~');
+        console.log(val);
+        console.log('\n~~~~~~~~~~~~~~~~~~~~~~~~~\n');
     }
 
     return through.obj(function(file, enc, callback) {
         var context = getContext(file);
         var t = this;
-        output(context);
+        // output(context);
         var templateXMLPath = getXMLPath(file, context);
         var templateXSLPath = getXSLPath(file, context);
         if(debug) gutil.log(templateXMLPath, templateXSLPath);
@@ -55,7 +58,7 @@ module.exports = function mdtoXSLT(options) {
         libxslt.parse(stylesheetString, function(err, stylesheet) {
 
             if (err) {
-                output(err);
+                alwaysOutput('\n\n' + stylesheetString);
                 t.emit('error', new PluginError({
                     plugin: 'MdtoXSLT',
                     message: 'Error parsing xsl stylesheet: ' + file.path + '; failed with error: ' + err
@@ -67,10 +70,10 @@ module.exports = function mdtoXSLT(options) {
 
                 if (err) {
                     gutil.log(file.path);
-                    output(err);
+                    alwaysOutput('\n\n' + documentString);
                     t.emit('error', new PluginError({
                         plugin: 'MdtoXSLT',
-                        message: 'Error applying xsl stylesheet to: ' + file.path + '; failed with error: ' + err
+                        message: 'Error applying xsl stylesheet to xml file: ' + file.path + '; failed with error: ' + err
                     }));
                     return callback();
                 }
