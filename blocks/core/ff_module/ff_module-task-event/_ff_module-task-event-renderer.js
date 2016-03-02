@@ -14,7 +14,8 @@ var events = [{
 }, {
     type: eventTypes.stampResponseAsSeen,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Message to the student'
 }, {
     type: eventTypes.comment,
     sent: new Date(dStrings[2]),

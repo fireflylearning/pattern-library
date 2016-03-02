@@ -39,7 +39,8 @@ var events = [{
 }, {
     type: eventTypes.stampResponseAsSeen,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Message from the teacher'
 }, {
     type: eventTypes.comment,
     sent: new Date(dStrings[2]),
@@ -48,15 +49,18 @@ var events = [{
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Message from the teacher'
 }, {
     type: eventTypes.confirmTaskIsComplete,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Message from the teacher'
 }, {
     type: eventTypes.confirmStudentIsExcused,
     sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Message from the teacher'
 }];
 
 
@@ -64,10 +68,10 @@ var testProps = _.omit(events, ['type', 'maxMark']);
 
 var classes = {
     [eventTypes.setTask]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
-    [eventTypes.stampResponseAsSeen]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
-    [eventTypes.requestResubmission]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
-    [eventTypes.confirmTaskIsComplete]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
-    [eventTypes.confirmStudentIsExcused]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action' },
+    [eventTypes.stampResponseAsSeen]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
+    [eventTypes.requestResubmission]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
+    [eventTypes.confirmTaskIsComplete]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
+    [eventTypes.confirmStudentIsExcused]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', comment: 'ff_module-task-event__comment' },
     [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade' }
 };
@@ -93,20 +97,24 @@ var expectedValues = [{
     grade: ''
 }, {
     sent: dExpected[1],
-    author: 'Terry Teacher stamped response as seen.'
+    author: 'Terry Teacher stamped response as seen.',
+    message: 'Message from the teacher'
 }, {
     sent: dExpected[2],
     author: 'Terry Teacher added a comment:',
     comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
 }, {
     sent: dExpected[0],
-    author: 'Terry Teacher requested resubmission.'
+    author: 'Terry Teacher requested resubmission.',
+    message: 'Message from the teacher'
 }, {
     sent: dExpected[1],
-    author: 'Terry Teacher confirmed completion.'
+    author: 'Terry Teacher confirmed completion.',
+    message: 'Message from the teacher'
 }, {
     sent: dExpected[2],
-    author: 'Terry Teacher confirmed student is excused.'
+    author: 'Terry Teacher confirmed student is excused.',
+    message: 'Message from the teacher'
 }];
 
 describe('TaskEvent', function() {
