@@ -15,7 +15,6 @@ function onClick2() {
 module.exports = function () {
     return React.createElement('div', { 'className': 'ff_module-task-response-actions' }, React.createElement(ContainerControlBar, {
         'modifier': 'right',
-        'classes': 'ff_container-control-bar--task-event-scrollable',
         'key': 'controlBarUpper'
     }, React.createElement(ControlBarSet, {}, React.createElement(Button, {
         'key': events.types.markAndGrade,
