@@ -9,6 +9,7 @@ var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff
     Button = require('../../ff_module/ff_module-button/ff_module-button'),
     DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
     IncrementalNavigation = require('../../ff_module/ff_module-incremental-navigation/ff_module-incremental-navigation'),
+    TaskResponseActions = require('../../ff_module/ff_module-task-response-actions/ff_module-task-response-actions'),
     ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
     ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay');
 
@@ -125,61 +126,12 @@ var recipientData = [{
 }];
 
 
-var buttonTypes = {
-    button: 'button',
-    dropdownButton: 'dropdown-button'
-};
 
-var buttonDefs = {
-    [buttonTypes.button]: Button,
-    [buttonTypes.dropdownButton]: DropdownButton
-};
-
-function onEventChange(event) {
-    console.log('this.props.editEvent:', event);
-}
-
-
-
-var buttonProps = [{
-    modules: [{
-        type: buttonTypes.button,
-        key: eventTypes.markAndGrade,
-        modifier: 'primary',
-        text: 'Mark/Grade',
-        onClick: function() { onEventChange({ type: eventTypes.markAndGrade }); }
-    }, {
-        type: buttonTypes.button,
-        key: eventTypes.comment,
-        modifier: 'primary',
-        text: 'Comment',
-        onClick: function() { onEventChange({ type: eventTypes.comment }); }
-    }, {
-        type: buttonTypes.dropdownButton,
-        id: 'more-actions',
-        key: 'more-actions',
-        modifier: 'primary-right',
-        text: 'More',
-        list: [
-            { text: 'Stamp Response As Seen', key: eventTypes.stampResponseAsSeen, onClick: function() { onEventChange({ type: eventTypes.stampResponseAsSeen }); } },
-            { text: 'Request Resubmission', key: eventTypes.requestResubmission, onClick: function() { onEventChange({ type: eventTypes.requestResubmission }); } },
-            { text: 'Confirm Student is Excused', key: eventTypes.confirmStudentIsExcused, onClick: function() { onEventChange({ type: eventTypes.confirmStudentIsExcused }); } },
-            { text: 'Confirm Task Is Complete', key: eventTypes.confirmTaskIsComplete, onClick: function() { onEventChange({ type: eventTypes.confirmTaskIsComplete }); } },
-        ]
-    }]
-}];
-
-
-var controlBarUpper = React.createElement(ContainerControlBar, {
-    modifier: 'right',
-    classes: 'ff_container-control-bar--task-event-scrollable',
-    key: 'controlBarUpper',
-    sets: buttonProps.map(function(buttonProp) {
-        buttonProp.modules = buttonProp.modules.map(function(props) {
-            return React.createElement(buttonDefs[props.type], _.omit(props, ['type']));
-        });
-        return buttonProp;
-    })
+var taskResponseActions = React.createElement(TaskResponseActions, {
+    onClick: function onEventChange(event) {
+        console.log('this.props.editEvent:', event);
+    },
+    key: 'controlBarUpper'
 });
 
 
@@ -198,7 +150,7 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 
 
 var taskEventRepeater = React.createElement(TaskEventRepeater, { key: 'evnt1', events: events }),
-    overlayInner = React.createElement(ContainerOverlay, { modifier: 'absolute-top', classes: 'ff_container-overlay--task-event-scrollable-top', body: taskEventRepeater, bar: controlBarUpper }),
+    overlayInner = React.createElement(ContainerOverlay, { modifier: 'absolute-top', classes: 'ff_container-overlay--task-event-scrollable-top', body: taskEventRepeater, bar: taskResponseActions }),
     overlayOuter = React.createElement(ContainerOverlay, { modifier: 'absolute-bottom', classes: 'ff_container-overlay--task-event-scrollable', body: overlayInner, bar: recipientNavigation }),
     sidebar = React.createElement(ResponseRecipientList, { responses: recipientData });
 
