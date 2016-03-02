@@ -1,9 +1,12 @@
 'use strict';
 
 $(function(){ 
-	$("[data-ff-action='expandable']").click(function(){
-		var $expandableContent = $("[data-ff='expandable-content']"),
-		$expandableIcon = $("[data-icon='expandable-icon']"),
+	var $expandable = $("[data-ff='expandable']");
+
+	$expandable.addClass("ff_container-expandable--is-collapsed ");
+	
+	$("[data-ff-action='expandable-dropdown']").click(function(){
+		var $expandableIcon = $("[data-icon='expandable-icon']"),
 		$expandableText = $("[data-ff='expandable-text']");
 		
 		var $expandedText = $expandableText.attr("data-expanded-text"),
@@ -11,14 +14,15 @@ $(function(){
 		$collapsedIcon = $expandableIcon.attr("data-collapsed-icon"),
 		$expandedIcon = $expandableIcon.attr("data-expanded-icon");
 
-		var isHidden = $expandableContent.hasClass("ff_container-expandable__content--hidden");
-		var newText = isHidden ? $expandedText : $collapsedText;
+		var isCollapsed = $expandable.hasClass("ff_container-expandable--is-collapsed");
 
-		if (isHidden) {
-			$expandableContent.removeClass("ff_container-expandable__content--hidden");
+		var newText = isCollapsed ? $expandedText : $collapsedText;
+
+		if (isCollapsed) {
+			$expandable.removeClass("ff_container-expandable--is-collapsed");
 			$expandableIcon.removeClass($collapsedIcon).addClass($expandedIcon);
 		} else {
-			$expandableContent.addClass("ff_container-expandable__content--hidden");
+			$expandable.addClass("ff_container-expandable--is-collapsed");
 			$expandableIcon.removeClass($expandedIcon).addClass($collapsedIcon);
 		}
 		$expandableText.text(newText);
