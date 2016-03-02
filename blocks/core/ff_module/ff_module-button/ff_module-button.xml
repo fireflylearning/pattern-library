@@ -2,6 +2,7 @@
     {% if id %}         id="{{id}}"                 {% endif %}
     {% if modifier %}   modifier="{{modifier}}"     {% endif %}
     {% if icon %}       icon="{{icon}}"             {% endif %}
+    {% if icon_align %} icon_align="{{icon_align}}"  {% endif %}
     {% if disabled %}   disabled="{{disabled}}"     {% endif %}
     {% if hide_text %}  hide_text="{{hide_text}}"   {% endif %}
     >
@@ -9,4 +10,4 @@
         {% for d in data %}
         <data attr="{{d.attr}}">{{d.value}}</data>
         {% endfor %}
-</button> 
+</button>

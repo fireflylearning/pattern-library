@@ -12,6 +12,11 @@ var buttonProps = [{
     id: 'btn-02',
     icon: 'calendar',
 }, {
+    text: 'Button with icon right',
+    id: 'btn-02',
+    icon: 'calendar',
+    iconAlign: 'right'
+},{
     text: 'Button tertiary',
     id: 'btn-03',
     modifier: 'tertiary',
@@ -20,6 +25,11 @@ var buttonProps = [{
     text: 'Button primary',
     id: 'btn-04',
     modifier: 'primary',
+}, {
+    text: 'Button with classes, disabled',
+    id: 'btn-04',
+    classes: 'ff_other-class',
+    disabled: true
 }, {
     text: 'Button disabled',
     id: 'btn-05',

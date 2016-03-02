@@ -14,6 +14,10 @@ data:
       - 
         text: "default button with icon"
         icon: "test"
+      - 
+        text: "default button with icon right"
+        icon: "test"
+        icon_align: "right"
       -
         text: "primary button"
         modifier: "primary"
