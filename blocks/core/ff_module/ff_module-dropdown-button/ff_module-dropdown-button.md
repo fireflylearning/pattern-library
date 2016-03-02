@@ -36,4 +36,6 @@ See [the variations page](/tests/dropdown-buttons.html) for examples.
 - 
 By default, the dropdown js only adds `--is-enabled` state to dropdown buttons with the correct attribute `data-ff-dropdown-trigger`. If an `id` attribute is set in the xml, the data attribute and its related target attributes will be set automatically in the xsl. 
 
+In order to prevent adding handlers twice, the main method will check the options passed to it, and will only activate if the options don't match any that have already been activated.
+
 If a list item has no href attribute, it will be rendered as a button. A data-attribute value of `data-ff_module-dropdown-button__link` can be set with the `attr` property.

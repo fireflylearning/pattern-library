@@ -2,6 +2,7 @@
 
 var $ = require('jquery');
 var core = require('../../_lib/ff-core/_ff-core.js');
+var _ = require('lodash');
 
 var _options = {
     root: document,
@@ -16,7 +17,6 @@ var _options = {
 
 
 function activateDropdowns(options) {
-    options = $.extend({}, _options, options);
 
     var $root = $(options.root),
         triggerSelBase = options.triggerSelBase,
@@ -124,10 +124,22 @@ function activateDropdowns(options) {
 
 }
 
+var activated = [];
 /**
  * Ensure exported method is called only once DOM is ready
  */
 module.exports = function(options) {
-    console.log('ff_module-dropdown-button is being activated with options:\n',options);
-    activateDropdowns(options);
+    options = $.extend({}, _options, options);
+
+    var isActivatedForTheseOptions = _.some(activated, function(optionSet){
+        return _.isEqual(optionSet, options);
+    });
+
+    if(!isActivatedForTheseOptions) {
+        console.log('ff_module-dropdown-button is being activated with options: \n',options);
+        activateDropdowns(options);
+        activated.push(options);
+    } else {
+        console.log('ff_module-dropdown-button has already been activated with options: \n',options);
+    }
 };
