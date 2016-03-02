@@ -86,7 +86,6 @@ function activateDropdowns(options) {
 
         var $triggers = $root.find(triggerSels),
             $targets = $root.find(targetSels);
-            console.log(id, $triggers, $targets);
 
         removeSuffix($triggers, currentState);
         removeSuffix($targets, currentState);
@@ -129,6 +128,6 @@ function activateDropdowns(options) {
  * Ensure exported method is called only once DOM is ready
  */
 module.exports = function(options) {
-    console.log('ff_module-dropdownbutton file is included');
+    console.log('ff_module-dropdown-button is being activated with options:\n',options);
     activateDropdowns(options);
 };

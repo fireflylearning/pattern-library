@@ -1,3 +1,5 @@
+<rt-require dependency="../../ff_module-button/ff_module-button.js" as="Button"/>
+
 <div
     rt-class="this.generateClass('ff_module-dropdown-button', this.props)"
     data-ff-dropdown-target="{this.props.id}"
@@ -21,10 +23,13 @@
     </button>
     <div
         rt-class="this.generateClass('ff_module-dropdown-button__list-container', this.props)"
-        rt-if="!this.props.isDisabled"
+        rt-if="!this.props.isDisabled && this.props.list.length"
         data-ff-dropdown-target="{this.props.id}">
         <ul class="ff_module-dropdown-button__list">
-            <li rt-repeat="item in this.props.list" key="{itemIndex}"><a href="{item.href}" class="ff_module-dropdown-button__link">{item.text}</a></li>
+            <li rt-repeat="item in this.props.list" key="{itemIndex}">
+            <a rt-if="item.href && !item.onClick" href="{item.href}" class="ff_module-dropdown-button__link">{item.text}</a>
+            <Button modifier="{item.modifier ? item.modifier : 'link'}" rt-if="item.onClick && !item.href" onClick="{item.onClick}" text="{item.text}"/>
+            </li>
         </ul>
     </div>
 </div>

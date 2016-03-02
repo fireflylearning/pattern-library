@@ -116,9 +116,28 @@
             </xsl:attribute>
         </xsl:if>
         <ul class="ff_module-dropdown-button__list">
-            <xsl:for-each select="item">
-                <li><a href="{@href}" class="ff_module-dropdown-button__link"><xsl:value-of select="." /></a></li>
-            </xsl:for-each>
+            <xsl:apply-templates select="item" mode="ff_module-dropdown-button"/>
         </ul>
     </div>
+</xsl:template>
+
+
+<xsl:template match="item[@href]" mode="ff_module-dropdown-button">
+    <li><a href="{@href}" class="ff_module-dropdown-button__link"><xsl:value-of select="." /></a></li>
+</xsl:template>
+
+<xsl:template match="item[not(@href)]" mode="ff_module-dropdown-button">
+    <xsl:variable name="button">
+        <button modifier="link" classes="ff_module-dropdown-button__link-button">
+            <text><xsl:value-of select="." /></text>
+            <xsl:if test="boolean(@attr)">
+                <data attr="data-ff_module-dropdown-button__link-button"><xsl:value-of select="@attr" /></data>
+            </xsl:if>
+        </button>
+    </xsl:variable>
+    <li>
+        <xsl:call-template name="ff_module-button" >
+            <xsl:with-param name="data" select="ext:node-set($button)"/>
+        </xsl:call-template>
+    </li>
 </xsl:template>

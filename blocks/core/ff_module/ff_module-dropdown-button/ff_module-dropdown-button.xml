@@ -6,7 +6,9 @@
     <text>{{text | default('Dropdown Button')}}</text>
     <list>
         {% for item in list -%}
-        <item href="{{item.href}}">{{item.text}}</item>
-        {% endfor %}
+            <item   {%- if item.href %} href="{{item.href}}" {%- endif -%}
+                    {%- if item.attr %} attr="{{item.attr}}" {%- endif -%}>
+                {{item.text}}</item>
+        {% endfor -%}
     </list>
 </dropdown-button>
