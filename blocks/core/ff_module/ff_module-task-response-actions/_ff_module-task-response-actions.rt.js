@@ -13,7 +13,7 @@ function onClick2() {
     this.props.onClick({ type: events.types.comment });
 }
 module.exports = function () {
-    return React.createElement('div', { 'className': 'ff_module-task-event-actions' }, React.createElement(ContainerControlBar, {
+    return React.createElement('div', { 'className': 'ff_module-task-response-actions' }, React.createElement(ContainerControlBar, {
         'modifier': 'right',
         'classes': 'ff_container-control-bar--task-event-scrollable',
         'key': 'controlBarUpper'
@@ -31,7 +31,7 @@ module.exports = function () {
         'id': 'more-actions',
         'key': 'more-actions',
         'modifier': 'primary-right',
-        'classes': 'ff_module-task-event-actions__dropdown',
+        'classes': 'ff_module-task-response-actions__dropdown',
         'text': 'More',
         'list': [
             {

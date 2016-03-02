@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react');
 
-var TaskEventActions = require('./ff_module-task-event-actions');
+var TaskEventActions = require('./ff_module-task-response-actions');
 
 var props = {
     onClick: function(e){
@@ -12,7 +12,7 @@ var props = {
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
-        Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-event-actions]'), function(domElement, index) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-response-actions]'), function(domElement, index) {
             var element = React.createElement(TaskEventActions, props);
             React.render(element, domElement);
         });

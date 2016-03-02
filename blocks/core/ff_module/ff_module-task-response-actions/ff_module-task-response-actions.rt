@@ -4,7 +4,7 @@
 <rt-require dependency="../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component" as="DropdownButton"/>
 <rt-require dependency="../../ff_module/ff_module-task-event/_src/events" as="events" />
 
-<div class="ff_module-task-event-actions">
+<div class="ff_module-task-response-actions">
     <ContainerControlBar
         modifier= "right"
         classes="ff_container-control-bar--task-event-scrollable"
@@ -26,7 +26,7 @@
                 id="more-actions"
                 key="more-actions"
                 modifier="primary-right"
-                classes="ff_module-task-event-actions__dropdown"
+                classes="ff_module-task-response-actions__dropdown"
                 text="More"
                 list= "{[
                         {

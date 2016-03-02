@@ -9,7 +9,7 @@ var TestUtils = require('react-addons-test-utils'),
     sinon = require('sinon'),
     getTestFramework = require('./lib/framework').setUpTestFramework(React, TestUtils, expect);
 
-var TaskEventActions = require('../blocks/core/ff_module/ff_module-task-event-actions/ff_module-task-event-actions');
+var TaskResponseActions = require('../blocks/core/ff_module/ff_module-task-response-actions/ff_module-task-response-actions');
 var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;
 
 
@@ -31,4 +31,4 @@ var testDefs = {
 };
 
 
-describe('TaskEventActions', getTestFramework(TaskEventActions, testProps, testDefs, 'def'));
+describe('TaskResponseActions', getTestFramework(TaskResponseActions, testProps, testDefs, 'def'));
