@@ -3,9 +3,9 @@
 
 See [ff-module-dropdown-button](/blocks/core/ff_module/ff_module-dropdown-button/ff_module-dropdown-button.html) for details on dropdown styling and modifiers.
 
-This component just renders an html dropdown button, it doesn't include the dropdown functionality which already exists in the core dropdown file 'ff_module-dropdown.js'.
+This component just renders an html dropdown button, it doesn't replicate the dropdown functionality which already exists in the core 'vanilla' dropdown file 'ff_module-dropdown.js'.
 
-**Ensure the core dropdown file is included on a page, and activated on DOM ready or equivalent, to activate js functionality.**
+**The core dropdown file is activated automatically once the component mounts.**
 
 # Props 
 - **text**: {String, required} The text rendered by the button

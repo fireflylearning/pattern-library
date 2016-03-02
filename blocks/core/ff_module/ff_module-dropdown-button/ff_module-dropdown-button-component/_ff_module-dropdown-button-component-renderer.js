@@ -52,6 +52,6 @@ module.exports = function() {
             React.render(root, domElement);
 
         });
-        activateDropdowns();
+        // activateDropdowns();
     });
 };

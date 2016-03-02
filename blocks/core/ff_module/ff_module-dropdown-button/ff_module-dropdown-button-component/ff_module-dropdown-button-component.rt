@@ -1,34 +1,34 @@
 <rt-require dependency="../../ff_module-button/ff_module-button.js" as="Button"/>
 
 <div
-    class="this.generateClass('ff_module-dropdown-button', this.props)"
+    class="{this.generateClass('ff_module-dropdown-button', this.props)}"
     data-ff-dropdown-target="{this.props.id}"
     >
     <button type="button"
-        rt-class="this.generateClass('ff_module-dropdown-button__button', this.props)"
+        class="{this.generateClass('ff_module-dropdown-button__button', this.props)}"
         rt-if="!this.props.isDisabled"
         data-ff-dropdown-trigger="{this.props.id}">
         <span class="ff_module-dropdown-button__content">{this.props.text}</span>
         <span
-            rt-class="this.generateClass('ff_module-dropdown-button__icon', this.props)"
+            class="{this.generateClass('ff_module-dropdown-button__icon', this.props)}"
             data-ff-dropdown-target="{this.props.id}"></span>
     </button>
     <button type="button"
-        rt-class="this.generateClass('ff_module-dropdown-button__button', this.props)"
+        class="{this.generateClass('ff_module-dropdown-button__button', this.props)}"
         rt-if="this.props.isDisabled"
         disabled="true">
         <span class="ff_module-dropdown-button__content">{this.props.text}</span>
         <span
-            rt-class="this.generateClass('ff_module-dropdown-button__icon', this.props)"></span>
+            class="{this.generateClass('ff_module-dropdown-button__icon', this.props)}"></span>
     </button>
     <div
-        rt-class="this.generateClass('ff_module-dropdown-button__list-container', this.props)"
+        class="{this.generateClass('ff_module-dropdown-button__list-container', this.props)}"
         rt-if="!this.props.isDisabled && this.props.list.length"
         data-ff-dropdown-target="{this.props.id}">
         <ul class="ff_module-dropdown-button__list">
             <li rt-repeat="item in this.props.list" key="{itemIndex}">
-            <a rt-if="item.href && !item.onClick" href="{item.href}" class="ff_module-dropdown-button__link">{item.text}</a>
-            <Button modifier="{item.modifier ? item.modifier : 'link'}" rt-if="item.onClick && !item.href" onClick="{item.onClick}" text="{item.text}"/>
+                <a rt-if="item.href" href="{item.href}" class="ff_module-dropdown-button__link">{item.text}</a>
+                <Button modifier="{item.modifier ? item.modifier : 'link'}" rt-if="!item.href" onClick="{item.onClick}" text="{item.text}"/>
             </li>
         </ul>
     </div>

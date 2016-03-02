@@ -2,6 +2,7 @@
 
 var React = require('react');
 var template = require('./_ff_module-dropdown-button-component.rt.js');
+var activateDropdowns = require('../ff_module-dropdown-button');
 
 module.exports = React.createClass({
     displayName:'DropdownButton',
@@ -11,6 +12,9 @@ module.exports = React.createClass({
         text: React.PropTypes.string.isRequired
     },
     render: template,
+    componentDidMount: function(){
+        activateDropdowns();
+    },
     generateClass: function(base, props) {
         var classNames = [];
         classNames.push(base);
