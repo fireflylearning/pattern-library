@@ -10,7 +10,8 @@ module.exports = function() {
             var element = React.createElement(IncrementalNavigation, {
                 nextText: 'Next Student',
                 previousText: 'Previous Student',
-                isFirst: true,
+                isFirst: false,
+                isLast: true,
                 onNext: function(){
                     console.log('Click Next Student');
                 },

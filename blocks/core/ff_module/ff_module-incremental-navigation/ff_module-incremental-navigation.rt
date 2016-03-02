@@ -3,6 +3,23 @@
 <rt-require dependency="../../ff_container/ff_container-control-bar/_src/_ControlBarSet" as="ControlBarSet"/>
 
 <ContainerControlBar modifier="split" classes="ff_module-incremental-navigation">
-    <ControlBarSet><Button modifier="link" classes="ff_module-incremental-navigation__previous" text="{this.props.previousText}" disabled="{this.props.isFirst}" onClick="{this.props.onPrevious}" /></ControlBarSet>
-    <ControlBarSet><Button modifier="link" classes="ff_module-incremental-navigation__next" text="{this.props.nextText}" disabled={this.props.isLast} onClick="{this.props.onNext}"/></ControlBarSet>
+    <ControlBarSet>
+        <Button
+            modifier="link"
+            icon="page-back-blue"
+            classes="ff_module-incremental-navigation__previous"
+            text="{this.props.previousText}"
+            disabled="{this.props.isFirst}"
+            onClick="{this.props.onPrevious}" />
+    </ControlBarSet>
+    <ControlBarSet>
+        <Button
+            modifier="link"
+            icon="page-forward-blue"
+            iconAlign="right"
+            classes="ff_module-incremental-navigation__next"
+            text="{this.props.nextText}"
+            disabled={this.props.isLast}
+            onClick="{this.props.onNext}"/>
+    </ControlBarSet>
 </ContainerControlBar>

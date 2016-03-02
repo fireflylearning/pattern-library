@@ -40,7 +40,7 @@ var testDefs = {
     'isFirst': function(component, value, props) {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-incremental-navigation__previous');
         if (value) {
-            expect(node.className).to.equal('ff_module-button ff_module-button--link ff_module-incremental-navigation__previous ff_module-button--is-disabled');
+            expect(node.className).to.equal('ff_module-button ff_module-button--link ff_module-incremental-navigation__previous ff_module-button--is-disabled ff_module-incremental-navigation__previous--is-disabled');
         } else {
             expect(node.className).to.equal('ff_module-button ff_module-button--link ff_module-incremental-navigation__previous');
         }
@@ -48,7 +48,7 @@ var testDefs = {
     'isLast': function(component, value, props) {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-incremental-navigation__next');
         if (value) {
-            expect(node.className).to.equal('ff_module-button ff_module-button--link ff_module-incremental-navigation__next ff_module-button--is-disabled');
+            expect(node.className).to.equal('ff_module-button ff_module-button--link ff_module-incremental-navigation__next ff_module-button--is-disabled ff_module-incremental-navigation__next--is-disabled');
         } else {
             expect(node.className).to.equal('ff_module-button ff_module-button--link ff_module-incremental-navigation__next');
         }

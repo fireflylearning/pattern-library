@@ -10,12 +10,15 @@ module.exports = function () {
         'classes': 'ff_module-incremental-navigation'
     }, React.createElement(ControlBarSet, {}, React.createElement(Button, {
         'modifier': 'link',
+        'icon': 'page-back-blue',
         'classes': 'ff_module-incremental-navigation__previous',
         'text': this.props.previousText,
         'disabled': this.props.isFirst,
         'onClick': this.props.onPrevious
     })), React.createElement(ControlBarSet, {}, React.createElement(Button, {
         'modifier': 'link',
+        'icon': 'page-forward-blue',
+        'iconAlign': 'right',
         'classes': 'ff_module-incremental-navigation__next',
         'text': this.props.nextText,
         'disabled': this.props.isLast,

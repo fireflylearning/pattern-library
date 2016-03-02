@@ -8,3 +8,11 @@ For displaying buttons that allow the user to navigate incrementally forwards an
 
 
 ## Props
+
+- **nextText**: `{String} isRequired`
+- **previousText**: `{String} isRequired`
+- **isFirst**: `{Bool}`
+- **isLast**: `{Bool}`
+- **onNext**: `{Func} isRequired`
+- **onPrevious**: `{Func} isRequired`
+
