@@ -26,12 +26,10 @@ var buttonProps = [{
     list: list
 }, {
     text: 'Button primary',
-    id: 'btn-04',
     modifier: 'primary',
     list: list
 }, {
     text: 'Button disabled',
-    id: 'btn-05',
     isDisabled: true,
     list: list
 }];

@@ -9,7 +9,6 @@ module.exports = React.createClass({
     displayName: 'DropdownButton',
     propTypes: {
         list: React.PropTypes.array.isRequired,
-        id: React.PropTypes.string,
         text: React.PropTypes.string.isRequired,
         isDisabled: React.PropTypes.bool
     },
@@ -38,10 +37,6 @@ module.exports = React.createClass({
         return classNames.join(' ');
     },
     getDataAttrId: function() {
-        if (this.props.id) {
-            return this.props.id;
-        } else {
-            return this.localId;
-        }
+        return this.localId;
     }
 });
