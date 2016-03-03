@@ -1,6 +1,6 @@
 <rt-require dependency="../../ff_module-button/ff_module-button.js" as="Button"/>
 
-<div
+<div ref="{this.bindRef}"
     class="{this.generateClass('ff_module-dropdown-button' )}"
     data-ff_module-dropdown-button-rt-target="{this.getDataAttrId()}"
     >

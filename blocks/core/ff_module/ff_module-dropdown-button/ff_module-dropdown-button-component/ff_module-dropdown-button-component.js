@@ -19,9 +19,13 @@ module.exports = React.createClass({
     },
     componentDidMount: function() {
         activateDropdowns({
+            root: this._root,
             triggerSelBase: 'data-ff_module-dropdown-button-rt-trigger',
             targetSelBase: 'data-ff_module-dropdown-button-rt-target'
         });
+    },
+    bindRef: function(component){
+        this._root = component;
     },
     generateClass: function(base) {
         var classNames = [],

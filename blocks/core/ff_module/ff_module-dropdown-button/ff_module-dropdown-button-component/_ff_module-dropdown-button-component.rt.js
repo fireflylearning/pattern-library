@@ -14,6 +14,7 @@ function repeatItem1(item, itemIndex) {
 }
 module.exports = function () {
     return React.createElement('div', {
+        'ref': this.bindRef,
         'className': this.generateClass('ff_module-dropdown-button'),
         'data-ff_module-dropdown-button-rt-target': this.getDataAttrId()
     }, !this.props.isDisabled ? React.createElement('button', {

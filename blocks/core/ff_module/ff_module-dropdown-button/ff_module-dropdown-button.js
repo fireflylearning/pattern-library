@@ -84,8 +84,8 @@ function activateDropdowns(options) {
             targetSels = targetRep.replace(/{val}/, id);
 
 
-        var $triggers = $root.find(triggerSels),
-            $targets = $root.find(targetSels);
+        var $triggers = $root.find(triggerSels).addBack(triggerSels),
+            $targets = $root.find(targetSels).addBack(targetSels);
 
         removeSuffix($triggers, currentState);
         removeSuffix($targets, currentState);
@@ -128,7 +128,7 @@ var activated = [];
 /**
  * Ensure exported method is called only once DOM is ready
  */
-var isBrowser=new Function("try {return this===window;}catch(e){ return false;}");
+var isBrowser = new Function("try {return this===window;}catch(e){ return false;}");
 
 module.exports = function(options) {
     options = $.extend({}, _options, options);
