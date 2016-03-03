@@ -9,7 +9,7 @@ This component just renders an html dropdown button, it doesn't replicate the dr
 
 # Props 
 - **text**: {String, required} The text rendered by the button
-- **id**: {String, required} The -target and -trigger id used by the core dropdown js file.
+- **id**: {String} The id of the element. If present, used to generate the -trigger and -target attributes for dropdown functionality.
 - **modifier**: {String}: Add additional css styling for different effects.
 - **list**: {Array, required} An Array of Objects with { text: {String}, href: {String} } properties
 - **isDisabled**: {Boolean} Whether or not the dropdown can be clicked.

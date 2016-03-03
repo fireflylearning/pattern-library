@@ -1,8 +1,6 @@
 'use strict';
 var React = require('react');
 
-var activateDropdowns = require('../ff_module-dropdown-button');
-
 var DropdownButton = require('./ff_module-dropdown-button-component');
 var list = [{
         href:'#',
@@ -17,16 +15,13 @@ var list = [{
 
 var buttonProps = [{
     text: 'Dropdown button d',
-    id: 'dd0',
     list: list
 }, {
     text: 'Button block',
-    id: 'btn-01a',
     modifier: 'block',
     list: list
 }, {
     text: 'Button open',
-    id: 'btn-01b',
     isOpen: true,
     list: list
 }, {
@@ -50,8 +45,6 @@ module.exports = function() {
                     React.createElement(DropdownButton, props));
             }));
             React.render(root, domElement);
-
         });
-        // activateDropdowns();
     });
 };

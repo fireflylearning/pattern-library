@@ -128,6 +128,8 @@ var activated = [];
 /**
  * Ensure exported method is called only once DOM is ready
  */
+var isBrowser=new Function("try {return this===window;}catch(e){ return false;}");
+
 module.exports = function(options) {
     options = $.extend({}, _options, options);
 
@@ -136,10 +138,10 @@ module.exports = function(options) {
     });
 
     if(!isActivatedForTheseOptions) {
-        console.log('ff_module-dropdown-button is being activated with options: \n',options);
+        if (isBrowser()) console.log('ff_module-dropdown-button is being activated with options: \n',options);
         activateDropdowns(options);
         activated.push(options);
     } else {
-        console.log('ff_module-dropdown-button has already been activated with options: \n',options);
+        if (isBrowser()) console.log('ff_module-dropdown-button has already been activated with options: \n',options);
     }
 };

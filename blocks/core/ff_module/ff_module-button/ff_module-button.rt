@@ -3,7 +3,7 @@
     title="{this.props.text}"
     id="{this.props.id}"
     disabled="{this.props.disabled}"
-    class="{this.generateClass('ff_module-button', this.props)}"
+    class="{this.generateClass('ff_module-button')}"
     onClick="{this.props.onClick}"
     >
     <span

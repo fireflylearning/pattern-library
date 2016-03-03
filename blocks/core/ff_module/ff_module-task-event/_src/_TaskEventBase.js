@@ -16,11 +16,11 @@ module.exports = React.createClass({
         }
     },
     generateClass: function(base, event) {
-        var classNames = {};
-        classNames[base] = true;
-        classNames[base + '--' + event.type] = event.type;
-        classNames[base + '--is-pending'] = event.pending;
-        classNames[base + '--has-error'] = event.error;
-        return classNames;
+        var classNames = [];
+        classNames.push(base);
+        if (event.type) classNames.push(base + '--' + event.type);
+        if (event.pending) classNames.push(base + '--is-pending');
+        if (event.error) classNames.push(base + '--has-error');
+        return classNames.join(' ');
     }
 });

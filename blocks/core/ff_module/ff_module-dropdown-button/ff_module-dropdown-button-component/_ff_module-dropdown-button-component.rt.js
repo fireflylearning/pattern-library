@@ -14,22 +14,22 @@ function repeatItem1(item, itemIndex) {
 }
 module.exports = function () {
     return React.createElement('div', {
-        'className': this.generateClass('ff_module-dropdown-button', this.props),
-        'data-ff-dropdown-target': this.props.id
+        'className': this.generateClass('ff_module-dropdown-button'),
+        'data-ff_module-dropdown-button-rt-target': this.getDataAttrId()
     }, !this.props.isDisabled ? React.createElement('button', {
         'type': 'button',
-        'className': this.generateClass('ff_module-dropdown-button__button', this.props),
-        'data-ff-dropdown-trigger': this.props.id
+        'className': this.generateClass('ff_module-dropdown-button__button'),
+        'data-ff_module-dropdown-button-rt-trigger': this.getDataAttrId()
     }, React.createElement('span', { 'className': 'ff_module-dropdown-button__content' }, this.props.text), React.createElement('span', {
-        'className': this.generateClass('ff_module-dropdown-button__icon', this.props),
-        'data-ff-dropdown-target': this.props.id
+        'className': this.generateClass('ff_module-dropdown-button__icon'),
+        'data-ff_module-dropdown-button-rt-target': this.getDataAttrId()
     })) : null, this.props.isDisabled ? React.createElement('button', {
         'type': 'button',
-        'className': this.generateClass('ff_module-dropdown-button__button', this.props),
+        'className': this.generateClass('ff_module-dropdown-button__button'),
         'disabled': 'true'
-    }, React.createElement('span', { 'className': 'ff_module-dropdown-button__content' }, this.props.text), React.createElement('span', { 'className': this.generateClass('ff_module-dropdown-button__icon', this.props) })) : null, !this.props.isDisabled && this.props.list.length ? React.createElement('div', {
-        'className': this.generateClass('ff_module-dropdown-button__list-container', this.props),
-        'data-ff-dropdown-target': this.props.id
+    }, React.createElement('span', { 'className': 'ff_module-dropdown-button__content' }, this.props.text), React.createElement('span', { 'className': this.generateClass('ff_module-dropdown-button__icon') })) : null, !this.props.isDisabled && this.props.list.length ? React.createElement('div', {
+        'className': this.generateClass('ff_module-dropdown-button__list-container'),
+        'data-ff_module-dropdown-button-rt-target': this.getDataAttrId()
     }, React.createElement.apply(this, [
         'ul',
         { 'className': 'ff_module-dropdown-button__list' },

@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports.types = {
     setTask: "set-task",
     stampResponseAsSeen: "stamp-response-as-seen",
@@ -10,10 +9,3 @@ module.exports.types = {
     comment: "comment",
     markAndGrade: "mark-and-grade"
 };
-
-var nextEventId = 1;
-// Local event IDs are local to the client
-// They have no meaning except to uniquely identify events
-module.exports.generateLocalEventId = function generateLocalEventId() {
-    return nextEventId++;
-}
