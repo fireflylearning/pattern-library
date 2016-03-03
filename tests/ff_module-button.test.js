@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react');
 require('./lib/utils').bootstrapBrowser();
 
@@ -11,39 +13,77 @@ var Button = require('../blocks/core/ff_module/ff_module-button/ff_module-button
 
 var buttonProps = [{
     text: 'Button default',
-    id: 'btn-02',
+    id: 'btn-default',
     onClick: sinon.spy()
 }, {
     text: 'Large button with icon',
-    id: 'btn-03',
+    id: 'btn-icon',
     modifier: 'large',
     icon: 'calendar',
     onClick: sinon.spy()
 }, {
+    text: 'Large button with icon right aligned',
+    id: 'btn-lg-icon',
+    modifier: 'large',
+    icon: 'calendar',
+    iconAlign: 'right',
+    onClick: sinon.spy()
+}, {
     text: 'Button with icon & hidden text',
-    id: 'btn-04',
+    id: 'btn-lg-icon-hidden',
     modifier: 'large',
     icon: 'calendar',
     hide_text: true,
     onClick: sinon.spy()
 }, {
-    text: 'Button tertiary',
-    id: 'btn-05',
+    text: 'Button modifier: tertiary',
+    id: 'btn-tertiary',
     modifier: 'tertiary',
     icon: 'calendar',
     onClick: sinon.spy()
 }, {
-    text: 'Button primary',
-    id: 'btn-06',
-    modifier: 'primary',
+    text: 'Button with classes',
+    id: 'btn-classes',
+    classes: 'ff_other-class',
+    onClick: sinon.spy()
+}, {
+    text: 'Button modifier: link',
+    id: 'btn-link',
+    modifier: 'link',
+    onClick: sinon.spy()
+}, {
+    text: 'Button modifier: block',
+    id: 'btn-block',
+    modifier: 'block',
+    onClick: sinon.spy()
+}, {
+    text: 'Button modifier: link-block',
+    id: 'btn-link-block',
+    modifier: 'link-block',
     onClick: sinon.spy()
 }, {
     text: 'Disabled Button primary',
-    id: 'btn-07',
+    id: 'btn-dis-primary',
     modifier: 'primary',
     disabled: true,
     onClick: sinon.spy()
+}, {
+    text: 'Disabled Button with classes',
+    id: 'btn-dis-primary',
+    classes: 'ff_other-class',
+    disabled: true,
+    onClick: sinon.spy()
 }];
+
+function testClass(node, props) {
+    var classNames = [], base='ff_module-button';
+    classNames.push(base);
+    if (!!props.modifier) classNames.push(base + '--' + props.modifier);
+    if (!!props.classes) classNames.push(props.classes);
+    if (!!props.disabled) classNames.push(base + '--is-disabled');
+    if (!!props.classes && !!props.disabled) classNames.push(props.classes+'--is-disabled');
+    expect(node.className).to.equal(classNames.join(' '));
+}
 
 var testDefs = {
     'id': function(component, value, props) {
@@ -56,18 +96,26 @@ var testDefs = {
     },
     'modifier': function(component, value, props) {
         var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
-        if (props.disabled) {
-            expect(node.className).to.equal('ff_module-button ff_module-button--' + value + ' ff_module-button--is-disabled');
-        } else {
-            expect(node.className).to.equal('ff_module-button ff_module-button--' + value);
-        }
+        testClass(node, props);
+    },
+    'classes': function(component, value, props) {
+        var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
+        testClass(node, props);
     },
     'icon': function(component, value, props) {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_icon');
         if (props.hide_text) {
             expect(node.className).to.equal('ff_icon ff_icon-' + value);
         } else {
-            expect(node.className).to.equal('ff_icon ff_icon-' + value + ' ff_icon-left');
+            expect(node.className).to.equal('ff_icon ff_icon-' + value + ' ' + (props.iconAlign ? 'ff_icon-' + props.iconAlign : 'ff_icon-left'));
+        }
+    },
+    'iconAlign': function(component, value, props) {
+        var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_icon');
+        if (props.hide_text) {
+            expect(node.className).to.equal('ff_icon ff_icon-' + props.icon);
+        } else {
+            expect(node.className).to.equal('ff_icon ff_icon-' + props.icon + ' ff_icon-right');
         }
     },
     'disabled': function(component, value, props) {

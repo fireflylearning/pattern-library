@@ -1,8 +1,9 @@
+'use strict';
+
 var React = require('react');
 require('./lib/utils').bootstrapBrowser();
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
-var _ = require('lodash');
 
 var TaskEventRepeater = require('../blocks/core/ff_module/ff_module-task-event-repeater/ff_module-task-event-repeater');
 var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;

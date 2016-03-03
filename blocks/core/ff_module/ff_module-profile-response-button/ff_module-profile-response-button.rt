@@ -1,6 +1,6 @@
 <button
     type="button"
-    class="{this.generateClass(this.props)}"
+    class="{this.generateClass('ff_module-profile-response-button')}"
     onClick="{this.props.onSelect}"
     >
       <figure class="ff_module-profile-response-button__picture">

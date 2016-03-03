@@ -8,6 +8,24 @@
 
 <div data-ff_module-task-event="stamp-response-as-seen"/>
 
+<br/>
+
+<div data-ff_module-task-event="request-resubmission"/>
+
+<br/>
+
+<div data-ff_module-task-event="confirm-task-is-complete"/>
+
+<br/>
+
+<div data-ff_module-task-event="confirm-student-is-excused"/>
+
+<br/>
+
+<div data-ff_module-task-event="mark-and-grade"/>
+
+
+
 # Task event
 
 This component renders a task event with different formats depending on the `type` property of the object passed to it.
@@ -16,9 +34,12 @@ This component renders a task event with different formats depending on the `typ
 
 
 ## Event Types with styling and tests
-- `added-comment`
+- `comment`
 - `set-task` 
 - `stamp-response-as-seen`
+- `confirm-student-is-excused`
+- `confirm-task-is-complete`
+- `request-resubmission`
 
 ### Props
 #### Shared

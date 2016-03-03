@@ -1,8 +1,19 @@
 #ff_module-button() {
+    .default() {
+        background-color: @ff_colour_default;
+        color: #fff;
+        border-radius: @ff_size_control_rounding;
+        border: 1px solid @ff_colour_default;
+        padding: (@ff_size_spacing_min * .85) @ff_size_spacing_med;
+        cursor: pointer;
+    }
     .primary() {
         background-color: @ff_colour_primary;
         font-weight: bold;
         border-color: @ff_colour_primary;
+    }
+    .primary-content() {
+        font-weight: bold;
     }
     .large() {
         padding: (@ff_size_spacing_min * 1.35) @ff_size_spacing_max;
@@ -15,29 +26,30 @@
         color: @ff_colour_primary;
         background-color: white;
     }
+    .tertiary-content(){
+        color: @ff_colour_primary;
+    }
+    .link(){
+        #ff_mix-buttons > .clear();
+        color: @ff_color_text_link;
+        padding: (@ff_size_spacing_min * .4) 0;
+        display: inline-block;
+        text-align: left;
+    }
 }
 
 .ff_module-button {
-    background-color: @ff_colour_default;
-    color: #fff;
-    border-radius: @ff_size_control_rounding;
-    border: 1px solid @ff_colour_default;
-    padding: (@ff_size_spacing_min * .85)  @ff_size_spacing_med;
-    cursor: pointer;
-
+    #ff_module-button > .default();
     &--primary {
         #ff_module-button > .primary();
     }
-
     &--large {
-       #ff_module-button > .large();
+        #ff_module-button > .large();
     }
-
     &--primary-large {
         #ff_module-button > .primary();
         #ff_module-button > .large();
     }
-
     //tertiary
     &--tertiary {
         #ff_module-button > .tertiary();
@@ -46,17 +58,22 @@
         #ff_module-button > .tertiary();
         #ff_module-button > .large();
     }
-
     &--block {
-       #ff_module-button > .block();
+        #ff_module-button > .block();
+    }
+    &--link {
+        #ff_module-button > .link();
+    }
+    &--link&--is-disabled {
+        background: none;
     }
     &--primary-block {
-       #ff_module-button > .block();
-       #ff_module-button > .primary();
+        #ff_module-button > .block();
+        #ff_module-button > .primary();
     }
     &--large-block {
-       #ff_module-button > .block();
-       #ff_module-button > .large();
+        #ff_module-button > .block();
+        #ff_module-button > .large();
     }
     &--primary-large-block {
         #ff_module-button > .block();
@@ -72,7 +89,13 @@
         #ff_module-button > .tertiary();
         #ff_module-button > .large();
     }
-
+    &--link-block {
+        #ff_module-button > .link();
+        #ff_module-button > .block();
+    }
+    &--link-block&--is-disabled {
+        background: none;
+    }
     //disabled buttons
     &--is-disabled {
         background-color: @ff_colour_quiet;

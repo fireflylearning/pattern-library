@@ -21,6 +21,10 @@ Call `ff_module-button` and pass-in the following XML:
 </button>
 ```
 
+## Examples 
+
+See [the buttons test page](/tests/buttons.html) for all variations.
+
 ### Example `yml`
 
 ```
@@ -28,6 +32,7 @@ data:
     text: "default button"
     modifier: primary
     icon: calendar
+    iconAlign: right
     classes "ff_module-example__item"
     disabled: true
     hide_text: true
@@ -60,6 +65,7 @@ data:
 * `--primary-large`
 * `--tertiary`
 * `--tertiary-large`
+* `--link`
 
 ### "Block" styling, buttons fill their container:
 
@@ -69,6 +75,7 @@ data:
 * `--primary-large-block`
 * `--tertiary-block`
 * `--tertiary-large-block`
+* `--link-block`
 
 
 

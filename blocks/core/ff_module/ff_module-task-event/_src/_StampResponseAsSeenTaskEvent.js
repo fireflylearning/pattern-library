@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react');
-var template = require('./_StampResponseAsSeenTaskEvent.rt.js');
+var taskEventWithOptionalMessage = require('./_taskEventWithOptionalMessage');
 
 module.exports = React.createClass({
     displayName: 'StampResponseAsSeenTaskEvent',
-    render: template
+    render: taskEventWithOptionalMessage('stamped response as seen.')
 });

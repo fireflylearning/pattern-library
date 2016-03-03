@@ -1,6 +1,2 @@
-<div
-    class="ff_module-task-event ff_module-task-event--{this.props.event.type}"
-    >
-    <time class="ff_module-task-event__sent">{this.formatDate(this.props.event.sent)}</time>
-    {this.props.children}
-</div>
+<div rclass="this.generateClass('ff_module-task-event', this.props.event)">
+    <time class="ff_module-task-event__sent">{this.formatDate(this.props.event.sent)}</time>{this.props.children}</div>

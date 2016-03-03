@@ -1,0 +1,9 @@
+<rt-require dependency="./_TaskEventBase.js" as="TaskEventBase"/>
+
+<TaskEventBase event="{this.props.event}">
+    <p class="ff_module-task-event__author-action">{this.props.event.author.name} added a mark:</p>
+    <p class="ff_module-task-event__mark-and-grade">
+        <span class="ff_module-task-event__mark" rt-if="this.props.event.mark">{this.props.event.mark}/{this.props.event.markMax}</span>
+        <span class="ff_module-task-event__grade" rt-if="this.props.event.grade">{this.props.event.mark? ', ': ''}{this.props.event.grade}</span>
+    </p>
+</TaskEventBase>

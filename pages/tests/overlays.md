@@ -4,11 +4,20 @@ page:
     layout: list-blocks
 data:
   -
-    ff_container-overlay:
+    lib_test-overlay:
         -
           modifier: "fixed-bottom"
-          body:
-            - "<xsl:call-template name=\"ff_module-button\"><xsl:with-param name=\"data\"><text>hi</text></xsl:with-param></xsl:call-template>"
+          body: "<span class=\"crate_util-block\">The body of the page</span>"
           bar:
-            - "<span class=\"crate_util-block\">The control bar for the page</span>"
+            modifier: "split"
+            classes: "ff_module-other-class ff_utils-other-class"
+            sets:
+              -
+                title: "Section Heading"
+                modules:
+                  - "<span class=\"crate_util-block\">Module A</span>"
+              -
+                modules:
+                  - "<span class=\"crate_util-block\">Module B</span>"
+                  - "<span class=\"crate_util-block\">Module C</span>"
 ---

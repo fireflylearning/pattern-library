@@ -87,15 +87,14 @@ var niceDateTests = {
         };
     }, msInH],
     days: ['should format dates under a week ago as "[dayofweek] at [shorttime]"', function(now) {
-        var currentDate = now.getDate(),
-            boundary = 6,
+        var boundary = 6,
             tempDate = new Date(now.getTime()),
             testVals = [],
             expectedVals = [];
 
         for (var i = boundary; i >= 0; i--) {
             testVals.push(i);
-            tempDate.setDate(currentDate - i);
+            tempDate = new Date(now.getTime() - (i*msInD));
 
             if (i === 0) {
                 expectedVals.push(momentsAgoText);
@@ -110,8 +109,7 @@ var niceDateTests = {
         };
     }, msInD],
     dates: ['should format dates otherwise as "[shortdate] at [shorttime]"', function(now) {
-        var currentDate = now.getDate(),
-            start = 5,
+        var start = 5,
             boundary = 6,
             end = 12,
             tempDate = new Date(now.getTime()),
@@ -120,7 +118,7 @@ var niceDateTests = {
 
         for (var i = start; i <= end; i++) {
             testVals.push(i);
-            tempDate.setDate(currentDate - i);
+            tempDate = new Date(now.getTime() - (i*msInD));
 
             if (i <= boundary) {
                 expectedVals.push(dateFormatting.toLongDayString(tempDate) + ' at ' + dateFormatting.toShortTimeString(tempDate));

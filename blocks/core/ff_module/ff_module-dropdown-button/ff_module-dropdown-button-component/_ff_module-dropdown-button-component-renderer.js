@@ -1,0 +1,48 @@
+'use strict';
+var React = require('react');
+
+var DropdownButton = require('./ff_module-dropdown-button-component');
+var list = [{
+        href:'#',
+        text: 'Item A'
+    }, {
+        href:'#',
+        text: 'Item B'
+    }, {
+        href:'#',
+        text: 'Item C'
+    }];
+
+var buttonProps = [{
+    text: 'Dropdown button d',
+    list: list
+}, {
+    text: 'Button block',
+    modifier: 'block',
+    list: list
+}, {
+    text: 'Button open',
+    isOpen: true,
+    list: list
+}, {
+    text: 'Button primary',
+    modifier: 'primary',
+    list: list
+}, {
+    text: 'Button disabled',
+    isDisabled: true,
+    list: list
+}];
+
+
+module.exports = function() {
+    document.addEventListener('DOMContentLoaded', function(event) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-dropdown-button-component]'), function(domElement, index) {
+            var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, buttonProps.map(function(props, propsIndex) {
+                return React.createElement('li', { key: 'li'+propsIndex, style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
+                    React.createElement(DropdownButton, props));
+            }));
+            React.render(root, domElement);
+        });
+    });
+};

@@ -9,20 +9,30 @@ var buttonProps = [{
     modifier: 'large'
 }, {
     text: 'Button with icon',
-    id: 'btn-01',
+    id: 'btn-02',
     icon: 'calendar',
 }, {
+    text: 'Button with icon right',
+    id: 'btn-02',
+    icon: 'calendar',
+    iconAlign: 'right'
+},{
     text: 'Button tertiary',
-    id: 'btn-01',
+    id: 'btn-03',
     modifier: 'tertiary',
     hide_text: false
 }, {
     text: 'Button primary',
-    id: 'btn-01',
+    id: 'btn-04',
     modifier: 'primary',
 }, {
+    text: 'Button with classes, disabled',
+    id: 'btn-04',
+    classes: 'ff_other-class',
+    disabled: true
+}, {
     text: 'Button disabled',
-    id: 'btn-01',
+    id: 'btn-05',
     disabled: true
 }];
 

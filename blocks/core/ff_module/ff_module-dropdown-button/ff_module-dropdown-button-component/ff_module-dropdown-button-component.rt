@@ -1,0 +1,35 @@
+<rt-require dependency="../../ff_module-button/ff_module-button.js" as="Button"/>
+
+<div ref="{this.bindRef}"
+    class="{this.generateClass('ff_module-dropdown-button' )}"
+    data-ff_module-dropdown-button-rt-target="{this.getDataAttrId()}"
+    >
+    <button type="button"
+        class="{this.generateClass('ff_module-dropdown-button__button' )}"
+        rt-if="!this.props.isDisabled"
+        data-ff_module-dropdown-button-rt-trigger="{this.getDataAttrId()}">
+        <span class="ff_module-dropdown-button__content">{this.props.text}</span>
+        <span
+            class="{this.generateClass('ff_module-dropdown-button__icon' )}"
+            data-ff_module-dropdown-button-rt-target="{this.getDataAttrId()}"></span>
+    </button>
+    <button type="button"
+        class="{this.generateClass('ff_module-dropdown-button__button' )}"
+        rt-if="this.props.isDisabled"
+        disabled="true">
+        <span class="ff_module-dropdown-button__content">{this.props.text}</span>
+        <span
+            class="{this.generateClass('ff_module-dropdown-button__icon' )}"></span>
+    </button>
+    <div
+        class="{this.generateClass('ff_module-dropdown-button__list-container')}"
+        rt-if="!this.props.isDisabled && this.props.list.length"
+        data-ff_module-dropdown-button-rt-target="{this.getDataAttrId()}">
+        <ul class="ff_module-dropdown-button__list">
+            <li rt-repeat="item in this.props.list" key="{itemIndex}">
+                <a rt-if="item.href" href="{item.href}" class="ff_module-dropdown-button__link">{item.text}</a>
+                <Button modifier="{item.modifier ? item.modifier : 'link'}" rt-if="!item.href" onClick="{item.onClick}" text="{item.text}"/>
+            </li>
+        </ul>
+    </div>
+</div>

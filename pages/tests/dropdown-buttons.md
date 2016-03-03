@@ -32,7 +32,7 @@ data:
                 text: "Item C"
       - 
         id: dd0a
-        text: "Dropdown button ltd"
+        text: "Dropdown button block"
         modifier: block
         list: 
             - 
@@ -44,6 +44,48 @@ data:
             - 
                 href: "#"
                 text: "Item C with even longer text inside"
+      - 
+        id: dd0d
+        text: "Dropdown button primary"
+        modifier: primary
+        list: 
+            - 
+                href: "#"
+                text: "Item A"            
+            - 
+                href: "#"
+                text: "Item B"           
+            - 
+                href: "#"
+                text: "Item C"
+      - 
+        id: dd0b
+        text: "Dropdown button right"
+        modifier: right
+        list: 
+            - 
+                href: "#"
+                text: "Item A"            
+            - 
+                href: "#"
+                text: "Item B"           
+            - 
+                href: "#"
+                text: "Item C"
+      - 
+        id: dd0c
+        text: "Dropdown button primary-right"
+        modifier: primary-right
+        list: 
+            - 
+                href: "#"
+                text: "Item A"            
+            - 
+                href: "#"
+                text: "Item B"           
+            - 
+                href: "#"
+                text: "Item C"
       - 
         id: dd3
         state: is-enabled

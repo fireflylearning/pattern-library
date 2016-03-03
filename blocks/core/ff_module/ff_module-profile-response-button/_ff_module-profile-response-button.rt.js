@@ -4,7 +4,7 @@ var _ = require('lodash');
 module.exports = function () {
     return React.createElement('button', {
         'type': 'button',
-        'className': this.generateClass(this.props),
+        'className': this.generateClass('ff_module-profile-response-button'),
         'onClick': this.props.onSelect
     }, React.createElement('figure', { 'className': 'ff_module-profile-response-button__picture' }, React.createElement('img', {
         'className': 'ff_module-profile-response-button__image',
