@@ -1,6 +1,7 @@
 ---
 data:
-  modifier: "absolute-bottom"
+
+  modifier: ""
   body: "<span class=\"crate_util-block\">The body of the page</span>"
   bar:
     modifier: "split"
