@@ -4,26 +4,26 @@ page:
     layout: list-blocks
 data:
   - ff_grid:
-    - 
-      modifiers: "ff_grid--2-1"
+    -
+      modifiers: "2-1"
       columns:
-        - 
+        -
           name: "Wide Column"
-        - 
+        -
           name: "Narrow Column"
     -
-      modifiers: "ff_grid--1-2"
+      modifiers: "1-2"
       columns:
-        - 
+        -
           name: "Narrow Column"
-        - 
+        -
           name: "Wide Column"
     -
-      modifiers: "ff_grid--1-1"
+      modifiers: "1-1"
       columns:
-        - 
+        -
           name: "Equal Column"
-        - 
+        -
           name: "Equal Column"
-    
+
 ---

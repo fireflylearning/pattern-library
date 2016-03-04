@@ -1,5 +1,4 @@
 @ff_grid-gap-horizonal: 3%;
-@ff_grid-gap-vertical: @ff_size_spacing_max;
 
 //2col
 @ff_grid-2col-base: 100% - @ff_grid-gap-horizonal;
@@ -21,7 +20,6 @@
   width: 100%;
   clear: left;
   box-sizing: border-box;
-  margin-bottom: 10px;
 }
 
 @media (min-width: @ff_bp_wide) {
@@ -31,7 +29,6 @@
     .ff_grid--1-2 .ff_grid__column {
       width: @ff_grid-2col-equal;
       float: left;
-      margin: @ff_grid-gap-vertical 0;
       &:nth-of-type(2n-1) {
           margin-right: @ff_grid-gap-horizonal;
       }
