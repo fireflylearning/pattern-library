@@ -1,6 +1,6 @@
 .ff_container-control-bar {
+
     display: flex;
-    width: 100%;
 
     &--split {
        justify-content: space-between;
@@ -18,13 +18,35 @@
 .ff_container-control-bar__group {
     display: flex;
     align-items: center;
-    
-    >*+* {
-        margin-left: @ff_size_control_horizontal;
-    }
-    
+    flex-wrap: wrap;
+    .ff_mix-clearfix();
+
     >* {
-        float: left; //backup for no flexbox
+      margin: @ff_size_control_horizontal/2;
+    }
+
+    @media (min-width:@ff_bp_medium) {
+      flex-wrap: nowrap;
+      >* {
+        margin: 0;
+      }
+      >*+* {
+          margin-left: @ff_size_control_horizontal;
+      }
+    }
+
+    //flexbox not supported? No problem:
+    &:only-child >* {
+      float: left;
+    }
+    &:first-child >* {
+      float:left;
+    }
+    &:last-child >* {
+      float: right;
+    }
+    &:only-child:last-child >* {
+      float:left;
     }
 }
 

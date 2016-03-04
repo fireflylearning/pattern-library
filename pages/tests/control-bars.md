@@ -48,12 +48,13 @@ data:
         modifier: "split"
         sets:
             -
-                title: "Split, with title"
-                modules:
-                - "<span class=\"crate_util-block\">Module A</span>"
+              title: "Split bar with heading"
+              modules:
+                - "<button class=\"ff_module-button\">Button A</button>"
             -
-                - "<span class=\"crate_util-block\">Module B</span>"
-                - "<span class=\"crate_util-block\">Module C</span>"
+              modules:
+                - "<button class=\"ff_module-button\">Button B</button>"
+                - "<button class=\"ff_module-button ff_module-button--primary\">Button C</button>"
     -
         modifier: "split"
         sets:
