@@ -47,6 +47,11 @@ data:
         modifier: "compact"
         icon: "test"
       - 
+        text: "compact button with right icon"
+        modifier: "compact"
+        icon_align: right
+        icon: "test"
+      - 
         text: "compact primary"
         modifier: "primary-compact"
       - 

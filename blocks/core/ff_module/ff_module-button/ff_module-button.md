@@ -32,7 +32,7 @@ data:
     text: "default button"
     modifier: primary
     icon: calendar
-    iconAlign: right
+    icon_align: right
     classes "ff_module-example__item"
     disabled: true
     hide_text: true

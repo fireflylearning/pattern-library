@@ -45,12 +45,13 @@
         cursor: pointer;
         line-height: 1.2;
         .ff_icon-left {
-            #ff_module-button > .compact__icon();
+            margin-right: @ff_size_spacing_min * 0.7;
+            margin-left: -@ff_size_spacing_min * 0.2;
         }
-    }
-    .compact__icon(){
-        margin-right: @ff_size_spacing_min * 0.7;
-        margin-left: -@ff_size_spacing_min * 0.2;
+        .ff_icon-right {
+            margin-left: @ff_size_spacing_min * 0.7;
+            margin-right: -@ff_size_spacing_min * 0.2;
+        }
     }
 }
 
