@@ -77,8 +77,15 @@ var recipientData = [{
     },
     guid: "u42",
     label: "Sally Student",
-    status: "Marked",
-    mark: "B, 76%",
+    latestEvent: {
+        type: eventTypes.confirmTaskIsComplete,
+        sent: new Date()
+    },
+    markAndGrade: {
+        mark: 7,
+        markMax: 10,
+        grade: "A"
+    },
     pic_href: "/images/default_picture.png"
 }, {
     onSelect: function() {
@@ -86,8 +93,15 @@ var recipientData = [{
     },
     guid: "u42a",
     label: "Tally Student",
-    status: "Marked",
-    mark: "B, 76%",
+    latestEvent: {
+        type: eventTypes.markAndGrade,
+        sent: new Date('4 March 2016')
+    },
+    markAndGrade: {
+        mark: 7,
+        markMax: 10,
+        grade: "A"
+    },
     pic_href: "/images/default_picture.png"
 }, {
     onSelect: function() {
@@ -96,7 +110,10 @@ var recipientData = [{
     isSelected: true,
     guid: "u43",
     label: "Terry Teacher",
-    status: "Resubmission Requested",
+    latestEvent: {
+        type: eventTypes.markAndGrade,
+        sent: new Date('1 March 2016')
+    },
     pic_href: "/images/default_picture.png"
 }, {
     onSelect: function() {
@@ -104,7 +121,15 @@ var recipientData = [{
     },
     guid: "u43a",
     label: "Terry Teacher",
-    status: "Resubmission Requested",
+    latestEvent: {
+        type: eventTypes.stampResponseAsSeen,
+        sent: new Date('27 February 2016')
+    },
+    markAndGrade: {
+        mark: 7,
+        markMax: 10,
+        grade: "A"
+    },
     pic_href: "/images/default_picture.png"
 }, {
     onSelect: function() {
@@ -112,7 +137,10 @@ var recipientData = [{
     },
     guid: "u43b",
     label: "Terry Teacher",
-    status: "Resubmission Requested",
+    latestEvent: {
+        type: eventTypes.confirmTaskIsComplete,
+        sent: new Date()
+    },
     pic_href: "/images/default_picture.png"
 }, {
     onSelect: function() {
@@ -121,7 +149,10 @@ var recipientData = [{
     isRead: true,
     guid: "u44",
     label: "Joseph Goulden",
-    status: "Awaiting Response",
+    latestEvent: {
+        type: eventTypes.confirmTaskIsComplete,
+        sent: new Date()
+    },
     pic_href: "/images/default_picture.png"
 }];
 

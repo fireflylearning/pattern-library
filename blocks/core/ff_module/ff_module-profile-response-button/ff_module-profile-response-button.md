@@ -12,7 +12,7 @@
 - `isSelected`: Boolean; Is the recipient currently selected?
 - `isRead`: Boolean; Have the recipient's responses been read?
 - `label`: String; Name of Recipient
-- `status`: String; Response Status
+- `event`: Object; { type: [String (corresponds to Event types)], sent: [Date ]}
 - `markAndGrade`: Object; { mark: [Number], markMax: [Number], grade: [String]}
 - `pic_href`: String; Link to image href
 
@@ -33,7 +33,10 @@ Generated from state props.
     isSelected: false,
     isRead: true,
     label: "Sally Student",
-    status: "Resubmission Requested",
+    event: {
+        type:"mark-and-grade",
+        sent: new Date()
+    },
     markAndGrade: {
         mark: 7,
         markMax: 10,
