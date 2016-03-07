@@ -5,8 +5,8 @@ var ResponseRecipientList = require('./ff_module-response-recipient-list'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 var responses = [{
-    onSelect: function() {
-        console.log("onSelect is0");
+    recipient: {
+        name: 'rudy'
     },
     guid: "u47",
     label: "Sally Student",
@@ -21,8 +21,8 @@ var responses = [{
     },
     pic_href: "/images/default_picture.png"
 }, {
-    onSelect: function() {
-        console.log("onSelect id1");
+    recipient: {
+        name: 'ffolay'
     },
     isSelected: true,
     guid: "u43",
@@ -36,9 +36,7 @@ var responses = [{
     },
     pic_href: "/images/default_picture.png"
 }, {
-    onSelect: function() {
-        console.log("onSelect id2");
-    },
+    recipient: {},
     isRead: true,
     guid: "u44",
     label: "Joseph Goulden",
@@ -53,7 +51,10 @@ module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-response-recipient-list]'), function(domElement) {
             var element = React.createElement(ResponseRecipientList, {
-                responses: responses
+                responses: responses,
+                onSelect: function(recipient){
+                    console.log(recipient);
+                }
             });
             React.render(element, domElement);
         });
