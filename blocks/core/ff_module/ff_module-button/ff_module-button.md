@@ -66,6 +66,9 @@ data:
 * `--tertiary`
 * `--tertiary-large`
 * `--link`
+* `--compact`
+* `--primary-compact`
+* `--tertiary-compact`
 
 ### "Block" styling, buttons fill their container:
 
@@ -75,6 +78,9 @@ data:
 * `--primary-large-block`
 * `--tertiary-block`
 * `--tertiary-large-block`
+* `--compact-block`
+* `--primary-compact-block`
+* `--tertiary-compact-block`
 * `--link-block`
 
 

@@ -39,6 +39,32 @@ data:
         text: "large primary button with icon"
         modifier: "primary-large"
         icon: "test"
+      - 
+        text: "compact button"
+        modifier: "compact"
+      - 
+        text: "compact button with icon"
+        modifier: "compact"
+        icon: "test"
+      - 
+        text: "compact primary"
+        modifier: "primary-compact"
+      - 
+        text: "compact tertiary"
+        modifier: "tertiary-compact"
+      - 
+        text: "compact button disabled"
+        modifier: "compact"  
+        disabled: "true" 
+      - 
+        text: "compact button block"
+        modifier: "compact-block"
+      - 
+        text: "compact primary block"
+        modifier: "primary-compact-block"
+      - 
+        text: "compact tertiary block"
+        modifier: "tertiary-compact-block"
       -
         text: "default block button"
         modifier: "block"
