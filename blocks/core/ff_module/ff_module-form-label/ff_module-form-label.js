@@ -17,7 +17,7 @@ module.exports = React.createClass({
 			});	
 		}
 
-		var content = [this.props.text];
+		var content = [this.props.children];
 
 		if (!this.props.required) {
 			content.push(React.createElement('span', {className: 'ff_module-form-label__optional'}, ' (optional)'));
