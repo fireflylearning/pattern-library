@@ -1,7 +1,8 @@
 'use strict';
 var React = require('react');
 
-var ProfileResponseButton = require('./ff_module-profile-response-button');
+var ProfileResponseButton = require('./ff_module-profile-response-button'),
+eventTypes = require('../ff_module-task-event/_src/events').types;
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
@@ -13,7 +14,10 @@ module.exports = function() {
                 uiState: "is-updated",
                 guid: "u42",
                 label: "Sally Student",
-                status: "Resubmission Requested",
+                event:{
+                    type: eventTypes.requestResubmission,
+                    sent: new Date()
+                },
                 markAndGrade: {
                     mark: 7,
                     markMax: 10,

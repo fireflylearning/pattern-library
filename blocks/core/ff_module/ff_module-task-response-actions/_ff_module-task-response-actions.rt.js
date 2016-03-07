@@ -18,18 +18,18 @@ module.exports = function () {
         'key': 'controlBarUpper'
     }, React.createElement(ControlBarSet, {}, React.createElement(Button, {
         'key': events.types.markAndGrade,
-        'modifier': 'primary',
+        'modifier': 'primary-compact',
         'text': 'Mark/Grade',
         'onClick': onClick1.bind(this)
     }), React.createElement(Button, {
         'key': events.types.comment,
-        'modifier': 'primary',
+        'modifier': 'primary-compact',
         'text': 'Comment',
         'onClick': onClick2.bind(this)
     }), React.createElement(DropdownButton, {
         'id': 'more-actions',
         'key': 'more-actions',
-        'modifier': 'primary-right',
+        'modifier': 'primary-compact-right',
         'classes': 'ff_module-task-response-actions__dropdown',
         'text': 'More',
         'list': [
