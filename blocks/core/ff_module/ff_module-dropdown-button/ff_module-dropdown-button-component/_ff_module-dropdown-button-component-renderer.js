@@ -29,6 +29,22 @@ var buttonProps = [{
     modifier: 'primary',
     list: list
 }, {
+    text: 'Button compact',
+    modifier: 'compact',
+    list: list
+}, {
+    text: 'Button primary compact',
+    modifier: 'primary-compact',
+    list: list
+}, {
+    text: 'Button compact right',
+    modifier: 'compact-right',
+    list: list
+}, {
+    text: 'Button primary compact right',
+    modifier: 'primary-compact-right',
+    list: list
+}, {
     text: 'Button disabled',
     isDisabled: true,
     list: list
