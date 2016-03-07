@@ -27,6 +27,9 @@ See [the variations page](/tests/dropdown-buttons.html) for examples.
 - **primary**: Button will take on standard primary button styling.
 - **right**: Button's children will align right.
 - **primary-right**: Button will take on standard primary button styling and children will align right.
+- **compact**: Compact style
+- **primary-compact**
+- **primary-compact-right**:
 
 ## State
 

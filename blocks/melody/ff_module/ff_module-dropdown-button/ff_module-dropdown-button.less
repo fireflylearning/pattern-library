@@ -11,8 +11,18 @@
     &--primary, &--primary-right {
         #ff_module-button > .primary();
     }
-    &--primary &__content, &--primary-right &__content {
+    &--primary &__content, &--primary-right &__content, &--primary-compact &__content, &--primary-compact-right &__content {
         #ff_module-button > .primary-content();
+    }
+    &--primary-compact &__content, &--primary-compact-right &__content {
+        font-weight: normal;
+    }
+
+    &--primary-compact, &--primary-compact-right {
+        #ff_module-button > .primary();
+    }
+    &--compact &__button, &--compact-right &__button, &--primary-compact &__button, &--primary-compact-right  &__button {
+        #ff_module-button > .compact();
     }
 }
 
@@ -60,7 +70,9 @@
         }
     }
     &--right &__list-container,
-    &--primary-right &__list-container{
+    &--primary-right &__list-container,
+    &--primary-compact-right &__list-container,
+    &--compact-right &__list-container{
         right: 5px;
         left: auto;
     }
