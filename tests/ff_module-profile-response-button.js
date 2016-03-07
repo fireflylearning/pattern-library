@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react');
 require('./lib/utils').bootstrapBrowser();
 
@@ -6,18 +8,23 @@ var TestUtils = require('react-addons-test-utils'),
     sinon = require('sinon'),
     getTestFramework = require('./lib/framework').setUpTestFramework(React, TestUtils, expect);
 
-var ProfileResponseButton = require("../blocks/core/ff_module/ff_module-profile-response-button/ff_module-profile-response-button.js");
+var ProfileResponseButton = require("../blocks/core/ff_module/ff_module-profile-response-button/ff_module-profile-response-button.js"),
+    eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types,
+    dateFormatting = require('../blocks/core/_lib/_ui/dateFormatting')();
 
 var buttonProps = [{
         onSelect: sinon.spy(),
         isSelected: false,
         isRead: true,
         label: "Sally Student",
-        status: "Marked",
         markAndGrade: {
             mark: 7,
             markMax: 10,
             grade: "A"
+        },
+        event: {
+            type: eventTypes.markAndGrade,
+            sent: new Date()
         },
         pic_href: "/images/default_picture.png"
     }, {
@@ -25,10 +32,13 @@ var buttonProps = [{
         isSelected: true,
         isRead: true,
         label: "Terry Teacher",
-        status: "Response Requested",
         markAndGrade: {
             mark: 7,
             markMax: 10
+        },
+        event: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
         },
         pic_href: "/images/default_picture.png"
     }, {
@@ -36,24 +46,33 @@ var buttonProps = [{
         isSelected: true,
         isRead: false,
         label: "Terry Trilobite",
-        status: "Response Requested",
+        event: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        },
         pic_href: "/images/default_picture.png"
     }, {
         onSelect: sinon.spy(),
         isSelected: false,
         isRead: false,
         label: "Joshua Teacher",
-        status: "Response Requested",
         markAndGrade: {
             grade: 'A'
+        },
+        event: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
         },
         pic_href: "/images/group-icon.png"
     }, {
         onSelect: sinon.spy(),
         label: "Joshua No State",
-        status: "Response Requested",
         markAndGrade: {
             grade: 'A'
+        },
+        event: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
         },
         pic_href: "/images/group-icon.png"
     }],
@@ -72,6 +91,27 @@ function testClasses(component, value, props) {
     }
 }
 
+function statusSummaryText(event) {
+    switch (event.type) {
+        case eventTypes.setTask:
+            return "Task set";
+        case eventTypes.stampResponseAsSeen:
+            return "Confirmed as seen";
+        case eventTypes.requestResubmission:
+            return "Resubmission requested";
+        case eventTypes.confirmTaskIsComplete:
+            return "Confirmed as complete";
+        case eventTypes.confirmStudentIsExcused:
+            return "Student excused";
+        case eventTypes.comment:
+            return "Comment sent";
+        case eventTypes.markAndGrade:
+            return "Mark sent";
+        default:
+            return "";
+    }
+}
+
 var testDefs = {
     'markAndGrade': function(component, value, props) {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__mark-and-grade');
@@ -83,10 +123,6 @@ var testDefs = {
         } else if (value.mark && value.markMax) {
             expect(node.textContent).to.equal(value.mark + '/' + value.markMax);
         }
-    },
-    'status': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
-        expect(node.textContent).to.equal(value);
     },
     'label': function(component, value, props) {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__label');
@@ -101,10 +137,18 @@ var testDefs = {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__image');
         expect(node.getAttribute('src')).to.equal(value);
     },
+    'event':function(component, value, props){
+        var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
+        var expected = '';
+        if (props.event) {
+            expected = statusSummaryText(props.event) + " " + dateFormatting.niceDate(props.event.sent);
+        }
+        expect(node.textContent).to.equal(expected);
+    },
     'isSelected': testClasses,
     'isRead': testClasses
 }
 
 describe('ProfileResponseButton', getTestFramework(ProfileResponseButton, buttonProps, testDefs, function(props) {
-    return props.label + ': ' + props.status;
+    return props.label + ': ' + props.event.type;
 }));

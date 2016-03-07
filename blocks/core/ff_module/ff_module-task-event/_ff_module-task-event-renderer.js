@@ -43,11 +43,13 @@ var events = [{
     grade: 'B'
 }];
 
+var id = 1;
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-event]'), function(domElement, index) {
 
             var element = React.createElement(TaskEvent, {
+                key: 'el'+(id++),
                 event:events[index]
             });
             React.render(element, domElement);

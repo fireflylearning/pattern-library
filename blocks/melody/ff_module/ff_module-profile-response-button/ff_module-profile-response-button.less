@@ -1,18 +1,27 @@
 .ff_module-profile-response-button {
     padding: @ff_size_spacing_max @ff_size_spacing_min;
+    padding-left: 60px;
+
     &__picture {
         #ff_mix-decoration > .circle(32px);
         vertical-align: top;
         margin-top: 0.2*@ff_size_spacing_min;
+        margin-left: -50px;
     }
     &__label {
         color: @ff_color_control_link;
         font-weight: bold;
+        margin-bottom: @ff_size_spacing_min * 0.25;
+        line-height: 1.25;
     }
     &__status,
     &__mark-and-grade {
         color: @ff_color_control_link;
         font-size: 0.875rem;
+        line-height: 1.25;
+    }
+    &__status{
+        margin-bottom: @ff_size_spacing_min * 0.4;
     }
 }
 

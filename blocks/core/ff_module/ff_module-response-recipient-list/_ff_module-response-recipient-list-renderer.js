@@ -1,7 +1,8 @@
 'use strict';
 var React = require('react');
 
-var ResponseRecipientList = require('./ff_module-response-recipient-list');
+var ResponseRecipientList = require('./ff_module-response-recipient-list'),
+    eventTypes = require('../ff_module-task-event/_src/events').types;
 
 var responses = [{
     onSelect: function() {
@@ -9,7 +10,10 @@ var responses = [{
     },
     guid: "u47",
     label: "Sally Student",
-    status: "Marked",
+    latestEvent: {
+        type: eventTypes.markAndGrade,
+        sent: new Date()
+    },
     markAndGrade: {
         mark: 7,
         markMax: 10,
@@ -23,7 +27,13 @@ var responses = [{
     isSelected: true,
     guid: "u43",
     label: "Terry Teacher",
-    status: "Resubmission Requested",
+    latestEvent: {
+        type: eventTypes.requestResubmission,
+        sent: new Date()
+    },
+    markAndGrade: {
+        grade: "A"
+    },
     pic_href: "/images/default_picture.png"
 }, {
     onSelect: function() {
@@ -32,7 +42,10 @@ var responses = [{
     isRead: true,
     guid: "u44",
     label: "Joseph Goulden",
-    status: "Awaiting Response",
+    latestEvent: {
+        type: eventTypes.confirmTaskIsComplete,
+        sent: new Date()
+    },
     pic_href: "/images/default_picture.png"
 }];
 

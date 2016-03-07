@@ -1,8 +1,9 @@
 'use strict';
 var React = require('react');
 
-var ProfileResponseButton = require('../../ff_module/ff_module-profile-response-button/ff_module-profile-response-button');
-var selector = 'data-ff_module-profile-response-button-lib';
+var ProfileResponseButton = require('../../ff_module/ff_module-profile-response-button/ff_module-profile-response-button'),
+    selector = 'data-ff_module-profile-response-button-lib',
+    eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types;
 
 var data = {
     id0: {
@@ -11,8 +12,15 @@ var data = {
         },
         guid: "u42",
         label: "Sally Student",
-        status: "Marked",
-        mark: "B, 76%",
+        event: {
+            type: eventTypes.markAndGrade,
+            sent: new Date()
+        },
+        markAndGrade: {
+            mark: 7,
+            markMax: 10,
+            grade: "A"
+        },
         pic_href: "/images/default_picture.png"
     },
     id1: {
@@ -22,7 +30,13 @@ var data = {
         isSelected: true,
         guid: "u43",
         label: "Terry Teacher",
-        status: "Resubmission Requested",
+        event: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        },
+        markAndGrade: {
+            grade: "A"
+        },
         pic_href: "/images/default_picture.png"
     },
     id2: {
@@ -32,14 +46,21 @@ var data = {
         isRead: true,
         guid: "u44",
         label: "Joseph Goulden",
-        status: "Awaiting Response",
+        event: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        },
+        markAndGrade: {
+            mark: 7,
+            markMax: 10
+        },
         pic_href: "/images/default_picture.png"
     }
 }
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
-        Array.prototype.forEach.call(document.querySelectorAll('['+selector+']'), function(domElement) {
+        Array.prototype.forEach.call(document.querySelectorAll('[' + selector + ']'), function(domElement) {
             var id = domElement.getAttribute(selector);
             console.log(id);
             var element = React.createElement(ProfileResponseButton, data[id]);

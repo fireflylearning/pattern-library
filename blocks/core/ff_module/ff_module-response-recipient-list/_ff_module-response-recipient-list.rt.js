@@ -9,7 +9,7 @@ function repeatResponse1(response, responseIndex) {
         'isRead': response.isRead,
         'isSelected': response.isSelected,
         'label': response.label,
-        'status': response.status,
+        'event': response.latestEvent,
         'markAndGrade': response.markAndGrade,
         'onSelect': response.onSelect,
         'pic_href': response.pic_href
