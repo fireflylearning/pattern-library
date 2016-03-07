@@ -7,7 +7,6 @@ module.exports = React.createClass({
 	render: function() {
 		var attributes = {
 			htmlFor: this.props.id,
-			value: this.props.value,
 			className: 'ff_module-form-label' + (this.props.modifier != null ? ' ff_module-form-label--' + this.props.modifier : ''),
 		};
 
