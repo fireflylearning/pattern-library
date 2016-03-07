@@ -12,6 +12,7 @@ module.exports = React.createClass({
             value: this.props.value,
             className: 'ff_module-form-input' + (this.props.modifier != null ? ' ff_module-form-input--' + this.props.modifier : '')
         };
+		
         if (this.props.type == 'checkbox' || this.props.type == 'radio') {
             if (this.props.checked == 'true') {
                 attributes['checked'] = true;
@@ -20,9 +21,14 @@ module.exports = React.createClass({
                 attributes['disabled'] = true;
             }
         }
-        this.props.data.forEach(function(attribute) {
-            attributes[attribute.attr] = attribute.value;
-        });
+
+		if (this.props.data)
+		{
+	        this.props.data.forEach(function(attribute) {
+	            attributes[attribute.attr] = attribute.value;
+	        });
+		}
+		
         if (this.props.type == 'select')
         {
             var options = this.props.options.map(function(option) {

@@ -10,9 +10,12 @@ module.exports = React.createClass({
 			className: 'ff_module-form-label' + (this.props.modifier != null ? ' ff_module-form-label--' + this.props.modifier : ''),
 		};
 
-		this.props.data.forEach(function(attribute) {
-			attributes[attribute.attr] = attribute.value;
-		});
+		if (this.props.data)
+		{
+			this.props.data.forEach(function(attribute) {
+				attributes[attribute.attr] = attribute.value;
+			});	
+		}
 
 		var content = [this.props.text];
 
