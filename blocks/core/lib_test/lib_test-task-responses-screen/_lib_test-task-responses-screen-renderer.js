@@ -184,7 +184,7 @@ var overlayInner = React.createElement(TaskResponses, {events: events,
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
-        var el = document.querySelector('[data-lib_test-scrollable-list]'); //Use jquery or sim in Firefly for backwards compat
+        var el = document.querySelector('[data-lib_test-task-responses-screen]'); //Use jquery or sim in Firefly for backwards compat
         if (el) {
             var element = React.createElement(ScrollableList, {
                 main: overlayOuter,
