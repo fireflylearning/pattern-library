@@ -1,5 +1,6 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
 
 var TaskResponses = require('./ff_module-task-responses');
 var eventTypes = require('../ff_module-task-event/_src/events').types;
@@ -36,7 +37,8 @@ var events = [{
     mark: 7,
     markMax: 10,
     grade: 'B'
-}].map(function(event, index){ event.localEventId = 'event'+ index; return event;});
+}].map(function(event, index) { event.localEventId = 'event' + index;
+    return event; });
 
 var props = [{
     events: events,
@@ -53,7 +55,7 @@ var props = [{
     stopEditingEvent: function() {
         console.log('stopEditingEvent');
     }
-},{
+}, {
     events: events,
 
     editEvent: function(event) {
@@ -73,8 +75,8 @@ var props = [{
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-responses]'), function(domElement, index) {
-            var element = React.createElement(TaskResponses, props[1]);
-            React.render(element, domElement);
+            var element = React.createElement(TaskResponses, props[0]);
+            ReactDOM.render(element, domElement);
         });
     });
 };

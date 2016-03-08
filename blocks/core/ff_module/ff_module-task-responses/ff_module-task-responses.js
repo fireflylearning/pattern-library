@@ -37,6 +37,7 @@ module.exports = React.createClass({
             overlay: { zIndex: 10000000 }
         };
         return React.createElement(Modal, {
+                key: 'response-modal',
                 isOpen: !!this.props.editingEvent,
                 onRequestClose: this.closeEventEditor,
                 style: styles

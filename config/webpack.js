@@ -23,7 +23,6 @@ module.exports = function(paths, config) {
                 new webpack.ProvidePlugin({
                     jQuery: 'jquery',
                     $: 'jquery',
-                    React: 'react',
                     _: 'underscore'
                 })
             ],
@@ -31,6 +30,7 @@ module.exports = function(paths, config) {
                 jquery: 'jQuery',
                 react: 'React',
                 'react/addons': 'React',
+                'react-dom': 'ReactDOM',
                 lodash: '_',
                 underscore: '_'
             }
