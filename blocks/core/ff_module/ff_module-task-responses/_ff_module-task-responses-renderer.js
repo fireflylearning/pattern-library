@@ -46,7 +46,7 @@ var props = [{
 
     editEvent: function(event) {
         console.log('editEvent');
-        console.table(event);
+        console.log(event);
     },
     addEvent: function() {
         console.log('addEvent');
@@ -60,7 +60,7 @@ var props = [{
 
     editEvent: function(event) {
         console.log('editEvent');
-        console.table(event);
+        console.log(event);
     },
     addEvent: function() {
         console.log('addEvent');
