@@ -1,3 +1,21 @@
+#ff_container-overlay(){
+    .top(){
+        bottom: auto;
+        top: 0;
+    }
+    .bottom(){
+        top: auto;
+        bottom: 0;
+    }
+    .margin-top(){
+        margin-top: 12*@ff_size_control_vertical;
+        margin-bottom: 0;
+    }
+    .margin-bottom(){
+        margin-bottom: 12*@ff_size_control_vertical;
+        margin-top: 0;
+    }
+}
 .ff_container-overlay {
 
     &__bar {
@@ -17,45 +35,59 @@
     //fixed-bottom
     &--fixed-bottom &__bar {
         position: fixed;
-        top: auto;
-        bottom: 0;
+        #ff_container-overlay > .bottom;
     }
     &--fixed-bottom &__body {
-        margin-bottom: 12*@ff_size_control_vertical;
-        margin-top: 0;
+        #ff_container-overlay > .margin-bottom;
     }
 
     //fixed-top
     &--fixed-top &__bar {
         position: fixed;
-        bottom: auto;
-        top: 0;
+        #ff_container-overlay > .top;
     }
     &--fixed-top &__body {
-        margin-top: 12*@ff_size_control_vertical;
-        margin-bottom: 0;
+        #ff_container-overlay > .margin-top;
     }
 
     //absolute-bottom (snigger)
     &--absolute-bottom &__bar {
         position: absolute;
-        top: auto;
-        bottom: 0;
+        #ff_container-overlay > .bottom;
     }
     &--absolute-bottom &__body {
-        margin-bottom: 12*@ff_size_control_vertical;
-        margin-top: 0;
+        #ff_container-overlay > .margin-bottom;
     }
 
     //absolute-top
     &--absolute-top &__bar {
         position: absolute;
-        bottom: auto;
-        top: 0;
+        #ff_container-overlay > .top;
     }
     &--absolute-top &__body {
-        margin-top: 12*@ff_size_control_vertical;
-        margin-bottom: 0;
+        #ff_container-overlay > .margin-top;
+    }
+
+    // absolute-contained
+    &--absolute-contained-top, &--absolute-contained-bottom {
+        position: relative;
+        overflow: auto;
+    }
+
+    &--absolute-contained-top &__bar {
+        position: absolute;
+        #ff_container-overlay > .top;
+    }
+    &--absolute-contained-top &__body {
+        #ff_container-overlay > .margin-top;
+    }
+
+    &--absolute-contained-bottom &__bar {
+        position: absolute;
+        #ff_container-overlay > .bottom;
+    }
+    &--absolute-contained-bottom &__body {
+        #ff_container-overlay > .margin-bottom;
     }
 
 }
