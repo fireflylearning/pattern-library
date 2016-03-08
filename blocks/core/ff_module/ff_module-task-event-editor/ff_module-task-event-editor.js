@@ -57,7 +57,6 @@ function markAndGrade(props) {
         };
     }
 
-
     var onMarkChange = eventUpdater("mark");
     var onMarkMaxChange = eventUpdater("markMax");
     var onGradeChange = eventUpdater("grade");
