@@ -15,8 +15,11 @@ data:
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Module A</span>"
-                - "<span class=\"crate_util-block\">Module B</span>"
+                - "<span class=\"crate_util-block\">Module A, set A</span>"
+                - "<span class=\"crate_util-block\">Module B, set A</span>"
+            -
+                modules:
+                - "<span class=\"crate_util-block\">Module A, set B</span>"
     -
         modifier: ""
         sets:
@@ -55,6 +58,13 @@ data:
               modules:
                 - "<button class=\"ff_module-button\">Button B</button>"
                 - "<button class=\"ff_module-button ff_module-button--primary\">Button C</button>"
+    -
+        modifier: ""
+        sets:
+            -
+              modules:
+                - "<button class=\"ff_module-button\">OK</button>"
+                - "<button class=\"ff_module-button ff_module-button--primary\">Button B, this one has a long title</button>"
     -
         modifier: "split"
         sets:
