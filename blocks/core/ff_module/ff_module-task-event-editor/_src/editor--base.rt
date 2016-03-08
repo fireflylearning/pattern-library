@@ -1,0 +1,7 @@
+<rt-require dependency="../../ff_module-button/ff_module-button" as="Button"/>
+
+<div>
+    <h1>{this.props.title}</h1>
+    {this.props.children}
+    <Button onClick={this.props.onSend} text="{this.props.sendText}" />
+</div>

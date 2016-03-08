@@ -3,20 +3,23 @@
 var React = require('react'),
     _ = require('lodash');
 
-var Button = require('../ff_module-button/ff_module-button'),
+var EditorBase = require('./_src/EditorBase'),
+    EditorCommon = require('./_src/EditorCommon'),
+    EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 
 module.exports = React.createClass({
     displayName: 'TaskEventEditor',
     render: function() {
-        console.log(eventEditorComponents[this.props.event.type]);
         var eventEditor = eventEditorComponents[this.props.event.type](this.props);
-        return React.createElement('div', {}, [
-            React.createElement('h1', {}, eventEditor.title),
-            eventEditor.children,
-            React.createElement(Button, { text: eventEditor.sendText, onClick: this.onSend })
-        ]);
+
+        return React.createElement(EditorBase, {
+                title: eventEditor.title,
+                sendText: eventEditor.sendText,
+                onSend: this.onSend
+            },
+            eventEditor.children);
     },
     onSend: function() {
         this.props.onSend();
@@ -25,7 +28,6 @@ module.exports = React.createClass({
 
 
 function createEventWithMessageEditor(editor) {
-    var messageLabelElement = editor.messageLabel ? React.createElement('p', {}, editor.messageLabel) : null;
 
     return function(props) {
         var onMessageChange = function(event) {
@@ -35,10 +37,11 @@ function createEventWithMessageEditor(editor) {
         return {
             title: editor.title,
             sendText: editor.sendText,
-            children: React.createElement('div', {}, [
-                messageLabelElement,
-                React.createElement('textarea', { onChange: onMessageChange, value: props.event.message })
-            ])
+            children: React.createElement(EditorCommon, {
+                messageLabel: editor.messageLabel,
+                onMessageChange: onMessageChange,
+                event: props.event
+            })
         };
 
     };
@@ -49,9 +52,11 @@ function markAndGrade(props) {
     function eventUpdater(propertyName) {
         return function(event) {
             props.onChange(_.extend({}, props.event, {
-                [propertyName]: event.target.value }));
+                [propertyName]: event.target.value
+            }));
         };
     }
+
 
     var onMarkChange = eventUpdater("mark");
     var onMarkMaxChange = eventUpdater("markMax");
@@ -61,23 +66,13 @@ function markAndGrade(props) {
     return {
         title: "Mark and Grade",
         sendText: "Add Mark",
-        children: React.createElement('div', {}, [
-            React.createElement('p', {}, [
-                'Mark: ',
-                React.createElement('input', { value: props.event.mark, onChange: onMarkChange }),
-                ' out of ',
-                React.createElement('input', { value: props.event.markMax, onChange: onMarkMaxChange }),
-            ]),
-            React.createElement('p', {}, [
-                'Grade: ',
-                React.createElement('input', { value: props.event.grade, onChange: onGradeChange })
-            ]),
-            React.createElement('p', {}, 'Feedback Summary (optional)'),
-            React.createElement('textarea', { value: props.event.message, onChange: onMessageChange })
-
-        ]),
-
-
+        children: React.createElement(EditorMarkAndGrade, {
+            event: props.event,
+            onMarkChange: onMarkChange,
+            onGradeChange: onGradeChange,
+            onMarkMaxChange: onMarkMaxChange,
+            onMessageChange: onMessageChange
+        })
 
     };
 }

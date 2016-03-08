@@ -45,8 +45,10 @@ module.exports = function() {
 
             var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, events.map(function(event) {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
-                    React.createElement(TaskEventEditor, {event: event, onSend(){
+                    React.createElement(TaskEventEditor, {event: event, onSend: function(){
                         console.log('send');
+                    }, onChange:function(event){
+                        console.log(event);
                     }}));
             }));
             React.render(root, domElement);
