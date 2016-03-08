@@ -1,17 +1,12 @@
 'use strict';
 
-var React = require('react'),
-    _ = require('lodash');
+var React = require('react');
 
 var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff_container-scrollable-list'),
-    TaskEventRepeater = require('../../ff_module/ff_module-task-event-repeater/ff_module-task-event-repeater'),
     ResponseRecipientList = require('../../ff_module/ff_module-response-recipient-list/ff_module-response-recipient-list'),
-    Button = require('../../ff_module/ff_module-button/ff_module-button'),
-    DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
     IncrementalNavigation = require('../../ff_module/ff_module-incremental-navigation/ff_module-incremental-navigation'),
-    TaskResponseActions = require('../../ff_module/ff_module-task-response-actions/ff_module-task-response-actions'),
-    ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
-    ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay');
+   ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay'),
+    TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses');
 
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
@@ -157,16 +152,6 @@ var recipientData = [{
 }];
 
 
-
-var taskResponseActions = React.createElement(TaskResponseActions, {
-    onClick: function onEventChange(event) {
-        console.log('this.props.editEvent:', event);
-    },
-    key: 'controlBarUpper'
-});
-
-
-
 var recipientNavigation = React.createElement(IncrementalNavigation, {
     nextText: 'Next Student',
     previousText: 'Previous Student',
@@ -180,8 +165,19 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 });
 
 
-var taskEventRepeater = React.createElement(TaskEventRepeater, { key: 'evnt1', events: events }),
-    overlayInner = React.createElement(ContainerOverlay, { modifier: 'absolute-top', classes: 'ff_container-overlay--task-event-scrollable-top', body: taskEventRepeater, bar: taskResponseActions }),
+var overlayInner = React.createElement(TaskResponses, {events: events,
+
+    editEvent: function(event) {
+        console.log('editEvent');
+        console.table(event);
+    },
+    addEvent: function() {
+        console.log('addEvent');
+        console.log('stopEditingEvent');
+    },
+    stopEditingEvent: function() {
+        console.log('stopEditingEvent');
+    }} ),
     overlayOuter = React.createElement(ContainerOverlay, { modifier: 'absolute-bottom', classes: 'ff_container-overlay--task-event-scrollable', body: overlayInner, bar: recipientNavigation }),
     sidebar = React.createElement(ResponseRecipientList, { responses: recipientData });
 
