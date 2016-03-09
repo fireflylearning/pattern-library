@@ -166,7 +166,7 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 
 
 var overlayInner = React.createElement(TaskResponses, {events: events,
-
+    editingEvent: events[1],
     editEvent: function(event) {
         console.log('editEvent');
         console.table(event);
@@ -179,7 +179,9 @@ var overlayInner = React.createElement(TaskResponses, {events: events,
         console.log('stopEditingEvent');
     }} ),
     overlayOuter = React.createElement(ContainerOverlay, { modifier: 'absolute-bottom', classes: 'ff_container-overlay--task-event-scrollable', body: overlayInner, bar: recipientNavigation }),
-    sidebar = React.createElement(ResponseRecipientList, { responses: recipientData });
+    sidebar = React.createElement(ResponseRecipientList, { responses: recipientData, onSelect: function(){
+        console.log('select recipient');
+    } });
 
 
 module.exports = function() {

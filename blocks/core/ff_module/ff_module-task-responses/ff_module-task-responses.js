@@ -50,6 +50,8 @@ module.exports = React.createClass({
     },
     closeEventEditor() {
         this.props.stopEditingEvent();
-    }
+    },
+    componentWillMount() {
+        Modal.setAppElement('body');
+    },
 });
-
