@@ -1,0 +1,14 @@
+<validation
+  {% if classes %} classes="{{ classes }}"{% endif %}
+  {% if modifier %} modifier="{{ modifier }}"{% endif %}
+  {% if active %} active="{{ active }}"{% endif %}
+  >
+  <message>{{message}}</message>
+  <modules>
+    {% for module in modules %}
+    <item>
+      {{module | safe}}
+    </item>
+    {% endfor %}
+  </modules>
+</validation>
