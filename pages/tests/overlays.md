@@ -6,7 +6,7 @@ data:
   -
     lib_test-overlay:
         -
-          modifier: "fixed-bottom"
+          modifier: "absolute-contained-top"
           body: "<span class=\"crate_util-block\">The body of the page</span>"
           bar:
             modifier: "split"

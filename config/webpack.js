@@ -9,6 +9,18 @@ module.exports = function(paths, config) {
                 blocks: paths.blocks.scripts.entry
             },
             cache: false,
+            module: {
+                loaders: [{
+                    test: /\.jsx?$/,
+                    exclude: /(node_modules|bower_components)/,
+                    loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
+                    query: {
+                        presets: ['react', 'es2015'],
+                        cacheDirectory: true,
+                        plugins: ['transform-runtime']
+                    }
+                }]
+            },
             output: {
                 path: paths.blocks.scripts.output,
                 filename: "[name].js",
@@ -40,6 +52,18 @@ module.exports = function(paths, config) {
                 blocks: './.tmp/js/blocks-export.js'
             },
             cache: false,
+            module: {
+                loaders: [{
+                    test: /\.jsx?$/,
+                    exclude: /(node_modules|bower_components)/,
+                    loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
+                    query: {
+                        presets: ['react', 'es2015'],
+                        cacheDirectory: true,
+                        plugins: ['transform-runtime']
+                    }
+                }]
+            },
             output: {
                 path: path.join(config.exportPath, 'js'),
                 filename: '[name].js',

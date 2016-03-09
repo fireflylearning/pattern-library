@@ -13,7 +13,6 @@ module.exports = React.createClass({
     displayName: 'TaskEventEditor',
     render: function() {
         var eventEditor = eventEditorComponents[this.props.event.type](this.props);
-
         return React.createElement(EditorBase, {
                 title: eventEditor.title,
                 sendText: eventEditor.sendText,
@@ -76,30 +75,31 @@ function markAndGrade(props) {
     };
 }
 
-var eventEditorComponents = {
-    [eventTypes.stampResponseAsSeen]: createEventWithMessageEditor({
-        title: "Stamp as Seen",
-        messageLabel: "Feedback (optional)",
-        sendText: "Send Stamp"
-    }),
-    [eventTypes.requestResubmission]: createEventWithMessageEditor({
-        title: "Request Resubmission",
-        messageLabel: "Reason for Request (optional)",
-        sendText: "Send Request"
-    }),
-    [eventTypes.confirmTaskIsComplete]: createEventWithMessageEditor({
-        title: "Confirm Task is Complete",
-        messageLabel: "Feedback (optional)",
-        sendText: "Send Confirmation"
-    }),
-    [eventTypes.confirmStudentIsExcused]: createEventWithMessageEditor({
-        title: "Confirm Student is Excused",
-        messageLabel: "Comment (optional)",
-        sendText: "Send Confirmation"
-    }),
-    [eventTypes.comment]: createEventWithMessageEditor({
-        title: "Comment",
-        sendText: "Add Comment"
-    }),
-    [eventTypes.markAndGrade]: markAndGrade
-};
+var eventEditorComponents = {};
+
+eventEditorComponents[eventTypes.stampResponseAsSeen] = createEventWithMessageEditor({
+    title: "Stamp as Seen",
+    messageLabel: "Feedback (optional)",
+    sendText: "Send Stamp"
+});
+eventEditorComponents[eventTypes.requestResubmission] = createEventWithMessageEditor({
+    title: "Request Resubmission",
+    messageLabel: "Reason for Request (optional)",
+    sendText: "Send Request"
+});
+eventEditorComponents[eventTypes.confirmTaskIsComplete] = createEventWithMessageEditor({
+    title: "Confirm Task is Complete",
+    messageLabel: "Feedback (optional)",
+    sendText: "Send Confirmation"
+});
+eventEditorComponents[eventTypes.confirmStudentIsExcused] = createEventWithMessageEditor({
+    title: "Confirm Student is Excused",
+    messageLabel: "Comment (optional)",
+    sendText: "Send Confirmation"
+});
+eventEditorComponents[eventTypes.comment] = createEventWithMessageEditor({
+    title: "Comment",
+    sendText: "Add Comment"
+});
+eventEditorComponents[eventTypes.markAndGrade] = markAndGrade;
+
