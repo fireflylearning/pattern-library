@@ -51,11 +51,10 @@ module.exports = function(gulp, plugins, config) {
                 var info = entry.getInfo();
 
                 //TODO: make path more robust
-                result[info.name.replace('.js', '')] = path.join(process.cwd(),info.absolutePath);
+                result[info.name.replace('.js', '')] = [path.join(process.cwd(),info.absolutePath)]; //Needs to be array as workaround for https://github.com/webpack/webpack/issues/300
                 return result;
             }, {});
 
-            // console.log('ENRT', entries);
             options.entry = entries;
 
             compilers.develop = webpack(options);
@@ -93,7 +92,6 @@ module.exports = function(gulp, plugins, config) {
 
     return {
         develop: function(blockData) {
-            console.log(config.webpack.develop.entry);
             return getCompiler(config.webpack.develop, blockData);
         },
         export: function() {
