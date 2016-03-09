@@ -2,6 +2,60 @@
 var webpack = require('webpack'),
     path = require('path');
 
+var externals = {
+        'jquery': {
+            root: '$',
+            commonjs2: 'jquery',
+            commonjs: 'jquery',
+            amd: 'jquery'
+        },
+        'lodash': {
+            root: '_',
+            commonjs2: 'lodash',
+            commonjs: 'lodash',
+            amd: 'lodash'
+        },
+        'underscore': {
+            root: '_',
+            commonjs2: 'underscore',
+            commonjs: 'underscore',
+            amd: 'underscore'
+        },
+        'react': {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+        },
+        'react-dom': {
+            root: 'ReactDOM',
+            commonjs2: 'react-dom',
+            commonjs: 'react-dom',
+            amd: 'react-dom'
+        },
+        'react/addons': {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+        },
+    },
+    plugins = {
+        jQuery: 'jquery',
+        $: 'jquery',
+        _: 'underscore'
+    },
+    loaders = {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        query: {
+            presets: ['react', 'es2015'],
+            // cacheDirectory: true,    // This caused intermittent (and silent) build failures, revisit if starts to get too slow
+            plugins: ['transform-runtime']
+        }
+    };
+
 module.exports = function(paths, config) {
     return {
         develop: {
@@ -10,16 +64,7 @@ module.exports = function(paths, config) {
             },
             cache: false,
             module: {
-                loaders: [{
-                    test: /\.jsx?$/,
-                    exclude: /(node_modules|bower_components)/,
-                    loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
-                    query: {
-                        presets: ['react', 'es2015'],
-                        cacheDirectory: true,
-                        plugins: ['transform-runtime']
-                    }
-                }]
+                loaders: [loaders]
             },
             output: {
                 path: paths.blocks.scripts.output,
@@ -30,22 +75,11 @@ module.exports = function(paths, config) {
             resolve: {
                 modulesDirectories: ['node_modules', 'src', 'blocks'],
             },
-            devtool: config.isProduction ? false : 'eval-source-map',
+            devtool: config.isProduction ? false : 'source-map',
             plugins: [
-                new webpack.ProvidePlugin({
-                    jQuery: 'jquery',
-                    $: 'jquery',
-                    React: 'react',
-                    _: 'underscore'
-                })
+                new webpack.ProvidePlugin(plugins)
             ],
-            externals: {
-                jquery: 'jQuery',
-                react: 'React',
-                'react/addons': 'React',
-                lodash: '_',
-                underscore: '_'
-            }
+            externals: externals
         },
         export: {
             entry: {
@@ -53,16 +87,7 @@ module.exports = function(paths, config) {
             },
             cache: false,
             module: {
-                loaders: [{
-                    test: /\.jsx?$/,
-                    exclude: /(node_modules|bower_components)/,
-                    loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
-                    query: {
-                        presets: ['react', 'es2015'],
-                        cacheDirectory: true,
-                        plugins: ['transform-runtime']
-                    }
-                }]
+                loaders: [loaders]
             },
             output: {
                 path: path.join(config.exportPath, 'js'),
@@ -74,20 +99,9 @@ module.exports = function(paths, config) {
                 modulesDirectories: ['./node_modules', 'src', './blocks'],
             },
             plugins: [
-                new webpack.ProvidePlugin({
-                    jQuery: 'jquery',
-                    $: 'jquery',
-                    React: 'react',
-                    _: 'underscore'
-                })
+                new webpack.ProvidePlugin(plugins)
             ],
-            externals: {
-                jquery: 'jQuery',
-                react: 'React',
-                'react/addons': 'React',
-                lodash: '_',
-                underscore: '_'
-            }
+            externals: externals
         }
     };
 
