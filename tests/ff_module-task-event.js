@@ -45,7 +45,7 @@ var events = [{
     type: eventTypes.comment,
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' },
-    comment: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
