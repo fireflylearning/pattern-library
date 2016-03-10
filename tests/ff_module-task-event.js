@@ -34,6 +34,12 @@ var events = [{
     type: eventTypes.markAndGrade,
     sent: new Date(dStrings[0]),
     author: { name: 'Sally Student' },
+    grade: 'B',
+    message: 'Good work'
+}, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Sally Student' },
     mark: 7,
     markMax: 10
 }, {
@@ -72,8 +78,8 @@ var classes = {
     [eventTypes.requestResubmission]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.confirmTaskIsComplete]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.confirmStudentIsExcused]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
-    [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', comment: 'ff_module-task-event__comment' },
-    [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade' }
+    [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__comment' },
+    [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade', message: 'ff_module-task-event__message' }
 };
 
 var expectedValues = [{
@@ -93,6 +99,12 @@ var expectedValues = [{
 }, {
     sent: dExpected[0],
     author: 'Sally Student added a mark:',
+    mark: '',
+    grade: 'B',
+    message: 'Good work'
+}, {
+    sent: dExpected[0],
+    author: 'Sally Student added a mark:',
     mark: '7/10',
     grade: ''
 }, {
@@ -102,7 +114,7 @@ var expectedValues = [{
 }, {
     sent: dExpected[2],
     author: 'Terry Teacher added a comment:',
-    comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
+    message: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
 }, {
     sent: dExpected[0],
     author: 'Terry Teacher requested resubmission.',
