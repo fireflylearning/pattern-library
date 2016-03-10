@@ -45,16 +45,24 @@ var externals = {
         $: 'jquery',
         _: 'underscore'
     },
-    loaders = {
+    loaders = [{
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules|assets|tests)/,
         loader: 'babel-loader',
         query: {
             presets: ['react', 'es2015'],
             // cacheDirectory: true,    // This caused intermittent (and silent) build failures, revisit if starts to get too slow
             plugins: ['transform-runtime']
         }
-    };
+    }, {
+        test: /\.js?$/,
+        exclude: /(node_modules|assets|tests)/,
+        loader: 'babel-loader',
+        query: {
+            presets: ['react', 'es2015'],
+            plugins: ['transform-runtime']
+        }
+    }];
 
 module.exports = function(paths, config) {
     return {
@@ -64,7 +72,7 @@ module.exports = function(paths, config) {
             },
             cache: false,
             module: {
-                loaders: [loaders]
+                loaders: loaders
             },
             output: {
                 path: paths.blocks.scripts.output,
@@ -87,7 +95,7 @@ module.exports = function(paths, config) {
             },
             cache: false,
             module: {
-                loaders: [loaders]
+                loaders: loaders
             },
             output: {
                 path: path.join(config.exportPath, 'js'),
