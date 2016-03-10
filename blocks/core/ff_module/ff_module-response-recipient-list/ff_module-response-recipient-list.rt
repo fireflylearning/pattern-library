@@ -9,7 +9,7 @@
     label = "{response.label}"
     event = "{response.latestEvent}"
     markAndGrade="{response.markAndGrade}"
-    onSelect="{response.onSelect}"
+    onSelect="()=>this.props.onSelect(response.recipient)"
     pic_href="{response.pic_href}"
     >
 </ItemRepeater>

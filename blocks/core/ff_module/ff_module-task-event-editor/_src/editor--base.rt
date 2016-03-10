@@ -1,0 +1,7 @@
+<rt-require dependency="../../ff_module-button/ff_module-button" as="Button"/>
+
+<div class="ff_module-task-event-editor">
+    <h1 class="ff_module-task-event-editor__title">{this.props.title}</h1>
+    {this.props.children}
+    <Button onClick={this.props.onSend} text="{this.props.sendText}" classes="ff_module-task-event-editor__send"/>
+</div>

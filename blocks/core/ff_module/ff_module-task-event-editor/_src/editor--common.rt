@@ -1,0 +1,4 @@
+<div>
+    <p rt-if="this.props.messageLabel">{this.props.messageLabel}</p>
+    <textarea onChange={this.props.onMessageChange} value={this.props.event.message}></textarea>
+</div>

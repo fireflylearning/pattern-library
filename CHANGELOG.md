@@ -1,3 +1,8 @@
+# 0.2.3 (9/03/2016)
+
+## Breaking changes
+- JSX support added; webpack version downgraded from the beta-2 branch to support this. As a result, **it is necessary to remove and re-install node_modules directory.**
+
 
 # 0.2.2 (16/02/2016)
 

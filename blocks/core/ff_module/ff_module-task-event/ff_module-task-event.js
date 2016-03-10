@@ -11,15 +11,15 @@ var StampResponseAsSeenTaskEvent = require('./_src/_StampResponseAsSeenTaskEvent
 
 var eventTypes = require('./_src/events').types;
 
-var eventComponents = {
-    [eventTypes.setTask]: SetTaskEvent,
-    [eventTypes.stampResponseAsSeen]: StampResponseAsSeenTaskEvent,
-    [eventTypes.comment]: AddedCommentEvent,
-    [eventTypes.requestResubmission]: RequestResubmissionTaskEvent,
-    [eventTypes.confirmTaskIsComplete]: ConfirmedCompleteTaskEvent,
-    [eventTypes.confirmStudentIsExcused]: ConfirmedStudentExcusedTaskEvent,
-    [eventTypes.markAndGrade]: MarkAndGradeTaskEvent
-};
+var eventComponents = {};
+eventComponents[eventTypes.setTask] = SetTaskEvent;
+eventComponents[eventTypes.stampResponseAsSeen] = StampResponseAsSeenTaskEvent;
+eventComponents[eventTypes.comment] = AddedCommentEvent;
+eventComponents[eventTypes.requestResubmission] = RequestResubmissionTaskEvent;
+eventComponents[eventTypes.confirmTaskIsComplete] = ConfirmedCompleteTaskEvent;
+eventComponents[eventTypes.confirmStudentIsExcused] = ConfirmedStudentExcusedTaskEvent;
+eventComponents[eventTypes.markAndGrade] = MarkAndGradeTaskEvent;
+
 
 
 module.exports = React.createClass({
