@@ -3,9 +3,9 @@
 var React = require('react'),
     _ = require('lodash');
 
-var EditorBase = require('./_src/EditorBase'),
-    EditorCommon = require('./_src/EditorCommon'),
-    EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
+var EditorBase = require('./_src/_EditorBase'),
+    EditorCommon = require('./_src/_EditorCommon'),
+    EditorMarkAndGrade = require('./_src/_EditorMarkAndGrade'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 
