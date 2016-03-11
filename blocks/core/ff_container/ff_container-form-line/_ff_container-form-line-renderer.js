@@ -5,10 +5,10 @@ var FormLabel = require('./ff_container-form-line');
 
 var data = {
 	formLine: [{
-		content: React.createElement('span', {className: 'crate_util-block ff_container-form-line__item'}, ' Line label'),
+		content: <span className={ 'crate_util-block ff_container-form-line__item' }>Line label</span>
 	}, 
 	{
-		content: React.createElement('span', {className: 'crate_util-block ff_container-form-line__item  ff_container-form-line__item--fullwidth'}, ' Line Input'),
+		content: <span className={ 'crate_util-block ff_container-form-line__item' }>Line input</span>
 	}]
 }
 
