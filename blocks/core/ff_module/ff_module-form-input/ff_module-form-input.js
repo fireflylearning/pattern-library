@@ -34,7 +34,7 @@ module.exports = React.createClass({
 		else
 		{
 			return <input className={'ff_module-form-input' + (this.props.modifier ? ' ff_module-form-input--' + this.props.modifier : '')} name={this.props.name} type={this.props.type ? this.props.type : 'text'} value={this.state.value} 
-onChange={event => this.setValue(event)}  {...this.props.data} id={this.props.id}></input>;
+onChange={event => this.setValue(event)}  {...this.props.attributes} id={this.props.id}></input>;
 
 		}
 	}
