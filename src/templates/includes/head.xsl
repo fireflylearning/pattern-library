@@ -15,6 +15,8 @@
             <script src="/vendor/js/jquery-ui-1.10.3.custom.min.js"></script>
 
             <script src="/vendor/js/react-with-addons.js"></script>
+            <script src="/vendor/js/react-dom.js"></script>
+
             <script src="/vendor/js/underscore-min.js"></script>
 
             <script src="/css/icons/grunticon.loader.js"></script>

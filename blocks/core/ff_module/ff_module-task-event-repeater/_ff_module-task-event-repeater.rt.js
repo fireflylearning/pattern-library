@@ -12,6 +12,6 @@ module.exports = function () {
     return React.createElement('div', { 'className': 'ff_container-task-event-repeater' }, React.createElement.apply(this, [
         'ol',
         { 'className': 'ff_container-task-event-repeater__items' },
-        _.map(this.props.events, repeatEvent1.bind(this))
+        _.map(this.getEvents(), repeatEvent1.bind(this))
     ]));
 };

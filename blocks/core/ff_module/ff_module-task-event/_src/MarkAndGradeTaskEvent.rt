@@ -6,4 +6,5 @@
         <span class="ff_module-task-event__mark" rt-if="this.props.event.mark">{this.props.event.mark}/{this.props.event.markMax}</span>
         <span class="ff_module-task-event__grade" rt-if="this.props.event.grade">{this.props.event.mark? ', ': ''}{this.props.event.grade}</span>
     </p>
+    <p rt-if="this.props.event.message" class="ff_module-task-event__message">{this.props.event.message}</p>
 </TaskEventBase>

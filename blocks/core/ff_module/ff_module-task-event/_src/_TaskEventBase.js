@@ -3,17 +3,17 @@
 var React = require('react');
 var template = require('./_TaskEventBase.rt.js');
 var dateFormatting = require('../../../_lib/_ui/dateFormatting')();
+var ensureIsDate = require('../../../_lib/_ui/date-utils').ensureIsDate;
 
 module.exports = React.createClass({
     displayName: 'TaskEventBase',
     render: template,
     formatDate: function(date) {
-        if (typeof date === 'string') {
-            return date;
-        }
-        if (typeof date === 'object' && date.getTime) {
+        var validDate = ensureIsDate(date);
+        if (validDate) {
             return dateFormatting.niceDate(date);
         }
+        return '';
     },
     generateClass: function(base, event) {
         var classNames = [];

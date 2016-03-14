@@ -10,16 +10,16 @@
         key="controlBarUpper">
         <ControlBarSet>
             <Button
-                key="{events.types.markAndGrade}"
-                modifier="primary-compact"
-                text="Mark/Grade"
-                onClick="()=>this.props.onClick({type: events.types.markAndGrade})"
-            />
-            <Button
                 key="{events.types.comment}"
                 modifier="primary-compact"
                 text="Comment"
                 onClick="()=>this.props.onClick({type: events.types.comment})"
+            />
+            <Button
+                key="{events.types.markAndGrade}"
+                modifier="primary-compact"
+                text="Mark/Grade"
+                onClick="()=>this.props.onClick({type: events.types.markAndGrade})"
             />
             <DropdownButton
                 id="more-actions"
@@ -29,7 +29,7 @@
                 text="More"
                 list= "{[
                         {
-                            text: 'Stamp Response As Seen',
+                            text: 'Stamp Response as Seen',
                             key: events.types.stampResponseAsSeen,
                             onClick: ()=>this.props.onClick({ type: events.types.stampResponseAsSeen })
                         }, {
@@ -41,7 +41,7 @@
                             key: events.types.confirmStudentIsExcused,
                             onClick: ()=>this.props.onClick({ type: events.types.confirmStudentIsExcused })
                         },{
-                            text: 'Confirm Task Is Complete',
+                            text: 'Confirm Task is Complete',
                             key: events.types.confirmTaskIsComplete,
                             onClick: ()=>this.props.onClick({ type: events.types.confirmTaskIsComplete })
                         },

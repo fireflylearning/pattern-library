@@ -21,7 +21,7 @@ var events = [{
     localEventId: 3,
     sent: new Date(dStrings[2]),
     author: { name: 'Sally Student' },
-    comment: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
 }];
 
 module.exports = function() {
