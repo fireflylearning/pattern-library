@@ -28,7 +28,7 @@ var events = [{
     localEventId: '1',
     sent: 'Mon 7 Dec, 18:45',
     author: { name: 'Sally Student' },
-    comment: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
 }, {
     type: eventTypes.setTask,
     localEventId: '2a',
@@ -46,7 +46,7 @@ var events = [{
     localEventId: '1a',
     sent: 'Mon 7 Dec, 18:45',
     author: { name: 'Sally Student' },
-    comment: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
 }, {
     type: eventTypes.setTask,
     localEventId: '2b',
@@ -63,7 +63,7 @@ var events = [{
     localEventId: '1b',
     sent: 'Mon 7 Dec, 18:45',
     author: { name: 'Sally Student' },
-    comment: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
 }];
 
 var recipientData = [{
@@ -166,7 +166,7 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 
 
 var overlayInner = React.createElement(TaskResponses, {events: events,
-    editingEvent: events[1],
+    // editingEvent: events[1],
     editEvent: function(event) {
         console.log('editEvent');
         console.table(event);
