@@ -4,7 +4,7 @@
     <ol class="ff_container-task-event-repeater__items">
         <li class="ff_container-task-event-repeater__item"
             key= "event-{event.localEventId}"
-            rt-repeat="event in this.props.events">
+            rt-repeat="event in this.getEvents()">
             <TaskEvent event="{event}"/>
         </li>
     </ol>

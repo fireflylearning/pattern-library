@@ -15,55 +15,55 @@ var events = [{
     type: eventTypes.setTask,
     localEventId: '2',
     pending: true,
-    sent: '20:40',
+    sent: '14 March, 20:40',
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
     localEventId: '3',
-    sent: '21:47',
+    sent: '14 March, 21:47',
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.comment,
     localEventId: '1',
-    sent: 'Mon 7 Dec, 18:45',
+    sent: 'Mon 7 Dec, 18:45:15',
     author: { name: 'Sally Student' },
-    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (15)'
 }, {
     type: eventTypes.setTask,
     localEventId: '2a',
-    sent: '20:40',
+    sent: '13 March 20:40',
     error: true,
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
     localEventId: '3a',
-    sent: '21:47',
+    sent: '13 March 21:47',
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.comment,
     localEventId: '1a',
     sent: 'Mon 7 Dec, 18:45',
     author: { name: 'Sally Student' },
-    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (0)'
 }, {
     type: eventTypes.setTask,
     localEventId: '2b',
-    sent: '20:40',
+    sent: '12 March 20:40',
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
     localEventId: '3b',
-    sent: '21:47',
+    sent: '12 March 21:47',
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.comment,
     localEventId: '1b',
-    sent: 'Mon 7 Dec, 18:45',
+    sent: 'Mon 7 Dec, 18:45:10',
     author: { name: 'Sally Student' },
-    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (10)'
 }];
 
 var recipientData = [{

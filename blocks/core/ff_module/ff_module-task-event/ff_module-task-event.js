@@ -24,6 +24,9 @@ eventComponents[eventTypes.markAndGrade] = MarkAndGradeTaskEvent;
 
 module.exports = React.createClass({
     displayName: 'TaskEvent',
+    propTypes: {
+        event: React.PropTypes.object.isRequired
+    },
     render: function() {
         return React.createElement(
             eventComponents[this.props.event.type], { event: this.props.event });
