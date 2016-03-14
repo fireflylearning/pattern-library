@@ -1,6 +1,14 @@
 ---
 data:
   message: "This field is invalid"
+  messages:
+    -
+      message: "This is a message"
+      default: true
+      type: "valid"
+    -
+      message: "This is another message"
+
   active: true
   modifier: "valid"
   classes: "third-party-class-1 third-party-class-2"
@@ -26,6 +34,14 @@ Usually, validation is triggered by an event, so you must specifically set the v
 * warning-standalone
 * valid
 * valid-standalone
+
+### Error types
+
+The `validation` pattern supports multiple messages. You **must** set a `type` along with a message.
+
+* Valid
+* Invalid
+* Required
 
 ### XML Schema
 

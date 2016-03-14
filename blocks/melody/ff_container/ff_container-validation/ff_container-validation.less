@@ -1,29 +1,31 @@
 #ff_container-validation() {
-  .box-error() {
+  .border-error() {
     border-color: @ff_colour_error;
   }
-  .message-error() {
+  .box-error() {
     color: darken(@ff_colour_error,30%);
     background-color: lighten(@ff_colour_error,25%);
-    border-color: @ff_colour_error;
   }
 
-  .box-warning() {
+  .border-warning() {
     border-color: @ff_colour_notify;
   }
-  .message-warning() {
+  .box-warning() {
     color: darken(@ff_colour_notify,30%);
     background-color: lighten(@ff_colour_notify,25%);
-    border-color: @ff_colour_notify;
   }
 
-  .box-valid() {
+  .border-valid() {
     border-color: @ff_colour_success;
   }
-  .message-valid() {
+  .box-valid() {
     color: darken(@ff_colour_success,30%);
     background-color: lighten(@ff_colour_success,25%);
-    border-color: @ff_colour_success;
+  }
+
+  .message-default {
+    border-top-width: 1px;
+    border-top-style: solid;
   }
 
   .box-default() {
@@ -31,8 +33,6 @@
     border-radius: @ff_size_control_rounding;
     border-style: solid;
   }
-
-
 
 }
 
@@ -42,32 +42,63 @@
     #ff_mix-util-prose > .text-default();
     padding: @ff_size_control_vertical;
     font-size: 80%;
-    border-top-width: 1px;
-    border-top-style: solid;
   }
 
-  &--is-active&--warning {
-    #ff_container-validation > .box-default();
-    #ff_container-validation > .box-warning();
+  &--error-standalone,
+  &--warning-standalone,
+  &--valid-standalone {
+    display: none;
   }
-  &--is-active&--warning &__message {
-    #ff_container-validation > .message-warning();
+
+  &--error-standalone&--is-active,
+  &--warning-standalone&--is-active,
+  &--valid-standalone&--is-active {
+    display: block;
   }
 
   &--is-active&--error {
     #ff_container-validation > .box-default();
-    #ff_container-validation > .box-error();
+    #ff_container-validation > .border-error();
   }
   &--is-active&--error &__message {
-    #ff_container-validation > .message-error();
+    #ff_container-validation > .message-default();
+    #ff_container-validation > .box-error();
+    #ff_container-validation > .border-error();
+  }
+  &--is-active&--error-standalone {
+    #ff_container-validation > .box-default();
+    #ff_container-validation > .box-error();
+    #ff_container-validation > .border-error();
+  }
+
+  &--is-active&--warning {
+    #ff_container-validation > .box-default();
+    #ff_container-validation > .border-warning();
+  }
+  &--is-active&--warning &__message {
+    #ff_container-validation > .message-default();
+    #ff_container-validation > .box-warning();
+    #ff_container-validation > .border-warning();
+  }
+  &--is-active&--warning-standalone {
+    #ff_container-validation > .box-default();
+    #ff_container-validation > .box-warning();
+    #ff_container-validation > .border-warning();
   }
 
   &--is-active&--valid {
     #ff_container-validation > .box-default();
-    #ff_container-validation > .box-valid();
+    #ff_container-validation > .border-valid();
   }
   &--is-active&--valid &__message {
-    #ff_container-validation > .message-valid();
+    #ff_container-validation > .message-default();
+    #ff_container-validation > .box-valid();
+    #ff_container-validation > .border-valid();
+  }
+  &--is-active&--valid-standalone {
+    #ff_container-validation > .box-default();
+    #ff_container-validation > .box-valid();
+    #ff_container-validation > .border-valid();
   }
 
 }

@@ -19,9 +19,7 @@
 		</div>
 
 		<div class="ff_container-validation__message" data-ff-validation="message">
-			<xsl:if test="$data/validation/@active">
-				<xsl:value-of select="$data/validation/message"/>
-			</xsl:if>
+			<xsl:value-of select="$data/validation/message"/>
 		</div>
 
   </div>
