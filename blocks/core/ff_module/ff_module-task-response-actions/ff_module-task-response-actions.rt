@@ -10,16 +10,16 @@
         key="controlBarUpper">
         <ControlBarSet>
             <Button
-                key="{events.types.markAndGrade}"
-                modifier="primary-compact"
-                text="Mark/Grade"
-                onClick="()=>this.props.onClick({type: events.types.markAndGrade})"
-            />
-            <Button
                 key="{events.types.comment}"
                 modifier="primary-compact"
                 text="Comment"
                 onClick="()=>this.props.onClick({type: events.types.comment})"
+            />
+            <Button
+                key="{events.types.markAndGrade}"
+                modifier="primary-compact"
+                text="Mark/Grade"
+                onClick="()=>this.props.onClick({type: events.types.markAndGrade})"
             />
             <DropdownButton
                 id="more-actions"
