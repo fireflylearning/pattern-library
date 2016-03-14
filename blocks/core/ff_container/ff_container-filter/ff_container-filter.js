@@ -10,8 +10,8 @@ module.exports = React.createClass({
 				<label className={'ff_container-filter__label'}>{this.props.label}</label>
 			</div>
 			<div className={'ff_container-filter__items' + (this.props.modifier ? ' ff_container-filter__items--' + this.props.modifier : '')}>
-				{this.props.modules.map(function(module){
-					return module.content;
+				{this.props.filters.map(function(filter){
+					return filter.content;
 				})}
 			</div>
 		</div>;	

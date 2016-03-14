@@ -6,7 +6,7 @@ var FilterContainer = require('./ff_container-filter');
 var data = {
 	label: 'Sort by',
 	modifier: 'fixed-height',
-	modules: [{
+	filters: [{
 		content: <span className={'crate_util-block'}>Module A</span>
 	},
 	{
