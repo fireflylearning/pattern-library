@@ -2,7 +2,6 @@
 
 This repo contains the source files for Firefly front-end development patterns.
 
-// TODO: Complete API
 ### API 
 - gulp
     
@@ -51,6 +50,9 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 - css-lint for css linting
 - Karma, Mocha, Chai and Sinon for testing
 - x for regression testing // TODO (1)
+
+## Testing
+Any files with the suffix `*.test.js` will be run through the test runner when the command `npm test` is run.
 
 ## Setup
 

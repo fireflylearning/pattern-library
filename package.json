@@ -4,7 +4,7 @@
   "description": "Node xslt compilation test",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/*.js --watch --compilers jsx:babel-register,js:babel-register",
+    "test": "mocha tests/*.test.js --watch --compilers jsx:babel-register,js:babel-register",
     "start": "npm install && gulp"
   },
   "repository": {
