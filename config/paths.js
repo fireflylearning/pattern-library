@@ -59,7 +59,7 @@ function getPaths() {
                 dest: basePaths.export+basePaths.blocks
             },
             scripts: {
-                src: basePaths.blocks + '**/*.js',
+                src: [basePaths.blocks + '**/*.js', basePaths.blocks + '**/*.jsx'],
                 entry: './' + basePaths.blocks + 'core/_shared/index.js',
                 output: './' + basePaths.dest + 'js/'
             },

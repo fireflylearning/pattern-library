@@ -83,7 +83,7 @@ module.exports = function(paths, config) {
             resolve: {
                 modulesDirectories: ['node_modules', 'src', 'blocks'],
             },
-            devtool: config.isProduction ? false : 'source-map',
+            devtool: config.isProduction ? false : 'eval-source-map',
             plugins: [
                 new webpack.ProvidePlugin(plugins)
             ],
