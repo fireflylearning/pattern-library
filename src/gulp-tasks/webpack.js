@@ -2,7 +2,7 @@
 
 var webpack = require('webpack'),
     path = require('path'),
-     _ = require('lodash');
+    _ = require('lodash');
 
 function camelCase(input) {
     return input.toLowerCase().replace(/[-_]+(.)?/g, function(match, group1) {
@@ -19,8 +19,9 @@ module.exports = function(gulp, plugins, config) {
     function buildExportJs(dir, templatePath, tmpDir) {
         return function() {
             return gulp.src([
-                    dir + '**/[^_]*.js',
-                    '!' + dir + '**/{index,utils}.js'
+                    dir + '**/**.js', // match all js except folders or files with underscore
+                    '!' + dir + "**/_*",
+                    '!' + dir + "**/_*/**"
                 ])
                 .pipe(plugins.plumber())
                 .pipe(plugins.applyTemplate({
@@ -30,7 +31,7 @@ module.exports = function(gulp, plugins, config) {
                         var baseName = path.basename(file.path, '.js');
                         var name = camelCase(baseName).replace('.', '_');
                         var filePath = path.relative(path.join(process.cwd(), tmpDir), file.path);
-                        // console.log(name, filePath);
+
                         return {
                             varName: name,
                             filePath: filePath
@@ -51,7 +52,7 @@ module.exports = function(gulp, plugins, config) {
                 var info = entry.getInfo();
 
                 //TODO: make path more robust
-                result[info.name.replace('.js', '')] = [path.join(process.cwd(),info.absolutePath)]; //Needs to be array as workaround for https://github.com/webpack/webpack/issues/300
+                result[info.name.replace('.js', '')] = [path.join(process.cwd(), info.absolutePath)]; //Needs to be array as workaround for https://github.com/webpack/webpack/issues/300
                 return result;
             }, {});
 

@@ -8,6 +8,10 @@ data:
         content: "Line input"
 ---
 
+## React component
+
+<div data-ff_container-form-line="" ></div>
+
 ## Modifiers
 
 ### Label (or first item)
