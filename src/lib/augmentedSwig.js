@@ -72,15 +72,14 @@ module.exports = function(blockData, pageData) {
     });
 
     swig.setFilter('jsUrlPath', function(name) {
-        var jsEntry, block, fileInfo, jsUrlPath = '';
+        var jsEntryFile, block, jsUrlPath = '';
 
-
-        block = blockData.getBlock(name)
+        block = blockData.getBlock(name);
         if (!block) return jsUrlPath;
 
-        jsEntry = block.getJsEntry();
-        if (jsEntry) {
-            jsUrlPath = path.join('/js/', jsEntry.getInfo().name); //TODO: make path more robust
+        jsEntryFile = block.getJsEntry();
+        if (jsEntryFile) {
+            jsUrlPath = path.join(path.sep, 'js', jsEntryFile.getInfo().name); //TODO: make path more robust
         }
 
         // console.log('urlPath: ', data, name, fileInfo, urlPath);
@@ -88,19 +87,18 @@ module.exports = function(blockData, pageData) {
     });
 
     swig.setFilter('jsEntry', function(name) {
-        var jsEntry, block, fileInfo, jsUrlPath = '';
+        var jsEntryFile, block, jsEntry = '';
 
+        block = blockData.getBlock(name);
+        if (!block) return jsEntry;
 
-        block = blockData.getBlock(name)
-        if (!block) return jsUrlPath;
-
-        jsEntry = block.getJsEntry();
-        if (jsEntry) {
-            jsUrlPath = jsEntry.getInfo().name.replace('.js', ''); //TODO: make path more robust
+        jsEntryFile = block.getJsEntry();
+        if (jsEntryFile) {
+            jsEntry = jsEntryFile.getInfo().name.replace('.js', ''); //TODO: make path more robust
         }
 
         // console.log('urlPath: ', data, name, fileInfo, urlPath);
-        return jsUrlPath;
+        return jsEntry;
     });
 
     return swig;
