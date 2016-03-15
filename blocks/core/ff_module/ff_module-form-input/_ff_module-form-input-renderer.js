@@ -20,8 +20,7 @@ var InputContainer = React.createClass({
 		};
 	},
 	render: function() {
-		return <input className={'ff_module-form-input' + (this.props.modifier ? ' ff_module-form-input--' + this.props.modifier : '')} name={this.props.name} type={this.props.type ? this.props.type : 'text'} value={this.state.value} 
-onChange={event => this.setValue(event)}  id={this.props.id}></input>;
+		return <FormInput {...this.props} onChange={event => this.setValue(event)} value={this.state.value} />;
 	},
 	setValue: function(event) {
 		this.setState({
@@ -32,6 +31,6 @@ onChange={event => this.setValue(event)}  id={this.props.id}></input>;
 
 module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
-		React.render(React.createElement(InputContainer, data), document.querySelector('[data-ff_module-form-input]'));
+		React.render(<InputContainer {...data} />, document.querySelector('[data-ff_module-form-input]'));
 	});
 };

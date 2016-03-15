@@ -7,7 +7,7 @@ var expect = require('chai').expect;
 
 var FormInput = require('../blocks/core/ff_module/ff_module-form-input/ff_module-form-input');
 
-describe('FormLabel', function() {
+describe('FormInput', function() {
     it('should render', function() {
         var element = React.createElement(FormInput);
         var component = TestUtils.renderIntoDocument(element);

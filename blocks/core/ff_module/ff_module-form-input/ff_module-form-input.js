@@ -5,7 +5,7 @@ var React = require('react');
 module.exports = React.createClass({
 	displayName: 'FormInput',
 	render: function() {
-		attributes = {};
+		var attributes = {};
 		if (this.props.type == 'checkbox' || this.props.type == 'radio') {
 			if (this.props.checked) {
 				attributes['checked'] = true;
@@ -25,16 +25,13 @@ module.exports = React.createClass({
 		if (this.props.type == 'select')
 		{
 			var options = this.props.options.map(function(option) {
-				return React.createElement('option', {
-					value: option.value
-				}, option.text);
+				return <option value={option.value} >{option.text}</option>;
 			});
-			return React.createElement('select', attributes, options);
+			return <select className={'ff_module-form-input' + (this.props.modifier ? ' ff_module-form-input--' + this.props.modifier : '')} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} >{options}</select>;
 		}
 		else
 		{
-			return <input className={'ff_module-form-input' + (this.props.modifier ? ' ff_module-form-input--' + this.props.modifier : '')} name={this.props.name} type={this.props.type ? this.props.type : 'text'} value={this.state.value} 
-onChange={event => this.setValue(event)}  {...this.props.attributes} id={this.props.id}></input>;
+			return <input className={'ff_module-form-input' + (this.props.modifier ? ' ff_module-form-input--' + this.props.modifier : '')} name={this.props.name} type={this.props.type ? this.props.type : 'text'} value={this.props.value} onChange={this.props.onChange} onClick={this.props.onClick} {...attributes} id={this.props.id}></input>;
 
 		}
 	}
