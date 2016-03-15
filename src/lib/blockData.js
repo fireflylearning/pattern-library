@@ -79,7 +79,7 @@ function createBlock(name, resolvedname) {
                     rendererTest = /^_([\w-]+)-renderer\.js$/,
                     hasRenderer = rendererTest.test(fileName),
                     hasJs = name + '.js' === fileName;
-                console.log(fileName, hasRenderer, hasJs);
+                // console.log(fileName, hasRenderer, hasJs);
                 return hasRenderer || hasJs;
 
             });
