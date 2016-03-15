@@ -56,8 +56,8 @@ module.exports = React.createClass({
     getOverlay() {
         var ref = this.refs.ffContainerModal;
         if (ref) return ref.portal;
+    },
+    componentWillMount() {
+        Modal.setAppElement('body');
     }
-    // componentWillMount() {
-    //     Modal.setAppElement('body');
-    // },
 });
