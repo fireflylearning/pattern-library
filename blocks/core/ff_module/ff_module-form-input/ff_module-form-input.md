@@ -9,6 +9,10 @@ data:
             value: true
 ---
 
+## React component
+
+<div data-ff_module-form-input="" ></div>
+
 ## Options
 
 - modifier (String)
