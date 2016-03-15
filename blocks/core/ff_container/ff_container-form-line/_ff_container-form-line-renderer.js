@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react');
 
-var FormLabel = require('./ff_container-form-line');
+var FormLine = require('./ff_container-form-line');
 
 var data = {
 	formLine: [{
@@ -14,6 +14,6 @@ var data = {
 
 module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
-		React.render(React.createElement(FormLabel, data), document.querySelector('[data-ff_container-form-line]'));
+		React.render(React.createElement(FormLine, data), document.querySelector('[data-ff_container-form-line]'));
 	});
 };
