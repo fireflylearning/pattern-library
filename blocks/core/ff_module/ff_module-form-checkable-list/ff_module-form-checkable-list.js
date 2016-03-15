@@ -11,7 +11,7 @@ module.exports = React.createClass({
 				{this.props.items.map(function(list_item) {
 					return <li className={'ff_module-form-checkable-list__item' + (list_item.modifier != null ? ' ff_module-form-checkable-list__item--' + list_item.modifier : '')}>
 					<div className={'ff_module-form-pair' + (list_item.modifier != null ? ' ff_module-form-pair--' + list_item.modifier : '')}>
-					<FormInput {...list_item} />
+					<FormInput checked={list_item.checked} id={list_item.id} value={list_item.value} name={list_item.name} type={list_item.modifier != null ? list_item.type : 'radio'} />
 					<FormLabel id={list_item.id} required={list_item.required} modifier={list_item.modifier}>{list_item.label}</FormLabel>
 					</div>
 					</li>;

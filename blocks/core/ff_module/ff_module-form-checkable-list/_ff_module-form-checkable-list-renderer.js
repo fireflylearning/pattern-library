@@ -11,7 +11,7 @@ var data = {
 		type: 'radio',
 		id: 'react-radio-id-1',
 		value: 'radio-value-1',
-		name: 'radio-list-group',
+		name: 'react-radio-list-group',
 		key: '1'
 	},
 	{	label: 'Label text',
@@ -20,7 +20,8 @@ var data = {
 		modifier: 'inline',
 		id: 'react-radio-id-2',
 		value: 'radio-value-2',
-		name: 'radio-list-group',
+		checked: true,
+		name: 'react-radio-list-group',
 		key: '2'
 	},
 	{	
@@ -30,7 +31,7 @@ var data = {
 		modifier: 'inline',
 		id: 'react-radio-id-3',
 		value: 'radio-value-3',
-		name: 'radio-list-group',
+		name: 'react-radio-list-group',
 		key: '3'
 	}]
 };
