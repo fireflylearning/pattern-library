@@ -3,6 +3,7 @@
 var React = require('react');
 require('./lib/utils').bootstrapBrowser();
 var TestUtils = require('react-addons-test-utils');
+var sinon = require('sinon');
 var expect = require('chai').expect;
 
 var FormInput = require('../blocks/core/ff_module/ff_module-form-input/ff_module-form-input');
@@ -65,21 +66,14 @@ describe('FormInput', function() {
     
     // [onClick, onChange]
     // check onClick and onChange event handlers
-    var onClickRan = false,
-        onChangeRan = false;
-    var onClick = function() {
-        onClickRan = true;
-    };
-    var onChange = function() {
-        onChangeRan = true;
-    };
 	it('should make a an input element and attach onClick and onChange event handlers', function() {
-        var element = React.createElement(FormInput, { onClick: onClick, onChange: onChange });
+        var element = React.createElement(FormInput, { onClick: sinon.spy(), onChange: sinon.spy() });
         var component = TestUtils.renderIntoDocument(element);
         var root = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-form-input');
-        React.addons.TestUtils.Simulate.click(root);
-        React.addons.TestUtils.Simulate.change(root);
-        expect(onClickRan).to.be.ok;
-        expect(onChangeRan).to.be.ok;
+	TestUtils.Simulate.click(root);
+	TestUtils.Simulate.change(root);
+
+	expect(root.props.onClick.called).to.be.true;
+	expect(root.props.onChange.called).to.be.true;
 	});
 });
