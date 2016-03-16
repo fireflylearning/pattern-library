@@ -6,7 +6,8 @@ var React = require('react'),
 var TaskResponseActions = require('../ff_module-task-response-actions/ff_module-task-response-actions'),
     TaskResponseRepeater = require('../ff_module-task-event-repeater/ff_module-task-event-repeater'),
     ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay'),
-    EventEditor = require('../ff_module-task-event-editor/ff_module-task-event-editor');
+    EventEditor = require('../ff_module-task-event-editor/ff_module-task-event-editor'),
+    ContainerModal = require('../../ff_container/ff_container-modal/ff_container-modal');
 
 
 module.exports = React.createClass({
@@ -36,22 +37,27 @@ module.exports = React.createClass({
         var styles = {
             overlay: { zIndex: 10000000 }
         };
-        return React.createElement(Modal, {
-                key: 'response-modal',
-                isOpen: !!this.props.editingEvent,
-                onRequestClose: this.closeEventEditor,
-                style: styles
-            },
-            React.createElement(EventEditor, {
-                event: this.props.editingEvent,
-                onChange: this.onEventChange,
-                onSend: this.addEvent
-            }));
+        return <Modal
+                    ref="ffContainerModal"
+                    key="response-modal"
+                    isOpen={!!this.props.editingEvent}
+                    onRequestClose={this.closeEventEditor}
+                    style={styles}>
+                    <EventEditor
+                        event={this.props.editingEvent}
+                        onChange={this.onEventChange}
+                        onSend={this.addEvent}
+                        />
+                </Modal>;
     },
     closeEventEditor() {
         this.props.stopEditingEvent();
     },
+    getOverlay() {
+        var ref = this.refs.ffContainerModal;
+        if (ref) return ref.portal;
+    },
     componentWillMount() {
         Modal.setAppElement('body');
-    },
+    }
 });
