@@ -2,7 +2,7 @@
 
 import React from 'react';
 import DropdownMainList from './list.jsx';
-
+import DropdownMainButton from './main__button.jsx';
 
 export default class DropdownMainTemplate extends React.Component {
     render() {
@@ -12,21 +12,5 @@ export default class DropdownMainTemplate extends React.Component {
                     <DropdownMainButton {...this.props} />
                     <DropdownMainList {...this.props} />
                 </div>;
-    }
-}
-
-class DropdownMainButton extends React.Component {
-    render() {
-        return <button type="button"
-        className = {this.props.generateClass('ff_module-dropdown-button__button' )}
-        disabled = {!!this.props.isDisabled}
-        data-ff_module-dropdown-button-rt-trigger = { !this.props.isDisabled ? this.props.dropdownLinkId : false }>
-
-        <span className="ff_module-dropdown-button__content">{this.props.text}</span>
-
-        <span
-            className="{this.props.generateClass('ff_module-dropdown-button__icon' )}"
-            data-ff_module-dropdown-button-rt-target={ !this.props.isDisabled ? this.props.dropdownLinkId : false }></span>
-        </button>;
     }
 }
