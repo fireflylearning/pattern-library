@@ -1,8 +1,7 @@
 'use strict';
 
-$(function(){ 
+module.exports = function expandableComponent() {
 	var $expandable = $("[data-ff='expandable']");
-
 	$expandable.addClass("ff_container-expandable--is-collapsed ");
 	
 	$("[data-ff-action='expandable-dropdown']").click(function(){
@@ -27,4 +26,5 @@ $(function(){
 		}
 		$expandableText.text(newText);
 	});
-});
+};
+
