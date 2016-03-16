@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var template = require('./_ff_module-dropdown-button-component.rt.js');
+var DropdownMainTemplate = require('./_src/templates/main.jsx').default;
 var activateDropdowns = require('../ff_module-dropdown-button');
 var _ = require('lodash');
 
@@ -12,7 +12,9 @@ module.exports = React.createClass({
         text: React.PropTypes.string.isRequired,
         isDisabled: React.PropTypes.bool
     },
-    render: template,
+    render: function(){
+        return <DropdownMainTemplate {...this.props} generateClass={this.generateClass} dropdownLinkId={this.getDataAttrId()}/>;
+    },
     componentWillMount: function() {
         this.localId = _.uniqueId('dd-');
     },

@@ -1,64 +1,98 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
+var _ = require('lodash');
 
 var DropdownButton = require('./ff_module-dropdown-button-component');
+var checkbox = {
+    type: 'checkbox',
+    text: 'Item D'
+};
 var list = [{
-        href:'#',
-        text: 'Item A'
-    }, {
-        href:'#',
-        text: 'Item B'
-    }, {
-        href:'#',
-        text: 'Item C'
-    }];
+    href: '#',
+    text: 'Item A'
+}, {
+    href: '#',
+    text: 'Item B'
+}, {
+    href: '#',
+    text: 'Item C'
+}, {
+    onClick: function() {
+        console.log('doing stuff');
+    },
+    text: 'Item C2'
+}];
 
 var buttonProps = [{
     text: 'Dropdown button d',
-    list: list
 }, {
     text: 'Button block',
     modifier: 'block',
-    list: list
 }, {
     text: 'Button open',
     isOpen: true,
-    list: list
 }, {
     text: 'Button primary',
     modifier: 'primary',
-    list: list
 }, {
     text: 'Button compact',
     modifier: 'compact',
-    list: list
 }, {
     text: 'Button primary compact',
     modifier: 'primary-compact',
-    list: list
 }, {
     text: 'Button compact right',
     modifier: 'compact-right',
-    list: list
 }, {
     text: 'Button primary compact right',
     modifier: 'primary-compact-right',
-    list: list
 }, {
     text: 'Button disabled',
     isDisabled: true,
-    list: list
 }];
 
+buttonProps = buttonProps.map(function(props) {
+    return _.assign({}, props, {
+        list: [].concat(list, _.assign({}, checkbox, {
+            id: _.uniqueId('dd_list-')
+        }))
+    });
+});
+buttonProps.push({
+    text: 'Button checklist',
+    list: [{
+        type: 'checkbox',
+        onChange: function(event) {
+            console.log('click button checklist');
+        },
+        text: 'Awaiting Response',
+        id: 'checkbox-1'
+    }, {
+        type: 'checkbox',
+        onChange: function(event) {
+            console.log('click button checklist');
+        },
+        text: 'Approved',
+        id: 'checkbox-2'
+    }, {
+        type: 'checkbox',
+        onChange: function(event) {
+            console.log('click button checklist');
+        },
+        text: 'Response Received',
+        id: 'checkbox-3'
+    }]
+});
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-dropdown-button-component]'), function(domElement, index) {
             var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, buttonProps.map(function(props, propsIndex) {
-                return React.createElement('li', { key: 'li'+propsIndex, style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
+                return React.createElement('li', { key: 'li' + propsIndex, style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(DropdownButton, props));
             }));
-            React.render(root, domElement);
+            ReactDOM.render(root, domElement);
         });
     });
 };
