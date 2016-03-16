@@ -5,6 +5,7 @@ import Button from '../../../../ff_module-button/ff_module-button.js';
 
 import FormInput from '../../../../ff_module-form-input/ff_module-form-input';
 import FormLabel from '../../../../ff_module-form-label/ff_module-form-label';
+import {types as itemTypeNames} from '../../../../ff_module-form-input/_src/types';
 
 export default class DropdownMainList extends React.Component {
     render() {
@@ -52,12 +53,6 @@ function inputTemplate(item) {
             </div>;
 }
 
-var itemTypeNames = {
-    link: 'link',
-    button: 'button',
-    checkbox: 'checkbox',
-    radio: 'radio'
-};
 
 var itemTypes = {};
 itemTypes[itemTypeNames.link] = linkTemplate;
