@@ -4,6 +4,7 @@ var React = require('react');
 var CheckableList = require('./ff_module-form-checkable-list');
 
 var data = {
+    modifier:'inline',
 	items: [{
 		label: 'Label text',
 		required: true,
@@ -24,7 +25,7 @@ var data = {
 		name: 'react-radio-list-group',
 		key: '2'
 	},
-	{	
+	{
 		label: 'Label text',
 		required: true,
 		type: 'radio',
