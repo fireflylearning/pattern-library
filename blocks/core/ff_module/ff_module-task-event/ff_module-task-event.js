@@ -8,13 +8,12 @@ var eventTypes = require('./_src/events').types;
 
 var TaskEvent;
 
-var eventComponents = {
-    [eventTypes.setTask]: SetTaskEvent,
-    [eventTypes.stampResponseAsSeen]: StampResponseAsSeenTaskEvent,
-    [eventTypes.comment]: AddedCommentEvent,
-};
+var eventComponents = {};
+eventComponents[eventTypes.setTask]= SetTaskEvent;
+eventComponents[eventTypes.stampResponseAsSeen]= StampResponseAsSeenTaskEvent;
+eventComponents[eventTypes.comment]= AddedCommentEvent;
 
 module.exports = TaskEvent = function(props){
     return React.createElement(eventComponents[props.event.type], {event: props.event});
-}
+};
 
