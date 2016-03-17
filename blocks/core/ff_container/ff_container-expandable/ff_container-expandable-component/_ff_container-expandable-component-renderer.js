@@ -4,10 +4,10 @@ var React = require('react');
 var Expandable = require('./ff_container-expandable-component');
 
 var data = {
-	expdanded_text: 'Hide content',
-	collapsed_text: 'Show content',
-	collapsed_icon: 'ff_icon-page-down-open-blue',
-	expanded_icon: 'ff_icon-page-up-open-blue',
+	expandedText: 'Hide content',
+	collapsedText: 'Show content',
+	collapsedIcon: 'ff_icon-page-down-open-blue',
+	expandadeIcon: 'ff_icon-page-up-open-blue',
 	content: <span className='crate_util-block'>Content</span>
 };
 
