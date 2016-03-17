@@ -123,7 +123,7 @@
 
 
 <xsl:template match="item[@href]" mode="ff_module-dropdown-button">
-    <li><a href="{@href}" class="ff_module-dropdown-button__link"><xsl:value-of select="." /></a></li>
+    <li class="ff_module-dropdown-button__list-item"><a href="{@href}" class="ff_module-dropdown-button__link"><xsl:value-of select="." /></a></li>
 </xsl:template>
 
 <xsl:template match="item[not(@href)]" mode="ff_module-dropdown-button">
@@ -135,7 +135,7 @@
             </xsl:if>
         </button>
     </xsl:variable>
-    <li>
+    <li class="ff_module-dropdown-button__list-item">
         <xsl:call-template name="ff_module-button" >
             <xsl:with-param name="data" select="ext:node-set($button)"/>
         </xsl:call-template>
