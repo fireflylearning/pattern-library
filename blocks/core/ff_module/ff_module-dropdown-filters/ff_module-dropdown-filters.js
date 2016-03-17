@@ -1,16 +1,28 @@
+'use strict';
+
 import React from 'react';
 
 import DropdownButton from '../ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component';
-import {types as listItemTypes} from '../ff_module-form-input/_src/types';
+import { types as listItemTypes } from '../ff_module-form-input/_src/types';
 
 
-export default class DropdownFilters extends React.Component{
-    render(){
-        var list = this.props.filters.map(filter=>{
-            return { type: listItemTypes.checkbox, id: filter.id, text: filter.name, checked: filter.isActive, onChange: event => this.onChange(filter.id, event)}
+export default class DropdownFilters extends React.Component {
+    render() {
+        var list = this.props.filters.map(filter => {
+            return {
+                type: listItemTypes.checkbox,
+                id: filter.id,
+                text: filter.name,
+                checked: filter.isActive,
+                onChange: event => this.onChange(filter.id, event) };
         });
-        console.log(list);
-        return <DropdownButton text={this.props.text} list={list} modifier={this.props.modifier}/>
+
+        return <DropdownButton
+                    text = { this.props.text }
+                    list = { list }
+                    isOpen = { this.props.isOpen }
+                    isDisabled = { this.props.isDisabled }
+                    modifier = { this.props.modifier }/>
     }
     onChange(filter, event) {
         if (event.target.checked) {
@@ -20,3 +32,9 @@ export default class DropdownFilters extends React.Component{
         }
     }
 }
+DropdownFilters.propTypes = {
+    text: React.PropTypes.string.isRequired,
+    onAddFilter: React.PropTypes.func.isRequired,
+    onRemoveFilter: React.PropTypes.func.isRequired,
+    filters: React.PropTypes.array.isRequired
+};

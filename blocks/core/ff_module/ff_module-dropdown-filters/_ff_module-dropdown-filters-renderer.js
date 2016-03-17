@@ -13,6 +13,8 @@ var propsList = [{
     onRemoveFilter: function(id, event){
         console.log('filter '+id+' removed');
     },
+    isOpen: false,
+    isDisabled: false,
     filters: [{
         name: 'Awaiting Response',
         id: 'filter-1'
