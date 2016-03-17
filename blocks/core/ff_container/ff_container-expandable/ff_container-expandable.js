@@ -1,5 +1,7 @@
 'use strict';
 
+var $ = require('jquery');
+
 module.exports = function expandableComponent() {
 	var $expandable = $("[data-ff='expandable']");
 	$expandable.addClass("ff_container-expandable--is-collapsed ");
