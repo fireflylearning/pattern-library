@@ -5,6 +5,9 @@ var DropdownMainTemplate = require('./_src/templates/main.jsx').default;
 var activateDropdowns = require('../ff_module-dropdown-button');
 var _ = require('lodash');
 
+var triggerName = 'data-ff_module-dropdown-button-rt-trigger',
+targetName = 'data-ff_module-dropdown-button-rt-target';
+
 module.exports = React.createClass({
     displayName: 'DropdownButton',
     propTypes: {
@@ -13,7 +16,13 @@ module.exports = React.createClass({
         isDisabled: React.PropTypes.bool
     },
     render: function(){
-        return <DropdownMainTemplate {...this.props} generateClass={this.generateClass} dropdownLinkId={this.getDataAttrId()}/>;
+        var rtTarget = {},
+            rtTrigger = {};
+        if (!this.props.isDisabled){
+            rtTrigger[triggerName] = this.getDataAttrId();
+            rtTarget[targetName] = this.getDataAttrId();
+        }
+        return <DropdownMainTemplate {...this.props} generateClass={this.generateClass} rtTrigger={rtTrigger} rtTarget={rtTarget}/>;
     },
     componentWillMount: function() {
         this.localId = _.uniqueId('dd-');
@@ -21,8 +30,8 @@ module.exports = React.createClass({
     componentDidMount: function() {
         activateDropdowns({
             root: this._root,
-            triggerSelBase: 'data-ff_module-dropdown-button-rt-trigger',
-            targetSelBase: 'data-ff_module-dropdown-button-rt-target'
+            triggerSelBase: triggerName,
+            targetSelBase: targetName
         });
     },
     bindRef: function(component){

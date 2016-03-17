@@ -9,7 +9,6 @@ This component just renders an html dropdown button, it doesn't replicate the dr
 
 # Props 
 - **text**: {String, required} The text rendered by the button
-- **modifier**: {String}: Add additional css styling for different effects.
 - **list**: {Array, required}: 
     
     An Array of Objects with { text: {String}, type: {String}, (href: {String} | onClick:{function} | onChange:{function}) } properties. 
@@ -17,7 +16,7 @@ This component just renders an html dropdown button, it doesn't replicate the dr
     If a type is present, the item is rendered according to its type; otherwise, if an href is present, a standard `a` tag is rendered, finally a `button` will be rendered.
 
     Valid types are `checkbox`, `radio`, `input`, `button`, and `link`
-
+- **modifier**: {String}: Add additional css styling for different effects.
 - **isDisabled**: {Boolean} Whether or not the dropdown can be clicked.
 - **isOpen**: {Boolean} If true, the list will be rendered in the open state.
 

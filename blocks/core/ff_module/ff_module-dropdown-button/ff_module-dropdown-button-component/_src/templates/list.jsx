@@ -13,7 +13,7 @@ export default class DropdownMainList extends React.Component {
         var el = hasList ?
                 <div
                     className={this.props.generateClass('ff_module-dropdown-button__list-container')}
-                    data-ff_module-dropdown-button-rt-target={ !this.props.isDisabled ? this.props.dropdownLinkId : false }>
+                    {...this.props.rtTarget}>
 
                     <ul className="ff_module-dropdown-button__list">
                         {this.props.list.map(item => this.renderListItem(item))}
@@ -22,8 +22,9 @@ export default class DropdownMainList extends React.Component {
         return el;
     }
     renderListItem(item, itemIndex){
-        var itemType = getItemType(item);
-        return <li key={itemIndex}>
+        var itemType = getItemType(item),
+        key = item.id || itemIndex;
+        return <li key={key} className="ff_module-dropdown-button__list-item">
                 {itemTypes[itemType](item)}
             </li>
     }
@@ -34,23 +35,22 @@ function linkTemplate(item) {
 }
 
 function buttonTemplate(item) {
-    return <Button classes="ff_module-dropdown-button__link" modifier={item.modifier ? item.modifier : 'link'} onClick={item.onClick} text={item.text}/>;
+    return <Button modifier={item.modifier ? item.modifier : 'link'} onClick={item.onClick} text={item.text}/>;
 }
 
 function inputTemplate(item) {
-    return  <div className='ff_module-form-pair ff_module-dropdown-button__link'>
+    return  <div className='ff_module-form-pair'>
                 <FormInput
                     checked={item.checked}
                     id={item.id}
                     value={item.value}
                     name={item.name}
                     type={item.type || 'radio'}
-                    onChange={item.onChange}/>
-                <FormLabel
+                    onChange={item.onChange}/><FormLabel
                     id={item.id}
                     required={item.required}
-                    optionalMarker=''>{item.text}</FormLabel>
-            </div>;
+                    classes='ff_module-dropdown-button__label'
+                    optionalMarker=''>{item.text}</FormLabel></div>;
 }
 
 
