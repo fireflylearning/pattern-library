@@ -75,35 +75,27 @@ var buttonProps = [{
     onClick: sinon.spy()
 }];
 
-function testClass(node, props) {
-    var classNames = [], base='ff_module-button';
-    classNames.push(base);
-    if (!!props.modifier) classNames.push(base + '--' + props.modifier);
-    if (!!props.classes) classNames.push(props.classes);
-    if (!!props.disabled) classNames.push(base + '--is-disabled');
-    if (!!props.classes && !!props.disabled) classNames.push(props.classes+'--is-disabled');
-    expect(node.className).to.equal(classNames.join(' '));
-}
+
 
 var testDefs = {
     'id': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
+        var node = getButton(component);
         expect(node.getAttribute('id')).to.equal(value);
     },
     'text': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
+        var node = getButton(component);
         expect(node.textContent).to.equal(value);
     },
     'modifier': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
+        var node = getButton(component);
         testClass(node, props);
     },
     'classes': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
+        var node = getButton(component);
         testClass(node, props);
     },
     'icon': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_icon');
+        var node = getIcon(component);
         if (props.hide_text) {
             expect(node.className).to.equal('ff_icon ff_icon-' + value);
         } else {
@@ -111,7 +103,7 @@ var testDefs = {
         }
     },
     'iconAlign': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_icon');
+        var node = getIcon(component);
         if (props.hide_text) {
             expect(node.className).to.equal('ff_icon ff_icon-' + props.icon);
         } else {
@@ -119,7 +111,7 @@ var testDefs = {
         }
     },
     'disabled': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
+        var node = getButton(component);
         expect(node.getAttribute('disabled')).to.exist;
     },
     'hide_text': function(component, value, props) {
@@ -127,7 +119,7 @@ var testDefs = {
         expect(node.className).to.equal('ff_module-button__content ff_module-button__content--hidden');
     },
     'onClick': function(component, value, props) {
-        var node = TestUtils.findRenderedDOMComponentWithTag(component, 'button');
+        var node = getButton(component);
         TestUtils.Simulate.click(node);
         if (props.disabled) {
             expect(props.onClick.called).to.be.false;
@@ -139,3 +131,21 @@ var testDefs = {
 }
 
 describe('Button', getTestFramework(Button, buttonProps, testDefs, 'text'));
+
+function getButton(component){
+    return TestUtils.findRenderedDOMComponentWithTag(component, 'button');
+}
+
+function getIcon(component) {
+    return TestUtils.findRenderedDOMComponentWithClass(component, 'ff_icon');
+}
+
+function testClass(node, props) {
+    var classNames = [], base='ff_module-button';
+    classNames.push(base);
+    if (!!props.modifier) classNames.push(base + '--' + props.modifier);
+    if (!!props.classes) classNames.push(props.classes);
+    if (!!props.disabled) classNames.push(base + '--is-disabled');
+    if (!!props.classes && !!props.disabled) classNames.push(props.classes+'--is-disabled');
+    expect(node.className).to.equal(classNames.join(' '));
+}

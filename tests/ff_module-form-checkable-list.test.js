@@ -20,9 +20,8 @@ describe('CheckableList', function() {
 	var modifier = '[Modifier]';
 	it('should make a checkable list item with modifier ' + modifier, function() {
 		var element = React.createElement(CheckableList, {
-			items: [{
-				modifier: modifier
-			}]
+            modifier: modifier,
+			items: [{}]
 		});
 		var component = TestUtils.renderIntoDocument(element);
 		var root = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-form-checkable-list__item');

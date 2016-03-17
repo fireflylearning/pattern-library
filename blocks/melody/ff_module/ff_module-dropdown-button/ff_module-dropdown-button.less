@@ -87,6 +87,9 @@
         list-style: none;
         line-height: 1.1;
     }
+    &__list-item {
+        padding: (@ff_size_spacing_min * .4) 0;
+    }
     &__icon {
         .ff_icon;
         top:-.05em;
@@ -108,7 +111,9 @@
     }
     &__link {
         #ff_mix-util-prose > .link-no-decoration;
-        padding: (@ff_size_spacing_min * .4) 0;
         display: inline-block;
+    }
+    &__label {
+        color: @ff_colour_control_text;
     }
 }
