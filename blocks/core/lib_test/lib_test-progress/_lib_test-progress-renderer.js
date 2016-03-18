@@ -46,7 +46,21 @@ var data = {
     sent_to: 10096,
     no_excused: 2 ,
     completed_by: 875 ,
-    marked: 3087
+    marked: 30
+  },
+  id6: {
+    id: 7,
+    sent_to: 100,
+    no_excused: 0 ,
+    completed_by: 100 ,
+    marked: 50
+  },
+  id7: {
+    id: 8,
+    sent_to: 100,
+    no_excused: 0 ,
+    completed_by: 100 ,
+    marked: 100
   }
 }
 

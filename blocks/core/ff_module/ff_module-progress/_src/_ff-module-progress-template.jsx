@@ -5,8 +5,12 @@ var React = require('react');
 module.exports = React.createClass({
   displayName: 'Progress',
 
-  getWidth: function(type) {
-    return { width: Math.floor(type / this.props.sent_to * 100)+'%' }
+  getCompletedWidth: function() {
+    return {width: Math.floor(((this.props.completed_by / this.props.sent_to) - (this.props.marked / this.props.sent_to)) * 100)+'%'};
+  },
+
+  getMarkedWidth: function() {
+    return {width: Math.floor(this.props.marked / this.props.sent_to * 100)+'%'};
   },
 
   generateClass: function(base) {
@@ -44,10 +48,10 @@ module.exports = React.createClass({
 
     return <div className={this.generateClass('ff_module-progress')}>
       <div className="ff_module-progress__stacked">
-          <div className={this.generateBarClass('ff_module-progress__bar','marked')} style={this.getWidth(marked)} title={marked+' Marked'}>
+          <div className={this.generateBarClass('ff_module-progress__bar','marked')} style={this.getMarkedWidth()} title={marked+' Marked'}>
               <span className="ff_module-progress__meta">{this.generateTitle(marked,'Marked')}</span>
           </div>
-          <div className={this.generateBarClass('ff_module-progress__bar','completed')} style={this.getWidth(completed)} title={completed+' completed'}>
+          <div className={this.generateBarClass('ff_module-progress__bar','completed')} style={this.getCompletedWidth()} title={completed+' completed'}>
               <span className="ff_module-progress__meta">{this.generateTitle(completed,'completed')}</span>
           </div>
       </div>
