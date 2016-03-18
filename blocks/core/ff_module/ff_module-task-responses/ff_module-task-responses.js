@@ -59,6 +59,8 @@ module.exports = React.createClass({
         if (ref) return ref.portal;
     },
     componentWillMount() {
-        Modal.setAppElement('body');
+        if (typeof document !== "undefined" && document.body) {
+            Modal.setAppElement(document.body);
+        }
     }
 });
