@@ -12,7 +12,7 @@ export default class DropdownMainList extends React.Component {
         var hasList = !this.props.isDisabled && this.props.list && this.props.list.length;
         var el = hasList ?
                 <div
-                    className={this.props.generateClass('ff_module-dropdown-button__list-container')}
+                    className={this.props.generateSubClass('ff_module-dropdown-button__list-container')}
                     {...this.props.rtTarget}>
 
                     <ul className="ff_module-dropdown-button__list">

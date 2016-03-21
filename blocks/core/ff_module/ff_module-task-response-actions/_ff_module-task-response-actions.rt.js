@@ -29,7 +29,7 @@ module.exports = function () {
     }), React.createElement(DropdownButton, {
         'id': 'more-actions',
         'key': 'more-actions',
-        'modifier': 'primary-compact-right',
+        'modifier': 'primary-compact-right-widelist',
         'classes': 'ff_module-task-response-actions__dropdown',
         'text': 'More',
         'list': [

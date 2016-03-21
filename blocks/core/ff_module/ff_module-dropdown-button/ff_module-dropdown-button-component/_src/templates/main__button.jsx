@@ -6,7 +6,7 @@ export default class DropdownMainButton extends React.Component {
     render() {
 
         return  <button type="button"
-                    className = {this.props.generateClass('ff_module-dropdown-button__button' )}
+                    className = {this.props.generateSubClass('ff_module-dropdown-button__button' )}
                     disabled = {!!this.props.isDisabled}
                     {...this.props.rtTrigger}>
 
@@ -14,7 +14,7 @@ export default class DropdownMainButton extends React.Component {
 
                     {!this.props.isDisabled
                         ? <span
-                        className={this.props.generateClass('ff_module-dropdown-button__icon')}
+                        className={this.props.generateSubClass('ff_module-dropdown-button__icon')}
                         {...this.props.rtTarget}></span>
                         : <span/>}
                 </button>;
