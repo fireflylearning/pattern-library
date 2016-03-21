@@ -106,8 +106,8 @@ function activateDropdowns(options) {
     }
 
     $(function() {
-        addSuffix($root.find(triggerSel), options.enabledClassSuffix, defaultTriggerClass);
-        addSuffix($root.find(targetSel), options.enabledClassSuffix, defaultTargetClass);
+        addSuffix($root.find(triggerSel).addBack(triggerSel), options.enabledClassSuffix, defaultTriggerClass);
+        addSuffix($root.find(targetSel).addBack(targetSel), options.enabledClassSuffix, defaultTargetClass);
 
         $root.on('click', triggerSel, function(e) {
             e.preventDefault();

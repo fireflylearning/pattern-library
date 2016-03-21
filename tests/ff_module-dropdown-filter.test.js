@@ -45,7 +45,7 @@ var testDefs = {
     },
     isOpen: function(component, value, props) {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-dropdown-button__list-container');
-        expect(node.className).to.equal('ff_module-dropdown-button__list-container ff_module-dropdown-button__list-container--is-open');
+        expect(node.className).to.equal('ff_module-dropdown-button__list-container ff_module-dropdown-button__list-container--is-open ff_module-dropdown-filter');
     },
     isDisabled: function(component, value, props) {
         var fn = function() {
