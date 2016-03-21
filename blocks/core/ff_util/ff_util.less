@@ -77,3 +77,15 @@
         clear: both;
     }
 }
+
+.breakpoint(@minWidth; @rules) {
+    @media screen and (min-width: @minWidth) {
+        @rules();
+    }
+}
+
+.breakpoint-max(@maxWidth; @rules) {
+    @media screen and (max-width: @maxWidth) {
+        @rules();
+    }
+}
