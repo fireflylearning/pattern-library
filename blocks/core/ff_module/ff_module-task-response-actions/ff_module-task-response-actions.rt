@@ -1,5 +1,5 @@
 <rt-require dependency="../../ff_container/ff_container-control-bar/ff_container-control-bar" as="ContainerControlBar"/>
-<rt-require dependency="../../ff_container/ff_container-control-bar/_src/_ControlBarSet.js" as="ControlBarSet"/>
+<rt-require dependency="../../ff_container/ff_container-control-bar/_src/ControlBarSet.js" as="ControlBarSet"/>
 <rt-require dependency="../../ff_module/ff_module-button/ff_module-button" as="Button"/>
 <rt-require dependency="../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component" as="DropdownButton"/>
 <rt-require dependency="../../ff_module/ff_module-task-event/_src/events" as="events" />

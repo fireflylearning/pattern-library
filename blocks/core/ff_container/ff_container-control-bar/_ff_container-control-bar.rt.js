@@ -1,11 +1,11 @@
 'use strict';
 var React = require('react/addons');
 var _ = require('lodash');
-var ControlBarSet = require('./_src/_ControlBarSet.js');
+var ControlBarSet = require('./_src/ControlBarSet.js');
 function repeatSet1(set, setIndex) {
     return React.createElement(ControlBarSet, {
         'title': set.title,
-        'key': setIndex
+        'key': set.key || setIndex
     }, set.modules);
 }
 module.exports = function () {
