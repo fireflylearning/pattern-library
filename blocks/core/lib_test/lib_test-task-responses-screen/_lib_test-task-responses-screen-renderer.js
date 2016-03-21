@@ -204,7 +204,7 @@ module.exports = function() {
                             <DropdownFilters
                                 modifier="compact"
                                 text="Filter by Status"
-                                classes="ff_module-task-responses__filter"
+                                modifier="compact-widelist"
                                 onAddFilter={(id, event)=>console.log('Adding '+id)}
                                 onRemoveFilter={(id, event)=>console.log('Removing '+id)}
                                 filters={[{
@@ -228,7 +228,7 @@ module.exports = function() {
                                 text="Send All Now"
                             />
                             <DropdownButton
-                                modifier="compact-right"
+                                modifier="compact-right-widelist"
                                 text="More Actions"
                                 list={[{
                                         href: '#',
