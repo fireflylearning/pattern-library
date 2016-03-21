@@ -13,6 +13,8 @@ var data = {
 
 module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
-		React.render(<Expandable {...data}/>, document.querySelector('[data-ff_container-expandable-component]'));
+		Array.prototype.forEach.call(document.querySelectorAll('[data-ff_container-expandable-component]'), function(domElement) {
+			React.render(<Expandable {...data}/>, domElement);
+		});
 	});
 };

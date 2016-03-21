@@ -5,8 +5,11 @@ var Expandable = require('../../ff_container-expandable/ff_container-expandable.
 
 module.exports = React.createClass({
 	displayName: 'Expandable',
+	componentDidMount: function() {
+		Expandable(this.root);
+	},
 	render: function() {
-		return <div data-ff='expandable' className={'ff_container-expandable' + (this.props.modifier ? ' ff_container-expandable--' + this.props.modifier : '')}>
+		return <div  ref={(ref) => this.root = ref} data-ff='expandable' className={'ff_container-expandable' + (this.props.modifier ? ' ff_container-expandable--' + this.props.modifier : '')}>
 		<div data-ff-action='expandable-dropdown' className='ff_container-expandable__header'>
 			<span data-ff='expandable-text' data-expanded-text={this.props.expandedText} data-collapsed-text={this.props.collapsedText}>
 				{this.props.collapsedText}
@@ -17,9 +20,6 @@ module.exports = React.createClass({
 			{this.props.content}
 		</div>
 		</div>;	
-	},
-	componentDidMount: function() {
-		Expandable();
 	}
 
 });

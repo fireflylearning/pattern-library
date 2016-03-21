@@ -2,13 +2,15 @@
 
 var $ = require('jquery');
 
-module.exports = function expandableComponent() {
-	var $expandable = $("[data-ff='expandable']");
+module.exports = function expandableComponent(element) {
+	var $expandable = element ? $(element) : $("[data-ff='expandable']");
+	
 	$expandable.addClass("ff_container-expandable--is-collapsed ");
 	
-	$("[data-ff-action='expandable-dropdown']").click(function(){
-		var $expandableIcon = $("[data-icon='expandable-icon']"),
-		$expandableText = $("[data-ff='expandable-text']");
+	$expandable.find("[data-ff-action='expandable-dropdown']").click(function(){
+		var $this = $(this);
+		var $expandableIcon = $("[data-icon='expandable-icon']", $this),
+		$expandableText = $("[data-ff='expandable-text']", $this);
 		
 		var $expandedText = $expandableText.attr("data-expanded-text"),
 		$collapsedText = $expandableText.attr("data-collapsed-text"),
@@ -29,4 +31,3 @@ module.exports = function expandableComponent() {
 		$expandableText.text(newText);
 	});
 };
-
