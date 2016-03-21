@@ -228,7 +228,7 @@ module.exports = function() {
                                     }]}
                             />
                         </ControlBarSet>
-                        {/*
+
                         <ControlBarSet>
                             <p>Send feedback and marks to 27 students</p>
                             <Button
@@ -250,7 +250,7 @@ module.exports = function() {
                                     }]}
                             />
                         </ControlBarSet>
-                        */}
+
                     </ContainerControlBar>
                 </div>
 
