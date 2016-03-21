@@ -22,7 +22,7 @@ module.exports = React.createClass({
             rtTrigger[triggerName] = this.getDataAttrId();
             rtTarget[targetName] = this.getDataAttrId();
         }
-        return <DropdownMainTemplate {...this.props} generateClass={this.generateClass} rtTrigger={rtTrigger} rtTarget={rtTarget}/>;
+        return <DropdownMainTemplate {...this.props} generateClass={this.generateClass} rtTrigger={rtTrigger} rtTarget={rtTarget} bindRef={this.bindRef}/>;
     },
     componentWillMount: function() {
         this.localId = _.uniqueId('dd-');
