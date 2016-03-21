@@ -10,7 +10,8 @@ var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff
     ControlBarSet = require('../../ff_container/ff_container-control-bar/ff_container-control-bar').ControlBarSet,
     TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
     Button = require('../../ff_module/ff_module-button/ff_module-button'),
-    DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component');
+    DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
+    DropdownFilters = require('../../ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters').default;
 
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
@@ -200,32 +201,23 @@ module.exports = function() {
                 <div className="ff_util-row-bottom">
                     <ContainerControlBar modifier= "split">
                         <ControlBarSet>
-                            <DropdownButton
+                            <DropdownFilters
                                 modifier="compact"
                                 text="Filter by Status"
                                 classes="ff_module-task-responses__filter"
-                                list={[{
-                                        type: 'checkbox',
-                                        onChange: function(event) {
-                                            console.log('click button checklist');
-                                        },
-                                        text: 'Awaiting Response',
-                                        id: 'checkbox-1'
-                                    }, {
-                                        type: 'checkbox',
-                                        onChange: function(event) {
-                                            console.log('click button checklist');
-                                        },
-                                        text: 'Approved',
-                                        id: 'checkbox-2'
-                                    }, {
-                                        type: 'checkbox',
-                                        onChange: function(event) {
-                                            console.log('click button checklist');
-                                        },
-                                        text: 'Response Received',
-                                        id: 'checkbox-3'
-                                    }]}
+                                onAddFilter={(id, event)=>console.log('Adding '+id)}
+                                onRemoveFilter={(id, event)=>console.log('Removing '+id)}
+                                filters={[{
+                                    name: 'Awaiting Response',
+                                    id: 'filter-1'
+                                }, {
+                                    isActive: true,
+                                    name: 'Approved',
+                                    id: 'filter-2'
+                                }, {
+                                    name: 'Response Received',
+                                    id: 'filter-3'
+                                }]}
                             />
                         </ControlBarSet>
 
