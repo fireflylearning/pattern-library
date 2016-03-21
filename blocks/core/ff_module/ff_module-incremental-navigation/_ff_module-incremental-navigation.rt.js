@@ -3,7 +3,7 @@ var React = require('react/addons');
 var _ = require('lodash');
 var Button = require('../ff_module-button/ff_module-button.js');
 var ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar');
-var ControlBarSet = require('../../ff_container/ff_container-control-bar/_src/_ControlBarSet');
+var ControlBarSet = require('../../ff_container/ff_container-control-bar/_src/ControlBarSet');
 module.exports = function () {
     return React.createElement(ContainerControlBar, {
         'modifier': 'split',
