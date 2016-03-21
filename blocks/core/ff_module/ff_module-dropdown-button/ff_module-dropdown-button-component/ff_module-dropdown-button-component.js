@@ -22,7 +22,7 @@ module.exports = React.createClass({
             rtTrigger[triggerName] = this.getDataAttrId();
             rtTarget[targetName] = this.getDataAttrId();
         }
-        return <DropdownMainTemplate {...this.props} generateClass={this.generateClass} rtTrigger={rtTrigger} rtTarget={rtTarget} bindRef={this.bindRef}/>;
+        return <DropdownMainTemplate {...this.props} generateClass={this.generateClass} generateSubClass={this.generateSubClass} rtTrigger={rtTrigger} rtTarget={rtTarget} bindRef={this.bindRef}/>;
     },
     componentWillMount: function() {
         this.localId = _.uniqueId('dd-');
@@ -45,6 +45,15 @@ module.exports = React.createClass({
         if (!!props.isOpen) classNames.push(base + '--is-open');
         if (!!props.isDisabled) classNames.push(base + '--is-disabled');
         if (!!props.classes) classNames.push(props.classes);
+        return classNames.join(' ');
+    },
+    generateSubClass: function(base) {
+        var classNames = [],
+            props = this.props;
+        classNames.push(base);
+        if (!!props.modifier) classNames.push(base + '--' + props.modifier);
+        if (!!props.isOpen) classNames.push(base + '--is-open');
+        if (!!props.isDisabled) classNames.push(base + '--is-disabled');
         return classNames.join(' ');
     },
     getDataAttrId: function() {

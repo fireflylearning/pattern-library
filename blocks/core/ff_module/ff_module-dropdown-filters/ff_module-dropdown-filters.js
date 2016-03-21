@@ -20,7 +20,7 @@ export default class DropdownFilters extends React.Component {
         return <DropdownButton
                     text = { this.props.text }
                     list = { list }
-                    classes= {this.props.classes ? this.props.classes + ' ff_module-dropdown-filter' : 'ff_module-dropdown-filter'}
+                    classes= {this.props.classes ? this.props.classes + ' ff_module-dropdown-filters' : 'ff_module-dropdown-filters'}
                     isOpen = { this.props.isOpen }
                     isDisabled = { this.props.isDisabled }
                     modifier = { this.props.modifier }/>
