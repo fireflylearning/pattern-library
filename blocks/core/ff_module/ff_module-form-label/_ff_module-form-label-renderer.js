@@ -14,6 +14,9 @@ var data = {
 
 module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
-		React.render(React.createElement(FormLabel, data, 'Stacked text input name'), document.querySelector('[data-ff_module-form-label]'));
+        var element = document.querySelector('[data-ff_module-form-label]');
+        if (element) {
+            React.render(React.createElement(FormLabel, data, 'Stacked text input name'), element);
+        }
 	});
 };

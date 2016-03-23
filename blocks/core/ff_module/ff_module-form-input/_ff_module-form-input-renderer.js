@@ -31,6 +31,9 @@ var InputContainer = React.createClass({
 
 module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
-		React.render(<InputContainer {...data} />, document.querySelector('[data-ff_module-form-input]'));
+        var element = document.querySelector('[data-ff_module-form-input]');
+        if (element) {
+            React.render(<InputContainer {...data} />, element);
+        }
 	});
 };
