@@ -1,6 +1,6 @@
 <rt-require dependency="../ff_module-button/ff_module-button.js" as="Button"/>
 <rt-require dependency="../../ff_container/ff_container-control-bar/ff_container-control-bar" as="ContainerControlBar"/>
-<rt-require dependency="../../ff_container/ff_container-control-bar/_src/_ControlBarSet" as="ControlBarSet"/>
+<rt-require dependency="../../ff_container/ff_container-control-bar/_src/ControlBarSet" as="ControlBarSet"/>
 
 <ContainerControlBar modifier="split" classes="ff_module-incremental-navigation">
     <ControlBarSet>

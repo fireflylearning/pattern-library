@@ -73,18 +73,21 @@ function createBlock(name, resolvedname) {
         },
         getJsEntry: function() {
             if (_.isEmpty(_files)) return null;
+            var hasRenderer, hasJs, file;
 
-            var file = _.find(_files, function(file) {
+            file = _.find(_files, function(file) {
                 var fileName = file.getInfo().name,
-                    rendererTest = /^_([\w-]+)-renderer\.js$/,
-                    hasRenderer = rendererTest.test(fileName),
-                    hasJs = name + '.js' === fileName;
-                console.log(fileName, hasRenderer, hasJs);
-                return hasRenderer || hasJs;
-
+                    rendererTest = /^_([\w-]+)-renderer\.js$/;
+                    hasRenderer = rendererTest.test(fileName);
+                return hasRenderer;
             });
-
-            // console.log(file);
+            if (!file) {
+                file = _.find(_files, function(file) {
+                    var fileName = file.getInfo().name;
+                        hasJs = name + '.js' === fileName;
+                    return hasJs;
+                });
+            }
             return file;
         },
         clearData: function() {

@@ -2,7 +2,7 @@
 var React = require('react/addons');
 var _ = require('lodash');
 var ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar');
-var ControlBarSet = require('../../ff_container/ff_container-control-bar/_src/_ControlBarSet.js');
+var ControlBarSet = require('../../ff_container/ff_container-control-bar/_src/ControlBarSet.js');
 var Button = require('../../ff_module/ff_module-button/ff_module-button');
 var DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component');
 var events = require('../../ff_module/ff_module-task-event/_src/events');
@@ -29,7 +29,7 @@ module.exports = function () {
     }), React.createElement(DropdownButton, {
         'id': 'more-actions',
         'key': 'more-actions',
-        'modifier': 'primary-compact-right',
+        'modifier': 'primary-compact-right-widelist',
         'classes': 'ff_module-task-response-actions__dropdown',
         'text': 'More',
         'list': [

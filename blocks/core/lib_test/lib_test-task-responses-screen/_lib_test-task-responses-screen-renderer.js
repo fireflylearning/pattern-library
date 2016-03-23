@@ -5,8 +5,13 @@ var React = require('react');
 var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff_container-scrollable-list'),
     ResponseRecipientList = require('../../ff_module/ff_module-response-recipient-list/ff_module-response-recipient-list'),
     IncrementalNavigation = require('../../ff_module/ff_module-incremental-navigation/ff_module-incremental-navigation'),
-   ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay'),
-    TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses');
+    ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay'),
+    ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
+    ContainerControlBarSet = require('../../ff_container/ff_container-control-bar/ff_container-control-bar').ControlBarSet,
+    TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
+    Button = require('../../ff_module/ff_module-button/ff_module-button'),
+    DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
+    DropdownFilters = require('../../ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters').default;
 
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
@@ -178,7 +183,9 @@ var overlayInner = React.createElement(TaskResponses, {events: events,
     stopEditingEvent: function() {
         console.log('stopEditingEvent');
     }} ),
+
     overlayOuter = React.createElement(ContainerOverlay, { modifier: 'absolute-bottom', classes: 'ff_container-overlay--task-event-scrollable', body: overlayInner, bar: recipientNavigation }),
+
     sidebar = React.createElement(ResponseRecipientList, { responses: recipientData, onSelect: function(){
         console.log('select recipient');
     } });
@@ -188,12 +195,63 @@ module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         var el = document.querySelector('[data-lib_test-task-responses-screen]'); //Use jquery or sim in Firefly for backwards compat
         if (el) {
-            var element = React.createElement(ScrollableList, {
-                main: overlayOuter,
-                sidebar: sidebar
-            });
+
+            var element =
+            <div className="ff_module-task-responses">
+                <div className="ff_util-row-bottom">
+                    <ContainerControlBar modifier= "split">
+                        <ContainerControlBarSet>
+                            <DropdownFilters
+                                text="Filter by Status"
+                                modifier="compact-widelist"
+                                onAddFilter={(id, event)=>console.log('Adding '+id)}
+                                onRemoveFilter={(id, event)=>console.log('Removing '+id)}
+                                filters={[{
+                                    name: 'Awaiting Response',
+                                    id: 'filter-1'
+                                }, {
+                                    isActive: true,
+                                    name: 'Approved',
+                                    id: 'filter-2'
+                                }, {
+                                    name: 'Response Received',
+                                    id: 'filter-3'
+                                }]}
+                            />
+                        </ContainerControlBarSet>
+
+                        <ContainerControlBarSet>
+                            <p>Send feedback and marks to 27 students</p>
+                            <Button
+                                modifier="compact"
+                                text="Send All Now"
+                            />
+                            <DropdownButton
+                                modifier="compact-right-widelist"
+                                text="More Actions"
+                                list={[{
+                                        href: '#',
+                                        text: 'Item A'
+                                    }, {
+                                        href: '#',
+                                        text: 'Item B'
+                                    }, {
+                                        href: '#',
+                                        text: 'Item C'
+                                    }]}
+                            />
+                        </ContainerControlBarSet>
+
+                    </ContainerControlBar>
+                </div>
+
+                <ScrollableList
+                    main={overlayOuter}
+                    sidebar={sidebar} />
+
+            </div>
+
             React.render(element, el);
         }
-        activateDropdowns();
     });
 };

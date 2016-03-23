@@ -7,3 +7,5 @@ module.exports = React.createClass({
     displayName: 'ContainerControlBar',
     render: template
 });
+
+module.exports.ControlBarSet = require('./_src/ControlBarSet');

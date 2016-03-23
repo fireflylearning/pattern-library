@@ -20,8 +20,6 @@ eventComponents[eventTypes.confirmTaskIsComplete] = ConfirmedCompleteTaskEvent;
 eventComponents[eventTypes.confirmStudentIsExcused] = ConfirmedStudentExcusedTaskEvent;
 eventComponents[eventTypes.markAndGrade] = MarkAndGradeTaskEvent;
 
-
-
 module.exports = React.createClass({
     displayName: 'TaskEvent',
     propTypes: {

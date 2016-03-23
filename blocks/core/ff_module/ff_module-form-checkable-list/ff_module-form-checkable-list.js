@@ -8,14 +8,14 @@ module.exports = React.createClass({
 	displayName: 'CheckableList',
 	render: function() {
 		return <ul className='ff_module-form-checkable-list'>
-				{this.props.items.map(function(list_item) {
-					return <li className={'ff_module-form-checkable-list__item' + (list_item.modifier != null ? ' ff_module-form-checkable-list__item--' + list_item.modifier : '')}>
-					<div className={'ff_module-form-pair' + (list_item.modifier != null ? ' ff_module-form-pair--' + list_item.modifier : '')}>
-					<FormInput checked={list_item.checked} id={list_item.id} value={list_item.value} name={list_item.name} type={list_item.modifier != null ? list_item.type : 'radio'} />
-					<FormLabel id={list_item.id} required={list_item.required} modifier={list_item.modifier}>{list_item.label}</FormLabel>
+				{this.props.items.map((item)=>{
+					return <li className={'ff_module-form-checkable-list__item' + (this.props.modifier ? ' ff_module-form-checkable-list__item--'+this.props.modifier: '')}>
+					<div className={'ff_module-form-pair' + (this.props.modifier ? ' ff_module-form-pair--'+this.props.modifier: '')}>
+					<FormInput checked={item.checked} id={item.id} value={item.value} modifier={this.props.modifier} name={item.name} type={item.type || 'radio'} />
+					<FormLabel id={item.id} required={item.required} modifier={this.props.modifier}>{item.label}</FormLabel>
 					</div>
 					</li>;
 				})}
-		</ul>;	
+		</ul>;
 	}
 });

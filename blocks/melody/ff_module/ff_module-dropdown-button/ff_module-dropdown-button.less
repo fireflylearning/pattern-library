@@ -8,21 +8,66 @@
 
 //modifiers
 .ff_module-dropdown-button {
-    &--primary, &--primary-right {
+    &--primary,
+    &--primary-right,
+    &--primary-compact,
+    &--primary-compact-right,
+    &--primary-compact-right-widelist {
         #ff_module-button > .primary();
     }
-    &--primary &__content, &--primary-right &__content, &--primary-compact &__content, &--primary-compact-right &__content {
+
+    &--primary &__content,
+    &--primary-right &__content,
+    &--primary-compact &__content,
+    &--primary-compact-right &__content,
+    &--primary-compact-right-widelist &__content {
         #ff_module-button > .primary-content();
     }
-    &--primary-compact &__content, &--primary-compact-right &__content {
+    &--primary-compact &__content,
+    &--primary-compact-right &__content,
+    &--primary-compact-right-widelist &__content {
         font-weight: normal;
     }
 
-    &--primary-compact, &--primary-compact-right {
-        #ff_module-button > .primary();
+    &--right &__list-container,
+    &--primary-right &__list-container,
+    &--primary-compact-right &__list-container,
+    &--primary-compact-right-widelist &__list-container,
+    &--compact-right &__list-container,
+    &--compact-right-widelist &__list-container{
+        right: 5px;
+        left: auto;
+        text-align: right;
     }
-    &--compact &__button, &--compact-right &__button, &--primary-compact &__button, &--primary-compact-right  &__button {
+
+    &--compact &__button,
+    &--compact-right &__button,
+    &--compact-widelist &__button,
+    &--compact-right-widelist &__button,
+    &--primary-compact &__button,
+    &--primary-compact-right  &__button,
+    &--primary-compact-right-widelist  &__button {
         #ff_module-button > .compact();
+    }
+
+    &--compact &__icon,
+    &--compact-right &__icon,
+    &--compact-widelist &__icon,
+    &--compact-right-widelist &__icon,
+    &--primary-compact &__icon,
+    &--primary-compact-right  &__icon,
+    &--primary-compact-right-widelist  &__icon {
+        height:1.125em;
+        width:1.125em;
+        line-height: 1;
+        top:0;
+    }
+
+    &--widelist &__list-container--is-open,
+    &--primary-compact-right-widelist &__list-container--is-open,
+    &--compact-widelist &__list-container--is-open,
+    &--compact-right-widelist &__list-container--is-open {
+        min-width: 16em;
     }
 }
 
@@ -69,13 +114,7 @@
             min-width: 8rem;
         }
     }
-    &--right &__list-container,
-    &--primary-right &__list-container,
-    &--primary-compact-right &__list-container,
-    &--compact-right &__list-container{
-        right: 5px;
-        left: auto;
-    }
+
     &__list {
         // right: 5px;
         background-color: #fff;
@@ -86,6 +125,9 @@
         margin: 0;
         list-style: none;
         line-height: 1.1;
+    }
+    &__list-item {
+        padding: (@ff_size_spacing_min * .4) 0;
     }
     &__icon {
         .ff_icon;
@@ -108,7 +150,9 @@
     }
     &__link {
         #ff_mix-util-prose > .link-no-decoration;
-        padding: (@ff_size_spacing_min * .4) 0;
         display: inline-block;
+    }
+    &__label {
+        color: @ff_colour_control_text;
     }
 }
