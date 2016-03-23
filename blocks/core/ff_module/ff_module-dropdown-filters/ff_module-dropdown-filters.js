@@ -6,7 +6,7 @@ import DropdownButton from '../ff_module-dropdown-button/ff_module-dropdown-butt
 import { types as listItemTypes } from '../ff_module-form-input/_src/types';
 
 
-export default class DropdownFilters extends React.Component {
+export class DropdownFilters extends React.Component {
     render() {
         var list = this.props.filters.map(filter => {
             return {
@@ -39,3 +39,5 @@ DropdownFilters.propTypes = {
     onRemoveFilter: React.PropTypes.func.isRequired,
     filters: React.PropTypes.array.isRequired
 };
+
+module.exports = DropdownFilters;

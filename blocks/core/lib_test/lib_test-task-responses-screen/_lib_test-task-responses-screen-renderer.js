@@ -7,7 +7,7 @@ var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff
     IncrementalNavigation = require('../../ff_module/ff_module-incremental-navigation/ff_module-incremental-navigation'),
     ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay'),
     ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
-    ControlBarSet = require('../../ff_container/ff_container-control-bar/ff_container-control-bar').ControlBarSet,
+    ContainerControlBarSet = require('../../ff_container/ff_container-control-bar/ff_container-control-bar').ControlBarSet,
     TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
     Button = require('../../ff_module/ff_module-button/ff_module-button'),
     DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
@@ -200,9 +200,8 @@ module.exports = function() {
             <div className="ff_module-task-responses">
                 <div className="ff_util-row-bottom">
                     <ContainerControlBar modifier= "split">
-                        <ControlBarSet>
+                        <ContainerControlBarSet>
                             <DropdownFilters
-                                modifier="compact"
                                 text="Filter by Status"
                                 modifier="compact-widelist"
                                 onAddFilter={(id, event)=>console.log('Adding '+id)}
@@ -219,9 +218,9 @@ module.exports = function() {
                                     id: 'filter-3'
                                 }]}
                             />
-                        </ControlBarSet>
+                        </ContainerControlBarSet>
 
-                        <ControlBarSet>
+                        <ContainerControlBarSet>
                             <p>Send feedback and marks to 27 students</p>
                             <Button
                                 modifier="compact"
@@ -241,7 +240,7 @@ module.exports = function() {
                                         text: 'Item C'
                                     }]}
                             />
-                        </ControlBarSet>
+                        </ContainerControlBarSet>
 
                     </ContainerControlBar>
                 </div>

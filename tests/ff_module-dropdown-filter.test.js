@@ -8,7 +8,7 @@ var expect = require('chai').expect,
     sinon = require('sinon'),
     getTestFramework = require('./lib/framework').setUpTestFramework(React, TestUtils, expect);
 
-var DropdownFilters = require('../blocks/core/ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters').default;
+var DropdownFilters = require('../blocks/core/ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters');
 
 
 var testProps = [{

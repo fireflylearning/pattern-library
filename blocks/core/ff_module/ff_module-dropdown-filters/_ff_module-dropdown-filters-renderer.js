@@ -3,7 +3,7 @@ var React = require('react'),
     ReactDOM = require('react-dom');
 var _ = require('lodash');
 
-var DropdownFilters = require('./ff_module-dropdown-filters').default;
+var DropdownFilters = require('./ff_module-dropdown-filters');
 
 var propsList = [{
     text: 'Filter by status',
