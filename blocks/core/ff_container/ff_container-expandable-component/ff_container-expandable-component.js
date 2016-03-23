@@ -5,6 +5,13 @@ var Expandable = require('../ff_container-expandable/ff_container-expandable.js'
 
 module.exports = React.createClass({
 	displayName: 'Expandable',
+    propTypes: {
+        expandedText: React.PropTypes.string.isRequired,
+        collapsedText: React.PropTypes.string.isRequired,
+        expandedIcon: React.PropTypes.string,
+        collapsedIcon: React.PropTypes.string,
+        modifier: React.PropTypes.string
+    },
 	componentDidMount: function() {
 		Expandable(this.root);
 	},
