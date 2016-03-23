@@ -1,5 +1,6 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+ReactDOM = require('react-dom');
 
 var groupService = require('./_ff_module-recipient-picker-new-group-button-mockservice')();
 var createNewGroupButton = require('./ff_module-recipient-picker-new-group-button');
@@ -14,7 +15,7 @@ module.exports = function() {
         var btnEl = document.querySelector('[data-ff-recipient-picker-new-group-button]');
         if (btnEl && picker) {
             var newGroupButtonComponent = createNewGroupButton(picker, groupService);
-            var newGroupButton = React.render(React.createElement(newGroupButtonComponent), btnEl);
+            var newGroupButton = ReactDOM.render(React.createElement(newGroupButtonComponent), btnEl);
         }
     });
 };
