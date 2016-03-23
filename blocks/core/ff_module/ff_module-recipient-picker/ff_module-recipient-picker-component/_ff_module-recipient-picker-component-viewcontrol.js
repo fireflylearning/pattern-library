@@ -8,6 +8,7 @@ module.exports = function createRecipientPicker(service, template) {
     if (!service) throw new Error('recipient-picker requires a \'service\' parameter');
     return React.createClass({
         render: template,
+        displayName: 'RecipientPicker',
         componentDidMount: function() {
             document.addEventListener('click', this.documentClickHandler);
 
