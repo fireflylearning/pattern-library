@@ -7,7 +7,7 @@ module.exports = function(picker, groupsService, template) {
 
     return React.createClass({
         render: template,
-
+        displayName: 'NewGroupButton',
         onClick: function(e) {
             groupsService.createNewGroup(picker.getSelectedRecipients(), function(results) {
                 picker.setSelected(results);

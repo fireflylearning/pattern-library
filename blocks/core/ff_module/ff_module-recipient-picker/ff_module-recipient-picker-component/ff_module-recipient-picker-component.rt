@@ -31,7 +31,7 @@
             ref="{function(ref){
                 //console.log(ref); TODO: Investigate why sometimes null
                 if(!ref) return;
-                this.textInput = ref.getDOMNode(); }.bind(this)}"
+                this.textInput = ref; }.bind(this)}"
             />
     </div>
 

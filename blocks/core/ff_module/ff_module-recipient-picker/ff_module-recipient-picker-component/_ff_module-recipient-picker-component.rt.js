@@ -51,7 +51,7 @@ module.exports = function () {
             //console.log(ref); TODO: Investigate why sometimes null
             if (!ref)
                 return;
-            this.textInput = ref.getDOMNode();
+            this.textInput = ref;
         }.bind(this)
     })), React.createElement('div', { 'className': 'ff_module-recipient-picker__selectable' + (this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : '') }, this.state.hasResults === true ? React.createElement(RecipientButtonList, {
         'results': this.state.results,
