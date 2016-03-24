@@ -38,25 +38,28 @@ module.exports = React.createClass({
         var styles = {
             overlay: { zIndex: 10000000 }
         };
-        return <Modal
-                    ref="ffContainerModal"
-                    key="response-modal"
+        return <ContainerModal
+                    ref={this.bindModalRef}
                     isOpen={!!this.props.editingEvent}
                     onRequestClose={this.closeEventEditor}
-                    style={styles}>
+                    >
                     <EventEditor
                         event={this.props.editingEvent}
                         onChange={this.onEventChange}
                         onSend={this.addEvent}
                         />
-                </Modal>;
+                </ContainerModal>;
+    },
+    bindModalRef(component){
+        this.modal = component;
     },
     closeEventEditor() {
         this.props.stopEditingEvent();
     },
     getOverlay() {
-        var ref = this.refs.ffContainerModal;
-        if (ref) return ref.portal;
+        var modal = this.modal;
+        if (modal) return modal.getOverlay();
+        return undefined;
     },
     componentWillMount() {
         if (typeof document !== "undefined" && document.body) {
