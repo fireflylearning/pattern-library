@@ -39,6 +39,9 @@ var data = {
 
 module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
-		React.render(<CheckableList {...data} />, document.querySelector('[data-ff_module-form-checkable-list]'));
+        var element = document.querySelector('[data-ff_module-form-checkable-list]');
+        if (element) {
+            React.render(<CheckableList {...data} />, element);
+        }
 	});
 };

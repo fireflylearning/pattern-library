@@ -13,12 +13,15 @@ var data = {
 		content: <span className={'crate_util-block'}>Module B</span>
 	},
 	{
-		content: <span className={'crate_util-block'}>Module C</span>	
+		content: <span className={'crate_util-block'}>Module C</span>
 	}]
 }
 
 module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
-		React.render(React.createElement(FilterContainer, data), document.querySelector('[data-ff_container-filter]'));
+        var element = document.querySelector('[data-ff_container-filter]');
+        if (element) {
+            React.render(React.createElement(FilterContainer, data), element);
+        }
 	});
 };

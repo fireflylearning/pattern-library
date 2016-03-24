@@ -11,6 +11,7 @@ module.exports = function(picker, service, type, template) {
     return React.createClass({
         render: template,
         picker: picker,
+        displayName: 'RecipientButtonListContainer',
         getInitialState: function() {
             return {
                 results: []
