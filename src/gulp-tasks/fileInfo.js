@@ -110,16 +110,6 @@ function getFileProcess(pageData, options) {
     };
 }
 
-function getFileIterator(fileFilter, processFile, processFileComplete) {
-
-    return function(err, files) {
-        if (err) return processFileComplete(err);
-
-        async.filter(files, fileFilter, function(results) {
-            async.each(results, processFile, processFileComplete);
-        });
-    };
-}
 
 function getBlockSubdirProcess(dataStore, options) {
     return function processSubdir(blockPath, subdirCallback) {
@@ -134,8 +124,7 @@ function getBlockSubdirProcess(dataStore, options) {
         if (options.generateBlockUrl) {
             block.setUrlPath(options.generateBlockUrl(blockData.blockName, blockData.resolvedBlockName));
         }
-
-        dir.files(blockPath, getFileIterator(options.filterFile, processFile, processFileComplete));
+        dir.files(blockPath, getIterator(options.filterFile, processFile, processFileComplete));
     };
 }
 
@@ -152,15 +141,14 @@ function getProcessSubdirComplete(dataStore, callback) {
     };
 }
 
-function getSubDirIterator(processSubdir, processSubdirComplete, options) {
+function getIterator(filter, processMethod, onComplete) {
 
-    return function subdirIterator(err, subdirs) {
-        if (err) return processSubdirComplete(err);
+    return function iterator(err, set) {
+        if (err) return onComplete(err);
 
-        async.filter(subdirs, options.filterDir, function(results) {
-            async.each(results, processSubdir, processSubdirComplete);
+        async.filter(set, filter, function(results) {
+            async.each(results, processMethod, onComplete);
         });
-
     };
 }
 
@@ -170,7 +158,7 @@ function getBlockInfo(fileSrc, dataStore, options) {
         var processSubdir = getBlockSubdirProcess(dataStore, options),
             processSubdirComplete = getProcessSubdirComplete(dataStore, callback);
 
-        dir.subdirs(fileSrc, getSubDirIterator(processSubdir, processSubdirComplete, options));
+        dir.subdirs(fileSrc, getIterator(options.filterDir, processSubdir, processSubdirComplete));
     };
 }
 
@@ -179,7 +167,7 @@ function getFileInfo(fileSrc, dataStore, options) {
         var processFile = getFileProcess(dataStore, options),
             processFileComplete = getProcessSubdirComplete(dataStore, callback);
 
-        dir.files(fileSrc, getFileIterator(options.filterFile, processFile, processFileComplete));
+        dir.files(fileSrc, getIterator(options.filterFile, processFile, processFileComplete));
     };
 }
 
