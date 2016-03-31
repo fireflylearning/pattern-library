@@ -1,15 +1,11 @@
 'use strict';
 
-var filewalker = require('filewalker'),
-    path = require('path'),
+var path = require('path'),
     matter = require('gray-matter'),
     marked = require('marked'),
     _ = require('lodash'),
-    gutil = require('gulp-util'),
     dir = require('node-dir'),
-    fs = require('fs'),
-    async = require('async'),
-    util = require('util');
+    async = require('async');
 
 
 function getBlockData(blockPath) {
