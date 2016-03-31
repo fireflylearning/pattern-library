@@ -1,3 +1,8 @@
+# 0.2.4 (31/03/2016)
+
+## Breaking changes
+Swapped the deprecated `minify-css` package for `clean-css`. Run `npm-install` to update package references.
+
 # 0.2.3 (9/03/2016)
 
 ## Breaking changes
