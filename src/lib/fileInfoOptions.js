@@ -15,6 +15,39 @@ function checkForMdFiles(testPath) {
     var fsInfo = path.parse(testPath);
     // console.log(fsInfo);
     if (fsInfo.ext === '.md') return true;
+    return false;
+}
+
+function checkIsBlock(dirPath, cb) {
+    var hasFiles, hasSubDirs, directAncestorFiles = [],
+        isBlock = false;
+
+    dir.paths(dirPath, function(err, paths) {
+        if (err) return cb(false);
+        hasFiles = paths.files.length > 0;
+        hasSubDirs = paths.dirs.length > 0;
+
+        if (hasFiles) {
+            if (!hasSubDirs) {
+                directAncestorFiles = paths.files;
+            } else {
+                directAncestorFiles = _.reduce(paths.files, function(result, file, key) {
+                    var test = file.replace(dirPath + path.sep, '').split(path.sep);
+                    if (test.length === 1) result.push(file);
+                    return result;
+                }, []);
+            }
+        }
+
+        directAncestorFiles = _.chain(directAncestorFiles)
+            .reject(checkFilenameHidden)
+            .filter(checkForMdFiles)
+            .value();
+
+        isBlock = directAncestorFiles.length > 0;
+
+        cb(isBlock);
+    });
 }
 
 module.exports = function(gulp, plugins) {
@@ -25,63 +58,25 @@ module.exports = function(gulp, plugins) {
                 return plugins.util.replaceExtension(path.sep + resolvedName, '.html#' + ext);
             },
             generateBlockUrl: function generateBlockUrl(name, resolvedName) {
-                return path.sep + path.join(resolvedName, name + '.html')
+                return path.sep + path.join(resolvedName, name + '.html');
             },
             filterDir: function filterBlockDir(dirPath, cb) {
-                var isHidden = checkFilenameHidden(dirPath),
-                    hasFiles, hasSubDirs, directAncestorFiles = [],
-                    isBlock = false;
+                var isHidden = checkFilenameHidden(dirPath);
 
                 if (isHidden) return cb(false);
-
-                dir.paths(dirPath, function(err, paths) {
-                    if (err) return cb(false);
-                    // console.log('\n' + dirPath + '\n');
-                    // console.log('files:\n', paths.files);
-                    // console.log('subdirs:\n', paths.dirs);
-                    hasFiles = paths.files.length > 0;
-                    hasSubDirs = paths.dirs.length > 0;
-
-                    if (hasFiles) {
-                        if (!hasSubDirs) {
-                            directAncestorFiles = paths.files;
-                        } else {
-                            directAncestorFiles = _.reduce(paths.files, function(result, file, key) {
-                                var test = file.replace(dirPath + path.sep, '').split(path.sep);
-                                // console.log(test.length);
-                                if (test.length === 1) result.push(file);
-                                return result;
-                            }, []);
-                        }
-                    }
-
-                    directAncestorFiles = _.chain(directAncestorFiles)
-                        .reject(checkFilenameHidden)
-                        .filter(checkForMdFiles)
-                        .value();
-
-                    isBlock = directAncestorFiles.length > 0;
-
-                    cb(isBlock);
-                });
+                checkIsBlock(dirPath, cb);
             },
-            filterFile: function filterBlockFile(filePath) {
-                // var pathTest = '_';
-                // var isHidden = _.some(filePath.split(path.sep), function(part) {
-                //     return part.charAt(0) === pathTest;
-                // })
-                // return !isHidden;
-                return true;
+            filterFile: function filterBlockFile(filePath, cb) {
+                cb(true);
             }
         },
         pages: {
             generateFileUrl: function generateFileUrl(name, resolvedName) {
                 return plugins.util.replaceExtension(resolvedName.replace('pages', ''), '.html');
             },
-            filterFile: function filterPageFile(filePath) {
-                var fsInfo = path.parse(filePath);
-                if (fsInfo.ext === '.md') return true;
+            filterFile: function filterPageFile(filePath, cb) {
+                return cb(checkForMdFiles(filePath));
             }
         }
-    }
-}
+    };
+};
