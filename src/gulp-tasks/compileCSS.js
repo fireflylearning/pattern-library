@@ -36,7 +36,7 @@ module.exports = function(gulp, plugins, config, utils, browserSync) {
             .pipe(plugins.less({
                 plugins: [autoprefix]
             }))
-            .pipe(plugins.minifyCss())
+            .pipe(plugins.cleanCss())
             .pipe(utils.sourcemaps.end())
             .pipe(gulp.dest(dest))
             .pipe(browserSync.stream());
