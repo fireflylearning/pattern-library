@@ -102,6 +102,19 @@ The `icons` task should (currently) be run separately, and will need to be run a
 
 1. `gulp icons`
 
+#### Exporting icons to svg
+To export icons to `.svg` format in an optimal way use this script: [svg_exporter](https://github.com/fireflylearning/pattern-library/wiki/svg_exporter)
+
+Save the script as a `.jsx` file. The script is executed in Adobe Illustrator and strips away all the extra code that the default Illustrator export adds to the file.
+
+To run the script:
+
+1. Open Illustrator
+2. Select File > Scripts > Other Scripts
+3. Select your script
+4. Select the folder which contains the files that you want to export as `.svg`
+5. Enter the extension of the files that you want to export (e.g. *.ai)
+6. Select a folder where you want to save the generated svgs
 
 ## Process
 The gulp task will run and traverse the directory, performing the following tasks:
