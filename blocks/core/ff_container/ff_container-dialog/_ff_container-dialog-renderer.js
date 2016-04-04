@@ -4,8 +4,8 @@ var React = require('react'),
 
 var ContainerDialog = require('./ff_container-dialog');
 var props = {
-    headingText: 'Heading',
-    showTopClose: true,
+    title: 'Title',
+    showCloseIcon: true,
     body: <p>Test body text</p>,
     controls: [<button key="send">Send</button>, <button key="close">Close</button>]
 };

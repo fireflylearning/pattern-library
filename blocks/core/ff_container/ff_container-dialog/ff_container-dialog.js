@@ -14,11 +14,11 @@ function getTopClose(){
     return <button type="button" className="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button>;
 }
 
-var DialogHeading = React.createClass({
-    displayName:'ContainerDialogHeading',
+var DialogTitle = React.createClass({
+    displayName:'ContainerDialogTitle',
     render:function(){
-        var className = generateClass('ff_container-dialog__heading', this.props);
-        var topClose = this.props.showClose ? getTopClose() : null;
+        var className = generateClass('ff_container-dialog__title', this.props);
+        var topClose = this.props.showCloseIcon ? getTopClose() : null;
 
         return <h3 className={className}>{this.props.children} {topClose}</h3>;
     }
@@ -46,8 +46,8 @@ var DialogControls = React.createClass({
 module.exports = React.createClass({
     displayName: 'ContainerDialog',
     propTypes: {
-        showTopClose: React.PropTypes.bool,
-        headingText: React.PropTypes.string.isRequired,
+        showCloseIcon: React.PropTypes.bool,
+        title: React.PropTypes.string.isRequired,
         body: React.PropTypes.node.isRequired,
         controls: React.PropTypes.node.isRequired
     },
@@ -55,7 +55,7 @@ module.exports = React.createClass({
         var className = generateClass('ff_container-dialog', this.props);
 
         return <div className={className}>
-            <DialogHeading showClose={this.props.showTopClose}>{this.props.headingText}</DialogHeading>
+            <DialogTitle showCloseIcon={this.props.showCloseIcon}>{this.props.title}</DialogTitle>
             <DialogBody>{this.props.body}</DialogBody>
             <DialogControls>{this.props.controls}</DialogControls>
          </div>;
