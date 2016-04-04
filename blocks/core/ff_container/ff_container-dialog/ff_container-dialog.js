@@ -10,15 +10,15 @@ function generateClass(base, props){
         return classNames.join(' ');
 }
 
-function getTopClose(){
-    return <button type="button" className="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button>;
+function getTopClose(props){
+    return <button type="button" onClick={props.onCloseIconClick} className="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button>;
 }
 
 var DialogTitle = React.createClass({
     displayName:'ContainerDialogTitle',
     render:function(){
         var className = generateClass('ff_container-dialog__title', this.props);
-        var topClose = this.props.showCloseIcon ? getTopClose() : null;
+        var topClose = this.props.showCloseIcon ? getTopClose(this.props) : null;
 
         return <h3 className={className}>{this.props.children} {topClose}</h3>;
     }
@@ -55,7 +55,7 @@ module.exports = React.createClass({
         var className = generateClass('ff_container-dialog', this.props);
 
         return <div className={className}>
-            <DialogTitle showCloseIcon={this.props.showCloseIcon}>{this.props.title}</DialogTitle>
+            <DialogTitle showCloseIcon={this.props.showCloseIcon} onCloseIconClick={this.props.onCloseIconClick}>{this.props.title}</DialogTitle>
             <DialogBody>{this.props.body}</DialogBody>
             <DialogControls>{this.props.controls}</DialogControls>
          </div>;

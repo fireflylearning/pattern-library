@@ -6,6 +6,9 @@ var ContainerDialog = require('./ff_container-dialog');
 var props = {
     title: 'Title',
     showCloseIcon: true,
+    onCloseIconClick: function(){
+        console.log('close');
+    },
     body: <p>Test body text</p>,
     controls: [<button key="send">Send</button>, <button key="close">Close</button>]
 };

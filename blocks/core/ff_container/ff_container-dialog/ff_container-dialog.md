@@ -1,10 +1,11 @@
 <div data-ff_container-dialog=""></div>
 
 ## Props
-- showCloseIcon: {Boolean}
 - title: {String}, required
 - body: {Node}, required
 - controls: {Node}, required
+- showCloseIcon: {Boolean}
+- onCloseIconClick: {Function}
 
 ## Structure
 
