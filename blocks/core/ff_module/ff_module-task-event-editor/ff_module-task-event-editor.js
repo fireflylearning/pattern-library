@@ -3,9 +3,9 @@
 var React = require('react'),
     _ = require('lodash');
 
-var EditorBase = require('./_src/_EditorBase'),
-    EditorCommon = require('./_src/_EditorCommon'),
-    EditorMarkAndGrade = require('./_src/_EditorMarkAndGrade'),
+var EditorBase = require('./_src/EditorBase'),
+    EditorCommon = require('./_src/EditorCommon'),
+    EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 
@@ -16,12 +16,16 @@ module.exports = React.createClass({
         return React.createElement(EditorBase, {
                 title: eventEditor.title,
                 sendText: eventEditor.sendText,
-                onSend: this.onSend
+                onSend: this.onSend,
+                onClose: this.onClose
             },
             eventEditor.children);
     },
     onSend: function() {
         this.props.onSend();
+    },
+    onClose: function() {
+        this.props.onClose();
     }
 });
 
