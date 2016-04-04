@@ -2,10 +2,10 @@
 data:
     items: 
       - 
-        content: "Line label"  
+        content: "<label for=\"id01\">Input label</label>"
       -              
         modifier: fullwidth
-        content: "Line input"
+        content: "<input id=\"id01\" type=\"text\"/>"
 ---
 
 ## React component
