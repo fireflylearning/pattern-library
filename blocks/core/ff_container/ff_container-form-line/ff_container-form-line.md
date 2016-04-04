@@ -5,7 +5,7 @@ data:
         content: "<label for=\"id01\">Input label</label>"
       -              
         modifier: fullwidth
-        content: "<input id=\"id01\" type=\"text\"/>"
+        content: "<input id=\"id01\" type=\"text\" value=\"Input fullwidth\"/>"
 ---
 
 ## React component
