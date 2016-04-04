@@ -10,34 +10,54 @@ function generateClass(base, props){
         return classNames.join(' ');
 }
 
-function getTopClose(props){
-    var className = generateClass('ff_container-dialog__close-top', props);
-
-    return <span className={className}>Close</span>;
+function getTopClose(){
+    return <button type="button" className="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button>;
 }
 
 var DialogHeading = React.createClass({
     displayName:'ContainerDialogHeading',
     render:function(){
-        var className = this.generateClass('ff_container-dialog__heading');
-        var topClose = this.props.showClose ? getTopClose(this.props) : null;
+        var className = generateClass('ff_container-dialog__heading', this.props);
+        var topClose = this.props.showClose ? getTopClose() : null;
 
         return <h3 className={className}>{this.props.children} {topClose}</h3>;
     }
 });
 
+var DialogBody = React.createClass({
+    displayName:'ContainerDialogBody',
+    render:function(){
+        var className = generateClass('ff_container-dialog__body', this.props);
+
+        return <div className={className}>{this.props.children}</div>;
+    }
+});
+
+var DialogControls = React.createClass({
+    displayName:'ContainerDialogControls',
+    render:function(){
+        var className = generateClass('ff_container-dialog__controls', this.props);
+
+        return <div className={className}>{this.props.children}</div>;
+    }
+});
 
 
 module.exports = React.createClass({
     displayName: 'ContainerDialog',
+    propTypes: {
+        showTopClose: React.PropTypes.bool,
+        headingText: React.PropTypes.string.isRequired,
+        body: React.PropTypes.node.isRequired,
+        controls: React.PropTypes.node.isRequired
+    },
     render: function() {
-        var className = this.generateClass('ff_container-dialog');
+        var className = generateClass('ff_container-dialog', this.props);
 
         return <div className={className}>
             <DialogHeading showClose={this.props.showTopClose}>{this.props.headingText}</DialogHeading>
+            <DialogBody>{this.props.body}</DialogBody>
+            <DialogControls>{this.props.controls}</DialogControls>
          </div>;
-    },
-    generateClass:function(base) {
-        return generateClass(base, this.props);
     }
 });

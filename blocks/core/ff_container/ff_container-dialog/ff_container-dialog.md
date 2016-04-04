@@ -1,6 +1,10 @@
+<div data-ff_container-dialog=""></div>
+
 ## Props
-- showTopClose
-- headingText
+- showTopClose: {Boolean}
+- headingText: {String}, required
+- body: {Node}, required
+- controls: {Node}, required
 
 ## Structure
 
@@ -20,7 +24,7 @@
 ### With top close 
 ```
 <div class="ff_container-dialog">
-    <h3 class="ff_container-dialog__heading">Heading text <span class="ff_container-dialog__close-top">Close</span></h3>
+    <h3 class="ff_container-dialog__heading">Heading text <button type="button" class="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button></h3>
     <div class="ff_container-dialog__body">
         <form-line, etc.../>
     </div>
@@ -30,14 +34,38 @@
 </div>
 ```
 
-## Raw Test
+## Raw Tests
 
 <div class="ff_container-dialog">
-    <h3 class="ff_container-dialog__heading">Heading text <span class="ff_container-dialog__close-top">Close</span></h3>
+    <h3 class="ff_container-dialog__heading">Heading text</h3>
     <div class="ff_container-dialog__body">
-        `<form-line, etc.../>`
+        <div class="ff_container-dialog__notification">
+            <p>A simple text message explaining that this will be sent to <em>23 students</em>.</p>
+        </div>
     </div>
     <div class="ff_container-dialog__controls">
-        `<button/>`
+        <button type="button" title="Button primary" class="ff_module-button ff_module-button--primary">
+            <span class="ff_module-button__content">Send</span>
+        </button>
+        <button type="button" title="Button tertiary" class="ff_module-button ff_module-button--tertiary">
+            <span class="ff_module-button__content">Cancel</span>
+        </button>
     </div>
 </div>
+
+<br/>
+
+<div class="ff_container-dialog">
+    <h3 class="ff_container-dialog__heading">Heading text <button type="button" class="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button></h3>
+    <div class="ff_container-dialog__body">
+        <div class="ff_container-dialog__notification">
+            <p>A simple text message explaining that this will be sent to <em>23 students</em>.</p>
+        </div>
+    </div>
+    <div class="ff_container-dialog__controls">
+        <button type="button" title="Button primary" class="ff_module-button ff_module-button--primary">
+            <span class="ff_module-button__content">Send</span>
+        </button>
+    </div>
+</div>
+
