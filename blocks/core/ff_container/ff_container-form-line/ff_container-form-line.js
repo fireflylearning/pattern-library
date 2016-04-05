@@ -8,6 +8,7 @@ function generateClass(base, props) {
     classNames.push(base);
     if (!!props.modifier) classNames.push(base + '--' + props.modifier);
     if (!!props.classes) classNames.push(props.classes);
+    if (!!props.className) classNames.push(props.className);
     return classNames.join(' ');
 }
 
@@ -15,13 +16,21 @@ module.exports = React.createClass({
     displayName: 'FormLine',
     render: function() {
 
-        return <div className='ff_container-form-line'>{this.props.formLine.map(function(formLine) {
-                var itemClassName = generateClass('ff_container-form-line__item', { modifier: formLine.modifier });
-                if (React.isValidElement(formLine.content)){
-                    return React.cloneElement(formLine.content, { className: itemClassName });
+        var clonedElements = null;
+
+        if (this.props.children){
+            clonedElements = React.Children.map(this.props.children, function(child) {
+                if (!child) return null;
+                var itemClassName = generateClass('ff_container-form-line__item', (child.props || {}));
+
+                if (React.isValidElement(child)) {
+                    return React.cloneElement(child, { className: itemClassName });
                 } else {
-                    return <span className={itemClassName}>{formLine.content}</span>;
+                    return <span className={itemClassName}>{child}</span>;
                 }
-            })}</div>;
+            });
+        }
+
+        return <div className='ff_container-form-line'>{clonedElements}</div>;
     }
 });
