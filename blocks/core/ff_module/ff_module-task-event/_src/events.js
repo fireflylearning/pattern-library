@@ -7,5 +7,9 @@ module.exports.types = {
     confirmTaskIsComplete: "confirm-task-is-complete",
     confirmStudentIsExcused: "confirm-student-is-excused",
     comment: "comment",
-    markAndGrade: "mark-and-grade"
+    markAndGrade: "mark-and-grade",
+    // unconfirmed names:
+    deleteTask: "delete-task",
+    confirmStudentIsUnexcused: "confirm-student-is-unexcused",
+    addFile: "add-file"
 };

@@ -20,7 +20,6 @@ var events = [{
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
-    error: true,
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.confirmTaskIsComplete,
@@ -37,6 +36,11 @@ var events = [{
     mark: 7,
     markMax: 10,
     grade: 'B'
+}, {
+    type: eventTypes.deleteTask,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Terry Teacher' },
+    numRecipientsAffected: 123
 }];
 
 module.exports = function() {

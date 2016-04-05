@@ -6,6 +6,7 @@ var React = require('react'),
 var EditorBase = require('./_src/EditorBase'),
     EditorCommon = require('./_src/EditorCommon'),
     EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
+    EditorDelete = require('./_src/EditorDelete'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 
@@ -13,12 +14,11 @@ module.exports = React.createClass({
     displayName: 'TaskEventEditor',
     render: function() {
         var eventEditor = eventEditorComponents[this.props.event.type](this.props);
-        return React.createElement(EditorBase, {
-                title: eventEditor.title,
-                sendText: eventEditor.sendText,
+        return React.createElement(eventEditor.base,
+            _.extend({}, eventEditor.props, {
                 onSend: this.onSend,
                 onClose: this.onClose
-            },
+            }),
             eventEditor.children);
     },
     onSend: function() {
@@ -38,8 +38,11 @@ function createEventWithMessageEditor(editor) {
         };
 
         return {
-            title: editor.title,
-            sendText: editor.sendText,
+            base: EditorBase,
+            props: {
+                title: editor.title,
+                sendText: editor.sendText,
+            },
             children: React.createElement(EditorCommon, {
                 messageLabel: editor.messageLabel,
                 onMessageChange: onMessageChange,
@@ -54,9 +57,9 @@ function markAndGrade(props) {
 
     function eventUpdater(propertyName) {
         return function(event) {
-            props.onChange(_.extend({}, props.event, {
-                [propertyName]: event.target.value
-            }));
+            var updated = {};
+            updated[propertyName] = event.target.value;
+            props.onChange(_.extend({}, props.event, updated));
         };
     }
 
@@ -66,8 +69,11 @@ function markAndGrade(props) {
     var onMessageChange = eventUpdater("message");
 
     return {
-        title: "Mark and Grade",
-        sendText: "Add Mark",
+        base: EditorBase,
+        props: {
+            title: "Mark or Grade",
+            sendText: "Add Mark or Grade"
+        },
         children: React.createElement(EditorMarkAndGrade, {
             event: props.event,
             onMarkChange: onMarkChange,
@@ -76,6 +82,17 @@ function markAndGrade(props) {
             onMessageChange: onMessageChange
         })
 
+    };
+}
+
+function deleteTask(props) {
+
+    return {
+        base: EditorDelete,
+        props: {
+            event: props.event
+        },
+        children: null
     };
 }
 
@@ -107,3 +124,6 @@ eventEditorComponents[eventTypes.comment] = createEventWithMessageEditor({
 });
 eventEditorComponents[eventTypes.markAndGrade] = markAndGrade;
 
+// unconfirmed types
+//
+eventEditorComponents[eventTypes.deleteTask] = deleteTask;
