@@ -83,22 +83,22 @@ var eventEditorComponents = {};
 
 eventEditorComponents[eventTypes.stampResponseAsSeen] = createEventWithMessageEditor({
     title: "Stamp as Seen",
-    messageLabel: "Feedback (optional)",
+    messageLabel: "Feedback",
     sendText: "Send Stamp"
 });
 eventEditorComponents[eventTypes.requestResubmission] = createEventWithMessageEditor({
     title: "Request Resubmission",
-    messageLabel: "Reason for Request (optional)",
+    messageLabel: "Reason for Request",
     sendText: "Send Request"
 });
 eventEditorComponents[eventTypes.confirmTaskIsComplete] = createEventWithMessageEditor({
     title: "Confirm Task is Complete",
-    messageLabel: "Feedback (optional)",
+    messageLabel: "Feedback",
     sendText: "Send Confirmation"
 });
 eventEditorComponents[eventTypes.confirmStudentIsExcused] = createEventWithMessageEditor({
     title: "Confirm Student is Excused",
-    messageLabel: "Comment (optional)",
+    messageLabel: "Comment",
     sendText: "Send Confirmation"
 });
 eventEditorComponents[eventTypes.comment] = createEventWithMessageEditor({
