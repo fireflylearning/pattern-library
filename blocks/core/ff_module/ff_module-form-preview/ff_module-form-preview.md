@@ -8,7 +8,7 @@ data:
             previewfor: "input[name='recipients']"
         - 
             title: Details
-            url: ""
+            url: "test"
             list: 
                 - 
                     title: "Title"
@@ -25,3 +25,6 @@ data:
 requires: 
     - ff_module-inline-edit            
 ---
+## React Component
+
+<div data-ff_module-form-preview="" ></div>
