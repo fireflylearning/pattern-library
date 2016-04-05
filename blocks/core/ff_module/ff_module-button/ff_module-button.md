@@ -60,28 +60,30 @@ data:
 
 ### Standard Styling:
 
-* `--primary`
-* `--large`
-* `--primary-large`
-* `--tertiary`
-* `--tertiary-large`
-* `--link`
-* `--compact`
-* `--primary-compact`
-* `--tertiary-compact`
+* `primary`
+* `primary-large`
+* `primary-compact`
+* `tertiary`
+* `tertiary-large`
+* `tertiary-compact`
+* `large`
+* `link`
+* `compact`
+* `danger`
 
 ### "Block" styling, buttons fill their container:
 
-* `--block`
-* `--primary-block`
-* `--large-block`
-* `--primary-large-block`
-* `--tertiary-block`
-* `--tertiary-large-block`
-* `--compact-block`
-* `--primary-compact-block`
-* `--tertiary-compact-block`
-* `--link-block`
+* `block`
+* `primary-block`
+* `large-block`
+* `primary-large-block`
+* `tertiary-block`
+* `tertiary-large-block`
+* `compact-block`
+* `primary-compact-block`
+* `tertiary-compact-block`
+* `link-block`
+* `danger-block`
 
 
 

@@ -50,6 +50,24 @@
             margin-right: -@ff_size_spacing_min * 0.2;
         }
     }
+    .danger() {
+        background-color: @ff_colour_error;
+        font-weight: bold;
+        border-color: @ff_colour_error;
+    }
+    .disabled() {
+        background-color: @ff_colour_quiet;
+        border-color: @ff_colour_default;
+        color: @ff_colour_default;
+        cursor: default;
+    }
+    .danger-disabled() {
+        background-color: lighten(@ff_colour_error, 35%);
+        font-weight: bold;
+        border-color: lighten(@ff_colour_error, 20%);
+        color: lighten(@ff_colour_error, 18%);
+        cursor: default;
+    }
 }
 
 .ff_module-button {
@@ -91,9 +109,10 @@
     &--link {
         #ff_module-button > .link();
     }
-    &--link&--is-disabled {
-        background: none;
+    &--danger {
+        #ff_module-button > .danger();
     }
+
     &--primary-block {
         #ff_module-button > .block();
         #ff_module-button > .primary();
@@ -135,15 +154,24 @@
         #ff_module-button > .tertiary();
         #ff_module-button > .block();
     }
+    &--danger-block {
+        #ff_module-button > .danger();
+        #ff_module-button > .block();
+    }
 
+
+    //disabled buttons
+    &--is-disabled {
+        #ff_module-button > .disabled();
+    }
+
+    &--link&--is-disabled,
     &--link-block&--is-disabled {
         background: none;
     }
-    //disabled buttons
-    &--is-disabled {
-        background-color: @ff_colour_quiet;
-        border-color: @ff_colour_default;
-        color: @ff_colour_default;
-        cursor: default;
+
+    &--danger&--is-disabled,
+    &--danger-block&--is-disabled {
+        #ff_module-button > .danger-disabled();
     }
 }

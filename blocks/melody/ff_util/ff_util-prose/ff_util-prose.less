@@ -43,6 +43,9 @@
     .text-quiet {
         color: @ff_colour_text_quiet;
     }
+    .text-danger {
+        color: @ff_colour_error;
+    }
     .link-quiet {
         text-decoration: none;
         color: @ff_colour_text_quiet;
@@ -293,6 +296,9 @@
 
     &__text--small {
         #ff_mix-util-prose > .text-small();
+    }
+    &__text--danger {
+        #ff_mix-util-prose > .text-danger();
     }
     &__time--supporting {
         #ff_mix-util-prose > .text-quiet();
