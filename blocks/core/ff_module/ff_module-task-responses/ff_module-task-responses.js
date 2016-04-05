@@ -47,6 +47,7 @@ module.exports = React.createClass({
                         event={this.props.editingEvent}
                         onChange={this.onEventChange}
                         onSend={this.addEvent}
+                        onClose={this.closeEventEditor}
                         />
                 </ContainerModal>;
     },
