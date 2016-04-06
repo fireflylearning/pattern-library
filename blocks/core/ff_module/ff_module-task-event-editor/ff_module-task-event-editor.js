@@ -4,17 +4,24 @@ var React = require('react'),
     _ = require('lodash');
 
 var EditorBase = require('./_src/EditorBase'),
+    EditorBaseMini = require('./_src/EditorBaseMini'),
     EditorCommon = require('./_src/EditorCommon'),
     EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
-    EditorDelete = require('./_src/EditorDelete'),
     EditorAddFile = require('./_src/EditorAddFile'),
-    eventTypes = require('../ff_module-task-event/_src/events').types;
+    eventTypes = require('../ff_module-task-event/_src/events').types,
+    eventStates = require('../ff_module-task-event/_src/events').states;
 
 
 module.exports = React.createClass({
     displayName: 'TaskEventEditor',
+    propTypes: {
+        event: React.PropTypes.object.isRequired,
+        onSend: React.PropTypes.func.isRequired,
+        onChange: React.PropTypes.func.isRequired,
+        onClose: React.PropTypes.func.isRequired,
+    },
     render: function() {
-        var eventEditor = eventEditorComponents[this.props.event.type](this.props);
+        var eventEditor = getEventEditor(this.props);
         return React.createElement(eventEditor.base,
             _.extend({}, eventEditor.props, {
                 onSend: this.onSend,
@@ -30,6 +37,13 @@ module.exports = React.createClass({
     }
 });
 
+function getEventEditor(props){
+    if (props.event.error) {
+        return eventEditorComponents[eventStates.error](props);
+    } else {
+        return eventEditorComponents[props.event.type](props);
+    }
+}
 
 function createEventWithMessageEditor(editor) {
 
@@ -52,6 +66,21 @@ function createEventWithMessageEditor(editor) {
         };
 
     };
+}
+
+function createEventWithMessageNotification(editor) {
+    return function(props) {
+        return {
+            base: EditorBaseMini,
+            props: {
+                title: editor.title,
+                sendText: editor.sendText,
+                closeText: editor.closeText,
+                sendModifier: editor.sendModifier
+            },
+            children: editor.message(props)
+        };
+    }
 }
 
 function markAndGrade(props) {
@@ -105,16 +134,8 @@ function addFile(props) {
     };
 }
 
-function deleteTask(props) {
 
-    return {
-        base: EditorDelete,
-        props: {
-            event: props.event
-        },
-        children: null
-    };
-}
+
 
 var eventEditorComponents = {};
 
@@ -146,5 +167,28 @@ eventEditorComponents[eventTypes.markAndGrade] = markAndGrade;
 //
 // unconfirmed types
 //
-eventEditorComponents[eventTypes.deleteTask] = deleteTask;
+eventEditorComponents[eventTypes.deleteResponse] = createEventWithMessageNotification({
+    title: "Delete Feedback",
+    message: function(props) {
+        return  <p>
+                    Delete feedback to {props.event.author.name}.<br/>
+                    This cannot be undone.</p>
+    },
+    sendText: "Delete",
+    closeText: "Cancel",
+    sendModifier: "danger"
+});
 eventEditorComponents[eventTypes.addFile] = addFile;
+
+
+//
+// unconfirmed states
+//
+eventEditorComponents[eventStates.error] = createEventWithMessageNotification({
+    title: "Unable to Send Feedback",
+    message: function(props) {
+        return  <p>We'll try again in a few seconds</p>
+    },
+    sendText: "Try again",
+    closeText: "Close"
+});

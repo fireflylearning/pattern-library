@@ -37,12 +37,16 @@ var events = [{
     markMax: 10,
     grade: 'B'
 }, {
-    type: eventTypes.deleteTask,
+    type: eventTypes.deleteResponse,
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' },
-    numRecipientsAffected: 123
+    author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.addFile,
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.addFile,
+    error: true,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
 }];
@@ -55,14 +59,14 @@ module.exports = function() {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(TaskEventEditor, {
                         event: event,
-                        onSend: function() {
-                            console.log('send');
+                        onSend: function(event) {
+                            console.log('send', event.type);
                         },
                         onChange: function(event) {
                             console.log(event);
                         },
-                        onClose: function() {
-                            console.log('close');
+                        onClose: function(event) {
+                            console.log('close', event.type);
                         },
                     }));
             }));

@@ -8,8 +8,18 @@ module.exports.types = {
     confirmStudentIsExcused: "confirm-student-is-excused",
     comment: "comment",
     markAndGrade: "mark-and-grade",
-    // unconfirmed names:
-    deleteTask: "delete-task",
+    // unconfirmed response events:
+    deleteResponse: "delete-response",
     confirmStudentIsUnexcused: "confirm-student-is-unexcused",
-    addFile: "add-file"
+    addFile: "add-file",
+    // unconfirmed task events:
+    deleteTask: "delete-task",
+    releaseFeedbackAndMarks: "release-feedback-and-marks",
+    sendReminder: "send-reminder"
+};
+
+module.exports.states = {
+    error: "error",
+    pending: "pending",
+    sent: "sent"
 };
