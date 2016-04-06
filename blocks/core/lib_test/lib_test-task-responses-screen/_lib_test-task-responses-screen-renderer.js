@@ -173,7 +173,7 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 
 var overlayInner = React.createElement(TaskResponses, {
     events: events,
-    editingEvent: events[4],
+    // editingEvent: events[4],
     editEvent: function(event) {
         console.log('editEvent');
         console.table(event);
