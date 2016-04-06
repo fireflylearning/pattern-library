@@ -17,8 +17,7 @@ var events = [{
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' },
     numRecipientsAffected: 23
-},
-{
+},{
     type: eventTypes.sendReminder,
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' },

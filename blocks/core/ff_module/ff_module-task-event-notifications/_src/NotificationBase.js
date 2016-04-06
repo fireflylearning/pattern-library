@@ -6,7 +6,7 @@ var React = require('react'),
 
 
 module.exports = React.createClass({
-    displayName: 'EditorBaseMini',
+    displayName: 'NotificationBase',
     render: function(){
         return <ContainerDialog
             title={this.props.title}

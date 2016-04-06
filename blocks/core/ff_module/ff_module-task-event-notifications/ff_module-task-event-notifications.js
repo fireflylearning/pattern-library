@@ -4,7 +4,7 @@ var React = require('react'),
     _ = require('lodash');
 
 var NotificationBase = require('./_src/NotificationBase'),
-    NotificationDeleteFeedback = require('./_src/NotificationDeleteFeedback'),
+    NotificationDeleteTask = require('./_src/NotificationDeleteTask'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 
@@ -59,7 +59,7 @@ function createEventWithMessageNotification(editor) {
 function deleteTask(props) {
 
     return {
-        base: NotificationDeleteFeedback,
+        base: NotificationDeleteTask,
         props: {
             event: props.event
         },
