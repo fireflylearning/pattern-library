@@ -17,10 +17,13 @@ function getTopClose(props){
 var DialogTitle = React.createClass({
     displayName:'ContainerDialogTitle',
     render:function(){
-        var className = generateClass('ff_container-dialog__title', this.props);
+        var props = { modifier: this.props.modifier },
+            headingClassName = generateClass('ff_container-dialog__heading', props),
+            titleClassName = generateClass('ff_container-dialog__title', props);
+
         var topClose = this.props.showCloseIcon ? getTopClose(this.props) : null;
 
-        return <h3 className={className}>{this.props.children} {topClose}</h3>;
+        return <h3 className={headingClassName}><span className={titleClassName}>{this.props.children}</span> {topClose}</h3>;
     }
 });
 
@@ -46,10 +49,11 @@ var DialogControls = React.createClass({
 module.exports = React.createClass({
     displayName: 'ContainerDialog',
     propTypes: {
-        showCloseIcon: React.PropTypes.bool,
         title: React.PropTypes.string.isRequired,
         body: React.PropTypes.node.isRequired,
-        controls: React.PropTypes.node.isRequired
+        controls: React.PropTypes.node.isRequired,
+        showCloseIcon: React.PropTypes.bool,
+        onCloseIconClick: React.PropTypes.func
     },
     render: function() {
         var className = generateClass('ff_container-dialog', this.props);

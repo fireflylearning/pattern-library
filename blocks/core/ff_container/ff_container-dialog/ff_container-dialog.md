@@ -1,18 +1,18 @@
 <div data-ff_container-dialog=""></div>
 
 ## Props
-- title: {String}, required
-- body: {Node}, required
-- controls: {Node}, required
-- showCloseIcon: {Boolean}
-- onCloseIconClick: {Function}
+- **`title`**: {String}, required
+- **`body`**: {Node}, required
+- **`controls`**: {Node}, required
+- **`showCloseIcon`**: {Boolean}
+- **`onCloseIconClick`**: {Function}
 
 ## Structure
 
 ### With no top close 
 ```
 <div class="ff_container-dialog">
-    <h3 class="ff_container-dialog__title">Title text</h3>
+    <h3 class="ff_container-dialog__heading"><span class="ff_container-dialog__title">Title text</span></h3>
     <div class="ff_container-dialog__body">
         <form-line, etc.../>
     </div>
@@ -25,7 +25,7 @@
 ### With top close 
 ```
 <div class="ff_container-dialog">
-    <h3 class="ff_container-dialog__title">Title text <button type="button" class="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button></h3>
+    <h3 class="ff_container-dialog__heading"><span class="ff_container-dialog__title">Title text</span> <button type="button" class="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button></h3>
     <div class="ff_container-dialog__body">
         <form-line, etc.../>
     </div>
@@ -35,10 +35,10 @@
 </div>
 ```
 
-## Raw Tests
+## Raw Examples
 
 <div class="ff_container-dialog">
-    <h3 class="ff_container-dialog__title">Title text</h3>
+    <h3 class="ff_container-dialog__heading"><span class="ff_container-dialog__title">Title text</span></h3>
     <div class="ff_container-dialog__body">
         <div class="ff_container-dialog__notification">
             <p>A simple text message explaining that this will be sent to <em>23 students</em>.</p>
@@ -57,7 +57,7 @@
 <br/>
 
 <div class="ff_container-dialog">
-    <h3 class="ff_container-dialog__title">Title text <button type="button" class="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button></h3>
+    <h3 class="ff_container-dialog__heading"><span class="ff_container-dialog__title">Title text</span> <button type="button" class="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button></h3>
     <div class="ff_container-dialog__body">
         <div class="ff_container-dialog__notification">
             <p>A simple text message explaining that this will be sent to <em>23 students</em>.</p>
