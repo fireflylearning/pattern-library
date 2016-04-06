@@ -2,6 +2,10 @@
 
 This repo contains the source files for Firefly front-end development patterns.
 
+The primary goal of this pattern library is to enable us to build and test solid html, css, and js/React components. 
+
+It provides us with a separate environment to build and test patterns and their respective css in **isolated units**, with data we have control over so that we can test multiple variations of patterns, their groupings, and how they react to varying things (e.g. differing text lengths, languages, etc). Having each block isolated encourages separation of responsiblities (e.g. containers vs modules) and a modular approach.
+
 ### API 
 - gulp
     
@@ -32,13 +36,9 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 - Node
 - npm
 - Xcode Command Line Tools (for running some modules on Mac, PC should be OK)
-- Java for cross-platform XSLT (using Saxon)
+- Node-libxslt for cross-platform XSLT
     
-    OSX on Yosemite+ will need to either install from the apple support page, or install the standard Java runtime, then add 'JAVA_HOME' to paths.
-
-    Follow these [instructions to install](http://osxdaily.com/2014/10/21/get-java-os-x-yosemite/).
-
-    And see this [link for instruction on setting path variables](http://stackoverflow.com/questions/1348842/what-should-i-set-java-home-to-on-osx).
+    See [the Readme for node-libsxlt](https://github.com/albanm/node-libxslt) for more info on enviroment support and dependencies
 
 ## Technologies used
 - Swig for template compilation
@@ -46,6 +46,7 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 - Webpack for bundling javascript modules
 - Less with gulp-less for less > css transpiling
 - React Templates for compiling `.rt` templates files (html-like syntax) to `.js`
+- Babel for js(x) transpiling
 - gulp-jshint for js linting
 - css-lint for css linting
 - Karma, Mocha, Chai and Sinon for testing
