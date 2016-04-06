@@ -3,5 +3,8 @@ data:
     text: "Edit"
     id: edit-id-1
     url: "#edit-url"
-    classtype: "ff_module-other-mod__edit-link"
+    modifier: ""
 ---
+
+## React Component
+<div data-ff_module-inline-edit=""/>

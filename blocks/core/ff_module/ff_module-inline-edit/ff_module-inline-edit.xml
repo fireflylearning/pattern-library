@@ -1,7 +1,7 @@
 <edit
     {% if id %} id="{{id}}" {% endif %}
     {% if url %} url="{{url}}" {% endif %}
-    {% if classtype %} class="{{classtype}}" {% endif %}
+    {% if modifier %} class="{{modifier}}" {% endif %}
     >
     {{text}}
 </edit>
