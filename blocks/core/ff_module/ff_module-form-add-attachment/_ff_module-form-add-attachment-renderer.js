@@ -2,6 +2,8 @@
 var React = require('react'),
     ReactDOM = require('react-dom');
 
+var activateDropdowns = require('../ff_module-dropdown-button/ff_module-dropdown-button');
+
 var FormAddAttachment = require('./ff_module-form-add-attachment');
 
 var props = {
@@ -23,5 +25,12 @@ module.exports = function() {
         if (element) {
             ReactDOM.render(React.createElement(FormAddAttachment, props), element);
         }
+
+        activateDropdowns({
+            root: '#add-attachment-example',
+            targetSelBase:'data-ff_module-dropdown-button-rt-target',
+            triggerSelBase:'data-ff_module-dropdown-button-rt-trigger'
+        });
+
     });
 };
