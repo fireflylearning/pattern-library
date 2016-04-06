@@ -4,7 +4,16 @@ var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'InlineEdit',
+	generateClass: function(base) {
+		var classNames = [],
+		props = this.props;
+		classNames.push(base);
+		if(this.props.modifier) {
+			classNames.push(base + '--' + this.props.modifier);
+		}
+		return classNames.join(' ');
+	},
 	render: function() {
-		return <a className={'ff_module-inline-edit' + (this.props.modifier ? ' ff_module-inline-edit--'+ this.props.modifier: '')} id={this.props.id} href={this.props.url}>{this.props.text}</a>;
+		return <a className={this.generateClass('ff_module-inline-edit' )} id={this.props.id} href={this.props.url}>{this.props.text}</a>;
 	}
 });
