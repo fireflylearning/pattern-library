@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var InlineEdit = require('../ff_module-inline-edit/ff_module-inline-edit');
 
 module.exports = React.createClass({
 	displayName: 'FormPreview',
@@ -8,25 +9,26 @@ module.exports = React.createClass({
 		return <div className='ff_module-form-preview'>
 			<dl className='ff_module-form-preview__list'>
 				{this.props.items.map((item)=>{
-					var itemData;
+					var isInlineEdit = item.url ?  <span className='ff_module-form-preview__edit-link'><InlineEdit url={item.url} text='Edit'></InlineEdit></span> : '';
+					
+					var listItemTitle = <dt className='ff_module-form-preview__list__title'>
+					<span className='ff_module-form-preview__list__title__text'>{item.title}</span>{isInlineEdit}</dt>;
+					
+					var listItemData;
+					
 					if (item.list) {
-						itemData = <dl className='ff_module-form-preview__sublist'>
+						listItemData = <dl className='ff_module-form-preview__sublist'>
 							{item.list.map((item)=>{
 								return [<dt className='ff_module-form-preview__sublist__title'>{item.title}</dt>,
 								<dd className='ff_module-form-preview__sublist__data' data-ff-preview-for={item.previewfor}>{item.value}</dd>]
 							})}
 						</dl>;
 					} else if(item.html) {
-						itemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>
+						listItemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>
 					} else {
-						itemData = item.value;
+						listItemData = item.value;
 					}
-					return [<dt className='ff_module-form-preview__list__title'>
-						<span className='ff_module-form-preview__list__title__text'>{item.title}</span>
-					</dt>,
-					<dd className='ff_module-form-preview__list__data' data-ff-preview-for={item.previewfor}>
-						{itemData}
-					</dd>];
+					return [ listItemTitle, <dd className='ff_module-form-preview__list__data' data-ff-preview-for={item.previewfor}>{listItemData}</dd> ];
 				})}
 			</dl>
 		</div>;

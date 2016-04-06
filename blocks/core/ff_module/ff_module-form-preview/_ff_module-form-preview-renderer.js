@@ -6,7 +6,7 @@ var FormPreview = require('./ff_module-form-preview');
 var data = {
 	items: [{
 		title: 'Recipients',
-		url: '',
+		url: 'test',
 		value: 'Class 2, Class 1',
 		previewfor: 'input[name="recipients"]',
 		key: 1
