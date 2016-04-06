@@ -7,6 +7,7 @@ var EditorBase = require('./_src/EditorBase'),
     EditorCommon = require('./_src/EditorCommon'),
     EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
     EditorDelete = require('./_src/EditorDelete'),
+    EditorAddFile = require('./_src/EditorAddFile'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 
@@ -85,6 +86,25 @@ function markAndGrade(props) {
     };
 }
 
+function addFile(props) {
+
+    var onFileDrop = function(event) {
+        props.onChange(_.extend({}, props.event, { files: event.dataTransfer.files }));
+    };
+
+    return {
+        base: EditorBase,
+        props: {
+            title: 'File',
+            sendText: 'Add File',
+        },
+        children: <EditorAddFile
+                event={props.event}
+                onFileDrop={onFileDrop}/>
+
+    };
+}
+
 function deleteTask(props) {
 
     return {
@@ -123,7 +143,8 @@ eventEditorComponents[eventTypes.comment] = createEventWithMessageEditor({
     sendText: "Add Comment"
 });
 eventEditorComponents[eventTypes.markAndGrade] = markAndGrade;
-
+//
 // unconfirmed types
 //
 eventEditorComponents[eventTypes.deleteTask] = deleteTask;
+eventEditorComponents[eventTypes.addFile] = addFile;

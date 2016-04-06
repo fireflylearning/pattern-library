@@ -41,6 +41,10 @@ var events = [{
     sent: new Date(dStrings[0]),
     author: { name: 'Terry Teacher' },
     numRecipientsAffected: 123
+}, {
+    type: eventTypes.addFile,
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
 }];
 
 module.exports = function() {
