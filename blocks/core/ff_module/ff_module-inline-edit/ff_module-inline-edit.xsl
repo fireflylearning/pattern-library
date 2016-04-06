@@ -15,7 +15,7 @@
 
         <xsl:attribute name="class">
             <xsl:choose>
-                <xsl:when test="$data/edit/@class">ff_module-inline-edit <xsl:value-of select="$data/edit/@class"/></xsl:when>
+                <xsl:when test="$data/edit/@class">ff_module-inline-edit <xsl:value-of select="$data/edit/@modifier"/></xsl:when>
                 <xsl:otherwise>ff_module-inline-edit</xsl:otherwise>
             </xsl:choose>
         </xsl:attribute>
