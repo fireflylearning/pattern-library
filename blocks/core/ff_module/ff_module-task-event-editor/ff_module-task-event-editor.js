@@ -127,9 +127,9 @@ function addFile(props) {
             title: 'File',
             sendText: 'Add File',
         },
-        children: <EditorAddFile
+        children: <div><br/><EditorAddFile
                 event={props.event}
-                onFileDrop={onFileDrop}/>
+                onFileDrop={onFileDrop}/></div>
 
     };
 }
@@ -164,9 +164,11 @@ eventEditorComponents[eventTypes.comment] = createEventWithMessageEditor({
     sendText: "Add Comment"
 });
 eventEditorComponents[eventTypes.markAndGrade] = markAndGrade;
+
 //
 // unconfirmed types
 //
+eventEditorComponents[eventTypes.addFile] = addFile;
 eventEditorComponents[eventTypes.deleteResponse] = createEventWithMessageNotification({
     title: "Delete Feedback",
     message: function(props) {
@@ -178,8 +180,6 @@ eventEditorComponents[eventTypes.deleteResponse] = createEventWithMessageNotific
     closeText: "Cancel",
     sendModifier: "danger"
 });
-eventEditorComponents[eventTypes.addFile] = addFile;
-
 
 //
 // unconfirmed states
