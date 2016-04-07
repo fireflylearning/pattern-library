@@ -17,14 +17,23 @@
     }
     &__caption {
         margin:0;
-        margin-left: @ff_size_spacing_min;
+        margin-left: @ff_size_spacing_max*1.25;
         display: inline-block;
         text-align: left;
         line-height: 1.4;
     }
+    &__heading {
+        display: block;
+        position: relative;
+        margin-bottom: @ff_size_spacing_min * 0.25;
+    }
+    &__incoming-icon {
+        position: absolute;
+        left: -1rem;
+        top: 0.4rem;
+    }
     &__label {
         color: @ff_color_control_link;
-        display: block;
     }
     &__status,
     &__mark-and-grade {
