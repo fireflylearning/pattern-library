@@ -5,6 +5,9 @@ var template = require('./_ff_module-profile-response-button.rt.js');
 var eventTypes = require('../ff_module-task-event/_src/events').types,
     dateFormatting = require('../../_lib/_ui/dateFormatting')();
 
+// lastEventWasAuthoredByCurrentUser
+// lastEventWasReleased
+
 module.exports = React.createClass({
     displayName: 'ProfileTaskResponseButton',
     render: template,

@@ -32,7 +32,9 @@ module.exports = {
     // like foo.colors-primary-secondary.svg
     colors: {
         blue: '#297FCF',
+        brightblue: '#0085E6',
         grey: '#A9AEB6',
+        extradarkgrey: '#444444',
         white: '#FFF',
         lightblue: '#add8e6',
         greyblue: '#7F9CB5'
