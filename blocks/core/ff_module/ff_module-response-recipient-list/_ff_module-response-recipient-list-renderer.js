@@ -45,6 +45,50 @@ var responses = [{
         sent: new Date()
     },
     pic_href: "/images/default_picture.png"
+},{
+    recipient: {
+        name: 'rudy'
+    },
+    lastEventWasAuthoredByCurrentUser: true,
+    guid: "u42",
+    label: "Sally Student",
+    latestEvent: {
+        type: eventTypes.markAndGrade,
+        sent: new Date()
+    },
+    markAndGrade: {
+        mark: 7,
+        markMax: 10,
+        grade: "A"
+    },
+    pic_href: "/images/default_picture.png"
+}, {
+    recipient: {
+        name: 'ffolay'
+    },
+    lastEventWasAuthoredByCurrentUser: true,
+    isSelected: true,
+    guid: "u41",
+    label: "Terry Teacher",
+    latestEvent: {
+        type: eventTypes.requestResubmission,
+        sent: new Date()
+    },
+    markAndGrade: {
+        grade: "A"
+    },
+    pic_href: "/images/default_picture.png"
+}, {
+    recipient: {},
+    lastEventWasAuthoredByCurrentUser: true,
+    isRead: true,
+    guid: "u40",
+    label: "Joseph Goulden",
+    latestEvent: {
+        type: eventTypes.confirmTaskIsComplete,
+        sent: new Date()
+    },
+    pic_href: "/images/default_picture.png"
 }];
 
 module.exports = function() {

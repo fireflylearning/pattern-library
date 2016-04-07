@@ -9,6 +9,7 @@
     label = "{response.label}"
     event = "{response.latestEvent}"
     markAndGrade="{response.markAndGrade}"
+    lastEventWasAuthoredByCurrentUser="{response.lastEventWasAuthoredByCurrentUser}"
     onSelect="()=>this.props.onSelect(response.recipient)"
     pic_href="{response.pic_href}"
     >
