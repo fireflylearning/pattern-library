@@ -14,12 +14,11 @@ function generateClass(base, props) {
 
 module.exports = React.createClass({
 	displayName: 'FormInput',
-	render: function() {
-
+    render: function() {
         var attributes = {},
             className = generateClass('ff_module-form-input', this.props);
 
-		if (this.props.type == 'checkbox' || this.props.type == 'radio') {
+        if (this.props.type == 'checkbox' || this.props.type == 'radio') {
 			if (this.props.checked) {
 				attributes['checked'] = true;
 			}
