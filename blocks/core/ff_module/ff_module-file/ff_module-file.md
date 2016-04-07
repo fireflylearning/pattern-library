@@ -12,6 +12,17 @@ data:
         attr: ff-data-attr
         value: value
 ---
+
+## React
+<div data-ff_module-file=""></div>
+
+### React Props
+- **`title`**: {String} Required
+- **`type`**: {String}
+- **`href`**: {String}
+- **`classes`**: {String}
+- **`modifier`**: {String}
+
 This module displays a file! Fun huh?
 
 Call with the following xml (example for resources):
@@ -30,4 +41,4 @@ Call with the following xml (example for pages):
 </attachment>
 ```
 
-**ALL attributes and nodes are opitional**  
+**ALL attributes and nodes are optional**  
