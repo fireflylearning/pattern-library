@@ -1,5 +1,5 @@
 .ff_module-form-add-attachment {
-    background-color: #F8F8F8;
+
     border: 1px solid @ff_colour_control_border;
 
     &__dnd {
@@ -7,7 +7,6 @@
     }
     &__dnd-text{
         color: @ff_colour_default;
-
     }
     &__buttons {
         margin: 0 @ff_size_spacing_min @ff_size_spacing_min @ff_size_spacing_min;
@@ -21,5 +20,15 @@
         border: 1px solid @ff_colour_control_border;
         border-top:0;
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
+    }
+}
+
+// states
+.ff_module-form-add-attachment {
+    &--is-active {
+        background-color: @ff_colour_quiet;
+    }
+    &--is-active &__dnd-text{
+        color: darken(@ff_colour_default, 5%);
     }
 }

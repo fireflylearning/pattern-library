@@ -3,15 +3,27 @@
     padding-left: 60px;
 
     &__picture {
-        #ff_mix-decoration > .circle(32px);
+        #ff_mix-decoration > .circle(36px);
         vertical-align: top;
         margin-top: 0.2*@ff_size_spacing_min;
         margin-left: -50px;
     }
+    &__caption {
+        margin-left: @ff_size_spacing_max;
+    }
+    &__heading {
+        margin-bottom: @ff_size_spacing_min * 0.25;
+    }
+    &__incoming-icon {
+        position: absolute;
+        left: -1.05rem;
+        top: 0.4rem;
+        height: 12px;
+        width: 12px;
+    }
     &__label {
         color: @ff_color_control_link;
         font-weight: bold;
-        margin-bottom: @ff_size_spacing_min * 0.25;
         line-height: 1.25;
     }
     &__status,

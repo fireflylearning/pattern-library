@@ -7,5 +7,19 @@ module.exports.types = {
     confirmTaskIsComplete: "confirm-task-is-complete",
     confirmStudentIsExcused: "confirm-student-is-excused",
     comment: "comment",
-    markAndGrade: "mark-and-grade"
+    markAndGrade: "mark-and-grade",
+    // unconfirmed response events:
+    deleteResponse: "delete-response",
+    confirmStudentIsUnexcused: "confirm-student-is-unexcused",
+    addFile: "add-file",
+    // unconfirmed task events:
+    deleteTask: "delete-task",
+    releaseFeedbackAndMarks: "release-feedback-and-marks",
+    sendReminder: "send-reminder"
+};
+
+module.exports.states = {
+    error: "error",
+    pending: "pending",
+    sent: "sent"
 };

@@ -8,48 +8,48 @@ data:
         items: 
           - 
             modifier: stacked
-            text: "Label stacked"  
+            content: "<label for=\"id01\">Label stacked</label>"  
           -              
             modifier: constrained
-            text: "Input constrained"
-          - text: "Button"
+            content: "<input id=\"id01\" type=\"text\" value=\"Input constrained\"/>"
+          - content: "<button>Button natural</button>"
     -
         items: 
           - 
             modifier: stacked
-            text: "Label stacked"  
+            content: "<label for=\"id02\">Label stacked</label>"
           -              
-            text: "Input natural"
+            content: "<input id=\"id02\" type=\"text\" value=\"Input natural\"/>"
     -
         items: 
           - 
-            text: "Label"  
-          -              
-            modifier: fullwidth
-            text: "Input fullwidth"
-    -
-        items: 
-          - 
-            text: "Label"  
+            content: "<label for=\"id03\">Label natural</label>"
           -              
             modifier: fullwidth
-            text: "Input fullwidth with button"
-          - text: "Button"
+            content: "<input id=\"id03\" type=\"text\" value=\"Input fullwidth\"/>"
     -
         items: 
           - 
-            text: "Label"  
+            content: "<label for=\"id04\">Label natural</label>" 
+          -              
+            modifier: fullwidth
+            content: "<input id=\"id04\" type=\"text\" value=\"Input fullwidth with button\"/>"
+          - content: "<button>Button natural</button>"
+    -
+        items: 
+          - 
+            content: "<label for=\"id05\">Label natural</label>"  
           -              
             modifier: constrained
-            text: "Input constrained"
-          - text: "Button"
+            content: "<input id=\"id05\" type=\"text\" value=\"Input constrained\"/>"
+          - content: "<button>Button natural</button>"
     -
         items: 
           - 
             modifier: stacked
-            text: "Label stacked"  
+            content: "<label for=\"id06\">Label stacked</label>"  
           -              
             modifier: fullwidth
-            text: "Input fullwidth"
-          - text: "Button"
+            content: "<input id=\"id06\" type=\"text\" value=\"Input fullwidth\"/>"
+          - content: "<button>Button natural</button>"
 ---

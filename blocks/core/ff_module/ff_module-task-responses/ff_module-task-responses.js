@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react'),
-    Modal = require('react-modal'); // TODO: Update the modal styles to final version, TBD
+    Modal = require('react-modal');
 
 var TaskResponseActions = require('../ff_module-task-response-actions/ff_module-task-response-actions'),
     TaskResponseRepeater = require('../ff_module-task-event-repeater/ff_module-task-event-repeater'),
@@ -47,6 +47,7 @@ module.exports = React.createClass({
                         event={this.props.editingEvent}
                         onChange={this.onEventChange}
                         onSend={this.addEvent}
+                        onClose={this.closeEventEditor}
                         />
                 </ContainerModal>;
     },

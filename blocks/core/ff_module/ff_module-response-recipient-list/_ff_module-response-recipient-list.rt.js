@@ -14,6 +14,7 @@ function repeatResponse2(response, responseIndex) {
         'label': response.label,
         'event': response.latestEvent,
         'markAndGrade': response.markAndGrade,
+        'lastEventWasAuthoredByCurrentUser': response.lastEventWasAuthoredByCurrentUser,
         'onSelect': onSelect1.bind(this, response, responseIndex),
         'pic_href': response.pic_href
     });

@@ -1,22 +1,19 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+ReactDOM = require('react-dom');
 
-var FormLine = require('./ff_container-form-line');
+var ContainerFormLine = require('./ff_container-form-line');
 
-var data = {
-	formLine: [{
-		content: <span className={ 'crate_util-block ff_container-form-line__item' }>Line label</span>
-	},
-	{
-		content: <span className={ 'crate_util-block ff_container-form-line__item' }>Line input</span>
-	}]
-}
 
 module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
         var element = document.querySelector('[data-ff_container-form-line]');
+        var formLine =  <ContainerFormLine>
+                            <label htmlFor="id02">Input label</label>
+                            <input modifier="fullwidth" id="id02" type="text" value="Input fullwidth"></input>
+                        </ContainerFormLine>;
         if (element) {
-		  React.render(React.createElement(FormLine, data), element);
+		  ReactDOM.render(formLine, element);
         }
 	});
 };
