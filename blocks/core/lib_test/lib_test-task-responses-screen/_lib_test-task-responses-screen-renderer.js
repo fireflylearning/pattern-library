@@ -208,7 +208,7 @@ module.exports = function() {
 
             var element = <div className="ff_module-task-responses">
                 <div className="ff_util-row-bottom">
-                     <ContainerControlBar modifier="split">
+                    <ContainerControlBar modifier="split">
                         <ContainerControlBarSet>
                             <DropdownFilters
                                 text="Filter by Status"
