@@ -4,13 +4,10 @@ var React = require('react'),
     DropdownButton = require('../ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component');
 
 function renderFileList(props) {
-    var option = null;
-    switch (true) {
-        case (props.files && props.files.length>0):
-            option = renderWithFiles(props);
-            break;
-        default:
-            option = renderNoFiles();
+    var option = renderNoFiles();
+
+    if (props.files && props.files.length > 0) {
+        option = renderWithFiles(props);
     }
     return option;
 }
@@ -92,7 +89,6 @@ module.exports = React.createClass({
     onDragOver: function(e) {
         e.preventDefault();
         e.stopPropagation();
-        return false;
     },
     onDrop: function(e) {
         e.preventDefault();
