@@ -76,8 +76,8 @@
             color: @color;
         }
     }
-    .spacing {
-        margin-bottom: @ff_size_prose_spacing;
+    .spacing(@d:1) {
+        margin-bottom: @ff_size_prose_spacing/@d;
     }
 
     .list-parent {

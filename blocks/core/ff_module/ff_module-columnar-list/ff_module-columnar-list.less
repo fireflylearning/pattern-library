@@ -1,0 +1,127 @@
+ul {
+	list-style-type: none;
+}
+
+// mostly content pages but affects content on the dashboard too
+
+#page {
+
+	.default() {
+
+		body.plugin-browse-resources {
+
+			.ff-post {
+
+				.ff-resources-wrapper {
+					#ff > .content-columns(2, 20px);
+
+					.ff-resource-container-wrappers { 
+
+						padding-bottom: 20px;
+						-webkit-column-break-inside: avoid;
+						          page-break-inside: avoid;
+						               break-inside: avoid;
+
+						.ff_container-dashboard-item-repeater__items {
+							padding: 10px 0;
+							#ff > .content-columns(2, 20px);
+
+							.ff_container-dashboard-item-repeater__item {
+								display: block;
+								padding: 8px 20px;
+								border: none;
+								box-sizing: border-box;
+								break-inside: avoid;
+								-webkit-column-break-inside: avoid;
+								          page-break-inside: avoid;
+								               break-inside: avoid;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.wide() {
+		body.plugin-browse-resources {
+
+			.ff-post {
+				.ff-resources-wrapper {
+
+					.ff-resource-container-wrappers { 
+						.ff_container-dashboard-item-repeater__items {
+							#ff > .content-columns(3, 20px);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.medium() {
+		body.plugin-browse-resources {
+
+			.ff-post {
+				.ff-resources-wrapper {
+				}
+			}
+		}
+	}
+
+	.compact() {
+		body.plugin-browse-resources {
+
+			.ff-post {
+				.ff-resources-wrapper {
+					#ff > .content-columns(1, 0);
+
+					.ff-resource-container-wrappers { 
+						.ff_container-dashboard-item-repeater__items {
+							#ff > .content-columns(3, 20px);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.narrow() {
+		body.plugin-browse-resources {
+
+			.ff-post {
+				.ff-resources-wrapper {
+					#ff > .content-columns(1, 0);
+
+					.ff-resource-container-wrappers { 
+						.ff_container-dashboard-item-repeater__items {
+							#ff > .content-columns(2, 20px);
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+
+.superwide() {
+	#page > .default();
+	#page > .wide();
+}
+.widescreen() {
+	#page > .default();
+}
+.desktop() {
+	#page > .default();
+	#page > .medium();
+}
+.tablet() {
+	#page > .default();
+	#page > .compact();
+}
+.mobile() {
+	#page > .default();
+	#page > .narrow();
+}
