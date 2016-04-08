@@ -5,6 +5,15 @@ var InlineEdit = require('../ff_module-inline-edit/ff_module-inline-edit');
 
 module.exports = React.createClass({
 	displayName: 'FormPreview',
+	propTypes: {
+		items: React.PropTypes.array.isRequired,
+		title: React.PropTypes.string,
+		url: React.PropTypes.string,
+		value: React.PropTypes.string,
+		previewFor: React.PropTypes.string,
+		list: React.PropTypes.array,
+		html: React.PropTypes.element
+	},
 	render: function() {
 		return <div className='ff_module-form-preview'>
 			<dl className='ff_module-form-preview__list'>
