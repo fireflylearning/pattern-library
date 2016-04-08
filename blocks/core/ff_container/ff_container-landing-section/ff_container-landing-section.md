@@ -5,7 +5,4 @@ data:
     pagetext: "View more messages"
     pagelink: "#"
     modifiers: ""
-    modules:
-      - "module A"
-      - "module B"
 ---

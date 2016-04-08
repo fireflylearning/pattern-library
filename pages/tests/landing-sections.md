@@ -1,33 +1,30 @@
 ---
 page:
-    title: "Dashboard Sections test"
+    title: "Landing Sections test"
     layout: list-blocks
 data: 
   - 
-    ff_container-dashboard-section: 
+    ff_container-landing-section: 
       - 
-        title: "Important Messages"
+        title: "Landing Section 1"
         pagetext: "View more messages"
         pagelink: "#"
-        modifiers: "messages"
         modules:
           - "thing"
       -
-        title: "Lessons"
+        title: "Landing Section 2"
         pagetext: "View your full planner"
         pagelink: "#"
-        modifiers: "planner"
         modules:
           - "thing"
       -
-        title: "Tasks due soon"
+        title: "Landing Section 3"
         pagetext: "View more tasks due"
         pagelink: "#"
-        modifiers: "tasks"
         modules:
           - "thing"
       -
-        title: "Quicklink"
+        title: "Landing Section 4"
         showfooter: "no"
         modules:
           - "thing"
