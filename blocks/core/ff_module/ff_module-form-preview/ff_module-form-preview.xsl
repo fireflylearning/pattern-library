@@ -10,7 +10,6 @@
             <xsl:variable name="edit">
                 <edit
                     id="to-do"
-                    class="ff_module-form-preview__edit-link"
                     url="{./@url}">Edit</edit>
             </xsl:variable>
 
@@ -18,9 +17,11 @@
             <span class="ff_module-form-preview__list__title__text"><xsl:value-of select="./@title"/></span>
 
             <xsl:if test="not(./@url = '')">
-                <xsl:call-template name="ff_module-inline-edit">
-                    <xsl:with-param name="data" select="ext:node-set($edit)" />
-                </xsl:call-template>
+                <span class="ff_module-form-preview__edit-link">
+                    <xsl:call-template name="ff_module-inline-edit">
+                        <xsl:with-param name="data" select="ext:node-set($edit)" />
+                    </xsl:call-template>
+                </span>
             </xsl:if>
 
             </dt>
