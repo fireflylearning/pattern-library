@@ -1,7 +1,7 @@
 <xsl:template name="ff_container-landing-section">
     <xsl:param name="data" />
-    <section class="ff_container-landing-section">
-        <header class="ff_container-landing-section__header ff_container-landing-section__header--{$data/item/@modifiers}">
+    <section class="ff_container-landing-section ff_container-landing-section">
+        <header class="ff_container-landing-section__header">
             <h2 class="ff_container-landing-section__title"><xsl:value-of select="$data/item/@title"/></h2>
         </header>
         <div>
@@ -15,7 +15,7 @@
         </div>
         <xsl:if test="not($data/item/@show-footer = 'no')">
         <footer class="ff_container-landing-section__footer">
-            <a href="{$data/item/@more-page-link}" class="ff_container-landing-section__more-link"><xsl:value-of select="$data/item/@more-page-text"/></a>
+            <a href="{$data/item/@more-page-link}" class="ff_container-landing-section__more-link ff_icon-page-forward"><xsl:value-of select="$data/item/@more-page-text"/></a>
         </footer>
         </xsl:if>
     </section>

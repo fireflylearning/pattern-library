@@ -25,5 +25,9 @@ data:
           name: "Equal Column"
         -
           name: "Equal Column"
-
+    -
+      modifiers: "columnar"
+      columns:
+        -
+          name: "Columnar Column"
 ---

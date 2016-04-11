@@ -7,20 +7,53 @@ data:
     ff_container-landing-section: 
       - 
         title: "Landing Section 1"
-        pagetext: "View more messages"
+        pagetext: "Visit Landing Section 1"
         pagelink: "#"
         modules:
           - "thing"
       -
         title: "Landing Section 2"
-        pagetext: "View your full planner"
+        pagetext: "Visit Landing Section 2"
         pagelink: "#"
         modules:
           - "thing"
       -
         title: "Landing Section 3"
-        pagetext: "View more tasks due"
+        pagetext: "Visit Landing Section 3"
         pagelink: "#"
+        modules:
+          - "thing"
+      -
+        title: "Landing Section 4"
+        showfooter: "no"
+        modules:
+          - "thing"
+      - 
+        title: "Landing Section 1"
+        pagetext: "Visit Landing Section 1"
+        pagelink: "#"
+        modules:
+          - "thing"
+      -
+        title: "Landing Section 2"
+        pagetext: "Visit Landing Section 2"
+        pagelink: "#"
+        modules:
+          - "thing"
+      -
+        title: "Landing Section 3"
+        pagetext: "Visit Landing Section 3"
+        pagelink: "#"
+        modules:
+          - "thing"
+      -
+        title: "Landing Section 4"
+        showfooter: "no"
+        modules:
+          - "thing"
+      -
+        title: "Landing Section 4"
+        showfooter: "no"
         modules:
           - "thing"
       -
