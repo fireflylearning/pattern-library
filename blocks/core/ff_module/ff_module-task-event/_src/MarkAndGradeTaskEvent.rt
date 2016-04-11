@@ -1,4 +1,4 @@
-<rt-require dependency="./_TaskEventBase.js" as="TaskEventBase"/>
+<rt-require dependency="./TaskEventBase.js" as="TaskEventBase"/>
 
 <TaskEventBase event="{this.props.event}">
     <p class="ff_module-task-event__author-action">{this.props.event.author.name} added a mark:</p>

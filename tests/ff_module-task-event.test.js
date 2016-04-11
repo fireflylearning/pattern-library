@@ -21,27 +21,39 @@ var events = [{
 }, {
     type: eventTypes.markAndGrade,
     sent: new Date(dStrings[0]),
+    author: { name: 'Sally MarkAndGrade' },
+    mark: 7,
+    markMax: 10,
+    grade: 'B',
+    markAndGrade:''
+}, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Sally Grade' },
+    grade: 'B',
+    markAndGrade:''
+}, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Sally GradeAndMessage' },
+    grade: 'B',
+    message: 'Good work',
+    markAndGrade:''
+}, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Sally MarkAndMessage' },
+    mark: 6,
+    markMax: 10,
+    message: 'Good work',
+    markAndGrade:''
+}, {
+    type: eventTypes.markAndGrade,
+    sent: new Date(dStrings[0]),
     author: { name: 'Sally Student' },
     mark: 7,
     markMax: 10,
-    grade: 'B'
-}, {
-    type: eventTypes.markAndGrade,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Sally Student' },
-    grade: 'B'
-}, {
-    type: eventTypes.markAndGrade,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Sally Student' },
-    grade: 'B',
-    message: 'Good work'
-}, {
-    type: eventTypes.markAndGrade,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Sally Student' },
-    mark: 7,
-    markMax: 10
+    markAndGrade:''
 }, {
     type: eventTypes.stampResponseAsSeen,
     sent: new Date(dStrings[1]),
@@ -79,7 +91,7 @@ var classes = {
     [eventTypes.confirmTaskIsComplete]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.confirmStudentIsExcused]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__comment' },
-    [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade', message: 'ff_module-task-event__message' }
+    [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade', markAndGrade: 'ff_module-task-event__mark-and-grade', message: 'ff_module-task-event__message' },
 };
 
 var expectedValues = [{
@@ -88,25 +100,35 @@ var expectedValues = [{
     taskTitle: 'Write an Essay'
 }, {
     sent: dExpected[0],
-    author: 'Sally Student added a mark:',
+    author: 'Sally MarkAndGrade added a mark and a grade:',
     mark:'7/10',
-    grade: ', B'
+    grade: 'B',
+    markAndGrade: '7/10, B'
 }, {
     sent: dExpected[0],
-    author: 'Sally Student added a mark:',
-    mark: '',
-    grade: 'B'
-}, {
-    sent: dExpected[0],
-    author: 'Sally Student added a mark:',
+    author: 'Sally Grade added a grade:',
     mark: '',
     grade: 'B',
+    markAndGrade: 'B'
+}, {
+    sent: dExpected[0],
+    author: 'Sally GradeAndMessage added a grade:',
+    mark: '',
+    grade: 'B',
+    markAndGrade: 'B',
+    message: 'Good work'
+}, {
+    sent: dExpected[0],
+    author: 'Sally MarkAndMessage added a mark:',
+    mark: '6/10',
+    markAndGrade: '6/10',
     message: 'Good work'
 }, {
     sent: dExpected[0],
     author: 'Sally Student added a mark:',
     mark: '7/10',
-    grade: ''
+    grade: '',
+    markAndGrade: '7/10',
 }, {
     sent: dExpected[1],
     author: 'Terry Teacher stamped response as seen.',
