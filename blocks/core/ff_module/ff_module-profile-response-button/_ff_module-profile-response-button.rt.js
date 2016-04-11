@@ -9,8 +9,8 @@ module.exports = function () {
     }, React.createElement('figure', { 'className': 'ff_module-profile-response-button__picture' }, React.createElement('img', {
         'className': 'ff_module-profile-response-button__image',
         'src': this.props.pic_href
-    })), React.createElement('dl', { 'className': 'ff_module-profile-response-button__caption' }, React.createElement('dt', { 'className': 'ff_module-profile-response-button__label' }, this.props.label), this.props.event ? React.createElement('dd', { 'className': 'ff_module-profile-response-button__status' }, React.createElement('span', { 'className': 'ff_module-profile-response-button__status-text' }, this.renderStatus()), React.createElement('time', {
+    })), React.createElement('dl', { 'className': 'ff_module-profile-response-button__caption' }, React.createElement('dt', { 'className': 'ff_module-profile-response-button__heading' }, !this.props.lastEventWasAuthoredByCurrentUser ? React.createElement('span', { 'className': this.generateIconClass() }) : null, React.createElement('span', { 'className': 'ff_module-profile-response-button__label' }, this.props.label)), this.props.event ? React.createElement('dd', { 'className': 'ff_module-profile-response-button__status' }, React.createElement('span', { 'className': 'ff_module-profile-response-button__status-text' }, this.renderStatus()), this.props.event ? React.createElement('time', {
         'dateTime': this.props.event.sent,
         'className': 'ff_module-profile-response-button__status-sent'
-    }, ' ', this.renderTime())) : null, this.props.markAndGrade ? React.createElement('dd', { 'className': 'ff_module-profile-response-button__mark-and-grade' }, this.renderMarkAndGrade()) : null));
+    }, ' ', this.renderTime()) : null) : null, this.props.markAndGrade ? React.createElement('dd', { 'className': 'ff_module-profile-response-button__mark-and-grade' }, this.renderMarkAndGrade()) : null));
 };

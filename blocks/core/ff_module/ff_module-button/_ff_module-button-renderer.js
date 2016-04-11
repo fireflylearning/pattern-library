@@ -26,6 +26,10 @@ var buttonProps = [{
     id: 'btn-04',
     modifier: 'primary',
 }, {
+    text: 'Button danger',
+    id: 'btn-04a',
+    modifier: 'danger',
+}, {
     text: 'Button with classes, disabled',
     id: 'btn-04',
     classes: 'ff_other-class',
@@ -34,6 +38,11 @@ var buttonProps = [{
     text: 'Button disabled',
     id: 'btn-05',
     disabled: true
+}, {
+    text: 'Button danger disabled',
+    id: 'btn-06',
+    disabled: true,
+    modifier: 'danger'
 }];
 
 

@@ -10,7 +10,12 @@
         vertical-align: middle;
     }
     .constrained {
-        max-width: 200px;
+        max-width: @ff_size_spacing_min * 20;
+        flex-grow: 1;
+        box-sizing: border-box;
+    }
+    .mini {
+        max-width: @ff_size_spacing_min * 5.5;
         flex-grow: 1;
         box-sizing: border-box;
     }

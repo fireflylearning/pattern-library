@@ -4,6 +4,6 @@
 
 ## Props
 
-- **`responses`**: {Array} Required
+- **`responses`**: {Array} Required; see module-profile-response-button for values
 - **`onSelect`**: {Func( recipient: {Object} )} Required
    

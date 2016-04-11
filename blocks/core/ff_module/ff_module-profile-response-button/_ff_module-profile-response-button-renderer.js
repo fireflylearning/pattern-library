@@ -11,8 +11,9 @@ module.exports = function() {
                 onSelect: function() {
                     console.log("onSelect");
                 },
-                uiState: "is-updated",
-                guid: "u42",
+                lastEventWasAuthoredByCurrentUser: true,
+                isSelected: false,
+                isRead: false,
                 label: "Sally Student",
                 event:{
                     type: eventTypes.requestResubmission,

@@ -42,6 +42,8 @@
 
 .ff_icon-cancel-open-blue { background-image: url('png/ff_icon-cancel-open-blue.png'); background-repeat: no-repeat; }
 
+.ff_icon-cancel-open-darkgrey { background-image: url('png/ff_icon-cancel-open-darkgrey.png'); background-repeat: no-repeat; }
+
 .ff_icon-cancel-open { background-image: url('png/ff_icon-cancel-open.png'); background-repeat: no-repeat; }
 
 .ff_icon-cancel-white { background-image: url('png/ff_icon-cancel-white.png'); background-repeat: no-repeat; }
@@ -333,6 +335,12 @@
 .ff_icon-table-split-vert { background-image: url('png/ff_icon-table-split-vert.png'); background-repeat: no-repeat; }
 
 .ff_icon-table { background-image: url('png/ff_icon-table.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-incoming-brightblue { background-image: url('png/ff_icon-task-incoming-brightblue.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-incoming-extradarkgrey { background-image: url('png/ff_icon-task-incoming-extradarkgrey.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-incoming-grey { background-image: url('png/ff_icon-task-incoming-grey.png'); background-repeat: no-repeat; }
 
 .ff_icon-tasks-white { background-image: url('png/ff_icon-tasks-white.png'); background-repeat: no-repeat; }
 

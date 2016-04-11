@@ -5,9 +5,22 @@ var template = require('./_ff_module-profile-response-button.rt.js');
 var eventTypes = require('../ff_module-task-event/_src/events').types,
     dateFormatting = require('../../_lib/_ui/dateFormatting')();
 
+// lastEventWasAuthoredByCurrentUser
+// lastEventWasReleased
+
 module.exports = React.createClass({
     displayName: 'ProfileTaskResponseButton',
     render: template,
+    propTypes: {
+        onSelect: React.PropTypes.func.isRequired,
+        label: React.PropTypes.string.isRequired,
+        markAndGrade: React.PropTypes.object.isRequired,
+        isSelected: React.PropTypes.bool,
+        isRead: React.PropTypes.bool,
+        event: React.PropTypes.object,
+        pic_href: React.PropTypes.string.isRequired,
+        lastEventWasAuthoredByCurrentUser: React.PropTypes.bool
+    },
     generateClass: function(base) {
         var classNames = [],
             props = this.props;
@@ -16,6 +29,16 @@ module.exports = React.createClass({
         if (!!props.isRead && !props.isSelected) classNames.push(base + '--is-read');
         if (!!props.isSelected) classNames.push(base + '--is-selected');
         if (!!props.classes) classNames.push(props.classes);
+        return classNames.join(' ');
+    },
+    generateIconClass: function(){
+        var classNames = [],
+            props = this.props;
+        classNames.push('ff_icon');
+        if (!!props.isRead && !props.isSelected) classNames.push('ff_icon-task-incoming-grey');
+        if (!!props.isSelected) classNames.push('ff_icon-task-incoming-extradarkgrey');
+        if (!props.isSelected && !props.isRead) classNames.push('ff_icon-task-incoming-brightblue');
+        classNames.push('ff_module-profile-response-button__incoming-icon');
         return classNames.join(' ');
     },
     renderMarkAndGrade: function() {

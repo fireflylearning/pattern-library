@@ -1,17 +1,18 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
 
 var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff_container-scrollable-list'),
     ResponseRecipientList = require('../../ff_module/ff_module-response-recipient-list/ff_module-response-recipient-list'),
     IncrementalNavigation = require('../../ff_module/ff_module-incremental-navigation/ff_module-incremental-navigation'),
     ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay'),
     ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
-    ContainerControlBarSet = require('../../ff_container/ff_container-control-bar/ff_container-control-bar').ControlBarSet,
+    ContainerControlBarSet = ContainerControlBar.ControlBarSet,
     TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
     Button = require('../../ff_module/ff_module-button/ff_module-button'),
     DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
-    DropdownFilters = require('../../ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters').default;
+    DropdownFilters = require('../../ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters');
 
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
@@ -42,7 +43,7 @@ var events = [{
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
-    type: eventTypes.stampResponseAsSeen,
+    type: eventTypes.requestResubmission,
     localEventId: '3a',
     sent: '13 March 21:47',
     author: { name: 'Terry Teacher' }
@@ -170,8 +171,9 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 });
 
 
-var overlayInner = React.createElement(TaskResponses, {events: events,
-    // editingEvent: events[1],
+var overlayInner = React.createElement(TaskResponses, {
+    events: events,
+    // editingEvent: events[4],
     editEvent: function(event) {
         console.log('editEvent');
         console.table(event);
@@ -184,11 +186,19 @@ var overlayInner = React.createElement(TaskResponses, {events: events,
         console.log('stopEditingEvent');
     }} ),
 
-    overlayOuter = React.createElement(ContainerOverlay, { modifier: 'absolute-bottom', classes: 'ff_container-overlay--task-event-scrollable', body: overlayInner, bar: recipientNavigation }),
+    overlayOuter = React.createElement(ContainerOverlay, {
+        modifier: 'absolute-bottom',
+        classes: 'ff_container-overlay--task-event-scrollable',
+        body: overlayInner,
+        bar: recipientNavigation
+    }),
 
-    sidebar = React.createElement(ResponseRecipientList, { responses: recipientData, onSelect: function(){
-        console.log('select recipient');
-    } });
+    sidebar = React.createElement(ResponseRecipientList, {
+        responses: recipientData,
+        onSelect: function() {
+            console.log('select recipient');
+        }
+    });
 
 
 module.exports = function() {
@@ -196,10 +206,9 @@ module.exports = function() {
         var el = document.querySelector('[data-lib_test-task-responses-screen]'); //Use jquery or sim in Firefly for backwards compat
         if (el) {
 
-            var element =
-            <div className="ff_module-task-responses">
+            var element = <div className="ff_module-task-responses">
                 <div className="ff_util-row-bottom">
-                    <ContainerControlBar modifier= "split">
+                    <ContainerControlBar modifier="split">
                         <ContainerControlBarSet>
                             <DropdownFilters
                                 text="Filter by Status"
@@ -251,7 +260,7 @@ module.exports = function() {
 
             </div>
 
-            React.render(element, el);
+            ReactDOM.render(element, el);
         }
     });
 };
