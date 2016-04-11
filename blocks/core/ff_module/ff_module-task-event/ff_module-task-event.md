@@ -14,8 +14,11 @@ This component renders a task event with different formats depending on the `typ
 - `set-task` 
 - `stamp-response-as-seen`
 - `confirm-student-is-excused`
+- `confirm-student-is-unexcused`
 - `confirm-task-is-complete`
 - `request-resubmission`
+- `delete-response`
+- `add-file`
 
 ### Props
 #### Shared

@@ -18,15 +18,19 @@
         color: @ff_colour_text_quiet;
         display: block;
     }
-
+    &__files {
+        margin-top: @ff_size_spacing_med;
+    }
 }
 
 .ff_module-task-event {
     &--is-pending {
         opacity: .5;
     }
-
     &--has-error {
         background-color: #fcc;
+    }
+    &--delete-response {
+        background-color: transparent;
     }
 }

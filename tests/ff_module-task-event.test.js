@@ -79,6 +79,28 @@ var events = [{
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' },
     message: 'Message from the teacher'
+}, {
+    type: eventTypes.deleteResponse,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.confirmStudentIsUnexcused,
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.addFile,
+    sent: new Date(dStrings[2]),
+    author: { name: 'Sally Student' },
+    files:[{
+        title: 'File one',
+        href:'#'
+    }, {
+        title: 'File two',
+        type: 'page',
+        href:'#'
+    }, {
+        title: 'File two'
+    }]
 }];
 
 
@@ -92,6 +114,9 @@ var classes = {
     [eventTypes.confirmStudentIsExcused]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__comment' },
     [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade', markAndGrade: 'ff_module-task-event__mark-and-grade', message: 'ff_module-task-event__message' },
+    [eventTypes.confirmStudentIsUnexcused]:{ sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message'},
+    [eventTypes.deleteResponse]:{ sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', files: 'ff_module-task-event__files', message: 'ff_module-task-event__message'},
+    [eventTypes.addFile]:{ sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', files: 'ff_module-task-event__files', message: 'ff_module-task-event__message'}
 };
 
 var expectedValues = [{
@@ -149,6 +174,16 @@ var expectedValues = [{
     sent: dExpected[2],
     author: 'Terry Teacher confirmed student is excused.',
     message: 'Message from the teacher'
+}, {
+    sent: dExpected[0],
+    author: 'Terry Teacher deleted response.'
+}, {
+    sent: dExpected[1],
+    author: 'Terry Teacher unexcused student.'
+}, {
+    sent: dExpected[2],
+    author: 'Sally Student added files:',
+    files:'File oneFile twoFile two'
 }];
 
 describe('TaskEvent', function() {

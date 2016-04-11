@@ -42,6 +42,26 @@ var events = [{
     mark: 7,
     markMax: 10,
     grade: 'B'
+}, {
+    type: eventTypes.deleteResponse,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.confirmStudentIsUnexcused,
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.addFile,
+    sent: new Date(dStrings[2]),
+    author: { name: 'Sally Student' },
+    files:[{
+        title: 'File one',
+        href:'#'
+    }, {
+        title: 'File two',
+        type: 'page',
+        href:'#'
+    }]
 }];
 
 module.exports = function() {

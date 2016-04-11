@@ -30,7 +30,6 @@ module.exports = React.createClass({
 
         var child = file.href ? <a href={file.href} className="ff_module-file__link">{title}</a> : title;
         return  <div className={generateClass('ff_module-file', file)}>
-                    <span className={generateIconClass(file)}></span> {child}
-                </div>;
+                    <span className={generateIconClass(file)}></span>{child}</div>;
     }
 });
