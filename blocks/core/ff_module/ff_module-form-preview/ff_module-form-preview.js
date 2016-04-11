@@ -8,14 +8,14 @@ module.exports = React.createClass({
 	propTypes: {
 		items: React.PropTypes.arrayOf(
 			React.PropTypes.shape({
-				title: React.PropTypes.string,
+				title: React.PropTypes.string.isRequired,
 				url: React.PropTypes.string,
 				value: React.PropTypes.string,
 				previewFor: React.PropTypes.string,
 				list: React.PropTypes.array,
 				html: React.PropTypes.element
 			})
-		)
+		).isRequired
 	},
 	render: function() {
 		return <div className='ff_module-form-preview'>
