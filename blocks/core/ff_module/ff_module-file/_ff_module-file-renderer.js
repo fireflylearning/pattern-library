@@ -5,9 +5,11 @@ var React = require('react'),
 var ModuleFile = require('./ff_module-file');
 
 var props = {
-    title: 'My lovely file.pdf',
-    // type: 'page',
-    href: '#'
+    file: {
+        title: 'My lovely file.pdf',
+        // type: 'page',
+        href: '#'
+    }
 };
 
 module.exports = function() {

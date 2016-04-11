@@ -17,9 +17,12 @@ data:
 <div data-ff_module-file=""></div>
 
 ### React Props
-- **`title`**: {String} Required
-- **`type`**: {String}
-- **`href`**: {String}
+- **`file`**: {Object}: {
+    - **`title`**: {String} Required
+    - **`type`**: {String} 
+
+        Icon for type defaults to `file`; type of `page` sets icon to `computer`
+    - **`href`**: {String}}
 - **`classes`**: {String}
 - **`modifier`**: {String}
 
