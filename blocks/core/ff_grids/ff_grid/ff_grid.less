@@ -1,0 +1,53 @@
+@ff_grid-gap-horizonal: 3%;
+
+//2col
+@ff_grid-2col-base: 100% - @ff_grid-gap-horizonal;
+@ff_grid-2col-equal: @ff_grid-2col-base / 2;
+
+//width bases for wide and narrow
+@ff_grid-2col-wide-base: .75;
+@ff_grid-2col-narrow-base: 1 - @ff_grid-2col-wide-base;
+
+//set widths of wide and narrow columns
+@ff_grid-2col-narrow: @ff_grid-2col-base * (@ff_grid-2col-narrow-base);
+@ff_grid-2col-wide: @ff_grid-2col-base * (@ff_grid-2col-wide-base);
+
+.ff_grid {
+  .ff_mix-clearfix();
+}
+
+.ff_grid__column {
+  width: 100%;
+  clear: left;
+  box-sizing: border-box;
+}
+
+@media (min-width: @ff_bp_wide) {
+
+    .ff_grid--1-1 .ff_grid__column,
+    .ff_grid--2-1 .ff_grid__column,
+    .ff_grid--1-2 .ff_grid__column {
+      width: @ff_grid-2col-equal;
+      float: left;
+      &:nth-of-type(2n-1) {
+          margin-right: @ff_grid-gap-horizonal;
+      }
+    }
+
+    .ff_grid--1-1 .ff_grid__column:nth-of-type(2n),
+    .ff_grid--1-2 .ff_grid__column:nth-of-type(2n),
+    .ff_grid--2-1 .ff_grid__column:nth-of-type(2n) {
+      clear: none;
+    }
+
+    .ff_grid--1-2 .ff_grid__column,
+    .ff_grid--2-1 .ff_grid__column {
+      width: @ff_grid-2col-narrow;
+    }
+
+    .ff_grid--1-2 .ff_grid__column:nth-of-type(2),
+    .ff_grid--2-1 .ff_grid__column:nth-of-type(1) {
+      width: @ff_grid-2col-wide;
+    }
+
+}
