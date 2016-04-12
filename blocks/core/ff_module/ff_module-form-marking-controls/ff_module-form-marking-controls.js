@@ -19,8 +19,8 @@ module.exports = React.createClass({
 		return classNames.join(' ');
 	},
 	render: function() {
-		return <div className={this.generateClass('ff_module-form-marking-controls', this.props.modifier)}>
-			<ControlBar modifier={this.props.controlBar.modifier}>
+		return <div className={this.generateClass('ff_module-form-marking-controls', this.props)}>
+			<ControlBar {...this.props.controlBar}>
 				<ControlBar.ControlBarSet>
 					{this.props.controls.buttons.map((button)=>{
 						return <Button {...button}/>;
