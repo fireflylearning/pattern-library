@@ -28,6 +28,17 @@ var data = {
 		key: 2
 	},
 	{
+		title: 'Progress', 
+		progress: {
+			id: 1,
+			classes: "ff_module-other-module-class ff_utils-other-class",
+			sent_to: 23,
+			no_excused: 2,
+			completed_by: 20,
+			marked: 3
+		}
+	},
+	{
 		title: 'Description',
 		html: <div><h2>Volcano formation</h2> <p>Volcanoes form when magma reaches the Earth's surface, causing eruptions of lava and ash. They occur at destructive (compressional) and constructive (tensional) plate boundaries.</p></div>
 	}]

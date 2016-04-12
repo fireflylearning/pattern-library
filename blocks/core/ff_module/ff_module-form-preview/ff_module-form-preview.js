@@ -2,6 +2,7 @@
 
 var React = require('react');
 var InlineEdit = require('../ff_module-inline-edit/ff_module-inline-edit');
+var Progress = require('../ff_module-progress/ff_module-progress');
 
 module.exports = React.createClass({
 	displayName: 'FormPreview',
@@ -33,6 +34,8 @@ module.exports = React.createClass({
 						</dl>;
 					} else if(item.html) {
 						listItemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>
+					} else if(item.progress){
+						listItemData = <Progress {...item.progress}/>;
 					} else {
 						listItemData = item.value;
 					}

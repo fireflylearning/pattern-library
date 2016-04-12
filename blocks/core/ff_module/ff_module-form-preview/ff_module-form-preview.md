@@ -23,7 +23,8 @@ data:
                 <h2>Volcano formation</h2>
                 <p>Volcanoes form when magma reaches the Earth's surface, causing eruptions of lava and ash. They occur at destructive (compressional) and constructive (tensional) plate boundaries.</p>
 requires: 
-    - ff_module-inline-edit            
+    - ff_module-inline-edit
+    - ff_module-progress           
 ---
 ## React Component
 
