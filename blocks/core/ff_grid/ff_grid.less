@@ -22,12 +22,6 @@
   box-sizing: border-box;
 }
 
-.ff_grid--columnar .ff_grid__column {
-    column-count: 1;
-    column-gap: 2rem;
-    break-inside: avoid;
-  }
-
 @media (min-width: @ff_bp_wide) {
 
     .ff_grid--1-1 .ff_grid__column,
@@ -54,10 +48,6 @@
     .ff_grid--1-2 .ff_grid__column:nth-of-type(2),
     .ff_grid--2-1 .ff_grid__column:nth-of-type(1) {
       width: @ff_grid-2col-wide;
-    }
-
-    .ff_grid--columnar .ff_grid__column {
-      column-count: 2;
     }
 
 }
