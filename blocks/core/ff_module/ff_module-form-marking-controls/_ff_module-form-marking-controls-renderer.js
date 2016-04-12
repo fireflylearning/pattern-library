@@ -53,7 +53,7 @@ module.exports = function() {
 		var element = document.querySelector('[data-ff_module-form-marking-controls]');
 
 		if (element) {
-			React.render(<MarkingControls {...data}/>, element);
+			ReactDOM.render(<MarkingControls {...data}/>, element);
 		}
 	});
 };
