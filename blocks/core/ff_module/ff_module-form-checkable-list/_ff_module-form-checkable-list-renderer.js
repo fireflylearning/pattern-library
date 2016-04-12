@@ -13,7 +13,7 @@ var data = {
 		id: 'react-radio-id-1',
 		value: 'radio-value-1',
 		name: 'react-radio-list-group',
-		key: '1'
+		key: 1
 	},
 	{	label: 'Label text',
 		required: true,
@@ -23,7 +23,7 @@ var data = {
 		value: 'radio-value-2',
 		checked: true,
 		name: 'react-radio-list-group',
-		key: '2'
+		key: 2
 	},
 	{
 		label: 'Label text',
@@ -33,7 +33,7 @@ var data = {
 		id: 'react-radio-id-3',
 		value: 'radio-value-3',
 		name: 'react-radio-list-group',
-		key: '3'
+		key: 3
 	}]
 };
 
