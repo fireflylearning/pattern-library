@@ -18,8 +18,6 @@
       </overlay>
     </xsl:variable>
 
-
-
     <xsl:call-template name="ff_container-overlay">
       <xsl:with-param name="data" select="ext:node-set($control-bar)"/>
     </xsl:call-template>

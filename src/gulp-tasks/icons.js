@@ -5,6 +5,8 @@ var path = require('path'),
     glob = require('glob'),
     folderTaskParallel = require('../lib/perFolderUtils').folderParallel;
 
+var os = require('os');
+
 function updateIconConfig(iconConfig, folder) {
     var config = Object.create(iconConfig);
     config.datasvgcss = 'icons.' + folder + '.svg.css';
@@ -117,6 +119,8 @@ module.exports = function(gulp, plugins, config, utils) {
 
             var tempConfig = updateIconConfig(config.gulpicon, folder);
             tempConfig.dest = path.join(destDir, dest);
+
+            console.log(os.tmpDir());
 
             return gulpicon(glob.sync(srcPaths), tempConfig);
         });
