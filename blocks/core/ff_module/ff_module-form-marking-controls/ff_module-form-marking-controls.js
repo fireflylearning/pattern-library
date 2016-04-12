@@ -23,7 +23,7 @@ module.exports = React.createClass({
 			<ControlBar modifier={this.props.controlBar.modifier}>
 				<ControlBar.ControlBarSet>
 					{this.props.controls.buttons.map((button)=>{
-						return <Button text={button.text} id={button.id}/>;
+						return <Button {...button}/>;
 					})}
 				</ControlBar.ControlBarSet>
 			</ControlBar>
