@@ -8,7 +8,14 @@ module.exports = React.createClass({
     displayName: 'TaskEventBase',
     render: function(){
         return  <div className={this.generateClass('ff_module-task-event', this.props.event)}>
-                    <time className="ff_module-task-event__sent">{this.formatDate(this.props.event.sent)}</time>
+                    <time className="ff_module-task-event__sent">
+                        {this.formatDate(this.props.event.sent)}
+                    </time>
+                    <DropdownButton>
+                        modifier="compact-right-widelist"
+                        text="..."
+                        list={[]}
+                    </DropdownButton>
                     {this.props.children}
                 </div>
     },
