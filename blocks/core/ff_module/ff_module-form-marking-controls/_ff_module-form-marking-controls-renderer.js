@@ -39,8 +39,8 @@ var data = {
 				label: 'Label text',
 				required: true,
 				type: 'radio',
-				id: 'react-radio-id-1',
-				value: 'radio-value-1',
+				id: 'react-radio-id-2',
+				value: 'radio-value-2',
 				name: 'react-radio-list-group',
 				key: 2
 			}]
