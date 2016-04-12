@@ -33,8 +33,8 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 
 
 ## Dependencies
-- Node
-- npm
+- Node (Version 4 or greater recommended)
+- npm (Version 3 or greater required to ensure correct dependency resolution)
 - Xcode Command Line Tools (for running some modules on Mac, PC should be OK)
 - Node-libxslt for cross-platform XSLT
     
@@ -53,7 +53,7 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 - x for regression testing // TODO (1)
 
 ## Testing
-Any files with the suffix `*.test.js` will be run through the test runner when the command `npm test` is run.
+Any files within the directory `/tests` and with the suffix `*.test.js` will be run through the test runner when the command `npm test` is run.
 
 ## Setup
 
@@ -95,16 +95,21 @@ Some modules use React; see below for more information.
 #### React
 The view templates use [React Templates](https://www.npmjs.com/package/gulp-react-templates) to transform html-like `.rt` files into compiled `.js` files for use in React view logic files.
 
-### Crate
+### Pages
 A collection of layout files for presenting these patterns in a variety of ways and with a variety of content. For instance, the developer can view the pattern in the context of all other patterns for comparison purposes; in isolation for development and testing; with a variety of text in different lengths and languages.
 
 ### Icons
+Icons are built using [gulp/(grunt)icon](http://www.grunticon.com/) . See [the grunticon docs for full details](https://github.com/filamentgroup/grunticon) of options and methodology.
+
 The `icons` task should (currently) be run separately, and will need to be run after each clean. To optimise the `.svg` icons and build the CSS for each of those icons run:
 
-1. `gulp icons`
+`gulp icons`
 
-#### Exporting icons to svg
-To export icons to `.svg` format in an optimal way use this script: [svg_exporter](https://github.com/fireflylearning/pattern-library/wiki/svg_exporter)
+#### Adding new colours 
+SVG files are stored in `blocks/[theme]/_icons/original_svgs`. To add another colour to an existing icon files, add a suffix to the file: `filename`**`.colors-[colorname].svg`** where **colorname** is either a hex value or a name defined in `config/icons.js`. Then run the `gulp icons` command to build and output the new svg & fallback files.
+
+#### Exporting icons to the correct svg format
+To export icons images to `.svg` format in an optimal way use this script: [svg_exporter](https://github.com/fireflylearning/pattern-library/wiki/svg_exporter)
 
 Save the script as a `.jsx` file. The script is executed in Adobe Illustrator and strips away all the extra code that the default Illustrator export adds to the file.
 
@@ -144,3 +149,25 @@ The gulp task will run and traverse the directory, performing the following task
     - and perform end-to-end tests.
 - Any additional assets such as pre-existing source files are copied to the build folder.
 
+## Common Issues
+
+- node-gyp rebuild errors:
+  
+    ```
+    > node-gyp rebuild
+
+    SOLINK_MODULE(target) Release/.node
+    ld: library not found for -lgcc_s.10.5
+    clang: error: linker command failed with exit code 1 (use -v to see invocation)
+    make: *** [Release/.node] Error 1
+    gyp ERR! build error 
+    ```
+    
+    **Resolution:** Usually there is an issue with resolving paths to required `C` libraries. See [this stackoverflow page for an example of the error and solution](http://stackoverflow.com/questions/31936170/npm-the-ld-library-not-found-for-lgcc-s-10-5-on-on-os-x-el-capitain)
+- babel dependency errors:
+    
+    ```
+    ERROR in ./blocks/core/ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/_src/templates/list.jsx
+    Module not found: Error: Cannot resolve module 'babel-runtime/helpers/possibleConstructorReturn' in C:\Git-repos\pattern-library\blocks\core\ff_module\ff_module-dropdown-button\ff_module-dropdown-button-component\_src\templates
+    ```
+    **Resolution:** Babel requires a large amount of interlinked packages and the versions must be internally consistent to be resolved correctly. Unfortunately there are issues with olders version of npm not installing correctly versioned packages. Update npm to resolve this issue.
