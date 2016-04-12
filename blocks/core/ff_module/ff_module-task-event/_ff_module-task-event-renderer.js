@@ -9,7 +9,6 @@ var eventTypes = require('./_src/events').types;
 var events = [{
     type: eventTypes.setTask,
     sent: new Date(dStrings[0]),
-    pending: true,
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
@@ -25,7 +24,6 @@ var events = [{
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
-    error: true,
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.confirmTaskIsComplete,
@@ -43,10 +41,6 @@ var events = [{
     markMax: 10,
     grade: 'B'
 }, {
-    type: eventTypes.deleteResponse,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
-}, {
     type: eventTypes.confirmStudentIsUnexcused,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
@@ -62,6 +56,47 @@ var events = [{
         type: 'page',
         href:'#'
     }]
+}, {
+    type: eventTypes.deleteResponse,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.addFile,
+    sent: new Date(dStrings[2]),
+    author: { name: 'Sally Student' },
+    deleted: true,
+    files:[{
+        title: 'File one',
+        href:'#'
+    }, {
+        title: 'File two',
+        type: 'page',
+        href:'#'
+    }]
+}, {
+    type: eventTypes.markAndGrade,
+    deleted: true,
+    sent: new Date(dStrings[0]),
+    author: { name: 'Terry Teacher' },
+    mark: 7,
+    markMax: 10,
+    grade: 'B'
+}, {
+    type: eventTypes.comment,
+    deleted: true,
+    sent: new Date(dStrings[2]),
+    author: { name: 'Terry Teacher' },
+}, {
+    type: eventTypes.requestResubmission,
+    sent: new Date(dStrings[0]),
+    error: true,
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.setTask,
+    sent: new Date(dStrings[0]),
+    pending: true,
+    author: { name: 'Sally Student' },
+    taskTitle: 'Write an Essay'
 }];
 
 module.exports = function() {
@@ -77,7 +112,5 @@ module.exports = function() {
             }));
             ReactDOM.render(root, domElement);
         });
-
-
     });
 };

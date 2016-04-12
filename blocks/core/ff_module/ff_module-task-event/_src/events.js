@@ -19,9 +19,12 @@ module.exports.types = {
 };
 
 module.exports.states = {
+    default: 'default',
     error: 'error',
     pending: 'pending',
     sent: 'sent',
+    released: 'released',
     unreleased: 'unreleased',
-    deleted: 'deleted'
+    deleted: 'deleted',
+    edited: 'edited'
 };

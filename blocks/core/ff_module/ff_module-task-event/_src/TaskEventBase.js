@@ -25,8 +25,9 @@ module.exports = React.createClass({
         if (event.type) classNames.push(base + '--' + event.type);
         if (event.pending) classNames.push(base + '--is-pending');
         if (event.error) classNames.push(base + '--has-error');
-        if (event.deleted) classNames.push(base + '--was-deleted');
-        if (event.unreleased) classNames.push(base + '-is-unreleased');
+        if (event.deleted) classNames.push(base + '--is-deleted');
+        if (event.unreleased) classNames.push(base + '--is-unreleased');
+        if (event.released) classNames.push(base + '--is-released');
         return classNames.join(' ');
     }
 });

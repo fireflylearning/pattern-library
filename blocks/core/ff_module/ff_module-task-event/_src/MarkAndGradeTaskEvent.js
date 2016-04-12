@@ -1,33 +1,43 @@
 'use strict';
 
 var React = require('react');
-var TaskEventBase = require('./TaskEventBase');
+var TaskEventBase = require('./TaskEventBase'),
+    taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage');
 
-module.exports = React.createClass({
-    displayName: 'MarkAndGradeTaskEvent',
-    render: function(){
-        var event = this.props.event,
-            messageText = event.message,
-            markText = getMarkText(event),
-            gradeText = event.grade;
-
-        var statusText = getStatusText(' added a ', event);
-
-        var mark = markText ? <span className="ff_module-task-event__mark">{markText}</span> : null,
-            grade = gradeText ? <span className="ff_module-task-event__grade">{gradeText}</span> : null,
-            sep = (markText && gradeText) ? ', ' : '';
-
-        var markAndGrade = (mark || grade) ? <p className="ff_module-task-event__mark-and-grade">{mark}{sep}{grade}</p> : null;
-
-        var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
-
-        return  <TaskEventBase event={event}>
-                    <p className="ff_module-task-event__author-action">{event.author.name}{statusText}:</p>
-                    {markAndGrade}
-                    {message}
-                </TaskEventBase>
-    }
+module.exports.defaultState = React.createClass({
+    displayName: 'MarkAndGradeTaskEventDefault',
+    render: defaultState
 });
+
+module.exports.deletedState = React.createClass({
+    displayName: 'MarkAndGradeTaskEventDeleted',
+    render: taskEventWithOptionalMessage(function(props){
+        return getStatusText('deleted a ', props.event)+ '.';
+    })
+});
+
+function defaultState(){
+    var event = this.props.event,
+        messageText = event.message,
+        markText = getMarkText(event),
+        gradeText = event.grade;
+
+    var statusText = getStatusText(' added a ', event);
+
+    var mark = markText ? <span className="ff_module-task-event__mark">{markText}</span> : null,
+        grade = gradeText ? <span className="ff_module-task-event__grade">{gradeText}</span> : null,
+        sep = (markText && gradeText) ? ', ' : '';
+
+    var markAndGrade = (mark || grade) ? <p className="ff_module-task-event__mark-and-grade">{mark}{sep}{grade}</p> : null;
+
+    var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
+
+    return  <TaskEventBase event={event}>
+                <p className="ff_module-task-event__author-action">{event.author.name}{statusText}:</p>
+                {markAndGrade}
+                {message}
+            </TaskEventBase>
+}
 
 function getStatusText(base, event) {
     switch (true) {
@@ -38,7 +48,7 @@ function getStatusText(base, event) {
             return base + 'grade';
             break;
         case !!(event.mark && event.grade):
-            return base + 'mark and a grade';
+            return base + 'mark and grade';
             break;
     }
 }

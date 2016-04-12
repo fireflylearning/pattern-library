@@ -20,6 +20,9 @@ This component renders a task event with different formats depending on the `typ
 - `delete-response`
 - `add-file`
 
+## Event states with styling 
+- `deleted`
+
 ### Props
 #### Shared
 - `type`: String, eg: `'set-task'`

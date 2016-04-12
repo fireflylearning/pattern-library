@@ -5,5 +5,5 @@ var taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage');
 
 module.exports = React.createClass({
     displayName: 'DeletedResponseTaskEvent',
-    render: taskEventWithOptionalMessage('deleted response.')
+    render: taskEventWithOptionalMessage('deleted a response.')
 });
