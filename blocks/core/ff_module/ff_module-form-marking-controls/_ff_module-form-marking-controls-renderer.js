@@ -5,6 +5,9 @@ var MarkingControls = require('./ff_module-form-marking-controls');
 
 var data = {
 	modifier: '',
+	controlBar: {
+		modifier: ''
+	},
 	controls: {
 		buttons: [{
 			text:'Send Reminder',
