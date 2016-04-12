@@ -19,13 +19,9 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		return <div className='ff_module-form-preview'>
-			<dl className='ff_module-form-preview__list'>
+			<ul className='ff_module-form-preview__list'>
 				{this.props.items.map((item)=>{
 					var isInlineEdit = item.url ?  <span className='ff_module-form-preview__edit-link'><InlineEdit url={item.url} text='Edit'></InlineEdit></span> : '';
-					
-					var listItemTitle = <dt className='ff_module-form-preview__list__title'>
-					<span className='ff_module-form-preview__list__title__text'>{item.title}</span>{isInlineEdit}</dt>;
-					
 					var listItemData;
 					
 					if (item.list) {
@@ -40,9 +36,10 @@ module.exports = React.createClass({
 					} else {
 						listItemData = item.value;
 					}
-					return [ listItemTitle, <dd className='ff_module-form-preview__list__data' data-ff-preview-for={item.previewfor}>{listItemData}</dd> ];
+					return <li className='ff_module-form-preview__item'><dl><dt className='ff_module-form-preview__list__title'><span className='ff_module-form-preview__list__title__text'>{item.title}</span>{isInlineEdit}</dt>
+						<dd className='ff_module-form-preview__list__data' data-ff-preview-for={item.previewfor}>{listItemData}</dd></dl></li>;
 				})}
-			</dl>
+			</ul>
 		</div>;
 	}
 });
