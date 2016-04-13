@@ -1,6 +1,7 @@
 
 .ff_module-form-preview {
     &__list {
+        position: relative;
         #ff_mix-util-prose > .text-default();
         margin: 0;
         list-style-type: none;
@@ -50,6 +51,19 @@
     &__sublist__data {
         #ff_mix-util-prose > .text-default();
         margin-bottom: @ff_size_control_vertical*0.35;
+    }
+
+    &__item--additional-info {
+        @media(min-width: @ff_bp_wide) {
+            position: absolute;
+            top: 0;
+            right: 0;   
+        }
+        position: inherit;
+    }
+
+    &__controls {
+        margin-top: @ff_size_spacing_max;
     }
 
 }
