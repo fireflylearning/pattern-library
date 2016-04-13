@@ -24,10 +24,14 @@ This component renders a task event with different formats depending on the `typ
 - `deleted`
 
 ### Props
-#### Shared
-- `type`: String, eg: `'set-task'`
-- `sent`: String, eg: `'20:40'` or `'Mon 7 Dec, 18:45'`
-- `author`: Object, eg `{ name: 'Terry Teacher '}`
+- **`event`**: {Object} Required
+    - `type`: {String}, eg: `'set-task'`
+    - `sent`: {Date}, eg: `new Date('Mon 7 Dec, 18:45')`
+    - `author`: {Object}, eg `{ name: 'Terry Teacher '}`
+- **`actions`**: {Array}
+    
+    An array of objects with properties matching that of the dropdown-button-component list items
+
 
 #### Examples of Event objects
 ```

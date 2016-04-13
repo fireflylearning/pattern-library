@@ -16,7 +16,7 @@ export default class DropdownMainButton extends React.Component {
                         ? <span
                         className={this.props.generateSubClass('ff_module-dropdown-button__icon')}
                         {...this.props.rtTarget}></span>
-                        : <span/>}
+                        : null}
                 </button>;
     }
 }

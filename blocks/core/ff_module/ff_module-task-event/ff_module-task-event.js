@@ -81,9 +81,12 @@ function getComponent(event){
 module.exports = React.createClass({
     displayName: 'TaskEvent',
     propTypes: {
-        event: React.PropTypes.object.isRequired
+        event: React.PropTypes.object.isRequired,
+        actions: React.PropTypes.array
     },
     render: function() {
-        return React.createElement(getComponent(this.props.event), { event: this.props.event });
+        var Component = getComponent(this.props.event);
+        return <Component {...this.props}/>;
+        // return React.createElement(getComponent(this.props.event), { event: this.props.event });
     }
 });
