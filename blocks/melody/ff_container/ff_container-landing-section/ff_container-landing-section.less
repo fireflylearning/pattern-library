@@ -1,0 +1,87 @@
+.ff_container-landing-section+.ff_container-landing-section {
+    margin-top: 22rem/@ff_base;
+}
+
+.ff_container-landing-section {
+    
+    // header
+    &__header {
+        #ff_mix-sections > .header();
+    }
+    
+    // main
+    &__title {
+        #ff_mix-sections > .title();
+    }
+    &__main {
+       #ff_mix-sections > .main();
+       padding: 0 @ff_size_control_horizontal;
+       background-color: white;
+    }
+    &__main--no-footer {
+        #ff_mix-sections > .main--no-footer();
+    }
+
+    // footer
+    &__footer {
+        #ff_mix-sections > .footer();
+        text-align: right;
+    }
+    &__more-link {
+        #ff_mix-util-prose > .link-no-decoration();
+        color: #FFF;
+        background-position-x: right;
+        padding-right: 1.5rem;
+    }
+
+    &:nth-of-type(6n+1) &__header, 
+    &:nth-of-type(6n+1) &__footer {        
+        background-color: @ff_templatesetting_section-01-colour;        
+    }
+    &:nth-of-type(6n+1) &__more-link:hover {
+        color: lighten(@ff_templatesetting_section-01-colour, 20%)
+    }
+
+    &:nth-of-type(6n+2) &__header, 
+    &:nth-of-type(6n+2) &__footer {
+        background-color: @ff_templatesetting_section-02-colour; 
+    }
+    &:nth-of-type(6n+2) &__more-link:hover {
+        color: lighten(@ff_templatesetting_section-02-colour, 20%)
+    }
+
+    &:nth-of-type(6n+3) &__header, 
+    &:nth-of-type(6n+3) &__footer {
+        background-color: @ff_templatesetting_section-03-colour; 
+    }
+    &:nth-of-type(6n+3) &__more-link:hover {
+        color: lighten(@ff_templatesetting_section-03-colour, 20%)
+    }
+
+    &:nth-of-type(6n+4) &__header, 
+    &:nth-of-type(6n+4) &__footer {
+        background-color: @ff_templatesetting_section-04-colour; 
+    }
+    &:nth-of-type(6n+4) &__more-link:hover {
+        color: lighten(@ff_templatesetting_section-04-colour, 20%)
+    }
+
+    &:nth-of-type(6n+5) &__header, 
+    &:nth-of-type(6n+5) &__footer {
+        background-color: @ff_templatesetting_section-05-colour; 
+    }
+    &:nth-of-type(6n+5) &__more-link:hover {
+        color: lighten(@ff_templatesetting_section-05-colour, 20%)
+    }
+
+    &:nth-of-type(6n+6) &__header, 
+    &:nth-of-type(6n+6) &__footer {
+        background-color: @ff_templatesetting_section-06-colour; 
+    }
+    &:nth-of-type(6n+6) &__more-link:hover {
+        color: lighten(@ff_templatesetting_section-06-colour, 20%)
+    }
+
+}
+
+

@@ -9,20 +9,28 @@ data:
         title: "Important Messages"
         pagetext: "View more messages"
         pagelink: "#"
-        modifiers: "ff_container-dashboard-section--messages"
+        modifiers: "messages"
+        modules:
+          - "thing"
       -
         title: "Lessons"
         pagetext: "View your full planner"
         pagelink: "#"
-        modifiers: "ff_container-dashboard-section--planner"
+        modifiers: "planner"
+        modules:
+          - "thing"
       -
         title: "Tasks due soon"
         pagetext: "View more tasks due"
         pagelink: "#"
-        modifiers: "ff_container-dashboard-section--tasks"
+        modifiers: "tasks"
+        modules:
+          - "thing"
       -
         title: "Quicklink"
         showfooter: "no"
+        modules:
+          - "thing"
 ---
 Some intro or explanatory text here.
 
