@@ -24,3 +24,4 @@ Helps autoflow items into multiple columns.
 * `two-column`
 * `three-column`
 * `four-column`
+* `fluid` - *in this case columns defined in the css based on breakpoints*
