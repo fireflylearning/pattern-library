@@ -12,9 +12,21 @@ module.exports = React.createClass({
                         {this.formatDate(this.props.event.sent)}
                     </time>
                     <DropdownButton>
+                        id="event-actions"
+                        key="event-actions"
                         modifier="compact-right-widelist"
                         text="..."
-                        list={[]}
+                        list="{[
+                            {
+                                text: 'Delete',
+                                key: events.types.delete,
+                                onClick: this.props.event.onDelete
+                            }, {
+                                text: 'Edit',
+                                key: events.types.edit,
+                                onClick: this.props.event.onEdit
+                            }
+                        ]}"
                     </DropdownButton>
                     {this.props.children}
                 </div>
