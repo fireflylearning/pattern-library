@@ -1,28 +1,4 @@
-<div data-ff_module-task-event="comment"/>
-
-<br/>
-
-<div data-ff_module-task-event="set-task"/>
-
-<br/>
-
-<div data-ff_module-task-event="stamp-response-as-seen"/>
-
-<br/>
-
-<div data-ff_module-task-event="request-resubmission"/>
-
-<br/>
-
-<div data-ff_module-task-event="confirm-task-is-complete"/>
-
-<br/>
-
-<div data-ff_module-task-event="confirm-student-is-excused"/>
-
-<br/>
-
-<div data-ff_module-task-event="mark-and-grade"/>
+<div data-ff_module-task-event=""/>
 
 
 
@@ -38,8 +14,14 @@ This component renders a task event with different formats depending on the `typ
 - `set-task` 
 - `stamp-response-as-seen`
 - `confirm-student-is-excused`
+- `confirm-student-is-unexcused`
 - `confirm-task-is-complete`
 - `request-resubmission`
+- `delete-response`
+- `add-file`
+
+## Event states with styling 
+- `deleted`
 
 ### Props
 #### Shared
@@ -53,6 +35,6 @@ This component renders a task event with different formats depending on the `typ
     type: 'added-comment', 
     sent: 'Mon 7 Dec, 18:45', 
     author: { name: 'Sally Student' }, 
-    comment: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”' 
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!' 
 }
 ```

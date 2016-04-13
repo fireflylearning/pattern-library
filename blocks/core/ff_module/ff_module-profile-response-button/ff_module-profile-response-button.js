@@ -14,7 +14,7 @@ module.exports = React.createClass({
     propTypes: {
         onSelect: React.PropTypes.func.isRequired,
         label: React.PropTypes.string.isRequired,
-        markAndGrade: React.PropTypes.object.isRequired,
+        markAndGrade: React.PropTypes.object,
         isSelected: React.PropTypes.bool,
         isRead: React.PropTypes.bool,
         event: React.PropTypes.object,
@@ -57,7 +57,7 @@ module.exports = React.createClass({
     renderStatus: function() {
         var event = this.props.event;
         if (event) {
-            return statusSummaryText(event);
+            return statusSummaryText(this.props);
         } else {
             return '';
         }
@@ -72,23 +72,17 @@ module.exports = React.createClass({
     }
 });
 
-function statusSummaryText(event) {
-    switch (event.type) {
-        case eventTypes.setTask:
-            return "Task set";
-        case eventTypes.stampResponseAsSeen:
-            return "Confirmed as seen";
-        case eventTypes.requestResubmission:
-            return "Resubmission requested";
-        case eventTypes.confirmTaskIsComplete:
-            return "Confirmed as complete";
-        case eventTypes.confirmStudentIsExcused:
-            return "Student excused";
-        case eventTypes.comment:
-            return "Comment sent";
-        case eventTypes.markAndGrade:
-            return "Mark sent";
-        default:
-            return "";
-    }
+var statusTexts = {};
+statusTexts[eventTypes.setTask] = "Awaiting Response";
+statusTexts[eventTypes.stampResponseAsSeen] = "Task stamped as seen";
+statusTexts[eventTypes.requestResubmission] = "Resubmission requested";
+statusTexts[eventTypes.confirmTaskIsComplete] = "Confirmed as complete";
+statusTexts[eventTypes.confirmStudentIsExcused] = "Student excused";
+statusTexts[eventTypes.comment] = "Comment sent";
+statusTexts[eventTypes.markAndGrade] = "Marked";
+statusTexts[eventTypes.addFile] = "Response Received";
+
+function statusSummaryText(props) {
+    var event = props.event;
+    return statusTexts[event.type];
 }

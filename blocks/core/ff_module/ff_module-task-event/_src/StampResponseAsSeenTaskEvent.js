@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var taskEventWithOptionalMessage = require('./_taskEventWithOptionalMessage');
+var taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage');
 
 module.exports = React.createClass({
     displayName: 'StampResponseAsSeenTaskEvent',

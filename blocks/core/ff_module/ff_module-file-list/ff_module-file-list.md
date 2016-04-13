@@ -18,9 +18,18 @@ requires:
     - ff_module-file
 ---
 
-# When you want a list of individual files, each having their own link.
+<div data-ff_module-file-list=""></div>
 
-## Call with the following xml (example for resources & pages):
+## When you want a list of individual files, each having their own link.
+
+### React Props
+- **`files`**: {Array} Required
+    
+    An array of objects defined by the ff_module-file component props.
+- **`classes`**: {String}
+- **`modifier`**: {String}
+
+### Call with the following xml (example for resources & pages):
 
 ```
 <attachments classes="ff_other_component_class">
@@ -34,4 +43,4 @@ requires:
 </attachments>
 ```
 
-**ALL attributes and nodes are opitional** 
+**ALL attributes and nodes are optional** 
