@@ -23,8 +23,10 @@ module.exports = React.createClass({
 			<ul className='ff_module-form-preview__list'>
 				{this.props.items.map((item)=>{
 					var isInlineEdit = item.url ?  <span className='ff_module-form-preview__edit-link'><InlineEdit url={item.url} text='Edit'></InlineEdit></span> : '';
-					var isAdditionalInfo = item.progress ?  'ff_module-form-preview__item--additional-info' : '';
+					var isProgress = item.progress ?  'ff_module-form-preview__item--progress' : '';
+					var isMarkingControls = item.markingControls ?  'ff_module-form-preview__item--controls' : '';
 					var itemData;
+					console.log(this.props.controls)
 					
 					switch(true) {
 						case !!item.list:
@@ -39,13 +41,16 @@ module.exports = React.createClass({
 							itemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>;
 							break;
 						case !!item.progress:
-							itemData = <div><div className="ff_module-form-preview__progress"><Progress {...item.progress}/></div> <div className='ff_module-form-preview__controls'>{!!item.markingControls ? this.props.controls : ''}</div></div>;
+							itemData = <div className="ff_module-form-preview__progress"><Progress {...item.progress}/></div>;
+							break;
+						case !!item.markingControls:
+							itemData = <div className='ff_module-form-preview__controls'>{this.props.controls}</div>;
 							break;
 						default:
 							itemData = item.value;
 
 					}
-					return <li className={'ff_module-form-preview__item ' + isAdditionalInfo}>
+					return <li className={'ff_module-form-preview__item ' + isProgress + isMarkingControls}>
 						<dl>
 							<dt className='ff_module-form-preview__list__title'><span className='ff_module-form-preview__list__title__text'>{item.title}</span>{isInlineEdit}</dt>
 						<dd className='ff_module-form-preview__list__data' data-ff-preview-for={item.previewfor}>{itemData}</dd>

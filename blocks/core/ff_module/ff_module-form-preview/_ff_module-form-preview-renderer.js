@@ -79,6 +79,9 @@ var data = {
 			completed_by: 20,
 			marked: 3
 		},
+	},
+	{	
+		title: 'Marking Controls', 
 		markingControls: true	
 	},
 	{
