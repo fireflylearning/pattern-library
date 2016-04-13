@@ -1,0 +1,5 @@
+<grid modifier="{{ modifiers }}" {% if classes %}classes="{{classes}}"{% endif %}>
+	{% for item in items %}
+	<item>{{ item | safe }}</item>
+	{% endfor %}
+</grid>

@@ -1,7 +1,0 @@
-<grid modifier="{{ modifiers }}">
-    {% for column in columns %}
-        <column>
-            <span class="crate_util-block">{{ column.name }}</span>
-        </column>
-    {% endfor %}
-</grid>
