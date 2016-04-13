@@ -10,93 +10,7 @@ var events = [{
     type: eventTypes.setTask,
     sent: new Date(dStrings[0]),
     author: { name: 'Sally Student' },
-    taskTitle: 'Write an Essay'
-}, {
-    type: eventTypes.stampResponseAsSeen,
-    sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' },
-    message: 'Message to the student'
-}, {
-    type: eventTypes.comment,
-    sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' },
-    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
-}, {
-    type: eventTypes.requestResubmission,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.confirmTaskIsComplete,
-    sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.confirmStudentIsExcused,
-    sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.markAndGrade,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' },
-    mark: 7,
-    markMax: 10,
-    grade: 'B'
-}, {
-    type: eventTypes.confirmStudentIsUnexcused,
-    sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.addFile,
-    sent: new Date(dStrings[2]),
-    author: { name: 'Sally Student' },
-    files:[{
-        title: 'File one',
-        href:'#'
-    }, {
-        title: 'File two',
-        type: 'page',
-        href:'#'
-    }]
-}, {
-    type: eventTypes.deleteResponse,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.addFile,
-    sent: new Date(dStrings[2]),
-    author: { name: 'Sally Student' },
-    deleted: true,
-    files:[{
-        title: 'File one',
-        href:'#'
-    }, {
-        title: 'File two',
-        type: 'page',
-        href:'#'
-    }]
-}, {
-    type: eventTypes.markAndGrade,
-    deleted: true,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' },
-    mark: 7,
-    markMax: 10,
-    grade: 'B'
-}, {
-    type: eventTypes.comment,
-    deleted: true,
-    sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' },
-}, {
-    type: eventTypes.requestResubmission,
-    sent: new Date(dStrings[0]),
-    error: true,
-    author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.setTask,
-    sent: new Date(dStrings[0]),
-    pending: true,
-    author: { name: 'Sally Student' },
-    taskTitle: 'Write an Essay'
+    taskTitle: 'Write an Essay',
 }];
 
 module.exports = function() {
@@ -107,7 +21,14 @@ module.exports = function() {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(TaskEvent, {
                         key: 'el' + (index),
-                        event: event
+                        event: event,
+                        actions: [{
+                            text: 'Edit',
+                            onClick: function(){console.log('edit');}
+                        },{
+                            text: 'Delete',
+                            onClick: function(){console.log('delete');}
+                        }]
                     }));
             }));
             ReactDOM.render(root, domElement);
