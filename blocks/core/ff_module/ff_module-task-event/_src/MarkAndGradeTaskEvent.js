@@ -12,7 +12,7 @@ module.exports.defaultState = React.createClass({
 module.exports.deletedState = React.createClass({
     displayName: 'MarkAndGradeTaskEventDeleted',
     render: taskEventWithOptionalMessage(function(props){
-        return getStatusText('deleted a ', props.event)+ '.';
+        return getStatusText(props.event.author.name+'deleted a ', props.event)+ '.';
     })
 });
 
@@ -22,7 +22,7 @@ function defaultState(){
         markText = getMarkText(event),
         gradeText = event.grade;
 
-    var statusText = getStatusText(' added a ', event);
+    var statusText = getStatusText(event.author.name+' added a ', event);
 
     var mark = markText ? <span className="ff_module-task-event__mark">{markText}</span> : null,
         grade = gradeText ? <span className="ff_module-task-event__grade">{gradeText}</span> : null,
@@ -31,25 +31,24 @@ function defaultState(){
     var markAndGrade = (mark || grade) ? <p className="ff_module-task-event__mark-and-grade">{mark}{sep}{grade}</p> : null;
 
     var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
-
+    var status = statusText ? <p className="ff_module-task-event__author-action">{statusText+':'}</p> : null;
     return  <TaskEventBase event={event}>
-                <p className="ff_module-task-event__author-action">{event.author.name}{statusText}:</p>
+                {status}
                 {markAndGrade}
                 {message}
             </TaskEventBase>
 }
 
 function getStatusText(base, event) {
-    switch (true) {
-        case !!(event.mark && !event.grade):
-            return base + 'mark';
-            break;
-        case !!(!event.mark && event.grade):
-            return base + 'grade';
-            break;
-        case !!(event.mark && event.grade):
-            return base + 'mark and grade';
-            break;
+
+    if (event.mark && !event.grade){
+        return base + 'mark';
+    } else if(!event.mark && event.grade) {
+        return base + 'grade';
+    } else if (event.mark && event.grade) {
+        return base + 'mark and grade';
+    } else {
+        return '';
     }
 }
 
