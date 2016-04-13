@@ -5,7 +5,5 @@ data:
     pagetext: "View more messages"
     pagelink: "#"
     modifiers: ""
-    modules:
-      - "module A"
-      - "module B"
+    content: "This is a module"
 ---

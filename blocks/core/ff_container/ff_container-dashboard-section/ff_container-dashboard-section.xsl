@@ -9,9 +9,7 @@
                 <xsl:text>ff_container-dashboard-section__main</xsl:text>
                 <xsl:if test="$data/item/@show-footer = 'no'"> ff_container-dashboard-section__main--no-footer</xsl:if>
             </xsl:attribute>
-            <xsl:for-each select="$data//module">
-                <xsl:copy-of select="./node()"/>
-            </xsl:for-each>
+            <xsl:copy-of select="$data//content/node()"/>
         </div>
         <xsl:if test="not($data/item/@show-footer = 'no')">
         <footer class="ff_container-dashboard-section__footer">
