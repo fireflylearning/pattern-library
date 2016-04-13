@@ -1,0 +1,36 @@
+.ff_grid-columnar {
+	.ff_grid-columnar__column {
+		column-gap: 2.5rem;
+	}
+	.ff_grid-columnar__column > * {
+		display: inline-block;
+		width: 100%;
+		box-sizing: border-box;
+		margin: @ff_grid-gap-horizonal/2 0;
+	}
+}
+.ff_grid-columnar--two-column {
+	.ff_grid-columnar__column {
+		column-count: 2;
+	}
+}
+.ff_grid-columnar--three-column {
+	.ff_grid-columnar__column {
+		column-count: 3;
+	}
+}
+.ff_grid-columnar--four-column {
+	.ff_grid-columnar__column {
+		column-count: 4;
+	}
+}
+
+// Fluid columns i.e. responsive
+.ff_grid-columnar--fluid {
+	.ff_grid-columnar__column {
+		column-count: 1;
+		@media (min-width: @ff_bp_wide) {
+			column-count: 2;
+		}
+	}
+}
