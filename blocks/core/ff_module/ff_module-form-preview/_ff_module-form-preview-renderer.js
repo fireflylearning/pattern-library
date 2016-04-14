@@ -47,29 +47,7 @@ var controlsProps = {
 
 var data = {
 	items: [{
-		title: 'Recipients',
-		url: 'test',
-		value: 'Class 2, Class 1',
-		previewfor: 'input[name="recipients"]',
-		key: 1
-	},
-	{
-		title: 'Details',
-		url: '',
-		list: [{
-			title: "Title",
-			value: "Volcano formation",
-			previewfor: "input[name='title']",
-			key: 3
-		},
-		{
-			title: "Due Date",
-			value: "16/05/2016",
-			key: 4
-		}],
-		key: 2
-	},
-	{
+		modifier: 'progress',
 		title: 'Progress', 
 		progress: {
 			id: 1,
@@ -81,10 +59,45 @@ var data = {
 		},
 	},
 	{	
+		modifier: 'controls',
 		title: 'Marking Controls', 
 		markingControls: true	
 	},
 	{
+		title: 'Details',
+		url: '',
+		list: [{
+			title: "Title:",
+			value: "Volcano formation",
+			previewfor: "input[name='title']",
+			key: 3
+		},
+		{
+			title: "Due Date:",
+			value: "16/05/2016",
+			key: 4
+		},
+		{
+			title: 'Recipients:',
+			url: 'test',
+			value: 'Class 2, Class 1',
+			previewfor: 'input[name="recipients"]',
+			key: 5
+		},
+		{
+			title: "Set By:",
+			value: "Terry Teacher",
+			key: 6
+		},
+		{
+			title: "Include in Markbook:",
+			value: "Yes",
+			key: 7
+		}],
+		key: 2
+	},
+	{
+		modifier: 'description',
 		title: 'Description',
 		html: <div><h2>Volcano formation</h2> <p>Volcanoes form when magma reaches the Earth's surface, causing eruptions of lava and ash. They occur at destructive (compressional) and constructive (tensional) plate boundaries.</p></div>
 	}]
