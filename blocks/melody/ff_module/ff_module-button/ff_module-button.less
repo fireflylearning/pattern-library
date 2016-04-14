@@ -37,6 +37,7 @@
         padding: 0;
         display: inline-block;
         text-align: left;
+        min-width: auto;
     }
     .compact() {
         padding: (@ff_size_spacing_min * 0.6) (@ff_size_spacing_min * 0.9);
@@ -108,6 +109,9 @@
     }
     &--link {
         #ff_module-button > .link();
+    }
+    &--link &__icon--no-text {
+        margin: @ff_size_spacing_min * 0.3 @ff_size_spacing_min * 0.6;
     }
     &--danger {
         #ff_module-button > .danger();
