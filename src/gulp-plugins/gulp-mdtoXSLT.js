@@ -51,6 +51,7 @@ module.exports = function mdtoXSLT(options) {
         if(debug) gutil.log(templateXMLPath, templateXSLPath);
 
         var documentString = renderer.renderFile(templateXMLPath, context);
+        context.xmlDocumentString = documentString.replace('<?xml version="1.0" encoding="UTF-8"?>', '');
         var stylesheetString = renderer.renderFile(templateXSLPath, context);
         output(documentString);
         output(stylesheetString);

@@ -35,6 +35,22 @@
 
         </body>
         </html>
+
+
+        <xsl:text disable-output-escaping="yes">&lt;!--
+
+        </xsl:text>
+        <xsl:text>~~START INPUT XML SOURCE~~
+        </xsl:text>
+        {{xmlDocumentString|safe}}
+        <xsl:text>
+
+        ~~END INPUT XML SOURCE~~</xsl:text>
+        <xsl:text disable-output-escaping="yes">
+
+        --&gt;</xsl:text>
+
+
     </xsl:template>
 
 </xsl:stylesheet>
