@@ -39,14 +39,13 @@
 
         <xsl:text disable-output-escaping="yes">&lt;!--
 
-        </xsl:text>
-        <xsl:text>~~START INPUT XML SOURCE~~
+        ~~START INPUT XML SOURCE~~
+
         </xsl:text>
         {{xmlDocumentString|safe}}
-        <xsl:text>
-
-        ~~END INPUT XML SOURCE~~</xsl:text>
         <xsl:text disable-output-escaping="yes">
+
+        ~~END INPUT XML SOURCE~~
 
         --&gt;</xsl:text>
 
