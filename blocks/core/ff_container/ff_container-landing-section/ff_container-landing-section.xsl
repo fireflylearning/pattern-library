@@ -15,7 +15,7 @@
         </div>
         <xsl:if test="not($data/item/@show-footer = 'no')">
         <footer class="ff_container-landing-section__footer">
-            <a href="{$data/item/@more-page-link}" class="ff_container-landing-section__more-link ff_icon-page-forward-white"><xsl:value-of select="$data/item/@more-page-text"/></a>
+            <a href="{$data/item/@more-page-link}" class="ff_container-landing-section__more-link"><xsl:value-of select="$data/item/@more-page-text"/><span class="ff_icon ff_icon-right ff_icon-page-forward-white"></span></a>
         </footer>
         </xsl:if>
     </section>
