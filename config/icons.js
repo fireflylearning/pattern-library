@@ -41,7 +41,7 @@ module.exports = {
         greyblue: '#7F9CB5'
     },
 
-    dynamicColorOnly: true,
+    dynamicColorOnly: false,
 
     // css file path prefix
     // this defaults to '/' and will be placed before the 'dest' path

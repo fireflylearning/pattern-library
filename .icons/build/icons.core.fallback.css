@@ -264,8 +264,6 @@
 
 .ff_icon-page-up-open { background-image: url('png/ff_icon-page-up-open.png'); background-repeat: no-repeat; }
 
-.ff_icon-page-up { background-image: url('png/ff_icon-page-up.png'); background-repeat: no-repeat; }
-
 .ff_icon-password { background-image: url('png/ff_icon-password.png'); background-repeat: no-repeat; }
 
 .ff_icon-pause { background-image: url('png/ff_icon-pause.png'); background-repeat: no-repeat; }
@@ -291,6 +289,12 @@
 .ff_icon-progress-threequarters { background-image: url('png/ff_icon-progress-threequarters.png'); background-repeat: no-repeat; }
 
 .ff_icon-quote { background-image: url('png/ff_icon-quote.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-edit-blue { background-image: url('png/ff_icon-response-edit-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-edit-darkgrey { background-image: url('png/ff_icon-response-edit-darkgrey.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-edit { background-image: url('png/ff_icon-response-edit.png'); background-repeat: no-repeat; }
 
 .ff_icon-rewind { background-image: url('png/ff_icon-rewind.png'); background-repeat: no-repeat; }
 
@@ -343,6 +347,8 @@
 .ff_icon-task-incoming-extradarkgrey { background-image: url('png/ff_icon-task-incoming-extradarkgrey.png'); background-repeat: no-repeat; }
 
 .ff_icon-task-incoming-grey { background-image: url('png/ff_icon-task-incoming-grey.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-incoming { background-image: url('png/ff_icon-task-incoming.png'); background-repeat: no-repeat; }
 
 .ff_icon-tasks-white { background-image: url('png/ff_icon-tasks-white.png'); background-repeat: no-repeat; }
 
