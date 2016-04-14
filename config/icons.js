@@ -4,11 +4,11 @@ var paths = require('./paths.js');
 
 module.exports = {
     // CSS filenames
-    datasvgcss: 'icons.svg.css',
-    datapngcss: 'icons.png.css',
-    urlpngcss: 'icons.fallback.css',
+    datasvgcss: 'icons.{theme}.svg.css',//overridden (per theme)
+    datapngcss: 'icons.{theme}.png.css',//overridden (per theme)
+    urlpngcss: 'icons.{theme}.fallback.css',//overridden (per theme)
 
-    dest: paths.icons.dest,
+    dest: paths.icons.dest, //overridden (per theme)
 
     // grunticon loader code snippet filename
     loadersnippet: 'grunticon.loader.js',
@@ -31,14 +31,26 @@ module.exports = {
     // define vars that can be used in filenames if desirable,
     // like foo.colors-primary-secondary.svg
     colors: {
-        blue: '#297FCF',
-        brightblue: '#0085E6',
-        grey: '#A9AEB6',
-        darkgrey: '#888888',
-        extradarkgrey: '#444444',
-        white: '#FFF',
-        lightblue: '#add8e6',
-        greyblue: '#7F9CB5'
+        core: {
+            blue: '#297FCF',
+            brightblue: '#0085E6',
+            grey: '#A9AEB6',
+            darkgrey: '#888888',
+            extradarkgrey: '#444444',
+            white: '#FFF',
+            lightblue: '#add8e6',
+            greyblue: '#7F9CB5'
+        },
+        melody: {
+            blue: '#297FCF',
+            brightblue: '#0085E6',
+            grey: '#A9AEB6',
+            darkgrey: '#888888',
+            extradarkgrey: '#444444',
+            white: '#FFF',
+            lightblue: '#add8e6',
+            greyblue: '#7F9CB5'
+        }
     },
 
     dynamicColorOnly: false,
