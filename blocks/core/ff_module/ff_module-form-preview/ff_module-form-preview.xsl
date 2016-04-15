@@ -6,7 +6,23 @@
 		<ul class="ff_module-form-preview__list">
 
 		<xsl:for-each select="$preview/item">
-			<li class="ff_module-form-preview__item">
+			<li>
+				<xsl:attribute name="class">
+					<xsl:choose>
+						<xsl:when test="./progress">
+							<xsl:text>ff_module-form-preview__item ff_module-form-preview__item--progress</xsl:text>
+						</xsl:when>
+						<xsl:when test="./description">
+							<xsl:text>ff_module-form-preview__item ff_module-form-preview__item--description</xsl:text>
+						</xsl:when>
+						<xsl:when test="./module">
+							<xsl:text>ff_module-form-preview__item ff_module-form-preview__item--controls</xsl:text>
+						</xsl:when>
+						<otherwise>
+							<xsl:text>ff_module-form-preview__item</xsl:text>
+						</otherwise>
+					</xsl:choose>
+				</xsl:attribute>
 				<dl>
 					<xsl:variable name="edit">
 						<edit
@@ -37,6 +53,14 @@
 							<dl class="ff_module-form-preview__sublist">
 							<xsl:apply-templates select="list/item" mode="list-preview-dl"/>
 							</dl>
+						</xsl:when>
+						<xsl:when test="./progress">
+							<xsl:call-template name="ff_module-progress">
+								<xsl:with-param name="data" select="." />
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:when test="./module">
+							<xsl:copy-of select="./module/node()"/>
 						</xsl:when>
 						<xsl:when test="./html">
 							<xsl:apply-templates select="html" mode="list-preview-html"/>
