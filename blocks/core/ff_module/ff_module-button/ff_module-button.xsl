@@ -30,7 +30,8 @@
             <xsl:if test="$data/button/@icon and not($data/button/@icon_align='right')">
                 <span>
                     <xsl:attribute name="class">
-                        <xsl:text>ff_icon ff_icon-</xsl:text><xsl:value-of select="$data/button/@icon"/>
+                        <xsl:text>ff_icon ff_icon-</xsl:text><xsl:value-of select="$data/button/@icon"/> ff_module-button__icon
+                        <xsl:if test="boolean($data/button/@hide_text)"> ff_module-button__icon--no-text</xsl:if>
                         <xsl:if test="not($data/button/@hide_text)"> ff_icon-left</xsl:if>
                     </xsl:attribute>
                 </span>
@@ -45,7 +46,8 @@
             <xsl:if test="$data/button/@icon and $data/button/@icon_align='right'">
                 <span>
                     <xsl:attribute name="class">
-                        <xsl:text>ff_icon ff_icon-</xsl:text><xsl:value-of select="$data/button/@icon"/>
+                        <xsl:text>ff_icon ff_icon-</xsl:text><xsl:value-of select="$data/button/@icon"/> ff_module-button__icon
+                        <xsl:if test="boolean($data/button/@hide_text)"> ff_module-button__icon--no-text</xsl:if>
                         <xsl:if test="not($data/button/@hide_text)"> ff_icon-right</xsl:if>
                     </xsl:attribute>
                 </span>

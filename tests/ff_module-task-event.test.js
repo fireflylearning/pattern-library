@@ -12,66 +12,6 @@ var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:
 var dExpected = ['27/2/2016 at 3:24 AM', '27/2/2016 at 3:28 AM', '28/2/2016 at 1:24 PM'];
 //TODO: Update tests to account for date/time of test run
 
-
-var events = [{
-    type: eventTypes.setTask,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Sally Student' },
-    taskTitle: 'Write an Essay'
-}, {
-    type: eventTypes.markAndGrade,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Sally Student' },
-    mark: 7,
-    markMax: 10,
-    grade: 'B'
-}, {
-    type: eventTypes.markAndGrade,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Sally Student' },
-    grade: 'B'
-}, {
-    type: eventTypes.markAndGrade,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Sally Student' },
-    grade: 'B',
-    message: 'Good work'
-}, {
-    type: eventTypes.markAndGrade,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Sally Student' },
-    mark: 7,
-    markMax: 10
-}, {
-    type: eventTypes.stampResponseAsSeen,
-    sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' },
-    message: 'Message from the teacher'
-}, {
-    type: eventTypes.comment,
-    sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' },
-    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
-}, {
-    type: eventTypes.requestResubmission,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' },
-    message: 'Message from the teacher'
-}, {
-    type: eventTypes.confirmTaskIsComplete,
-    sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' },
-    message: 'Message from the teacher'
-}, {
-    type: eventTypes.confirmStudentIsExcused,
-    sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' },
-    message: 'Message from the teacher'
-}];
-
-
-var testProps = _.omit(events, ['type', 'maxMark']);
-
 var classes = {
     [eventTypes.setTask]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
     [eventTypes.stampResponseAsSeen]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
@@ -79,61 +19,284 @@ var classes = {
     [eventTypes.confirmTaskIsComplete]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.confirmStudentIsExcused]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.comment]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__comment' },
-    [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade', message: 'ff_module-task-event__message' }
+    [eventTypes.markAndGrade]: { sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade', markAndGrade: 'ff_module-task-event__mark-and-grade', message: 'ff_module-task-event__message' },
+    [eventTypes.confirmStudentIsUnexcused]:{ sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message'},
+    [eventTypes.deleteResponse]:{ sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', files: 'ff_module-task-event__files', message: 'ff_module-task-event__message'},
+    [eventTypes.addFile]:{ sent: 'ff_module-task-event__sent', author: 'ff_module-task-event__author-action', files: 'ff_module-task-event__files', message: 'ff_module-task-event__message'}
 };
 
-var expectedValues = [{
-    sent: dExpected[0],
-    author: 'Sally Student set a task:',
-    taskTitle: 'Write an Essay'
+var shouldntExist = 'shouldnt-exist';
+
+var events = [{
+    props: {
+        type: eventTypes.setTask,
+        sent: new Date(dStrings[0]),
+        author: { name: 'Sally Student' },
+        taskTitle: 'Write an Essay'
+    },
+    expected: {
+        sent: dExpected[0],
+        author: 'Sally Student set a task:',
+        taskTitle: 'Write an Essay'
+    }
 }, {
-    sent: dExpected[0],
-    author: 'Sally Student added a mark:',
-    mark:'7/10',
-    grade: ', B'
+    props: {
+        type: eventTypes.markAndGrade,
+        sent: new Date(dStrings[0]),
+        author: { name: 'Sally MarkAndGrade' },
+        mark: 7,
+        markMax: 10,
+        grade: 'B',
+        markAndGrade: ''
+    },
+    expected: {
+        sent: dExpected[0],
+        author: 'Sally MarkAndGrade added a mark and grade:',
+        mark: '7/10',
+        grade: 'B',
+        markAndGrade: '7/10, B'
+    }
 }, {
-    sent: dExpected[0],
-    author: 'Sally Student added a mark:',
-    mark: '',
-    grade: 'B'
+    props: {
+        type: eventTypes.markAndGrade,
+        sent: new Date(dStrings[0]),
+        author: { name: 'Sally Grade' },
+        grade: 'B',
+        markAndGrade: ''
+    },
+    expected: {
+        sent: dExpected[0],
+        author: 'Sally Grade added a grade:',
+        mark: '',
+        grade: 'B',
+        markAndGrade: 'B'
+    }
 }, {
-    sent: dExpected[0],
-    author: 'Sally Student added a mark:',
-    mark: '',
-    grade: 'B',
-    message: 'Good work'
+    props: {
+        type: eventTypes.markAndGrade,
+        sent: new Date(dStrings[0]),
+        author: { name: 'Sally GradeAndMessage' },
+        grade: 'B',
+        message: 'Good work',
+        markAndGrade: ''
+    },
+    expected: {
+        sent: dExpected[0],
+        author: 'Sally GradeAndMessage added a grade:',
+        mark: '',
+        grade: 'B',
+        markAndGrade: 'B',
+        message: 'Good work'
+    }
 }, {
-    sent: dExpected[0],
-    author: 'Sally Student added a mark:',
-    mark: '7/10',
-    grade: ''
+    props: {
+        type: eventTypes.markAndGrade,
+        sent: new Date(dStrings[0]),
+        author: { name: 'Sally MarkAndMessage' },
+        mark: 6,
+        markMax: 10,
+        message: 'Good work',
+        markAndGrade: ''
+    },
+    expected: {
+        sent: dExpected[0],
+        author: 'Sally MarkAndMessage added a mark:',
+        mark: '6/10',
+        markAndGrade: '6/10',
+        message: 'Good work'
+    }
 }, {
-    sent: dExpected[1],
-    author: 'Terry Teacher stamped response as seen.',
-    message: 'Message from the teacher'
+    props: {
+        type: eventTypes.markAndGrade,
+        sent: new Date(dStrings[0]),
+        author: { name: 'Sally Student' },
+        mark: 7,
+        markMax: 10,
+        markAndGrade: ''
+    },
+    expected: {
+        sent: dExpected[0],
+        author: 'Sally Student added a mark:',
+        mark: '7/10',
+        grade: '',
+        markAndGrade: '7/10',
+    }
 }, {
-    sent: dExpected[2],
-    author: 'Terry Teacher added a comment:',
-    message: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
+    props: {
+        type: eventTypes.stampResponseAsSeen,
+        sent: new Date(dStrings[1]),
+        author: { name: 'Terry Teacher' },
+        message: 'Message from the teacher'
+    },
+    expected: {
+        sent: dExpected[1],
+        author: 'Terry Teacher stamped response as seen.',
+        message: 'Message from the teacher'
+    }
 }, {
-    sent: dExpected[0],
-    author: 'Terry Teacher requested resubmission.',
-    message: 'Message from the teacher'
+    props: {
+        type: eventTypes.comment,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Terry Teacher' },
+        message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    },
+    expected: {
+        sent: dExpected[2],
+        author: 'Terry Teacher added a comment:',
+        message: '“Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!”'
+    }
 }, {
-    sent: dExpected[1],
-    author: 'Terry Teacher confirmed completion.',
-    message: 'Message from the teacher'
+    props: {
+        type: eventTypes.requestResubmission,
+        sent: new Date(dStrings[0]),
+        author: { name: 'Terry Teacher' },
+        message: 'Message from the teacher'
+    },
+    expected: {
+        sent: dExpected[0],
+        author: 'Terry Teacher requested resubmission.',
+        message: 'Message from the teacher'
+    }
 }, {
-    sent: dExpected[2],
-    author: 'Terry Teacher confirmed student is excused.',
-    message: 'Message from the teacher'
+    props: {
+        type: eventTypes.confirmTaskIsComplete,
+        sent: new Date(dStrings[1]),
+        author: { name: 'Terry Teacher' },
+        message: 'Message from the teacher'
+    },
+    expected: {
+        sent: dExpected[1],
+        author: 'Terry Teacher confirmed completion.',
+        message: 'Message from the teacher'
+    }
+}, {
+    props: {
+        type: eventTypes.confirmStudentIsExcused,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Terry Teacher' },
+        message: 'Message from the teacher'
+    },
+    expected: {
+        sent: dExpected[2],
+        author: 'Terry Teacher confirmed student is excused.',
+        message: 'Message from the teacher'
+    }
+}, {
+    props: {
+        type: eventTypes.deleteResponse,
+        sent: new Date(dStrings[0]),
+        author: { name: 'Terry Teacher' }
+    },
+    expected: {
+        sent: dExpected[0],
+        author: 'Terry Teacher deleted a response.'
+    }
+}, {
+    props: {
+        type: eventTypes.confirmStudentIsUnexcused,
+        sent: new Date(dStrings[1]),
+        author: { name: 'Terry Teacher' }
+    },
+    expected: {
+        sent: dExpected[1],
+        author: 'Terry Teacher unexcused student.'
+    }
+}, {
+    props: {
+        type: eventTypes.addFile,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Sally StudentFiles' },
+        files: [{
+            title: 'File one',
+            href: '#'
+        }, {
+            title: 'File two',
+            type: 'page',
+            href: '#'
+        }, {
+            title: 'File two'
+        }]
+    },
+    expected: {
+        sent: dExpected[2],
+        author: 'Sally StudentFiles added files:',
+        files: 'File oneFile twoFile two'
+    }
+}, {
+    props: {
+        type: eventTypes.addFile,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Sally StudentFile' },
+        files: [{
+            title: 'File one',
+            href: '#'
+        }]
+    },
+    expected: {
+        sent: dExpected[2],
+        author: 'Sally StudentFile added a file:',
+        files: 'File one'
+    }
+}, {
+    props: {
+        type: eventTypes.comment,
+        deleted: true,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Terry Teacher' },
+    },
+    expected: {
+        sent: dExpected[2],
+        author: 'Terry Teacher deleted a comment.',
+    }
+}, {
+    props: {
+        type: eventTypes.addFile,
+        deleted: true,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Sally StudentFiles' },
+        files: [{
+            title: 'File one',
+            href: '#'
+        }, {
+            title: 'File two',
+            type: 'page',
+            href: '#'
+        }, {
+            title: 'File two'
+        }]
+    },
+    expected: {
+        sent: dExpected[2],
+        author: 'Sally StudentFiles deleted files.',
+        files: shouldntExist
+    }
+}, {
+    props: {
+        type: eventTypes.addFile,
+        deleted: true,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Sally StudentFile' },
+        files: [{
+            title: 'File one',
+            href: '#'
+        }]
+    },
+    expected: {
+        sent: dExpected[2],
+        author: 'Sally StudentFile deleted a file.',
+        files: shouldntExist
+    }
 }];
+
+
+
+
 
 describe('TaskEvent', function() {
     var component;
 
     before(function() {
-        var element = React.createElement(TaskEvent, { event: events[0] });
+        var element = React.createElement(TaskEvent, { event: events[0].props });
         component = TestUtils.renderIntoDocument(element);
     });
 
@@ -142,21 +305,30 @@ describe('TaskEvent', function() {
     });
 
     _.each(events, function(_event, index) {
+        var testProps = _.omit(_event.props, ['type', 'maxMark']);
+        describe(_event.props.type, function() {
 
-        describe(_event.type, function() {
-
-            _.each(testProps[index], function(prop, key, __event) {
+            _.each(testProps, function(prop, key) {
                 var element, component;
-                var testClass = classes[_event.type][key];
+                var testClass = classes[_event.props.type][key];
 
                 if (!testClass) return null;
 
-                it('should render \'' + expectedValues[index][key] + '\' for prop \'' + key + '\' with value \'' + prop.toString() + '\'', function() {
-                    element = React.createElement(TaskEvent, { event: _event });
+                it('should render \'' + _event.expected[key] + '\' for prop \'' + key + '\' with value \'' + prop.toString() + '\'', function() {
+                    element = React.createElement(TaskEvent, { event: _event.props });
                     component = TestUtils.renderIntoDocument(element);
 
-                    var node = TestUtils.findRenderedDOMComponentWithClass(component, testClass);
-                    expect(node.textContent).to.equal(expectedValues[index][key]);
+                    if (_event.expected[key] === shouldntExist) {
+                        var attemptToFindNode = function() {
+                            TestUtils.findRenderedDOMComponentWithClass(component, testClass);
+                        };
+                        expect(attemptToFindNode).to.throw(Error, /Did not find/);
+                    } else {
+                        var node = TestUtils.findRenderedDOMComponentWithClass(component, testClass);
+                        expect(node.textContent).to.equal(_event.expected[key]);
+                    }
+
+
                 });
             });
         });

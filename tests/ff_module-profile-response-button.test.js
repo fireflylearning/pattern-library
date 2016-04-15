@@ -47,7 +47,7 @@ var buttonProps = [{
         isRead: false,
         label: "Terry Trilobite",
         event: {
-            type: eventTypes.requestResubmission,
+            type: eventTypes.confirmTaskIsComplete,
             sent: new Date()
         },
         pic_href: "/images/default_picture.png"
@@ -60,19 +60,42 @@ var buttonProps = [{
             grade: 'A'
         },
         event: {
-            type: eventTypes.requestResubmission,
+            type: eventTypes.stampResponseAsSeen,
             sent: new Date()
         },
         pic_href: "/images/group-icon.png"
     }, {
         onSelect: sinon.spy(),
-        label: "Joshua No State",
-        markAndGrade: {
-            grade: 'A'
-        },
+        label: "Joshua ConfirmExcused",
         event: {
-            type: eventTypes.requestResubmission,
+            type: eventTypes.confirmStudentIsExcused,
             sent: new Date()
+        },
+        pic_href: "/images/group-icon.png"
+    }, {
+        onSelect: sinon.spy(),
+        label: "Joshua Comment",
+        event: {
+            type: eventTypes.comment,
+            sent: new Date()
+        },
+        pic_href: "/images/group-icon.png"
+    }, {
+        onSelect: sinon.spy(),
+        label: "Joshua Set Task",
+
+        event: {
+            type: eventTypes.setTask,
+            sent: new Date()
+        },
+        pic_href: "/images/group-icon.png"
+    }, {
+        onSelect: sinon.spy(),
+        label: "Joshua AddedFile",
+        event: {
+            type: eventTypes.addFile,
+            sent: new Date(),
+            files: []
         },
         pic_href: "/images/group-icon.png"
     }],
@@ -94,9 +117,9 @@ function testClasses(component, value, props) {
 function statusSummaryText(event) {
     switch (event.type) {
         case eventTypes.setTask:
-            return "Task set";
+            return "Awaiting Response";
         case eventTypes.stampResponseAsSeen:
-            return "Confirmed as seen";
+            return "Task stamped as seen";
         case eventTypes.requestResubmission:
             return "Resubmission requested";
         case eventTypes.confirmTaskIsComplete:
@@ -106,7 +129,9 @@ function statusSummaryText(event) {
         case eventTypes.comment:
             return "Comment sent";
         case eventTypes.markAndGrade:
-            return "Mark sent";
+            return "Marked";
+        case eventTypes.addFile:
+            return "Response Received";
         default:
             return "";
     }

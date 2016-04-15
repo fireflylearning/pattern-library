@@ -1,0 +1,2 @@
+{% include '../../ff_container/ff_container-landing-section/ff_container-landing-section.xml' %}
+{% include '../../ff_module/ff_module-columnar-list/ff_module-columnar-list.xml' %}

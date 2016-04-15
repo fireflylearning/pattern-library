@@ -17,6 +17,9 @@ var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
 
+var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
+
+
 var events = [{
     type: eventTypes.setTask,
     localEventId: '2',
@@ -70,6 +73,25 @@ var events = [{
     sent: 'Mon 7 Dec, 18:45:10',
     author: { name: 'Sally Student' },
     message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (10)'
+}, {
+    type: eventTypes.deleteResponse,
+    localEventId: '4a',
+    sent: new Date(dStrings[0]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.confirmStudentIsUnexcused,
+    localEventId: '4b',
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.addFile,
+    localEventId: '4c',
+    sent: new Date(dStrings[2]),
+    author: { name: 'Sally Student' },
+    files:[{
+        title: 'File one',
+        href:'#'
+    }]
 }];
 
 var recipientData = [{

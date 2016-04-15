@@ -1,29 +1,45 @@
+// FIX ME
+// this is a temporary fix for lack of prefixing on the backend, so can be removed once that's working.
+#ff_module-columnar-list() {
+	.columns (@num) {
+		-moz-column-count: @num;
+		-webkit-column-count: @num;
+		column-count: @num;
+	}
+	.column-gap (@size) {
+		-moz-column-gap: @size;
+		-webkit-column-gap: @size;
+		column-gap: @size;
+	}
+}
+//
+
 .ff_module-columnar-list {
 	margin: 0;
-	padding: 0;
+	padding: @ff_size_control_vertical/2 0;
 	&__item {
 		#ff_mix-util-prose > .text-default();
-		#ff_mix-util-prose > .spacing(2);
+		margin: @ff_size_control_vertical/2 0;
 		display: inline-block;
 		width: 100%;
 	}
 	&__link {
 		#ff_mix-util-prose > .link-no-decoration();
 	}
-	column-gap: 1.25rem;
+	column-gap: 2rem;
 	@media (min-width: @ff_bp_narrow) {
-		column-count: 2;
+		#ff_module-columnar-list > .columns(2);
 	}
 	@media (min-width: @ff_bp_medium) {
-		column-count: 3;
+		#ff_module-columnar-list > .columns(3);
 		&--two-column {
-			column-count: 2;
+			#ff_module-columnar-list > .columns(2);
 		}
 	}
 	@media (min-width: @ff_bp_wide) {
-		column-count: 4;
+		#ff_module-columnar-list > .columns(4);
 		&--two-column {
-			column-count: 2;
+			#ff_module-columnar-list > .columns(2);
 		}
 	}
 }
