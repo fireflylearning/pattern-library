@@ -15,3 +15,20 @@ data:
 
 requires: ff_module-progress
 ---
+
+# React component
+
+<div data-ff_module-task=""></div>
+
+## Props
+
+- **`to`**: {String} Required
+- **`message`**: {String} Required
+- **`linkHref`**: {String} Required
+- **`from`**: {String}
+- **`duedate`**: {String}
+- **`progress`**: {Object}
+
+    Expects data in the format of the Progress component (ff_module-progress)
+- **`modifier`**: {String}
+- **`classes`**: {String}
