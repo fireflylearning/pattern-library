@@ -2,6 +2,7 @@
 
 var React = require('react');
 var InlineEdit = require('../ff_module-inline-edit/ff_module-inline-edit');
+var Progress = require('../ff_module-progress/ff_module-progress');
 
 module.exports = React.createClass({
 	displayName: 'FormPreview',
@@ -11,38 +12,55 @@ module.exports = React.createClass({
 				title: React.PropTypes.string.isRequired,
 				url: React.PropTypes.string,
 				value: React.PropTypes.string,
+				modifier: React.PropTypes.string,
 				previewFor: React.PropTypes.string,
 				list: React.PropTypes.array,
-				html: React.PropTypes.element
+				html: React.PropTypes.element,
+				component: React.PropTypes.element
 			})
 		).isRequired
 	},
+	generateClass: function(base, props) {
+		var classNames = [];
+		props = props || {};
+		classNames.push(base);
+		if (!!props.modifier) classNames.push(base + '--' + props.modifier);
+		if (!!props.classes) classNames.push(props.classes);
+		if (!!props.className) classNames.push(props.className);
+		return classNames.join(' ');
+	},
 	render: function() {
 		return <div className='ff_module-form-preview'>
-			<dl className='ff_module-form-preview__list'>
+			<ul className='ff_module-form-preview__list'>
 				{this.props.items.map((item)=>{
 					var isInlineEdit = item.url ?  <span className='ff_module-form-preview__edit-link'><InlineEdit url={item.url} text='Edit'></InlineEdit></span> : '';
+					var itemData;
 					
-					var listItemTitle = <dt className='ff_module-form-preview__list__title'>
-					<span className='ff_module-form-preview__list__title__text'>{item.title}</span>{isInlineEdit}</dt>;
-					
-					var listItemData;
-					
-					if (item.list) {
-						listItemData = <dl className='ff_module-form-preview__sublist'>
+					if(item.list) {
+						itemData = <dl className='ff_module-form-preview__sublist'>
 							{item.list.map((item)=>{
 								return [<dt className='ff_module-form-preview__sublist__title'>{item.title}</dt>,
-								<dd className='ff_module-form-preview__sublist__data' data-ff-preview-for={item.previewfor}>{item.value}</dd>]
+								<dd className='ff_module-form-preview__sublist__data' data-ff-preview-for={item.previewfor}>{item.value}</dd>];
 							})}
 						</dl>;
+
 					} else if(item.html) {
-						listItemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>
+						itemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>;
+					} else if(item.progress) {
+						itemData = <div className="ff_module-form-preview__progress"><Progress {...item.progress}/></div>;
+					} else if(item.component) {
+						itemData = <div className='ff_module-form-preview__component'>{item.component}</div>;
 					} else {
-						listItemData = item.value;
+						itemData = item.value;
 					}
-					return [ listItemTitle, <dd className='ff_module-form-preview__list__data' data-ff-preview-for={item.previewfor}>{listItemData}</dd> ];
+					return <li className={this.generateClass('ff_module-form-preview__item', item) }>
+						<dl>
+							<dt className='ff_module-form-preview__list__title'><span className='ff_module-form-preview__list__title__text'>{item.title}</span>{isInlineEdit}</dt>
+						<dd className='ff_module-form-preview__list__data' data-ff-preview-for={item.previewfor}>{itemData}</dd>
+						</dl>
+					</li>;
 				})}
-			</dl>
+			</ul>
 		</div>;
 	}
 });

@@ -1,8 +1,16 @@
 
 .ff_module-form-preview {
+    .ff_mix-clearfix(); 
     &__list {
+        display: flex;
+        flex-flow: column;
+        list-style-type: none;
         #ff_mix-util-prose > .text-default();
         margin: 0;
+        .ff_mix-clearfix(); 
+        @media (min-width: @ff_bp_wide) {
+            display: block;
+        }
     }
     &__list__title {
         #ff_mix-util-prose > .h-default();
@@ -50,5 +58,41 @@
         #ff_mix-util-prose > .text-default();
         margin-bottom: @ff_size_control_vertical*0.35;
     }
+    @media (min-width: @ff_bp_wide) {
+            &__item--controls {
+                float: right;
+                clear: right;
+                width: 45%;
+            }
+            &__item--progress {
+                float: right;
+                width: 45%;
+            }
+
+            &__item--description {
+                clear: both;    
+            }
+
+            &__controls {
+                margin-top: @ff_size_spacing_max;
+            }   
+        }
+        &__item {
+            order: 0
+        }
+        &__item--controls {
+            order: 2;
+        }
+        &__item--progress {
+            order: 1;
+        }
+
+        &__item--description {
+            order: 3;  
+        }
+
+        &__component {
+            margin-top: @ff_size_spacing_max;
+        }   
 
 }
