@@ -33,7 +33,7 @@ var buttonProps = [{
     id: 'btn-lg-icon-hidden',
     modifier: 'large',
     icon: 'calendar',
-    hide_text: true,
+    hideText: true,
     onClick: sinon.spy()
 }, {
     text: 'Button modifier: tertiary',
@@ -96,25 +96,26 @@ var testDefs = {
     },
     'icon': function(component, value, props) {
         var node = getIcon(component);
-        if (props.hide_text) {
-            expect(node.className).to.equal('ff_icon ff_icon-' + value);
+        if (props.hideText) {
+
+            expect(node.className).to.equal('ff_icon ff_icon-' + value + ' ff_module-button__icon ff_module-button__icon--no-text');
         } else {
-            expect(node.className).to.equal('ff_icon ff_icon-' + value + ' ' + (props.iconAlign ? 'ff_icon-' + props.iconAlign : 'ff_icon-left'));
+            expect(node.className).to.equal('ff_icon ff_icon-' + value + ' ff_module-button__icon ' + (props.iconAlign ? 'ff_icon-' + props.iconAlign : 'ff_icon-left'));
         }
     },
     'iconAlign': function(component, value, props) {
         var node = getIcon(component);
-        if (props.hide_text) {
-            expect(node.className).to.equal('ff_icon ff_icon-' + props.icon);
+        if (props.hideText) {
+            expect(node.className).to.equal('ff_icon ff_icon-' + props.icon+ ' ff_module-button__icon ');
         } else {
-            expect(node.className).to.equal('ff_icon ff_icon-' + props.icon + ' ff_icon-right');
+            expect(node.className).to.equal('ff_icon ff_icon-' + props.icon+ ' ff_module-button__icon ff_icon-right');
         }
     },
     'disabled': function(component, value, props) {
         var node = getButton(component);
         expect(node.getAttribute('disabled')).to.exist;
     },
-    'hide_text': function(component, value, props) {
+    'hideText': function(component, value, props) {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-button__content');
         expect(node.className).to.equal('ff_module-button__content ff_module-button__content--hidden');
     },
