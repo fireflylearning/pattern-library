@@ -12,7 +12,7 @@ module.exports = React.createClass({
 				title: React.PropTypes.string.isRequired,
 				url: React.PropTypes.string,
 				value: React.PropTypes.string,
-				value: React.PropTypes.modifier,
+				modifier: React.PropTypes.string,
 				previewFor: React.PropTypes.string,
 				list: React.PropTypes.array,
 				html: React.PropTypes.element,
