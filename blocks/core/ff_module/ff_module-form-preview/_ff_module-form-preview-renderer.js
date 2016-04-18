@@ -7,19 +7,19 @@ var MarkingControls = require('../ff_module-form-marking-controls/ff_module-form
 var data = {
 	items: [{
 		modifier: 'progress',
-		title: 'Progress', 
+		title: 'Progress',
 		progress: {
 			id: 1,
 			classes: "ff_module-other-module-class ff_utils-other-class",
-			sent_to: 23,
-			no_excused: 2,
-			completed_by: 20,
+			sentTo: 23,
+			numExcused: 2,
+			completedBy: 20,
 			marked: 3
 		},
 	},
-	{	
+	{
 		modifier: 'controls',
-		title: 'My component', 
+		title: 'My component',
 		component: <span className='crate_util-block'>My component</span>
 	},
 	{

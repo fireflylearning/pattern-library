@@ -9,58 +9,58 @@ var data = {
     id0: {
         id: 1,
         classes: "ff_module-other-module-class ff_utils-other-class",
-        sent_to: 23,
-        no_excused: 2,
-        completed_by: 20,
+        sentTo: 23,
+        numExcused: 2,
+        completedBy: 20,
         marked: 3
     },
     id1: {
         id: 2,
-        sent_to: 23,
-        no_excused: 2,
-        completed_by: 20,
+        sentTo: 23,
+        numExcused: 2,
+        completedBy: 20,
         marked: 0
     },
     id2: {
         id: 3,
-        sent_to: 23,
-        no_excused: 2,
-        completed_by: 0,
+        sentTo: 23,
+        numExcused: 2,
+        completedBy: 0,
         marked: 0
     },
     id3: {
         id: 4,
-        sent_to: 0,
-        no_excused: 0,
-        completed_by: 0,
+        sentTo: 0,
+        numExcused: 0,
+        completedBy: 0,
         marked: 0
     },
     id4: {
         id: 5,
-        sent_to: 10096,
-        no_excused: 2,
-        completed_by: 875,
+        sentTo: 10096,
+        numExcused: 2,
+        completedBy: 875,
         marked: 100
     },
     id5: {
         id: 6,
-        sent_to: 10096,
-        no_excused: 2,
-        completed_by: 875,
+        sentTo: 10096,
+        numExcused: 2,
+        completedBy: 875,
         marked: 30
     },
     id6: {
         id: 7,
-        sent_to: 100,
-        no_excused: 0,
-        completed_by: 100,
+        sentTo: 100,
+        numExcused: 0,
+        completedBy: 100,
         marked: 50
     },
     id7: {
         id: 8,
-        sent_to: 100,
-        no_excused: 0,
-        completed_by: 100,
+        sentTo: 100,
+        numExcused: 0,
+        completedBy: 100,
         marked: 100
     }
 }
