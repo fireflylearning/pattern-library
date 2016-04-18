@@ -6,11 +6,11 @@ module.exports = React.createClass({
   displayName: 'Progress',
 
   getCompletedWidth: function() {
-    return {width: Math.floor(((this.props.completed_by / this.props.sent_to) - (this.props.marked / this.props.sent_to)) * 100)+'%'};
+    return {width: Math.floor(((this.props.completedBy / this.props.sentTo) - (this.props.marked / this.props.sentTo)) * 100)+'%'};
   },
 
   getMarkedWidth: function() {
-    return {width: Math.floor(this.props.marked / this.props.sent_to * 100)+'%'};
+    return {width: Math.floor(this.props.marked / this.props.sentTo * 100)+'%'};
   },
 
   generateClass: function(base) {
@@ -28,9 +28,9 @@ module.exports = React.createClass({
     classNames.push(base);
     classNames.push(base + '--' + type);
     if(type === 'marked') {
-      if(props.marked === props.completed_by || props.completed_by === 0) { classNames.push(base + '--lonely'); }
+      if(props.marked === props.completedBy || props.completedBy === 0) { classNames.push(base + '--lonely'); }
     } else {
-      var calculatedMarkedValue = Math.floor(props.marked / props.sent_to * 100);
+      var calculatedMarkedValue = Math.floor(props.marked / props.sentTo * 100);
       if(calculatedMarkedValue === 0) { classNames.push(base + '--lonely'); }
     }
     return classNames.join(' ');
@@ -43,8 +43,8 @@ module.exports = React.createClass({
   render: function() {
 
     var marked = this.props.marked,
-        completed = this.props.completed_by,
-        total = this.props.sent_to;
+        completed = this.props.completedBy,
+        total = this.props.sentTo;
 
     return <div className={this.generateClass('ff_module-progress')}>
       <div className="ff_module-progress__stacked">

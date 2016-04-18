@@ -1,3 +1,10 @@
+# 0.2.5 (18/04/2016)
+
+## Updates
+- Added [grunticon customselector](https://github.com/filamentgroup/grunticon#optionscustomselectors) support for generating icon classes based on state/modifier rather than just color.
+- Added per-theme icon color config support.
+- Added eslintrc file and task in preparation for adding linting step before test command.
+
 # 0.2.4 (31/03/2016)
 
 ## Breaking changes
