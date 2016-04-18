@@ -4,6 +4,7 @@
   "description": "Node xslt compilation test",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint blocks/core/**/*.js",
     "test": "mocha tests/*.test.js --watch --compilers jsx:babel-register,js:babel-register",
     "start": "npm install && gulp"
   },
@@ -24,6 +25,7 @@
     "bluebird": "^3.2.1",
     "browser-sync": "^2.11.1",
     "del": "^2.2.0",
+    "eslint": "^2.8.0",
     "findit2": "^2.2.3",
     "glob": "^7.0.0",
     "gray-matter": "^2.0.2",
@@ -68,6 +70,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint-plugin-react": "^5.0.1",
     "jquery": "^2.2.1",
     "jsdom": "^8.0.2",
     "mocha": "^2.4.5",
