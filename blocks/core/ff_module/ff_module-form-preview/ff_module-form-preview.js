@@ -34,27 +34,22 @@ module.exports = React.createClass({
 					var isInlineEdit = item.url ?  <span className='ff_module-form-preview__edit-link'><InlineEdit url={item.url} text='Edit'></InlineEdit></span> : '';
 					var itemData;
 					
-					switch(true) {
-						case !!item.list:
-							itemData = <dl className='ff_module-form-preview__sublist'>
-								{item.list.map((item)=>{
-									return [<dt className='ff_module-form-preview__sublist__title'>{item.title}</dt>,
-									<dd className='ff_module-form-preview__sublist__data' data-ff-preview-for={item.previewfor}>{item.value}</dd>];
-								})}
-							</dl>;
-							break;
-						case !!item.html:
-							itemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>;
-							break;
-						case !!item.progress:
-							itemData = <div className="ff_module-form-preview__progress"><Progress {...item.progress}/></div>;
-							break;
-						case !!item.markingControls:
-							itemData = <div className='ff_module-form-preview__controls'>{this.props.controls}</div>;
-							break;
-						default:
-							itemData = item.value;
+					if(item.list) {
+						itemData = <dl className='ff_module-form-preview__sublist'>
+							{item.list.map((item)=>{
+								return [<dt className='ff_module-form-preview__sublist__title'>{item.title}</dt>,
+								<dd className='ff_module-form-preview__sublist__data' data-ff-preview-for={item.previewfor}>{item.value}</dd>];
+							})}
+						</dl>;
 
+					} else if(item.html) {
+						itemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>;
+					} else if(item.progress) {
+						itemData = <div className="ff_module-form-preview__progress"><Progress {...item.progress}/></div>;
+					} else if(item.component) {
+						itemData = <div className='ff_module-form-preview__component'>{item.component}</div>;
+					} else {
+						itemData = item.value;
 					}
 					return <li className={this.generateClass('ff_module-form-preview__item', item) }>
 						<dl>
