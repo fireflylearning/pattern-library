@@ -13,6 +13,8 @@ function updateIconConfig(iconConfig, folder) {
     config.previewhtml = 'preview.' + folder + '.html';
     config.tmpDir = 'grunticon-tmp-' + folder;
     config.colors = (iconConfig.colors && iconConfig.colors[folder]) || {};
+    config.customselectors = (iconConfig.customselectors && iconConfig.customselectors[folder]) || {};
+
     return config;
 }
 

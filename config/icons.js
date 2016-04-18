@@ -28,6 +28,17 @@ module.exports = {
     defaultWidth: '32px',
     defaultHeight: '32px',
 
+    customselectors: {
+        core: {
+            'ff_icon-page-up-open-white': ['.ff_module-dropdown-button__icon--is-open'],
+            'ff_icon-page-down-open-white': ['.ff_module-dropdown-button__icon--is-enabled']
+        },
+        melody: {
+            'ff_icon-page-up-open-white': ['.ff_module-dropdown-button__icon--is-open'],
+            'ff_icon-page-down-open-white': ['.ff_module-dropdown-button__icon--is-enabled']
+        }
+    },
+
     // define vars that can be used in filenames if desirable,
     // like foo.colors-primary-secondary.svg
     colors: {
