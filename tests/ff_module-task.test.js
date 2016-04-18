@@ -59,9 +59,9 @@ describe('Task', function() {
   it('should test whether a \'Progress\' component is rendered if \'progress\' prop is supplied', function() {
     var element = React.createElement(Task, {
       progress: {
-        sent_to: 23,
-        no_excused: 2, 
-        completed_by: 20, 
+        sentTo: 23,
+        numExcused: 2, 
+        completedBy: 20, 
         marked: 3
       }
     });

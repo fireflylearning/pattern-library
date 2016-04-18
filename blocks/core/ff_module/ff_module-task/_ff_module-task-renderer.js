@@ -17,9 +17,9 @@ var props = {
     linkHref: '#',
     progress: {
         classes: "ff_module-other-module-class ff_utils-other-class",
-        sent_to: 23,
-        no_excused: 2, 
-        completed_by: 20, 
+        sentTo: 23,
+        numExcused: 2, 
+        completedBy: 20, 
         marked: 3
     }
 }
