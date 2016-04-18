@@ -22,7 +22,9 @@ module.exports = React.createClass({
             body: React.createElement('div', {},
                 React.createElement(TaskResponseRepeater, {
                 events: this.props.events,
-                key: 'response-repeater'
+                key: 'response-repeater',
+                onDelete: this.onDelete,
+                onEdit: this.onEdit
             }), editor),
             bar: React.createElement(TaskResponseActions, { onClick: this.onEventChange })
         });
@@ -66,5 +68,11 @@ module.exports = React.createClass({
         if (typeof document !== "undefined" && document.body) {
             Modal.setAppElement(document.body);
         }
+    },
+    onDelete() {
+        console.log('onDelete');
+    },
+    onEdit() {
+        console.log('onEdit');
     }
 });

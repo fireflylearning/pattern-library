@@ -13,7 +13,9 @@ module.exports = React.createClass({
     displayName: 'TaskEventRepeater',
     render: template,
     propTypes: {
-        events:React.PropTypes.array.isRequired
+        events:React.PropTypes.array.isRequired,
+        onEdit: React.PropTypes.func.isRequired,
+        onDelete: React.PropTypes.func.isRequired
     },
     getEvents: function() {
         var events = this.props.events;

@@ -21,7 +21,7 @@ function defaultState(){
     var files = this.props.event.files || [];
     var fileText = getFileText(this.props);
 
-    return <TaskEventBase event={this.props.event}>
+    return <TaskEventBase event={this.props.event} eventActionsList={this.props.eventActionsList}>
         <p className="ff_module-task-event__author-action">{this.props.event.author.name + ' added ' + fileText}:</p>
         <ModuleFileList files={files} classes="ff_module-task-event__files"/>
     </TaskEventBase>

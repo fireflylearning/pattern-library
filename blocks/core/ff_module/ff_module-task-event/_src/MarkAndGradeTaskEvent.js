@@ -32,7 +32,7 @@ function defaultState(){
 
     var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
     var status = statusText ? <p className="ff_module-task-event__author-action">{statusText+':'}</p> : null;
-    return  <TaskEventBase event={event}>
+    return  <TaskEventBase event={event} eventActionsList={this.props.eventActionsList}>
                 {status}
                 {markAndGrade}
                 {message}

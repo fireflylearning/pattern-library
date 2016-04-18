@@ -81,9 +81,44 @@ function getComponent(event){
 module.exports = React.createClass({
     displayName: 'TaskEvent',
     propTypes: {
-        event: React.PropTypes.object.isRequired
+        event: React.PropTypes.object.isRequired,
+        onDelete: React.PropTypes.func.isRequired,
+        onEdit: React.PropTypes.func.isRequired
     },
     render: function() {
-        return React.createElement(getComponent(this.props.event), { event: this.props.event });
+        var eventActionsVar = eventActions(this.props);
+        return React.createElement(
+            getComponent(this.props.event), { 
+                event: this.props.event,
+                eventActionsList: eventActionsVar
+            });
     }
 });
+
+var eventActions = function(props) {
+    var actions = [];
+    deleteAction(actions, props);
+    editAction(actions, props);
+    return actions;
+}
+
+var deleteAction = function(actions, props) {
+    console.log(props);
+    if (props.event.canDelete) {
+        actions.push({
+            text: 'Delete',
+            key: eventTypes.delete,
+            onClick: props.onDelete
+        });
+    }
+}
+
+var editAction = function(actions, props) {
+    if (props.event.canEdit) {
+        actions.push({
+            text: "Edit",
+            key: "event-edit",
+            onClick: props.onEdit
+        });
+    }
+}

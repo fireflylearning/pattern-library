@@ -10,40 +10,56 @@ var events = [{
     type: eventTypes.setTask,
     sent: new Date(dStrings[0]),
     author: { name: 'Sally Student' },
-    taskTitle: 'Write an Essay'
+    taskTitle: 'Write an Essay',
+    canEdit: false,
+    canDelete: false
 }, {
     type: eventTypes.stampResponseAsSeen,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' },
-    message: 'Message to the student'
+    message: 'Message to the student',
+    canEdit: true,
+    canDelete: true
 }, {
     type: eventTypes.comment,
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' },
-    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
+    canEdit: true,
+    canDelete: true
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canEdit: false,
+    canDelete: true
 }, {
     type: eventTypes.confirmTaskIsComplete,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canEdit: false,
+    canDelete: true
 }, {
     type: eventTypes.confirmStudentIsExcused,
     sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canEdit: false,
+    canDelete: false
 }, {
     type: eventTypes.markAndGrade,
     sent: new Date(dStrings[0]),
     author: { name: 'Terry Teacher' },
     mark: 7,
     markMax: 10,
-    grade: 'B'
+    grade: 'B',
+    canEdit: true,
+    canDelete: true
 }, {
     type: eventTypes.confirmStudentIsUnexcused,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canEdit: false,
+    canDelete: false
 }, {
     type: eventTypes.addFile,
     sent: new Date(dStrings[2]),
@@ -55,11 +71,15 @@ var events = [{
         title: 'File two',
         type: 'page',
         href:'#'
-    }]
+    }],
+    canEdit: true,
+    canDelete: true
 }, {
     type: eventTypes.deleteResponse,
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canEdit: false,
+    canDelete: false
 }, {
     type: eventTypes.addFile,
     sent: new Date(dStrings[2]),
@@ -72,7 +92,9 @@ var events = [{
         title: 'File two',
         type: 'page',
         href:'#'
-    }]
+    }],
+    canEdit: true,
+    canDelete: true
 }, {
     type: eventTypes.markAndGrade,
     deleted: true,
@@ -80,23 +102,31 @@ var events = [{
     author: { name: 'Terry Teacher' },
     mark: 7,
     markMax: 10,
-    grade: 'B'
+    grade: 'B',
+    canEdit: true,
+    canDelete: true
 }, {
     type: eventTypes.comment,
     deleted: true,
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' },
+    canEdit: true,
+    canDelete: true
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
     error: true,
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canEdit: false,
+    canDelete: true
 }, {
     type: eventTypes.setTask,
     sent: new Date(dStrings[0]),
     pending: true,
     author: { name: 'Sally Student' },
-    taskTitle: 'Write an Essay'
+    taskTitle: 'Write an Essay',
+    canEdit: false,
+    canDelete: false
 }];
 
 module.exports = function() {

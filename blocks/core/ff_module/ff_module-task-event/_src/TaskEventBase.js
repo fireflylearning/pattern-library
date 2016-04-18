@@ -3,6 +3,7 @@
 var React = require('react');
 var dateFormatting = require('../../../_lib/_ui/dateFormatting')();
 var ensureIsDate = require('../../../_lib/_ui/date-utils').ensureIsDate;
+var DropdownButton = require('./../../ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component.js');
 
 module.exports = React.createClass({
     displayName: 'TaskEventBase',
@@ -11,23 +12,13 @@ module.exports = React.createClass({
                     <time className="ff_module-task-event__sent">
                         {this.formatDate(this.props.event.sent)}
                     </time>
-                    <DropdownButton>
+                    <DropdownButton
                         id="event-actions"
                         key="event-actions"
                         modifier="compact-right-widelist"
                         text="..."
-                        list="{[
-                            {
-                                text: 'Delete',
-                                key: events.types.delete,
-                                onClick: this.props.event.onDelete
-                            }, {
-                                text: 'Edit',
-                                key: events.types.edit,
-                                onClick: this.props.event.onEdit
-                            }
-                        ]}"
-                    </DropdownButton>
+                        list={this.props.eventActionsList}
+                    />
                     {this.props.children}
                 </div>
     },

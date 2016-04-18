@@ -11,32 +11,44 @@ var events = [{
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' },
     message: 'Message to the student',
+    canDelete: true,
+    canEdit: false
 }, {
     type: eventTypes.comment,
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' },
     comment: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
-    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
+    canDelete: true,
+    canEdit: true
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
     error: true,
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canDelete: true,
+    canEdit: false
 }, {
     type: eventTypes.confirmTaskIsComplete,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canDelete: true,
+    canEdit: false
 }, {
     type: eventTypes.confirmStudentIsExcused,
     sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    canDelete: false,
+    canEdit: false
 }, {
     type: eventTypes.markAndGrade,
     sent: new Date(dStrings[0]),
     author: { name: 'Terry Teacher' },
     mark: 7,
     markMax: 10,
-    grade: 'B'
+    grade: 'B',
+    canDelete: true,
+    canEdit: true
 }].map(function(event, index) { event.localEventId = 'event' + index;
     return event; });
 
