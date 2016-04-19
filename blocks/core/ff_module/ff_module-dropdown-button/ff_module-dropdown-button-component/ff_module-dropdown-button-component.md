@@ -20,4 +20,5 @@ This component just renders an html dropdown button, it doesn't replicate the dr
 - **isDisabled**: {Boolean} Whether or not the dropdown can be clicked.
 - **isOpen**: {Boolean} If true, the list will be rendered in the open state.
 
-
+# Modifiers
+See [ff-module-dropdown-button](/blocks/core/ff_module/ff_module-dropdown-button/ff_module-dropdown-button.html) for details on dropdown styling and modifiers.
