@@ -8,7 +8,7 @@
 
     <div class="ff_module-recipient-picker__main" onClick="{this.resetInput}">
         <ul class="ff_module-recipient-picker-selected-list" onClick="{this.stopEventPropagation}">
-            <li class="ff_module-recipient-picker-selected-list__item" rt-repeat="recipient in this.state.selected" key="sel-{recipient.guid}">
+            <li rt-if="this.state.selected && this.state.selected.length > 0" class="ff_module-recipient-picker-selected-list__item" rt-repeat="recipient in this.state.selected" key="sel-{recipient.guid}">
 
                 <RecipientGroup guid="{recipient.guid}"
                 rt-if="recipient.type === 'groupprofile'"

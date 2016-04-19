@@ -41,7 +41,7 @@ module.exports = function () {
             'className': 'ff_module-recipient-picker-selected-list',
             'onClick': this.stopEventPropagation
         },
-        _.map(this.state.selected, repeatRecipient4.bind(this))
+        this.state.selected && this.state.selected.length > 0 ? _.map(this.state.selected, repeatRecipient4.bind(this)) : null
     ]), React.createElement('input', {
         'className': 'ff_module-recipient-picker__input ff_module-form-input ff_module-form-input--invisible',
         'name': 'recipient-picker-query',
