@@ -60,30 +60,28 @@
             color: lighten(@ff_color_control_link, 10%);
         }
     }
-    
     .link-no-dec-base(@color) {
         text-decoration: none;
         color: @color;
     }
-    .link-no-decoration(@color: @ff_color_control_link, @color-state: null) when (@color-state = null) {
+    .link-no-decoration(@color: @ff_color_control_link, @color-visited: null, @color-hover: null) when ((@color-visited = null) and (@color-hover = null)) {
         #ff_mix-util-prose > .link-no-dec-base(@color);
-        &:active, &:hover {
-           color: lighten(@color, 10%);
-        }
         &:visited {
            color: darken(@color, 10%);
         }
-    }
-    .link-no-decoration(@color: @ff_color_control_link, @color-state: null) when not (@color-state = null) {
-        #ff_mix-util-prose > .link-no-dec-base(@color);
         &:active, &:hover {
-            color: @color-state;
-        }
-        &:visited {
-            color: @color-state;
+           color: lighten(@color, 10%);
         }
     }
-    
+    .link-no-decoration(@color: @ff_color_control_link, @color-visited: null, @color-hover: null) when not ((@color-visited = null) and (@color-hover = null)) {
+        #ff_mix-util-prose > .link-no-dec-base(@color);
+        &:visited {
+            color: @color-visited;
+        }
+        &:active, &:hover {
+            color: @color-hover;
+        }
+    }
     .link-disabled(@color:@ff_color_control_link) {
         color: @color;
         &:visited {
