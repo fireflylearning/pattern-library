@@ -8,12 +8,10 @@ var Task = require('./ff_module-task.js'),
     selector = 'data-ff_module-task';
 
 var props = {
-    modifier: 'wibble',
-    classes: 'another-class',
-    from: 'Big Daddy',
-    to: 'A Class',
+    from: 'Terry Teacher',
+    to: 'Sally Student',
     duedate: "27/08/2018",
-    message: 'A big message from Big Daddy',
+    message: 'A big message from Terry Teacher',
     linkHref: '#',
     progress: {
         classes: "ff_module-other-module-class ff_utils-other-class",
