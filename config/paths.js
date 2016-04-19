@@ -12,6 +12,7 @@ function getPaths() {
         export: 'export/',
         assets: 'assets/',
         temp: '.tmp/',
+        icons: '.icons/',
         templates: 'src/templates',
         cssBuildPriority: [
             '**/outputs.less',
@@ -32,7 +33,7 @@ function getPaths() {
     };
     var paths = {
         export: basePaths.export,
-        clean: [basePaths.temp, basePaths.dest, basePaths.icons + '*/_icons/optimised_svgs/'],
+        clean: [basePaths.temp, basePaths.dest],
         dest: basePaths.dest,
         pages: {
             xslt: {
@@ -81,27 +82,28 @@ function getPaths() {
         },
         icons: {
             //relative to each theme folder
+            cache: basePaths.icons,
             optimise: {
                 srcDir: basePaths.blocks,
-                destDir: '.icons/optimised_svgs/',
+                destDir: path.join(basePaths.icons, 'optimised_svgs'),
                 src: '_icons/original_svgs/*.svg',
                 dest: '',
             },
             //relative to each theme folder
             grumpicon: {
-                srcDir: '.icons/optimised_svgs/',
-                destDir: '.icons/',
+                srcDir: path.join(basePaths.icons, 'optimised_svgs'),
+                destDir: basePaths.icons,
                 src: '*.svg',
                 dest: 'build',
                 templates: 'crate/layout/icons/templates/default-css.hbs',
                 previewTemplate: 'crate/layout/icons/templates/preview.hbs',
             },
             copy: {
-                src: ['.icons/build/**/*'],
+                src: [basePaths.icons+'build/**/*'],
                 dest: basePaths.dest + 'css/icons'
             },
             export: {
-                src: ['.icons/build/**/*.{js,css,png}'], // Must have no spaces between commas in curly brackets!
+                src: [basePaths.icons+'build/**/*.{js,css,png}'], // Must have no spaces between commas in curly brackets!
             }
         },
         assets: {
