@@ -23,7 +23,7 @@ export default class DropdownMainList extends React.Component {
     }
     renderListItem(item, itemIndex){
         var itemType = getItemType(item),
-        key = item.id || itemIndex;
+            key = item.key || item.id || 'li'+itemIndex;
         return <li key={key} className="ff_module-dropdown-button__list-item">
                 {itemTypes[itemType](item)}
             </li>

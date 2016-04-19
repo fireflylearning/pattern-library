@@ -18,6 +18,7 @@ module.exports.deletedState = React.createClass({
 
 function defaultState(){
     var event = this.props.event,
+        actions = this.props.actions,
         messageText = event.message,
         markText = getMarkText(event),
         gradeText = event.grade;
@@ -32,7 +33,7 @@ function defaultState(){
 
     var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
     var status = statusText ? <p className="ff_module-task-event__author-action">{statusText+':'}</p> : null;
-    return  <TaskEventBase event={event}>
+    return  <TaskEventBase event={event} actions={actions}>
                 {status}
                 {markAndGrade}
                 {message}

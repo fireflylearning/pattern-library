@@ -107,7 +107,16 @@ module.exports = function() {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(TaskEvent, {
                         key: 'el' + (index),
-                        event: event
+                        event: event,
+                        actions: [{
+                            key: 'edit',
+                            text: 'Edit',
+                            onClick: function() { console.log('edit'); }
+                        }, {
+                            key: 'delete',
+                            text: 'Delete',
+                            onClick: function() { console.log('delete'); }
+                        }]
                     }));
             }));
             ReactDOM.render(root, domElement);
