@@ -4,9 +4,9 @@ var paths = require('./paths.js');
 
 module.exports = {
     // CSS filenames
-    datasvgcss: 'icons.{theme}.svg.css',//overridden (per theme)
-    datapngcss: 'icons.{theme}.png.css',//overridden (per theme)
-    urlpngcss: 'icons.{theme}.fallback.css',//overridden (per theme)
+    datasvgcss: 'icons.{theme}.svg.css', //overridden (per theme)
+    datapngcss: 'icons.{theme}.png.css', //overridden (per theme)
+    urlpngcss: 'icons.{theme}.fallback.css', //overridden (per theme)
 
     dest: paths.icons.dest, //overridden (per theme)
 
@@ -31,11 +31,35 @@ module.exports = {
     customselectors: {
         core: {
             'ff_icon-page-up-open-white': ['.ff_module-dropdown-button__icon--is-open'],
-            'ff_icon-page-down-open-white': ['.ff_module-dropdown-button__icon--is-enabled']
+            'ff_icon-page-down-open-white': ['.ff_module-dropdown-button__icon--is-enabled'],
+            'ff_icon-page-up-open-blue': [
+                '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-open',
+                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open'],
+            'ff_icon-page-down-open-blue': [
+                '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled'],
+
+            'ff_icon-response-edit-darkgrey': [
+                '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt',
+                '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled'
+            ],
+            'ff_icon-response-edit-blue': ['.ff_icon-response-edit.ff_module-dropdown-button__icon-alt.ff_module-dropdown-button__icon-alt--is-open'],
         },
         melody: {
             'ff_icon-page-up-open-white': ['.ff_module-dropdown-button__icon--is-open'],
-            'ff_icon-page-down-open-white': ['.ff_module-dropdown-button__icon--is-enabled']
+            'ff_icon-page-down-open-white': ['.ff_module-dropdown-button__icon--is-enabled'],
+            'ff_icon-page-up-open-blue': [
+                '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-open',
+                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open'],
+            'ff_icon-page-down-open-blue': [
+                '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled'],
+
+            'ff_icon-response-edit-darkgrey': [
+                '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt',
+                '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled'
+            ],
+            'ff_icon-response-edit-blue': ['.ff_icon-response-edit.ff_module-dropdown-button__icon-alt.ff_module-dropdown-button__icon-alt--is-open'],
         }
     },
 
@@ -73,7 +97,7 @@ module.exports = {
     cssbasepath: '/',
 
     template: paths.icons.templates,
-    previewTemplate : paths.icons.previewTemplate,
+    previewTemplate: paths.icons.previewTemplate,
 
     compressPNG: true
 };
