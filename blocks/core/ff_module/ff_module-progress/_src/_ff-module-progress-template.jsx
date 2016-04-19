@@ -52,7 +52,7 @@ module.exports = React.createClass({
               <span className="ff_module-progress__meta">{this.generateTitle(marked,'Marked')}</span>
           </div>
           <div className={this.generateBarClass('ff_module-progress__bar','completed')} style={this.getCompletedWidth()} title={completed+' completed'}>
-              <span className="ff_module-progress__meta">{this.generateTitle(completed,'completed')}</span>
+              <span className="ff_module-progress__meta">{this.generateTitle(completed,'Completed')}</span>
           </div>
       </div>
       <ul className="ff_module-progress__key">
