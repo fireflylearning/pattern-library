@@ -56,16 +56,30 @@
             color: lighten(@ff_color_control_link, 10%);
         }
     }
-    .link-no-decoration(@color:@ff_color_control_link) {
+
+    .link-no-dec-base(@color) {
         text-decoration: none;
         color: @color;
-        &:visited {
-            color: darken(@color, 10%);
-        }
+    }
+    .link-no-decoration(@color: @ff_color_control_link, @color-state: null) when (@color-state = null) {
+        #ff_mix-util-prose > .link-no-dec-base(@color);
         &:active, &:hover {
-            color: lighten(@color, 10%);
+           color: lighten(@color, 10%);
+        }
+        &:visited {
+           color: darken(@color, 10%);
         }
     }
+    .link-no-decoration(@color: @ff_color_control_link, @color-state: null) when not (@color-state = null) {
+        #ff_mix-util-prose > .link-no-dec-base(@color);
+        &:active, &:hover {
+            color: @color-state;
+        }
+        &:visited {
+            color: @color-state;
+        }
+    }
+
     .link-quiet {
         text-decoration: none;
         color: @ff_colour_text_quiet;
