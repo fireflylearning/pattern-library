@@ -8,6 +8,7 @@ This component renders a task event with different formats depending on the `typ
 
 **Refer to `[firefly-webapp]/front-end/lib/task-responses/events.js` for the most up-to-date listing of Event types that Firefly expects.**
 
+## Examples
 See [the examples page](/blocks/core/lib_test/lib_test-task-event/lib_test-task-event.html) for a list of task event types with states.
 
 ## Event Types with styling and tests
