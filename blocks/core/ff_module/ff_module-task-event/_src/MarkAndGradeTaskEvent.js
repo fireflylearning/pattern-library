@@ -11,8 +11,8 @@ module.exports.defaultState = React.createClass({
 
 module.exports.deletedState = React.createClass({
     displayName: 'MarkAndGradeTaskEventDeleted',
-    render: taskEventWithOptionalMessage(function(props){
-        return getStatusText(props.event.author.name+'deleted a ', props.event)+ '.';
+    render: taskEventWithOptionalMessage(function(props) {
+        return getStatusText(props.event.author.name + ' deleted a ', props.event) + '.';
     })
 });
 
@@ -22,7 +22,7 @@ function defaultState(){
         markText = getMarkText(event),
         gradeText = event.grade;
 
-    var statusText = getStatusText(event.author.name+' added a ', event);
+    var statusText = getStatusText(event.author.name + ' added a ', event);
 
     var mark = markText ? <span className="ff_module-task-event__mark">{markText}</span> : null,
         grade = gradeText ? <span className="ff_module-task-event__grade">{gradeText}</span> : null,
@@ -52,10 +52,10 @@ function getStatusText(base, event) {
     }
 }
 
-function getMarkText(event){
+function getMarkText(event) {
     if (event.mark) {
         if (event.markMax) {
-            return event.mark +'/'+event.markMax;
+            return event.mark + '/' + event.markMax;
         }
         return event.mark;
     }

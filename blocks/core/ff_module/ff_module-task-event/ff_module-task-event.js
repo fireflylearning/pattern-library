@@ -52,24 +52,23 @@ eventComponents[eventTypes.addFile][eventStates.default] = AddedFileTaskEvent.de
 eventComponents[eventTypes.addFile][eventStates.deleted] = AddedFileTaskEvent.deletedState;
 
 function getState(event) {
-    var state;
+    var state = eventStates.default;
+
     // TODO : Will need to update this to handle combinations/conflicts of states, etc.
-    switch (true) {
-        case !!event.deleted:
-            state = eventStates.deleted;
-            break;
-        // case !!event.pending:
-        //     state = eventStates.pending;
-        //     break;
-        // case !!event.error:
-        //     state = eventStates.error;
-        //     break;
-        // case !!event.released:
-        //     state = eventStates.released;
-        //     break;
-        default:
-            state = eventStates.default;
+    if (event.deleted) {
+        state = eventStates.deleted;
     }
+
+    // case !!event.pending:
+    //     state = eventStates.pending;
+    //     break;
+    // case !!event.error:
+    //     state = eventStates.error;
+    //     break;
+    // case !!event.released:
+    //     state = eventStates.released;
+    //     break;
+
     return state;
 }
 

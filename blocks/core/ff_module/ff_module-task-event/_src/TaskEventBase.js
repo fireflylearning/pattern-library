@@ -37,10 +37,9 @@ module.exports = React.createClass({
     renderActions: function(props) {
 
         var list = props.actions;
-        console.log(list);
 
         if (list && list.length) {
-            return <DropDownButton text="..." list={list} modifier="right" classes="ff_module-task-event__actions"/>
+            return <DropDownButton text="..." list={list} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
         }
 
         return null;

@@ -12,8 +12,8 @@ module.exports.defaultState = React.createClass({
 
 module.exports.deletedState = React.createClass({
     displayName: 'AddedFileTaskEventDeleted',
-    render: taskEventWithOptionalMessage(function(props){
-        return 'deleted '+getFileText(props)+'.';
+    render: taskEventWithOptionalMessage(function(props) {
+        return props.event.author.name + ' deleted ' + getFileText(props) + '.';
     })
 });
 
@@ -27,6 +27,6 @@ function defaultState(){
     </TaskEventBase>
 }
 
-function getFileText(props){
-    return (props.event.files && props.event.files.length > 1) ? 'files': 'a file';
+function getFileText(props) {
+    return (props.event.files && props.event.files.length > 1) ? 'files' : 'a file';
 }
