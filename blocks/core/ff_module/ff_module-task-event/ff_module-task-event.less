@@ -2,7 +2,9 @@
     background: #fff;
     border: 1px solid @ff_colour_control_border;
     padding: 0 @ff_size_spacing_min;
+    position: relative;
     .ff_mix-clearfix;
+
     &>* {
         margin: @ff_size_spacing_min*0.8 0;
     }
@@ -18,6 +20,14 @@
     }
 
     &__actions {
+        float:right;
+        clear:right;
+        margin: 0;
+    }
+    &__status {
+        // position: absolute;
+        // right: 1em;
+        // bottom: 1em;
         float:right;
         clear:right;
         margin: 0;

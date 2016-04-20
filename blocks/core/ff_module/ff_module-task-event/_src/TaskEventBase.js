@@ -63,7 +63,7 @@ module.exports = React.createClass({
                     <time className="ff_module-task-event__sent">{formatDate(this.props.description.sent)}</time>
                     {renderActions(this.props)}
                     {this.props.children}
-                    <TaskEventStatus type={getPresentationState(this.props.event)}/>
+                    <TaskEventStatus type={getPresentationState(this.props.event)} classes='ff_module-task-event__status'/>
                 </div>
     }
 });

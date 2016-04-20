@@ -17,6 +17,9 @@ messages[eventStates.unreleased] = 'Ready to Send';
 
 function getGeneratedClass(base, props){
     var classNames = [base];
+    if (!!props.modifier) classNames.push(base + '--' + props.modifier);
+    if (!!props.classes) classNames.push(props.classes);
+    if (!!props.className) classNames.push(props.className);
     if (stateClasses[props.type]) classNames.push(base+stateClasses[props.type]);
     return classNames.join(' ');
 }
