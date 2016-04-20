@@ -56,14 +56,26 @@
             color: lighten(@ff_color_control_link, 10%);
         }
     }
-    .link-no-decoration(@color:@ff_color_control_link) {
+    .link-no-dec-base(@color) {
         text-decoration: none;
         color: @color;
+    }
+    .link-no-decoration(@color: @ff_color_control_link, @color-visited: null, @color-hover: null) when ((@color-visited = null) and (@color-hover = null)) {
+        #ff_mix-util-prose > .link-no-dec-base(@color);
         &:visited {
-            color: darken(@color, 10%);
+           color: darken(@color, 10%);
         }
         &:active, &:hover {
-            color: lighten(@color, 10%);
+           color: lighten(@color, 10%);
+        }
+    }
+    .link-no-decoration(@color: @ff_color_control_link, @color-visited: null, @color-hover: null) when not ((@color-visited = null) and (@color-hover = null)) {
+        #ff_mix-util-prose > .link-no-dec-base(@color);
+        &:visited {
+            color: @color-visited;
+        }
+        &:active, &:hover {
+            color: @color-hover;
         }
     }
     .link-quiet {
