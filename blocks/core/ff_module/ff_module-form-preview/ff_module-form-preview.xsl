@@ -18,9 +18,9 @@
 						<xsl:when test="./module">
 							<xsl:text>ff_module-form-preview__item ff_module-form-preview__item--controls</xsl:text>
 						</xsl:when>
-						<otherwise>
+						<xsl:otherwise>
 							<xsl:text>ff_module-form-preview__item</xsl:text>
-						</otherwise>
+						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:attribute>
 				<dl>
