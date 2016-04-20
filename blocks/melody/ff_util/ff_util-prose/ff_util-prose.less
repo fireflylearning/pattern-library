@@ -64,7 +64,7 @@
         text-decoration: none;
         color: @color;
     }
-    .link-no-decoration(@color: @ff_color_control_link, @color-visited: null, @color-hover: null) when ((@color-visited = null) and (@color-hover = null)) {
+    .link-no-decoration(@color: @ff_color_control_link) {
         #ff_mix-util-prose > .link-no-dec-base(@color);
         &:visited {
            color: darken(@color, 10%);
@@ -73,7 +73,7 @@
            color: lighten(@color, 10%);
         }
     }
-    .link-no-decoration(@color: @ff_color_control_link, @color-visited: null, @color-hover: null) when not ((@color-visited = null) and (@color-hover = null)) {
+    .link-no-decoration-states(@color: @ff_color_control_link, @color-visited: @ff_color_control_link, @color-hover: @ff_color_control_link) {
         #ff_mix-util-prose > .link-no-dec-base(@color);
         &:visited {
             color: @color-visited;
