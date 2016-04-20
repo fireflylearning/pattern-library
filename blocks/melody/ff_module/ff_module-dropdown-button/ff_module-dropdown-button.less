@@ -127,12 +127,7 @@
         top:0;
     }
 
-    &--link, &--link--is-open,
-    &--link-right, &--link-right--is-open {
-        background-color: transparent;
-        min-width: 0;
-        border: none;
-    }
+
     &--link &__button,
     &--link-right &__button {
         #ff_module-button > .link();
@@ -144,17 +139,9 @@
     &--link &__icon {
         // linked to alt color in config/icons.js
     }
-    &--link &__icon-alt--no-text,
-    &--link-right &__icon-alt--no-text {
-        margin: 0 5px;
-    }
 
-    &--widelist &__list-container--is-open,
-    &--primary-compact-right-widelist &__list-container--is-open,
-    &--compact-widelist &__list-container--is-open,
-    &--compact-right-widelist &__list-container--is-open {
-        min-width: 16em;
-    }
+
+
 }
 
 // states
@@ -173,6 +160,29 @@
     }
     &--is-disabled &__content {
         color: @ff_colour_default;
+    }
+}
+
+//modifier + state
+.ff_module-dropdown-button {
+
+    &--widelist &__list-container--is-open,
+    &--primary-compact-right-widelist &__list-container--is-open,
+    &--compact-widelist &__list-container--is-open,
+    &--compact-right-widelist &__list-container--is-open {
+        min-width: 16em;
+    }
+
+    &--link &__icon-alt--no-text,
+    &--link-right &__icon-alt--no-text {
+        margin: 0 5px;
+    }
+
+    &--link, &--link--is-open,
+    &--link-right, &--link-right--is-open {
+        background: none;
+        min-width: 0;
+        border: none;
     }
 }
 
