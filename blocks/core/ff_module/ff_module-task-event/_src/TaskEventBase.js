@@ -4,45 +4,66 @@ var React = require('react');
 var dateFormatting = require('../../../_lib/_ui/dateFormatting')();
 var ensureIsDate = require('../../../_lib/_ui/date-utils').ensureIsDate;
 var DropDownButton = require('../../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component');
+var TaskEventStatus = require('../../../ff_module/ff_module-task-event-status/ff_module-task-event-status');
+
+var stateClasses = require('./events').stateClasses;
+var eventStates = require('./events').states;
+
+function formatDate(date) {
+    var validDate = ensureIsDate(date);
+    if (validDate) {
+        return dateFormatting.niceDate(date);
+    }
+    return '';
+}
+
+function getPresentationState(event) {
+    var state = eventStates.default;
+
+    // TODO : Will need to update this to handle combinations/conflicts of states, etc.
+    if (event.error) {
+        state = eventStates.error;
+    } else if (event.deleted) {
+        state = eventStates.deleted;
+    } else if (event.pending) {
+        state = eventStates.pending;
+    } else if (event.saved) {
+        state = eventStates.saved;
+    } else if (event.unreleased) {
+        state = eventStates.unreleased;
+    } else if (event.released) {
+        state = eventStates.released;
+    }
+
+    return state;
+}
+
+function generateClass(base, props) {
+    var classNames = [];
+    classNames.push(base);
+    var event = props.event || {};
+    var presentationClass = stateClasses[getPresentationState(event)];
+    if (event.type) classNames.push(base + '--' + event.type);
+    if (presentationClass) classNames.push(base + presentationClass);
+    return classNames.join(' ');
+}
+
+function renderActions(props) {
+    var list = props.actions;
+    if (list && list.length) {
+        return <DropDownButton text="..." list={list} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
+    }
+    return null;
+}
 
 module.exports = React.createClass({
     displayName: 'TaskEventBase',
     render: function(){
-        return  <div className={this.generateClass('ff_module-task-event', this.props)}>
-                    <time className="ff_module-task-event__sent">{this.formatDate(this.props.description.sent)}</time>
-                    {this.renderActions(this.props)}
+        return  <div className={generateClass('ff_module-task-event', this.props)}>
+                    <time className="ff_module-task-event__sent">{formatDate(this.props.description.sent)}</time>
+                    {renderActions(this.props)}
                     {this.props.children}
+                    <TaskEventStatus type={getPresentationState(this.props.event)}/>
                 </div>
-    },
-    formatDate: function(date) {
-        var validDate = ensureIsDate(date);
-        if (validDate) {
-            return dateFormatting.niceDate(date);
-        }
-        return '';
-    },
-    generateClass: function(base, props) {
-        var classNames = [];
-        classNames.push(base);
-        var state = props.state || {},
-            description = props.description;
-
-        if (description.type) classNames.push(base + '--' + description.type);
-        if (state.pending) classNames.push(base + '--is-pending');
-        if (state.error) classNames.push(base + '--has-error');
-        if (state.deleted) classNames.push(base + '--is-deleted');
-        if (state.unreleased) classNames.push(base + '--is-unreleased');
-        if (state.released) classNames.push(base + '--is-released');
-        return classNames.join(' ');
-    },
-    renderActions: function(props) {
-
-        var list = props.actions;
-
-        if (list && list.length) {
-            return <DropDownButton text="..." list={list} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
-        }
-
-        return null;
     }
 });
