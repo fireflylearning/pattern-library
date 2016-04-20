@@ -16,7 +16,7 @@ export default class DropdownMainList extends React.Component {
                     {...this.props.rtTarget}>
 
                     <ul className="ff_module-dropdown-button__list">
-                        {this.props.list.map(item => this.renderListItem(item))}
+                        {this.props.list.map((item, itemIndex) => this.renderListItem(item, itemIndex))}
                     </ul>
                 </div> : null;
         return el;
