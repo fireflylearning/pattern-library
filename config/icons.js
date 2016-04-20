@@ -74,7 +74,10 @@ module.exports = {
             extradarkgrey: '#444444',
             white: '#FFF',
             lightblue: '#add8e6',
-            greyblue: '#7F9CB5'
+            greyblue: '#7F9CB5',
+            success: '#98CE1E',
+            error: '#D35447',
+            notify: '#FFCD00'
         },
         melody: {
             blue: '#297FCF',
@@ -84,7 +87,10 @@ module.exports = {
             extradarkgrey: '#444444',
             white: '#FFF',
             lightblue: '#add8e6',
-            greyblue: '#7F9CB5'
+            greyblue: '#7F9CB5',
+            success: '#98CE1E',
+            error: '#D35447',
+            notify: '#FFCD00'
         }
     },
 
