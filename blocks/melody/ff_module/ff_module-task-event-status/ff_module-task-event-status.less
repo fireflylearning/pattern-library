@@ -1,0 +1,30 @@
+.ff_module-task-event-status {
+
+    color: @ff_colour_text_quiet;
+    background-color: lighten(@ff_colour_text_quiet, 15%);
+    border-radius: 0.8*@ff_size_control_rounding;
+    padding: @ff_size_spacing_min*0.25 @ff_size_spacing_min;
+
+    &__icon {
+        width: 1.4em;
+        height: 1.4em;
+        margin: -.4em .4em -.4em -.3em;
+    }
+
+    &--is-pending {
+        color: @ff_colour_control_text;
+        background-color: lighten(@ff_colour_control_text, 65%);
+    }
+    &--has-error {
+        color: @ff_colour_error;
+        background-color: lighten(@ff_colour_error, 35%);
+    }
+    &--is-saved {
+        color: @ff_colour_success;
+        background-color: lighten(@ff_colour_success, 45%);
+    }
+    &--is-unreleased {
+        color: @ff_colour_primary;
+        background-color: lighten(@ff_colour_primary, 40%);
+    }
+}
