@@ -3,7 +3,7 @@
 var React = require('react');
 var TaskEventBase = require('./TaskEventBase'),
     ModuleFileList = require('../../ff_module-file-list/ff_module-file-list'),
-    taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage');
+    taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
 
 module.exports.defaultState = React.createClass({
     displayName: 'AddedFileTaskEventDefault',
@@ -12,7 +12,7 @@ module.exports.defaultState = React.createClass({
 
 module.exports.deletedState = React.createClass({
     displayName: 'AddedFileTaskEventDeleted',
-    render: taskEventWithOptionalMessage(function(props) {
+    render: taskEventWithOptionalMessageDeleted(function(props) {
         return props.description.author.name + ' deleted ' + getFileText(props.description.files) + '.';
     })
 });

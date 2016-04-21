@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react');
-var TaskEventBase = require('./TaskEventBase');
+var TaskEventBase = require('./TaskEventBase'),
+    taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
 
 module.exports.defaultState = React.createClass({
     displayName: 'AddedCommentEventDefault',
@@ -10,15 +11,8 @@ module.exports.defaultState = React.createClass({
 
 module.exports.deletedState = React.createClass({
     displayName: 'AddedCommentEventDeleted',
-    render: deletedState
+    render: taskEventWithOptionalMessageDeleted('deleted a comment.')
 });
-
-function deletedState() {
-    var updatedEvent = Object.assign({}, this.props.event);
-    return  <TaskEventBase event={this.props.event}>
-                <p className="ff_module-task-event__author-action">{this.props.event.author.name} deleted a comment.</p>
-            </TaskEventBase>
-}
 
 function defaultState(){
     var description = this.props.description || {},

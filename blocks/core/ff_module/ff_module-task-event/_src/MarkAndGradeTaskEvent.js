@@ -2,7 +2,8 @@
 
 var React = require('react');
 var TaskEventBase = require('./TaskEventBase'),
-    taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage');
+    taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
+
 
 module.exports.defaultState = React.createClass({
     displayName: 'MarkAndGradeTaskEventDefault',
@@ -11,7 +12,7 @@ module.exports.defaultState = React.createClass({
 
 module.exports.deletedState = React.createClass({
     displayName: 'MarkAndGradeTaskEventDeleted',
-    render: taskEventWithOptionalMessage(function(props) {
+    render: taskEventWithOptionalMessageDeleted(function(props) {
         return getStatusText(props.description.author.name + ' deleted a ', props.description) + '.';
     })
 });
