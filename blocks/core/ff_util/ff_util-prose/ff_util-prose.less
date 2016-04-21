@@ -61,21 +61,13 @@
         color: @color;
     }
     .link-no-decoration(@color: @ff_color_control_link) {
-        #ff_mix-util-prose > .link-no-dec-base(@color);
+        text-decoration: none;
+        color: @color;
         &:visited {
            color: darken(@color, 10%);
         }
         &:active, &:hover {
            color: lighten(@color, 10%);
-        }
-    }
-    .link-no-decoration-states(@color: @ff_color_control_link, @color-visited: @ff_color_control_link, @color-hover: @ff_color_control_link) {
-        #ff_mix-util-prose > .link-no-dec-base(@color);
-        &:visited {
-            color: @color-visited;
-        }
-        &:active, &:hover {
-            color: @color-hover;
         }
     }
     .link-quiet {
