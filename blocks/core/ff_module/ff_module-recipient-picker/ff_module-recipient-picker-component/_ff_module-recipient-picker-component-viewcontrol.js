@@ -6,6 +6,7 @@ var _ = require('underscore');
 module.exports = function createRecipientPicker(service, template) {
     if (!template) throw new Error('recipient-picker requires a \'template\' parameter');
     if (!service) throw new Error('recipient-picker requires a \'service\' parameter');
+    var firstFocus = true;
     return React.createClass({
         render: template,
         displayName: 'RecipientPicker',
@@ -14,7 +15,7 @@ module.exports = function createRecipientPicker(service, template) {
 
             service.getInitialSearchResults(this.setResults);
             service.getInitialSelectedRecipients(this.addRecipients);
-            this.resetInput();
+            firstFocus = true;
         },
         componentWillUnmount: function() {
             document.removeEventListener('click', this.documentClickHandler);
@@ -68,8 +69,9 @@ module.exports = function createRecipientPicker(service, template) {
         },
         //FIXME: Naming add -> select
         addRecipients: function(recipients) {
+            if (!recipients || !recipients.length) return false;
             recipients = [].concat(recipients);
-            var uniqueGroupMembers;
+            var uniqueGroupMembers, newSelection;
 
             if (this.state.selected.length) {
                 uniqueGroupMembers = _.reject(recipients, function(member) {
@@ -81,8 +83,8 @@ module.exports = function createRecipientPicker(service, template) {
                 uniqueGroupMembers = recipients;
             }
 
-            var newSelection = (this.state.selected.concat(uniqueGroupMembers));
-            // console.log(newSelection);
+            newSelection = (this.state.selected.concat(uniqueGroupMembers));
+
             this.setSelected(newSelection);
         },
         //FIXME: Naming add -> select
@@ -108,8 +110,13 @@ module.exports = function createRecipientPicker(service, template) {
             });
             if (this.textInput) {
                 this.textInput.value = '';
-                this.textInput.focus();
+                if (this.props.noFocusOnLoad) {
+                    if (!firstFocus) this.textInput.focus();
+                } else {
+                    this.textInput.focus();
+                }
             }
+            firstFocus = false;
         },
         removeRecipientFromSelection: function(recipientId) {
             var newSelection = _.reject(this.state.selected, function(recipient) {
@@ -132,7 +139,9 @@ module.exports = function createRecipientPicker(service, template) {
             });
         },
         setSelected: function(selected) {
+            if (!selected || !selected.length) return;
             selected = [].concat(selected);
+
             this.setState({
                 selected: selected,
                 hasSelection: (selected && selected.length > 0)
