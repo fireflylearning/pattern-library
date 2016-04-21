@@ -115,10 +115,46 @@
 }
 
 
+// .ff_icon-page-forward { background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%208a7%207%200%201%200%2014%200A7%207%200%200%200%201%208zm7.586%200L6.293%205.707a.999.999%200%201%201%201.414-1.414l3%203a.999.999%200%200%201%200%201.414l-3%203a.997.997%200%200%201-1.414%200%20.999.999%200%200%201%200-1.414L8.586%208z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
+
+// Calculating contrasts from here: http://24ways.org/2010/calculating-color-contrast/
+.colour-guard(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+    color: @dark;
+}
+.colour-guard(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+    color: @light;
+}
+.colour-guard-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+    // fill: @dark;
+    // temporary until fix for gulpicon enhanceSVG?
+}
+.colour-guard-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+    // fill: @light;
+    // temporary until fix for gulpicon enhanceSVG?
+    opacity: 0.6;
+    .ff_icon-page-forward;
+
+}
+
 
 #ff_mix-sections {
-    .title() {
-        color: white;
+    .link(@c: @ff_color_control_link) {        
+        text-decoration: none;
+        .colour-guard(@c, darken(#fff, 70%), #fff);
+
+        &:visited {
+            .colour-guard(@c, darken(@c, 70%), #fff);
+        }
+        &:active, &:hover {
+            .colour-guard(@c, darken(@c, 70%), #fff);
+        }
+        .ff_icon {
+            // .colour-guard-svg(@c, darken(@c, 70%), #fff); 
+            .colour-guard-svg(@c, #000, #fff); // temporary until fix for gulpicon enhanceSVG? - will either return white or black
+        }
+    }
+    .title(@c: white) {
+        .colour-guard(@c, darken(@c, 70%), #fff);
         #ff_mix-util-prose > .h2();
         font-weight: normal;
         margin: 0;
@@ -149,5 +185,6 @@
     .shadow() {
         box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.1);
     }
+
 
 }

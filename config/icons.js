@@ -99,5 +99,7 @@ module.exports = {
     template: paths.icons.templates,
     previewTemplate: paths.icons.previewTemplate,
 
-    compressPNG: true
+    compressPNG: true,
+
+    enhanceSVG: true
 };
