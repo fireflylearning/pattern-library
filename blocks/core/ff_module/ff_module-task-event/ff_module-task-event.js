@@ -82,24 +82,13 @@ function getPresentationState(description, state) {
     state = state || {};
     var presentationState = eventStates.default;
     // TODO : Will need to update this to handle combinations/conflicts of states, etc.
+
     if (state.deleted) {
         presentationState = eventStates.deleted;
-    } else if (state.deleted) {
-        presentationState = eventStates.deleted;
-    } else if (state.pending) {
-        presentationState = eventStates.pending;
     }
-    // case !!event.pending:
-    //     state = eventStates.pending;
-    //     break;
-    // case !!event.error:
-    //     state = eventStates.error;
-    //     break;
-    // case !!event.released:
-    //     state = eventStates.released;
-    //     break;
 
     return presentationState;
+
 }
 
 function getComponent(description, state) {

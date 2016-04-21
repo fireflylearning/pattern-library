@@ -9,27 +9,45 @@ var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:
 
 var messages = {};
 messages[eventStates.default] = '';
-messages[eventStates.unreleased] = '';
+messages[eventStates.released] = '';
 messages[eventStates.pending] = 'Sending';
 messages[eventStates.error] = 'Waiting to Send';
 messages[eventStates.saved] = 'Sent';
 messages[eventStates.unreleased] = 'Ready to Send';
 
+function getPresentationState(event) {
+    var state = eventStates.default;
+
+    if (event.error) {
+        state = eventStates.error;
+    } else if (event.pending) {
+        state = eventStates.pending;
+    } else if (event.unreleased) {
+        state = eventStates.unreleased;
+    } else if (event.saved) {
+        state = eventStates.saved;
+    }
+    return state;
+}
+
 function getGeneratedClass(base, props){
-    var classNames = [base];
+    var classNames = [base],
+        type = getPresentationState(props.event);
     if (!!props.modifier) classNames.push(base + '--' + props.modifier);
     if (!!props.classes) classNames.push(props.classes);
     if (!!props.className) classNames.push(props.className);
-    if (stateClasses[props.type]) classNames.push(base+stateClasses[props.type]);
+    if (stateClasses[type]) classNames.push(base+stateClasses[type]);
     return classNames.join(' ');
 }
 
 function getStatusMessage(props) {
-    return messages[props.type] || '';
+    var type = getPresentationState(props.event);
+    return messages[type] || '';
 }
 
 function getIcon(props) {
-    if (props.type === eventStates.saved) {
+    var type = getPresentationState(props.event);
+    if (type === eventStates.saved) {
         return <span className='ff_icon ff_icon-tick-open-success ff_module-task-event-status__icon'></span>;
     }
     return null;
@@ -38,7 +56,7 @@ function getIcon(props) {
 module.exports = React.createClass({
     displayName: 'TaskEventStatus',
     propTypes: {
-        type: React.PropTypes.string.isRequired
+        event: React.PropTypes.object.isRequired
     },
     render: function() {
         return <span className={getGeneratedClass('ff_module-task-event-status', this.props)}>

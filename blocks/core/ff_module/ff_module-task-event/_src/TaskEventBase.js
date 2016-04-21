@@ -21,18 +21,18 @@ function getPresentationState(event) {
     var state = eventStates.default;
 
     // TODO : Will need to update this to handle combinations/conflicts of states, etc.
-    if (event.error) {
-        state = eventStates.error;
-    } else if (event.deleted) {
+    if (event.deleted) {
         state = eventStates.deleted;
+    } else if (event.error) {
+        state = eventStates.error;
     } else if (event.pending) {
         state = eventStates.pending;
-    } else if (event.saved) {
-        state = eventStates.saved;
     } else if (event.unreleased) {
         state = eventStates.unreleased;
     } else if (event.released) {
         state = eventStates.released;
+    } else if (event.saved) {
+        state = eventStates.saved;
     }
 
     return state;
@@ -41,8 +41,9 @@ function getPresentationState(event) {
 function generateClass(base, props) {
     var classNames = [];
     classNames.push(base);
-    var event = props.event || {};
-    var presentationClass = stateClasses[getPresentationState(event)];
+    var event = props.event || {},
+        presentationClass = stateClasses[getPresentationState(event)];
+
     if (event.type) classNames.push(base + '--' + event.type);
     if (presentationClass) classNames.push(base + presentationClass);
     return classNames.join(' ');
@@ -63,7 +64,7 @@ module.exports = React.createClass({
                     <time className="ff_module-task-event__sent">{formatDate(this.props.description.sent)}</time>
                     {renderActions(this.props)}
                     {this.props.children}
-                    <TaskEventStatus type={getPresentationState(this.props.event)} classes='ff_module-task-event__status'/>
+                    <TaskEventStatus event={this.props.event} classes='ff_module-task-event__status'/>
                 </div>
     }
 });

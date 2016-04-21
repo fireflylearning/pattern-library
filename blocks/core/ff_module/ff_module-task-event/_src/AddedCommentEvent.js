@@ -14,6 +14,7 @@ module.exports.deletedState = React.createClass({
 });
 
 function deletedState() {
+    var updatedEvent = Object.assign({}, this.props.event);
     return  <TaskEventBase event={this.props.event}>
                 <p className="ff_module-task-event__author-action">{this.props.event.author.name} deleted a comment.</p>
             </TaskEventBase>

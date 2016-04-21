@@ -59,13 +59,14 @@ var events = [{
         type: 'page',
         href: '#'
     }]
-}, {
-    type: eventTypes.deleteResponse,
-    sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
 }];
 
-var states = ['default', 'pending', 'error', 'deleted', 'saved', 'released', 'unreleased'];
+events = events.concat(events.map(function(event){
+    return Object.assign({}, event, { deleted: true});
+}));
+
+var states = ['default', 'pending', 'error', 'saved', 'released', 'unreleased'];
+
 var actions = [{
     key: 'edit',
     text: 'Edit',
@@ -82,14 +83,14 @@ module.exports = function() {
         Array.prototype.forEach.call(document.querySelectorAll('[data-lib_test-task-event]'), function(domElement, index) {
             var root = <div>{states.map(function(state, key, states){
                     return  <section key={'section-'+state}>
-                                <h2><pre>{state}</pre></h2>
+                                <h2><pre>State: {state}</pre></h2>
                                 <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
                                     {events.map(function(description, index){
+                                        var delSt = state === eventStates.deleted ? 'deleted' : '';
                                         var st = {};
                                         st[state] = true;
-
-                                        return  <li key={state+'-'+evnt.type}>
-                                                    <pre>{description.type}</pre>
+                                        return  <li key={state+'-'+evnt.type+'-'+delSt}>
+                                                    <pre>Response event: <b>{evnt.type}{delSt ? ' ('+delSt+')' : ''}</b></pre>
                                                     <TaskEvent description={description} actions={actions} state={st} />
                                                 </li>
                                     })}
