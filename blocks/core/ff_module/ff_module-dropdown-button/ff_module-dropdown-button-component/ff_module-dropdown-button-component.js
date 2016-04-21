@@ -6,7 +6,7 @@ var activateDropdowns = require('../ff_module-dropdown-button');
 var _ = require('lodash');
 
 var triggerName = 'data-ff_module-dropdown-button-rt-trigger',
-targetName = 'data-ff_module-dropdown-button-rt-target';
+    targetName = 'data-ff_module-dropdown-button-rt-target';
 
 module.exports = React.createClass({
     displayName: 'DropdownButton',
@@ -38,9 +38,8 @@ module.exports = React.createClass({
         this._root = component;
     },
     generateClass: function(base) {
-        var classNames = [],
+        var classNames = [base],
             props = this.props;
-        classNames.push(base);
         if (!!props.modifier) classNames.push(base + '--' + props.modifier);
         if (!!props.isOpen) classNames.push(base + '--is-open');
         if (!!props.isDisabled) classNames.push(base + '--is-disabled');
@@ -48,9 +47,8 @@ module.exports = React.createClass({
         return classNames.join(' ');
     },
     generateSubClass: function(base) {
-        var classNames = [],
+        var classNames = [base],
             props = this.props;
-        classNames.push(base);
         if (!!props.modifier) classNames.push(base + '--' + props.modifier);
         if (!!props.isOpen) classNames.push(base + '--is-open');
         if (!!props.isDisabled) classNames.push(base + '--is-disabled');

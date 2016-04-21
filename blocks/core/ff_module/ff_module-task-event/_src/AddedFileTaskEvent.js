@@ -12,8 +12,8 @@ module.exports.defaultState = React.createClass({
 
 module.exports.deletedState = React.createClass({
     displayName: 'AddedFileTaskEventDeleted',
-    render: taskEventWithOptionalMessage(function(props){
-        return 'deleted '+getFileText(props)+'.';
+    render: taskEventWithOptionalMessage(function(props) {
+        return props.event.author.name + ' deleted ' + getFileText(props) + '.';
     })
 });
 
@@ -21,12 +21,12 @@ function defaultState(){
     var files = this.props.event.files || [];
     var fileText = getFileText(this.props);
 
-    return <TaskEventBase event={this.props.event}>
+    return <TaskEventBase event={this.props.event} actions={this.props.actions}>
         <p className="ff_module-task-event__author-action">{this.props.event.author.name + ' added ' + fileText}:</p>
         <ModuleFileList files={files} classes="ff_module-task-event__files"/>
     </TaskEventBase>
 }
 
-function getFileText(props){
-    return (props.event.files && props.event.files.length > 1) ? 'files': 'a file';
+function getFileText(props) {
+    return (props.event.files && props.event.files.length > 1) ? 'files' : 'a file';
 }

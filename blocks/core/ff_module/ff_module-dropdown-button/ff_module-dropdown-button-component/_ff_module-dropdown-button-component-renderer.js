@@ -50,6 +50,51 @@ var buttonProps = [{
 }, {
     text: 'Button disabled',
     isDisabled: true,
+}, {
+    text: 'Icon Button',
+    icon: 'response-edit'
+}, {
+    text: 'Icon Button hideText',
+    icon: 'response-edit',
+    hideText: true
+}, {
+    text: 'Icon Button icon only',
+    icon: 'response-edit',
+    hideArrow: true,
+}, {
+    text: 'Link Button',
+    modifier: 'link'
+}, {
+    text: 'Icon Link Button',
+    icon: 'calendar',
+    modifier: 'link'
+}, {
+    text: 'Icon Button hide text link',
+    icon: 'response-edit',
+    hideText: true,
+    modifier: 'link'
+}, {
+    text: 'Icon Button icon only',
+    icon: 'response-edit',
+    hideArrow: true,
+    modifier: 'link'
+}, {
+    text: 'Link Button right',
+    modifier: 'link-right'
+}, {
+    text: 'Icon Link Button right',
+    icon: 'calendar',
+    modifier: 'link-right'
+}, {
+    text: 'Icon Button hide text link right',
+    icon: 'response-edit',
+    hideText: true,
+    modifier: 'link-right'
+}, {
+    text: 'Icon Button icon only right',
+    icon: 'response-edit',
+    hideArrow: true,
+    modifier: 'link-right'
 }];
 
 buttonProps = buttonProps.map(function(props) {

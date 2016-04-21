@@ -267,7 +267,10 @@ gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons'
  * Clean
  *********************************************/
 gulp.task('clean', clean([config.exportPath].concat(paths.clean)));
-
+/**
+ * Clean - with icon cache
+ *********************************************/
+gulp.task('clean:cache', clean([config.exportPath].concat(paths.clean).concat(paths.icons.cache)));
 
 
 /**

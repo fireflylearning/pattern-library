@@ -52,24 +52,23 @@ eventComponents[eventTypes.addFile][eventStates.default] = AddedFileTaskEvent.de
 eventComponents[eventTypes.addFile][eventStates.deleted] = AddedFileTaskEvent.deletedState;
 
 function getState(event) {
-    var state;
+    var state = eventStates.default;
+
     // TODO : Will need to update this to handle combinations/conflicts of states, etc.
-    switch (true) {
-        case !!event.deleted:
-            state = eventStates.deleted;
-            break;
-        // case !!event.pending:
-        //     state = eventStates.pending;
-        //     break;
-        // case !!event.error:
-        //     state = eventStates.error;
-        //     break;
-        // case !!event.released:
-        //     state = eventStates.released;
-        //     break;
-        default:
-            state = eventStates.default;
+    if (event.deleted) {
+        state = eventStates.deleted;
     }
+
+    // case !!event.pending:
+    //     state = eventStates.pending;
+    //     break;
+    // case !!event.error:
+    //     state = eventStates.error;
+    //     break;
+    // case !!event.released:
+    //     state = eventStates.released;
+    //     break;
+
     return state;
 }
 
@@ -81,9 +80,12 @@ function getComponent(event){
 module.exports = React.createClass({
     displayName: 'TaskEvent',
     propTypes: {
-        event: React.PropTypes.object.isRequired
+        event: React.PropTypes.object.isRequired,
+        actions: React.PropTypes.array
     },
     render: function() {
-        return React.createElement(getComponent(this.props.event), { event: this.props.event });
+        var Component = getComponent(this.props.event);
+        return <Component {...this.props}/>;
+        // return React.createElement(getComponent(this.props.event), { event: this.props.event });
     }
 });
