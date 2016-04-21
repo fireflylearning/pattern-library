@@ -38,32 +38,3 @@ export default class DropdownMainButton extends React.Component {
                 </button>;
     }
 }
-
-        // var iconSpan = this.props.icon ? <span className = {generateIconClass('ff_module-button',this.props)} /> : null;
-
-        // var leftAlignedIcon = null,
-        //     rightAlignedIcon = null;
-
-        // if (iconSpan) {
-        //     if (this.props.iconAlign==='right') {
-        //         rightAlignedIcon = iconSpan;
-        //     } else {
-        //         leftAlignedIcon = iconSpan;
-        //     }
-        // }
-
-        // var text = <span className = {generateTextClass('ff_module-button__content', this.props)}>{this.props.text}</span>;
-
-        // return <button
-        //         type="button"
-        //         title = {this.props.text}
-        //         id = {this.props.id}
-        //         disabled = {this.props.disabled}
-        //         className = {generateClass('ff_module-button', this.props)}
-        //         onClick = {this.props.onClick}
-        //         >
-        //         {leftAlignedIcon}
-        //         {text}
-        //         {rightAlignedIcon}
-        //         {this.props.children}
-        //     </button>;
