@@ -15,7 +15,9 @@ var EditorBase = require('./_src/EditorBase'),
 module.exports = React.createClass({
     displayName: 'TaskEventEditor',
     propTypes: {
-        event: React.PropTypes.object.isRequired,
+        event: React.PropTypes.shape({
+            type: React.PropTypes.string.isRequired
+        }).isRequired,
         onSend: React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,
         onClose: React.PropTypes.func.isRequired,

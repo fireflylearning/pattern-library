@@ -20,7 +20,7 @@ module.exports = React.createClass({
         if (isArray(events)) {
             events = events.sort(function(a, b) {
                 // Reverse chronological order
-                return ensureIsDate(b.sent) - ensureIsDate(a.sent);
+                return ensureIsDate(b.event.sent) - ensureIsDate(a.event.sent);
             });
         }
         return events;
