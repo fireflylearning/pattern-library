@@ -6,7 +6,17 @@ var TaskResponses = require('./ff_module-task-responses');
 var eventTypes = require('../ff_module-task-event/_src/events').types;
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
 
-var events = [{
+var actions = [{
+    key: 'edit',
+    text: 'Edit',
+    onClick: function() { console.log('edit'); }
+}, {
+    key: 'delete',
+    text: 'Delete',
+    onClick: function() { console.log('delete'); }
+}]
+
+var actionableEvents = [{
     type: eventTypes.stampResponseAsSeen,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' },
@@ -37,12 +47,17 @@ var events = [{
     mark: 7,
     markMax: 10,
     grade: 'B'
-}].map(function(event, index) { event.localEventId = 'event' + index;
-    return event; });
+}].map(function(event, index) { 
+    event.localEventId = 'event' + index;
+    return {
+        event: event,
+        actions: actions
+    };
+});
 
 var props = [{
-    events: events,
-    editingEvent: events[0],
+    events: actionableEvents,
+    editingEvent: actionableEvents[0].event,
 
     editEvent: function(event) {
         console.log('editEvent');
@@ -56,7 +71,7 @@ var props = [{
         console.log('stopEditingEvent');
     }
 }, {
-    events: events,
+    events: actionableEvents,
 
     editEvent: function(event) {
         console.log('editEvent');

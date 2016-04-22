@@ -3,9 +3,11 @@
 <div class="ff_container-task-event-repeater">
     <ol class="ff_container-task-event-repeater__items">
         <li class="ff_container-task-event-repeater__item"
-            key= "event-{event.localEventId}"
-            rt-repeat="event in this.getEvents()">
-            <TaskEvent event="{event}"/>
+            key= "event-{actionableEvent.event.localEventId}"
+            rt-repeat="actionableEvent in this.getEvents()">
+            <TaskEvent
+                event="{actionableEvent.event}"
+                actions="{actionableEvent.actions}"/>
         </li>
     </ol>
 </div>
