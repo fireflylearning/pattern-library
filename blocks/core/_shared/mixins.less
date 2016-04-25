@@ -104,3 +104,19 @@
         // outline: none;
     }
 }
+
+#ff_mix-responsive-colour() {
+    // Calculating contrasts from here: http://24ways.org/2010/calculating-color-contrast/
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+        color: @dark;
+    }
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+        color: @light;
+    }
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+        fill: @dark;
+    }
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+        fill: @light;
+    }
+}
