@@ -114,6 +114,22 @@
     }
 }
 
+#ff_mix-responsive-colour() {
+    // Calculating contrasts from here: http://24ways.org/2010/calculating-color-contrast/
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+        color: @dark;
+    }
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+        color: @light;
+    }
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+        fill: @dark;
+    }
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+        fill: @light;
+    }
+}
+
 #ff_mix-sections {
     .link(@c: @ff_color_control_link) {        
         text-decoration: none;
@@ -161,5 +177,4 @@
     .shadow() {
         box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.1);
     }
-
 }
