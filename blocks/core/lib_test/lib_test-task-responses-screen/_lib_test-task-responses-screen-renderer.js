@@ -88,11 +88,24 @@ var events = [{
     localEventId: '4c',
     sent: new Date(dStrings[2]),
     author: { name: 'Sally Student' },
-    files:[{
+    files: [{
         title: 'File one',
-        href:'#'
+        href: '#'
     }]
-}];
+}].map(function(description) {
+    return {
+        description: description,
+        actions: [{
+            key: 'edit',
+            text: 'Edit',
+            onClick: function() { console.log('edit'); }
+        }, {
+            key: 'delete',
+            text: 'Delete',
+            onClick: function() { console.log('delete'); }
+        }]
+    };
+});
 
 var recipientData = [{
     onSelect: function() {

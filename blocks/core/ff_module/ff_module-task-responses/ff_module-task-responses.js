@@ -44,7 +44,7 @@ module.exports = React.createClass({
                     onRequestClose={this.closeEventEditor}
                     >
                     <EventEditor
-                        event={this.props.editingEvent}
+                        event={this.props.editingEvent.description}
                         onChange={this.onEventChange}
                         onSend={this.addEvent}
                         onClose={this.closeEventEditor}

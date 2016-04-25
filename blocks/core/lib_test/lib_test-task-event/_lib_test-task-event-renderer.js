@@ -103,11 +103,11 @@ module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
 
         Array.prototype.forEach.call(document.querySelectorAll('[data-lib_test-task-event]'), function(domElement, index) {
-            var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, events.map(function(event) {
+            var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, events.map(function(description, dIndex) {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(TaskEvent, {
-                        key: 'el' + (index),
-                        event: event,
+                        key: 'el' + (dIndex),
+                        description: description,
                         actions: [{
                             key: 'edit',
                             text: 'Edit',
