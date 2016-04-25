@@ -6,7 +6,7 @@ function repeatEvent1(event, eventIndex) {
     return React.createElement('li', {
         'className': 'ff_container-task-event-repeater__item',
         'key': 'event-' + event.localEventId
-    }, React.createElement(TaskEvent, { 'event': event }));
+    }, React.createElement(TaskEvent, { '{...event}': true }));
 }
 module.exports = function () {
     return React.createElement('div', { 'className': 'ff_container-task-event-repeater' }, React.createElement.apply(this, [
