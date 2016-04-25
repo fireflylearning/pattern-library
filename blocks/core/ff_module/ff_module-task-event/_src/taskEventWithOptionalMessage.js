@@ -10,7 +10,7 @@ function defaultState(text) {
 
         var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
 
-        return  <TaskEventBase description={this.props.description} actions={this.props.actions}>
+        return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
                     {message}
                 </TaskEventBase>;
@@ -21,7 +21,7 @@ function deletedState(text) {
     return function() {
         var outputText = getText(text, this.props);
 
-        return  <TaskEventBase event={this.props.event}>
+        return  <TaskEventBase description={this.props.description} state={this.props.state}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
                 </TaskEventBase>;
     };
@@ -37,7 +37,7 @@ function getText(text, props){
         }
         return 'User ' + text;
     } else if (typeof text === 'function') {
-        return text(this.props);
+        return text(props);
     }
 }
 

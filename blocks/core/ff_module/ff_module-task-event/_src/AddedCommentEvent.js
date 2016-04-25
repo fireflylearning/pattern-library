@@ -21,7 +21,7 @@ function defaultState(){
         comment = commentText ? <blockquote className="ff_module-task-event__comment">&#8220;{commentText}&#8221;</blockquote> : null;
 
 
-    return  <TaskEventBase description={description} actions={this.props.actions}>
+    return  <TaskEventBase description={description} actions={this.props.actions} state={this.props.state}>
                 <p className="ff_module-task-event__author-action">{name} added a comment:</p>
                 {comment}
             </TaskEventBase>

@@ -59,11 +59,22 @@ var events = [{
         type: 'page',
         href: '#'
     }]
-}];
+}].map(function(description){
+    return {
+        description: description
+    };
+});
 
 events = events.concat(events.map(function(event){
-    return Object.assign({}, event, { deleted: true});
+    return {
+        description: event.description,
+        state: {
+            deleted: true
+        }
+    };
 }));
+
+
 
 var states = ['default', 'pending', 'error', 'saved', 'released', 'unreleased'];
 
@@ -78,20 +89,23 @@ var actions = [{
 }];
 
 module.exports = function() {
-    document.addEventListener('DOMContentLoaded', function(evnt) {
+    document.addEventListener('DOMContentLoaded', function(e) {
 
-        Array.prototype.forEach.call(document.querySelectorAll('[data-lib_test-task-event]'), function(domElement, index) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-lib_test-task-event]'), function(domElement) {
             var root = <div>{states.map(function(state, key, states){
                     return  <section key={'section-'+state}>
                                 <h2><pre>State: {state}</pre></h2>
                                 <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                                    {events.map(function(description, index){
-                                        var delSt = state === eventStates.deleted ? 'deleted' : '';
-                                        var st = {};
-                                        st[state] = true;
-                                        return  <li key={state+'-'+evnt.type+'-'+delSt}>
-                                                    <pre>Response event: <b>{evnt.type}{delSt ? ' ('+delSt+')' : ''}</b></pre>
-                                                    <TaskEvent description={description} actions={actions} state={st} />
+                                    {events.map(function(event, index){
+                                        var eventDescription = event.description;
+                                        var eventState = Object.assign({}, event.state);
+                                        var delSt = eventState.deleted ? 'deleted' : '';
+
+                                        eventState[state] = true;
+
+                                        return  <li key={state+'-'+eventDescription.type+'-'+delSt}>
+                                                    <pre>Response event: <b>{eventDescription.type}{delSt ? ' ('+delSt+')' : ''}</b></pre>
+                                                    <TaskEvent description={eventDescription} actions={actions} state={eventState} />
                                                 </li>
                                     })}
                                 </ul>

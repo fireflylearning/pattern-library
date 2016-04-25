@@ -10,7 +10,7 @@ function defaultState(){
         name = description.author && description.author.name || 'User',
         taskTitle = description.taskTitle;
 
-    return  <TaskEventBase description={description} actions={this.props.actions}>
+    return  <TaskEventBase description={description} actions={this.props.actions} state={this.props.state}>
                     <p className="ff_module-task-event__author-action">{name} set a task:</p>
                     <p className="ff_module-task-event__task-title">{taskTitle}</p>
                 </TaskEventBase>;

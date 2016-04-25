@@ -25,7 +25,7 @@ savedEvent[eventStates.saved] = true;
 
 var events = [errorEvent, pendingEvent, releasedEvent, unreleasedEvent, savedEvent];
 
-var statuses = [eventStates.default, eventStates.pending, eventStates.error, eventStates.saved, eventStates.released, eventStates.unreleased];
+// var statuses = [eventStates.default, eventStates.pending, eventStates.error, eventStates.saved, eventStates.released, eventStates.unreleased];
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {

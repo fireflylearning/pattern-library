@@ -17,34 +17,34 @@ function formatDate(date) {
     return '';
 }
 
-function getPresentationState(event) {
-    var state = eventStates.default;
+function getPresentationState(state) {
+    state = state || {};
+    var presentationState = eventStates.default;
 
-    // TODO : Will need to update this to handle combinations/conflicts of states, etc.
-    if (event.deleted) {
-        state = eventStates.deleted;
-    } else if (event.error) {
-        state = eventStates.error;
-    } else if (event.pending) {
-        state = eventStates.pending;
-    } else if (event.unreleased) {
-        state = eventStates.unreleased;
-    } else if (event.released) {
-        state = eventStates.released;
-    } else if (event.saved) {
-        state = eventStates.saved;
+    if (state.deleted) {
+        presentationState = eventStates.deleted;
+    } else if (state.error) {
+        presentationState = eventStates.error;
+    } else if (state.pending) {
+        presentationState = eventStates.pending;
+    } else if (state.unreleased) {
+        presentationState = eventStates.unreleased;
+    } else if (state.released) {
+        presentationState = eventStates.released;
+    } else if (state.saved) {
+        presentationState = eventStates.saved;
     }
 
-    return state;
+    return presentationState;
 }
 
 function generateClass(base, props) {
     var classNames = [];
     classNames.push(base);
-    var event = props.event || {},
-        presentationClass = stateClasses[getPresentationState(event)];
+    var description = props.description || {},
+        presentationClass = stateClasses[getPresentationState(props.state)];
 
-    if (event.type) classNames.push(base + '--' + event.type);
+    if (description.type) classNames.push(base + '--' + description.type);
     if (presentationClass) classNames.push(base + presentationClass);
     return classNames.join(' ');
 }
@@ -57,6 +57,10 @@ function renderActions(props) {
     return null;
 }
 
+function renderStatus(props) {
+    return <TaskEventStatus type={props.description.type} state={this.props.state || {}} classes='ff_module-task-event__status'/>
+}
+
 module.exports = React.createClass({
     displayName: 'TaskEventBase',
     render: function(){
@@ -64,7 +68,7 @@ module.exports = React.createClass({
                     <time className="ff_module-task-event__sent">{formatDate(this.props.description.sent)}</time>
                     {renderActions(this.props)}
                     {this.props.children}
-                    <TaskEventStatus event={this.props.event} classes='ff_module-task-event__status'/>
+                    {renderStatus(this.props)}
                 </div>
     }
 });
