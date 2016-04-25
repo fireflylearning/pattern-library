@@ -51,12 +51,12 @@ eventComponents[eventTypes.addFile] = {};
 eventComponents[eventTypes.addFile][eventStates.default] = AddedFileTaskEvent.defaultState;
 eventComponents[eventTypes.addFile][eventStates.deleted] = AddedFileTaskEvent.deletedState;
 
-function getState(event) {
-    var state = eventStates.default;
-
+function getPresentationState(description, state) {
+    state = state || {};
+    var presentationState = eventStates.default;
     // TODO : Will need to update this to handle combinations/conflicts of states, etc.
-    if (event.deleted) {
-        state = eventStates.deleted;
+    if (state.deleted) {
+        presentationState = eventStates.deleted;
     }
 
     // case !!event.pending:
@@ -69,23 +69,30 @@ function getState(event) {
     //     state = eventStates.released;
     //     break;
 
-    return state;
+    return presentationState;
 }
 
-function getComponent(event){
-    event.presentationState = getState(event);
-    return eventComponents[event.type][event.presentationState];
+function getComponent(description, state) {
+    var presentationState = getPresentationState(description, state);
+    return eventComponents[description.type][presentationState];
 }
 
 module.exports = React.createClass({
     displayName: 'TaskEvent',
     propTypes: {
-        event: React.PropTypes.object.isRequired,
-        actions: React.PropTypes.array
+        description: React.PropTypes.shape({
+            type: React.PropTypes.string.isRequired,
+            sent: React.PropTypes.object.isRequired
+        }).isRequired,
+        actions: React.PropTypes.array,
+        state: React.PropTypes.object
     },
     render: function() {
-        var Component = getComponent(this.props.event);
-        return <Component {...this.props}/>;
+        var Component = getComponent(this.props.description, this.props.state);
+        return <Component {...this.props} />;
         // return React.createElement(getComponent(this.props.event), { event: this.props.event });
+    },
+    getName: function(){
+        console.log(this.props.description.author.name);
     }
 });

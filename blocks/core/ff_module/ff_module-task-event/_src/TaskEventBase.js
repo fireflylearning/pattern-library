@@ -9,7 +9,7 @@ module.exports = React.createClass({
     displayName: 'TaskEventBase',
     render: function(){
         return  <div className={this.generateClass('ff_module-task-event', this.props)}>
-                    <time className="ff_module-task-event__sent">{this.formatDate(this.props.event.sent)}</time>
+                    <time className="ff_module-task-event__sent">{this.formatDate(this.props.description.sent)}</time>
                     {this.renderActions(this.props)}
                     {this.props.children}
                 </div>
@@ -24,14 +24,15 @@ module.exports = React.createClass({
     generateClass: function(base, props) {
         var classNames = [];
         classNames.push(base);
-        var event = props.event || {};
+        var state = props.state || {},
+            description = props.description;
 
-        if (event.type) classNames.push(base + '--' + event.type);
-        if (event.pending) classNames.push(base + '--is-pending');
-        if (event.error) classNames.push(base + '--has-error');
-        if (event.deleted) classNames.push(base + '--is-deleted');
-        if (event.unreleased) classNames.push(base + '--is-unreleased');
-        if (event.released) classNames.push(base + '--is-released');
+        if (description.type) classNames.push(base + '--' + description.type);
+        if (state.pending) classNames.push(base + '--is-pending');
+        if (state.error) classNames.push(base + '--has-error');
+        if (state.deleted) classNames.push(base + '--is-deleted');
+        if (state.unreleased) classNames.push(base + '--is-unreleased');
+        if (state.released) classNames.push(base + '--is-released');
         return classNames.join(' ');
     },
     renderActions: function(props) {

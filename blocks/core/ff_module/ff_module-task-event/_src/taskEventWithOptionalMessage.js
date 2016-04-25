@@ -2,14 +2,16 @@
 var React = require('react/addons');
 var TaskEventBase = require('./TaskEventBase.js');
 
+
 module.exports = function(text) {
 
     return function() {
-        var outputText = getText(text, this.props);
+        var messageText = this.props.description.message || '',
+            outputText = getText(text, this.props);
 
-        var message = this.props.event.message ? <p className="ff_module-task-event__message">{this.props.event.message}</p> : null;
+        var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
 
-        return  <TaskEventBase event={this.props.event}>
+        return  <TaskEventBase description={this.props.description}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
                     {message}
                 </TaskEventBase>;
@@ -17,9 +19,14 @@ module.exports = function(text) {
 };
 
 function getText(text, props){
+    var description = props.description;
+
     if (typeof text === 'string') {
-        return props.event.author.name + ' ' +text;
+        if (description.author && description.author.name) {
+            return description.author.name + ' ' + text;
+        }
+        return 'User ' + text;
     } else if (typeof text === 'function') {
-        return text(props);
+        return text(this.props);
     }
 }
