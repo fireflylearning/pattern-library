@@ -114,9 +114,6 @@
     }
 }
 
-
-// .ff_icon-page-forward { background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%208a7%207%200%201%200%2014%200A7%207%200%200%200%201%208zm7.586%200L6.293%205.707a.999.999%200%201%201%201.414-1.414l3%203a.999.999%200%200%201%200%201.414l-3%203a.997.997%200%200%201-1.414%200%20.999.999%200%200%201%200-1.414L8.586%208z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
-
 // Calculating contrasts from here: http://24ways.org/2010/calculating-color-contrast/
 .colour-guard(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
     color: @dark;
@@ -125,17 +122,11 @@
     color: @light;
 }
 .colour-guard-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
-    // fill: @dark;
-    // temporary until fix for gulpicon enhanceSVG?
+    fill: @dark;
 }
 .colour-guard-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
-    // fill: @light;
-    // temporary until fix for gulpicon enhanceSVG?
-    opacity: 0.6;
-    .ff_icon-page-forward;
-
+    fill: @light;
 }
-
 
 #ff_mix-sections {
     .link(@c: @ff_color_control_link) {        
@@ -148,9 +139,8 @@
         &:active, &:hover {
             .colour-guard(@c, darken(@c, 70%), #fff);
         }
-        .ff_icon {
-            // .colour-guard-svg(@c, darken(@c, 70%), #fff); 
-            .colour-guard-svg(@c, #000, #fff); // temporary until fix for gulpicon enhanceSVG? - will either return white or black
+        .ff_icon path {
+            .colour-guard-svg(@c, darken(@c, 70%), #fff);
         }
     }
     .title(@c: white) {
