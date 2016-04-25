@@ -114,11 +114,37 @@
     }
 }
 
-
+// Calculating contrasts from here: http://24ways.org/2010/calculating-color-contrast/
+.colour-guard(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+    color: @dark;
+}
+.colour-guard(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+    color: @light;
+}
+.colour-guard-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+    fill: @dark;
+}
+.colour-guard-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+    fill: @light;
+}
 
 #ff_mix-sections {
-    .title() {
-        color: white;
+    .link(@c: @ff_color_control_link) {        
+        text-decoration: none;
+        .colour-guard(@c, darken(#fff, 70%), #fff);
+
+        &:visited {
+            .colour-guard(@c, darken(@c, 70%), #fff);
+        }
+        &:active, &:hover {
+            .colour-guard(@c, darken(@c, 70%), #fff);
+        }
+        .ff_icon path {
+            .colour-guard-svg(@c, darken(@c, 70%), #fff);
+        }
+    }
+    .title(@c: white) {
+        .colour-guard(@c, darken(@c, 70%), #fff);
         #ff_mix-util-prose > .h2();
         font-weight: normal;
         margin: 0;
@@ -149,5 +175,6 @@
     .shadow() {
         box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.1);
     }
+
 
 }
