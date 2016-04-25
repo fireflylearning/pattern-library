@@ -29,22 +29,20 @@ var types = [
     eventTypes.addFile
 ];
 
-// var statuses = [eventStates.default, eventStates.pending, eventStates.error, eventStates.saved, eventStates.released, eventStates.unreleased];
-
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
 
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-event-status]'), function(domElement, index) {
             var root = <ul style={{ listStyle: 'none', margin: 0, padding: '5px', backgroundColor:'#fff' }}>
-                {m1States.map((m1State, m1Index)=>{
+                {types.map((type, tIndex)=>{
                     return m2States.map((m2State, m2Index)=>{
-                        return types.map((type, tIndex)=>{
+                        return m1States.map((m1State, m1Index)=>{
                             var state = {};
                             state[m1State] = true;
                             state[m2State] = true;
 
                             return <li key={'li'+m1State+''+m2State+''+tIndex} style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' }}>
-                                <pre>{type}</pre>
+                                <pre>{type + ': ' + m2State + ' & ' + m1State}</pre>
                                 <TaskEventStatus state={state} type={type}/>
                                 </li>;
                         })

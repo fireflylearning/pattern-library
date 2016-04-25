@@ -38,6 +38,15 @@ function getPresentationState(state) {
     return presentationState;
 }
 
+function canEdit(state){
+    state = state || {};
+
+    if (state.error || state.pending || state.deleted) {
+        return false;
+    }
+    return true;
+}
+
 function generateClass(base, props) {
     var classNames = [];
     classNames.push(base);
@@ -51,14 +60,14 @@ function generateClass(base, props) {
 
 function renderActions(props) {
     var list = props.actions;
-    if (list && list.length) {
+    if (list && list.length && canEdit(props.state)) {
         return <DropDownButton text="..." list={list} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
     }
     return null;
 }
 
 function renderStatus(props) {
-    return <TaskEventStatus type={props.description.type} state={this.props.state || {}} classes='ff_module-task-event__status'/>
+    return <TaskEventStatus type={props.description.type} state={props.state || {}} classes='ff_module-task-event__status'/>
 }
 
 module.exports = React.createClass({

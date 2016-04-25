@@ -65,14 +65,27 @@ var events = [{
     };
 });
 
-events = events.concat(events.map(function(event){
-    return {
-        description: event.description,
-        state: {
-            deleted: true
-        }
-    };
-}));
+// events = events.concat(events.map(function(event){
+//     return {
+//         description: event.description,
+//         state: {
+//             deleted: true
+//         }
+//     };
+// }));
+//
+var m1States = [
+    eventStates.default,
+    eventStates.deleted
+];
+var m2States = [
+    eventStates.default,
+    eventStates.error,
+    eventStates.pending,
+    eventStates.released,
+    eventStates.unreleased,
+    eventStates.saved
+];
 
 
 
@@ -92,24 +105,26 @@ module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(e) {
 
         Array.prototype.forEach.call(document.querySelectorAll('[data-lib_test-task-event]'), function(domElement) {
-            var root = <div>{states.map(function(state, key, states){
-                    return  <section key={'section-'+state}>
-                                <h2><pre>State: {state}</pre></h2>
-                                <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                                    {events.map(function(event, index){
-                                        var eventDescription = event.description;
-                                        var eventState = Object.assign({}, event.state);
-                                        var delSt = eventState.deleted ? 'deleted' : '';
+            var root = <div>{m2States.map(function(m2State, key){
+                                return m1States.map(function(m1State, key) {
+                                    return  <section key={'section-'+m2State+m1State}>
+                                    <h2><pre>{'Send state: \''+ m2State + '\' & Edit state: \'' + m1State+'\''}</pre></h2>
+                                    <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                                        {events.map(function(event, index){
+                                            var eventDescription = event.description;
+                                            var eventState = {};
+                                            eventState[m1State] = true;
+                                            eventState[m2State] = true;
 
-                                        eventState[state] = true;
+                                            return  <li key={m2State+'-'+eventDescription.type+'-'+m1State}>
+                                                        <pre>Response event: <b>{eventDescription.type}</b></pre>
+                                                        <TaskEvent description={eventDescription} actions={actions} state={eventState} />
+                                                    </li>
+                                        })}
+                                    </ul>
+                                </section>;
+                                })
 
-                                        return  <li key={state+'-'+eventDescription.type+'-'+delSt}>
-                                                    <pre>Response event: <b>{eventDescription.type}{delSt ? ' ('+delSt+')' : ''}</b></pre>
-                                                    <TaskEvent description={eventDescription} actions={actions} state={eventState} />
-                                                </li>
-                                    })}
-                                </ul>
-                            </section>;
                 })}</div>;
 
             ReactDOM.render(root, domElement);
