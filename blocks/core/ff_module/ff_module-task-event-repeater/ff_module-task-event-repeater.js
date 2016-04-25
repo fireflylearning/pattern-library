@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react');
-var template = require('./_ff_module-task-event-repeater.rt.js');
 var TaskEvent = require('../ff_module-task-event/ff_module-task-event');
 var ensureIsDate = require('../../_lib/_ui/date-utils').ensureIsDate;
 
