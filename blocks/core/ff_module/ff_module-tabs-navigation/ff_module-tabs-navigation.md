@@ -18,7 +18,3 @@ data:
         label: "Students"
         id: "tab4a"
 ---
-
-## React Component
-
-<div data-ff_module-tabs-navigation="" />
