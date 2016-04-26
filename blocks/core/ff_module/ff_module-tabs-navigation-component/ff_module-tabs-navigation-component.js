@@ -1,8 +1,6 @@
 'use strict';
 
 var React = require('react');
-var TabsControl = require('../ff_module-tabs/ff_module-tabs.js');
-var TabsValidator = require('../ff_module-tabs/_ff_module-tabs-control')();
 
 function generateClass(base, props) {
 	var classNames = [];
@@ -16,14 +14,8 @@ function generateClass(base, props) {
 }
 module.exports = React.createClass({
 	displayName: 'TabsNavigation',
-	componentDidMount: function() {
-		var options = {
-			root: this.root
-		}
-		TabsControl(TabsValidator, options);
-	},
 	render: function() {
-		return <ul ref={(ref) => this.root = ref}  className='ff_module-tabs-navigation'>
+		return <ul className='ff_module-tabs-navigation'>
 			{this.props.tabs.map(function(tab) { 
 			return <li key={tab.key} className={generateClass('ff_module-tabs-navigation__tab', tab)} data-ff-tabs-target={tab.id}>
 				<a href={'#' + tab.id} className='ff_module-tabs-navigation__link' >{tab.label}</a></li>;
