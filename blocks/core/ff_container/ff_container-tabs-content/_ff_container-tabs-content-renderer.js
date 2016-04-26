@@ -6,8 +6,8 @@ var ReactDOM = require('react-dom');
 var ContainerTabsContent = require('./ff_container-tabs-content');
 
 var data = {
+	modifier: '',
 	tabs: [{
-		modifier: '',
 		state: 'is-active',
 		label: "Overview",
 		content: <p>Overview Tab</p>,
@@ -15,7 +15,6 @@ var data = {
 		key: 1
 	},
 	{
-		modifier: '',
 		state: '',
 		label: "Details",
 		content: <p>Details Tab</p>,
@@ -23,7 +22,6 @@ var data = {
 		key: 2
 	},
 	{
-		modifier: '',
 		state: '',
 		label: "Tasks",
 		content: <p>Tasks Tab</p>,
@@ -31,7 +29,6 @@ var data = {
 		key: 3
 	},
 	{
-		modifier: '',
 		state: '',
 		label: "Students",
 		content: <p>Students Tab</p>,

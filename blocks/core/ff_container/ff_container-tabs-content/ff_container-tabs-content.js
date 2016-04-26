@@ -7,18 +7,16 @@ function generateClass(base, props) {
 	props = props || {};
 	classNames.push(base);
 	if (!!props.modifier) classNames.push(base + '--' + props.modifier);
-	if (!!props.state) classNames.push(base + '--' + props.state);
-	if (!!props.classes) classNames.push(props.classes);
-	if (!!props.className) classNames.push(props.className);
+	if (!!props.tabs.state) classNames.push(base + '--' + props.tabs.state);
 	return classNames.join(' ');
 }
 module.exports = React.createClass({
 	displayName: 'ContainerTabsContent',
 	render: function() {
 		return <div>{this.props.tabs.map(function(tab) { 
-			return <div key={tab.key} className={generateClass('ff_container-tabs-content', tab)} data-ff-tabs-content={tab.id} id={tab.id}>
+			return <div key={tab.key} className={generateClass('ff_container-tabs-content', this.props)} data-ff-tabs-content={tab.id} id={tab.id}>
 				{tab.content}
 			</div>;
-		})} </div>;	
+		}, this)} </div>;	
 	}
 });

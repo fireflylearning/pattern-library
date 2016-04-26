@@ -4,8 +4,8 @@ var React = require('react');
 var TabsComponent = require('./ff_module-tabs-component');
 
 var data = {
+	modifier: 'constrained-height',
 	tabs: [{
-		modifier: 'constrained-height',
 		state: 'is-active',
 		label: "Overview",
 		content: <p>Overview tab</p>,
@@ -13,7 +13,6 @@ var data = {
 		key: 1
 	},
 	{
-		modifier: 'constrained-height',
 		state: '',
 		label: "Details",
 		content: <p>Details tab</p>,
@@ -21,7 +20,6 @@ var data = {
 		key: 2
 	},
 	{
-		modifier: 'constrained-height',
 		state: '',
 		label: "Tasks",
 		content: <p>Tasks tab</p>,
@@ -29,7 +27,6 @@ var data = {
 		key: 3
 	},
 	{
-		modifier: 'constrained-height',
 		state: '',
 		label: "Students",
 		content: <p>Students tab</p>,
