@@ -37,8 +37,21 @@ var events = [{
     mark: 7,
     markMax: 10,
     grade: 'B'
-}].map(function(event, index) { event.localEventId = 'event' + index;
-    return event; });
+}].map(function(description, index) {
+    return {
+        description: description,
+        localEventId: 'event' + index,
+        actions: [{
+            key: 'edit',
+            text: 'Edit',
+            onClick: function() { console.log('edit'); }
+        }, {
+            key: 'delete',
+            text: 'Delete',
+            onClick: function() { console.log('delete'); }
+        }]
+    };
+});
 
 var props = [{
     events: events,
@@ -75,8 +88,7 @@ var props = [{
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-responses]'), function(domElement, index) {
-            var element = React.createElement(TaskResponses, props[0]);
-            ReactDOM.render(element, domElement);
+            ReactDOM.render(React.createElement(TaskResponses, props[1]), domElement);
         });
     });
 };

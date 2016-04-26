@@ -219,7 +219,7 @@ var events = [{
     },
     expected: {
         sent: dExpected[2],
-        author: 'Sally StudentFiles added files:',
+        author: 'Sally StudentFiles added 3 files:',
         files: 'File oneFile twoFile two'
     }
 }, {
@@ -237,55 +237,6 @@ var events = [{
         author: 'Sally StudentFile added a file:',
         files: 'File one'
     }
-}, {
-    props: {
-        type: eventTypes.comment,
-        deleted: true,
-        sent: new Date(dStrings[2]),
-        author: { name: 'Terry Teacher' },
-    },
-    expected: {
-        sent: dExpected[2],
-        author: 'Terry Teacher deleted a comment.',
-    }
-}, {
-    props: {
-        type: eventTypes.addFile,
-        deleted: true,
-        sent: new Date(dStrings[2]),
-        author: { name: 'Sally StudentFiles' },
-        files: [{
-            title: 'File one',
-            href: '#'
-        }, {
-            title: 'File two',
-            type: 'page',
-            href: '#'
-        }, {
-            title: 'File two'
-        }]
-    },
-    expected: {
-        sent: dExpected[2],
-        author: 'Sally StudentFiles deleted files.',
-        files: shouldntExist
-    }
-}, {
-    props: {
-        type: eventTypes.addFile,
-        deleted: true,
-        sent: new Date(dStrings[2]),
-        author: { name: 'Sally StudentFile' },
-        files: [{
-            title: 'File one',
-            href: '#'
-        }]
-    },
-    expected: {
-        sent: dExpected[2],
-        author: 'Sally StudentFile deleted a file.',
-        files: shouldntExist
-    }
 }];
 
 
@@ -296,7 +247,7 @@ describe('TaskEvent', function() {
     var component;
 
     before(function() {
-        var element = React.createElement(TaskEvent, { event: events[0].props });
+        var element = React.createElement(TaskEvent, { description: events[0].props });
         component = TestUtils.renderIntoDocument(element);
     });
 
@@ -315,7 +266,7 @@ describe('TaskEvent', function() {
                 if (!testClass) return null;
 
                 it('should render \'' + _event.expected[key] + '\' for prop \'' + key + '\' with value \'' + prop.toString() + '\'', function() {
-                    element = React.createElement(TaskEvent, { event: _event.props });
+                    element = React.createElement(TaskEvent, { description: _event.props });
                     component = TestUtils.renderIntoDocument(element);
 
                     if (_event.expected[key] === shouldntExist) {

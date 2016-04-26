@@ -7,10 +7,26 @@ var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:
 var eventTypes = require('./_src/events').types;
 
 var events = [{
-    type: eventTypes.comment,
-    sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' },
-    message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+    description: {
+        type: eventTypes.markAndGrade,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Terry Teacher' },
+        message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
+        grade: 'B'
+    },
+    actions: [{
+        key: 'edit',
+        text: 'Edit',
+        onClick: function() { console.log('edit'); }
+    }, {
+        key: 'delete',
+        text: 'Delete',
+        onClick: function() { console.log('delete'); }
+    }],
+    state: {
+        // deleted: true
+    }
+
 }];
 
 module.exports = function() {
@@ -21,16 +37,9 @@ module.exports = function() {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(TaskEvent, {
                         key: 'el' + (index),
-                        event: event,
-                        actions: [{
-                            key: 'edit',
-                            text: 'Edit',
-                            onClick: function() { console.log('edit'); }
-                        }, {
-                            key: 'delete',
-                            text: 'Delete',
-                            onClick: function() { console.log('delete'); }
-                        }]
+                        description: event.description,
+                        state: event.state,
+                        actions: event.actions
                     }));
             }));
             ReactDOM.render(root, domElement);
