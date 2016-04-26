@@ -23,8 +23,8 @@
             <script>
             // FIXME: For now, load all icons, but should update to only load theme icons
             if (grunticon) {
-                grunticon(["/css/icons/icons.core.svg.css", "/css/icons/icons.core.png.css", "/css/icons/icons.core.fallback.css"], grunticon.svgLoadedCallback);
-                grunticon(["/css/icons/icons.melody.svg.css", "/css/icons/icons.melody.png.css", "/css/icons/icons.melody.fallback.css"], grunticon.svgLoadedCallback);
+                grunticon(["/css/icons/icons.core.svg.css", "/css/icons/icons.core.png.css", "/css/icons/icons.core.fallback.css"]);
+                grunticon(["/css/icons/icons.melody.svg.css", "/css/icons/icons.melody.png.css", "/css/icons/icons.melody.fallback.css"]);
             }
             </script>
             <noscript><link href="/css/icons/icons.core.fallback.css" rel="stylesheet"/></noscript>

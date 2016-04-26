@@ -131,10 +131,9 @@
 }
 
 #ff_mix-sections {
-    .link(@c: @ff_color_control_link) {        
+    .link-contrast(@c: @ff_color_control_link) {        
         text-decoration: none;
         #ff_mix-responsive-colour > .check-contrast(@c, darken(#fff, 70%), #fff);
-
         &:visited {
             #ff_mix-responsive-colour > .check-contrast(@c, darken(@c, 70%), #fff);
         }
@@ -145,7 +144,7 @@
             #ff_mix-responsive-colour > .check-contrast-svg(@c, darken(@c, 70%), #fff);
         }
     }
-    .title(@c: white) {
+    .title-contrast(@c: white) {
         #ff_mix-responsive-colour > .check-contrast(@c, darken(@c, 70%), #fff);
         #ff_mix-util-prose > .h2();
         font-weight: normal;
