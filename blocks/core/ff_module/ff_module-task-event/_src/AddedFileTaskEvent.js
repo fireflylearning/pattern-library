@@ -1,21 +1,24 @@
 'use strict';
 
 var React = require('react');
-var TaskEventBase = require('./TaskEventBase'),
+var eventStates = require('./events').states,
+    TaskEventBase = require('./TaskEventBase'),
     ModuleFileList = require('../../ff_module-file-list/ff_module-file-list'),
     taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
 
-module.exports.defaultState = React.createClass({
+var defaultState = React.createClass({
     displayName: 'AddedFileTaskEventDefault',
     render: defaultState
 });
 
-module.exports.deletedState = React.createClass({
+var deletedState = React.createClass({
     displayName: 'AddedFileTaskEventDeleted',
     render: taskEventWithOptionalMessageDeleted(function(props) {
         return props.description.author.name + ' deleted ' + getFileText(props.description.files) + '.';
     })
 });
+
+var editedState = 'p';
 
 function defaultState(){
     var description = this.props.description,
@@ -32,3 +35,8 @@ function defaultState(){
 function getFileText(files) {
     return (files.length > 1) ? files.length + ' files' : 'a file';
 }
+
+module.exports = {};
+module.exports[eventStates.default] = defaultState;
+module.exports[eventStates.deleted] = deletedState;
+module.exports[eventStates.edited] = editedState;

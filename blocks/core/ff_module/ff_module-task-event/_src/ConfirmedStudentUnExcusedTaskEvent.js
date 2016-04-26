@@ -1,16 +1,27 @@
 'use strict';
 
 var React = require('react');
-var taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage').defaultState,
-    taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
+var eventStates = require('./events').states,
+    taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage').defaultState,
+    taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState,
+    taskEventWithOptionalMessageEdited = require('./taskEventWithOptionalMessage').editedState;
 
-module.exports.defaultState = React.createClass({
+var defaultState = React.createClass({
     displayName: 'ConfirmedUnStudentExcusedTaskEventDefault',
     render: taskEventWithOptionalMessage('unexcused student.')
 });
 
-module.exports.deletedState = React.createClass({
+var deletedState = React.createClass({
     displayName: 'ConfirmedUnStudentExcusedTaskEventDeleted',
     render: taskEventWithOptionalMessageDeleted('deleted an unexcused confirmation.')
 });
 
+var editedState = React.createClass({
+    displayName: 'ConfirmedUnStudentExcusedTaskEventDeleted',
+    render: taskEventWithOptionalMessageEdited('unexcused student.')
+});
+
+module.exports = {};
+module.exports[eventStates.default] = defaultState;
+module.exports[eventStates.deleted] = deletedState;
+module.exports[eventStates.edited] = editedState;

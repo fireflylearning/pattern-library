@@ -20,11 +20,13 @@ var events = [{
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Please resubmit'
 }, {
     type: eventTypes.confirmTaskIsComplete,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Please resubmit'
 }, {
     type: eventTypes.confirmStudentIsExcused,
     sent: new Date(dStrings[2]),

@@ -12,6 +12,7 @@ module.exports.types = {
 
     // unconfirmed response events:
     deleteResponse: 'delete-response',
+    editResponse: 'edit-response',
     confirmStudentIsUnexcused: 'confirm-student-is-unexcused',
 
     // unconfirmed task events:
@@ -21,27 +22,34 @@ module.exports.types = {
     archivedTask: 'archived-task'
 };
 
-var states = module.exports.states = {
+var states = {
     default: 'default',
     error: 'error',
     pending: 'pending',
+    editing: 'editing',
+    deleting: 'deleting',
     saved: 'saved', // May remove & just check for removal of pending
+    edited: 'edited',
+    deleted: 'deleted',
     released: 'released',
     unreleased: 'unreleased',
-    deleted: 'deleted',
-    edited: 'edited',
+
     archived: 'archived',
     noConnection: 'no-connection'
 };
+module.exports.states = states;
 
 var stateClasses = {};
 stateClasses[states.default] = '--no-status';
-stateClasses[states.pending] = '--is-pending';
 stateClasses[states.error] = '--has-error';
+stateClasses[states.pending] = '--is-pending';
+stateClasses[states.editing] = '--is-editing';
+stateClasses[states.deleting] = '--is-deleting';
 stateClasses[states.saved] = '--is-saved';
-stateClasses[states.unreleased] = '--is-unreleased';
-stateClasses[states.released] = '--is-released';
+stateClasses[states.edited] = '--is-edited';
 stateClasses[states.deleted] = '--is-deleted';
+stateClasses[states.released] = '--is-released';
+stateClasses[states.unreleased] = '--is-unreleased';
 module.exports.stateClasses = stateClasses;
 
 

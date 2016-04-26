@@ -1,44 +1,59 @@
 'use strict';
 
 var React = require('react');
-var TaskEventBase = require('./TaskEventBase'),
+var eventStates = require('./events').states,
+    TaskEventBase = require('./TaskEventBase'),
     taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
 
 
-module.exports.defaultState = React.createClass({
+var defaultState = React.createClass({
     displayName: 'MarkAndGradeTaskEventDefault',
-    render: defaultState
+    render: renderDefault
 });
 
-module.exports.deletedState = React.createClass({
+var deletedState = React.createClass({
     displayName: 'MarkAndGradeTaskEventDeleted',
     render: taskEventWithOptionalMessageDeleted(function(props) {
         return getStatusText(props.description.author.name + ' deleted a ', props.description) + '.';
     })
 });
 
-function defaultState(){
+var editedState = React.createClass({
+    displayName: 'MarkAndGradeTaskEventEdited',
+    render: renderDefault
+});
+
+function renderDefault(){
     var description = this.props.description,
-        actions = this.props.actions,
-        messageText = description.message,
-        markText = getMarkText(description),
-        gradeText = description.grade;
+        actions = this.props.actions;
 
-    var statusText = getStatusText(description.author.name + ' added a ', description);
+    var markAndGrade = getMarkAndGrade(this.props);
+    var message = getMessage(this.props);
+    var status = getStatus(this.props);
 
-    var mark = markText ? <span className="ff_module-task-event__mark">{markText}</span> : null,
-        grade = gradeText ? <span className="ff_module-task-event__grade">{gradeText}</span> : null,
-        sep = (markText && gradeText) ? ', ' : '';
-
-    var markAndGrade = (mark || grade) ? <p className="ff_module-task-event__mark-and-grade">{mark}{sep}{grade}</p> : null;
-
-    var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
-    var status = statusText ? <p className="ff_module-task-event__author-action">{statusText+':'}</p> : null;
     return  <TaskEventBase description={description} actions={actions} state={this.props.state}>
                 {status}
                 {markAndGrade}
                 {message}
             </TaskEventBase>
+}
+
+function getEditedFlag(props, type) {
+    var isEdited = props.state[eventStates.edited] && props.state[type];
+    return isEdited ? <span className="ff_module-task-event__editedflag">[Edited]</span> : null;
+}
+
+function getMessage(props) {
+    var description = props.description,
+        messageText = description.message,
+        editedFlag = getEditedFlag(props, 'messageEdited');
+
+    return messageText ? <p className="ff_module-task-event__message">{messageText} {editedFlag}</p> : null;
+}
+
+function getStatus(props) {
+    var statusText = getStatusText(props.description.author.name + ' added a ', props.description);
+    return statusText ? <p className="ff_module-task-event__author-action">{statusText+':'}</p> : null;
 }
 
 function getStatusText(base, description) {
@@ -54,6 +69,19 @@ function getStatusText(base, description) {
     }
 }
 
+function getMarkAndGrade(props) {
+    var markText = getMarkText(props.description),
+        gradeText = props.description.grade,
+        editedFlag = getEditedFlag(props, 'markAndGradeEdited');
+
+
+    var mark = markText ? <span className="ff_module-task-event__mark">{markText}</span> : null,
+        grade = gradeText ? <span className="ff_module-task-event__grade">{gradeText}</span> : null,
+        sep = (markText && gradeText) ? ', ' : '';
+
+    return (mark || grade) ? <p className="ff_module-task-event__mark-and-grade">{mark}{sep}{grade} {editedFlag}</p> : null;
+}
+
 function getMarkText(description) {
     if (description.mark) {
         if (description.markMax) {
@@ -63,3 +91,8 @@ function getMarkText(description) {
     }
     return null;
 }
+
+module.exports = {};
+module.exports[eventStates.default] = defaultState;
+module.exports[eventStates.deleted] = deletedState;
+module.exports[eventStates.edited] = editedState;

@@ -77,7 +77,6 @@ module.exports = React.createClass({
         state: React.PropTypes.object.isRequired
     },
     render: function() {
-        console.log(this.props.state);
         return <span className={getGeneratedClass('ff_module-task-event-status', this.props)}>
             {getIcon(this.props)}
             {getStatusMessage(this.props)}

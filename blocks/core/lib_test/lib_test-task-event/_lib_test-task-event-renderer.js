@@ -27,26 +27,31 @@ var events = [{
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Please resubmit'
 }, {
     type: eventTypes.confirmTaskIsComplete,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'This task is complete'
 }, {
     type: eventTypes.confirmStudentIsExcused,
     sent: new Date(dStrings[2]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Student is excused'
 }, {
     type: eventTypes.markAndGrade,
     sent: new Date(dStrings[0]),
     author: { name: 'Terry Teacher' },
     mark: 7,
     markMax: 10,
-    grade: 'B'
+    grade: 'B',
+    message: 'Great work!'
 }, {
     type: eventTypes.confirmStudentIsUnexcused,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Student is unexcused'
 }, {
     type: eventTypes.addFile,
     sent: new Date(dStrings[2]),
@@ -65,18 +70,10 @@ var events = [{
     };
 });
 
-// events = events.concat(events.map(function(event){
-//     return {
-//         description: event.description,
-//         state: {
-//             deleted: true
-//         }
-//     };
-// }));
-//
 var m1States = [
     eventStates.default,
-    eventStates.deleted
+    eventStates.deleted,
+    eventStates.edited
 ];
 var m2States = [
     eventStates.default,
@@ -86,10 +83,6 @@ var m2States = [
     eventStates.unreleased,
     eventStates.saved
 ];
-
-
-
-var states = ['default', 'pending', 'error', 'saved', 'released', 'unreleased'];
 
 var actions = [{
     key: 'edit',
@@ -115,6 +108,10 @@ module.exports = function() {
                                             var eventState = {};
                                             eventState[m1State] = true;
                                             eventState[m2State] = true;
+                                            if (eventDescription.type === eventTypes.markAndGrade && m1State === eventStates.edited){
+                                                eventState.markAndGradeEdited = true;
+                                                eventState.messageEdited = true;
+                                            }
 
                                             return  <li key={m2State+'-'+eventDescription.type+'-'+m1State}>
                                                         <pre>Response event: <b>{eventDescription.type}</b></pre>

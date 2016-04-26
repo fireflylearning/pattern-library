@@ -1,7 +1,21 @@
 'use strict';
 var React = require('react/addons');
 var TaskEventBase = require('./TaskEventBase.js');
+var eventStates = require('./events').states;
 
+
+function renderEdited(){
+    var messageText = this.props.description.message || '',
+        outputText = getText('stamped response as seen.', this.props),
+        editedFlag = getEditedFlag(this.props);
+
+        var message = messageText ? <p className="ff_module-task-event__message">{messageText} {editedFlag}</p> : null;
+
+        return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
+                    <p className='ff_module-task-event__author-action'>{outputText}</p>
+                    {message}
+                </TaskEventBase>;
+}
 
 function defaultState(text) {
     return function() {
@@ -27,6 +41,29 @@ function deletedState(text) {
     };
 };
 
+function editedState(text) {
+    return function() {
+        var messageText = this.props.description.message || '',
+        outputText = getText(text, this.props),
+        editedFlag = getEditedFlag(this.props);
+
+        var message = messageText ? <p className="ff_module-task-event__message">{messageText} {editedFlag}</p> : null;
+
+        return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
+                    <p className='ff_module-task-event__author-action'>{outputText}</p>
+                    {message}
+                </TaskEventBase>;
+    };
+};
+
+function renderBase(text, message, status, actions, list, state) {
+    var outputText = getText(text, this.props);
+
+    return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
+                <p className='ff_module-task-event__author-action'>{outputText}</p>
+                {message}
+            </TaskEventBase>;
+}
 
 function getText(text, props){
     var description = props.description;
@@ -41,6 +78,11 @@ function getText(text, props){
     }
 }
 
+function getEditedFlag(props) {
+    var isEdited = !!props.state[eventStates.edited];
+    return isEdited ? <span className="ff_module-task-event__editedflag">[Edited]</span> : null;
+}
 
 module.exports.defaultState = defaultState;
 module.exports.deletedState = deletedState;
+module.exports.editedState = editedState;

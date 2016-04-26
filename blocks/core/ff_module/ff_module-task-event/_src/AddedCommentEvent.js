@@ -1,28 +1,54 @@
 'use strict';
 
 var React = require('react');
-var TaskEventBase = require('./TaskEventBase'),
+var eventStates = require('./events').states,
+    TaskEventBase = require('./TaskEventBase'),
     taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
 
-module.exports.defaultState = React.createClass({
+var defaultState = React.createClass({
     displayName: 'AddedCommentEventDefault',
-    render: defaultState
+    render: renderDefault
 });
 
-module.exports.deletedState = React.createClass({
+var deletedState = React.createClass({
     displayName: 'AddedCommentEventDeleted',
     render: taskEventWithOptionalMessageDeleted('deleted a comment.')
 });
 
-function defaultState(){
-    var description = this.props.description || {},
+var editedState = React.createClass({
+    displayName: 'AddedCommentEventEdited',
+    render: renderDefault
+});
+
+function getEditedFlag(props) {
+    var isEdited = !!props.state[eventStates.edited];
+    return isEdited ? <span className="ff_module-task-event__editedflag">[Edited]</span> : null;
+}
+
+function getCommentEl(props){
+    var description = props.description || {},
         commentText = description.message,
-        name = description.author && description.author.name || 'User',
-        comment = commentText ? <blockquote className="ff_module-task-event__comment">&#8220;{commentText}&#8221;</blockquote> : null;
+        editedFlag = getEditedFlag(props);
 
+    return commentText ? <blockquote className="ff_module-task-event__comment">&#8220;{commentText}&#8221; {editedFlag}</blockquote> : null;
+}
 
-    return  <TaskEventBase description={description} actions={this.props.actions} state={this.props.state}>
+function getName(props){
+    var description = props.description || {};
+    return description.author && description.author.name || 'User';
+}
+
+function renderDefault(){
+    var name = getName(this.props),
+        comment = getCommentEl(this.props);
+
+    return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
                 <p className="ff_module-task-event__author-action">{name} added a comment:</p>
                 {comment}
             </TaskEventBase>
 }
+
+module.exports = {};
+module.exports[eventStates.default] = defaultState;
+module.exports[eventStates.deleted] = deletedState;
+module.exports[eventStates.edited] = editedState;
