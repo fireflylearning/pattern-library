@@ -9,28 +9,24 @@ var data = {
 	modifier: '',
 	tabs: [{
 		state: 'is-active',
-		label: "Overview",
 		content: <p>Overview Tab</p>,
 		id: "tab1a",
 		key: 1
 	},
 	{
 		state: '',
-		label: "Details",
 		content: <p>Details Tab</p>,
 		id: "tab2a",
 		key: 2
 	},
 	{
 		state: '',
-		label: "Tasks",
 		content: <p>Tasks Tab</p>,
 		id: "tab3a",
 		key: 3
 	},
 	{
 		state: '',
-		label: "Students",
 		content: <p>Students Tab</p>,
 		id: "tab4a",
 		key: 4
