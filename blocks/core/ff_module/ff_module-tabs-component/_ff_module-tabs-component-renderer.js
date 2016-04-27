@@ -1,5 +1,6 @@
 'use strict';
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var TabsComponent = require('./ff_module-tabs-component');
 
@@ -39,7 +40,7 @@ module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
 		Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-tabs-component]'), function(domElement) {
 			if(domElement){
-				React.render(<TabsComponent {...data}/>, domElement);
+				ReactDOM.render(<TabsComponent {...data}/>, domElement);
 			}
 		});
 	});
