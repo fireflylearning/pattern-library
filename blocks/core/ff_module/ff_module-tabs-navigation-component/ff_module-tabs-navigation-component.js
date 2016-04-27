@@ -26,7 +26,7 @@ module.exports = React.createClass({
 	render: function() {
 		return <ul className='ff_module-tabs-navigation'>
 			{this.props.tabs.map(function(tab) { 
-				return <li key={tab.key} className={generateClass('ff_module-tabs-navigation__tab', this.props)} data-ff-tabs-target={tab.id}>
+				return <li key={tab.key} className={generateClass('ff_module-tabs-navigation__tab', this.props)} data-ff_module-tabs-react-target={tab.id}>
 						<a href={'#' + tab.id} className='ff_module-tabs-navigation__link' >{tab.label}</a>
 					</li>;
 			}, this)} </ul>;	

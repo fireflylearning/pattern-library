@@ -6,6 +6,8 @@ var TabsNavigation = require('..//ff_module-tabs-navigation-component/ff_module-
 var TabsControl = require('../ff_module-tabs/ff_module-tabs.js');
 var TabsValidator = require('../ff_module-tabs/_ff_module-tabs-control')();
 
+var targetName = 'data-ff_module-tabs-react-target';
+var contentName = 'data-ff_module-tabs-react-content';
 
 module.exports = React.createClass({
 	displayName: 'TabsComponent',
@@ -24,6 +26,8 @@ module.exports = React.createClass({
 	componentDidMount: function() {
 		var options = {
 			root: this.root,
+			linkSelBase: targetName,
+			contentSelBase: contentName
 		}
 		TabsControl(TabsValidator, options);
 	},
