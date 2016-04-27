@@ -21,8 +21,8 @@ var tabs = [{
 		id: "tab2a",
 		key: 2
 	}
-]
-var modifier = '[Modifier]'
+];
+var modifier = '[Modifier]';
 
 describe('TabsComponent', function() {
 	
@@ -47,10 +47,16 @@ describe('TabsComponent', function() {
 	});
 
 	it('should activate the clicked tab', function() {
-		var element = React.createElement(TabsComponent, {modifier: modifier, tabs: tabs});
+		var element = React.createElement(TabsComponent, {tabs: tabs});
 		var component = TestUtils.renderIntoDocument(element);
-		var root = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-tabs-navigation__tab');
-		TestUtils.Simulate.click(root[1]);
-		expect(root[1]).to.change;
+		var navigationTabs = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-tabs-navigation__tab');
+		var tabsContent = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_container-tabs-content');
+		var clickedTab = navigationTabs[1];
+		var clickedTabContent = tabsContent[1]
+		TestUtils.Simulate.click(clickedTab);
+		setTimeout(function(){
+			expect(clickedTab.className).to.contain('--is-active');
+			expect(clickedTabContent.className).to.contain('--is-active');
+		}, 10);
 	});
 });
