@@ -75,13 +75,24 @@ var m1States = [
     eventStates.deleted,
     eventStates.edited
 ];
+
 var m2States = [
     eventStates.default,
-    eventStates.error,
-    eventStates.pending,
+
     eventStates.released,
     eventStates.unreleased,
-    eventStates.saved
+
+    eventStates.pending,
+    eventStates.saved,
+    eventStates.error,
+
+    eventStates.editing,
+    eventStates.edited,
+    eventState.errorEditing,
+
+    eventStates.deleting,
+    eventStates.deleted,
+    eventStates.errorDeleting
 ];
 
 var actions = [{

@@ -22,34 +22,49 @@ module.exports.types = {
     archivedTask: 'archived-task'
 };
 
+
 var states = {
     default: 'default',
-    error: 'error',
+
     pending: 'pending',
+    saved: 'saved',
+    error: 'error',
+
     editing: 'editing',
-    deleting: 'deleting',
-    saved: 'saved', // May remove & just check for removal of pending
     edited: 'edited',
+    errorEditing: 'error-editing',
+
+    deleting: 'deleting',
     deleted: 'deleted',
+    errorDeleting: 'error-deleting',
+
     released: 'released',
     unreleased: 'unreleased',
 
     archived: 'archived',
     noConnection: 'no-connection'
 };
+
 module.exports.states = states;
 
 var stateClasses = {};
 stateClasses[states.default] = '--no-status';
-stateClasses[states.error] = '--has-error';
+
 stateClasses[states.pending] = '--is-pending';
-stateClasses[states.editing] = '--is-editing';
-stateClasses[states.deleting] = '--is-deleting';
 stateClasses[states.saved] = '--is-saved';
+stateClasses[states.error] = '--has-error';
+
+stateClasses[states.pendingEdit] = '--is-pending-edit';
 stateClasses[states.edited] = '--is-edited';
+stateClasses[states.errorEditing] = '--has-error-editing';
+
+stateClasses[states.pendingDelete] = '--is-pending-delete';
 stateClasses[states.deleted] = '--is-deleted';
+stateClasses[states.errorDeleting] = '--has-error-deleting';
+
 stateClasses[states.released] = '--is-released';
 stateClasses[states.unreleased] = '--is-unreleased';
+
 module.exports.stateClasses = stateClasses;
 
 
