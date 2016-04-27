@@ -16,8 +16,10 @@ module.exports = function() {
                 isRead: false,
                 label: "Sally Student",
                 event:{
-                    type: eventTypes.requestResubmission,
-                    sent: new Date()
+                    description: {
+                        type: eventTypes.requestResubmission,
+                        sent: new Date()
+                    }
                 },
                 markAndGrade: {
                     mark: 7,
