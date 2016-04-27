@@ -84,5 +84,5 @@ statusTexts[eventTypes.addFile] = "Response Received";
 
 function statusSummaryText(props) {
     var event = props.event;
-    return statusTexts[event.type];
+    return statusTexts[event.description.type];
 }
