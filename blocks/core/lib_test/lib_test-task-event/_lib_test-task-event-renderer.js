@@ -73,7 +73,8 @@ var events = [{
 var m1States = [
     eventStates.default,
     eventStates.deleted,
-    eventStates.edited
+    eventStates.edited,
+    eventStates.saved
 ];
 
 var m2States = [
@@ -83,15 +84,12 @@ var m2States = [
     eventStates.unreleased,
 
     eventStates.pending,
-    eventStates.saved,
     eventStates.error,
 
     eventStates.editing,
-    eventStates.edited,
     eventState.errorEditing,
 
     eventStates.deleting,
-    eventStates.deleted,
     eventStates.errorDeleting
 ];
 

@@ -26,17 +26,21 @@ module.exports.types = {
 var states = {
     default: 'default',
 
-    pending: 'pending',
+    pendingSend: 'pending-send',
+    sent: 'sent',
+    erroredSend: 'errored-send',
+
+    pendingSave: 'pending-save',
     saved: 'saved',
-    error: 'error',
+    erroredSave: 'errored-save',
 
-    editing: 'editing',
+    pendingEdit: 'pending-edit',
     edited: 'edited',
-    errorEditing: 'error-editing',
+    erroredEdit: 'errored-edit',
 
-    deleting: 'deleting',
+    pendingDelete: 'pending-delete',
     deleted: 'deleted',
-    errorDeleting: 'error-deleting',
+    erroredDelete: 'errored-delete',
 
     released: 'released',
     unreleased: 'unreleased',
@@ -48,19 +52,24 @@ var states = {
 module.exports.states = states;
 
 var stateClasses = {};
-stateClasses[states.default] = '--no-status';
+stateClasses[states.default] = '--is-default';
 
-stateClasses[states.pending] = '--is-pending';
+stateClasses[states.pendingSend] = '--has-pending-send';
+stateClasses[states.sent] = '--is-sent';
+stateClasses[states.erroredSend] = '--has-errored-send';
+
+stateClasses[states.pendingSave] = '--has-pending-save';
 stateClasses[states.saved] = '--is-saved';
-stateClasses[states.error] = '--has-error';
+stateClasses[states.erroredSave] = '--has-errored-save';
 
-stateClasses[states.pendingEdit] = '--is-pending-edit';
+stateClasses[states.pendingEdit] = '--has-pending-edit';
 stateClasses[states.edited] = '--is-edited';
-stateClasses[states.errorEditing] = '--has-error-editing';
+stateClasses[states.erroredEdit] = '--has-errored-edit';
 
 stateClasses[states.pendingDelete] = '--is-pending-delete';
 stateClasses[states.deleted] = '--is-deleted';
-stateClasses[states.errorDeleting] = '--has-error-deleting';
+stateClasses[states.erroredDelete] = '--has-errored-delete';
+
 
 stateClasses[states.released] = '--is-released';
 stateClasses[states.unreleased] = '--is-unreleased';

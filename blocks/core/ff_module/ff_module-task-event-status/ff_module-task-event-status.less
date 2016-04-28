@@ -4,11 +4,22 @@
     font-size: .875rem;
     padding: @ff_size_spacing_min*0.25 @ff_size_spacing_min;
 
+    // conceptually if not actually a child
+    &__transition-wrapper {
+        position: relative;
+        min-height: 1.625rem;
+        .ff_mix-clearfix();
+    }
+
     &__icon {
         margin: -.4em .4em -.4em -.25em;
     }
 
-    &--no-status, &--is-released, &--is-deleted {
+    button&__error-button {
+        font-size: .875rem;
+    }
+
+    &--is-default, &--is-deleted {
         display: none;
     }
 
