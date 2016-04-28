@@ -27,6 +27,6 @@ function getText(text, props){
         }
         return 'User ' + text;
     } else if (typeof text === 'function') {
-        return text(this.props);
+        return text(props);
     }
 }
