@@ -21,8 +21,9 @@ var editedState = React.createClass({
 });
 
 function getEditedFlag(props) {
-    var isEdited = !!props.state[eventStates.edited];
-    return isEdited ? <span className="ff_module-task-event__editedflag">[Edited]</span> : null;
+    var state = props.state || {};
+    var isEdited = !!state[eventStates.edited];
+    return isEdited ? <span className="ff_module-task-event__editedflag"> [Edited]</span> : null;
 }
 
 function getCommentEl(props){
@@ -30,7 +31,7 @@ function getCommentEl(props){
         commentText = description.message,
         editedFlag = getEditedFlag(props);
 
-    return commentText ? <blockquote className="ff_module-task-event__comment">&#8220;{commentText}&#8221; {editedFlag}</blockquote> : null;
+    return commentText ? <blockquote className="ff_module-task-event__comment">&#8220;{commentText}&#8221;{editedFlag}</blockquote> : null;
 }
 
 function getName(props){

@@ -49,7 +49,7 @@ function getStatusMessage(props, presentationState) {
 
 function getEditState(state) {
     var editState = '';
-
+    state = state || {};
     if (state[eventStates.deleted]) {
         editState = eventStates.deleted; // deleted overrides any send-states
     }
@@ -60,7 +60,7 @@ function getEditState(state) {
 
 function getReleaseState(state) {
     var releaseState = '';
-
+    state = state || {};
     if (state[eventStates.unreleased]) {
         releaseState = eventStates.unreleased;
     }
@@ -69,6 +69,8 @@ function getReleaseState(state) {
 
 function getTransientDisplayState(eventState, uiState) {
     var transientDisplayState = '';
+
+    eventState = eventState || {};
 
     if (uiState.transientDisplayStatesActive) {
         if (eventState[eventStates.saved]) {
@@ -82,6 +84,7 @@ function getTransientDisplayState(eventState, uiState) {
 
 function getSendState(state) {
     var sendState = '';
+    state = state || {};
 
     if (state[eventStates.erroredSend]) {
         sendState = eventStates.erroredSend;

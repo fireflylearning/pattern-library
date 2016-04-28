@@ -38,8 +38,10 @@ module.exports = React.createClass({
 });
 
 function getEventEditor(props){
-    if (props.event.error) {
-        return eventEditorComponents[eventStates.error](props);
+    if (props.event.erroredSend) {
+        return eventEditorComponents[eventStates.erroredSend](props);
+    } else if (props.event.erroredSave) {
+        return eventEditorComponents[eventStates.erroredSave](props);
     } else {
         return eventEditorComponents[props.event.type](props);
     }
@@ -184,8 +186,16 @@ eventEditorComponents[eventTypes.deleteResponse] = createEventWithMessageNotific
 //
 // unconfirmed states
 //
-eventEditorComponents[eventStates.error] = createEventWithMessageNotification({
+eventEditorComponents[eventStates.erroredSend] = createEventWithMessageNotification({
     title: "Unable to Send Feedback",
+    message: function(props) {
+        return  <p>We'll try again in a few seconds</p>
+    },
+    sendText: "Try again",
+    closeText: "Close"
+});
+eventEditorComponents[eventStates.erroredSave] = createEventWithMessageNotification({
+    title: "Unable to Save Feedback",
     message: function(props) {
         return  <p>We'll try again in a few seconds</p>
     },

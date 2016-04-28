@@ -61,7 +61,12 @@ var events = [{
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.addFile,
-    error: true,
+    erroredSend: true,
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.addFile,
+    erroredSave: true,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
 }];
@@ -76,8 +81,8 @@ types[eventTypes.markAndGrade] = [EditorBase, EditorMarkAndGrade];
 
 types[eventTypes.addFile] = [EditorBase, EditorAddFile];
 types[eventTypes.deleteResponse] = [EditorBaseMini, ContainerDialog];
-types[eventStates.error] = [EditorBaseMini, ContainerDialog];
-
+types[eventStates.erroredSend] = [EditorBaseMini, ContainerDialog];
+types[eventStates.erroredSave] = [EditorBaseMini, ContainerDialog];
 
 describe('TaskEventEditor', function() {
 
@@ -102,7 +107,11 @@ describe('TaskEventEditor', function() {
                     onClose: sinon.spy(),
                 });
             var component = TestUtils.renderIntoDocument(element);
-            var typeName = event.error ? 'error' : event.type;
+            var typeName = event.type;
+
+            if (event.erroredSave) typeName = eventStates.erroredSave;
+            else if (event.erroredSend) typeName = eventStates.erroredSend;
+
             var rootView = TestUtils.findRenderedComponentWithType(component, types[typeName][0]);
             expect(rootView).to.exist;
             var subView = TestUtils.findRenderedComponentWithType(rootView, types[typeName][1]);

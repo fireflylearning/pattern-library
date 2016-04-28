@@ -48,7 +48,12 @@ var events = [{
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.addFile,
-    error: true,
+    erroredSend: true,
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
+}, {
+    type: eventTypes.addFile,
+    erroredSave: true,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
 }];

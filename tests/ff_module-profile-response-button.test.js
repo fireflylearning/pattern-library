@@ -23,8 +23,10 @@ var buttonProps = [{
             grade: "A"
         },
         event: {
-            type: eventTypes.markAndGrade,
-            sent: new Date()
+            description: {
+                type: eventTypes.markAndGrade,
+                sent: new Date()
+            }
         },
         pic_href: "/images/default_picture.png"
     }, {
@@ -37,8 +39,10 @@ var buttonProps = [{
             markMax: 10
         },
         event: {
-            type: eventTypes.requestResubmission,
-            sent: new Date()
+            description: {
+                type: eventTypes.requestResubmission,
+                sent: new Date()
+            }
         },
         pic_href: "/images/default_picture.png"
     }, {
@@ -47,8 +51,10 @@ var buttonProps = [{
         isRead: false,
         label: "Terry Trilobite",
         event: {
-            type: eventTypes.confirmTaskIsComplete,
-            sent: new Date()
+            description: {
+                type: eventTypes.confirmTaskIsComplete,
+                sent: new Date()
+            }
         },
         pic_href: "/images/default_picture.png"
     }, {
@@ -60,24 +66,30 @@ var buttonProps = [{
             grade: 'A'
         },
         event: {
-            type: eventTypes.stampResponseAsSeen,
-            sent: new Date()
+            description: {
+                type: eventTypes.stampResponseAsSeen,
+                sent: new Date()
+            }
         },
         pic_href: "/images/group-icon.png"
     }, {
         onSelect: sinon.spy(),
         label: "Joshua ConfirmExcused",
         event: {
-            type: eventTypes.confirmStudentIsExcused,
-            sent: new Date()
+            description: {
+                type: eventTypes.confirmStudentIsExcused,
+                sent: new Date()
+            }
         },
         pic_href: "/images/group-icon.png"
     }, {
         onSelect: sinon.spy(),
         label: "Joshua Comment",
         event: {
-            type: eventTypes.comment,
-            sent: new Date()
+            description: {
+                type: eventTypes.comment,
+                sent: new Date()
+            }
         },
         pic_href: "/images/group-icon.png"
     }, {
@@ -85,17 +97,21 @@ var buttonProps = [{
         label: "Joshua Set Task",
 
         event: {
-            type: eventTypes.setTask,
-            sent: new Date()
+            description: {
+                type: eventTypes.setTask,
+                sent: new Date()
+            }
         },
         pic_href: "/images/group-icon.png"
     }, {
         onSelect: sinon.spy(),
         label: "Joshua AddedFile",
         event: {
-            type: eventTypes.addFile,
-            sent: new Date(),
-            files: []
+            description: {
+                type: eventTypes.addFile,
+                sent: new Date(),
+                files: []
+            }
         },
         pic_href: "/images/group-icon.png"
     }],
@@ -115,7 +131,7 @@ function testClasses(component, value, props) {
 }
 
 function statusSummaryText(event) {
-    switch (event.type) {
+    switch (event.description.type) {
         case eventTypes.setTask:
             return "Awaiting Response";
         case eventTypes.stampResponseAsSeen:
@@ -166,7 +182,7 @@ var testDefs = {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
         var expected = '';
         if (props.event) {
-            expected = statusSummaryText(props.event) + " " + dateFormatting.niceDate(props.event.sent);
+            expected = statusSummaryText(props.event) + " " + dateFormatting.niceDate(props.event.description.sent);
         }
         expect(node.textContent).to.equal(expected);
     },
@@ -175,5 +191,5 @@ var testDefs = {
 }
 
 describe('ProfileResponseButton', getTestFramework(ProfileResponseButton, buttonProps, testDefs, function(props) {
-    return props.label + ': ' + props.event.type;
+    return props.label + ': ' + props.event.description.type;
 }));

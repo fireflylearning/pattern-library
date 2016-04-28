@@ -17,8 +17,10 @@ var responses = [{
     isRead: true,
     label: "Sally Student",
     latestEvent: {
-        type: eventTypes.markAndGrade,
-        sent: new Date()
+        description: {
+            type: eventTypes.markAndGrade,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -32,8 +34,10 @@ var responses = [{
     isRead: true,
     label: "Terry Teacher",
     latestEvent: {
-        type: eventTypes.requestResubmission,
-        sent: new Date()
+        description: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -47,8 +51,10 @@ var responses = [{
     isRead: false,
     label: "Terry Trilobite",
     latestEvent: {
-        type: eventTypes.requestResubmission,
-        sent: new Date()
+        description: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        }
     },
     pic_href: "/images/default_picture.png"
 }, {
@@ -58,8 +64,10 @@ var responses = [{
     isRead: false,
     label: "Joshua Teacher",
     latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         grade: 'A'
@@ -70,8 +78,10 @@ var responses = [{
     guid: 5,
     label: "Joshua No State",
     latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         grade: 'A'

@@ -29,13 +29,14 @@ function renderDefault(){
 
     return  <TaskEventBase description={description} actions={this.props.actions} state={this.props.state}>
                     <p className="ff_module-task-event__author-action">{name} set a task:</p>
-                    <p className="ff_module-task-event__task-title">{taskTitle} {editedFlag}</p>
+                    <p className="ff_module-task-event__task-title">{taskTitle}{editedFlag}</p>
                 </TaskEventBase>;
 }
 
 function getEditedFlag(props) {
-    var isEdited = !!props.state[eventStates.edited];
-    return isEdited ? <span className="ff_module-task-event__editedflag">[Edited]</span> : null;
+    var state = props.state || {};
+    var isEdited = !!state[eventStates.edited];
+    return isEdited ? <span className="ff_module-task-event__editedflag"> [Edited]</span> : null;
 }
 
 
