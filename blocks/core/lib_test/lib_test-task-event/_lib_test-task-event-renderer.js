@@ -71,26 +71,30 @@ var events = [{
 });
 
 var m1States = [
-    eventStates.default,
-    eventStates.deleted,
-    eventStates.edited,
-    eventStates.saved
+    // eventStates.default,
+    // eventStates.deleted,
+    // eventStates.edited,
+    eventStates.saved,
+    eventStates.sent
 ];
 
 var m2States = [
     eventStates.default,
 
-    eventStates.released,
+    // eventStates.released,
     eventStates.unreleased,
 
-    eventStates.pending,
-    eventStates.error,
+    // eventStates.pendingSend,
+    // eventStates.erroredSend,
 
-    eventStates.editing,
-    eventState.errorEditing,
+    // eventStates.pendingSave,
+    // eventStates.erroredSave,
 
-    eventStates.deleting,
-    eventStates.errorDeleting
+    // eventStates.pendingEdit,
+    // eventStates.erroredEdit,
+
+    // eventStates.pendingDelete,
+    // eventStates.erroredDelete
 ];
 
 var actions = [{

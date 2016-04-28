@@ -114,8 +114,10 @@ var recipientData = [{
     guid: "u42",
     label: "Sally Student",
     latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -130,8 +132,10 @@ var recipientData = [{
     guid: "u42a",
     label: "Tally Student",
     latestEvent: {
-        type: eventTypes.markAndGrade,
-        sent: new Date('4 March 2016')
+        description: {
+            type: eventTypes.markAndGrade,
+            sent: new Date('4 March 2016')
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -147,8 +151,10 @@ var recipientData = [{
     guid: "u43",
     label: "Terry Teacher",
     latestEvent: {
-        type: eventTypes.markAndGrade,
-        sent: new Date('1 March 2016')
+        description: {
+            type: eventTypes.markAndGrade,
+            sent: new Date('1 March 2016')
+        }
     },
     pic_href: "/images/default_picture.png"
 }, {
@@ -158,8 +164,10 @@ var recipientData = [{
     guid: "u43a",
     label: "Terry Teacher",
     latestEvent: {
-        type: eventTypes.stampResponseAsSeen,
-        sent: new Date('27 February 2016')
+        description: {
+            type: eventTypes.stampResponseAsSeen,
+            sent: new Date('27 February 2016')
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -174,8 +182,10 @@ var recipientData = [{
     guid: "u43b",
     label: "Terry Teacher",
     latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     pic_href: "/images/default_picture.png"
 }, {
@@ -186,8 +196,10 @@ var recipientData = [{
     guid: "u44",
     label: "Joseph Goulden",
     latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     pic_href: "/images/default_picture.png"
 }];
