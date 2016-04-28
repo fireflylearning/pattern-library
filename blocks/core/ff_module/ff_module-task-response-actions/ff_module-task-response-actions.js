@@ -8,5 +8,11 @@ module.exports = React.createClass({
     render: template,
     propTypes: {
         onClick: React.PropTypes.func.isRequired
+    },
+
+    createEvent: function(type) {
+        return {
+            description: { type: type }
+        };
     }
 });

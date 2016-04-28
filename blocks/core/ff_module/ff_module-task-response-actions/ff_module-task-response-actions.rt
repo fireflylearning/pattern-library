@@ -13,13 +13,13 @@
                 key="{events.types.comment}"
                 modifier="primary-compact"
                 text="Comment"
-                onClick="()=>this.props.onClick({type: events.types.comment})"
+                onClick="()=>this.props.onClick(this.createEvent(events.types.comment))"
             />
             <Button
                 key="{events.types.markAndGrade}"
                 modifier="primary-compact"
                 text="Mark/Grade"
-                onClick="()=>this.props.onClick({type: events.types.markAndGrade})"
+                onClick="()=>this.props.onClick(this.createEvent(events.types.markAndGrade))"
             />
             <DropdownButton
                 id="more-actions"
@@ -31,19 +31,19 @@
                         {
                             text: 'Stamp Response as Seen',
                             key: events.types.stampResponseAsSeen,
-                            onClick: ()=>this.props.onClick({ type: events.types.stampResponseAsSeen })
+                            onClick: ()=>this.props.onClick(this.createEvent(events.types.stampResponseAsSeen))
                         }, {
                             text: 'Request Resubmission',
                             key: events.types.requestResubmission,
-                            onClick: ()=>this.props.onClick({ type: events.types.requestResubmission })
+                            onClick: ()=>this.props.onClick(this.createEvent(events.types.requestResubmission))
                         }, {
                             text: 'Confirm Student is Excused',
                             key: events.types.confirmStudentIsExcused,
-                            onClick: ()=>this.props.onClick({ type: events.types.confirmStudentIsExcused })
+                            onClick: ()=>this.props.onClick(this.createEvent(events.types.confirmStudentIsExcused))
                         },{
                             text: 'Confirm Task is Complete',
                             key: events.types.confirmTaskIsComplete,
-                            onClick: ()=>this.props.onClick({ type: events.types.confirmTaskIsComplete })
+                            onClick: ()=>this.props.onClick(this.createEvent(events.types.confirmTaskIsComplete))
                         },
                     ]}"
                 />
