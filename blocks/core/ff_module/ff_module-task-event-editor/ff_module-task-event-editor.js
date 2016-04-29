@@ -95,7 +95,9 @@ function markAndGrade(props) {
         return function(event) {
             var updated = {};
             updated[propertyName] = event.target.value;
-            props.onChange(_.extend({}, props.event, updated));
+            props.onChange(_.extend({}, props.event, {
+                description: _.extend({}, props.event.description, updated)
+            }));
         };
     }
 
