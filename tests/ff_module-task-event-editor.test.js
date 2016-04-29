@@ -64,7 +64,12 @@ var events = [{
     error: true,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
-}];
+}].map(function(event) {
+    return {
+        description: event,
+        state: {}
+    };
+});
 
 var types = {};
 types[eventTypes.stampResponseAsSeen] = [EditorBase, EditorCommon];
@@ -102,7 +107,7 @@ describe('TaskEventEditor', function() {
                     onClose: sinon.spy(),
                 });
             var component = TestUtils.renderIntoDocument(element);
-            var typeName = event.error ? 'error' : event.type;
+            var typeName = event.error ? 'error' : event.description.type;
             var rootView = TestUtils.findRenderedComponentWithType(component, types[typeName][0]);
             expect(rootView).to.exist;
             var subView = TestUtils.findRenderedComponentWithType(rootView, types[typeName][1]);

@@ -16,9 +16,11 @@ var responses = [{
     isSelected: false,
     isRead: true,
     label: "Sally Student",
-    latestEvent: {
-        type: eventTypes.markAndGrade,
-        sent: new Date()
+    event: {
+        description: {
+            type: eventTypes.markAndGrade,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -31,9 +33,11 @@ var responses = [{
     isSelected: true,
     isRead: true,
     label: "Terry Teacher",
-    latestEvent: {
-        type: eventTypes.requestResubmission,
-        sent: new Date()
+    event: {
+        description: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -46,9 +50,11 @@ var responses = [{
     isSelected: true,
     isRead: false,
     label: "Terry Trilobite",
-    latestEvent: {
-        type: eventTypes.requestResubmission,
-        sent: new Date()
+    event: {
+        description: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        }
     },
     pic_href: "/images/default_picture.png"
 }, {
@@ -57,9 +63,11 @@ var responses = [{
     isSelected: false,
     isRead: false,
     label: "Joshua Teacher",
-    latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+    event: {
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         grade: 'A'
@@ -69,9 +77,11 @@ var responses = [{
     onSelect: sinon.spy(),
     guid: 5,
     label: "Joshua No State",
-    latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+    event: {
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         grade: 'A'
