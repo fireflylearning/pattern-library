@@ -11,7 +11,11 @@ function renderEdited(){
 
         var message = messageText ? <p className="ff_module-task-event__message">{messageText}{editedFlag}</p> : null;
 
-        return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
+        return  <TaskEventBase
+                    description={this.props.description}
+                    actions={this.props.actions}
+                    state={this.props.state}
+                    onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
                     {message}
                 </TaskEventBase>;
@@ -24,7 +28,11 @@ function defaultState(text) {
 
         var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
 
-        return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
+        return  <TaskEventBase
+                    description={this.props.description}
+                    actions={this.props.actions}
+                    state={this.props.state}
+                    onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
                     {message}
                 </TaskEventBase>;
@@ -49,21 +57,16 @@ function editedState(text) {
 
         var message = messageText ? <p className="ff_module-task-event__message">{messageText}{editedFlag}</p> : null;
 
-        return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
+        return  <TaskEventBase
+                    description={this.props.description}
+                    actions={this.props.actions}
+                    state={this.props.state}
+                    onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
                     {message}
                 </TaskEventBase>;
     };
 };
-
-function renderBase(text, message, status, actions, list, state) {
-    var outputText = getText(text, this.props);
-
-    return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
-                <p className='ff_module-task-event__author-action'>{outputText}</p>
-                {message}
-            </TaskEventBase>;
-}
 
 function getText(text, props){
     var description = props.description;

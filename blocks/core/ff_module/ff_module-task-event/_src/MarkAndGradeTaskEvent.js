@@ -31,7 +31,11 @@ function renderDefault(){
     var message = getMessage(this.props);
     var status = getStatus(this.props);
 
-    return  <TaskEventBase description={description} actions={actions} state={this.props.state}>
+    return  <TaskEventBase
+                description={description}
+                actions={actions}
+                state={this.props.state}
+                onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
                 {status}
                 {markAndGrade}
                 {message}

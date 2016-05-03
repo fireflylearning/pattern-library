@@ -43,7 +43,11 @@ function renderDefault(){
     var name = getName(this.props),
         comment = getCommentEl(this.props);
 
-    return  <TaskEventBase description={this.props.description} actions={this.props.actions} state={this.props.state}>
+    return  <TaskEventBase
+                description={this.props.description}
+                actions={this.props.actions}
+                state={this.props.state}
+                onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
                 <p className="ff_module-task-event__author-action">{name} added a comment:</p>
                 {comment}
             </TaskEventBase>

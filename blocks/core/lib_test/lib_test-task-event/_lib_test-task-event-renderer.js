@@ -81,7 +81,7 @@ var m1States = [
 var m2States = [
     eventStates.default,
 
-    // eventStates.released,
+    eventStates.released,
     eventStates.unreleased,
 
     // eventStates.pendingSend,
@@ -107,6 +107,10 @@ var actions = [{
     onClick: function() { console.log('delete'); }
 }];
 
+function retryAfterStatusError() {
+    console.log('[retryAfterStatusError]');
+}
+
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(e) {
 
@@ -128,7 +132,7 @@ module.exports = function() {
 
                                             return  <li key={m2State+'-'+eventDescription.type+'-'+m1State}>
                                                         <pre>Response event: <b>{eventDescription.type}</b></pre>
-                                                        <TaskEvent description={eventDescription} actions={actions} state={eventState} />
+                                                        <TaskEvent description={eventDescription} actions={actions} state={eventState} onRetryAfterStatusError={retryAfterStatusError} />
                                                     </li>
                                         })}
                                     </ul>

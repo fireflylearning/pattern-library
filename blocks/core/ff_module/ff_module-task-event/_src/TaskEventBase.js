@@ -67,7 +67,7 @@ function renderActions(props) {
 }
 
 function renderStatus(props) {
-    return <TaskEventStatus type={props.description.type} state={props.state || {}} classes='ff_module-task-event__status'/>
+    return <TaskEventStatus type={props.description.type} state={props.state || {}} onError={props.onRetryAfterStatusError} classes='ff_module-task-event__status'/>
 }
 
 module.exports = React.createClass({

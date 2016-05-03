@@ -53,7 +53,8 @@ module.exports = React.createClass({
             sent: React.PropTypes.object.isRequired
         }).isRequired,
         actions: React.PropTypes.array,
-        state: React.PropTypes.object
+        state: React.PropTypes.object,
+        onRetryAfterStatusError: React.PropTypes.func.isRequired
     },
     render: function() {
         var Component = getComponent(this.props.description, this.props.state);
