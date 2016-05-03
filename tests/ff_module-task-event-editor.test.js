@@ -112,7 +112,7 @@ describe('TaskEventEditor', function() {
                     onClose: sinon.spy(),
                 });
             var component = TestUtils.renderIntoDocument(element);
-            var typeName = event.type;
+            var typeName = event.description.type;
 
             if (event.erroredSave) typeName = eventStates.erroredSave;
             else if (event.erroredSend) typeName = eventStates.erroredSend;
