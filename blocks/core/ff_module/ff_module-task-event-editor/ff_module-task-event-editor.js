@@ -15,7 +15,11 @@ var EditorBase = require('./_src/EditorBase'),
 module.exports = React.createClass({
     displayName: 'TaskEventEditor',
     propTypes: {
-        event: React.PropTypes.object.isRequired,
+        event: React.PropTypes.shape({
+            description: React.PropTypes.object.isRequired,
+            actions: React.PropTypes.array,
+            state: React.PropTypes.object
+        }).isRequired,
         onSend: React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,
         onClose: React.PropTypes.func.isRequired,
@@ -38,10 +42,10 @@ module.exports = React.createClass({
 });
 
 function getEventEditor(props){
-    if (props.event.error) {
+    if (props.event.state.error) {
         return eventEditorComponents[eventStates.error](props);
     } else {
-        return eventEditorComponents[props.event.type](props);
+        return eventEditorComponents[props.event.description.type](props);
     }
 }
 
@@ -49,7 +53,9 @@ function createEventWithMessageEditor(editor) {
 
     return function(props) {
         var onMessageChange = function(event) {
-            props.onChange(_.extend({}, props.event, { message: event.target.value }));
+            props.onChange(_.extend({}, props.event, {
+                description: _.extend({}, props.event.description, {message: event.target.value})
+            }));
         };
 
         return {
@@ -89,7 +95,9 @@ function markAndGrade(props) {
         return function(event) {
             var updated = {};
             updated[propertyName] = event.target.value;
-            props.onChange(_.extend({}, props.event, updated));
+            props.onChange(_.extend({}, props.event, {
+                description: _.extend({}, props.event.description, updated)
+            }));
         };
     }
 
@@ -173,7 +181,7 @@ eventEditorComponents[eventTypes.deleteResponse] = createEventWithMessageNotific
     title: "Delete Feedback",
     message: function(props) {
         return  <p>
-                    Delete feedback to {props.event.author.name}.<br/>
+                    Delete feedback to {props.event.description.author.name}.<br/>
                     This cannot be undone.</p>
     },
     sendText: "Delete",

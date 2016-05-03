@@ -64,8 +64,8 @@ module.exports = React.createClass({
     },
     renderTime: function(){
         var event = this.props.event;
-        if (event && event.sent){
-            return dateFormatting.niceDate(event.sent);
+        if (event && event.description.sent){
+            return dateFormatting.niceDate(event.description.sent);
         } else {
             return '';
         }

@@ -49,7 +49,11 @@ var events = [{
     error: true,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
-}];
+}].map(function(event) {
+    return {
+        description: event,
+        state: {}};
+});
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
