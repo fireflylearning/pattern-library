@@ -59,6 +59,5 @@ module.exports = React.createClass({
     render: function() {
         var Component = getComponent(this.props.description, this.props.state);
         return <Component {...this.props} />;
-        // return React.createElement(getComponent(this.props.event), { event: this.props.event });
     }
 });

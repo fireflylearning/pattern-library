@@ -27,19 +27,19 @@ function getStatusMessage(props, presentationState) {
 
     messages[eventStates.pendingSend]   = getTryAgainText('Sending', props);
     messages[eventStates.sent]          = getTryAgainText('Sent', props);
-    messages[eventStates.erroredSend]   = getTryAgainText('There was a problem sending.', props, true);
+    messages[eventStates.erroredSend]   = getTryAgainText('Your response didn\'t send.', props, true);
 
     messages[eventStates.pendingSave]   = getTryAgainText('Saving', props);
     messages[eventStates.saved]         = getTryAgainText('Saved', props);
-    messages[eventStates.erroredSave]   = getTryAgainText('There was a problem saving.', props, true);
+    messages[eventStates.erroredSave]   = getTryAgainText('Your response didn\'t save.', props, true);
 
-    messages[eventStates.pendingEdit]   = getTryAgainText('Saving', props);
+    messages[eventStates.pendingEdit]   = getTryAgainText('Editing', props);
     messages[eventStates.edited]        = '';
-    messages[eventStates.erroredEdit]   = getTryAgainText('There was a problem editing.', props, true);
+    messages[eventStates.erroredEdit]   = getTryAgainText('Your edit didn\'t send.', props, true);
 
     messages[eventStates.pendingDelete] = getTryAgainText('Deleting', props);
     messages[eventStates.deleted]       = '';
-    messages[eventStates.erroredDelete] = getTryAgainText('There was a problem deleting.', props, true);
+    messages[eventStates.erroredDelete] = getTryAgainText('Your response didn\'t delete.', props, true);
 
     messages[eventStates.released]      = '';
     messages[eventStates.unreleased]    = getTryAgainText('Ready to Send', props);

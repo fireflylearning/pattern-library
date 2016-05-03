@@ -70,32 +70,52 @@ var events = [{
     };
 });
 
-var m1States = [
-    // eventStates.default,
-    // eventStates.deleted,
-    // eventStates.edited,
+var editStates = [
+    eventStates.default,
+    eventStates.deleted,
+    eventStates.edited,
     eventStates.saved,
     eventStates.sent
 ];
 
-var m2States = [
+var serverStates = [
     eventStates.default,
 
-    eventStates.released,
-    eventStates.unreleased,
+    eventStates.pendingSend,
+    eventStates.erroredSend,
 
-    // eventStates.pendingSend,
-    // eventStates.erroredSend,
+    eventStates.pendingSave,
+    eventStates.erroredSave,
 
-    // eventStates.pendingSave,
-    // eventStates.erroredSave,
+    eventStates.pendingEdit,
+    eventStates.erroredEdit,
 
-    // eventStates.pendingEdit,
-    // eventStates.erroredEdit,
-
-    // eventStates.pendingDelete,
-    // eventStates.erroredDelete
+    eventStates.pendingDelete,
+    eventStates.erroredDelete
 ];
+
+var releaseStates = [
+    eventStates.default,
+    eventStates.unreleased
+];
+
+// var allEvents = _.flatten(releaseStates.map(function(releaseState){
+//     return serverStates.map(function(serverState){
+//         return editStates.map(function(editState){
+//             return events.map(function(event){
+//                 event.state = {
+//                     editState: editState,
+//                     serverState: serverState,
+//                     releaseState: releaseState
+//                 }
+//                 return event;
+//             });
+//         });
+//     });
+// }));
+
+
+// console.log(allEvents);
 
 var actions = [{
     key: 'edit',
@@ -115,30 +135,28 @@ module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(e) {
 
         Array.prototype.forEach.call(document.querySelectorAll('[data-lib_test-task-event]'), function(domElement) {
-            var root = <div>{m2States.map(function(m2State, key){
-                                return m1States.map(function(m1State, key) {
-                                    return  <section key={'section-'+m2State+m1State}>
-                                    <h2><pre>{'Send state: \''+ m2State + '\' & Edit state: \'' + m1State+'\''}</pre></h2>
-                                    <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                                        {events.map(function(event, index){
-                                            var eventDescription = event.description;
-                                            var eventState = {};
-                                            eventState[m1State] = true;
-                                            eventState[m2State] = true;
-                                            if (eventDescription.type === eventTypes.markAndGrade && m1State === eventStates.edited){
-                                                eventState.markAndGradeEdited = true;
-                                                eventState.messageEdited = true;
-                                            }
+            var root = <div>{serverStates.map(function(serverState, key){
+                                return editStates.map(function(editState, key) {
+                                    return releaseStates.map(function(releaseState, key) {
+                                        return  <section key={'section-'+serverState+editState+releaseState}>
+                                        <h2><pre>{'Send state: \''+ serverState + '\' & Edit state: \'' + editState+'\''+ ' & Release state: \'' + releaseState+'\''}</pre></h2>
+                                        <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                                            {events.map(function(event, index){
+                                                var eventDescription = event.description;
+                                                var eventState = {};
+                                                eventState[editState] = true;
+                                                eventState[serverState] = true;
+                                                eventState[releaseState] = true;
 
-                                            return  <li key={m2State+'-'+eventDescription.type+'-'+m1State}>
-                                                        <pre>Response event: <b>{eventDescription.type}</b></pre>
-                                                        <TaskEvent description={eventDescription} actions={actions} state={eventState} onRetryAfterStatusError={retryAfterStatusError} />
-                                                    </li>
-                                        })}
-                                    </ul>
-                                </section>;
+                                                return  <li key={serverState+'-'+eventDescription.type+'-'+editState+'-'+releaseState}>
+                                                            <pre>Response event: <b>{eventDescription.type}</b></pre>
+                                                            <TaskEvent description={eventDescription} actions={actions} state={eventState} onRetryAfterStatusError={retryAfterStatusError} />
+                                                        </li>
+                                            })}
+                                        </ul>
+                                    </section>;
                                 })
-
+                            })
                 })}</div>;
 
             ReactDOM.render(root, domElement);

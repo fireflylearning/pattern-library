@@ -34,15 +34,19 @@
     &__transition-wrapper {
         max-height: 200px;
     }
-    &__transition-wrapper--is-default,
-    &__transition-wrapper--is-deleted {
+    &__transition-wrapper--is-default {
         transition: max-height 1s;
         max-height: 0;
     }
+    &__transition-wrapper--is-deleted {
+        display: none;
+    }
 
-    &--is-default,
-    &--is-deleted {
+    &--is-default {
         transform: scale(0, 0);
+    }
+    &--is-deleted {
+        display: none;
     }
 
     &.transition-enter {
@@ -67,14 +71,17 @@
     }
 
     &--is-default.transition-enter,
-    &--is-deleted.transition-enter,
     &--is-default.transition-enter.transition-enter-active,
-    &--is-deleted.transition-enter.transition-enter-active,
     &--is-default.transition-leave,
-    &--is-deleted.transition-leave,
-    &--is-default.transition-leave.transition-leave-active,
-    &--is-deleted.transition-leave.transition-leave-active {
+    &--is-default.transition-leave.transition-leave-active {
         transform: scale(0, 0);
         transition:none;
+    }
+
+    &--is-deleted.transition-enter,
+    &--is-deleted.transition-enter.transition-enter-active,
+    &--is-deleted.transition-leave,
+    &--is-deleted.transition-leave.transition-leave-active {
+        display: none;
     }
 }
