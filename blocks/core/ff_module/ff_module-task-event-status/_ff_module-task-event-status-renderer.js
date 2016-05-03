@@ -32,7 +32,7 @@ var serverStates = [
 
 var releaseStates = [
     eventStates.default,
-    eventStates.released,
+    // eventStates.released,
     eventStates.unreleased
 ];
 

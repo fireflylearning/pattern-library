@@ -130,6 +130,10 @@ function getPresentationState(eventState, uiState) {
     return presentationState;
 }
 
+function hasTransientClasses(props) {
+    var sendState = getSendState(props.state);
+    return !sendState && !!(props.state[eventStates.saved] || props.state[eventStates.sent]);
+}
 
 function getGeneratedClass(base, props, presentationState){
     var classNames = [base];
@@ -151,10 +155,19 @@ function getContentClass(base, presentationState) {
     return classNames.join(' ');
 }
 
-function hasTransientClasses(props) {
-    var sendState = getSendState(props.state);
-    return !sendState && !!(props.state[eventStates.saved] || props.state[eventStates.sent]);
+function getWrapperClass(base, props, presentationState) {
+    var stateClass = stateClasses[presentationState];
+    var classNames = [base + '__transition-wrapper'];
+
+    if (stateClass) classNames.push(base + '__transition-wrapper' + stateClass);
+    if (props.classes) {
+        classNames.push(props.classes + '__transition-wrapper');
+        if (stateClass) classNames.push(props.classes + '__transition-wrapper' + stateClass);
+    }
+
+    return classNames.join(' ');
 }
+
 
 function getIconClass(base, props, presentationState) {
     var classNames = [base];
@@ -199,13 +212,14 @@ module.exports = React.createClass({
         var self = this;
 
         if (this.state.transitionTimeout) {
-            clearTimeout(this.state.transitionTimeout);
+            // console.log(window, window.clearTimeout);
+            window.clearTimeout(this.state.transitionTimeout);
             this.setState({
                 transitionTimeout: null
             });
         }
 
-        var transitionTimeout = setTimeout(function() {
+        var transitionTimeout = window.setTimeout(function() {
             self.setState({
                 transientDisplayStatesActive: false
             });
@@ -215,7 +229,11 @@ module.exports = React.createClass({
             transitionTimeout: transitionTimeout
         });
     },
-    componentWillReceiveProps(){
+    componentWillReceiveProps(nextProps){
+        // TODO: check nextprops any diff  in save or sent
+        var currentPresentationState = getPresentationState(this.props.state, this.state),
+        nextPresentatationState = getPresentationState(nextProps.state, this.state);
+        // console.log(currentPresentationState, nextPresentatationState);
         this.initTransientDisplayStateTimeout();
     },
     componentWillMount: function(){
@@ -223,14 +241,15 @@ module.exports = React.createClass({
     },
     render: function() {
 
-        var presentationState = getPresentationState(this.props.state, this.state),
-            containerClass = getGeneratedClass('ff_module-task-event-status', this.props, presentationState),
+        var baseClassName = 'ff_module-task-event-status',
+            presentationState = getPresentationState(this.props.state, this.state),
+            containerClass = getGeneratedClass(baseClassName, this.props, presentationState),
             icon = getIcon(this.props, presentationState),
             statusMessage = getStatusMessage(this.props, presentationState);
 
         var items = [<StatusItem key={presentationState} presentationState={presentationState} containerClass={containerClass} icon={icon} statusMessage={statusMessage} />];
 
-        return <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1000} transitionLeaveTimeout={1000} component='div' className='ff_module-task-event-status__transition-wrapper'>
+        return <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1000} transitionLeaveTimeout={1000} component='div' className={getWrapperClass(baseClassName, this.props, presentationState)}>
                     {items}
                 </ReactCSSTransitionGroup>;
 

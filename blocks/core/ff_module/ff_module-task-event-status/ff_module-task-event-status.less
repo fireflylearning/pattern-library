@@ -3,12 +3,10 @@
     display: inline-block;
     font-size: .875rem;
     padding: @ff_size_spacing_min*0.25 @ff_size_spacing_min;
-
+    box-sizing: border-box;
     // conceptually if not actually a child
     &__transition-wrapper {
         position: relative;
-        min-height: 1.625rem;
-        .ff_mix-clearfix();
     }
 
     &__icon {
@@ -19,8 +17,6 @@
         font-size: .875rem;
     }
 
-    &--is-default, &--is-deleted {
-        display: none;
-    }
+
 
 }
