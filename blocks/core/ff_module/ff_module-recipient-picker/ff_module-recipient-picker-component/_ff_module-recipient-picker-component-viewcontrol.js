@@ -69,7 +69,6 @@ module.exports = function createRecipientPicker(service, template) {
         },
         //FIXME: Naming add -> select
         addRecipients: function(recipients) {
-            if (!recipients || !recipients.length) return false;
             recipients = [].concat(recipients);
             var uniqueGroupMembers, newSelection;
 
@@ -139,7 +138,6 @@ module.exports = function createRecipientPicker(service, template) {
             });
         },
         setSelected: function(selected) {
-            if (!selected || !selected.length) return;
             selected = [].concat(selected);
 
             this.setState({
