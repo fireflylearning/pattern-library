@@ -181,8 +181,8 @@ var testDefs = {
     'event':function(component, value, props){
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
         var expected = '';
-        if (props.event) {
-            expected = statusSummaryText(props.event) + " " + dateFormatting.niceDate(props.event.description.sent);
+        if (props.event.description) {
+            expected = statusSummaryText(props.event.description) + " " + dateFormatting.niceDate(props.event.description.sent);
         }
         expect(node.textContent).to.equal(expected);
     },

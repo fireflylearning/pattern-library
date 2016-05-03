@@ -69,7 +69,12 @@ var events = [{
     erroredSave: true,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
-}];
+}].map(function(event) {
+    return {
+        description: event,
+        state: {}
+    };
+});
 
 var types = {};
 types[eventTypes.stampResponseAsSeen] = [EditorBase, EditorCommon];

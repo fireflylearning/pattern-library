@@ -12,7 +12,8 @@ module.exports = React.createClass({
 
     createEvent: function(type) {
         return {
-            description: { type: type }
+            description: { type: type },
+            state: {}
         };
     }
 });

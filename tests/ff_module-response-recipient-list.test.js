@@ -16,7 +16,7 @@ var responses = [{
     isSelected: false,
     isRead: true,
     label: "Sally Student",
-    latestEvent: {
+    event: {
         description: {
             type: eventTypes.markAndGrade,
             sent: new Date()
@@ -33,7 +33,7 @@ var responses = [{
     isSelected: true,
     isRead: true,
     label: "Terry Teacher",
-    latestEvent: {
+    event: {
         description: {
             type: eventTypes.requestResubmission,
             sent: new Date()
@@ -50,7 +50,7 @@ var responses = [{
     isSelected: true,
     isRead: false,
     label: "Terry Trilobite",
-    latestEvent: {
+    event: {
         description: {
             type: eventTypes.requestResubmission,
             sent: new Date()
@@ -63,7 +63,7 @@ var responses = [{
     isSelected: false,
     isRead: false,
     label: "Joshua Teacher",
-    latestEvent: {
+    event: {
         description: {
             type: eventTypes.confirmTaskIsComplete,
             sent: new Date()
@@ -77,7 +77,7 @@ var responses = [{
     onSelect: sinon.spy(),
     guid: 5,
     label: "Joshua No State",
-    latestEvent: {
+    event: {
         description: {
             type: eventTypes.confirmTaskIsComplete,
             sent: new Date()
