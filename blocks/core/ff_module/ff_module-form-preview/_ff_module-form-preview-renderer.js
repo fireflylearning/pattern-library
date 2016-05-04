@@ -2,7 +2,6 @@
 var React = require('react');
 
 var FormPreview = require('./ff_module-form-preview');
-var MarkingControls = require('../ff_module-form-marking-controls/ff_module-form-marking-controls');
 
 var data = {
 	items: [{
@@ -54,6 +53,20 @@ var data = {
 			key: 7
 		}],
 		key: 2
+	},
+	{
+		title: 'Task Files',
+		fileList: {
+			files: [{
+				title: 'My lovely file.pdf',
+				href: '#'
+			}, {
+				type: 'page',
+				title: 'My lovely page',
+				href: '#'
+			}]
+		}
+
 	},
 	{
 		modifier: 'description',
