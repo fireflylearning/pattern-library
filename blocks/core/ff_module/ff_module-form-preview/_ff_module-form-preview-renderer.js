@@ -71,7 +71,7 @@ var data = {
 	{
 		modifier: 'description',
 		title: 'Description',
-		html: <div><h2>Volcano formation</h2> <p>Volcanoes form when magma reaches the Earth's surface, causing eruptions of lava and ash. They occur at destructive (compressional) and constructive (tensional) plate boundaries.</p></div>
+		html: <div><h2>Volcano formation</h2> <p>Volcanoes are amazing</p></div>
 	}]
 }
 

@@ -15,6 +15,7 @@ module.exports = React.createClass({
 				value: React.PropTypes.string,
 				modifier: React.PropTypes.string,
 				previewFor: React.PropTypes.string,
+				fileList: React.PropTypes.object,
 				list: React.PropTypes.array,
 				html: React.PropTypes.element,
 				component: React.PropTypes.element
