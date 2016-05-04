@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 
@@ -39,12 +39,12 @@ describe('InlineEdit', function() {
 		var root = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-inline-edit');
 		expect(root.className).to.equal('ff_module-inline-edit ff_module-inline-edit--' + modifier);
 	});
-	
+
 	it('should render an inline-edit with text: ' + text , function() {
 		var element = React.createElement(InlineEdit, {text: text});
 		var component = TestUtils.renderIntoDocument(element);
 		var root = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-inline-edit');
 		expect(root.textContent).to.equal(text);
 	});
-	
+
 });

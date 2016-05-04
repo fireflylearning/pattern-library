@@ -2,7 +2,7 @@
 var React = require('react'),
     ReactDOM = require('react-dom');
 
-require('./lib/utils').bootstrapBrowser();
+
 
 var TestUtils = require('react-addons-test-utils'),
     expect = require('chai').expect,
