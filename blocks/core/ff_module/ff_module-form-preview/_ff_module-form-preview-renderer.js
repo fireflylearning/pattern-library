@@ -1,5 +1,6 @@
 'use strict';
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var FormPreview = require('./ff_module-form-preview');
 
@@ -79,7 +80,7 @@ module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
 		var element = document.querySelector('[data-ff_module-form-preview]');
 		if (element) {
-			React.render(<FormPreview {...data}/>, element);
+			ReactDOM.render(<FormPreview {...data}/>, element);
 		}
 	});
 };
