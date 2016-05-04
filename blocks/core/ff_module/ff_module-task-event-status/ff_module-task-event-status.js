@@ -208,6 +208,30 @@ module.exports = React.createClass({
             transientDisplayStatesActive: true
         }
     },
+
+    componentWillReceiveProps(nextProps){
+        var nextPresentatationState = getPresentationState(nextProps.state, this.state);
+
+        if (this.hasTransientDisplayState(nextPresentatationState)) {
+            this.initTransientDisplayStateTimeout();
+        }
+    },
+    componentWillMount: function(){
+        var currentPresentationState = getPresentationState(this.props.state, this.state);
+        // only start timeout if presentationState requires it
+        if (this.hasTransientDisplayState(currentPresentationState)) {
+            this.initTransientDisplayStateTimeout();
+        }
+    },
+    hasTransientDisplayState: function(presentationState){
+        switch(presentationState) {
+            case eventStates.saved:
+            case eventStates.sent:
+                return true;
+                break;
+        }
+        return false;
+    },
     initTransientDisplayStateTimeout: function(){
         var self = this;
 
@@ -220,6 +244,7 @@ module.exports = React.createClass({
         }
 
         var transitionTimeout = window.setTimeout(function() {
+            console.log('starting timeout!');
             self.setState({
                 transientDisplayStatesActive: false
             });
@@ -228,16 +253,6 @@ module.exports = React.createClass({
         this.setState({
             transitionTimeout: transitionTimeout
         });
-    },
-    componentWillReceiveProps(nextProps){
-        // TODO: check nextprops any diff  in save or sent
-        var currentPresentationState = getPresentationState(this.props.state, this.state),
-        nextPresentatationState = getPresentationState(nextProps.state, this.state);
-        // console.log(currentPresentationState, nextPresentatationState);
-        this.initTransientDisplayStateTimeout();
-    },
-    componentWillMount: function(){
-        this.initTransientDisplayStateTimeout();
     },
     render: function() {
 
