@@ -15,9 +15,9 @@ var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:
 
 function getTryAgainText(text, props, showButton) {
     var onErrorHandler = props.onError || function(){},
-        tryAgainButton = showButton ? <Button text='Try again.' modifier='link' classes='ff_module-task-event-status__error-button' onClick={onErrorHandler} /> : null;
+        tryAgainButton = showButton ? <span> <Button text='Try again.' modifier='link' classes='ff_module-task-event-status__error-button' onClick={onErrorHandler} /></span> : null;
 
-    return <span className='ff_module-task-event-status__text'>{text} {tryAgainButton}</span>;
+    return <span className='ff_module-task-event-status__text'>{text}{tryAgainButton}</span>;
 }
 
 function getStatusMessage(props, presentationState) {
@@ -236,7 +236,6 @@ module.exports = React.createClass({
         var self = this;
 
         if (this.state.transitionTimeout) {
-            // console.log(window, window.clearTimeout);
             window.clearTimeout(this.state.transitionTimeout);
             this.setState({
                 transitionTimeout: null
@@ -244,7 +243,6 @@ module.exports = React.createClass({
         }
 
         var transitionTimeout = window.setTimeout(function() {
-            console.log('starting timeout!');
             self.setState({
                 transientDisplayStatesActive: false
             });

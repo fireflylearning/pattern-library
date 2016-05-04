@@ -99,23 +99,6 @@ var releaseStates = [
     eventStates.unreleased
 ];
 
-// var allEvents = _.flatten(releaseStates.map(function(releaseState){
-//     return serverStates.map(function(serverState){
-//         return editStates.map(function(editState){
-//             return events.map(function(event){
-//                 event.state = {
-//                     editState: editState,
-//                     serverState: serverState,
-//                     releaseState: releaseState
-//                 }
-//                 return event;
-//             });
-//         });
-//     });
-// }));
-
-
-// console.log(allEvents);
 
 var actions = [{
     key: 'edit',
