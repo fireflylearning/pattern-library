@@ -9,11 +9,13 @@ module.exports = React.createClass({
     propTypes: {
         onClick: React.PropTypes.func.isRequired
     },
-
     createEvent: function(type) {
         return {
             description: { type: type },
             state: {}
         };
+    },
+    onClick: function(type) {
+        this.props.onClick(this.createEvent(type));
     }
 });
