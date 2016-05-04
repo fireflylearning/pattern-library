@@ -46,6 +46,12 @@ function getEventEditor(props){
         return eventEditorComponents[eventStates.erroredSend](props);
     } else if (props.event.state.erroredSave) {
         return eventEditorComponents[eventStates.erroredSave](props);
+    } else if (props.event.state.error){
+        if (props.event.state.unreleased) {
+            return eventEditorComponents[eventStates.erroredSave](props);
+        } else {
+            return eventEditorComponents[eventStates.erroredSend](props);
+        }
     } else {
         return eventEditorComponents[props.event.description.type](props);
     }

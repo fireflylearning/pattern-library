@@ -46,7 +46,9 @@ var states = {
     unreleased: 'unreleased',
 
     archived: 'archived',
-    noConnection: 'no-connection'
+    noConnection: 'no-connection',
+
+    error: 'error' // generic error
 };
 
 module.exports.states = states;
