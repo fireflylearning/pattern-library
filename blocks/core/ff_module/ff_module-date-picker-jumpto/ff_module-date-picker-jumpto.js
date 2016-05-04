@@ -45,8 +45,8 @@ module.exports = function() {
 
                         console.log(new_left,new_right);
 
-                        if(curr_left != 'auto') {inst.dpDiv.css('left',new_left);}
-                        if(curr_right != 'auto') {inst.dpDiv.css('right',new_right);}
+                        if(curr_left != 'auto') {inst.dpDiv.css({'left': new_left, 'z-index': 5});}
+                        if(curr_right != 'auto') {inst.dpDiv.css({'right': new_right, 'z-index': 5});}
 
                         ensureElementIsFullyContainedByWindow(inst.dpDiv);
                     }, 0);
