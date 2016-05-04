@@ -11,3 +11,4 @@ blocks/**/_icons/optimised_svgs
 npm-debug.log
 .DS_Store
 .idea/
+.vscode/
