@@ -14,7 +14,7 @@ module.exports = React.createClass({
                         { text: 'From OneDrive', onClick: function() { console.log('one-drive'); } }
                     ]}
                     onFileDrop={this.props.onFileDrop}
-                    files={this.props.event.files}
+                    files={this.props.event.description.files}
                 />;
     }
 });

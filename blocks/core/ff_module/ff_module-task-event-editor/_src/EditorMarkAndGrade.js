@@ -25,15 +25,15 @@ function renderMarkOrGrade(state, props) {
         case markTypes.mark:
             return <ContainerFormLine>
                 <FormLabel modifier="mini" required="true">Mark:</FormLabel>
-                <FormInput modifier="mini" value={props.event.mark} onChange={props.onMarkChange} />
+                <FormInput modifier="mini" value={props.event.description.mark} onChange={props.onMarkChange} />
                 <FormLabel modifier="mini" required="true">out of</FormLabel>
-                <FormInput modifier="mini" value={props.event.markMax} onChange={props.onMarkMaxChange} />
+                <FormInput modifier="mini" value={props.event.description.markMax} onChange={props.onMarkMaxChange} />
             </ContainerFormLine>;
             break;
         case markTypes.grade:
             return <ContainerFormLine>
                 <FormLabel modifier="mini" required="true">Grade:</FormLabel>
-                <FormInput modifier="mini" value={props.event.grade} onChange={props.onGradeChange} />
+                <FormInput modifier="mini" value={props.event.description.grade} onChange={props.onGradeChange} />
             </ContainerFormLine>;
             break;
     }
@@ -55,7 +55,7 @@ module.exports = React.createClass({
             {renderMarkOrGrade(this.state, this.props)}
             <ContainerFormLine>
                 <FormLabel key="l0" modifier="stacked">Feedback</FormLabel>
-                <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} value={this.props.event.message} />
+                <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} value={this.props.event.description.message} />
             </ContainerFormLine>
         </div>
     },
