@@ -29,21 +29,20 @@
 // transitions
 .ff_module-task-event-status {
 
-    min-height: 1.625rem;
-
     &__transition-wrapper {
-        max-height: 200px;
+        max-height: 2rem;
     }
     &__transition-wrapper--is-default {
         transition: max-height 1s;
         max-height: 0;
+        overflow: hidden;
     }
     &__transition-wrapper--is-deleted {
         display: none;
     }
 
     &--is-default {
-        transform: scale(0, 0);
+        display: none;
     }
     &--is-deleted {
         display: none;
@@ -74,8 +73,7 @@
     &--is-default.transition-enter.transition-enter-active,
     &--is-default.transition-leave,
     &--is-default.transition-leave.transition-leave-active {
-        transform: scale(0, 0);
-        transition:none;
+        display: none;
     }
 
     &--is-deleted.transition-enter,

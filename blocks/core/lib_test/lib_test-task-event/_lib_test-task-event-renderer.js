@@ -71,9 +71,9 @@ var events = [{
 });
 
 var editStates = [
-    eventStates.default,
-    eventStates.deleted,
-    eventStates.edited,
+    // eventStates.default,
+    // eventStates.deleted,
+    // eventStates.edited,
     eventStates.saved,
     eventStates.sent
 ];
@@ -81,17 +81,17 @@ var editStates = [
 var serverStates = [
     eventStates.default,
 
-    eventStates.pendingSend,
-    eventStates.erroredSend,
+    // eventStates.pendingSend,
+    // eventStates.erroredSend,
 
-    eventStates.pendingSave,
-    eventStates.erroredSave,
+    // eventStates.pendingSave,
+    // eventStates.erroredSave,
 
-    eventStates.pendingEdit,
-    eventStates.erroredEdit,
+    // eventStates.pendingEdit,
+    // eventStates.erroredEdit,
 
-    eventStates.pendingDelete,
-    eventStates.erroredDelete
+    // eventStates.pendingDelete,
+    // eventStates.erroredDelete
 ];
 
 var releaseStates = [
