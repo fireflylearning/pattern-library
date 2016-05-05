@@ -39,14 +39,14 @@ module.exports = React.createClass({
                 return <option value={option.value}>{option.text}</option>;
             });
 
-            return <select className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} id={this.props.id}>{options}</select>;
+            return <select className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} id={this.props.id}>{options}</select>;
 
         } else if (this.props.type == 'textarea') {
 
-            return <textarea className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} id={this.props.id} value={this.props.value}></textarea>;
+            return <textarea className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} id={this.props.id} value={this.props.value}></textarea>;
         } else {
 
-            return <input className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} id={this.props.id} value={this.props.value} type={this.props.type ? this.props.type : 'text'} maxLength={this.props.maxlength}></input>;
+            return <input className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} id={this.props.id} value={this.props.value} type={this.props.type ? this.props.type : 'text'} maxLength={this.props.maxlength}></input>;
         }
     }
 });
