@@ -39,19 +39,21 @@ module.exports = function() {
                     setTimeout(function () {
                         var curr_left = inst.dpDiv.css('left');
                         var curr_right = inst.dpDiv.css('right');
+                        var curr_top = inst.dpDiv.css('top');
 
-                        var new_left = 45 + parseInt(curr_left);
-                        var new_right = 45 + parseInt(curr_right);
+                        var new_left = 50 + parseInt(curr_left);
+                        var new_right = 50 + parseInt(curr_right);
+                        var new_top = parseInt(curr_top) - 40;
+                        
+                        // console.log(new_left,new_right);
 
-                        console.log(new_left,new_right);
-
-                        if(curr_left != 'auto') {inst.dpDiv.css({'left': new_left, 'z-index': 5});}
-                        if(curr_right != 'auto') {inst.dpDiv.css({'right': new_right, 'z-index': 5});}
+                        if(curr_left != 'auto') {inst.dpDiv.css({'left': new_left, 'top': new_top, 'z-index': 5});}
+                        if(curr_right != 'auto') {inst.dpDiv.css({'right': new_right, 'top': new_top, 'z-index': 5});}
 
                         ensureElementIsFullyContainedByWindow(inst.dpDiv);
                     }, 0);
                 }
-            })
+            });
         });
         
         function ensureElementIsFullyContainedByWindow(element) {
