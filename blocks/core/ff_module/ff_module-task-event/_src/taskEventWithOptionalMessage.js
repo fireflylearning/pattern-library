@@ -4,22 +4,6 @@ var TaskEventBase = require('./TaskEventBase.js');
 var eventStates = require('./events').states;
 
 
-function renderEdited(){
-    var messageText = this.props.description.message || '',
-        outputText = getText('stamped response as seen.', this.props),
-        editedFlag = getEditedFlag(this.props);
-
-        var message = messageText ? <p className="ff_module-task-event__message">{messageText}{editedFlag}</p> : null;
-
-        return  <TaskEventBase
-                    description={this.props.description}
-                    actions={this.props.actions}
-                    state={this.props.state}
-                    onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
-                    <p className='ff_module-task-event__author-action'>{outputText}</p>
-                    {message}
-                </TaskEventBase>;
-}
 
 function defaultState(text) {
     return function() {
@@ -28,24 +12,7 @@ function defaultState(text) {
 
         var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
 
-        return  <TaskEventBase
-                    description={this.props.description}
-                    actions={this.props.actions}
-                    state={this.props.state}
-                    onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
-                    <p className='ff_module-task-event__author-action'>{outputText}</p>
-                    {message}
-                </TaskEventBase>;
-    };
-};
-
-function deletedState(text) {
-    return function() {
-        var outputText = getText(text, this.props);
-
-        return  <TaskEventBase description={this.props.description} state={this.props.state}>
-                    <p className='ff_module-task-event__author-action'>{outputText}</p>
-                </TaskEventBase>;
+        return renderBase(this.props, outputText, message);
     };
 };
 
@@ -57,16 +24,31 @@ function editedState(text) {
 
         var message = messageText ? <p className="ff_module-task-event__message">{messageText}{editedFlag}</p> : null;
 
-        return  <TaskEventBase
-                    description={this.props.description}
-                    actions={this.props.actions}
-                    state={this.props.state}
-                    onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
+        return renderBase(this.props, outputText, message);
+    };
+};
+
+function deletedState(text) {
+    return function() {
+        var outputText = getText(text, this.props);
+
+        return  <TaskEventBase description={this.props.description} state={this.props.state} onRetryAfterStatusError={function(){}}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
-                    {message}
                 </TaskEventBase>;
     };
 };
+
+function renderBase(props, outputText, message) {
+    return  <TaskEventBase
+                description={props.description}
+                actions={props.actions}
+                state={props.state}
+                onRetryAfterStatusError={props.onRetryAfterStatusError}>
+                <p className='ff_module-task-event__author-action'>{outputText}</p>
+                {message}
+            </TaskEventBase>;
+}
+
 
 function getText(text, props){
     var description = props.description;
