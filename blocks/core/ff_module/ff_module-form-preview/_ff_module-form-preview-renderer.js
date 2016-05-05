@@ -1,8 +1,8 @@
 'use strict';
-var React = require('react');
+
+var ReactDOM = require('react-dom');
 
 var FormPreview = require('./ff_module-form-preview');
-var MarkingControls = require('../ff_module-form-marking-controls/ff_module-form-marking-controls');
 
 var data = {
 	items: [{
@@ -56,9 +56,23 @@ var data = {
 		key: 2
 	},
 	{
+		title: 'Task Files',
+		fileList: {
+			files: [{
+				title: 'My lovely file.pdf',
+				href: '#'
+			}, {
+				type: 'page',
+				title: 'My lovely page',
+				href: '#'
+			}]
+		}
+
+	},
+	{
 		modifier: 'description',
 		title: 'Description',
-		html: <div><h2>Volcano formation</h2> <p>Volcanoes form when magma reaches the Earth's surface, causing eruptions of lava and ash. They occur at destructive (compressional) and constructive (tensional) plate boundaries.</p></div>
+		html: <div><h2>Volcano formation</h2> <p>Volcanoes are amazing</p></div>
 	}]
 }
 
@@ -66,7 +80,7 @@ module.exports = function() {
 	document.addEventListener('DOMContentLoaded', function(event) {
 		var element = document.querySelector('[data-ff_module-form-preview]');
 		if (element) {
-			React.render(<FormPreview {...data}/>, element);
+			ReactDOM.render(<FormPreview {...data}/>, element);
 		}
 	});
 };
