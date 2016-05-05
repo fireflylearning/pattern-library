@@ -63,42 +63,80 @@ requires:
    - **previewFor**: {String} Specifies what input field the items is a preview of
    - **html**: {Element (html node)} Renders the item as a description. The description can show html.
    - **component**: {Element} A react component.
+   - **fileList**: {Object} Props for the file list component.
    - **list**: {Array} Defines a sublist of items within an item. It contains:
       - An Array of Objects with {title: {String}, value: {String}, previewFor: {String} } properties. 
     
 ### Example of form preview items array
 ```
 items: [{
-        title: 'Recipients',
-        url: 'test',
-        value: 'Class 2, Class 1',
-        previewfor: 'input[name="recipients"]',
-        key: 1
+        modifier: 'progress',
+        title: 'Progress',
+        progress: {
+            id: 1,
+            classes: "ff_module-other-module-class ff_utils-other-class",
+            sentTo: 23,
+            numExcused: 2,
+            completedBy: 20,
+            marked: 3
+        },
     },
-    {   
+    {
         modifier: 'controls',
-        title: 'My component', 
+        title: 'My component',
         component: <span className='crate_util-block'>My component</span>
     },
     {
         title: 'Details',
         url: '',
         list: [{
-            title: "Title",
+            title: "Title:",
             value: "Volcano formation",
             previewfor: "input[name='title']",
             key: 3
         },
         {
-            title: "Due Date",
+            title: "Due Date:",
             value: "16/05/2016",
             key: 4
+        },
+        {
+            title: 'Recipients:',
+            url: 'test',
+            value: 'Class 2, Class 1',
+            previewfor: 'input[name="recipients"]',
+            key: 5
+        },
+        {
+            title: "Set By:",
+            value: "Terry Teacher",
+            key: 6
+        },
+        {
+            title: "Include in Markbook:",
+            value: "Yes",
+            key: 7
         }],
         key: 2
     },
     {
+        title: 'Task Files',
+        fileList: {
+            files: [{
+                title: 'My lovely file.pdf',
+                href: '#'
+            }, {
+                type: 'page',
+                title: 'My lovely page',
+                href: '#'
+            }]
+        }
+
+    },
+    {
+        modifier: 'description',
         title: 'Description',
-        html: <div><h2>Volcano formation</h2></div>
+        html: <div><h2>Volcano formation</h2> <p>Volcanoes are amazing</p></div>
     }]
 ```
 
