@@ -3,6 +3,7 @@
 var React = require('react');
 var InlineEdit = require('../ff_module-inline-edit/ff_module-inline-edit');
 var Progress = require('../ff_module-progress/ff_module-progress');
+var FileList = require('../ff_module-file-list/ff_module-file-list');
 
 module.exports = React.createClass({
 	displayName: 'FormPreview',
@@ -14,6 +15,7 @@ module.exports = React.createClass({
 				value: React.PropTypes.string,
 				modifier: React.PropTypes.string,
 				previewFor: React.PropTypes.string,
+				fileList: React.PropTypes.shape(FileList.propTypes),
 				list: React.PropTypes.array,
 				html: React.PropTypes.element,
 				component: React.PropTypes.element
@@ -48,6 +50,8 @@ module.exports = React.createClass({
 						itemData = <div className='ff_module-form-preview__list__description'>{item.html}</div>;
 					} else if(item.progress) {
 						itemData = <div className="ff_module-form-preview__progress"><Progress {...item.progress}/></div>;
+					} else if(item.fileList) {
+						itemData = <FileList {...item.fileList}/>;
 					} else if(item.component) {
 						itemData = <div className='ff_module-form-preview__component'>{item.component}</div>;
 					} else {
