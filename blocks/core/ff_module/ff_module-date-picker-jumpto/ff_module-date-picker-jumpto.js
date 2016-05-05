@@ -40,8 +40,8 @@ module.exports = function() {
                         var curr_left = inst.dpDiv.css('left');
                         var curr_right = inst.dpDiv.css('right');
 
-                        var new_left = 30 + parseInt(curr_left);
-                        var new_right = 30 + parseInt(curr_right);
+                        var new_left = 45 + parseInt(curr_left);
+                        var new_right = 45 + parseInt(curr_right);
 
                         console.log(new_left,new_right);
 
