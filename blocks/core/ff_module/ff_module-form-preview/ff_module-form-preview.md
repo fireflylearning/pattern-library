@@ -60,6 +60,7 @@ requires:
     - ff_module-inline-edit
     - ff_module-progress
     - ff_module-file-list
+    - ff_module-file
          
 ---
 ## React Component
