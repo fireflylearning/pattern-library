@@ -3,6 +3,7 @@ data:
     id: "input-id"
     value: "Form input"
     name: "input-name"
+    maxlength: 15
     data:
         -
             attr: data-ff-attr
@@ -19,6 +20,7 @@ data:
 - type (String)(radio, checkbox, text, select)
 - checked (Bool)
 - disabled (Bool)
+- maxlength (Number)
 
 ## Modifiers 
 
@@ -30,6 +32,7 @@ Data-attributes are set by attr:value pairs, eg
     id: "input-id"
     value: "Form input"
     name: "input-name"
+    maxlength: 15
     data:
         -
             attr: data-ff-attr
