@@ -62,6 +62,11 @@
 						<xsl:when test="./module">
 							<xsl:copy-of select="./module/node()"/>
 						</xsl:when>
+						<xsl:when test="./attachments">
+							<xsl:call-template name="ff_module-file-list">
+								<xsl:with-param name="data" select="." />
+							</xsl:call-template>
+						</xsl:when>
 						<xsl:when test="./html">
 							<xsl:apply-templates select="html" mode="list-preview-html"/>
 						</xsl:when>
