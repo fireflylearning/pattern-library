@@ -26,6 +26,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="maxlength" select="$input/maxlength" />
 
     <xsl:choose>
         <xsl:when test="$type='select'">
@@ -49,6 +50,7 @@
     <xsl:param name="input" />
     <xsl:param name="className" />
     <xsl:param name="type" />
+    <xsl:param name="maxlength" />
 
     <input class="{$className} {$input/@classes}">
 
@@ -93,6 +95,12 @@
                     <xsl:value-of select="."/>
                 </xsl:attribute>
             </xsl:for-each>
+        </xsl:if>
+        
+        <xsl:if test="not($input/@maxlength='')">
+            <xsl:attribute name="maxlength">
+               <xsl:value-of select="$input/@maxlength"/>
+            </xsl:attribute>
         </xsl:if>
 
     </input>

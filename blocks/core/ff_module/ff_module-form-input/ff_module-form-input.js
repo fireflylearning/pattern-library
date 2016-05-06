@@ -46,7 +46,7 @@ module.exports = React.createClass({
             return <textarea className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} id={this.props.id} value={this.props.value}></textarea>;
         } else {
 
-            return <input className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} id={this.props.id} value={this.props.value} type={this.props.type ? this.props.type : 'text'} ></input>;
+            return <input className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} id={this.props.id} value={this.props.value} type={this.props.type ? this.props.type : 'text'} maxLength={this.props.maxlength}></input>;
         }
     }
 });
