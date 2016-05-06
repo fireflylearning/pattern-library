@@ -39,14 +39,27 @@ data:
                     url: ""
                     value: "Yes"
         - 
+            title: "Task Files"
+            attachments:
+                -
+                    type: "resource"
+                    href: "#"
+                    title: "My lovely file.pdf"
+                -
+                    type: "page"
+                    href: "#"
+                    title: "My lovely page"
+        - 
             title: Description
             html: >
                 <h2>Volcano formation</h2>
                 <p>Volcanoes form when magma reaches the Earth's surface, causing eruptions of lava and ash. They occur at destructive (compressional) and constructive (tensional) plate boundaries.</p>
 
+
 requires: 
     - ff_module-inline-edit
     - ff_module-progress
+    - ff_module-file-list
          
 ---
 ## React Component
