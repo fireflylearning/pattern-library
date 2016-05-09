@@ -70,33 +70,34 @@ var events = [{
     };
 });
 
+var deleteStates = [
+    eventStates.default,
+    eventStates.deleted
+];
+
 var editStates = [
-    // eventStates.default,
-    // eventStates.deleted,
-    // eventStates.edited,
-    eventStates.saved,
-    eventStates.sent
+    eventStates.default,
+    eventStates.edited
 ];
 
 var serverStates = [
     eventStates.default,
+    eventStates.pending,
+    eventStates.error,
+    eventStates.success,
 
-    // eventStates.pendingSend,
-    // eventStates.erroredSend,
+    eventStates.editPending,
+    eventStates.editError,
+    eventStates.editSuccess,
 
-    // eventStates.pendingSave,
-    // eventStates.erroredSave,
-
-    // eventStates.pendingEdit,
-    // eventStates.erroredEdit,
-
-    // eventStates.pendingDelete,
-    // eventStates.erroredDelete
+    eventStates.deletePending,
+    eventStates.deleteError,
+    eventStates.deleteSuccess
 ];
 
 var releaseStates = [
     eventStates.default,
-    eventStates.unreleased
+    eventStates.released
 ];
 
 
@@ -120,24 +121,28 @@ module.exports = function() {
         Array.prototype.forEach.call(document.querySelectorAll('[data-lib_test-task-event]'), function(domElement) {
             var root = <div>{serverStates.map(function(serverState, key){
                                 return editStates.map(function(editState, key) {
-                                    return releaseStates.map(function(releaseState, key) {
-                                        return  <section key={'section-'+serverState+editState+releaseState}>
-                                        <h2><pre>{'Send state: \''+ serverState + '\' & Edit state: \'' + editState+'\''+ ' & Release state: \'' + releaseState+'\''}</pre></h2>
-                                        <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                                            {events.map(function(event, index){
-                                                var eventDescription = event.description;
-                                                var eventState = {};
-                                                eventState[editState] = true;
-                                                eventState[serverState] = true;
-                                                eventState[releaseState] = true;
+                                    return deleteStates.map(function(deleteState, key) {
+                                        return releaseStates.map(function(releaseState, key) {
+                                            return  <section key={'section-'+serverState+editState+deleteState+releaseState}>
+                                            <h2><pre>{'Send state: \''+ serverState + '\' & Edit state: \'' + editState+'\' & \nDelete state: \'' + deleteState+'\''+ ' & Release state: \'' + releaseState+'\''}</pre></h2>
+                                            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                                                {events.map(function(event, index){
+                                                    var eventDescription = event.description;
+                                                    var eventState = {};
+                                                    eventState[editState] = true;
+                                                    eventState[deleteState] = true;
+                                                    eventState[serverState] = true;
+                                                    eventState[releaseState] = true;
 
-                                                return  <li key={serverState+'-'+eventDescription.type+'-'+editState+'-'+releaseState}>
-                                                            <pre>Response event: <b>{eventDescription.type}</b></pre>
-                                                            <TaskEvent description={eventDescription} actions={actions} state={eventState} onRetryAfterStatusError={retryAfterStatusError} />
-                                                        </li>
-                                            })}
-                                        </ul>
-                                    </section>;
+                                                    return  <li key={serverState+'-'+eventDescription.type+'-'+editState+'-'+deleteState+'-'+releaseState}>
+                                                                <pre>Response event: <b>{eventDescription.type}</b></pre>
+                                                                <TaskEvent description={eventDescription} actions={actions} state={eventState} onRetryAfterStatusError={retryAfterStatusError} />
+                                                            </li>
+                                                })}
+                                            </ul>
+                                        </section>;
+                                    })
+
                                 })
                             })
                 })}</div>;

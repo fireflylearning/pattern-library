@@ -26,56 +26,85 @@ module.exports.types = {
 var states = {
     default: 'default',
 
-    pendingSend: 'pending-send',
-    sent: 'sent',
-    erroredSend: 'errored-send',
+    pending: 'pending',
+    error: 'error',
+    success: 'success',
 
-    pendingSave: 'pending-save',
-    saved: 'saved',
-    erroredSave: 'errored-save',
+    editPending: 'edit-pending',
+    editSuccess: 'edit-success',
+    editError: 'edit-error',
 
-    pendingEdit: 'pending-edit',
-    edited: 'edited',
-    erroredEdit: 'errored-edit',
+    deletePending: 'delete-pending',
+    deleteSuccess: 'delete-success',
+    deleteError: 'delete-error',
 
-    pendingDelete: 'pending-delete',
     deleted: 'deleted',
-    erroredDelete: 'errored-delete',
+    edited: 'edited',
+
 
     released: 'released',
-    unreleased: 'unreleased',
+    // unreleased: 'unreleased',
 
     archived: 'archived',
     noConnection: 'no-connection',
 
-    error: 'error' // generic error
+
 };
 
 module.exports.states = states;
 
-var stateClasses = {};
-stateClasses[states.default] = '--is-default';
+// var presentationStates = {
+//     default: 'default',
 
-stateClasses[states.pendingSend] = '--has-pending-send';
-stateClasses[states.sent] = '--is-sent';
-stateClasses[states.erroredSend] = '--has-errored-send';
+//     pendingSend: 'pending-send',
+//     sent: 'sent',
+//     erroredSend: 'errored-send',
 
-stateClasses[states.pendingSave] = '--has-pending-save';
-stateClasses[states.saved] = '--is-saved';
-stateClasses[states.erroredSave] = '--has-errored-save';
+//     pendingSave: 'pending-save',
+//     saved: 'saved',
+//     erroredSave: 'errored-save',
 
-stateClasses[states.pendingEdit] = '--has-pending-edit';
-stateClasses[states.edited] = '--is-edited';
-stateClasses[states.erroredEdit] = '--has-errored-edit';
+//     pendingEdit: 'pending-edit',
+//     pendingEditReleased: 'pending-edit-released',
+//     edited: 'edited',
+//     erroredEdit: 'errored-edit',
+//     erroredEditReleased: 'errored-edit-released',
 
-stateClasses[states.pendingDelete] = '--is-pending-delete';
-stateClasses[states.deleted] = '--is-deleted';
-stateClasses[states.erroredDelete] = '--has-errored-delete';
+//     pendingDelete: 'pending-delete',
+//     deleted: 'deleted',
+//     erroredDelete: 'errored-delete',
+
+//     released: 'released',
+//     unreleased: 'unreleased',
+
+// };
+// // module.exports.presentationStates = presentationStates;
+
+// var stateClasses = {};
+// stateClasses[presentationStates.default] = '--is-default';
+
+// stateClasses[presentationStates.pendingSend] = '--has-pending-send';
+// stateClasses[presentationStates.sent] = '--is-sent';
+// stateClasses[presentationStates.erroredSend] = '--has-errored-send';
+
+// stateClasses[presentationStates.pendingSave] = '--has-pending-save';
+// stateClasses[presentationStates.saved] = '--is-saved';
+// stateClasses[presentationStates.erroredSave] = '--has-errored-save';
+
+// stateClasses[presentationStates.pendingEdit] = '--has-pending-edit';
+// stateClasses[presentationStates.pendingEditReleased] = '--has-pending-edit-released';
+// stateClasses[presentationStates.edited] = '--is-edited';
+// stateClasses[presentationStates.erroredEdit] = '--has-errored-edit';
+// stateClasses[presentationStates.erroredEditReleased] = '--has-errored-edit-released';
+
+// stateClasses[presentationStates.pendingDelete] = '--is-pending-delete';
+// stateClasses[presentationStates.deleted] = '--is-deleted';
+// stateClasses[presentationStates.erroredDelete] = '--has-errored-delete';
 
 
-stateClasses[states.released] = '--is-released';
-stateClasses[states.unreleased] = '--is-unreleased';
+// stateClasses[presentationStates.released] = '--is-released';
+// stateClasses[presentationStates.unreleased] = '--is-unreleased';
 
-module.exports.stateClasses = stateClasses;
+// module.exports.stateClasses = stateClasses;
 
 

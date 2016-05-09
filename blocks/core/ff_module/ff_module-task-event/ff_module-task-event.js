@@ -14,6 +14,7 @@ var StampResponseAsSeenTaskEvent = require('./_src/StampResponseAsSeenTaskEvent.
 
 var eventTypes = require('./_src/events').types;
 var eventStates = require('./_src/events').states;
+var presentationStates = require('./_src/presentationStates').presentationStates;
 
 var eventComponents = {};
 eventComponents[eventTypes.setTask] = SetTaskEvent;
@@ -31,10 +32,10 @@ function getPresentationState(description, state) {
     state = state || {};
     var presentationState = eventStates.default;
 
-    if (state.deleted) {
-        presentationState = eventStates.deleted;
-    } else if (state.edited) {
-        presentationState = eventStates.edited;
+    if (state[eventStates.deleted] || state[eventStates.deleteSuccess]) {
+        presentationState = presentationStates.deleted;
+    } else if (state[eventStates.edited] || state[eventStates.editSuccess]) {
+        presentationState = presentationStates.edited;
     }
 
     return presentationState;

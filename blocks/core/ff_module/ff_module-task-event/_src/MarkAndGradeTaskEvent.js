@@ -42,7 +42,7 @@ function renderDefault(){
             </TaskEventBase>
 }
 
-function getEditedFlag(props, type) {
+function getEditedFlag(props) {
     var state = props.state || {};
     var isEdited = !!state[eventStates.edited];
     return isEdited ? <span className="ff_module-task-event__editedflag"> [Edited]</span> : null;
@@ -53,12 +53,14 @@ function getMessage(props) {
         messageText = description.message,
         editedFlag = getEditedFlag(props, 'messageEdited');
 
-    return messageText ? <p className="ff_module-task-event__message">{messageText}{editedFlag}</p> : null;
+    return messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
 }
 
 function getStatus(props) {
-    var statusText = getStatusText(props.description.author.name + ' added a ', props.description);
-    return statusText ? <p className="ff_module-task-event__author-action">{statusText+':'}</p> : null;
+    var statusText = getStatusText(props.description.author.name + ' added a ', props.description),
+        editedFlag = getEditedFlag(props);
+
+    return statusText ? <p className="ff_module-task-event__author-action">{statusText}{editedFlag}:</p> : null;
 }
 
 function getStatusText(base, description) {
@@ -84,7 +86,7 @@ function getMarkAndGrade(props) {
         grade = gradeText ? <span className="ff_module-task-event__grade">{gradeText}</span> : null,
         sep = (markText && gradeText) ? ', ' : '';
 
-    return (mark || grade) ? <p className="ff_module-task-event__mark-and-grade">{mark}{sep}{grade}{editedFlag}</p> : null;
+    return (mark || grade) ? <p className="ff_module-task-event__mark-and-grade">{mark}{sep}{grade}</p> : null;
 }
 
 function getMarkText(description) {

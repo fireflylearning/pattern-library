@@ -6,7 +6,8 @@ var ensureIsDate = require('../../../_lib/_ui/date-utils').ensureIsDate;
 var DropDownButton = require('../../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component');
 var TaskEventStatus = require('../../../ff_module/ff_module-task-event-status/ff_module-task-event-status');
 
-var stateClasses = require('./events').stateClasses;
+var stateClasses = require('./presentationStates').stateClasses;
+var presentationStates = require('./presentationStates').presentationStates;
 var eventStates = require('./events').states;
 
 function formatDate(date) {
@@ -21,18 +22,10 @@ function getPresentationState(state) {
     state = state || {};
     var presentationState = eventStates.default;
 
-    if (state.deleted) {
-        presentationState = eventStates.deleted;
-    } else if (state.error) {
-        presentationState = eventStates.error;
-    } else if (state.pending) {
-        presentationState = eventStates.pending;
-    } else if (state.unreleased) {
-        presentationState = eventStates.unreleased;
-    } else if (state.released) {
-        presentationState = eventStates.released;
-    } else if (state.saved) {
-        presentationState = eventStates.saved;
+    if (state[eventStates.deleted] || state[eventStates.deleteSuccess]) {
+        presentationState = presentationStates.deleted;
+    } else if (state[eventStates.edited] || state[eventStates.editSuccess]) {
+        presentationState = presentationStates.edited;
     }
 
     return presentationState;
@@ -41,7 +34,7 @@ function getPresentationState(state) {
 function canEdit(state){
     state = state || {};
 
-    if (state.error || state.pending || state.deleted) {
+    if (state.pending || state.editPending || state.deletePending) {
         return false;
     }
     return true;
@@ -60,8 +53,9 @@ function generateClass(base, props) {
 
 function renderActions(props) {
     var list = props.actions;
-    if (list && list.length && canEdit(props.state)) {
-        return <DropDownButton text="..." list={list} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
+    var isDisabled = !canEdit(props.state);
+    if (list && list.length) {
+        return <DropDownButton text="..." list={list} isDisabled={isDisabled} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
     }
     return null;
 }
