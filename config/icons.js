@@ -44,6 +44,7 @@ module.exports = {
                 '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled'
             ],
             'ff_icon-response-edit-blue': ['.ff_icon-response-edit.ff_module-dropdown-button__icon-alt.ff_module-dropdown-button__icon-alt--is-open'],
+            'ff_icon-response-error-error': ['.ff_icon-response-errored']
         },
         melody: {
             'ff_icon-page-up-open-white': ['.ff_module-dropdown-button__icon--is-open'],
@@ -60,6 +61,7 @@ module.exports = {
                 '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled'
             ],
             'ff_icon-response-edit-blue': ['.ff_icon-response-edit.ff_module-dropdown-button__icon-alt.ff_module-dropdown-button__icon-alt--is-open'],
+            'ff_icon-response-error-error': ['.ff_icon-response-errored']
         }
     },
 

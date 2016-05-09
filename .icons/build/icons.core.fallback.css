@@ -305,6 +305,11 @@
 
 .ff_icon-response-edit { background-image: url('png/ff_icon-response-edit.png'); background-repeat: no-repeat; }
 
+.ff_icon-response-errored,
+.ff_icon-response-error-error { background-image: url('png/ff_icon-response-error-error.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-error { background-image: url('png/ff_icon-response-error.png'); background-repeat: no-repeat; }
+
 .ff_icon-rewind { background-image: url('png/ff_icon-rewind.png'); background-repeat: no-repeat; }
 
 .ff_icon-right-arrow { background-image: url('png/ff_icon-right-arrow.png'); background-repeat: no-repeat; }
