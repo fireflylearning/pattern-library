@@ -46,21 +46,33 @@ var events = [{
     type: eventTypes.addFile,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.addFile,
-    erroredSend: true,
-    sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.addFile,
-    erroredSave: true,
-    sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
 }].map(function(event) {
     return {
-        description: event,
-        state: {}};
-});
+        description: event
+    };
+}).concat(
+    [{
+        description: {
+            type: eventTypes.addFile,
+            sent: new Date(dStrings[1]),
+            author: { name: 'UnreleasedError Teacher' }
+        },
+        state: {
+            error: true
+        }
+    }, {
+        description: {
+            type: eventTypes.addFile,
+            sent: new Date(dStrings[1]),
+            author: { name: 'ReleasedError Teacher' }
+        },
+        state: {
+            error: true,
+            released: true
+        }
+    }]
+);
+
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
