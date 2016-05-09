@@ -6,34 +6,29 @@ var TaskEventStatus = require('./ff_module-task-event-status');
 var eventStates = require('../ff_module-task-event/_src/events').states;
 var eventTypes = require('../ff_module-task-event/_src/events').types;
 
-var editStates = [
+var deletedStates = [
     eventStates.default,
-    eventStates.deleted,
-    eventStates.saved,
-    eventStates.sent,
-    eventStates.edited
+    eventStates.deleted
 ];
 
 var serverStates = [
     eventStates.default,
+    eventStates.pending,
+    eventStates.error,
+    eventStates.success,
 
-    eventStates.pendingSend,
-    eventStates.erroredSend,
+    eventStates.editPending,
+    eventStates.editError,
+    eventStates.editSuccess,
 
-    eventStates.pendingSave,
-    eventStates.erroredSave,
-
-    eventStates.pendingEdit,
-    eventStates.erroredEdit,
-
-    eventStates.pendingDelete,
-    eventStates.erroredDelete,
+    eventStates.deletePending,
+    eventStates.deleteError,
+    eventStates.deleteSuccess
 ];
 
 var releaseStates = [
     eventStates.default,
-    // eventStates.released,
-    eventStates.unreleased
+    eventStates.released
 ];
 
 var types = [
@@ -44,6 +39,8 @@ function onError(){
     console.log('Error, retrying');
 }
 
+var renderedStates = [];
+
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
 
@@ -51,18 +48,27 @@ module.exports = function() {
             var root = <ul style={{ listStyle: 'none', margin: 0, padding: '5px', backgroundColor:'#fff' }}>
                 {types.map((type, tIndex)=>{
                     return serverStates.map((sState, sIndex)=>{
-                        return editStates.map((eState, eIndex)=>{
+                        return deletedStates.map((dState, dIndex)=>{
                             return releaseStates.map((rState, rIndex)=>{
                                 var state = {};
-                                state[eState] = true;
+
                                 state[sState] = true;
+                                state[dState] = true;
                                 state[rState] = true;
 
-                            return <li key={'li'+eState+''+sState+''+rState+''+tIndex} style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' }}>
-                                <pre>{sState + ' & ' + eState + ' & ' + rState}</pre>
+                            var key = '' + JSON.stringify(state);
+                            // console.log(key, releaseStates[key]);
+
+                            if (releaseStates[key]) return null;
+
+                            releaseStates[key] = state;
+
+                            return <li key={'li'+sState+''+dState+''+rState+''+tIndex} style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' }}>
+                                <pre>{sState + ' & ' + dState + ' & ' + rState}</pre>
                                 <TaskEventStatus state={state} type={type} onError={onError} />
                                 </li>;
                             })
+
 
                         })
                     })

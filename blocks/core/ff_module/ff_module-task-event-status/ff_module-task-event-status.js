@@ -9,7 +9,8 @@ var Button = require('../ff_module-button/ff_module-button');
 
 var eventTypes = require('../ff_module-task-event/_src/events').types,
     eventStates = require('../ff_module-task-event/_src/events').states,
-    stateClasses = require('../ff_module-task-event/_src/events').stateClasses;
+    presentationStates = require('./_src/presentationStates').presentationStates,
+    stateClasses = require('./_src/presentationStates').stateClasses;
 
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
 
@@ -23,46 +24,45 @@ function getTryAgainText(text, props, showButton) {
 function getStatusMessage(props, presentationState) {
 
     var messages = {};
-    messages[eventStates.default] = '';
+    messages[presentationStates.default] = '';
 
-    messages[eventStates.pendingSend]   = getTryAgainText('Sending', props);
-    messages[eventStates.sent]          = getTryAgainText('Sent', props);
-    messages[eventStates.erroredSend]   = getTryAgainText('Your response didn\'t send.', props, true);
+    messages[presentationStates.pendingSend]   = getTryAgainText('Sending', props);
+    messages[presentationStates.sent]          = getTryAgainText('Sent', props);
+    messages[presentationStates.erroredSend]   = getTryAgainText('Your response didn\'t send.', props, true);
 
-    messages[eventStates.pendingSave]   = getTryAgainText('Saving', props);
-    messages[eventStates.saved]         = getTryAgainText('Saved', props);
-    messages[eventStates.erroredSave]   = getTryAgainText('Your response didn\'t save.', props, true);
+    messages[presentationStates.pendingSave]   = getTryAgainText('Saving', props);
+    messages[presentationStates.saved]         = getTryAgainText('Saved', props);
+    messages[presentationStates.erroredSave]   = getTryAgainText('Your response didn\'t save.', props, true);
 
-    messages[eventStates.pendingEdit]   = getTryAgainText('Editing', props);
-    messages[eventStates.edited]        = '';
-    messages[eventStates.erroredEdit]   = getTryAgainText('Your edit didn\'t send.', props, true);
+    messages[presentationStates.pendingEdit]           = getTryAgainText('Saving', props);
+    messages[presentationStates.pendingEditReleased]   = getTryAgainText('Sending', props);
+    messages[presentationStates.erroredEdit]           = getTryAgainText('Your edit didn\'t save.', props, true);
+    messages[presentationStates.erroredEditReleased]   = getTryAgainText('Your edit didn\'t send.', props, true);
 
-    messages[eventStates.pendingDelete] = getTryAgainText('Deleting', props);
-    messages[eventStates.deleted]       = '';
-    messages[eventStates.erroredDelete] = getTryAgainText('Your response didn\'t delete.', props, true);
+    messages[presentationStates.pendingDelete] = getTryAgainText('Deleting', props);
+    messages[presentationStates.erroredDelete] = getTryAgainText('Your response didn\'t delete.', props, true);
 
-    messages[eventStates.released]      = '';
-    messages[eventStates.unreleased]    = getTryAgainText('Ready to Send', props);
+    messages[presentationStates.unreleased]    = getTryAgainText('Ready to Send', props);
 
     return messages[presentationState] || '';
 }
 
-function getEditState(state) {
-    var editState = '';
+function getDeleteState(state) {
+    var deleteState = '';
     state = state || {};
-    if (state[eventStates.deleted]) {
-        editState = eventStates.deleted; // deleted overrides any send-states
+    if (state[eventStates.deleted] || state[eventStates.deleteSuccess]) {
+        deleteState = presentationStates.deleted; // deleted overrides any send-states
     }
     // we don't care about edited, sent or saved here
 
-    return editState;
+    return deleteState;
 }
 
 function getReleaseState(state) {
     var releaseState = '';
     state = state || {};
-    if (state[eventStates.unreleased]) {
-        releaseState = eventStates.unreleased;
+    if (!state[eventStates.released]) {
+        releaseState = presentationStates.unreleased;
     }
     return releaseState;
 }
@@ -73,10 +73,12 @@ function getTransientDisplayState(eventState, uiState) {
     eventState = eventState || {};
 
     if (uiState.transientDisplayStatesActive) {
-        if (eventState[eventStates.saved]) {
-            transientDisplayState = eventStates.saved;
-        } else if (eventState[eventStates.sent]) {
-            transientDisplayState = eventStates.sent;
+        if (eventState[eventStates.success] || eventState[eventStates.editSuccess]) {
+            if (eventState[eventStates.released]) {
+                transientDisplayState = presentationStates.sent;
+            } else {
+                transientDisplayState = presentationStates.saved;
+            }
         }
     }
     return transientDisplayState;
@@ -86,23 +88,45 @@ function getSendState(state) {
     var sendState = '';
     state = state || {};
 
-    if (state[eventStates.erroredSend]) {
-        sendState = eventStates.erroredSend;
-    } else if (state[eventStates.erroredSave]) {
-        sendState = eventStates.erroredSave;
-    } else if (state[eventStates.erroredEdit]) {
-        sendState = eventStates.erroredEdit;
-    } else if (state[eventStates.erroredDelete]) {
-        sendState = eventStates.erroredDelete;
 
-    } else if (state[eventStates.pendingSend]) {
-        sendState = eventStates.pendingSend;
-    } else if (state[eventStates.pendingSave]) {
-        sendState = eventStates.pendingSave;
-    } else if (state[eventStates.pendingEdit]) {
-        sendState = eventStates.pendingEdit;
-    } else if (state[eventStates.pendingDelete]) {
-        sendState = eventStates.pendingDelete;
+    if (state[eventStates.error]) {
+        if (state[eventStates.released]) {
+            sendState = presentationStates.erroredSend;
+        } else {
+            sendState = presentationStates.erroredSave;
+        }
+
+    } else if (state[eventStates.editError]) {
+
+        if (state[eventStates.released]) {
+            sendState = presentationStates.erroredEditReleased;
+        } else {
+            sendState = presentationStates.erroredEdit;
+        }
+    } else if (state[eventStates.deleteError]) {
+
+        sendState = presentationStates.erroredDelete;
+
+    } else if (state[eventStates.pending]) {
+
+        if (state[eventStates.released]) {
+            sendState = presentationStates.pendingSend;
+        } else {
+            sendState = presentationStates.pendingSave;
+        }
+
+    } else if (state[eventStates.editPending]) {
+
+        if (state[eventStates.released]) {
+            sendState = presentationStates.pendingEditReleased;
+        } else {
+            sendState = presentationStates.pendingEdit;
+        }
+
+    } else if (state[eventStates.deletePending]) {
+
+        sendState = presentationStates.pendingDelete;
+
     }
 
     return sendState;
@@ -111,7 +135,7 @@ function getSendState(state) {
 function getPresentationState(eventState, uiState) {
 
     var sendState = getSendState(eventState),
-        editState = getEditState(eventState),
+        editState = getDeleteState(eventState),
         transientDisplayState = getTransientDisplayState(eventState, uiState),
         releaseState = getReleaseState(eventState),
 
@@ -127,12 +151,8 @@ function getPresentationState(eventState, uiState) {
         presentationState = releaseState;
     }
 
-    return presentationState;
-}
 
-function hasTransientClasses(props) {
-    var sendState = getSendState(props.state);
-    return !sendState && !!(props.state[eventStates.saved] || props.state[eventStates.sent]);
+    return presentationState;
 }
 
 function getGeneratedClass(base, props, presentationState){
@@ -170,12 +190,26 @@ function getWrapperClass(base, props, presentationState) {
 
 
 function getIconClass(base, props, presentationState) {
-    var classNames = [base];
+    var classNames = [],
+        classSuffix = [base];
 
     switch (presentationState) {
-        case eventStates.saved:
-        case eventStates.sent:
-            classNames = ['ff_icon','ff_icon-tick-open-success'].concat(classNames);
+        case presentationStates.saved:
+        case presentationStates.sent:
+            classNames = ['ff_icon','ff_icon-tick-open-success'].concat(classSuffix);
+            break;
+        case presentationStates.pendingEdit:
+        case presentationStates.pendingEditReleased:
+        case presentationStates.pendingSave:
+        case presentationStates.pendingSend:
+        case presentationStates.pendingDelete:
+            classNames = ['ff_icon','ff_icon-response-pending'].concat(classSuffix);
+            break;
+        case presentationStates.erroredSave:
+        case presentationStates.erroredSend:
+        case presentationStates.erroredEdit:
+        case presentationStates.erroredEditReleased:
+            classNames = ['ff_icon','ff_icon-response-errored'].concat(classSuffix);
             break;
     }
 
@@ -217,16 +251,16 @@ module.exports = React.createClass({
         }
     },
     componentWillMount: function(){
-        var currentPresentationState = getPresentationState(this.props.state, this.state);
+        var presentationState = getPresentationState(this.props.state, this.state);
         // only start timeout if presentationState requires it
-        if (this.hasTransientDisplayState(currentPresentationState)) {
+        if (this.hasTransientDisplayState(presentationState)) {
             this.initTransientDisplayStateTimeout();
         }
     },
     hasTransientDisplayState: function(presentationState){
         switch(presentationState) {
-            case eventStates.saved:
-            case eventStates.sent:
+            case presentationStates.saved:
+            case presentationStates.sent:
                 return true;
                 break;
         }
@@ -253,7 +287,6 @@ module.exports = React.createClass({
         });
     },
     render: function() {
-
         var baseClassName = 'ff_module-task-event-status',
             presentationState = getPresentationState(this.props.state, this.state),
             containerClass = getGeneratedClass(baseClassName, this.props, presentationState),

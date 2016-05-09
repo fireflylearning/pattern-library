@@ -9,35 +9,32 @@ var TaskEventStatus = require('../blocks/core/ff_module/ff_module-task-event-sta
     getElementByClass = require('./lib/framework').setupGetElementByClass(React, TestUtils, TaskEventStatus);
 
 var eventStates = require('../blocks/core/ff_module/ff_module-task-event/_src/events').states;
+var presentationStates = require('../blocks/core/ff_module/ff_module-task-event-status/_src/presentationStates').presentationStates;
 var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;
 
-var editStates = [
+var deletedStates = [
     eventStates.default,
-    eventStates.deleted,
-    eventStates.saved,
-    eventStates.sent,
-    eventStates.edited
+    eventStates.deleted
 ];
 
 var serverStates = [
     eventStates.default,
+    eventStates.pending,
+    eventStates.error,
+    eventStates.success,
 
-    eventStates.pendingSend,
-    eventStates.erroredSend,
+    eventStates.editPending,
+    eventStates.editError,
+    eventStates.editSuccess,
 
-    eventStates.pendingSave,
-    eventStates.erroredSave,
-
-    eventStates.pendingEdit,
-    eventStates.erroredEdit,
-
-    eventStates.pendingDelete,
-    eventStates.erroredDelete,
+    eventStates.deletePending,
+    eventStates.deleteError,
+    eventStates.deleteSuccess
 ];
 
 var releaseStates = [
-    eventStates.released,
-    eventStates.unreleased
+    eventStates.default,
+    eventStates.released
 ];
 
 var types = [
@@ -47,60 +44,59 @@ var types = [
 function getStatusMessage(presentationState) {
 
     var messages = {};
-    messages[eventStates.default] = '';
+    messages[presentationStates.default] = '';
 
-    messages[eventStates.pendingSend]   = 'Sending';
-    messages[eventStates.sent]          = 'Sent';
-    messages[eventStates.erroredSend]   = 'Your response didn\'t send. Try again.';
+    messages[presentationStates.pendingSend]   = 'Sending';
+    messages[presentationStates.sent]          = 'Sent';
+    messages[presentationStates.erroredSend]   = 'Your response didn\'t send. Try again.';
 
-    messages[eventStates.pendingSave]   = 'Saving';
-    messages[eventStates.saved]         = 'Saved';
-    messages[eventStates.erroredSave]   = 'Your response didn\'t save. Try again.';
+    messages[presentationStates.pendingSave]   = 'Saving';
+    messages[presentationStates.saved]         = 'Saved';
+    messages[presentationStates.erroredSave]   = 'Your response didn\'t save. Try again.';
 
-    messages[eventStates.pendingEdit]   = 'Editing';
-    messages[eventStates.edited]        = '';
-    messages[eventStates.erroredEdit]   = 'Your edit didn\'t send. Try again.';
+    messages[presentationStates.pendingEdit]           = 'Saving';
+    messages[presentationStates.pendingEditReleased]   = 'Sending';
+    messages[presentationStates.erroredEdit]           = 'Your edit didn\'t save. Try again.';
+    messages[presentationStates.erroredEditReleased]   = 'Your edit didn\'t send. Try again.';
 
-    messages[eventStates.pendingDelete] = 'Deleting';
-    messages[eventStates.deleted]       = '';
-    messages[eventStates.erroredDelete] = 'Your response didn\'t delete. Try again.';
+    messages[presentationStates.pendingDelete] = 'Deleting';
+    messages[presentationStates.erroredDelete] = 'Your response didn\'t delete. Try again.';
 
-    messages[eventStates.released]      = '';
-    messages[eventStates.unreleased]    = 'Ready to Send';
+    messages[presentationStates.unreleased]    = 'Ready to Send';
 
     return messages[presentationState] || '';
 }
 
-function getEditState(state) {
-    var editState = '';
+function getDeleteState(state) {
+    var deleteState = '';
     state = state || {};
-    if (state[eventStates.deleted]) {
-        editState = eventStates.deleted; // deleted overrides any send-states
+    if (state[eventStates.deleted] || state[eventStates.deleteSuccess]) {
+        deleteState = presentationStates.deleted; // deleted overrides any send-states
     }
     // we don't care about edited, sent or saved here
 
-    return editState;
+    return deleteState;
 }
 
 function getReleaseState(state) {
     var releaseState = '';
     state = state || {};
-    if (state[eventStates.unreleased]) {
-        releaseState = eventStates.unreleased;
+    if (!state[eventStates.released]) {
+        releaseState = presentationStates.unreleased;
     }
     return releaseState;
 }
 
-function getTransientDisplayState(eventState, uiState) {
+function getTransientDisplayState(eventState) {
     var transientDisplayState = '';
 
     eventState = eventState || {};
 
-    if (uiState.transientDisplayStatesActive) {
-        if (eventState[eventStates.saved]) {
-            transientDisplayState = eventStates.saved;
-        } else if (eventState[eventStates.sent]) {
-            transientDisplayState = eventStates.sent;
+    if (eventState[eventStates.success] || eventState[eventStates.editSuccess]) {
+        if (eventState[eventStates.released]) {
+            transientDisplayState = presentationStates.sent;
+        } else {
+            transientDisplayState = presentationStates.saved;
         }
     }
     return transientDisplayState;
@@ -110,33 +106,55 @@ function getSendState(state) {
     var sendState = '';
     state = state || {};
 
-    if (state[eventStates.erroredSend]) {
-        sendState = eventStates.erroredSend;
-    } else if (state[eventStates.erroredSave]) {
-        sendState = eventStates.erroredSave;
-    } else if (state[eventStates.erroredEdit]) {
-        sendState = eventStates.erroredEdit;
-    } else if (state[eventStates.erroredDelete]) {
-        sendState = eventStates.erroredDelete;
 
-    } else if (state[eventStates.pendingSend]) {
-        sendState = eventStates.pendingSend;
-    } else if (state[eventStates.pendingSave]) {
-        sendState = eventStates.pendingSave;
-    } else if (state[eventStates.pendingEdit]) {
-        sendState = eventStates.pendingEdit;
-    } else if (state[eventStates.pendingDelete]) {
-        sendState = eventStates.pendingDelete;
+    if (state[eventStates.error]) {
+        if (state[eventStates.released]) {
+            sendState = presentationStates.erroredSend;
+        } else {
+            sendState = presentationStates.erroredSave;
+        }
+
+    } else if (state[eventStates.editError]) {
+
+        if (state[eventStates.released]) {
+            sendState = presentationStates.erroredEditReleased;
+        } else {
+            sendState = presentationStates.erroredEdit;
+        }
+    } else if (state[eventStates.deleteError]) {
+
+        sendState = presentationStates.erroredDelete;
+
+    } else if (state[eventStates.pending]) {
+
+        if (state[eventStates.released]) {
+            sendState = presentationStates.pendingSend;
+        } else {
+            sendState = presentationStates.pendingSave;
+        }
+
+    } else if (state[eventStates.editPending]) {
+
+        if (state[eventStates.released]) {
+            sendState = presentationStates.pendingEditReleased;
+        } else {
+            sendState = presentationStates.pendingEdit;
+        }
+
+    } else if (state[eventStates.deletePending]) {
+
+        sendState = presentationStates.pendingDelete;
+
     }
 
     return sendState;
 }
 
-function getPresentationState(eventState, uiState) {
+function getPresentationState(eventState) {
 
     var sendState = getSendState(eventState),
-        editState = getEditState(eventState),
-        transientDisplayState = getTransientDisplayState(eventState, {transientDisplayStatesActive:true}),
+        editState = getDeleteState(eventState),
+        transientDisplayState = getTransientDisplayState(eventState),
         releaseState = getReleaseState(eventState),
 
         presentationState = eventStates.default;
@@ -150,6 +168,7 @@ function getPresentationState(eventState, uiState) {
     } else if (releaseState) {
         presentationState = releaseState;
     }
+
 
     return presentationState;
 }
@@ -169,7 +188,7 @@ describe('TaskEventStatus', function() {
 
     types.forEach((type, tIndex)=>{
         return serverStates.forEach((sState, sIndex)=>{
-            return editStates.forEach((eState, eIndex)=>{
+            return deletedStates.forEach((eState, eIndex)=>{
                 return releaseStates.forEach((rState, rIndex)=>{
 
                     var state = {};
@@ -178,13 +197,11 @@ describe('TaskEventStatus', function() {
                     state[rState] = true;
 
                     var presentationState = getPresentationState(state);
-                    var expectedText = getStatusMessage(getPresentationState(state));
+                    var expectedText = getStatusMessage(presentationState);
 
                     it('should render correct props for [' +eState+', ' +sState+', ' +rState+']', function() {
-                        if (eState === eventStates.deleted ||
-                            ((eState !== eventStates.saved && eState !== eventStates.sent) &&
-                                (sState === eventStates.default) &&
-                                (rState !== eventStates.unreleased))) {
+                        if ((eState === eventStates.deleted || sState === eventStates.deleteSuccess) ||
+                            ((sState === eventStates.default) && (rState === eventStates.released))) {
 
                             var attemptToFindNode = function(){
                                 getElementByClass({state: state, type:type, onError:onError}, 'ff_module-task-event-status__text');

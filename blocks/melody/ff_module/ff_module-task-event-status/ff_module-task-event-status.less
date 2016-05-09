@@ -4,13 +4,13 @@
     background-color: lighten(@ff_colour_control_bg, 7%);
     border-radius: 0.5*@ff_size_control_rounding;
     border: 1px solid lighten(@ff_colour_control_border, 7%);
-    padding: @ff_size_spacing_min*0.20 @ff_size_spacing_min @ff_size_spacing_min*0.30;
+    padding: @ff_size_spacing_min*0.1 @ff_size_spacing_min*0.75 @ff_size_spacing_min*0.15;
 
 
     &__icon {
         width: 1.4em;
         height: 1.4em;
-        margin: -.4em .4em -.4em -.3em;
+        margin: -.4em .2em -.4em -.3em;
     }
     &__content {
         display: inline-block;
@@ -81,5 +81,17 @@
     &--is-deleted.transition-leave,
     &--is-deleted.transition-leave.transition-leave-active {
         display: none;
+    }
+}
+
+// child states
+.ff_module-task-event-status {
+    &__icon.ff_icon.ff_icon-response-pending {
+        background: transparent 50% 45% url("/images/icons/ff_icon-spinner-small.gif") no-repeat;
+    }
+    &__icon.ff_icon.ff_icon-response-errored {
+        width: 1em;
+        height: 1em;
+        margin: -.5em .4em -.4em -.1em;
     }
 }
