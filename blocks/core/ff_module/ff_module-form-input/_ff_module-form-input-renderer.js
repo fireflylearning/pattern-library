@@ -7,6 +7,7 @@ var data = {
 	id: 'input-id',
 	value: 'Form input',
 	name: 'input-name',
+	maxlength: 15,
 	data: [{
 		attr: 'data-ff-attr',
 		value: true
