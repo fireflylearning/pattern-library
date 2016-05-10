@@ -19,7 +19,7 @@ module.exports = function() {
             }
             
             function updateTarget(date) {
-                if (date.length > 0) {
+                if (date) {
                     valueElement.val(date);
                     var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
                     displayElement.val(displayDate);
