@@ -32,12 +32,11 @@ module.exports = React.createClass({
         return classNames.join(' ');
     },
     generateIconClass: function(){
-        var classNames = [],
+        var classNames = ['ff_icon'],
             props = this.props;
-        classNames.push('ff_icon');
-        if (!!props.isRead && !props.isSelected) classNames.push('ff_icon-task-incoming-grey');
-        if (!!props.isSelected) classNames.push('ff_icon-task-incoming-extradarkgrey');
-        if (!props.isSelected && !props.isRead) classNames.push('ff_icon-task-incoming-brightblue');
+        if (!!props.isRead && !props.isSelected) classNames.push('ff_icon-task-outgoing-grey');
+        if (!!props.isSelected) classNames.push('ff_icon-task-outgoing-extradarkgrey');
+        if (!props.isSelected && !props.isRead) classNames.push('ff_icon-task-outgoing-brightblue');
         classNames.push('ff_module-profile-response-button__incoming-icon');
         return classNames.join(' ');
     },

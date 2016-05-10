@@ -13,6 +13,7 @@ var data = {
         },
         guid: "u42",
         label: "Sally Student",
+        lastEventWasAuthoredByCurrentUser: true,
         event: {
             description: {
                 type: eventTypes.markAndGrade,
@@ -31,6 +32,7 @@ var data = {
             console.log("onSelect id1");
         },
         isSelected: true,
+        lastEventWasAuthoredByCurrentUser: true,
         guid: "u43",
         label: "Terry Teacher",
         event: {
@@ -49,7 +51,64 @@ var data = {
             console.log("onSelect id2");
         },
         isRead: true,
+        lastEventWasAuthoredByCurrentUser: true,
         guid: "u44",
+        label: "Joseph Goulden",
+        event: {
+            description: {
+                type: eventTypes.confirmTaskIsComplete,
+                sent: new Date()
+            }
+        },
+        markAndGrade: {
+            mark: 7,
+            markMax: 10
+        },
+        pic_href: "/images/default_picture.png"
+    },
+    id3: {
+        onSelect: function() {
+            console.log("onSelect is0");
+        },
+        guid: "u42a",
+        label: "Sally Student",
+        event: {
+            description: {
+                type: eventTypes.markAndGrade,
+                sent: new Date()
+            }
+        },
+        markAndGrade: {
+            mark: 7,
+            markMax: 10,
+            grade: "A"
+        },
+        pic_href: "/images/default_picture.png"
+    },
+    id4: {
+        onSelect: function() {
+            console.log("onSelect id1");
+        },
+        isSelected: true,
+        guid: "u43a",
+        label: "Terry Teacher",
+        event: {
+            description: {
+                type: eventTypes.requestResubmission,
+                sent: new Date()
+            }
+        },
+        markAndGrade: {
+            grade: "A"
+        },
+        pic_href: "/images/default_picture.png"
+    },
+    id5: {
+        onSelect: function() {
+            console.log("onSelect id2");
+        },
+        isRead: true,
+        guid: "u44a",
         label: "Joseph Goulden",
         event: {
             description: {
