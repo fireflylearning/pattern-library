@@ -19,7 +19,8 @@ module.exports = function() {
             }
             
             function updateTarget(date) {
-                if (date) {
+                
+                if (!isNaN(Date.parse(date))) {
                     valueElement.val(date);
                     var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
                     displayElement.val(displayDate);
