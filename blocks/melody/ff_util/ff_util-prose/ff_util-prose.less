@@ -46,6 +46,16 @@
     .text-danger {
         color: @ff_colour_error;
     }
+    .text-notify {
+        color: @ff_colour_notify;
+    }
+    .text-block-notify {
+        color: @ff_colour_control_text;
+        border: 1px solid @ff_colour_notify;
+        background-color: lighten(@ff_colour_notify, 40%);
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+    }
+
     .link-quiet {
         text-decoration: none;
         color: @ff_colour_text_quiet;
@@ -300,6 +310,9 @@
     &__text--danger {
         #ff_mix-util-prose > .text-danger();
     }
+    &__text-block__notify {
+        #ff_mix-util-prose > .text-block-notify();
+    }
     &__time--supporting {
         #ff_mix-util-prose > .text-quiet();
     }
@@ -307,4 +320,5 @@
         #ff_mix-util-prose > .text-quiet();
         #ff_mix-util-prose > .text-left-blank();
     }
+
 }

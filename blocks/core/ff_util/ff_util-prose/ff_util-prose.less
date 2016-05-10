@@ -46,6 +46,13 @@
     .text-danger {
         color: @ff_colour_error;
     }
+    .text-notify {
+        color: @ff_colour_notify;
+    }
+    .text-block-notify {
+        color: @ff_colour_control_text;
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+    }
     .link-with-decoration {
         text-decoration: underline;
         color: @ff_color_control_link;
@@ -299,6 +306,9 @@
     }
     &__text--danger {
         #ff_mix-util-prose > .text-danger();
+    }
+    &__text-block__notify {
+        #ff_mix-util-prose > .text-block-notify();
     }
 
     &__time--supporting {
