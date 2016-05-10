@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 
@@ -16,7 +16,7 @@ describe('Task', function() {
 		var component = TestUtils.renderIntoDocument(element);
 		expect(component).to.exist;
   });
-  
+
   it('should render a \'meta\' element if \'from\' prop is supplied', function() {
     var metaTag = getElementByClass({from: '[from value]'}, 'ff_module-task__meta');
     expect(metaTag.textContent).to.equal('Set by [from value]');
@@ -60,8 +60,8 @@ describe('Task', function() {
     var element = React.createElement(Task, {
       progress: {
         sentTo: 23,
-        numExcused: 2, 
-        completedBy: 20, 
+        numExcused: 2,
+        completedBy: 20,
         marked: 3
       }
     });

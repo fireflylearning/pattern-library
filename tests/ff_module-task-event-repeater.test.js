@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 
@@ -10,12 +10,12 @@ var eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/eve
 
 var events = [{
     type: eventTypes.setTask,
-    sent: '20:40',
+    sent: new Date(),
     author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
-    sent: '21:47',
+    sent: new Date(),
     author: { name: 'Terry Teacher' }
 }].map(function(description, index){
     return {

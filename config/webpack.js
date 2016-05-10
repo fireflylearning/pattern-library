@@ -27,6 +27,12 @@ var externals = {
             commonjs: 'react',
             amd: 'react'
         },
+        'react-addons-css-transition-group': {
+            root: ['React','addons','CSSTransitionGroup'],
+            commonjs2: 'react-addons-css-transition-group',
+            commonjs: 'react-addons-css-transition-group',
+            amd: 'react-addons-css-transition-group'
+        },
         'react-dom': {
             root: 'ReactDOM',
             commonjs2: 'react-dom',
@@ -83,7 +89,7 @@ module.exports = function(paths, config) {
             resolve: {
                 modulesDirectories: ['node_modules', 'src', 'blocks'],
             },
-            devtool: config.isProduction ? false : 'eval-source-map',
+            devtool: false,//config.isProduction ? false : 'eval-source-map',
             plugins: [
                 new webpack.ProvidePlugin(plugins)
             ],

@@ -1,9 +1,23 @@
 'use strict';
 
 var React = require('react');
-var taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage');
+var eventStates = require('./events').states,
+    taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage').defaultState,
+    taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
 
-module.exports = React.createClass({
-    displayName: 'DeletedResponseTaskEvent',
+var defaultState = React.createClass({
+    displayName: 'DeletedResponseTaskEventDefault',
     render: taskEventWithOptionalMessage('deleted a response.')
 });
+
+var deletedState = React.createClass({
+    displayName: 'DeletedResponseTaskEventDeleted',
+    render: taskEventWithOptionalMessageDeleted('restored a response.')
+});
+
+var editedState = 'p';
+
+module.exports = {};
+module.exports[eventStates.default] = defaultState;
+module.exports[eventStates.deleted] = deletedState;
+module.exports[eventStates.edited] = editedState;

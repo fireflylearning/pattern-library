@@ -35,6 +35,5 @@ module.exports = React.createClass({
             });
         }
         return events;
-
     }
 });

@@ -8,8 +8,12 @@ var EditorBase = require('./_src/EditorBase'),
     EditorCommon = require('./_src/EditorCommon'),
     EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
     EditorAddFile = require('./_src/EditorAddFile'),
-    eventTypes = require('../ff_module-task-event/_src/events').types,
-    eventStates = require('../ff_module-task-event/_src/events').states;
+    eventTypes = require('../ff_module-task-event/_src/events').types;
+
+var eventStates = {
+    sendError : 'send-error',
+    saveError: 'save-error'
+};
 
 
 module.exports = React.createClass({
@@ -42,10 +46,17 @@ module.exports = React.createClass({
 });
 
 function getEventEditor(props){
-    if (props.event.state.error) {
-        return eventEditorComponents[eventStates.error](props);
+    var event = props.event || {},
+        state = event.state || {};
+
+    if (state.error || state.editError || state.deleteError){
+        if (state.released) {
+            return eventEditorComponents[eventStates.sendError](props);
+        } else {
+            return eventEditorComponents[eventStates.saveError](props);
+        }
     } else {
-        return eventEditorComponents[props.event.description.type](props);
+        return eventEditorComponents[event.description.type](props);
     }
 }
 
@@ -86,7 +97,7 @@ function createEventWithMessageNotification(editor) {
             },
             children: editor.message(props)
         };
-    }
+    };
 }
 
 function markAndGrade(props) {
@@ -192,8 +203,16 @@ eventEditorComponents[eventTypes.deleteResponse] = createEventWithMessageNotific
 //
 // unconfirmed states
 //
-eventEditorComponents[eventStates.error] = createEventWithMessageNotification({
+eventEditorComponents[eventStates.sendError] = createEventWithMessageNotification({
     title: "Unable to Send Feedback",
+    message: function(props) {
+        return  <p>We'll try again in a few seconds</p>
+    },
+    sendText: "Try again",
+    closeText: "Close"
+});
+eventEditorComponents[eventStates.saveError] = createEventWithMessageNotification({
+    title: "Unable to Save Feedback",
     message: function(props) {
         return  <p>We'll try again in a few seconds</p>
     },

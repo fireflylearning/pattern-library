@@ -6,9 +6,8 @@
     &>* {
         margin: @ff_size_spacing_min*0.8 0;
     }
-
     &__sent {
-        float:right;
+        float: right;
         font-size: .875rem;
         color: @ff_colour_text_quiet;
     }
@@ -21,17 +20,29 @@
         margin-top: @ff_size_spacing_med;
     }
     &__actions {
-        margin: 0 0 @ff_size_spacing_med @ff_size_spacing_med;
+        margin: -@ff_size_spacing_min -@ff_size_spacing_min*0.25 0 @ff_size_spacing_med @ff_size_spacing_med;
+
+        &.ff_module-dropdown-button--is-disabled{
+            opacity: 0.3;
+        }
+    }
+    &__editedflag {
+        font-size: .875rem;
+        color: @ff_colour_text_quiet;
+    }
+    &__status {
+        float:right;
+    }
+    &__status.transition-enter {
+        right: 0;
+    }
+    &__status__transition-wrapper {
+        margin: 0;
+        clear: right;
     }
 }
 
 .ff_module-task-event {
-    &--is-pending {
-        opacity: .5;
-    }
-    &--has-error {
-        background-color: #fcc;
-    }
     &--delete-response {
         background-color: transparent;
     }
