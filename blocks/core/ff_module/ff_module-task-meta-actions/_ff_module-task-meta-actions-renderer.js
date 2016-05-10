@@ -5,29 +5,33 @@ var React = require('react'),
 var TaskMetaActions = require('./ff_module-task-meta-actions'),
     dataAttr = '[data-ff_module-task-meta-actions]',
     props = {
-        numAffected: 43,
-        state: {},
+        state: {
+            archived: true
+        },
+        description: {
+            numRecipientsAffected: 43,
+            author: { name: 'Terry Teacher' }
+        },
         filters: {
-            text: 'Filter by Status',
-            onAddFilter: function(id, event) {},
-            onRemoveFilter: function(id, event) {},
+            text: '[Filter by Status]',
+            onAddFilter: function(id, event) { console.log('Adding '+id); },
+            onRemoveFilter: function(id, event) { console.log('Removing '+id); },
             filters: [{
-                name: 'Awaiting Response',
+                name: '[Awaiting Response]',
                 id: 'filter-1'
             }, {
                 isActive: true,
-                name: 'Approved',
+                name: '[Approved]',
                 id: 'filter-2'
             }, {
-                name: 'Response Received',
+                name: '[Response Received]',
                 id: 'filter-3'
             }]
         },
-        singleActions: [{ text: 'Send All Now', onClick: function() {} }],
+        singleActions: [{ text: '[Send All Now]', onClick: function() {} }],
         groupedActions: {
-            text: 'More Actions',
-            onClick: function(event) {},
-            actions: [{ text: 'Edit' }]
+            text: '[More Actions]',
+            list: [{ text: '[Edit]', onClick: function(event) { console.log(event); } }]
         }
     };
 
