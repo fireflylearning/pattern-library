@@ -31,7 +31,11 @@ var events = [{
     sent: new Date(),
     author: { name: 'Terry Teacher' },
     numRecipientsAffected: 38
-}];
+}].map(function(event){
+    return {
+        description: event
+    };
+});
 
 var types = {};
 types[eventTypes.deleteTask] = NotificationDeleteTask;
