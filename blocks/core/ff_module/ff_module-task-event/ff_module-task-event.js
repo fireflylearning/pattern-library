@@ -12,69 +12,38 @@ var StampResponseAsSeenTaskEvent = require('./_src/StampResponseAsSeenTaskEvent.
     DeletedResponseTaskEvent = require('./_src/DeletedResponseTaskEvent'),
     AddedFileTaskEvent = require('./_src/AddedFileTaskEvent');
 
-var taskEventWithOptionalMessage = require('./_src/taskEventWithOptionalMessage');
-
 var eventTypes = require('./_src/events').types;
 var eventStates = require('./_src/events').states;
+var presentationStates = require('./_src/presentationStates').presentationStates;
 
 var eventComponents = {};
-eventComponents[eventTypes.setTask] = {};
-eventComponents[eventTypes.setTask][eventStates.default] = SetTaskEvent;
-
-eventComponents[eventTypes.stampResponseAsSeen] = {};
-eventComponents[eventTypes.stampResponseAsSeen][eventStates.default] = StampResponseAsSeenTaskEvent;
-
-eventComponents[eventTypes.comment] = {};
-eventComponents[eventTypes.comment][eventStates.default] = AddedCommentEvent.defaultState;
-eventComponents[eventTypes.comment][eventStates.deleted] = AddedCommentEvent.deletedState;
-
-eventComponents[eventTypes.requestResubmission] = {};
-eventComponents[eventTypes.requestResubmission][eventStates.default] = RequestResubmissionTaskEvent;
-
-eventComponents[eventTypes.confirmTaskIsComplete] = {};
-eventComponents[eventTypes.confirmTaskIsComplete][eventStates.default] = ConfirmedCompleteTaskEvent;
-
-eventComponents[eventTypes.confirmStudentIsExcused] = {};
-eventComponents[eventTypes.confirmStudentIsExcused][eventStates.default] = ConfirmedStudentExcusedTaskEvent;
-
-eventComponents[eventTypes.markAndGrade] = {};
-eventComponents[eventTypes.markAndGrade][eventStates.default] = MarkAndGradeTaskEvent.defaultState;
-eventComponents[eventTypes.markAndGrade][eventStates.deleted] = MarkAndGradeTaskEvent.deletedState;
-
-eventComponents[eventTypes.deleteResponse] = {};
-eventComponents[eventTypes.deleteResponse][eventStates.default] = DeletedResponseTaskEvent;
-
-eventComponents[eventTypes.confirmStudentIsUnexcused] = {};
-eventComponents[eventTypes.confirmStudentIsUnexcused][eventStates.default] = ConfirmedStudentUnExcusedTaskEvent;
-
-eventComponents[eventTypes.addFile] = {};
-eventComponents[eventTypes.addFile][eventStates.default] = AddedFileTaskEvent.defaultState;
-eventComponents[eventTypes.addFile][eventStates.deleted] = AddedFileTaskEvent.deletedState;
+eventComponents[eventTypes.setTask] = SetTaskEvent;
+eventComponents[eventTypes.stampResponseAsSeen] = StampResponseAsSeenTaskEvent;
+eventComponents[eventTypes.comment] = AddedCommentEvent;
+eventComponents[eventTypes.requestResubmission] = RequestResubmissionTaskEvent;
+eventComponents[eventTypes.confirmTaskIsComplete] = ConfirmedCompleteTaskEvent;
+eventComponents[eventTypes.confirmStudentIsExcused] = ConfirmedStudentExcusedTaskEvent;
+eventComponents[eventTypes.markAndGrade] = MarkAndGradeTaskEvent;
+eventComponents[eventTypes.deleteResponse] = DeletedResponseTaskEvent;
+eventComponents[eventTypes.confirmStudentIsUnexcused] = ConfirmedStudentUnExcusedTaskEvent;
+eventComponents[eventTypes.addFile] = AddedFileTaskEvent;
 
 function getPresentationState(description, state) {
     state = state || {};
     var presentationState = eventStates.default;
-    // TODO : Will need to update this to handle combinations/conflicts of states, etc.
-    if (state.deleted) {
-        presentationState = eventStates.deleted;
-    }
 
-    // case !!event.pending:
-    //     state = eventStates.pending;
-    //     break;
-    // case !!event.error:
-    //     state = eventStates.error;
-    //     break;
-    // case !!event.released:
-    //     state = eventStates.released;
-    //     break;
+    if (state[eventStates.deleted] || state[eventStates.deleteSuccess]) {
+        presentationState = presentationStates.deleted;
+    } else if (state[eventStates.edited] || state[eventStates.editSuccess]) {
+        presentationState = presentationStates.edited;
+    }
 
     return presentationState;
 }
 
 function getComponent(description, state) {
     var presentationState = getPresentationState(description, state);
-    return eventComponents[description.type][presentationState];
+    return eventComponents[description.type][presentationState] || eventComponents[description.type][eventStates.default];
 }
 
 module.exports = React.createClass({
@@ -85,14 +54,11 @@ module.exports = React.createClass({
             sent: React.PropTypes.object.isRequired
         }).isRequired,
         actions: React.PropTypes.array,
-        state: React.PropTypes.object
+        state: React.PropTypes.object,
+        onRetryAfterStatusError: React.PropTypes.func.isRequired
     },
     render: function() {
         var Component = getComponent(this.props.description, this.props.state);
         return <Component {...this.props} />;
-        // return React.createElement(getComponent(this.props.event), { event: this.props.event });
-    },
-    getName: function(){
-        console.log(this.props.description.author.name);
     }
 });

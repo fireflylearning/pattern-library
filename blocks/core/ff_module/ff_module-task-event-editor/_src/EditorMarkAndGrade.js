@@ -7,12 +7,19 @@ var React = require('react'),
 
 var markTypes = {
         mark: 'mark',
-        grade: 'grade'
+        grade: 'grade',
+        markAndGrade: 'mark-and-grade'
     },
     markText = {};
 
 markText[markTypes.mark] = 'Mark (e.g. 7/10)';
-markText[markTypes.grade] = 'Grade (e.g. B)';
+markText[markTypes.grade] = 'Grade/Level (e.g. A, 7, +)';
+markText[markTypes.markAndGrade] = 'Mark & Grade/Level';
+
+var markForms = {};
+markForms[markTypes.mark] = renderMark;
+markForms[markTypes.grade] = renderGrade;
+markForms[markTypes.markAndGrade] = renderMarkAndGrade;
 
 function getMarkTypeOptions() {
     return Object.keys(markTypes).map(function(key){
@@ -20,25 +27,40 @@ function getMarkTypeOptions() {
     });
 }
 
-function renderMarkOrGrade(state, props) {
-    switch (state.type) {
-        case markTypes.mark:
-            return <ContainerFormLine>
+function renderMark(state, props) {
+    return <ContainerFormLine>
                 <FormLabel modifier="mini" required="true">Mark:</FormLabel>
-                <FormInput modifier="mini" value={props.event.mark} onChange={props.onMarkChange} />
+                <FormInput modifier="mini" key='mark' value={props.event.description.mark} onChange={props.onMarkChange} />
                 <FormLabel modifier="mini" required="true">out of</FormLabel>
-                <FormInput modifier="mini" value={props.event.markMax} onChange={props.onMarkMaxChange} />
+                <FormInput modifier="mini" key='markMax' value={props.event.description.markMax} onChange={props.onMarkMaxChange} />
             </ContainerFormLine>;
-            break;
-        case markTypes.grade:
-            return <ContainerFormLine>
-                <FormLabel modifier="mini" required="true">Grade:</FormLabel>
-                <FormInput modifier="mini" value={props.event.grade} onChange={props.onGradeChange} />
-            </ContainerFormLine>;
-            break;
-    }
 }
 
+function renderGrade(state, props) {
+    return <ContainerFormLine>
+                <FormLabel modifier="mini" required="true">Grade:</FormLabel>
+                <FormInput modifier="mini" key='grade' value={props.event.description.grade} onChange={props.onGradeChange} />
+            </ContainerFormLine>;
+}
+
+function renderMarkAndGrade(state, props) {
+    return <div><ContainerFormLine>
+                <FormLabel modifier="mini" required="true">Mark:</FormLabel>
+                <FormInput modifier="mini" key='mark' value={props.event.description.mark} onChange={props.onMarkChange} />
+                <FormLabel modifier="mini" required="true">out of</FormLabel>
+                <FormInput modifier="mini" key='markMax' value={props.event.description.markMax} onChange={props.onMarkMaxChange} />
+            </ContainerFormLine>
+            <ContainerFormLine>
+                <FormLabel modifier="mini" required="true">Grade:</FormLabel>
+                <FormInput modifier="mini" key='grade' value={props.event.description.grade} onChange={props.onGradeChange} />
+            </ContainerFormLine></div>;
+}
+
+function renderMarkOrGrade(state, props) {
+    var method = markForms[state.type] || null;
+    if (method) return method(state, props);
+    return null;
+}
 
 
 module.exports = React.createClass({
@@ -55,7 +77,7 @@ module.exports = React.createClass({
             {renderMarkOrGrade(this.state, this.props)}
             <ContainerFormLine>
                 <FormLabel key="l0" modifier="stacked">Feedback</FormLabel>
-                <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} value={this.props.event.message} />
+                <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} value={this.props.event.description.message} />
             </ContainerFormLine>
         </div>
     },

@@ -20,11 +20,13 @@ var events = [{
 }, {
     type: eventTypes.requestResubmission,
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Please resubmit'
 }, {
     type: eventTypes.confirmTaskIsComplete,
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher' },
+    message: 'Please resubmit'
 }, {
     type: eventTypes.confirmStudentIsExcused,
     sent: new Date(dStrings[2]),
@@ -44,16 +46,33 @@ var events = [{
     type: eventTypes.addFile,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
-}, {
-    type: eventTypes.addFile,
-    error: true,
-    sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
 }].map(function(event) {
     return {
-        description: event,
-        state: {}};
-});
+        description: event
+    };
+}).concat(
+    [{
+        description: {
+            type: eventTypes.addFile,
+            sent: new Date(dStrings[1]),
+            author: { name: 'UnreleasedError Teacher' }
+        },
+        state: {
+            error: true
+        }
+    }, {
+        description: {
+            type: eventTypes.addFile,
+            sent: new Date(dStrings[1]),
+            author: { name: 'ReleasedError Teacher' }
+        },
+        state: {
+            error: true,
+            released: true
+        }
+    }]
+);
+
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {

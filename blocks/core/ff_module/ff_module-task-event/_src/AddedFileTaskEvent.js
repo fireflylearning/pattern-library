@@ -1,21 +1,24 @@
 'use strict';
 
 var React = require('react');
-var TaskEventBase = require('./TaskEventBase'),
+var eventStates = require('./events').states,
+    TaskEventBase = require('./TaskEventBase'),
     ModuleFileList = require('../../ff_module-file-list/ff_module-file-list'),
-    taskEventWithOptionalMessage = require('./taskEventWithOptionalMessage');
+    taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
 
-module.exports.defaultState = React.createClass({
+var defaultState = React.createClass({
     displayName: 'AddedFileTaskEventDefault',
     render: defaultState
 });
 
-module.exports.deletedState = React.createClass({
+var deletedState = React.createClass({
     displayName: 'AddedFileTaskEventDeleted',
-    render: taskEventWithOptionalMessage(function(props) {
+    render: taskEventWithOptionalMessageDeleted(function(props) {
         return props.description.author.name + ' deleted ' + getFileText(props.description.files) + '.';
     })
 });
+
+var editedState = 'p';
 
 function defaultState(){
     var description = this.props.description,
@@ -23,12 +26,21 @@ function defaultState(){
         name = description.author.name,
         fileText = getFileText(files);
 
-    return <TaskEventBase description={description}>
-        <p className="ff_module-task-event__author-action">{name + ' added ' + fileText}:</p>
-        <ModuleFileList files={files} classes="ff_module-task-event__files"/>
-    </TaskEventBase>
+    return <TaskEventBase
+                description={description}
+                actions={this.props.actions}
+                state={this.props.state}
+                onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
+                <p className="ff_module-task-event__author-action">{name + ' added ' + fileText}:</p>
+                <ModuleFileList files={files} classes="ff_module-task-event__files"/>
+            </TaskEventBase>
 }
 
 function getFileText(files) {
     return (files.length > 1) ? files.length + ' files' : 'a file';
 }
+
+module.exports = {};
+module.exports[eventStates.default] = defaultState;
+module.exports[eventStates.deleted] = deletedState;
+module.exports[eventStates.edited] = editedState;

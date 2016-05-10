@@ -8,11 +8,11 @@ var eventTypes = require('./_src/events').types;
 
 var events = [{
     description: {
-        type: eventTypes.markAndGrade,
+        type: eventTypes.setTask,
         sent: new Date(dStrings[2]),
         author: { name: 'Terry Teacher' },
         message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
-        grade: 'B'
+        taskTitle: 'Task Title'
     },
     actions: [{
         key: 'edit',
@@ -32,8 +32,8 @@ var events = [{
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
 
-        Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-event]'), function(domElement, index) {
-            var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, events.map(function(event) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-event]'), function(domElement) {
+            var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, events.map(function(event, index) {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(TaskEvent, {
                         key: 'el' + (index),

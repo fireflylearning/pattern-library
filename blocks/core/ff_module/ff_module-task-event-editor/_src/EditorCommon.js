@@ -10,7 +10,7 @@ module.exports = React.createClass({
     displayName: 'EditorCommon',
     render: function(){
         var label = this.props.messageLabel ? <FormLabel key="l0" modifier="stacked">{this.props.messageLabel}</FormLabel> : null,
-            input = <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} value={this.props.event.message} />;
+            input = <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} value={this.props.event.description.message} />;
 
         return  <ContainerFormLine>
                     {label}

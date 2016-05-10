@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 
 var TestUtils = require('react-addons-test-utils'),
     expect = require('chai').expect,
@@ -131,7 +131,7 @@ function testClasses(component, value, props) {
 }
 
 function statusSummaryText(event) {
-    switch (event.type) {
+    switch (event.description.type) {
         case eventTypes.setTask:
             return "Awaiting Response";
         case eventTypes.stampResponseAsSeen:
@@ -181,8 +181,8 @@ var testDefs = {
     'event':function(component, value, props){
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
         var expected = '';
-        if (props.event.description) {
-            expected = statusSummaryText(props.event.description) + " " + dateFormatting.niceDate(props.event.description.sent);
+        if (props.event) {
+            expected = statusSummaryText(props.event) + " " + dateFormatting.niceDate(props.event.description.sent);
         }
         expect(node.textContent).to.equal(expected);
     },
@@ -191,5 +191,5 @@ var testDefs = {
 }
 
 describe('ProfileResponseButton', getTestFramework(ProfileResponseButton, buttonProps, testDefs, function(props) {
-    return props.label + ': ' + props.event.type;
+    return props.label + ': ' + props.event.description.type;
 }));
