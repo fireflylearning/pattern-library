@@ -65,7 +65,8 @@ module.exports = function(gulp, plugins, config) {
         ".js": "text",
         ".less": "text",
         ".png": "binary",
-        ".xsl": "text"
+        ".xsl": "text",
+        ".gif": "binary"
     };
 
     function gitCommit(callback) {
