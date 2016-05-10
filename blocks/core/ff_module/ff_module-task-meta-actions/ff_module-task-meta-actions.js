@@ -15,11 +15,11 @@ var eventStates = require('../../ff_module/ff_module-task-event/_src/events').st
 
 
 function renderArchived(props) {
-    return <p className="ff_util-prose__text-block__notify">This task is archived</p>;
+    return <p className="ff_util-prose__text-block--notify">This task is archived</p>;
 }
 
 function renderDefault(props) {
-    return <div className="ff_util-row-bottom">
+    return  <div className="ff_util-row-bottom">
                 <ContainerControlBar modifier="split">
 
                     <ContainerControlBarSet>
