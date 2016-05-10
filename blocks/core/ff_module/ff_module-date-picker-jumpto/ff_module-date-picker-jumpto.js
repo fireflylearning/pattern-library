@@ -19,9 +19,11 @@ module.exports = function() {
             }
             
             function updateTarget(date) {
-                valueElement.val(date);
-                var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
-                displayElement.val(displayDate);
+                if (date.length > 0) {
+                    valueElement.val(date);
+                    var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
+                    displayElement.val(displayDate);
+                }
             }
             
             $(element).datepicker({
