@@ -6,13 +6,18 @@ module.exports = React.createClass({
     displayName: 'OnlineStatus',
     propTypes: {
         state: React.PropTypes.shape({
-            offline: React.PropTypes.string,
-            online: React.PropTypes.string
+            offline: React.PropTypes.bool,
+            online: React.PropTypes.bool
         }).isRequired
     },
     render: function(){
         var state = this.props.state || {};
-        var isOffline = state.offline || !state.online;
-        return isOffline ? <p className="ff_module-online-status"><span className='ff_icon ff_icon-left ff_icon-warning-error'></span><b>You're offline</b> - changes may not be saved.</p> : null;
+        var isOffline = state.offline || (state.online === false);
+        return isOffline ? (
+            <p className="ff_module-online-status">
+                <span className='ff_icon ff_icon-left ff_icon-warning-error ff_module-online-status__icon'></span>
+                <span className='ff_module-online-status__text'><b>You're offline</b> - changes may not be saved.</span>
+            </p>
+            ) : null;
     }
 });
