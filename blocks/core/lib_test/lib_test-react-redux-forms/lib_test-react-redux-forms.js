@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { combineReducers, createStore,
   applyMiddleware } from 'redux';
@@ -10,16 +12,14 @@ import LoginForm from './_src/login-form-container';
 const initialState = {
   username: '',
   email: '',
-  password: ''
-}
+  password: '',
+  selectedColour: ''
+};
 
-
-const store = applyMiddleware(thunk)(createStore)(combineReducers({
+const store = createStore(combineReducers({
     user: modelReducer('user', initialState),
     userForm: formReducer('user', initialState)
 }));
-
-
 
 
 export class App extends React.Component {

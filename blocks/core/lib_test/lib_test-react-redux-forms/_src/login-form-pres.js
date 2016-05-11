@@ -1,87 +1,124 @@
+'use strict';
+
 import React from 'react';
-import { Field, Errors, actions, createFieldClass, controls } from 'react-redux-form';
+import { Field, Errors, Form, actions, createFieldClass, controls } from 'react-redux-form';
 
 import FormInput from '../../../ff_module/ff_module-form-input/ff_module-form-input';
 import FormLabel from '../../../ff_module/ff_module-form-label/ff_module-form-label';
+import ContainerFormLine from '../../../ff_container/ff_container-form-line/ff_container-form-line';
 
 
-import { connect } from 'react-redux';
-class MyCustomInput extends React.Component {
-  render() {
-    let { model, dispatch } = this.props;
-
-    return (
-      <FormInput
-        onChange={e => dispatch(actions.change(model, e))}
-        onBlur={e => dispatch(actions.blur(model))}
-      />
-    );
-  }
-}
-
-let CustomField = connect(s => s)(MyCustomInput);
-
-const FFField = createFieldClass({
-  'FormInput': controls.text
+const FF_Field = createFieldClass({
+  'FormInput': controls.text,
+  'FormInput': controls.select,
 });
 
+// FF_Field could be wrapped inside ContainerFormLine, adding here for testing purposes
+class FF_ContainerFormLine extends React.Component {
+    render() {
+        return (
+            <FF_Field {...this.props}>
+            <ContainerFormLine modifier="stacked">
+            {this.props.children}
+            </ContainerFormLine>
+
+            {
+            // can wrap this into custom error comp
+            }
+            <Errors model={this.props.model}
+                show={(field) => field.touched && !field.focus}
+                messages={this.props.messages}/>
+            </FF_Field>
+        );
+    }
+}
 
 export class LoginForm extends React.Component {
       render() {
-        let { user, userForm } = this.props;
+        let { user, userForm, validators } = this.props;
 
         return (
-          <form>
-            <FFField model="user.username">
+          <Form model="user">
 
-              <FormLabel>Username</FormLabel>
+            <FF_ContainerFormLine
+                model='user.username'
+                validators={validators['user.username'].rules}
+                validateOn={validators['user.username'].on}
+                messages={{
+                    required: 'Please provide a username.'
+                  }}>
+
+                <FormLabel required={true}>Username</FormLabel>
+
+                <FormInput
+                    type="text"
+                    required={true}
+                    value={user.username}
+                    />
+
+            </FF_ContainerFormLine>
+
+            <FF_ContainerFormLine
+                model='user.selectedColour'
+                validators={validators['user.selectedColour'].rules}
+                validateOn={validators['user.selectedColour'].on}
+                messages={{
+                    valid: (val) => `"${val}" is not the correct colour.`
+                  }}>
+
+              <FormLabel>Colours</FormLabel>
+
+              <FormInput
+                type="select"
+                value={user.selectedColour}
+                options={this.props.colours}
+                />
+
+            </FF_ContainerFormLine>
+
+            <FF_ContainerFormLine
+                model='user.email'
+                validators={validators['user.email'].rules}
+                validateOn={validators['user.email'].on}
+                messages={{
+                    required: 'Please provide an email address.',
+                    valid: (val) => `"${val}" is not a valid email.`,
+                  }}
+                >
+
+              <FormLabel required={true}>Email</FormLabel>
 
               <FormInput
                 type="text"
-                value={user.username}
-                onChange={(e)=>{ this.props.onChange('user.username', e )}}
-                onBlur={(e)=>{ this.props.onBlur('user.username')}}
+                required={true}
+                value={user.email}
                 />
-            </FFField>
 
-            {
-        // <CustomField
-        //     model="user.username"
-        //     type="text"
-        //     value={user.username}
-        //     onChange={(e)=>{ this.props.onChange('user.username', e )}}
-        //     onBlur={(e)=>{ this.props.onBlur('user.username')}}>
-        // </CustomField>
-        }
+            </FF_ContainerFormLine>
 
-            <Errors model="user.username"
-              messages={{
-                required: 'Please provide a username.'
-              }}/>
+            <FF_ContainerFormLine
+                model='user.password'
+                validators={validators['user.password'].rules}
+                validateOn={validators['user.password'].on}
+                messages={{
+                    required: 'Please provide a password.'
+                  }}
+                >
 
-            <Field model="user.email">
-              <label>Email</label>
+              <FormLabel required={true}>Password</FormLabel>
 
-              <input type="text"
-                onChange={(e)=>{ this.props.onChange('user.email', e )}}
-                onBlur={(e)=>{ this.props.onBlur('user.email')}} />
-            </Field>
+              <FormInput
+                required={true}
+                type="password"
+                value={user.password}
+                />
 
-            <Errors model="user.email"
-              messages={{
-                required: 'Please provide an email address.',
-                valid: (val) => `${val} is not a valid email.`,
-              }}/>
-
-            <Field model="user.password">
-              <label>Password</label>
-              <input type="password" />
-            </Field>
+            </FF_ContainerFormLine>
 
             <button>
               Log in as { user.username }
             </button>
-          </form>
+          </Form>
         )
       }
 }
