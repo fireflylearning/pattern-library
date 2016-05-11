@@ -23,16 +23,8 @@ module.exports = React.createClass({
 			})
 		).isRequired
 	},
-	componentDidMount: function() {
-		var options = {
-			root: this.root,
-			linkSelBase: targetName,
-			contentSelBase: contentName
-		}
-		TabsControl(TabsValidator, options);
-	},
 	render: function() {
-		return <div ref={(ref) => this.root = ref}  data-ff-tabs="">
+		return <div data-ff-tabs="">
 			<TabsNavigation {...this.props}/>
 			<TabsContent {...this.props}/>
 		</div>;
