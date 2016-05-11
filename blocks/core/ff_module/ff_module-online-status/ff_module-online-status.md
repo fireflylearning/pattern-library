@@ -4,6 +4,5 @@
     
 - **`state`**  {Object, Required}: 
     - `offline`: {String}
-    - `online`: {String}
 
 Will use `offline` or `!online` to display status.

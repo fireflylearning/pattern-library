@@ -13,10 +13,6 @@ var props = [{
     }
 }, {
     state: {}
-}, {
-    state: {
-        online: false
-    }
 }];
 
 var expected = ['You\'re offline - changes may not be saved.'];
@@ -31,19 +27,10 @@ describe('OnlineStatus', function() {
         expect(icon).to.exist;
     });
 
-    it('should not render when state != \'offline\'', function() {
+    it('should not render when state: \'offline\' != true', function() {
         var attemptToFindNode = function() {
            getElementByClass(props[1], 'ff_module-online-status__text');
         };
         expect(attemptToFindNode).to.throw(Error, /Did not find/);
     });
-
-    it('should render correct text and icon when state: \'online\' == \'false\'', function() {
-        var root = getElementByClass(props[2], 'ff_module-online-status');
-        var text = root.querySelector('.ff_module-online-status__text');
-        var icon = root.querySelector('.ff_module-online-status__icon');
-        expect(text.textContent).to.equal(expected[0]);
-        expect(icon).to.exist;
-    });
-
 });
