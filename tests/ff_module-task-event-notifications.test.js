@@ -1,6 +1,5 @@
 'use strict';
-var React = require('react'),
-    ReactDOM = require('react-dom');
+var React = require('react');
 
 
 

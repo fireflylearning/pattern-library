@@ -18,34 +18,34 @@ describe('Task', function() {
   });
 
   it('should render a \'meta\' element if \'from\' prop is supplied', function() {
-    var metaTag = getElementByClass({from: '[from value]'}, 'ff_module-task__meta');
+    var metaTag = getElementByClass({from: '[from value]', to: '', message: '', linkHref: ''}, 'ff_module-task__meta');
     expect(metaTag.textContent).to.equal('Set by [from value]');
   });
 
   it('should not render a \'meta\' element if \'from\' prop is not supplied', function() {
     var attemptToFindNode = function(){
-      getElementByClass({from: ''}, 'ff_module-task__meta');
+      getElementByClass({from: '', to: '', message: '', linkHref: ''}, 'ff_module-task__meta');
     };
     expect(attemptToFindNode).to.throw(Error, /Did not find/);
   });
 
   it('should render a \'message\' value if \'message\' prop is supplied', function() {
-    var message = getElementByClass({message: '[message value]'}, 'ff_module-task__link');
+    var message = getElementByClass({message: '[message value]', to: '', linkHref: ''}, 'ff_module-task__link');
     expect(message.textContent).to.equal('[message value]');
   });
 
   it('should populate a \'link\' attribute if \'linkHref\' prop is supplied', function() {
-    var linkAttr = getElementByClass({linkHref: '[linkHref value]'}, 'ff_module-task__link');
+    var linkAttr = getElementByClass({linkHref: '[linkHref value]', to: '', message: ''}, 'ff_module-task__link');
     expect(linkAttr.getAttribute('href')).to.equal('[linkHref value]');
   });
 
   it('should render a \'to\' value if \'to\' prop is supplied', function() {
-    var to = getElementByClass({to: '[to value]'}, 'ff_module-task__item--to');
+    var to = getElementByClass({to: '[to value]', message: '', linkHref: ''}, 'ff_module-task__item--to');
     expect(to.textContent).to.equal('[to value]');
   });
 
   it('should render a \'date\' element if \'duedate\' prop is supplied', function() {
-    var dateTag = getElementByClass({duedate: '[duedate value]'}, 'ff_module-task__item--date');
+    var dateTag = getElementByClass({duedate: '[duedate value]', to: '', message: '', linkHref: ''}, 'ff_module-task__item--date');
     expect(dateTag.textContent).to.equal('Due [duedate value]');
   });
 
