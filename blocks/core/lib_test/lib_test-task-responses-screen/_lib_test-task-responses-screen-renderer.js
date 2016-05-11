@@ -10,9 +10,11 @@ var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff
     ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
     ContainerControlBarSet = ContainerControlBar.ControlBarSet,
     TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
+    TaskMetaActions = require('../../ff_module/ff_module-task-meta-actions/ff_module-task-meta-actions'),
     Button = require('../../ff_module/ff_module-button/ff_module-button'),
     DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
     DropdownFilters = require('../../ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters');
+
 
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
@@ -204,6 +206,42 @@ var recipientData = [{
     pic_href: "/images/default_picture.png"
 }];
 
+var metaActionProps = {
+        state: {
+            // archived: true
+        },
+        description: {
+            numRecipientsAffected: 43,
+            author: { name: 'Terry Teacher' }
+        },
+        filters: {
+            text: 'Filter by Status',
+            onAddFilter: function(id, event) { console.log('Adding '+id); },
+            onRemoveFilter: function(id, event) { console.log('Removing '+id); },
+            filters: [{
+                name: 'Awaiting Response',
+                id: 'filter-1'
+            }, {
+                isActive: true,
+                name: 'Approved',
+                id: 'filter-2'
+            }, {
+                name: 'Response Received',
+                id: 'filter-3'
+            }]
+        },
+        singleActions: [{ text: 'Send All Now', onClick: function() {console.log('send all now');} }],
+        groupedActions: {
+            text: 'More Actions',
+            list: [
+                { text: 'Edit', onClick: function(event) { console.log('edit'); } },
+                { text: 'Copy', onClick: function(event) { console.log('copy'); } },
+                { text: 'Export', onClick: function(event) { console.log('export'); } },
+                { text: 'Archive', onClick: function(event) { console.log('archive'); } },
+                { text: 'Delete', onClick: function(event) { console.log('delete'); } }
+            ]
+        }
+    };
 
 var recipientNavigation = React.createElement(IncrementalNavigation, {
     nextText: 'Next Student',
@@ -254,52 +292,7 @@ module.exports = function() {
         if (el) {
 
             var element = <div className="ff_module-task-responses">
-                <div className="ff_util-row-bottom">
-                    <ContainerControlBar modifier="split">
-                        <ContainerControlBarSet>
-                            <DropdownFilters
-                                text="Filter by Status"
-                                modifier="compact-widelist"
-                                onAddFilter={(id, event)=>console.log('Adding '+id)}
-                                onRemoveFilter={(id, event)=>console.log('Removing '+id)}
-                                filters={[{
-                                    name: 'Awaiting Response',
-                                    id: 'filter-1'
-                                }, {
-                                    isActive: true,
-                                    name: 'Approved',
-                                    id: 'filter-2'
-                                }, {
-                                    name: 'Response Received',
-                                    id: 'filter-3'
-                                }]}
-                            />
-                        </ContainerControlBarSet>
-
-                        <ContainerControlBarSet>
-                            <p>Send feedback and marks to 27 students</p>
-                            <Button
-                                modifier="compact"
-                                text="Send All Now"
-                            />
-                            <DropdownButton
-                                modifier="compact-right-widelist"
-                                text="More Actions"
-                                list={[{
-                                        href: '#',
-                                        text: 'Item A'
-                                    }, {
-                                        href: '#',
-                                        text: 'Item B'
-                                    }, {
-                                        href: '#',
-                                        text: 'Item C'
-                                    }]}
-                            />
-                        </ContainerControlBarSet>
-
-                    </ContainerControlBar>
-                </div>
+                <TaskMetaActions {...metaActionProps}/>
 
                 <ScrollableList
                     main={overlayOuter}
