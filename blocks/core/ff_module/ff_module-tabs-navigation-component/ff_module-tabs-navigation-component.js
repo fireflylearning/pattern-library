@@ -37,7 +37,7 @@ module.exports = React.createClass({
 		var {onTabSelected, tabs} = this.props;
 		return <ul className='ff_module-tabs-navigation'>
 			{tabs.map(function(tab) { 
-				return <li key={tab.key} className={generateClass('ff_module-tabs-navigation__tab', this.props) + isSelectedTab(tab.key, this.props.selectedTabKey)} data-ff_module-tabs-react-target={tab.id}>
+				return <li key={tab.key} className={generateClass('ff_module-tabs-navigation__tab', this.props) + isSelectedTab(tab.key, this.props.selectedTabKey)}>
 						<a href="#" onClick={(event) => this.onTabClick(event, tab.key) } className='ff_module-tabs-navigation__link' >{tab.label}</a>
 					</li>;
 			}, this)} </ul>;	
