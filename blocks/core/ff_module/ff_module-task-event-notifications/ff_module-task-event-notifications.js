@@ -79,7 +79,7 @@ eventNotificationComponents[eventTypes.deleteTask] = deleteTask;
 eventNotificationComponents[eventTypes.releaseFeedbackAndMarks] = createEventWithMessageNotification({
     title: "Send Feedback and Marks",
     message: function(props) {
-        return <p>This will release marks and feedback immediately to <b>{props.event.numRecipientsAffected} students</b>.</p>
+        return <p>This will release marks and feedback immediately to <b>{props.event.numRecipientsAffected} students</b>.</p>;
     },
     sendText: "Send",
     closeText: "Cancel"

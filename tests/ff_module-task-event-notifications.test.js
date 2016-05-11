@@ -15,7 +15,6 @@ var TaskEventNotifications = require('../blocks/core/ff_module/ff_module-task-ev
 var NotificationBase = require('../blocks/core/ff_module/ff_module-task-event-notifications/_src/NotificationBase'),
     NotificationDeleteTask = require('../blocks/core/ff_module/ff_module-task-event-notifications/_src/NotificationDeleteTask');
 
-
 var events = [{
     type: eventTypes.deleteTask,
     sent: new Date(),
@@ -31,7 +30,7 @@ var events = [{
     sent: new Date(),
     author: { name: 'Terry Teacher' },
     numRecipientsAffected: 38
-}].map(function(event){
+}].map(function(event, index){
     return {
         description: event
     };
@@ -66,7 +65,8 @@ describe('TaskEventNotifications', function() {
                     onClose: sinon.spy(),
                 });
             var component = TestUtils.renderIntoDocument(element);
-            var viewType = TestUtils.findRenderedComponentWithType(component, types[event.type]);
+            var viewType = TestUtils.findRenderedComponentWithType(component, types[event.description.type]);
+
             expect(viewType).to.exist;
         });
     });
