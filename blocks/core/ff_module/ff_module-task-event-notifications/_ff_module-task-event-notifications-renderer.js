@@ -22,7 +22,11 @@ var events = [{
     sent: new Date(dStrings[2]),
     author: { name: 'Terry Teacher' },
     numRecipientsAffected: 38
-}];
+}].map(function(event){
+    return {
+        description: event
+    };
+});
 
 
 module.exports = function() {

@@ -8,7 +8,7 @@
       </figure>
       <dl class="ff_module-profile-response-button__caption">
         <dt class="ff_module-profile-response-button__heading">
-            <span rt-if="!this.props.lastEventWasAuthoredByCurrentUser" class="{this.generateIconClass()}"></span>
+            <span rt-if="this.props.lastEventWasAuthoredByCurrentUser" class="{this.generateIconClass()}"></span>
             <span class="ff_module-profile-response-button__label">{this.props.label}</span></dt>
         <dd class="ff_module-profile-response-button__status" rt-if="this.props.event"><span class="ff_module-profile-response-button__status-text">{this.renderStatus()}</span>
         <time rt-if="this.props.event" datetime="{this.props.event.description.sent}" class="ff_module-profile-response-button__status-sent"> {this.renderTime()}</time></dd>
