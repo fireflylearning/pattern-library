@@ -1,12 +1,11 @@
 'use strict';
 
 var React = require('react'),
-    _ = require('underscore');
+    _ = require('lodash');
 
 
 var ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
     ContainerControlBarSet = ContainerControlBar.ControlBarSet,
-    TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
     Button = require('../../ff_module/ff_module-button/ff_module-button'),
     DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
     DropdownFilters = require('../../ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters');
@@ -19,7 +18,7 @@ function renderArchived(props) {
 }
 
 function renderDefault(props) {
-    return  <div className="ff_util-row-bottom">
+    return  <div className="ff_module-task-meta-actions ff_util-row-bottom">
                 <ContainerControlBar modifier="split">
 
                     <ContainerControlBarSet>
@@ -30,7 +29,7 @@ function renderDefault(props) {
 
                     <ContainerControlBarSet>
 
-                        {props.description.numRecipientsAffected ? <p>Send feedback and marks to {props.description.numRecipientsAffected} students</p> : null}
+                        {props.description.numRecipientsAffected ? <p className='ff_module-task-meta-actions__num-affected'>Send feedback and marks to {props.description.numRecipientsAffected} students</p> : null}
 
                         {props.singleActions ? props.singleActions.map(function(actionProps, index){
                             return <Button key={'button'+index} {...actionProps} modifier="compact"  />

@@ -6,8 +6,7 @@ var TaskMetaActions = require('./ff_module-task-meta-actions'),
     dataAttr = '[data-ff_module-task-meta-actions]',
     props = {
         state: {
-            archived: true,
-            offline: true
+            // archived: true
         },
         description: {
             numRecipientsAffected: 43,
