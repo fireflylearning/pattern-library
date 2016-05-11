@@ -4,7 +4,6 @@
 - **`description`** {Object}:
     - `numRecipientsAffected`: Number
 - **`state`**  {Object}: 
-    - `default/""`: {String}
     - `archived`: {String}
 - **`filters`** {Object}: See `DropdownFilters` Component props
 - **`singleActions`** {Array}: Array of `Button` props 
@@ -12,5 +11,5 @@
 
 ### Valid states:
 
-- `default` (no state) 
+- `(none)`
 - `archived`
