@@ -23,6 +23,11 @@ data:
         id: "tab4a"
 ---
 
+## React Component
+
+<div data-ff_container-tabs-content="" />
+
+
 ## Modifiers: 
 
 - constrained-height
