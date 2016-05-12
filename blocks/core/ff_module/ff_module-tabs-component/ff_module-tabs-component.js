@@ -19,7 +19,7 @@ module.exports = React.createClass({
 		).isRequired
 	},
 	render: function() {
-		return <div data-ff-tabs="">
+		return <div>
 			<TabsNavigation {...this.props}/>
 			<TabsContent {...this.props}/>
 		</div>;

@@ -29,7 +29,7 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		return <div>{this.props.tabs.map(function(tab) { 
-			return <div key={tab.key} className={generateClass('ff_container-tabs-content', this.props) + isSelectedTab(tab.key, this.props.selectedTabKey)}  data-ff_module-tabs-react-content={tab.id} id={tab.id}>
+			return <div key={tab.key} className={generateClass('ff_container-tabs-content', this.props) + isSelectedTab(tab.key, this.props.selectedTabKey)} id={tab.id}>
 				{tab.content}
 			</div>;
 		}, this)} </div>;	
