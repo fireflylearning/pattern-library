@@ -4,6 +4,7 @@ var React = require('react');
 require('./lib/utils').bootstrapBrowser();
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
+var sinon = require('sinon');
 
 var TabsComponent = require('../blocks/core/ff_module/ff_module-tabs-component/ff_module-tabs-component');
 
@@ -46,17 +47,16 @@ describe('TabsComponent', function() {
 		expect(root[0].className).to.contain('ff_container-tabs-content ff_container-tabs-content--' + modifier);
 	});
 
-	it('should activate the clicked tab', function() {
-		var element = React.createElement(TabsComponent, {tabs: tabs});
+	it('should call the on onTabSelected and select the right tab', function(){
+		var element = React.createElement(TabsComponent, {selectedTabKey: 1, onTabSelected: sinon.spy(), tabs:tabs});
 		var component = TestUtils.renderIntoDocument(element);
-		var navigationTabs = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-tabs-navigation__tab');
-		var tabsContent = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_container-tabs-content');
-		var clickedTab = navigationTabs[1];
-		var clickedTabContent = tabsContent[1]
+		var tabsLi = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-tabs-navigation__tab');
+		var tabsLink = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-tabs-navigation__link');
+		var clickedTab = tabsLink[1];
 		TestUtils.Simulate.click(clickedTab);
+		expect(element.props.onTabSelected.called).to.be.true;
 		setTimeout(function(){
-			expect(clickedTab.className).to.contain('--is-active');
-			expect(clickedTabContent.className).to.contain('--is-active');
-		}, 10);
+			expect(tabsLi[1].className).to.contain('--is-active');
+		}, 100);
 	});
 });
