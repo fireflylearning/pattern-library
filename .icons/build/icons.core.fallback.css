@@ -364,6 +364,14 @@
 
 .ff_icon-task-incoming { background-image: url('png/ff_icon-task-incoming.png'); background-repeat: no-repeat; }
 
+.ff_icon-task-outgoing-brightblue { background-image: url('png/ff_icon-task-outgoing-brightblue.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-outgoing-extradarkgrey { background-image: url('png/ff_icon-task-outgoing-extradarkgrey.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-outgoing-grey { background-image: url('png/ff_icon-task-outgoing-grey.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-outgoing { background-image: url('png/ff_icon-task-outgoing.png'); background-repeat: no-repeat; }
+
 .ff_icon-tasks-white { background-image: url('png/ff_icon-tasks-white.png'); background-repeat: no-repeat; }
 
 .ff_icon-tasks { background-image: url('png/ff_icon-tasks.png'); background-repeat: no-repeat; }
@@ -397,6 +405,10 @@
 .ff_icon-video { background-image: url('png/ff_icon-video.png'); background-repeat: no-repeat; }
 
 .ff_icon-vimeo { background-image: url('png/ff_icon-vimeo.png'); background-repeat: no-repeat; }
+
+.ff_icon-warning-error { background-image: url('png/ff_icon-warning-error.png'); background-repeat: no-repeat; }
+
+.ff_icon-warning { background-image: url('png/ff_icon-warning.png'); background-repeat: no-repeat; }
 
 .ff_icon-web-page { background-image: url('png/ff_icon-web-page.png'); background-repeat: no-repeat; }
 
