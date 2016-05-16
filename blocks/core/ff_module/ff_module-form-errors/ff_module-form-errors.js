@@ -7,7 +7,7 @@ function FormError(props) {
     return <li className='ff_module-form-errors__message'>{props.children}</li>;
 }
 
-function FormErrors(props) {
+function FormErrorList(props) {
     return (
         <ul className={getGeneratedClass('ff_module-form-errors', props)}>
             {props.messages.map((message, index)=>{return <FormError key={'message'+index}>{message}</FormError>})}
@@ -25,11 +25,12 @@ module.exports = React.createClass({
     render: function(){
         return (
             this.props.messages ?
-            <FormErrors {...this.props}/> :
+            <FormErrorList {...this.props}/> :
             null
         );
     }
 })
 
+// expose stateless components for consumption by 3rd party validator component
 module.exports.FormError = FormError;
-module.exports.FormErrors = FormErrors;
+module.exports.FormErrorList = FormErrorList;
