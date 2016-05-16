@@ -17,10 +17,11 @@ var _options = {
     canAdvance: canAdvance,
     visitedCallback: function() {},
     completeCallback: function() {},
-    selectedIndex: 0
+    selectedIndex: 2
 };
 
 function isComplete($nextLink, $nextContent, $currentLink, $selectedContent) {
+    console.log('$nextContent: ' + $nextContent);
     if ($nextContent.length) return true;
     return false;
 }
@@ -55,14 +56,13 @@ function getTabHandler($root, options) {
 
         selectedIndex = options.selectedIndex || 0,
         main = {};
-
+        
 
     function removeActiveClasses($elements) {
         return $elements.each(function(index, el) {
             core.removeClassSuffix($(el), activeClassSuffix);
         });
     }
-
 
     function getActiveElements($root, selectors) {
         return core.getElementsBySuffix($root.find(selectors), activeClassSuffix);
@@ -88,43 +88,65 @@ function getTabHandler($root, options) {
     function addVisitedClasses($links, $content) {
         addClasses($links, $content, visitedClassSuffix);
     }
-
+    
     function init() {
         $root.on('click', linkSel, handleClick);
-        setInitialTab();
+        checkIfHash();
+        
         /*jshint validthis:true */
         return main;
     }
-
-    function setState(target) {
+    
+    function checkIfHash() {
+        var hash = window.location.hash.substring(1);  
+        getIndexOfTrigger(hash);
+    }
+    
+    function getIndexOfTrigger(hash) { 
+        var $triggers = $root.find(linkSel);
+        $('.ff_module-formstep__text', $triggers).each(function(i) {
+            var txt = $(this).text().toLowerCase();
+            if (txt === hash) selectedIndex = i; 
+        });
+        
+        console.log(selectedIndex)
+        setActiveTab(selectedIndex);    
+    }
+    
+    function setHash(hash) {
+        window.location.hash = hash;
+    }
+    
+    function setState(target, index) {
         var targetId = $(target).attr(options.linkSelBase),
             $selectedContent, $selectedLinks,
             $activeLinks, $activeContent,
             $lastLinks, $lastContent,
             selLinkTargets, selContentTargets,
             isComplete, canAdvance;
-
+        
         if (!targetId) return;
 
         selLinkTargets = linkRep.replace(/{val}/, targetId);
         selContentTargets = contentRep.replace(/{val}/, targetId);
-
+        
         $selectedLinks = $root.find(selLinkTargets);
         $selectedContent = $root.find(selContentTargets);
-
+        
         $activeLinks = getActiveElements($root, linkSel);
         $activeContent = getActiveElements($root, contentSel);
-
+        
         isComplete = testIsComplete($selectedLinks, $selectedContent, $activeLinks, $activeContent);
+        // isComplete = false;
         canAdvance = testCanAdvance($selectedLinks, $selectedContent, $activeLinks, $activeContent);
 
         if (canAdvance) {
             $lastLinks = removeActiveClasses($activeLinks);
             $lastContent = removeActiveClasses($activeContent);
             addVisitedClasses($lastLinks, $lastContent);
-            addActiveClasses($selectedLinks, $selectedContent);
+            addActiveClasses($selectedLinks, $selectedContent, index);
             visitedCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
-
+            console.log('isComplete: '+ isComplete);
             if (isComplete) {
                 addCompleteClasses($lastLinks, $lastContent);
                 completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
@@ -137,11 +159,12 @@ function getTabHandler($root, options) {
     function handleClick(e) {
         e.preventDefault();
         var $triggers = $root.find(linkSel);
+        
         /*jshint validthis:true */
         var index = $triggers.index(this);
         setActiveTab(index);
+        setHash($(this).data('label').toLowerCase());
     }
-
 
     function testBounds(value, length) {
         if (value < 0) {
@@ -150,7 +173,7 @@ function getTabHandler($root, options) {
             return 0;
         } else return value;
     }
-
+    
     function setActiveTab(index) {
         var $triggers = $root.find(linkSel);
         var attemptIndex = testBounds(index, $triggers.length);
@@ -161,10 +184,6 @@ function getTabHandler($root, options) {
         }
         /*jshint validthis:true */
         return main;
-    }
-
-    function setInitialTab() {
-        return setActiveTab(selectedIndex);
     }
 
     function next() {

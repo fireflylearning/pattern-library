@@ -11,7 +11,7 @@
             </xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
-	<li class="{$classes}">
+	<li class="{$classes}" data-label="{label}">
         <xsl:if test="label/@tab-attr-name">
             <xsl:attribute name="{label/@tab-attr-name}">
                 <xsl:value-of select="@id"/>
