@@ -9,8 +9,8 @@ import ContainerFormLine from '../../../ff_container/ff_container-form-line/ff_c
 
 
 const FF_Field = createFieldClass({
-  'FormInput': controls.text,
-  'FormInput': controls.select,
+    'FormInput': controls.text,
+    'FormInput': controls.select,
 });
 
 // FF_Field could be wrapped inside ContainerFormLine, adding here for testing purposes
@@ -34,11 +34,11 @@ class FF_ContainerFormLine extends React.Component {
 }
 
 export class LoginForm extends React.Component {
-      render() {
+    render() {
         let { user, userForm, validators } = this.props;
 
         return (
-          <Form model="user">
+            <Form model="user">
 
             <FF_ContainerFormLine
                 model='user.username'
@@ -120,5 +120,5 @@ export class LoginForm extends React.Component {
             </button>
           </Form>
         )
-      }
+    }
 }
