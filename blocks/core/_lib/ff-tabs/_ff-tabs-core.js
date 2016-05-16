@@ -17,7 +17,7 @@ var _options = {
     canAdvance: canAdvance,
     visitedCallback: function() {},
     completeCallback: function() {},
-    selectedIndex: 2
+    selectedIndex: 0
 };
 
 function isComplete($nextLink, $nextContent, $currentLink, $selectedContent) {
@@ -56,7 +56,7 @@ function getTabHandler($root, options) {
 
         selectedIndex = options.selectedIndex || 0,
         main = {};
-        
+
 
     function removeActiveClasses($elements) {
         return $elements.each(function(index, el) {
@@ -88,35 +88,35 @@ function getTabHandler($root, options) {
     function addVisitedClasses($links, $content) {
         addClasses($links, $content, visitedClassSuffix);
     }
-    
+
     function init() {
         $root.on('click', linkSel, handleClick);
         checkIfHash();
-        
+
         /*jshint validthis:true */
         return main;
     }
-    
+
     function checkIfHash() {
-        var hash = window.location.hash.substring(1);  
+        var hash = window.location.hash.substring(1);
         getIndexOfTrigger(hash);
     }
-    
-    function getIndexOfTrigger(hash) { 
+
+    function getIndexOfTrigger(hash) {
         var $triggers = $root.find(linkSel);
         $('.ff_module-formstep__text', $triggers).each(function(i) {
             var txt = $(this).text().toLowerCase();
-            if (txt === hash) selectedIndex = i; 
+            if (txt === hash) selectedIndex = i;
         });
-        
+
         console.log(selectedIndex)
-        setActiveTab(selectedIndex);    
+        setActiveTab(selectedIndex);
     }
-    
+
     function setHash(hash) {
         window.location.hash = hash;
     }
-    
+
     function setState(target, index) {
         var targetId = $(target).attr(options.linkSelBase),
             $selectedContent, $selectedLinks,
@@ -124,18 +124,18 @@ function getTabHandler($root, options) {
             $lastLinks, $lastContent,
             selLinkTargets, selContentTargets,
             isComplete, canAdvance;
-        
+
         if (!targetId) return;
 
         selLinkTargets = linkRep.replace(/{val}/, targetId);
         selContentTargets = contentRep.replace(/{val}/, targetId);
-        
+
         $selectedLinks = $root.find(selLinkTargets);
         $selectedContent = $root.find(selContentTargets);
-        
+
         $activeLinks = getActiveElements($root, linkSel);
         $activeContent = getActiveElements($root, contentSel);
-        
+
         isComplete = testIsComplete($selectedLinks, $selectedContent, $activeLinks, $activeContent);
         // isComplete = false;
         canAdvance = testCanAdvance($selectedLinks, $selectedContent, $activeLinks, $activeContent);
@@ -159,7 +159,7 @@ function getTabHandler($root, options) {
     function handleClick(e) {
         e.preventDefault();
         var $triggers = $root.find(linkSel);
-        
+
         /*jshint validthis:true */
         var index = $triggers.index(this);
         setActiveTab(index);
@@ -173,7 +173,7 @@ function getTabHandler($root, options) {
             return 0;
         } else return value;
     }
-    
+
     function setActiveTab(index) {
         var $triggers = $root.find(linkSel);
         var attemptIndex = testBounds(index, $triggers.length);
