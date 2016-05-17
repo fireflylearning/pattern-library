@@ -24,7 +24,7 @@ var testDefs = {
             TestUtils.Simulate.click(node);
         });
 
-        expect(props.onClick.callCount).to.equal(6);
+        expect(props.onClick.callCount).to.equal(7);
 
     }
 };
