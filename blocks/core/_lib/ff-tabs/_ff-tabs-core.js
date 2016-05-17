@@ -153,8 +153,6 @@ function getTabHandler($root, options) {
                 addCompleteClasses($lastLinks, $lastContent);
                 completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
                 setHash(target);
-        
-    
             }
             return true;
         }
