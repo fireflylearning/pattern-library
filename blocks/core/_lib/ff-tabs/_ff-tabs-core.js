@@ -21,7 +21,6 @@ var _options = {
 };
 
 function isComplete($nextLink, $nextContent, $currentLink, $selectedContent) {
-    console.log('$nextContent: ' + $nextContent);
     if ($nextContent.length) return true;
     return false;
 }
@@ -118,8 +117,8 @@ function getTabHandler($root, options) {
         return index.index() || 0;
     }
 
-    function setHash(hash) {
-        window.location.hash = hash;
+    function setHash(target) {
+        window.location.hash = $(target).data('label').toLowerCase();
     }
 
     function setState(target, index) {
@@ -153,6 +152,9 @@ function getTabHandler($root, options) {
             if (isComplete) {
                 addCompleteClasses($lastLinks, $lastContent);
                 completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
+                setHash(target);
+        
+    
             }
             return true;
         }
@@ -166,7 +168,6 @@ function getTabHandler($root, options) {
         /*jshint validthis:true */
         var index = $triggers.index(this);
         setActiveTab(index);
-        setHash($(this).data('label').toLowerCase());
     }
 
     function testBounds(value, length) {
