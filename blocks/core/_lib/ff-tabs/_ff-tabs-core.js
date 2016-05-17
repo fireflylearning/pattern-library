@@ -15,8 +15,8 @@ var _options = {
     visitedClassSuffix: '--is-visited',
     isComplete: isComplete,
     canAdvance: canAdvance,
-    visitedCallback: function() {},
-    completeCallback: function() {},
+    visitedCallback: function () { },
+    completeCallback: function () { },
     selectedIndex: 0
 };
 
@@ -59,7 +59,7 @@ function getTabHandler($root, options) {
 
 
     function removeActiveClasses($elements) {
-        return $elements.each(function(index, el) {
+        return $elements.each(function (index, el) {
             core.removeClassSuffix($(el), activeClassSuffix);
         });
     }
@@ -69,10 +69,10 @@ function getTabHandler($root, options) {
     }
 
     function addClasses($links, $content, suffix) {
-        $links.each(function(index, el) {
+        $links.each(function (index, el) {
             core.addClassSuffix($(el), suffix, defaultLinkClass, options.classFilter);
         });
-        $content.each(function(index, el) {
+        $content.each(function (index, el) {
             core.addClassSuffix($(el), suffix, defaultContentClass, options.classFilter);
         });
     }
@@ -91,26 +91,31 @@ function getTabHandler($root, options) {
 
     function init() {
         $root.on('click', linkSel, handleClick);
-        checkIfHash();
-
+        var index = getHashIndex() || 0;
+        setActiveTab(index);
         /*jshint validthis:true */
         return main;
     }
 
-    function checkIfHash() {
+    function getHashIndex() {
+        var hash = getHash();
+        if (hash) return getIndexOfTrigger(hash);
+        return null;
+    }
+
+    function getHash() {
         var hash = window.location.hash.substring(1);
-        getIndexOfTrigger(hash);
+        if (hash) return hash;
+        return null;
     }
 
     function getIndexOfTrigger(hash) {
         var $triggers = $root.find(linkSel);
-        $('.ff_module-formstep__text', $triggers).each(function(i) {
-            var txt = $(this).text().toLowerCase();
-            if (txt === hash) selectedIndex = i;
+        var index = $($triggers).filter(function(i) {
+            var txt = $(this).data('label').toLowerCase();
+            if (txt === hash) return this;
         });
-
-        console.log(selectedIndex)
-        setActiveTab(selectedIndex);
+        return index.index() || 0;
     }
 
     function setHash(hash) {
@@ -137,7 +142,6 @@ function getTabHandler($root, options) {
         $activeContent = getActiveElements($root, contentSel);
 
         isComplete = testIsComplete($selectedLinks, $selectedContent, $activeLinks, $activeContent);
-        // isComplete = false;
         canAdvance = testCanAdvance($selectedLinks, $selectedContent, $activeLinks, $activeContent);
 
         if (canAdvance) {
@@ -146,7 +150,6 @@ function getTabHandler($root, options) {
             addVisitedClasses($lastLinks, $lastContent);
             addActiveClasses($selectedLinks, $selectedContent, index);
             visitedCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
-            console.log('isComplete: '+ isComplete);
             if (isComplete) {
                 addCompleteClasses($lastLinks, $lastContent);
                 completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
@@ -206,7 +209,7 @@ function getTabHandler($root, options) {
 
 module.exports = {
     defaultOptions: _options,
-    create: function(options) {
+    create: function (options) {
         options = $.extend({}, _options, options);
         var $root = $(options.root);
 
