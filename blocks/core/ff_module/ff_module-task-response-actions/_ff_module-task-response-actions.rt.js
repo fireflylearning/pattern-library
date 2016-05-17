@@ -52,6 +52,11 @@ module.exports = function () {
                 text: 'Send Comment',
                 key: events.types.comment,
                 onClick: () => this.onClick(events.types.comment)
+            },
+            {
+                text: 'Send File',
+                key: events.types.addFile,
+                onClick: () => this.onClick(events.types.addFile)
             }
         ]
     }))));

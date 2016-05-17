@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 var sinon = require('sinon');
@@ -24,7 +24,7 @@ var tabs = [{
 var modifier = '[Modifier]';
 
 describe('TabsComponent', function() {
-	
+
 	it('should render a set of tabs', function() {
 		var element = React.createElement(TabsComponent, {tabs: tabs});
 		var component = TestUtils.renderIntoDocument(element);
