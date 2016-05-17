@@ -110,7 +110,7 @@ function getTabHandler($root, options) {
 
     function getIndexOfTrigger(hash) {
         var $triggers = $root.find(linkSel);
-        var index = $($triggers).filter(function(i) {
+        var index = $triggers.filter(function(i) {
             var txt = $(this).data('label').toLowerCase();
             if (txt === hash) return this;
         });
@@ -147,12 +147,12 @@ function getTabHandler($root, options) {
             $lastLinks = removeActiveClasses($activeLinks);
             $lastContent = removeActiveClasses($activeContent);
             addVisitedClasses($lastLinks, $lastContent);
-            addActiveClasses($selectedLinks, $selectedContent, index);
+            addActiveClasses($selectedLinks, $selectedContent);
             visitedCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
+            setHash(target);
             if (isComplete) {
                 addCompleteClasses($lastLinks, $lastContent);
                 completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
-                setHash(target);
             }
             return true;
         }
