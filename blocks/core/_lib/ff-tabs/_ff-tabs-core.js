@@ -111,14 +111,17 @@ function getTabHandler($root, options) {
     function getIndexOfTrigger(hash) {
         var $triggers = $root.find(linkSel);
         var index = $triggers.filter(function(i) {
-            var txt = $(this).data('label').toLowerCase();
-            if (txt === hash) return this;
+            if($(this).data('label')) {
+                var txt = $(this).data('label');
+                if (txt === hash) return this;
+            }
         });
         return index.index() || 0;
     }
 
     function setHash(target) {
-        window.location.hash = $(target).data('label').toLowerCase();
+        if ($(target).data('label'))
+            window.location.hash = $(target).data('label'); 
     }
 
     function setState(target, index) {
