@@ -2,16 +2,125 @@
 
 var ReactDOM = require('react-dom');
 
-import FF_Field from './ff_module-form-field';
+import FormField from './ff_module-form-field';
 import { connect } from 'react-redux';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { modelReducer, formReducer, actions, Field } from 'react-redux-form';
+import { modelReducer, formReducer, actions, Errors } from 'react-redux-form';
 
 import FormInput from '../../ff_module/ff_module-form-input/ff_module-form-input';
 import FormLabel from '../../ff_module/ff_module-form-label/ff_module-form-label';
 import CheckableList from '../../ff_module/ff_module-form-checkable-list/ff_module-form-checkable-list';
-// import ContainerFormLine from '../../ff_module/ff_module-form-checkable-list/ff_module-form-checkable-list';
+import ContainerFormLine from '../../ff_container/ff_container-form-line/ff_container-form-line';
+
+const items = [{
+        label: 'Label text',
+        required: true,
+        modifier: 'inline',
+        type: 'checkbox',
+        id: 'react-checkbox-id-1',
+        // value: 'checkbox-value-1',
+        name: 'react-checkbox-list-group'
+    }, {
+        label: 'Label text',
+        required: true,
+        type: 'checkbox',
+        modifier: 'inline',
+        id: 'react-checkbox-id-2',
+        // value: 'checkbox-value-2',
+        name: 'react-checkbox-list-group'
+    }, {
+        label: 'Label text',
+        required: true,
+        type: 'checkbox',
+        modifier: 'inline',
+        id: 'react-checkbox-id-3',
+        // value: 'checkbox-value-3',
+        name: 'react-checkbox-list-group'
+    }],
+    otherItems = [{
+        label: 'Label text',
+        required: true,
+        modifier: 'inline',
+        type: 'radio',
+        id: 'react-radio-id-1',
+        // value: 'radio-value-1',
+        name: 'react-radio-list-group'
+    }, {
+        label: 'Label text',
+        required: true,
+        type: 'radio',
+        modifier: 'inline',
+        id: 'react-radio-id-2',
+        // value: 'radio-value-2',
+        name: 'react-radio-list-group'
+    }, {
+        label: 'Label text',
+        required: true,
+        type: 'radio',
+        modifier: 'inline',
+        id: 'react-radio-id-3',
+        // value: 'radio-value-3',
+        name: 'react-radio-list-group'
+    }];
+
+function emailIsValid(email) {
+    // terrible validation, I know
+    return email && email.length > 0 && /@/.test(email);
+}
+
+function colourIsValid(colour) {
+    return colour === 'blue';
+}
+
+function isRequired(value) {
+    return value && value.length;
+}
+
+const validators = {
+    'user.email': {
+        validateOn: 'blur',
+        rules: {
+            required: isRequired,
+            valid: emailIsValid
+        },
+        showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+        messages: {
+            required: 'Please provide an email address.',
+            valid: (val) => `"${val}" is not a valid email.`,
+        }
+    },
+    'user.username': {
+        validateOn: 'blur',
+        rules: {
+            required: isRequired
+        },
+        showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+        messages: {
+            required: 'Please provide a username.'
+        }
+    },
+    'user.password': {
+        validateOn: 'blur',
+        rules: {
+            required: isRequired
+        },
+        showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+        messages: {
+            required: 'Please provide a password.'
+        }
+    },
+    'user.selectedColour': {
+        validateOn: 'change',
+        rules: {
+            valid: colourIsValid
+        },
+        showErrorsOn: (field) => field.touched && !field.valid,
+        messages: {
+            valid: (val) => `"${val}" is not the correct colour.`
+        }
+    }
+};
 
 
 const initialState = {
@@ -20,34 +129,14 @@ const initialState = {
     password: '',
     selectedColour: '',
     story: '',
-    isAllowed: '',
-    otherlist: { 'one': false, 'two': true },
-    items: [{
-        label: 'Label text',
-        required: true,
-        modifier: 'inline',
-        type: 'checkbox',
-        id: 'react-checkbox-id-1',
-        value: 'checkbox-value-1',
-        name: 'react-checkbox-list-group'
-    }, {
-        label: 'Label text',
-        required: true,
-        type: 'checkbox',
-        modifier: 'inline',
-        id: 'react-checkbox-id-2',
-        value: 'checkbox-value-2',
-        name: 'react-checkbox-list-group'
-    }, {
-        label: 'Label text',
-        required: true,
-        type: 'checkbox',
-        modifier: 'inline',
-        id: 'react-checkbox-id-3',
-        value: 'checkbox-value-3',
-        name: 'react-checkbox-list-group'
-    }]
+    isAllowed: false,
+    checklist: [],
+    radiolist: '',
+    radiolist2: '',
+    items: [],
+    otherItems: []
 };
+
 
 
 const store = createStore(combineReducers({
@@ -58,12 +147,19 @@ const store = createStore(combineReducers({
 
 class LoginForm extends React.Component {
     render() {
-        let { user, userForm, validators } = this.props;
+        let { user, userForm, validation } = this.props;
 
         return (
             <form>
 
-            <FF_Field model='user.username'>
+
+            <FormField
+                model='user.username'
+                validators={validation['user.username'].rules}
+                validateOn={validation['user.username'].validateOn}
+                showErrorsOn={validation['user.username'].showErrorsOn}
+                messages={validation['user.username'].messages}
+                >
 
                 <FormLabel required={true}>Username</FormLabel>
 
@@ -73,9 +169,16 @@ class LoginForm extends React.Component {
                     value={user.username}
                     />
 
-            </FF_Field>
+            </FormField>
 
-            <FF_Field model='user.selectedColour'>
+
+            <FormField model='user.selectedColour'
+                validators={validation['user.selectedColour'].rules}
+                validateOn={validation['user.selectedColour'].validateOn}
+                showErrorsOn={validation['user.selectedColour'].showErrorsOn}
+                messages={validation['user.selectedColour'].messages}
+                >
+
 
               <FormLabel>Colours</FormLabel>
 
@@ -85,9 +188,9 @@ class LoginForm extends React.Component {
                 options={[{ value: '', text: 'Select a colour' }, { value: 'red', text: 'Red' }, { value: 'blue', text: 'Blue' }]}
                 />
 
-            </FF_Field>
+            </FormField>
 
-            <FF_Field model='user.story'>
+            <FormField model='user.story'>
 
               <FormLabel>Story</FormLabel>
 
@@ -96,9 +199,14 @@ class LoginForm extends React.Component {
                 value={user.story}
                 />
 
-            </FF_Field>
+            </FormField>
 
-            <FF_Field model='user.password'>
+            <FormField model='user.password'
+                validators={validation['user.password'].rules}
+                validateOn={validation['user.password'].validateOn}
+                showErrorsOn={validation['user.password'].showErrorsOn}
+                messages={validation['user.password'].messages}
+                >
 
               <FormLabel required={true}>Password</FormLabel>
 
@@ -108,57 +216,79 @@ class LoginForm extends React.Component {
                 value={user.password}
                 />
 
-            </FF_Field>
+            </FormField>
 
-            <FF_Field model='user.isAllowed'>
+            <FormField model='user.isAllowed'>
 
               <FormLabel required={true}>Allowed?: </FormLabel>
 
               <FormInput
                 required={true}
                 type="checkbox"
-                value={user.isAllowed}
+                // value={}
                 // checked={user.isAllowed}
                 />
 
-            </FF_Field>
+            </FormField>
 
 
 
-              <FormLabel required={true}>Otherlist: </FormLabel>
+              <FormLabel required={true}>Checklist: </FormLabel>
 
-                <FF_Field model='user.otherlist.one'>
-              <input
-                required={true}
-                type="checkbox"
-                value={user.otherlist.one}
-                checked={user.otherlist.one === true}
-                />
-                </FF_Field>
-
-                <FF_Field model='user.otherlist.two'>
+                <FormField model='user.checklist[]'>
                 <FormInput
                 required={true}
                 type="checkbox"
-                value={user.otherlist.two}
-                checked={user.otherlist.two === true}
+                value='one'
                 />
+                <FormInput
+                required={true}
+                type="checkbox"
+                value='two'
+                />
+                </FormField>
 
-                </FF_Field>
+                <br/>
 
-            <FF_Field model='user.checklistItems'>
+            <FormLabel required={true}>Radio1: </FormLabel>
 
-              <FormLabel required={true}>Checklist</FormLabel>
+                <FormField model='user.radiolist'>
+                <FormInput
+                required={true}
+                type="radio"
+                value='radio-val-1'
+                />
+                </FormField>
+
+                <FormLabel required={true}>Radio2: </FormLabel>
+                <FormField model='user.radiolist'>
+                <FormInput
+                required={true}
+                type="radio"
+                value='radio-val-2'
+                />
+                </FormField>
+
+                 <br/>
+              <FormLabel required={true}>Checkablelist checkbox</FormLabel>
 
               <CheckableList
                 required={true}
-                type="checkbox"
-                modifier='inline'
                 model='user.items[].checked'
                 items={user.items}
                 />
 
-            </FF_Field>
+                 <br/>
+                <FormLabel required={true}>Checkablelist Radio</FormLabel>
+
+              <CheckableList
+                required={true}
+                modifier='stacked'
+                model='user.otherItems[].checked'
+                items={user.otherItems}
+                />
+
+
 
             <button>
               Log in
@@ -171,9 +301,11 @@ class LoginForm extends React.Component {
             <p>Story (textarea): {user.story}</p>
             <p>Is allowed?: {(user.isAllowed).toString()}</p>
 
-            <p>Otherlist: {(user.otherlist.one).toString()}, {(user.otherlist.two).toString()}</p>
+            <p>Checklist: {(user.checklist).toString()}</p>
+            <p>Radiolist: {(user.radiolist).toString()}</p>
 
             <p>Checklist (checkablelist-checkbox): {user.items.map((item)=>item.checked? 'true': 'false').join(', ')}</p>
+            <p>OtherItems (checkablelist-radio): {user.otherItems.map((item)=>item.checked? 'true': 'false').join(', ')}</p>
 
           </form>
         )
@@ -184,7 +316,8 @@ class LoginForm extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.user,
-        userForm: state.userForm
+        userForm: state.userForm,
+        validation: validators
     };
 }
 

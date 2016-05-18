@@ -10,7 +10,7 @@ function FormError(props) {
 function FormErrorList(props) {
     return (
         <ul className={getGeneratedClass('ff_module-form-errors', props)}>
-            {props.messages.map((message, index)=>{return <FormError key={'message'+index}>{message}</FormError>})}
+            {props.children}
         </ul>
     );
 }
@@ -23,11 +23,13 @@ module.exports = React.createClass({
         classes: React.PropTypes.string
     },
     render: function(){
-        return (
-            this.props.messages ?
-            <FormErrorList {...this.props}/> :
-            null
-        );
+
+        var messages = this.props.messages ? this.props.messages.map((message, index) => <FormError key={'message'+index}>{message}</FormError>) : null;
+        if (messages.length) {
+            return <FormErrorList {...this.props}>{messages}</FormErrorList>;
+        }
+        return null;
+
     }
 })
 

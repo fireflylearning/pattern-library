@@ -28,17 +28,19 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		return <ul className='ff_module-form-checkable-list'>
-				{this.props.items.map((item)=>{
+				{this.props.items.map((item, index)=>{
 					var model = this.props.model ? track(this.props.model, { id: item.id }) : null;
 
 					var formPair = <div className={this.generateClass('ff_module-form-pair' , this.props)}>
-                    <FormInput checked={item.checked} id={item.id} value={item.value} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} onFocus={this.props.onFocus} modifier={this.props.modifier} name={item.name} type={item.type || 'radio'} />
+                    <FormInput checked={item.checked} id={item.id} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} onFocus={this.props.onFocus} modifier={this.props.modifier} name={item.name} type={item.type || 'radio'} />
                     <FormLabel id={item.id} required={item.required} modifier={this.props.modifier}>{item.label}</FormLabel>
-                    </div>
+                    </div>;
 
-                    var field = model ? <FF_Field model={model}>{formPair}</FF_Field> : {formPair};
+                    // console.log({formPair});
 
-					return <li key={item.key || 'cl'+item.id} className={this.generateClass('ff_module-form-checkable-list__item', this.props)}>
+                    var field = model ? <FF_Field model={model}>{formPair}</FF_Field> : formPair;
+                    var key = item.key || ( item.id ? 'cl'+item.id : 'cl'+index);
+					return <li key={key} className={this.generateClass('ff_module-form-checkable-list__item', this.props)}>
                     {field}
                     </li>;
 				})}
