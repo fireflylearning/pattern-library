@@ -81,7 +81,7 @@
 }
 
 #ff_mix-decoration() {
-    .circle(@diam; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent){
+    .circle(@diam; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent) when (@diam >= 60px) {
         margin: 0;
         width: @diam;
         height: @diam;
@@ -93,7 +93,42 @@
         background-color: @background-color;
         line-height: @diam - @border-width;
     }
-
+    .circle(@diam; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent) when (@diam < 60px) {
+        margin: 0;
+        width: @diam;
+        height: @diam;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: (@border-width/2) solid @border-color;
+        overflow: hidden;
+        background-color: @background-color;
+        line-height: @diam - @border-width;
+    }
+    .square(@size; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent) when (@size >= 60px) {
+        margin: 0;
+        width: @size;
+        height: @size;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: @ff_size_control_rounding;
+        border: @border-width solid @border-color;
+        overflow: hidden;
+        background-color: @background-color;
+        line-height: @size - @border-width;
+    }
+    .square(@size; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent) when (@size < 60px) {
+        margin: 0;
+        width: @size;
+        height: @size;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: @ff_size_control_rounding;
+        border: (@border-width/2) solid @border-color;
+        overflow: hidden;
+        background-color: @background-color;
+        line-height: @size - @border-width;
+    }
 }
 
 #ff_mix-buttons() {
