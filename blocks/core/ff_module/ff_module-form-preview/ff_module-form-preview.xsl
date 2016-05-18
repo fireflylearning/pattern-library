@@ -25,23 +25,20 @@
 				</xsl:attribute>
 				<dl>
 					<xsl:variable name="edit">
-						<edit
-							id="to-do"
-							url="{./@url}" hash="{./@hash}">Edit</edit>
+						<xsl:choose>
+							<xsl:when test="not(./@hash = '')">
+								<edit url="{./@url}" hash="{./@hash}">Edit</edit>
+							</xsl:when>
+							<xsl:otherwise>
+								<edit url="{./@url}">Edit</edit>
+							</xsl:otherwise>
+						</xsl:choose>
 					</xsl:variable>
 
 					<dt class="ff_module-form-preview__list__title">
 					<span class="ff_module-form-preview__list__title__text"><xsl:value-of select="./@title"/></span>
 
 					<xsl:if test="not(./@url = '')">
-						<span class="ff_module-form-preview__edit-link">
-							<xsl:call-template name="ff_module-inline-edit">
-								<xsl:with-param name="data" select="ext:node-set($edit)" />
-							</xsl:call-template>
-						</span>
-					</xsl:if>
-					
-					<xsl:if test="not(./@hash = '')">
 						<span class="ff_module-form-preview__edit-link">
 							<xsl:call-template name="ff_module-inline-edit">
 								<xsl:with-param name="data" select="ext:node-set($edit)" />
