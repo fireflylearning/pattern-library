@@ -1,0 +1,28 @@
+.ff_module-responses {
+	width: 100%;
+	border-collapse: collapse;
+	max-height: 585px;
+	border:2px solid @ff_colour_control_border;
+	box-sizing: border-box;
+	position: relative;
+	overflow-y: auto;
+	&__content {
+		@media (min-width: @ff_bp_medium) {
+				position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		}
+		position: relative;
+			overflow-y: auto;
+			background: @ff_colour_control_bg;
+	}
+	&__recipient {
+		position: relative;
+		overflow-y: auto;
+		border-right: 1px solid @ff_colour_control_border;
+	}
+}
+@media (min-width: @ff_bp_medium) {
+	
+}
