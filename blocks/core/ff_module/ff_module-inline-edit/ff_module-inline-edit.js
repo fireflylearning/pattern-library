@@ -14,6 +14,6 @@ module.exports = React.createClass({
 		return classNames.join(' ');
 	},
 	render: function() {
-		return <a className={this.generateClass('ff_module-inline-edit' )} id={this.props.id} href={this.props.url}>{this.props.text}</a>;
+		return <a className={this.generateClass('ff_module-inline-edit' )} id={this.props.id} href={this.props.url} data-hash={this.props.hash}>{this.props.text}</a>;
 	}
 });
