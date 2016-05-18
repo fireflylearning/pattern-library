@@ -11,16 +11,9 @@ var TaskMetaActions = require('../blocks/core/ff_module/ff_module-task-meta-acti
 
     getElementByClass = require('./lib/framework').setupGetElementByClass(React, TestUtils, TaskMetaActions);
 
-var props = [{
-    state: {
-        // archived: true
-    },
-    description: {
-        numRecipientsAffected: 43,
-        author: { name: 'Terry Teacher' }
-    },
-    filters: {
+var filterProps = {
         text: '[Filter by Status]',
+        modifier: 'compact-widelist',
         onAddFilter: function(id, event) { console.log('Adding ' + id); },
         onRemoveFilter: function(id, event) { console.log('Removing ' + id); },
         filters: [{
@@ -35,16 +28,34 @@ var props = [{
             id: 'filter-3'
         }]
     },
-    singleActions: [{ text: '[Send All Now]', onClick: function() {} }],
-    groupedActions: {
+    buttonProps = {
+        text: '[Send All Now]',
+        modifier: 'compact',
+        onClick: function() {}
+    },
+    dropdownProps = {
         text: '[More Actions]',
+        modifier: 'compact-right-widelist',
         list: [{ text: '[Edit]', onClick: function(event) { console.log(event); } }]
-    }
-}, {
-    state: {
-        archived: true
-    }
-}];
+    },
+
+    props = [{
+        state: {},
+        description: {
+            numRecipientsAffected: 43,
+            author: { name: 'Terry Teacher' }
+        },
+        filters: <DropdownFilters {...filterProps} />,
+        singleButtons: [<Button key="send-all-now" {...buttonProps}/>],
+        groupedActions: <DropdownButton {...dropdownProps}/>
+    }, {
+        state: {
+            archived: true
+        }
+    }];
+
+
+
 
 describe('TaskMetaActions', function() {
 
@@ -69,12 +80,12 @@ describe('TaskMetaActions', function() {
         var dropdownButtons = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-dropdown-button--compact-right-widelist');
         var ddLis = dropdownButtons.querySelectorAll('li');
         expect(dropdownButtons).to.exist;
-        expect(ddLis.length).to.equal(props[0].groupedActions.list.length);
+        expect(ddLis.length).to.equal(dropdownProps.list.length);
 
         var filters = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-dropdown-filters');
         var fLis = filters.querySelectorAll('li');
         expect(filters).to.exist;
-        expect(fLis.length).to.equal(props[0].filters.filters.length);
+        expect(fLis.length).to.equal(filterProps.filters.length);
 
     });
 

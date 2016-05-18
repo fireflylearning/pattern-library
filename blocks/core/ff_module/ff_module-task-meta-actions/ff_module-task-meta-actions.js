@@ -23,7 +23,7 @@ function renderDefault(props) {
 
                     <ContainerControlBarSet>
 
-                        {props.filters ? <DropdownFilters {...props.filters} modifier="compact-widelist" /> : null}
+                        {props.filters ? props.filters : null}
 
                     </ContainerControlBarSet>
 
@@ -31,11 +31,11 @@ function renderDefault(props) {
 
                         {props.description.numRecipientsAffected ? <p className='ff_module-task-meta-actions__num-affected'>Send feedback and marks to {props.description.numRecipientsAffected} students</p> : null}
 
-                        {props.singleActions ? props.singleActions.map(function(actionProps, index){
-                            return <Button key={'button'+index} {...actionProps} modifier="compact"  />
+                        {props.singleButtons ? props.singleButtons.map(function(singleButton, index){
+                            return singleButton;
                         }) : null}
 
-                        {props.groupedActions ? <DropdownButton {...props.groupedActions} modifier="compact-right-widelist" /> : null}
+                        {props.groupedActions ? props.groupedActions : null}
 
                     </ContainerControlBarSet>
 
@@ -66,15 +66,9 @@ module.exports = React.createClass({
             numRecipientsAffected: React.PropTypes.number,
         }),
         state: React.PropTypes.object,
-        filters: React.PropTypes.shape(DropdownFilters.propTypes),
-        singleActions: React.PropTypes.arrayOf(React.PropTypes.shape({
-            text: React.PropTypes.string,
-            onClick: React.PropTypes.func
-        })),
-        groupedActions: React.PropTypes.shape(_.assign({},
-            DropdownButton.propTypes, {
-                onClick: React.PropTypes.func
-            }))
+        filters: React.PropTypes.instanceOf(DropdownFilters),
+        singleButtons: React.PropTypes.arrayOf(React.PropTypes.instanceOf(Button)),
+        groupedActions: React.PropTypes.instanceOf(DropdownButton)
     },
     render: function() {
         return getRenderMethod(this.props);
