@@ -1,0 +1,46 @@
+.ff_module-form-add-attachment {
+    background-color: #F8F8F8;
+    border: 1px solid @ff_colour_control_border;
+
+    &__dnd {
+        text-align: center;
+        padding: 1.75*@ff_size_spacing_max @ff_size_spacing_max;
+    }
+
+    &__dnd-text{
+        color: @ff_colour_default;
+        display: block;
+        margin: 0 auto;
+        font-style: italic;
+    }
+    &__buttons {
+        margin: 0 @ff_size_spacing_min @ff_size_spacing_min @ff_size_spacing_min;
+    }
+    &__icon.ff_icon {
+        width: 1.5em;
+        height: 1.5em;
+        display: block;
+        margin: 0 auto 3px auto;
+    }
+    &__filelist {
+
+    }
+    &__no-files-message{
+        display: block;
+        #ff_mix-util-prose > .text-default();
+        border: 1px solid @ff_colour_control_border;
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        font-style: italic;
+    }
+
+}
+
+// states
+.ff_module-form-add-attachment {
+    &--is-active {
+        background-color: @ff_colour_quiet;
+    }
+    &--is-active &__dnd-text{
+        color: darken(@ff_colour_default, 5%);
+    }
+}
