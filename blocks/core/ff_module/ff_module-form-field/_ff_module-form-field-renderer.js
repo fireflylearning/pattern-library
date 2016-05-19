@@ -19,7 +19,7 @@ const items = [{
         modifier: 'inline',
         type: 'checkbox',
         id: 'react-checkbox-id-1',
-        // value: 'checkbox-value-1',
+        value: 'checkbox-value-1',
         name: 'react-checkbox-list-group'
     }, {
         label: 'Label text',
@@ -27,7 +27,7 @@ const items = [{
         type: 'checkbox',
         modifier: 'inline',
         id: 'react-checkbox-id-2',
-        // value: 'checkbox-value-2',
+        value: 'checkbox-value-2',
         name: 'react-checkbox-list-group'
     }, {
         label: 'Label text',
@@ -35,32 +35,32 @@ const items = [{
         type: 'checkbox',
         modifier: 'inline',
         id: 'react-checkbox-id-3',
-        // value: 'checkbox-value-3',
+        value: 'checkbox-value-3',
         name: 'react-checkbox-list-group'
     }],
     otherItems = [{
-        label: 'Label text',
+        label: 'Radio Label 1',
         required: true,
         modifier: 'inline',
         type: 'radio',
         id: 'react-radio-id-1',
-        // value: 'radio-value-1',
+        value: 'radio-value-1',
         name: 'react-radio-list-group'
     }, {
-        label: 'Label text',
+        label: 'Radio Label 2',
         required: true,
         type: 'radio',
         modifier: 'inline',
         id: 'react-radio-id-2',
-        // value: 'radio-value-2',
+        value: 'radio-value-2',
         name: 'react-radio-list-group'
     }, {
-        label: 'Label text',
+        label: 'Radio Label 3',
         required: true,
         type: 'radio',
         modifier: 'inline',
         id: 'react-radio-id-3',
-        // value: 'radio-value-3',
+        value: 'radio-value-3',
         name: 'react-radio-list-group'
     }];
 
@@ -115,7 +115,7 @@ const validators = {
         rules: {
             valid: colourIsValid
         },
-        showErrorsOn: (field) => field.touched && !field.valid,
+        showErrorsOn: (field) => !field.valid,
         messages: {
             valid: (val) => `"${val}" is not the correct colour.`
         }
@@ -132,7 +132,6 @@ const initialState = {
     isAllowed: false,
     checklist: [],
     radiolist: '',
-    radiolist2: '',
     items: [],
     otherItems: []
 };
@@ -152,160 +151,169 @@ class LoginForm extends React.Component {
         return (
             <form>
 
+            <ContainerFormLine>
+                <FormField
+                    model='user.username'
+                    validators={validation['user.username'].rules}
+                    validateOn={validation['user.username'].validateOn}
+                    showErrorsOn={validation['user.username'].showErrorsOn}
+                    messages={validation['user.username'].messages}
+                    >
 
-            <FormField
-                model='user.username'
-                validators={validation['user.username'].rules}
-                validateOn={validation['user.username'].validateOn}
-                showErrorsOn={validation['user.username'].showErrorsOn}
-                messages={validation['user.username'].messages}
-                >
+                    <FormLabel required={true}>Username</FormLabel>
 
-                <FormLabel required={true}>Username</FormLabel>
+                    <FormInput
+                        type="text"
+                        required={true}
+                        value={user.username}
+                        />
 
-                <FormInput
-                    type="text"
-                    required={true}
-                    value={user.username}
+                </FormField>
+            </ContainerFormLine>
+
+            <ContainerFormLine>
+                <FormField model='user.selectedColour'
+                    validators={validation['user.selectedColour'].rules}
+                    validateOn={validation['user.selectedColour'].validateOn}
+                    showErrorsOn={validation['user.selectedColour'].showErrorsOn}
+                    messages={validation['user.selectedColour'].messages}
+                    >
+
+                  <FormLabel>Colours</FormLabel>
+
+                  <FormInput
+                    type="select"
+                    value={user.selectedColour}
+                    options={[{ value: '', text: 'Select a colour' }, { value: 'red', text: 'Red' }, { value: 'blue', text: 'Blue' }]}
                     />
 
-            </FormField>
-
-
-            <FormField model='user.selectedColour'
-                validators={validation['user.selectedColour'].rules}
-                validateOn={validation['user.selectedColour'].validateOn}
-                showErrorsOn={validation['user.selectedColour'].showErrorsOn}
-                messages={validation['user.selectedColour'].messages}
-                >
-
-
-              <FormLabel>Colours</FormLabel>
-
-              <FormInput
-                type="select"
-                value={user.selectedColour}
-                options={[{ value: '', text: 'Select a colour' }, { value: 'red', text: 'Red' }, { value: 'blue', text: 'Blue' }]}
-                />
-
-            </FormField>
-
-            <FormField model='user.story'>
-
-              <FormLabel>Story</FormLabel>
-
-              <FormInput
-                type="textarea"
-                value={user.story}
-                />
-
-            </FormField>
-
-            <FormField model='user.password'
-                validators={validation['user.password'].rules}
-                validateOn={validation['user.password'].validateOn}
-                showErrorsOn={validation['user.password'].showErrorsOn}
-                messages={validation['user.password'].messages}
-                >
-
-              <FormLabel required={true}>Password</FormLabel>
-
-              <FormInput
-                required={true}
-                type="password"
-                value={user.password}
-                />
-
-            </FormField>
-
-            <FormField model='user.isAllowed'>
-
-              <FormLabel required={true}>Allowed?: </FormLabel>
-
-              <FormInput
-                required={true}
-                type="checkbox"
-                // value={}
-                // checked={user.isAllowed}
-                />
-
-            </FormField>
-
-
-
-              <FormLabel required={true}>Checklist: </FormLabel>
-
-                <FormField model='user.checklist[]'>
-                <FormInput
-                required={true}
-                type="checkbox"
-                value='one'
-                />
-                <FormInput
-                required={true}
-                type="checkbox"
-                value='two'
-                />
                 </FormField>
+            </ContainerFormLine>
+            <ContainerFormLine>
+                <FormField model='user.story'>
 
-                <br/>
+                  <FormLabel>Story</FormLabel>
 
-            <FormLabel required={true}>Radio1: </FormLabel>
+                  <FormInput
+                    type="textarea"
+                    value={user.story}
+                    />
+
+                </FormField>
+            </ContainerFormLine>
+
+            <ContainerFormLine>
+                <FormField model='user.password'
+                    validators={validation['user.password'].rules}
+                    validateOn={validation['user.password'].validateOn}
+                    showErrorsOn={validation['user.password'].showErrorsOn}
+                    messages={validation['user.password'].messages}
+                    >
+
+                  <FormLabel required={true}>Password</FormLabel>
+
+                  <FormInput
+                    required={true}
+                    type="password"
+                    value={user.password}
+                    />
+
+                </FormField>
+            </ContainerFormLine>
+
+            <ContainerFormLine>
+                <FormField model='user.isAllowed'>
+
+                  <FormLabel required={true}>Allowed?: </FormLabel>
+
+                  <FormInput
+                    required={true}
+                    type="checkbox"
+                    // value={}
+                    // checked={user.isAllowed}
+                    />
+
+                </FormField>
+            </ContainerFormLine>
+
+            <ContainerFormLine>
+                <FormField model='user.checklist[]'>
+                    <FormLabel required={true}>Checklist: </FormLabel>
+                    <FormInput
+                        required={true}
+                        type="checkbox"
+                        value='one'
+                        />
+                    <FormInput
+                        required={true}
+                        type="checkbox"
+                        value='two'
+                        />
+                </FormField>
+            </ContainerFormLine>
+
+            <ContainerFormLine>
 
                 <FormField model='user.radiolist'>
-                <FormInput
-                required={true}
-                type="radio"
-                value='radio-val-1'
-                />
+                    <FormLabel required={true}>Radio1: </FormLabel>
+                    <FormInput
+                        required={true}
+                        type="radio"
+                        value='radio-val-1'
+                        />
                 </FormField>
 
                 <FormLabel required={true}>Radio2: </FormLabel>
-                <FormField model='user.radiolist'>
-                <FormInput
-                required={true}
-                type="radio"
-                value='radio-val-2'
-                />
+                    <FormField model='user.radiolist'>
+                    <FormInput
+                        required={true}
+                        type="radio"
+                        value='radio-val-2'
+                        />
                 </FormField>
 
-                 <br/>
-              <FormLabel required={true}>Checkablelist checkbox</FormLabel>
+            </ContainerFormLine>
 
-              <CheckableList
-                required={true}
-                model='user.items[].checked'
-                items={user.items}
-                />
+            <ContainerFormLine>
+                <FormLabel required={true}>Checkablelist checkbox</FormLabel>
 
-                 <br/>
-                <FormLabel required={true}>Checkablelist Radio</FormLabel>
-
-              <CheckableList
-                required={true}
-                modifier='stacked'
-                model='user.otherItems[].checked'
-                items={user.otherItems}
-                />
+                <CheckableList
+                    required={true}
+                    model='user.items[]'
+                    items={items}
+                    />
 
 
+            </ContainerFormLine>
 
-            <button>
-              Log in
-            </button>
+            <ContainerFormLine>
+                <FormLabel modifier="stacked" required={true}>Checkablelist Radio</FormLabel>
+                <CheckableList
+                    required={true}
+                    modifier='stacked'
+                    model='user.otherItems'
+                    items={otherItems}
+                    />
 
+            </ContainerFormLine>
+
+            <ContainerFormLine>
+                <button>
+                  Log in
+                </button>
+            </ContainerFormLine>
 
             <p>Username (text): {user.username}</p>
             <p>SelectedColour (select): {user.selectedColour}</p>
             <p>Password (password): {user.password}</p>
             <p>Story (textarea): {user.story}</p>
-            <p>Is allowed?: {(user.isAllowed).toString()}</p>
+            <p>Is allowed?: {user.isAllowed.toString()}</p>
 
-            <p>Checklist: {(user.checklist).toString()}</p>
-            <p>Radiolist: {(user.radiolist).toString()}</p>
+            <p>Checklist: {user.checklist.toString()}</p>
+            <p>Radiolist: {user.radiolist.toString()}</p>
 
-            <p>Checklist (checkablelist-checkbox): {user.items.map((item)=>item.checked? 'true': 'false').join(', ')}</p>
-            <p>OtherItems (checkablelist-radio): {user.otherItems.map((item)=>item.checked? 'true': 'false').join(', ')}</p>
+            <p>Checklist (checkablelist-checkbox): {user.items.toString()}</p>
+            <p>OtherItems (checkablelist-radio): {user.otherItems.toString()}</p>
 
           </form>
         )

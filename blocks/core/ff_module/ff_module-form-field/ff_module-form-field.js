@@ -47,7 +47,7 @@ const controlPropsMap = {
     textarea: (props) => controlPropsMap.text(props),
 };
 
-export const FF_Field = createFieldClass({
+const FF_Field = createFieldClass({
     'FormInput': (props) => {
 
         var controlType = controlPropsMap[props.type] || controlPropsMap['default'],
@@ -74,6 +74,10 @@ export const FF_Field = createFieldClass({
 });
 
 export class FormField extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'FormField';
+    }
     render() {
 
         return (
@@ -81,14 +85,14 @@ export class FormField extends React.Component {
 
             {this.props.children}
 
-            <ContainerFormLine>
+            <div style={{ display:'block', width:'100%' }}>
                 <Errors model={this.props.model}
                     show={this.props.showErrorsOn || false}
                     messages={this.props.messages}
                     wrapper={FormErrorList}
                     component={FormError}
                     />
-            </ContainerFormLine>
+            </div>
 
             </FF_Field>
         )

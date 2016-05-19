@@ -5,7 +5,6 @@ import { combineReducers, createStore,
   applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { modelReducer, formReducer, actions } from 'react-redux-form';
-import thunk from 'redux-thunk';
 
 import LoginForm from './_src/login-form-container';
 

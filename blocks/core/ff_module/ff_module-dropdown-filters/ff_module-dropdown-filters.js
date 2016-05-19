@@ -7,6 +7,10 @@ import { types as listItemTypes } from '../ff_module-form-input/_src/types';
 
 
 export class DropdownFilters extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'DropdownFilters';
+    }
     render() {
         var list = this.props.filters.map(filter => {
             return {
