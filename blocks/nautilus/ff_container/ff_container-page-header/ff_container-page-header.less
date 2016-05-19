@@ -4,6 +4,10 @@
     align-items: center;
     width: 100%;
     box-sizing: border-box;
+    padding: 15px 30px;
+    min-height: 90px;
+    background-color: lighten(desaturate(@c_mainnav_1, 25%), 15%);
+    #ff_mix-responsive-colour > .check-contrast(lighten(desaturate(@c_mainnav_1, 25%), 15%), @c_text, #ffffff);
 }
 
 .ff_container-page-header__title {
@@ -11,6 +15,6 @@
 }
 
 .ff_container-page-header__title {
-    #ff_mix-util-prose > .h1();
+    #ff_mix-util-prose > .page-header();
     margin: 0;
 }
