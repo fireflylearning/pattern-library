@@ -92,6 +92,7 @@ function getTabHandler($root, options) {
         $root.on('click', linkSel, handleClick);
         var index = getHashIndex() || 0;
         setActiveTab(index);
+        selectedIndex = index;
         /*jshint validthis:true */
         return main;
     }
