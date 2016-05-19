@@ -200,11 +200,12 @@ function getTabHandler($root, options) {
     }
 
     // main.handleClick = handleClick;
-    // main.setActiveTab = setActiveTab;
+    main.getIndexOfTrigger = getIndexOfTrigger;
+    main.setActiveTab = setActiveTab;
     main.next = next;
     main.previous = previous;
     main.init = init;
-
+    
     return main;
 }
 
