@@ -25,9 +25,7 @@
 				</xsl:attribute>
 				<dl>
 					<xsl:variable name="edit">
-						<edit
-							id="to-do"
-							url="{./@url}">Edit</edit>
+						<edit url="{./@url}">Edit</edit>
 					</xsl:variable>
 
 					<dt class="ff_module-form-preview__list__title">
