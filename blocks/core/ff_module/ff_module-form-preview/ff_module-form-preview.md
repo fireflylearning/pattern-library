@@ -17,7 +17,6 @@ data:
         - 
             title: "Details"
             url: "test"
-            hash: "hash"
             list: 
                 - 
                     title: "Title:"

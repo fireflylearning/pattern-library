@@ -25,14 +25,7 @@
 				</xsl:attribute>
 				<dl>
 					<xsl:variable name="edit">
-						<xsl:choose>
-							<xsl:when test="not(./@hash = '')">
-								<edit url="{./@url}" hash="{./@hash}">Edit</edit>
-							</xsl:when>
-							<xsl:otherwise>
-								<edit url="{./@url}">Edit</edit>
-							</xsl:otherwise>
-						</xsl:choose>
+						<edit url="{./@url}">Edit</edit>
 					</xsl:variable>
 
 					<dt class="ff_module-form-preview__list__title">

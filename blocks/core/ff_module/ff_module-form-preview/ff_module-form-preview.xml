@@ -1,6 +1,5 @@
 <preview>
     {% for item in items %}
-    <item title="{{item.title}}" url="{{item.url}}" hash="{{item.hash}}"
         {%- if item.previewfor %} preview-for="{{item.previewfor}}" {% endif -%}
         >
 
