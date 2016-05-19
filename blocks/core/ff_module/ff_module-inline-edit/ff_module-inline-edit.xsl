@@ -12,6 +12,12 @@
                 <xsl:value-of select="$data/edit/@url"/>
             </xsl:attribute>
         </xsl:if>
+        
+        <xsl:if test="$data/edit/@hash">
+            <xsl:attribute name="data-hash">
+                <xsl:value-of select="$data/edit/@hash"/>
+            </xsl:attribute>
+        </xsl:if>
 
         <xsl:attribute name="class">
             <xsl:choose>
