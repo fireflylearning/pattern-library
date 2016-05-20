@@ -1,19 +1,21 @@
 .ff_module-pagination {
-	
 	&__items {
 		margin: 0;
 		padding: 0;
 	}
-}
-.ff_module-pagination__item {
-	display: inline-block;
-	margin-right: @ff_size_spacing_min;
-}
-.ff_module-pagination__link {
-	#ff_mix-base-links > .default();
-}
-.ff_module-pagination__link--current {
-	color: @ff_colour_control_text;
-	pointer-events: none;
-	cursor: default;
+
+	&__item {
+		display: inline-block;
+		margin-right: @ff_size_spacing_min;		
+	}
+
+	&__link {
+		#ff_mix-base-links > .default();
+
+		&--current {
+			color: @ff_colour_control_text;
+			pointer-events: none;
+			cursor: default;
+		}
+	}
 }
