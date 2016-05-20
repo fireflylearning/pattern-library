@@ -1,0 +1,31 @@
+.ff_module-task-event {
+    background: #fff;
+    border: 1px solid @ff_colour_control_border;
+    padding: 0 @ff_size_spacing_min;
+    position: relative;
+    .ff_mix-clearfix;
+    &>* {
+        margin: @ff_size_spacing_min*0.8 0;
+    }
+    &__sent {
+        float: right;
+    }
+    &__author-action {
+        display: block;
+    }
+    &__files {}
+    &__actions {
+        float: right;
+        clear: right;
+        margin: 0;
+    }
+}
+
+.ff_module-task-event {
+    &--delete-response {
+        background-color: transparent;
+    }
+    &--is-deleted {
+        background-color: transparent;
+    }
+}

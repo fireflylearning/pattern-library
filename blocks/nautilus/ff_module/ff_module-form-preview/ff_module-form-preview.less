@@ -1,0 +1,98 @@
+
+.ff_module-form-preview {
+    .ff_mix-clearfix(); 
+    &__list {
+        display: flex;
+        flex-flow: column;
+        list-style-type: none;
+        #ff_mix-util-prose > .text-default();
+        margin: 0;
+        .ff_mix-clearfix(); 
+        @media (min-width: @ff_bp_wide) {
+            display: block;
+        }
+    }
+    &__list__title {
+        #ff_mix-util-prose > .h-default();
+        margin-bottom: @ff_size_spacing_max;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    &__list__title__text {
+        #ff_mix-util-prose > .h4();
+    }
+    &__list__data {
+        #ff_mix-util-prose > .text-default();
+        margin-left: @ff_size_spacing_min;
+    }
+    &__edit-link {
+        #ff_mix-util-prose > .link-no-decoration();
+        display: inline-block;
+        margin-left: @ff_size_spacing_max;
+        // font-weight: normal;
+    }
+    &__list__description {
+        #ff_mix-title-box > .border;
+        #ff_mix-title-box > .content;
+        box-shadow: inset 0 0 7px rgba(0,0,0,.15);
+        padding-left: @ff_size_control_horizontal;
+        padding-right: @ff_size_control_horizontal;
+    }
+
+    &__sublist {
+        #ff_mix-util-prose > .text-default();
+        margin: 0;
+    }
+
+    &__sublist__title {
+        #ff_mix-util-prose > .text-default();
+        font-weight: bold;
+        margin-top: @ff_size_control_vertical;
+        margin-bottom: @ff_size_control_vertical*0.5;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    &__sublist__data {
+        #ff_mix-util-prose > .text-default();
+        margin-bottom: @ff_size_control_vertical*0.35;
+    }
+    @media (min-width: @ff_bp_wide) {
+            &__item--controls {
+                float: right;
+                clear: right;
+                width: 45%;
+            }
+            &__item--progress {
+                float: right;
+                width: 45%;
+            }
+
+            &__item--description {
+                clear: both;    
+            }
+
+            &__controls {
+                margin-top: @ff_size_spacing_max;
+            }   
+        }
+        &__item {
+            order: 0
+        }
+        &__item--controls {
+            order: 2;
+        }
+        &__item--progress {
+            order: 1;
+        }
+
+        &__item--description {
+            order: 3;  
+        }
+
+        &__component {
+            margin-top: @ff_size_spacing_max;
+        }   
+
+}

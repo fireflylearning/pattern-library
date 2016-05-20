@@ -1,0 +1,189 @@
+.ff_module-dropdown-button {
+    #ff_module-button > .default();
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+}
+
+
+
+// children
+.ff_module-dropdown-button {
+    &__button {
+        #ff_mix-buttons > .clear;
+        padding: (@ff_size_spacing_min * .85) @ff_size_spacing_med;
+    }
+    &__content {
+        vertical-align: middle;
+        #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @c_links, #ffffff);
+    }
+    &__list-container {
+        top: 100%;
+        left: 0;
+        &--is-enabled {
+            position: absolute;
+            height: 0;
+            overflow: hidden;
+        }
+        &--is-open {
+            position: absolute;
+            height: auto;
+            min-width: 8rem;
+            #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @c_links, #ffffff);
+        }
+    }
+
+    &__list {
+        // right: 5px;
+        background-color: #fff;
+        color: @ff_colour_default;
+        border: 1px solid @ff_colour_control_border;
+        border-radius: @ff_size_control_rounding;
+        padding: (@ff_size_spacing_min * .6) @ff_size_spacing_med;
+        margin: 0;
+        list-style: none;
+        line-height: 1.1;
+    }
+    &__list-item {
+        padding: (@ff_size_spacing_min * .4) 0;
+    }
+    &__icon {
+        .ff_icon;
+        top:-.05em;
+        margin-left: 5px;
+        width: 1.25em;
+        height: 1.25em;
+        &--is-open {
+            // Icon class generated in config/icons: customselectors by grunticon
+        }
+        &--is-enabled {
+            // Icon class generated in config/icons: customselectors by grunticon
+        }
+    }
+    &__link {
+        #ff_mix-util-prose > .link-no-decoration;
+        display: inline-block;
+    }
+    &__label {
+        color: @ff_colour_control_text;
+    }
+}
+
+//modifiers
+.ff_module-dropdown-button {
+    &--primary,
+    &--primary-right,
+    &--primary-compact,
+    &--primary-compact-right,
+    &--primary-compact-right-widelist {
+        #ff_module-button > .primary();
+    }
+
+    &--primary &__content,
+    &--primary-right &__content,
+    &--primary-compact &__content,
+    &--primary-compact-right &__content,
+    &--primary-compact-right-widelist &__content {
+        #ff_module-button > .primary-content();
+    }
+    &--primary-compact &__content,
+    &--primary-compact-right &__content,
+    &--primary-compact-right-widelist &__content {
+        font-weight: normal;
+    }
+
+    &--right &__list-container,
+    &--primary-right &__list-container,
+    &--primary-compact-right &__list-container,
+    &--primary-compact-right-widelist &__list-container,
+    &--compact-right &__list-container,
+    &--compact-right-widelist &__list-container,
+    &--link-right &__list-container {
+        right: 5px;
+        left: auto;
+        text-align: right;
+    }
+
+    &--compact &__button,
+    &--compact-right &__button,
+    &--compact-widelist &__button,
+    &--compact-right-widelist &__button,
+    &--primary-compact &__button,
+    &--primary-compact-right &__button,
+    &--primary-compact-right-widelist &__button {
+        #ff_module-button > .compact();
+    }
+
+    &--compact &__icon,
+    &--compact-right &__icon,
+    &--compact-widelist &__icon,
+    &--compact-right-widelist &__icon,
+    &--primary-compact &__icon,
+    &--primary-compact-right &__icon,
+    &--primary-compact-right-widelist &__icon {
+        height:1.125em;
+        width:1.125em;
+        line-height: 1;
+        top:0;
+    }
+
+
+    &--link &__button,
+    &--link-right &__button {
+        #ff_module-button > .link();
+    }
+    &--link &__content,
+    &--link-right &__content {
+        color: @ff_color_control_link;
+    }
+    &--link &__icon {
+        // linked to alt color in config/icons.js
+    }
+
+
+
+}
+
+// states
+.ff_module-dropdown-button {
+    &--is-enabled {}
+    &--is-open {
+        #ff_module-button > .primary();
+        font-weight: 400;
+        z-index: 3;
+    }
+    &--is-disabled {
+        background-color: @ff_colour_quiet;
+        border-color: @ff_colour_default;
+        color: @ff_colour_default;
+        cursor: default;
+    }
+    &--is-disabled &__content {
+        color: @ff_colour_default;
+    }
+}
+
+//modifier + state
+.ff_module-dropdown-button {
+
+    &--widelist &__list-container--is-open,
+    &--primary-compact-right-widelist &__list-container--is-open,
+    &--compact-widelist &__list-container--is-open,
+    &--compact-right-widelist &__list-container--is-open {
+        min-width: 16em;
+    }
+
+    &--link &__icon-alt--no-text,
+    &--link-right &__icon-alt--no-text {
+        margin: 0 5px;
+    }
+
+    &--link, &--link--is-open,
+    &--link-right, &--link-right--is-open {
+        background: none;
+        min-width: 0;
+        border: none;
+    }
+}
+

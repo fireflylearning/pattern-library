@@ -1,0 +1,96 @@
+#ff_container-modal() {
+    .overlay() {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.25);
+        z-index: 10000;
+    }
+    .content() {
+        .core() {
+            position: absolute;
+            outline: none;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+
+        }
+        .default() {
+            .style() {
+                padding: 0;
+                border: none;
+                background: #fff;
+                border-radius: 4px;
+                box-shadow: 1px 5px 0px 0px rgba(0,0,0,0.25);
+            }
+            .position() {
+                left: 50%;
+                top: 40%;
+                transform: translate(-50%, -50%);
+                width: 50%;
+                min-width: 400px;
+                min-height: 265px;
+            }
+        }
+        .compact() {
+            .position() {
+                left: 50%;
+                top: 40%;
+                transform: translate(-50%, -50%);
+                width: 20%;
+                min-width: 300px;
+                min-height: 160px;
+            }
+        }
+        .wide() {
+            .position() {
+                left: 50%;
+                top: 40%;
+                transform: translate(-50%, -50%);
+                width: 70%;
+                min-width: 300px;
+                min-height: 160px;
+            }
+        }
+    }
+}
+
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
+.ff_container-modal {
+    &__overlay {
+        #ff_container-modal > .overlay;
+    }
+    &__content {
+        #ff_container-modal > .content > .core;
+        #ff_container-modal > .content > .default > .style;
+        #ff_container-modal > .content > .default > .position;
+    }
+}
+
+// compact modifiers
+.ff_container-modal {
+    &__overlay--compact {
+        #ff_container-modal > .overlay;
+    }
+    &__content--compact {
+        #ff_container-modal > .content > .core;
+        #ff_container-modal > .content > .default > .style;
+        #ff_container-modal > .content > .compact > .position;
+    }
+}
+
+// wide modifiers
+.ff_container-modal {
+    &__overlay--wide {
+        #ff_container-modal > .overlay;
+    }
+    &__content--wide {
+        #ff_container-modal > .content > .core;
+        #ff_container-modal > .content > .default > .style;
+        #ff_container-modal > .content > .wide > .position;
+    }
+}
