@@ -1,0 +1,21 @@
+.ff_module-pagination {
+	&__items {
+		margin: 0;
+		padding: 0;
+	}
+
+	&__item {
+		display: inline-block;
+		margin-right: @ff_size_spacing_min;		
+	}
+
+	&__link {
+		#ff_mix-base-links > .default();
+
+		&--current {
+			color: @ff_colour_control_text;
+			pointer-events: none;
+			cursor: default;
+		}
+	}
+}
