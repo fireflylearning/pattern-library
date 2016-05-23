@@ -1,9 +1,9 @@
 #ff_module-progress() {
     .marked() {
-        background-color: darken(@ff_colour_progress,10%);
+        background-color: darken(@c_mainnav_1,10%);
     }
     .completed() {
-        background-color: @ff_colour_progress;
+        background-color: @c_mainnav_1;
     }
     .total() {
         background-color: @ff_colour_control_bg;
@@ -11,67 +11,74 @@
 }
 
 //progress bars
-.ff_module-progress__stacked {
-    border: 1px solid @ff_colour_control_border;
-    border-radius: @ff_size_control_rounding;
-    height: @ff_size_control_vertical * 2;
-    overflow: hidden;
-    #ff_module-progress > .total();
-}
 
-.ff_module-progress__meta {
-    display: none;
-}
-
-.ff_module-progress__bar {
-    float: left;
-    height: 100%;
-}
-
-.ff_module-progress__bar--completed {
-    #ff_module-progress > .completed();
-}
-
-.ff_module-progress__bar--marked {
-    #ff_module-progress > .marked();
-}
-
-//key
-.ff_module-progress__key {
-    margin: @ff_size_control_vertical 0 0;
-    padding: 0;
-}
-
-.ff_module-progress__label {
-    list-style: none;
-    display: inline-block;
-    #ff_mix-base-text > .small();
-    #ff_mix-base-text > .quiet();
-
-    margin-right: @ff_size_control_vertical;
-    &:last-child {margin-right: 0;}
-
-    &:before {
-        content: "";
-        width: 1em;
-        height: 1em;
-        display: inline-block;
-        float: left;
-        border-radius: 50%;
+.ff_module-progress {
+    &__stacked {
         border: 1px solid @ff_colour_control_border;
-        margin-right: @ff_size_control_vertical;
+        border-radius: @ff_size_control_rounding;
+        height: @ff_size_control_vertical * 2;
+        padding: 1px;
+        box-sizing: border-box;
+        overflow: hidden;
+        #ff_module-progress > .total();
     }
 
-}
+    &__meta {
+        display: none;        
+    }
 
-.ff_module-progress__label--completed:before {
-    #ff_module-progress > .completed();
-}
+    &__bar {
+        float: left;
+        height: 100%;
 
-.ff_module-progress__label--marked:before {
-    #ff_module-progress > .marked();
-}
+        &--completed {
+            #ff_module-progress > .completed();
+        }
 
-.ff_module-progress__label--total:before {
-    #ff_module-progress > .total();
+        &--marked {
+            #ff_module-progress > .marked();
+        }
+    }
+
+    &__key {
+        margin: @ff_size_control_vertical 0 0;
+        padding: 0;
+    }
+
+    &__label {
+        list-style: none;
+        display: inline-block;
+        #ff_mix-base-text > .small();
+        #ff_mix-base-text > .quiet();
+
+        &-value {
+            font-weight: bold;
+        }
+
+        margin-right: @ff_size_control_vertical;
+        &:last-child {margin-right: 0;}
+
+        &:before {
+            content: "";
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            float: left;
+            border-radius: 50%;
+            border: 1px solid @ff_colour_control_border;
+            margin-right: @ff_size_control_vertical;
+        }
+
+        &--completed:before {
+            #ff_module-progress > .completed();            
+        }
+
+        &--marked:before {
+            #ff_module-progress > .marked();            
+        }
+
+        &--total:before {
+            #ff_module-progress > .total();            
+        }
+    }
 }
