@@ -27,6 +27,8 @@ module.exports = React.createClass({
         onSend: React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,
         onClose: React.PropTypes.func.isRequired,
+        models: React.PropTypes.object.isRequired,
+        validation: React.PropTypes.object.isRequired
     },
     render: function() {
         var eventEditor = getEventEditor(this.props);
@@ -78,7 +80,9 @@ function createEventWithMessageEditor(editor) {
             children: React.createElement(EditorCommon, {
                 messageLabel: editor.messageLabel,
                 onMessageChange: onMessageChange,
-                event: props.event
+                event: props.event,
+                validation: props.validation,
+                models: props.models,
             })
         };
 
@@ -128,7 +132,9 @@ function markAndGrade(props) {
             onMarkChange: onMarkChange,
             onGradeChange: onGradeChange,
             onMarkMaxChange: onMarkMaxChange,
-            onMessageChange: onMessageChange
+            onMessageChange: onMessageChange,
+            validation: props.validation,
+            models: props.models
         })
 
     };

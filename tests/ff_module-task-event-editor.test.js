@@ -8,6 +8,10 @@ var TestUtils = require('react-addons-test-utils'),
     expect = require('chai').expect,
     sinon = require('sinon');
 
+import { connect } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { modelReducer, formReducer } from 'react-redux-form';
 
 var TaskEventEditor = require('../blocks/core/ff_module/ff_module-task-event-editor/ff_module-task-event-editor'),
     eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types,
@@ -76,6 +80,66 @@ var events = [{
     };
 });
 
+
+// Validation
+
+function isRequired(value) {
+    return value && value.length;
+}
+
+function isNumber(value) {
+    return !isNaN(parseFloat(value)) && isFinite(value);
+}
+
+var modelKeys = {
+    mark: 'event.description.mark',
+    markMax: 'event.description.markMax',
+    grade: 'event.description.grade'
+};
+
+var models = {};
+models[modelKeys.mark] = modelKeys.mark; // so different model string values can be used if required
+models[modelKeys.markMax] = modelKeys.markMax;
+models[modelKeys.grade] = modelKeys.grade;
+
+
+var validation = {};
+validation[modelKeys.mark] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired,
+        valid: isNumber
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please provide a mark.',
+        valid: (val) => val ? `"${val}" is not a valid mark.` : '',
+    }
+};
+validation[modelKeys.markMax] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired,
+        valid: isNumber
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please provide a maximum mark.',
+        valid: (val) => val ? `"${val}" is not a valid maximum mark.` : '',
+    }
+};
+validation[modelKeys.grade] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please provide a grade.'
+    }
+};
+
+
 var types = {};
 types[eventTypes.stampResponseAsSeen] = [EditorBase, EditorCommon];
 types[eventTypes.requestResubmission] = [EditorBase, EditorCommon];
@@ -93,25 +157,58 @@ describe('TaskEventEditor', function() {
 
     it('should render', function() {
 
-        var element = React.createElement(TaskEventEditor, {
-                        event: events[0],
-                        onSend: sinon.spy(),
-                        onChange: sinon.spy(),
-                        onClose: sinon.spy(),
-                    });
-        var component = TestUtils.renderIntoDocument(element);
+        var store = createStore(combineReducers({
+            event: modelReducer('event', events[0]),
+            eventForm: formReducer('event', events[0])
+        }));
+
+        function mapStateToProps(state) {
+            return {
+                event: state.event,
+                eventForm: state.eventForm,
+                validation: validation,
+                models: models,
+                onSend: sinon.spy(),
+                onChange: sinon.spy(),
+                onClose: sinon.spy(),
+            };
+        }
+
+        var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
+        var ProvidedForm = <Provider store={store}>
+                    <ConnectedEditForm />
+                </Provider>;
+
+        var component = TestUtils.renderIntoDocument(ProvidedForm);
         expect(component).to.exist;
     });
 
-    it('should render correct views for each event type', function(){
+    it('should render correct views for each event type', function() {
         events.forEach(function(event) {
-            var element = React.createElement(TaskEventEditor, {
-                    event: event,
+
+            var store = createStore(combineReducers({
+                event: modelReducer('event', event),
+                eventForm: formReducer('event', event)
+            }));
+
+            function mapStateToProps(state) {
+                return {
+                    event: state.event,
+                    eventForm: state.eventForm,
+                    validation: validation,
+                    models: models,
                     onSend: sinon.spy(),
                     onChange: sinon.spy(),
                     onClose: sinon.spy(),
-                });
-            var component = TestUtils.renderIntoDocument(element);
+                };
+            }
+
+            var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
+            var ProvidedForm = <Provider store={store}>
+                    <ConnectedEditForm />
+                </Provider>;
+
+            var component = TestUtils.renderIntoDocument(ProvidedForm);
             var typeName = event.description.type;
 
             if (event.erroredSave) typeName = eventStates.erroredSave;

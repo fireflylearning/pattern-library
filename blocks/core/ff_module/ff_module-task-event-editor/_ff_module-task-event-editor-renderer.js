@@ -7,6 +7,12 @@ var TaskEventEditor = require('./ff_module-task-event-editor');
 var eventTypes = require('../ff_module-task-event/_src/events').types;
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
 
+import { connect } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { modelReducer, formReducer } from 'react-redux-form';
+
+
 var events = [{
     type: eventTypes.stampResponseAsSeen,
     sent: new Date(dStrings[1]),
@@ -74,14 +80,82 @@ var events = [{
 );
 
 
+
+// Validation
+
+function isRequired(value) {
+    return value && value.length;
+}
+
+function isNumber(value) {
+    return !isNaN(parseFloat(value)) && isFinite(value);
+}
+
+var modelKeys = {
+    mark: 'event.description.mark',
+    markMax: 'event.description.markMax',
+    grade: 'event.description.grade'
+};
+
+var models = {};
+models[modelKeys.mark] = modelKeys.mark; // so different model string values can be used if required
+models[modelKeys.markMax] = modelKeys.markMax;
+models[modelKeys.grade] = modelKeys.grade;
+
+
+var validation = {};
+validation[modelKeys.mark] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired,
+        valid: isNumber
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please provide a mark.',
+        valid: (val) => val ? `"${val}" is not a valid mark.` : '',
+    }
+};
+validation[modelKeys.markMax] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired,
+        valid: isNumber
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please provide a maximum mark.',
+        valid: (val) => val ? `"${val}" is not a valid maximum mark.` : '',
+    }
+};
+validation[modelKeys.grade] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please provide a grade.'
+    }
+};
+
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-task-event-editor]'), function(domElement, index) {
 
             var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, events.map(function(event) {
-                return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
-                    React.createElement(TaskEventEditor, {
-                        event: event,
+
+                var store = createStore(combineReducers({
+                    event: modelReducer('event', event),
+                    eventForm: formReducer('event', event)
+                }));
+
+                function mapStateToProps(state) {
+                    return {
+                        event: state.event,
+                        eventForm: state.eventForm,
+                        validation: validation,
+                        models: models,
                         onSend: function(event) {
                             console.log('send', event.type);
                         },
@@ -91,7 +165,16 @@ module.exports = function() {
                         onClose: function(event) {
                             console.log('close', event.type);
                         },
-                    }));
+                    };
+                }
+
+                var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
+
+                return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
+                    <Provider store={store}>
+                        <ConnectedEditForm />
+                    </Provider>
+                )
             }));
             ReactDOM.render(root, domElement);
         });
