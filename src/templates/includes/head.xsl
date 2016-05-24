@@ -17,6 +17,9 @@
             <script src="/vendor/js/react-with-addons.js"></script>
             <script src="/vendor/js/react-dom.js"></script>
 
+            <script src="/vendor/js/redux.min.js"></script>
+            <script src="/vendor/js/react-redux.min.js"></script>
+
             <script src="/vendor/js/underscore-min.js"></script>
 
             <script src="/css/icons/grunticon.loader.js"></script>
