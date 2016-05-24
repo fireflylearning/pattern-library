@@ -1,0 +1,41 @@
+
+#ff_mix-input() {
+    .root() {
+        box-sizing: border-box;
+        position: relative;
+        font-size: 1rem;
+        color: @ff_colour_control_text;
+    }
+
+    .default() {
+        &:not([type="radio"]), &:not([type="checkbox"]){
+            border: 1px solid @ff_colour_control_border;
+            border-radius: @ff_size_control_rounding;
+            padding: @ff_size_spacing_min;
+        }
+        margin: 0;
+        box-sizing: border-box;
+        vertical-align: middle;
+    }
+}
+
+.ff_module-form-input {
+    #ff_mix-util-prose > .text-default();
+    #ff_mix-input > .default();
+    &__option {
+        font-size: 1rem;
+        padding: @ff_size_spacing_min;
+    }
+
+    &--invisible {
+
+        &, &:not([type="radio"]), &:not([type="checkbox"]){
+            border: none;
+            background: none;
+        }
+        &:focus, &:not([type="radio"]):focus, &:not([type="checkbox"]):focus{
+            outline: none;
+            // TODO: Find nice style that still indicates accessibility
+        }
+    }
+}

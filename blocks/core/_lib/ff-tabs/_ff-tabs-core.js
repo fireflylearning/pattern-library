@@ -15,8 +15,8 @@ var _options = {
     visitedClassSuffix: '--is-visited',
     isComplete: isComplete,
     canAdvance: canAdvance,
-    visitedCallback: function() {},
-    completeCallback: function() {},
+    visitedCallback: function () { },
+    completeCallback: function () { },
     selectedIndex: 0
 };
 
@@ -58,21 +58,20 @@ function getTabHandler($root, options) {
 
 
     function removeActiveClasses($elements) {
-        return $elements.each(function(index, el) {
+        return $elements.each(function (index, el) {
             core.removeClassSuffix($(el), activeClassSuffix);
         });
     }
-
 
     function getActiveElements($root, selectors) {
         return core.getElementsBySuffix($root.find(selectors), activeClassSuffix);
     }
 
     function addClasses($links, $content, suffix) {
-        $links.each(function(index, el) {
+        $links.each(function (index, el) {
             core.addClassSuffix($(el), suffix, defaultLinkClass, options.classFilter);
         });
-        $content.each(function(index, el) {
+        $content.each(function (index, el) {
             core.addClassSuffix($(el), suffix, defaultContentClass, options.classFilter);
         });
     }
@@ -91,12 +90,42 @@ function getTabHandler($root, options) {
 
     function init() {
         $root.on('click', linkSel, handleClick);
-        setInitialTab();
+        var index = getHashIndex() || 0;
+        setActiveTab(index);
+        selectedIndex = index;
         /*jshint validthis:true */
         return main;
     }
 
-    function setState(target) {
+    function getHashIndex() {
+        var hash = getHash();
+        if (hash) return getIndexOfTrigger(hash);
+        return null;
+    }
+
+    function getHash() {
+        var hash = window.location.hash.substring(1);
+        if (hash) return hash;
+        return null;
+    }
+
+    function getIndexOfTrigger(hash) {
+        var $triggers = $root.find(linkSel);
+        var index = $triggers.filter(function(i) {
+            if($(this).data('label')) {
+                var txt = $(this).data('label');
+                if (txt === hash) return this;
+            }
+        });
+        return index.index() || 0;
+    }
+
+    function setHash(target) {
+        if ($(target).data('label'))
+            window.location.hash = $(target).data('label'); 
+    }
+
+    function setState(target, index) {
         var targetId = $(target).attr(options.linkSelBase),
             $selectedContent, $selectedLinks,
             $activeLinks, $activeContent,
@@ -124,7 +153,7 @@ function getTabHandler($root, options) {
             addVisitedClasses($lastLinks, $lastContent);
             addActiveClasses($selectedLinks, $selectedContent);
             visitedCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
-
+            setHash(target);
             if (isComplete) {
                 addCompleteClasses($lastLinks, $lastContent);
                 completeCallback($lastLinks, $lastContent, $selectedLinks, $selectedContent);
@@ -137,11 +166,11 @@ function getTabHandler($root, options) {
     function handleClick(e) {
         e.preventDefault();
         var $triggers = $root.find(linkSel);
+
         /*jshint validthis:true */
         var index = $triggers.index(this);
         setActiveTab(index);
     }
-
 
     function testBounds(value, length) {
         if (value < 0) {
@@ -163,10 +192,6 @@ function getTabHandler($root, options) {
         return main;
     }
 
-    function setInitialTab() {
-        return setActiveTab(selectedIndex);
-    }
-
     function next() {
         return setActiveTab(selectedIndex + 1);
     }
@@ -176,18 +201,19 @@ function getTabHandler($root, options) {
     }
 
     // main.handleClick = handleClick;
-    // main.setActiveTab = setActiveTab;
+    main.getIndexOfTrigger = getIndexOfTrigger;
+    main.setActiveTab = setActiveTab;
     main.next = next;
     main.previous = previous;
     main.init = init;
-
+    
     return main;
 }
 
 
 module.exports = {
     defaultOptions: _options,
-    create: function(options) {
+    create: function (options) {
         options = $.extend({}, _options, options);
         var $root = $(options.root);
 

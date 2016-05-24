@@ -1,0 +1,158 @@
+#ff_mix-base-box() {
+    .default() {
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        background-color: @ff_colour_control_bg;
+    }
+    .isolate() {
+        border: 1px solid @ff_colour_control_border;
+        border-radius: @ff_size_control_rounding;
+    }
+    .list-item() {
+        border-right: 1px solid @ff_colour_control_border;
+        &:last-of-type {
+            border-right: none;
+        }
+    }
+}
+#ff_mix-title-box() {
+    .border {
+        border: 1px solid @ff_colour_control_border;
+    }
+    .header {
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        background: @ff_colour_control_bg;
+    }
+    .content(@background: #fff) {
+        background: @background;
+        padding-top: @ff_size_control_vertical;
+        padding-bottom: @ff_size_control_vertical;
+    }
+}
+
+#ff_mix-buttons() {
+    .with-icon {
+        border: none;
+        background: none;
+        // outline: none;
+    }
+}
+
+#ff_mix-base-links() {
+    .default() {
+        text-decoration: none;
+        color: @c_links;
+    }
+    .active() {
+        color: white;
+        text-shadow: 0 1px 0 fade(black, 20%);
+    }
+}
+
+#ff_mix-base-text() {
+    .in-list() {
+        margin: @ff_size_control_vertical 0 0 0;
+        &:first-of-type {
+            margin: 0;
+        }
+    }
+    .in-tight-list() {
+        margin: @ff_size_control_vertical/2 0 0 0;
+        &:first-of-type {
+            margin: 0;
+        }
+    }
+    .label() {
+        line-height: 21/16;
+    }
+    .small() {
+        font-size: 90%;
+    }
+    .quiet() {
+        &,
+        a {
+            color: @ff_colour_text_quiet;
+            text-decoration: none;
+        }
+    }
+    .vertical-align {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+#ff_mix-decoration() {
+    .circle(@diam; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent) when (@diam >= 60px) {
+        margin: 0;
+        width: @diam;
+        height: @diam;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: @border-width solid @border-color;
+        overflow: hidden;
+        background-color: @background-color;
+        line-height: @diam - @border-width;
+    }
+    .circle(@diam; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent) when (@diam < 60px) {
+        margin: 0;
+        width: @diam;
+        height: @diam;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: (@border-width/2) solid @border-color;
+        overflow: hidden;
+        background-color: @background-color;
+        line-height: @diam - @border-width;
+    }
+    .square(@size; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent) when (@size >= 60px) {
+        margin: 0;
+        width: @size;
+        height: @size;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: @ff_size_control_rounding;
+        border: @border-width solid @border-color;
+        overflow: hidden;
+        background-color: @background-color;
+        line-height: @size - @border-width;
+    }
+    .square(@size; @border-width:2px; @border-color: @ff_colour_control_border; @background-color:transparent) when (@size < 60px) {
+        margin: 0;
+        width: @size;
+        height: @size;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: @ff_size_control_rounding;
+        border: (@border-width/2) solid @border-color;
+        overflow: hidden;
+        background-color: @background-color;
+        line-height: @size - @border-width;
+    }
+}
+
+#ff_mix-buttons() {
+    .clear {
+        border: none;
+        background: none;
+        line-height: 1;
+        // outline: none;
+    }
+}
+
+#ff_mix-responsive-colour() {
+    // Calculating contrasts from here: http://24ways.org/2010/calculating-color-contrast/
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 192) {
+        color: @dark;
+    }
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 192) {
+        color: @light;
+    }
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 192) {
+        fill: @dark;
+    }
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 192) {
+        fill: @light;
+    }
+}
+

@@ -1,0 +1,84 @@
+#ff_module-progress() {
+    .marked() {
+        background-color: darken(@c_mainnav_1,10%);
+    }
+    .completed() {
+        background-color: @c_mainnav_1;
+    }
+    .total() {
+        background-color: @ff_colour_control_bg;
+    }
+}
+
+//progress bars
+
+.ff_module-progress {
+    &__stacked {
+        border: 1px solid @ff_colour_control_border;
+        border-radius: @ff_size_control_rounding;
+        height: @ff_size_control_vertical * 2;
+        padding: 1px;
+        box-sizing: border-box;
+        overflow: hidden;
+        #ff_module-progress > .total();
+    }
+
+    &__meta {
+        display: none;        
+    }
+
+    &__bar {
+        float: left;
+        height: 100%;
+
+        &--completed {
+            #ff_module-progress > .completed();
+        }
+
+        &--marked {
+            #ff_module-progress > .marked();
+        }
+    }
+
+    &__key {
+        margin: @ff_size_control_vertical 0 0;
+        padding: 0;
+    }
+
+    &__label {
+        list-style: none;
+        display: inline-block;
+        #ff_mix-base-text > .small();
+        #ff_mix-base-text > .quiet();
+
+        &-value {
+            font-weight: bold;
+        }
+
+        margin-right: @ff_size_control_vertical;
+        &:last-child {margin-right: 0;}
+
+        &:before {
+            content: "";
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            float: left;
+            border-radius: 50%;
+            border: 1px solid @ff_colour_control_border;
+            margin-right: @ff_size_control_vertical;
+        }
+
+        &--completed:before {
+            #ff_module-progress > .completed();            
+        }
+
+        &--marked:before {
+            #ff_module-progress > .marked();            
+        }
+
+        &--total:before {
+            #ff_module-progress > .total();            
+        }
+    }
+}
