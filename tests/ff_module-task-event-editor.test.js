@@ -20,6 +20,7 @@ var TaskEventEditor = require('../blocks/core/ff_module/ff_module-task-event-edi
 var EditorBase = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorBase'),
     EditorBaseMini = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorBaseMini'),
     EditorCommon = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorCommon'),
+    EditorComment = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorComment'),
     EditorMarkAndGrade = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorMarkAndGrade'),
     EditorAddFile = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorAddFile'),
     ContainerDialog = require('../blocks/core/ff_container/ff_container-dialog/ff_container-dialog'),
@@ -94,13 +95,15 @@ function isNumber(value) {
 var modelKeys = {
     mark: 'event.description.mark',
     markMax: 'event.description.markMax',
-    grade: 'event.description.grade'
+    grade: 'event.description.grade',
+    message: 'event.description.message'
 };
 
-var models = {};
-models[modelKeys.mark] = modelKeys.mark; // so different model string values can be used if required
-models[modelKeys.markMax] = modelKeys.markMax;
-models[modelKeys.grade] = modelKeys.grade;
+// so different model string values can be used if required
+var models = Object.keys(modelKeys).reduce(function(memo, key){
+    memo[modelKeys[key]] = modelKeys[key];
+    return memo;
+}, {});
 
 
 var validation = {};
@@ -138,14 +141,23 @@ validation[modelKeys.grade] = {
         required: 'Please provide a grade.'
     }
 };
-
+validation[modelKeys.message] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please provide a comment.'
+    }
+};
 
 var types = {};
 types[eventTypes.stampResponseAsSeen] = [EditorBase, EditorCommon];
 types[eventTypes.requestResubmission] = [EditorBase, EditorCommon];
 types[eventTypes.confirmTaskIsComplete] = [EditorBase, EditorCommon];
 types[eventTypes.confirmStudentIsExcused] = [EditorBase, EditorCommon];
-types[eventTypes.comment] = [EditorBase, EditorCommon];
+types[eventTypes.comment] = [EditorBase, EditorComment];
 types[eventTypes.markAndGrade] = [EditorBase, EditorMarkAndGrade];
 
 types[eventTypes.addFile] = [EditorBase, EditorAddFile];

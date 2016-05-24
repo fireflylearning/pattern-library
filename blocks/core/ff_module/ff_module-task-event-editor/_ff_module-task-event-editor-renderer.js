@@ -94,13 +94,15 @@ function isNumber(value) {
 var modelKeys = {
     mark: 'event.description.mark',
     markMax: 'event.description.markMax',
-    grade: 'event.description.grade'
+    grade: 'event.description.grade',
+    message: 'event.description.message'
 };
 
-var models = {};
-models[modelKeys.mark] = modelKeys.mark; // so different model string values can be used if required
-models[modelKeys.markMax] = modelKeys.markMax;
-models[modelKeys.grade] = modelKeys.grade;
+// so different model string values can be used if required
+var models = Object.keys(modelKeys).reduce(function(memo, key){
+    memo[modelKeys[key]] = modelKeys[key];
+    return memo;
+}, {});
 
 
 var validation = {};
@@ -136,6 +138,16 @@ validation[modelKeys.grade] = {
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
     messages: {
         required: 'Please provide a grade.'
+    }
+};
+validation[modelKeys.message] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please provide a comment.'
     }
 };
 

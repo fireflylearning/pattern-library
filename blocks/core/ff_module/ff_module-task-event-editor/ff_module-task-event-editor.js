@@ -8,6 +8,7 @@ var EditorBase = require('./_src/EditorBase'),
     EditorCommon = require('./_src/EditorCommon'),
     EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
     EditorAddFile = require('./_src/EditorAddFile'),
+    EditorComment = require('./_src/EditorComment'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 var eventStates = {
@@ -77,7 +78,7 @@ function createEventWithMessageEditor(editor) {
                 title: editor.title,
                 sendText: editor.sendText,
             },
-            children: React.createElement(EditorCommon, {
+            children: React.createElement(editor.child || EditorCommon, {
                 messageLabel: editor.messageLabel,
                 onMessageChange: onMessageChange,
                 event: props.event,
@@ -186,7 +187,8 @@ eventEditorComponents[eventTypes.confirmStudentIsExcused] = createEventWithMessa
 });
 eventEditorComponents[eventTypes.comment] = createEventWithMessageEditor({
     title: "Comment",
-    sendText: "Add Comment"
+    sendText: "Add Comment",
+    child: EditorComment
 });
 eventEditorComponents[eventTypes.markAndGrade] = markAndGrade;
 
