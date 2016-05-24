@@ -263,8 +263,9 @@ class LoginForm extends React.Component {
                         />
                 </FormField>
 
-                <FormLabel required={true}>Radio2: </FormLabel>
-                    <FormField model='user.radiolist'>
+
+                <FormField model='user.radiolist'>
+                    <FormLabel required={true}>Radio2: </FormLabel>
                     <FormInput
                         required={true}
                         type="radio"

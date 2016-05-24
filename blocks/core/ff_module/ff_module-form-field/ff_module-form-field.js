@@ -73,6 +73,20 @@ const FF_Field = createFieldClass({
     }
 });
 
+function FormFieldErrors(props) {
+    return (props.model ?
+        <div style={{ display:'block', width:'100%' }}>
+            <Errors model={props.model}
+                show={props.showErrorsOn || false}
+                messages={props.messages}
+                wrapper={FormErrorList}
+                component={FormError}
+                />
+        </div> :
+        null
+    );
+}
+
 export class FormField extends React.Component {
     constructor(props) {
         super(props);
@@ -85,14 +99,7 @@ export class FormField extends React.Component {
 
             {this.props.children}
 
-            <div style={{ display:'block', width:'100%' }}>
-                <Errors model={this.props.model}
-                    show={this.props.showErrorsOn || false}
-                    messages={this.props.messages}
-                    wrapper={FormErrorList}
-                    component={FormError}
-                    />
-            </div>
+            <FormFieldErrors {...this.props}/>
 
             </FF_Field>
         )

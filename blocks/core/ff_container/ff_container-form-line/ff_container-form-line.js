@@ -20,7 +20,7 @@ function addClassesToNode(node) {
 }
 
 function getNodeName(node){
-    return node.displayName || node.type.name;
+    return node.displayName || node.type.displayName || node.type.name || node.type;
 }
 
 function isFormField(node) {
@@ -48,6 +48,7 @@ module.exports = React.createClass({
             }
 
             clonedDirectChildren = React.Children.map(children, child=>{
+                if (!child) return null;
                 if (isFormField(child)) {
                     clonedSubChildren = React.Children.map(child.props.children, addClassesToNode);
                     return React.cloneElement(child, newProps, clonedSubChildren)
