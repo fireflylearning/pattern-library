@@ -36,31 +36,30 @@ module.exports = React.createClass({
             newProps = {},
             singleNode = false,
             clonedDirectChildren,
-            clonedSubChildren;
+            clonedSubChildren,
+            className;
 
 
         if (children) {
 
             if (React.Children.count(children) === 1) singleNode = true;
 
-            if (singleNode) {
-                // single direct child, so formline class can be added directly to it
-                newProps = { className: formlineClass };
-            } else {
-                newProps = { className: formlineSectionClass };
-            }
-
             clonedDirectChildren = React.Children.map(children, child=>{
                 if (!child) return null;
                 if (isFormField(child)) {
+                    if (singleNode) {
+                        className = formlineClass;
+                    } else {
+                        className = formlineSectionClass;
+                    }
                     clonedSubChildren = React.Children.map(child.props.children, addClassesToNode);
-                    return React.cloneElement(child, newProps, clonedSubChildren)
+                    return React.cloneElement(child, { className: className}, clonedSubChildren)
                 } else {
                     return addClassesToNode(child);
                 }
             });
 
-            if (singleNode) {
+            if (singleNode && isFormField(children)) {
                 return clonedDirectChildren[0];
             } else {
                 // more than one direct child, so formline class must be added to new wrapper root, and direct children skipped if they are formfields
