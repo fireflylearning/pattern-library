@@ -31,37 +31,39 @@ module.exports = React.createClass({
     displayName: 'ContainerFormLine',
     render: function() {
 
-        var clonedChildren = null;
         var children = this.props.children,
-            child,
+            newProps = {},
+            singleNode = false,
             clonedDirectChildren,
             clonedSubChildren;
 
-        if (children) {
-            // single direct child, so formline class can be added directly to it
-            if (React.Children.count(children) === 1) {
-                child = children;
 
+        if (children) {
+
+            if (React.Children.count(children) === 1) singleNode = true;
+
+            if (singleNode) {
+                // single direct child, so formline class can be added directly to it
+                newProps = { className: formlineClass };
+            }
+
+            clonedDirectChildren = React.Children.map(children, child=>{
                 if (isFormField(child)) {
-                    clonedDirectChildren = React.Children.map(child.props.children, addClassesToNode);
-                    return React.cloneElement(child, { className: formlineClass }, clonedDirectChildren)
+                    clonedSubChildren = React.Children.map(child.props.children, addClassesToNode);
+                    return React.cloneElement(child, newProps, clonedSubChildren)
                 } else {
-                    clonedDirectChildren = addClassesToNode(child);
-                    return <div className={formlineClass}>{clonedDirectChildren}</div>;
+                    return addClassesToNode(child);
                 }
-            // more than one direct child, so formline class must be added to new wrapper root, and direct children skipped
+            });
+
+            if (singleNode) {
+                return clonedDirectChildren[0];
             } else {
-                clonedDirectChildren = React.Children.map(children, child=>{
-                    if (isFormField(child)) {
-                        clonedSubChildren = React.Children.map(child.props.children, addClassesToNode);
-                        return React.cloneElement(child, {}, clonedSubChildren)
-                    } else {
-                        return addClassesToNode(child);
-                    }
-                });
+                // more than one direct child, so formline class must be added to new wrapper root, and direct children skipped if they are formfields
                 return <div className={formlineClass}>{clonedDirectChildren}</div>;
             }
         }
+
         return null;
     }
 });
