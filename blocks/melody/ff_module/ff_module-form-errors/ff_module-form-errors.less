@@ -8,12 +8,24 @@
 
 .ff_module-form-errors {
 
-    margin: @ff_size_spacing_min 0;
-
     &__list {
         #ff_module-form-error();
         position: relative;
+        margin: @ff_size_spacing_min*0.5 0;
     }
+
+    &__list:before {
+        content: '';
+        #triangle-up(5px, 1, @ff_colour_error);
+        position: absolute;
+        top: -5px;
+        left: @ff_size_spacing_min*1.1;
+    }
+
+    &__list:empty {
+        display: none;
+    }
+
     &__message {
         line-height: 1.2;
         margin: @ff_size_spacing_min 0;
@@ -24,11 +36,4 @@
         margin-left: @ff_size_control_horizontal;
     }
 
-    &__list:before {
-        content: '';
-        #triangle-up(5px, 1, @ff_colour_error);
-        position: absolute;
-        top: -5px;
-        left: @ff_size_spacing_min*1.1;
-    }
 }

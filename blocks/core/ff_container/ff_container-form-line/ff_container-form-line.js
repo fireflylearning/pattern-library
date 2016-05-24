@@ -5,7 +5,8 @@ var generateClass = require('../../_lib/_ui/class-utils').generateStandardClass;
 
 var formFieldDisplayName = 'FormField',
     formlineClass = 'ff_container-form-line',
-    formlineItemClass = 'ff_container-form-line__item';
+    formlineItemClass = 'ff_container-form-line__item',
+    formlineSectionClass= 'ff_container-form-line__section';
 
 function addClassesToNode(node) {
     if (!node) return null;
@@ -45,6 +46,8 @@ module.exports = React.createClass({
             if (singleNode) {
                 // single direct child, so formline class can be added directly to it
                 newProps = { className: formlineClass };
+            } else {
+                newProps = { className: formlineSectionClass };
             }
 
             clonedDirectChildren = React.Children.map(children, child=>{

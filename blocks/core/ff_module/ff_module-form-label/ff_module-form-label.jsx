@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-module.exports = React.createClass({
+var LabelTemplate = React.createClass({
     render() {
         var optionalMarkerSet = !(this.props.optionalMarker === null || this.props.optionalMarker === undefined);
         var optionalMarker = optionalMarkerSet ? this.props.optionalMarker : '(optional)';
@@ -20,3 +20,5 @@ module.exports = React.createClass({
         return classNames.join(' ');
     }
 });
+
+module.exports = LabelTemplate;

@@ -1,8 +1,6 @@
 'use strict';
 
-import { createFieldClass, Errors } from 'react-redux-form';
-import { FormError, FormErrorList } from '../ff_module-form-errors/ff_module-form-errors';
-import ContainerFormLine from '../../ff_container/ff_container-form-line/ff_container-form-line';
+import { createFieldClass } from 'react-redux-form';
 import _ from 'underscore';
 import React from 'react';
 
@@ -62,30 +60,16 @@ const FF_Field = createFieldClass({
             onBlur: props.onBlur,
             onFocus: props.onFocus,
             onClick: props.onClick,
-            errors: props.fieldValue.errors,
-            valid: props.fieldValue.valid
+            errors: props.fieldValue && props.fieldValue.errors,
+            valid: props.fieldValue && props.fieldValue.valid
         };
     },
     'FormLabel': (props) => {
         return {
-            valid: props.fieldValue.valid
+            valid: props.fieldValue && props.fieldValue.valid
         };
     }
 });
-
-function FormFieldErrors(props) {
-    return (props.model ?
-
-            <Errors model={props.model}
-                show={props.showErrorsOn || false}
-                messages={props.messages}
-                wrapper={FormErrorList}
-                component={FormError}
-                />
-        :
-        null
-    );
-}
 
 export class FormField extends React.Component {
     constructor(props) {
@@ -98,8 +82,6 @@ export class FormField extends React.Component {
             <FF_Field {...this.props}>
 
             {this.props.children}
-
-            <FormFieldErrors {...this.props}/>
 
             </FF_Field>
         )
