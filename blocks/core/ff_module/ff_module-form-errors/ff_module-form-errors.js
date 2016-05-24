@@ -9,9 +9,11 @@ function FormError(props) {
 
 function FormErrorList(props) {
     return (
-        <ul className={getGeneratedClass('ff_module-form-errors', props)}>
-            {props.children}
-        </ul>
+        <div className={getGeneratedClass('ff_module-form-errors', props)}>
+            <ul className='ff_module-form-errors__list'>
+                {props.children}
+            </ul>
+        </div>
     );
 }
 

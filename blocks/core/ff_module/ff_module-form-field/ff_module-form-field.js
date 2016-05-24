@@ -75,14 +75,14 @@ const FF_Field = createFieldClass({
 
 function FormFieldErrors(props) {
     return (props.model ?
-        <div style={{ display:'block', width:'100%' }}>
+
             <Errors model={props.model}
                 show={props.showErrorsOn || false}
                 messages={props.messages}
                 wrapper={FormErrorList}
                 component={FormError}
                 />
-        </div> :
+        :
         null
     );
 }
