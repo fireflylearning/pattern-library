@@ -206,42 +206,46 @@ var recipientData = [{
     pic_href: "/images/default_picture.png"
 }];
 
-var metaActionProps = {
-        state: {
-            // archived: true
-        },
-        description: {
-            numRecipientsAffected: 43,
-            author: { name: 'Terry Teacher' }
-        },
-        filters: {
-            text: 'Filter by Status',
-            onAddFilter: function(id, event) { console.log('Adding '+id); },
-            onRemoveFilter: function(id, event) { console.log('Removing '+id); },
-            filters: [{
-                name: 'Awaiting Response',
-                id: 'filter-1'
-            }, {
-                isActive: true,
-                name: 'Approved',
-                id: 'filter-2'
-            }, {
-                name: 'Response Received',
-                id: 'filter-3'
-            }]
-        },
-        singleActions: [{ text: 'Send All Now', onClick: function() {console.log('send all now');} }],
-        groupedActions: {
-            text: 'More Actions',
-            list: [
-                { text: 'Edit', onClick: function(event) { console.log('edit'); } },
-                { text: 'Copy', onClick: function(event) { console.log('copy'); } },
-                { text: 'Export', onClick: function(event) { console.log('export'); } },
-                { text: 'Archive', onClick: function(event) { console.log('archive'); } },
-                { text: 'Delete', onClick: function(event) { console.log('delete'); } }
-            ]
-        }
+var filterProps = {
+        text: 'Filter by Status',
+        onAddFilter: function(id, event) { console.log('Adding ' + id); },
+        onRemoveFilter: function(id, event) { console.log('Removing ' + id); },
+        filters: [{
+            name: 'Awaiting Response',
+            id: 'filter-1'
+        }, {
+            isActive: true,
+            name: 'Approved',
+            id: 'filter-2'
+        }, {
+            name: 'Response Received',
+            id: 'filter-3'
+        }]
+    },
+    buttonProps = { text: 'Send All Now', onClick: function() { console.log('send all now'); } },
+    dropdownProps = {
+        text: 'More Actions',
+        list: [
+            { text: 'Edit', onClick: function(event) { console.log('edit'); } },
+            { text: 'Copy', onClick: function(event) { console.log('copy'); } },
+            { text: 'Export', onClick: function(event) { console.log('export'); } },
+            { text: 'Archive', onClick: function(event) { console.log('archive'); } },
+            { text: 'Delete', onClick: function(event) { console.log('delete'); } }
+        ]
     };
+
+var metaActionProps = {
+    state: {
+        // archived: true
+    },
+    description: {
+        numRecipientsAffected: 43,
+        author: { name: 'Terry Teacher' }
+    },
+    filters: <DropdownFilters {...filterProps} />,
+    singleButtons: [<Button key="send-all-now" {...buttonProps}/>],
+    groupedActions: <DropdownButton {...dropdownProps}/>
+};
 
 var recipientNavigation = React.createElement(IncrementalNavigation, {
     nextText: 'Next Student',
@@ -257,19 +261,20 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 
 
 var overlayInner = React.createElement(TaskResponses, {
-    events: events,
-    // editingEvent: events[4],
-    editEvent: function(event) {
-        console.log('editEvent');
-        console.table(event);
-    },
-    addEvent: function() {
-        console.log('addEvent');
-        console.log('stopEditingEvent');
-    },
-    stopEditingEvent: function() {
-        console.log('stopEditingEvent');
-    }} ),
+        events: events,
+        // editingEvent: events[4],
+        editEvent: function(event) {
+            console.log('editEvent');
+            console.table(event);
+        },
+        addEvent: function() {
+            console.log('addEvent');
+            console.log('stopEditingEvent');
+        },
+        stopEditingEvent: function() {
+            console.log('stopEditingEvent');
+        }
+    }),
 
     overlayOuter = React.createElement(ContainerOverlay, {
         modifier: 'absolute-bottom',
