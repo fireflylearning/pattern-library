@@ -91,6 +91,12 @@ function isNumber(value) {
     return !isNaN(parseFloat(value)) && isFinite(value);
 }
 
+function maxLength(max) {
+    return function (value) {
+        return value.length && value.length <= max;
+    }
+}
+
 var modelKeys = {
     mark: 'event.description.mark',
     markMax: 'event.description.markMax',
@@ -114,8 +120,8 @@ validation[modelKeys.mark] = {
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
     messages: {
-        required: 'Please provide a mark.',
-        valid: (val) => val ? `"${val}" is not a valid mark.` : '',
+        required: 'Please add a mark',
+        valid: (val) => val ? 'Please use numbers' : '',
     }
 };
 validation[modelKeys.markMax] = {
@@ -126,18 +132,20 @@ validation[modelKeys.markMax] = {
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
     messages: {
-        required: 'Please provide a maximum mark.',
-        valid: (val) => val ? `"${val}" is not a valid maximum mark.` : '',
+        required: 'Please add a maximum mark',
+        valid: (val) => val ? 'Please use numbers' : '',
     }
 };
 validation[modelKeys.grade] = {
     validateOn: 'blur',
     rules: {
-        required: isRequired
+        required: isRequired,
+        valid: maxLength(5)
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
     messages: {
-        required: 'Please provide a grade.'
+        required: 'Please add a grade',
+        valid: (val) => val ? '5 characters maximum' : '',
     }
 };
 validation[modelKeys.message] = {
@@ -147,7 +155,7 @@ validation[modelKeys.message] = {
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
     messages: {
-        required: 'Please provide a comment.'
+        required: 'Please add a comment'
     }
 };
 
