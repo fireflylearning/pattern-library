@@ -1,21 +1,97 @@
 .ff_module-task-event-status {
 
-    display: inline-block;
-    font-size: .875rem;
-    padding: @ff_size_spacing_min*0.25 @ff_size_spacing_min;
-    // conceptually if not actually a child
-    &__transition-wrapper {
-        position: relative;
-    }
+    color: @ff_colour_text_quiet;
+    background-color: lighten(@ff_colour_control_bg, 7%);
+    border-radius: 0.5*@ff_size_control_rounding;
+    border: 1px solid lighten(@ff_colour_control_border, 7%);
+    padding: @ff_size_spacing_min*0.1 @ff_size_spacing_min*0.75 @ff_size_spacing_min*0.15;
+
 
     &__icon {
-        margin: -.4em .4em -.4em -.25em;
+        width: 1.4em;
+        height: 1.4em;
+        margin: -.4em .2em -.4em -.3em;
+    }
+    &__content {
+        display: inline-block;
+    }
+}
+
+// states
+.ff_module-task-event-status {
+
+    &--is-saved,
+    &--is-sent {
+        color: @ff_colour_success;
+    }
+}
+
+// transitions
+.ff_module-task-event-status {
+
+    &__transition-wrapper {
+        max-height: 2rem;
+    }
+    &__transition-wrapper--is-default {
+        transition: max-height 1s;
+        max-height: 0;
+        overflow: hidden;
+    }
+    &__transition-wrapper--is-deleted {
+        display: none;
     }
 
-    button&__error-button {
-        font-size: .875rem;
+    &--is-default {
+        display: none;
+    }
+    &--is-deleted {
+        display: none;
     }
 
+    &.transition-enter {
+        position: absolute;
+        opacity: 0.1;
+        transition: transform 1s, opacity 1s;
+        transform: scaleX(0);
+    }
+    &.transition-enter.transition-enter-active {
+        transform: scaleX(1);
+        opacity: 1;
+    }
 
+    &.transition-leave {
+        opacity: 1;
+        transition: transform 1s, opacity 1s;
+        transform: scaleX(1);
+    }
+    &.transition-leave.transition-leave-active {
+        transform: scaleX(0);
+        opacity: 0.1;
+    }
 
+    &--is-default.transition-enter,
+    &--is-default.transition-enter.transition-enter-active,
+    &--is-default.transition-leave,
+    &--is-default.transition-leave.transition-leave-active {
+        display: none;
+    }
+
+    &--is-deleted.transition-enter,
+    &--is-deleted.transition-enter.transition-enter-active,
+    &--is-deleted.transition-leave,
+    &--is-deleted.transition-leave.transition-leave-active {
+        display: none;
+    }
+}
+
+// child states
+.ff_module-task-event-status {
+    &__icon.ff_icon.ff_icon-response-pending {
+        background: transparent 50% 45% url("/images/icons/ff_icon-spinner-small.gif") no-repeat;
+    }
+    &__icon.ff_icon.ff_icon-response-errored {
+        width: 1em;
+        height: 1em;
+        margin: -.5em .4em -.4em -.1em;
+    }
 }

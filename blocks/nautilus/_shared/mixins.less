@@ -203,3 +203,11 @@
         border: 1px solid @ff_colour_primary;
     }
 }
+
+#triangle-up(@base:10px, @ratio:1, @color:red) {
+    width: 0;
+    height: 0;
+    border-bottom: @base solid @color;
+    border-left: @base*@ratio solid transparent;
+    border-right: @base*@ratio solid transparent;
+}
