@@ -12,6 +12,8 @@ import FormInput from '../../ff_module/ff_module-form-input/ff_module-form-input
 import FormLabel from '../../ff_module/ff_module-form-label/ff_module-form-label';
 import CheckableList from '../../ff_module/ff_module-form-checkable-list/ff_module-form-checkable-list';
 import ContainerFormLine from '../../ff_container/ff_container-form-line/ff_container-form-line';
+import { FormFieldErrors } from '../../ff_module/ff_module-form-errors/ff_module-form-errors';
+import ContainerFormErrors from '../../ff_container/ff_container-form-errors/ff_container-form-errors';
 
 const items = [{
         label: 'Label text',
@@ -156,8 +158,6 @@ class LoginForm extends React.Component {
                     model='user.username'
                     validators={validation['user.username'].rules}
                     validateOn={validation['user.username'].validateOn}
-                    showErrorsOn={validation['user.username'].showErrorsOn}
-                    messages={validation['user.username'].messages}
                     >
 
                     <FormLabel required={true}>Username</FormLabel>
@@ -171,12 +171,18 @@ class LoginForm extends React.Component {
                 </FormField>
             </ContainerFormLine>
 
+            <ContainerFormErrors>
+                <FormFieldErrors
+                    model='user.username'
+                    showErrorsOn={validation['user.username'].showErrorsOn}
+                    messages={validation['user.username'].messages}/>
+            </ContainerFormErrors>
+
+
             <ContainerFormLine>
                 <FormField model='user.selectedColour'
                     validators={validation['user.selectedColour'].rules}
                     validateOn={validation['user.selectedColour'].validateOn}
-                    showErrorsOn={validation['user.selectedColour'].showErrorsOn}
-                    messages={validation['user.selectedColour'].messages}
                     >
 
                   <FormLabel>Colours</FormLabel>
@@ -189,6 +195,14 @@ class LoginForm extends React.Component {
 
                 </FormField>
             </ContainerFormLine>
+
+            <ContainerFormErrors>
+                <FormFieldErrors
+                    model='user.selectedColour'
+                    showErrorsOn={validation['user.selectedColour'].showErrorsOn}
+                    messages={validation['user.selectedColour'].messages}/>
+            </ContainerFormErrors>
+
             <ContainerFormLine>
                 <FormField model='user.story'>
 
@@ -206,10 +220,7 @@ class LoginForm extends React.Component {
                 <FormField model='user.password'
                     validators={validation['user.password'].rules}
                     validateOn={validation['user.password'].validateOn}
-                    showErrorsOn={validation['user.password'].showErrorsOn}
-                    messages={validation['user.password'].messages}
                     >
-
                   <FormLabel required={true}>Password</FormLabel>
 
                   <FormInput
@@ -220,6 +231,13 @@ class LoginForm extends React.Component {
 
                 </FormField>
             </ContainerFormLine>
+
+            <ContainerFormErrors>
+                <FormFieldErrors
+                    model='user.password'
+                    showErrorsOn={validation['user.password'].showErrorsOn}
+                    messages={validation['user.password'].messages}/>
+            </ContainerFormErrors>
 
             <ContainerFormLine>
                 <FormField model='user.isAllowed'>
