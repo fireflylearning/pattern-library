@@ -64,15 +64,15 @@
     .text-block--error {}
     .link-with-decoration {
         text-decoration: underline;
-        color: @c_links;
+        color: @ff_templatesetting_colour_links;
         &:visited {
-            color: darken(@c_links, 10%);
+            color: darken(@ff_templatesetting_colour_links, 10%);
         }
         &:active, &:hover {
-            color: lighten(@c_links, 10%);
+            color: lighten(@ff_templatesetting_colour_links, 10%);
         }
     }
-    .link-no-decoration(@color: @c_links) {
+    .link-no-decoration(@color: @ff_templatesetting_colour_links) {
         text-decoration: none;
         color: @color;
         &:visited {
@@ -86,7 +86,7 @@
         text-decoration: none;
         color: @ff_colour_text_quiet;
     }
-    .link-disabled(@color:@c_links) {
+    .link-disabled(@color:@ff_templatesetting_colour_links) {
         color: @color;
         &:visited {
             color: @color;

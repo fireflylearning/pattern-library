@@ -1,4 +1,4 @@
-@c_mainnav_1-highlight: desaturate(hsl(hue(@c_mainnav_1), saturation(@c_mainnav_1), 70%), 20%);
+@ff_templatesetting_colour_sm_level0_bg-highlight: desaturate(hsl(hue(@ff_templatesetting_colour_sm_level0_bg), saturation(@ff_templatesetting_colour_sm_level0_bg), 70%), 20%);
 
 .ff_module-formsteps {
 	margin:0;
@@ -7,8 +7,8 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	border: 1px solid hsl(hue(@c_mainnav_1), saturation(@c_mainnav_1), 80%);
-	background-color: @c_mainnav_1;
+	border: 1px solid hsl(hue(@ff_templatesetting_colour_sm_level0_bg), saturation(@ff_templatesetting_colour_sm_level0_bg), 80%);
+	background-color: @ff_templatesetting_colour_sm_level0_bg;
 	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
@@ -23,7 +23,7 @@
 	white-space: normal;
 
 	& + .ff_module-formstep {
-		border-left: 1px solid hsl(hue(@c_mainnav_1), saturation(@c_mainnav_1), 80%);
+		border-left: 1px solid hsl(hue(@ff_templatesetting_colour_sm_level0_bg), saturation(@ff_templatesetting_colour_sm_level0_bg), 80%);
 	}
 
 	@media (min-width: @ff_bp_wide) {
@@ -39,21 +39,21 @@
 		flex-wrap: nowrap;
 		padding: 10px 20px 10px 20px;
 
-		#ff_mix-responsive-colour > .check-contrast(@c_mainnav_1, @c_text, #ffffff);
+		#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_sm_level0_bg, @c_text, #ffffff);
 
 
 		&:visited {
-			#ff_mix-responsive-colour > .check-contrast(@c_mainnav_1, @c_text, #ffffff);
+			#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_sm_level0_bg, @c_text, #ffffff);
 		}
 
 		&:hover {
-			background-color: darken(@c_mainnav_1, 5%);
-			#ff_mix-responsive-colour > .check-contrast(darken(@c_mainnav_1, 5%), @c_text, #ffffff);
+			background-color: darken(@ff_templatesetting_colour_sm_level0_bg, 5%);
+			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_sm_level0_bg, 5%), @c_text, #ffffff);
 		}
 	}
 	&__icon {
 		margin-right: 10px;
-//		#ff_mix-responsive-colour > .check-contrast(@c_mainnav_1, @c_text, #ffffff);
+//		#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_sm_level0_bg, @c_text, #ffffff);
 	}
 
 	&__text {
@@ -70,22 +70,22 @@
 	&--is-complete {
 
 		a, a:visited {
-			background-color: darken(@c_mainnav_1, 7.5%);
-			#ff_mix-responsive-colour > .check-contrast(darken(@c_mainnav_1, 7.5%), fade(@c_text, 20%), fade(#ffffff, 80%));
+			background-color: darken(@ff_templatesetting_colour_sm_level0_bg, 7.5%);
+			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_sm_level0_bg, 7.5%), fade(@c_text, 20%), fade(#ffffff, 80%));
 		}
 	}
 
 	&--is-visited {
 		a, a:visited {
-			background-color: darken(@c_mainnav_1, 7.5%);
-			#ff_mix-responsive-colour > .check-contrast(darken(@c_mainnav_1, 7.5%), fade(@c_text, 20%), fade(#ffffff, 80%));
+			background-color: darken(@ff_templatesetting_colour_sm_level0_bg, 7.5%);
+			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_sm_level0_bg, 7.5%), fade(@c_text, 20%), fade(#ffffff, 80%));
 		}
 	}
 
 	&--is-current {
 		a, a:visited {
-			background-color: @c_mainnav_1-highlight;
-			#ff_mix-responsive-colour > .check-contrast(@c_mainnav_1-highlight, @c_text, #ffffff);
+			background-color: @ff_templatesetting_colour_sm_level0_bg-highlight;
+			#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_sm_level0_bg-highlight, @c_text, #ffffff);
 		}
 	}
 
