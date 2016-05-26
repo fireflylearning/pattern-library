@@ -2,6 +2,7 @@
 var React = require('react/addons');
 var TaskEventBase = require('./TaskEventBase.js');
 var eventStates = require('./events').states;
+var _ = require('underscore');
 
 
 
@@ -31,19 +32,16 @@ function editedState(text) {
 function deletedState(text) {
     return function() {
         var outputText = getText(text, this.props);
+        var newProps = _.assign({}, this.props, { actions: [], onRetryAfterStatusError: function(){}})
 
-        return  <TaskEventBase description={this.props.description} state={this.props.state} onRetryAfterStatusError={function(){}}>
+        return  <TaskEventBase {...newProps}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
                 </TaskEventBase>;
     };
 };
 
 function renderBase(props, outputText, message) {
-    return  <TaskEventBase
-                description={props.description}
-                actions={props.actions}
-                state={props.state}
-                onRetryAfterStatusError={props.onRetryAfterStatusError}>
+    return  <TaskEventBase {...props}>
                 <p className='ff_module-task-event__author-action'>{outputText}</p>
                 {message}
             </TaskEventBase>;

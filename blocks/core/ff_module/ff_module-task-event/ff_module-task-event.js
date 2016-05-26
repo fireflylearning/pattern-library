@@ -59,7 +59,7 @@ module.exports = React.createClass({
         }).isRequired,
         actions: React.PropTypes.array,
         state: React.PropTypes.object,
-        onRetryAfterStatusError: React.PropTypes.func.isRequired
+        onRetryAfterStatusError: React.PropTypes.func
     },
     render: function() {
         var Component = getComponent(this.props.description, this.props.state);
