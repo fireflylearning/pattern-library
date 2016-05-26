@@ -58,6 +58,10 @@ var events = [{
     author: { name: 'Terry Teacher' },
     message: 'A reminder was sent to 23 students.'
 }, {
+    type: eventTypes.releaseFeedbackAndMarks,
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
+}, {
     type: eventTypes.addFile,
     sent: new Date(dStrings[2]),
     author: { name: 'Sally Student' },

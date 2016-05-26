@@ -11,7 +11,8 @@ var StampResponseAsSeenTaskEvent = require('./_src/StampResponseAsSeenTaskEvent.
     MarkAndGradeTaskEvent = require('./_src/MarkAndGradeTaskEvent'),
     DeletedResponseTaskEvent = require('./_src/DeletedResponseTaskEvent'),
     AddedFileTaskEvent = require('./_src/AddedFileTaskEvent'),
-    SentReminderTaskEvent = require('./_src/SentReminderTaskEvent');
+    SentReminderTaskEvent = require('./_src/SentReminderTaskEvent'),
+    SentFeedbackAndMarks = require('./_src/SentFeedbackAndMarks');
 
 var eventTypes = require('./_src/events').types;
 var eventStates = require('./_src/events').states;
@@ -29,6 +30,7 @@ eventComponents[eventTypes.deleteResponse] = DeletedResponseTaskEvent;
 eventComponents[eventTypes.confirmStudentIsUnexcused] = ConfirmedStudentUnExcusedTaskEvent;
 eventComponents[eventTypes.addFile] = AddedFileTaskEvent;
 eventComponents[eventTypes.sendReminder] = SentReminderTaskEvent;
+eventComponents[eventTypes.releaseFeedbackAndMarks] = SentFeedbackAndMarks;
 
 function getPresentationState(description, state) {
     state = state || {};
