@@ -14,8 +14,9 @@ module.exports = React.createClass({
         events: React.PropTypes.array.isRequired
     },
     render: function() {
+        console.log(this.props.events);
 
-        if (!this.props.events) return null;
+        if (!this.props.events || this.props.events.length === 0) return null;
 
         var date = this.props.events[0].description.sent;
         var single = this.props.events.length === 1;

@@ -32,7 +32,7 @@ function editedState(text) {
 function deletedState(text) {
     return function() {
         var outputText = getText(text, this.props);
-        var newProps = _.assign({}, this.props, { actions: [], onRetryAfterStatusError: function(){}})
+        var newProps = _.extend({}, this.props, { actions: [], onRetryAfterStatusError: function(){}})
 
         return  <TaskEventBase {...newProps}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
