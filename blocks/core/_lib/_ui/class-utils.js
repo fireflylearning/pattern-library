@@ -2,6 +2,7 @@
 
 module.exports.generateStandardClass = function generateStandardClass(base, props) {
     var classNames = [base];
+    props = props || {};
     if (!!props.modifier) classNames.push(base + '--' + props.modifier);
     if (!!props.classes) classNames.push(props.classes);
     if (!!props.className) classNames.push(props.className);

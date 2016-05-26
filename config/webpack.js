@@ -21,6 +21,12 @@ var externals = {
             commonjs: 'underscore',
             amd: 'underscore'
         },
+        'redux': {
+            root: 'Redux',
+            commonjs2: 'redux',
+            commonjs: 'redux',
+            amd: 'redux'
+        },
         'react': {
             root: 'React',
             commonjs2: 'react',
@@ -38,6 +44,12 @@ var externals = {
             commonjs2: 'react-dom',
             commonjs: 'react-dom',
             amd: 'react-dom'
+        },
+        'react-redux': {
+            root: 'ReactRedux',
+            commonjs2: 'react-redux',
+            commonjs: 'react-redux',
+            amd: 'react-redux'
         },
         'react/addons': {
             root: 'React',

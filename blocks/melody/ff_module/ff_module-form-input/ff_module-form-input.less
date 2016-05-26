@@ -34,4 +34,10 @@
             background: none;
         }
     }
+    &--has-errors {
+        &, &:not([type="radio"]), &:not([type="checkbox"]){
+            border-color: @ff_colour_error;
+            border-width: 2px;
+        }
+    }
 }

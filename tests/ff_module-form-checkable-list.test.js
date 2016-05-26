@@ -29,7 +29,7 @@ describe('CheckableList', function() {
 	});
 
 	// Checking that it renders the right number of items
-	var items = [{ name: 'item' }, { name: 'item' }, { name: 'item' }];
+	var items = [{ label: 'item A', id: 'itemA' }, { label: 'item B', id: 'itemB' }, { label: 'item C', id: 'itemC' }];
 	it('should make a checkable list with ' + items.length + ' items', function() {
 		var element = React.createElement(CheckableList, {
 			items: items
