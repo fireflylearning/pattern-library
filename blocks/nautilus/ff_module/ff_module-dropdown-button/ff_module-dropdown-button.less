@@ -16,7 +16,7 @@
     }
     &__content {
         vertical-align: middle;
-        #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @c_links, #ffffff);
+        #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @ff_templatesetting_colour_links, #ffffff);
     }
     &__list-container {
         top: 100%;
@@ -30,7 +30,7 @@
             position: absolute;
             height: auto;
             min-width: 8rem;
-            #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @c_links, #ffffff);
+            #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @ff_templatesetting_colour_links, #ffffff);
         }
     }
 
@@ -135,7 +135,7 @@
     }
     &--link &__content,
     &--link-right &__content {
-        color: @ff_color_control_link;
+        color: @ff_templatesetting_colour_links;
     }
     &--link &__icon {
         // linked to alt color in config/icons.js
@@ -149,9 +149,9 @@
 .ff_module-dropdown-button {
     &--is-enabled {}
     &--is-open {
-        background-color: mix(@ff_colour_button_bg, @c_links, 70%);
+        background-color: mix(@ff_colour_button_bg, @ff_templatesetting_colour_links, 70%);
         border-color: darken(@ff_colour_button_border, 10%);
-        #ff_mix-responsive-colour > .check-contrast(mix(@ff_colour_button_bg, @c_links, 50%), @c_links, #ffffff);
+        #ff_mix-responsive-colour > .check-contrast(mix(@ff_colour_button_bg, @ff_templatesetting_colour_links, 50%), @ff_templatesetting_colour_links, #ffffff);
         z-index: 3;
     }
     &--is-disabled {
@@ -167,8 +167,8 @@
     &--primary-compact-right,
     &--primary-compact-right-widelist {
         &--is-open {
-            background-color: darken(@c_links, 20%);
-            border-color: darken(@c_links, 30%);
+            background-color: darken(@ff_templatesetting_colour_links, 20%);
+            border-color: darken(@ff_templatesetting_colour_links, 30%);
         }
         &--is-disabled {
         }
@@ -182,7 +182,7 @@
     &--primary-compact-right &__content,
     &--primary-compact-right-widelist &__content {
         &--is-open {
-            #ff_mix-responsive-colour > .check-contrast(darken(@c_links, 20%), @c_links, #ffffff);
+            #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 20%), @ff_templatesetting_colour_links, #ffffff);
         }
         &--is-disabled {
         }
@@ -193,11 +193,11 @@
     &--primary-compact-right &__content,
     &--primary-compact-right-widelist &__content {
         &--is-open {
-            background-color: darken(@c_links, 20%);
-            border-color: darken(@c_links, 30%);
+            background-color: darken(@ff_templatesetting_colour_links, 20%);
+            border-color: darken(@ff_templatesetting_colour_links, 30%);
         }
         &--is-disabled {
-            #ff_mix-responsive-colour > .check-contrast(darken(@c_links, 20%), @c_links, #ffffff);
+            #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 20%), @ff_templatesetting_colour_links, #ffffff);
         }
         &--is-disabled &__content {
         }

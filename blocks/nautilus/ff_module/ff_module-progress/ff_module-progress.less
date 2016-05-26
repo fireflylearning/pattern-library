@@ -1,9 +1,9 @@
 #ff_module-progress() {
     .marked() {
-        background-color: darken(@c_mainnav_1,10%);
+        background-color: darken(@ff_templatesetting_colour_sm_level0_bg,5%);
     }
     .completed() {
-        background-color: @c_mainnav_1;
+        background-color: lighten(desaturate(@ff_templatesetting_colour_sm_level0_bg, 25%), 15%);
     }
     .total() {
         background-color: @ff_colour_control_bg;
@@ -16,8 +16,8 @@
     &__stacked {
         border: 1px solid @ff_colour_control_border;
         border-radius: @ff_size_control_rounding;
-        height: @ff_size_control_vertical * 2;
-        padding: 1px;
+        height: @ff_size_control_vertical * 1.6;
+        padding: 2px;
         box-sizing: border-box;
         overflow: hidden;
         #ff_module-progress > .total();
@@ -33,10 +33,16 @@
 
         &--completed {
             #ff_module-progress > .completed();
+            border-radius: 0 @ff_size_control_rounding @ff_size_control_rounding 0;
         }
 
         &--marked {
             #ff_module-progress > .marked();
+            border-radius: @ff_size_control_rounding 0 0 @ff_size_control_rounding;
+        }
+
+        &--lonely {
+            border-radius: @ff_size_control_rounding;
         }
     }
 
@@ -66,6 +72,7 @@
             float: left;
             border-radius: 50%;
             border: 1px solid @ff_colour_control_border;
+            box-shadow:         inset 0px 0px 0 2px @ff_colour_control_bg;
             margin-right: @ff_size_control_vertical;
         }
 

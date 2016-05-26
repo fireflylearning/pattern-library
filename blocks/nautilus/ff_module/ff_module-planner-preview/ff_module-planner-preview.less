@@ -1,43 +1,71 @@
 .ff_module-planner-preview {
-    @media (min-width:@ff_bp_medium) {
-        display: flex;
-        justify-content: space-between;
-    }
-    .ff_mix-clearfix();
+    padding: @ff_size_spacing_max @ff_size_control_horizontal;
 }
 
 .ff_module-planner-preview__events {
-    padding: 0;
-    margin: 0;
-    @media (min-width:@ff_bp_narrow) {
-     float: left;//flexbox backup
+    padding: 0 @ff_size_control_horizontal;
+    margin-bottom: @ff_size_spacing_max * 2;
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+    @media (min-width:@ff_bp_medium) {
+        margin-bottom: 0;
     }
 }
 
-.ff_module-planner-preview__events--Now,
-.ff_module-planner-preview__events--Next {
-    flex-grow: 2;
-}
-
 .ff_module-planner-preview__event {
-    list-style: none;
-    display: block;
 }
 
-.ff_module-planner-preview__events--Later .ff_module-planner-preview__label {
-    display: none;
+.ff_module-planner-preview__events:first-of-type{
+    padding-left: 0;
 }
-.ff_module-planner-preview__events--Later .ff_module-planner-preview__event:first-child .ff_module-planner-preview__label {
-    display: block;
+.ff_module-planner-preview__events:last-of-type{
+    padding-right: 0;
+}
+
+.ff_module-planner-preview__events--Next,
+.ff_module-planner-preview__events--Later {
+    @media (min-width:@ff_bp_medium) {
+     border-left: 1px solid @ff_colour_control_border;
+    }
+}
+
+.ff_module-planner-preview__data--subject-important {
+    @media (min-width:@ff_bp_medium) {
+        #ff_mix-util-prose > .h2();
+    }
 }
 
 .ff_module-planner-preview__data,
-.ff_module-planner-preview__label {
+.ff_module-planner-preview__label,
+.ff_module-planner-preview__gap {
+    margin: 0;
+    #ff_mix-util-prose > .summary-list();
 }
 
 .ff_module-planner-preview__data--date,
-.ff_module-planner-preview__data--location {
+.ff_module-planner-preview__data--location,
+.ff_module-planner-preview__gap {
+    #ff_mix-util-prose > .text-quiet();
 }
 
 .ff_module-planner-preview__link {
+    #ff_mix-util-prose > .link-no-decoration();
+}
+
+
+//special cases for later events
+.ff_module-planner-preview__events--Later {
+    .ff_module-planner-preview__label {
+        display: none;
+    }
+    .ff_module-planner-preview__event {
+        margin-bottom: @ff_size_spacing_max;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+.ff_module-planner-preview__events--Later .ff_module-planner-preview__event:first-child .ff_module-planner-preview__label {
+    display: block;
 }
