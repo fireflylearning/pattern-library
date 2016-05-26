@@ -11,10 +11,9 @@ var generateClass = require('../ff_module-task-event/_src/utils').generateClass;
 module.exports = React.createClass({
     displayName: 'TaskEventGroup',
     propTypes: {
-        events: React.PropTypes.array.isRequired
+        events: React.PropTypes.arrayOf(React.PropTypes.shape(TaskEvent.PropTypes)).isRequired
     },
     render: function() {
-        console.log(this.props.events);
 
         if (!this.props.events || this.props.events.length === 0) return null;
 

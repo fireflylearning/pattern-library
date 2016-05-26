@@ -1,5 +1,6 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react');
 
 var TaskEventRepeater = require('./ff_module-task-event-repeater');
 var eventTypes = require('../ff_module-task-event/_src/events').types;
@@ -32,16 +33,18 @@ var events = [{
             text: 'Delete',
             onClick: function() { console.log('delete'); }
         }],
-        state: {}
+        state: { released: true }
     };
 });
+
+var groups = [[events[1], events[0]],[events[2]],[events[0], events[1], events[2]]];
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(e) {
         var el = document.querySelector('[data-ff_module-task-event-repeater]');
         if (el) {
-            var repeater = React.createElement(TaskEventRepeater, { events: events });
-            React.render(repeater, el);
+            var repeater = React.createElement(TaskEventRepeater, { groups: groups });
+            ReactDOM.render(repeater, el);
         }
     });
 };

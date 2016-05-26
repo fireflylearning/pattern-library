@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var TaskEventGroup = require('../ff_module-task-event-group/ff_module-task-event-group');
 var TaskEvent = require('../ff_module-task-event/ff_module-task-event');
 var ensureIsDate = require('../../_lib/_ui/date-utils').ensureIsDate;
 
@@ -14,26 +15,30 @@ module.exports = React.createClass({
     render: function(){
         return <div className="ff_container-task-event-repeater">
             <ol className="ff_container-task-event-repeater__items">
-                {this.getEvents().map(event=>{
+                {this.getGroups().map(events=>{
                     return  <li className="ff_container-task-event-repeater__item"
-                                key={'event-'+event.localEventId}>
-                                <TaskEvent {...event}/>
+                                key={this.getKey(events)}>
+                                <TaskEventGroup events={events}/>
                             </li>
                 })}
             </ol>
         </div>
     },
     propTypes: {
-        events: React.PropTypes.arrayOf(React.PropTypes.shape(TaskEvent.PropTypes)).isRequired
+        groups: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.shape(TaskEvent.PropTypes))).isRequired
     },
-    getEvents: function() {
-        var events = this.props.events;
-        if (isArray(events)) {
-            events = events.sort(function(a, b) {
-                // Reverse chronological order
-                return ensureIsDate(b.description.sent) - ensureIsDate(a.description.sent);
-            });
-        }
-        return events;
+    getKey:function(events){
+        var o = events.reduce((memo, event)=> memo + event.localEventId, 'group-');
+        return o;
+    },
+    getGroups: function() {
+        var groups = this.props.groups || [];
+        // if (isArray(events)) {
+        //     events = events.sort(function(a, b) {
+        //         // Reverse chronological order
+        //         return ensureIsDate(b.description.sent) - ensureIsDate(a.description.sent);
+        //     });
+        // }
+        return groups;
     }
 });
