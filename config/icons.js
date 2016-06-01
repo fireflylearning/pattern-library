@@ -62,6 +62,23 @@ module.exports = {
             ],
             'ff_icon-response-edit-blue': ['.ff_icon-response-edit.ff_module-dropdown-button__icon-alt.ff_module-dropdown-button__icon-alt--is-open'],
             'ff_icon-response-error-error': ['.ff_icon-response-errored']
+        },
+        nautilus: {
+            'ff_icon-page-up-open-blue': ['.ff_module-dropdown-button__icon--is-open'],
+            'ff_icon-page-down-open-blue': ['.ff_module-dropdown-button__icon--is-enabled'],
+            'ff_icon-page-up-open-blue': [
+                '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-open',
+                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open'],
+            'ff_icon-page-down-open-blue': [
+                '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled'],
+
+            'ff_icon-response-edit-darkgrey': [
+                '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt',
+                '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled'
+            ],
+            'ff_icon-response-edit-blue': ['.ff_icon-response-edit.ff_module-dropdown-button__icon-alt.ff_module-dropdown-button__icon-alt--is-open'],
+            'ff_icon-response-error-error': ['.ff_icon-response-errored']
         }
     },
 
@@ -93,7 +110,21 @@ module.exports = {
             success: '#98CE1E',
             error: '#D35447',
             notify: '#FFCD00'
-        }
+        },
+        nautilus: {
+            blue: '#297FCF',
+            darkblue: '#2165A4',
+            brightblue: '#0085E6',
+            grey: '#A9AEB6',
+            darkgrey: '#888888',
+            extradarkgrey: '#444444',
+            white: '#FFF',
+            lightblue: '#add8e6',
+            greyblue: '#7F9CB5',
+            success: '#98CE1E',
+            error: '#D35447',
+            notify: '#FFCD00'
+        },
     },
 
     dynamicColorOnly: false,
