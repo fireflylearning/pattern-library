@@ -13,7 +13,7 @@ module.exports = React.createClass({
             showCloseIcon={false}
             body={this.props.children}
             controls={[
-                <Button key="send" onClick={this.props.onSend} text={this.props.sendText} modifier={this.props.sendModifier ? this.props.sendModifier : "primary"}/>,
+                <Button key="send" onClick={this.props.onConfirm} text={this.props.sendText} modifier={this.props.sendModifier ? this.props.sendModifier : "primary"}/>,
                 <Button key="close" onClick={this.props.onClose} text={this.props.closeText} modifier="tertiary"/>
             ]}
         />;

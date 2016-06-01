@@ -42,7 +42,9 @@ module.exports = React.createClass({
 });
 
 function getEventEditor(props){
-    if (eventNotificationComponents[props.event.description.type]) return eventNotificationComponents[props.event.description.type](props);
+    if (props.event && eventNotificationComponents[props.event.description.type]) {
+        return eventNotificationComponents[props.event.description.type](props);
+    }
     else return null;
 }
 
