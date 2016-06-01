@@ -40,7 +40,7 @@
 #ff_mix-base-links() {
     .default() {
         text-decoration: none;
-        color: @c_links;
+        color: @ff_templatesetting_colour_links;
     }
     .active() {
         color: white;
@@ -202,4 +202,12 @@
         border-bottom-right-radius: @ff_size_control_rounding * 3;
         border: 1px solid @ff_colour_primary;
     }
+}
+
+#triangle-up(@base:10px, @ratio:1, @color:red) {
+    width: 0;
+    height: 0;
+    border-bottom: @base solid @color;
+    border-left: @base*@ratio solid transparent;
+    border-right: @base*@ratio solid transparent;
 }

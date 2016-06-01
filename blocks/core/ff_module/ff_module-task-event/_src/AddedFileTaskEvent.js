@@ -26,11 +26,7 @@ function defaultState(){
         name = description.author.name,
         fileText = getFileText(files);
 
-    return <TaskEventBase
-                description={description}
-                actions={this.props.actions}
-                state={this.props.state}
-                onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
+    return <TaskEventBase {...this.props}>
                 <p className="ff_module-task-event__author-action">{name + ' added ' + fileText}:</p>
                 <ModuleFileList files={files} classes="ff_module-task-event__files"/>
             </TaskEventBase>

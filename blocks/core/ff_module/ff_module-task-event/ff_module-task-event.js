@@ -10,7 +10,9 @@ var StampResponseAsSeenTaskEvent = require('./_src/StampResponseAsSeenTaskEvent.
     ConfirmedStudentUnExcusedTaskEvent = require('./_src/ConfirmedStudentUnExcusedTaskEvent'),
     MarkAndGradeTaskEvent = require('./_src/MarkAndGradeTaskEvent'),
     DeletedResponseTaskEvent = require('./_src/DeletedResponseTaskEvent'),
-    AddedFileTaskEvent = require('./_src/AddedFileTaskEvent');
+    AddedFileTaskEvent = require('./_src/AddedFileTaskEvent'),
+    SentReminderTaskEvent = require('./_src/SentReminderTaskEvent'),
+    SentFeedbackAndMarks = require('./_src/SentFeedbackAndMarks');
 
 var eventTypes = require('./_src/events').types;
 var eventStates = require('./_src/events').states;
@@ -27,6 +29,8 @@ eventComponents[eventTypes.markAndGrade] = MarkAndGradeTaskEvent;
 eventComponents[eventTypes.deleteResponse] = DeletedResponseTaskEvent;
 eventComponents[eventTypes.confirmStudentIsUnexcused] = ConfirmedStudentUnExcusedTaskEvent;
 eventComponents[eventTypes.addFile] = AddedFileTaskEvent;
+eventComponents[eventTypes.sendReminder] = SentReminderTaskEvent;
+eventComponents[eventTypes.releaseFeedbackAndMarks] = SentFeedbackAndMarks;
 
 function getPresentationState(description, state) {
     state = state || {};
@@ -55,7 +59,7 @@ module.exports = React.createClass({
         }).isRequired,
         actions: React.PropTypes.array,
         state: React.PropTypes.object,
-        onRetryAfterStatusError: React.PropTypes.func.isRequired
+        onRetryAfterStatusError: React.PropTypes.func
     },
     render: function() {
         var Component = getComponent(this.props.description, this.props.state);

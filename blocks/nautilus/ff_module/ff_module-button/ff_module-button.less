@@ -18,29 +18,30 @@
         padding: (@ff_size_spacing_min * .85) @ff_size_spacing_med;
         background-color: @ff_colour_button_bg;
         border-color: @ff_colour_button_border;
-        #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @c_links, #ffffff);
+        #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @ff_templatesetting_colour_links, #ffffff);
 
         &:hover {
-            background-color: mix(@ff_colour_button_bg, @c_links, 70%);
+            background-color: mix(@ff_colour_button_bg, @ff_templatesetting_colour_links, 70%);
             border-color: darken(@ff_colour_button_border, 10%);
-            #ff_mix-responsive-colour > .check-contrast(mix(@ff_colour_button_bg, @c_links, 50%), @c_links, #ffffff);
+            #ff_mix-responsive-colour > .check-contrast(mix(@ff_colour_button_bg, @ff_templatesetting_colour_links, 50%), @ff_templatesetting_colour_links, #ffffff);
         }
     }
     .primary() {
-        background-color: darken(@c_links, 10%);
-        border-color: darken(@c_links, 20%);
+        background-color: darken(@ff_templatesetting_colour_links, 10%);
+        border-color: darken(@ff_templatesetting_colour_links, 20%);
+        #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 10%), @ff_templatesetting_colour_links, #ffffff);
 
         &:hover {
-            background-color: darken(@c_links, 20%);
-            border-color: darken(@c_links, 30%);
+            background-color: darken(@ff_templatesetting_colour_links, 20%);
+            border-color: darken(@ff_templatesetting_colour_links, 30%);
         }
     }
     .primary-content() {
         font-weight: normal;
-        #ff_mix-responsive-colour > .check-contrast(darken(@c_links, 10%), @c_links, #ffffff);
+        #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 10%), @ff_templatesetting_colour_links, #ffffff);
 
         &:hover {
-            #ff_mix-responsive-colour > .check-contrast(darken(@c_links, 20%), @c_links, #ffffff);
+            #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 20%), @ff_templatesetting_colour_links, #ffffff);
         }
     }
     .large() {
@@ -54,10 +55,10 @@
     .tertiary() {
         background-color: white;
         border-color: @ff_colour_button_border;
-        color: @c_links;
+        color: @ff_templatesetting_colour_links;
     }
     .tertiary-content(){
-        color: @c_links;
+        color: @ff_templatesetting_colour_links;
     }
     .link(){
         #ff_mix-buttons > .clear();
@@ -82,7 +83,7 @@
     .danger() {
         background-color: @ff_colour_error;
         border-color: darken(@ff_colour_error, 20%);
-        #ff_mix-responsive-colour > .check-contrast(@ff_colour_error, @c_links, #ffffff);
+        #ff_mix-responsive-colour > .check-contrast(@ff_colour_error, @ff_templatesetting_colour_links, #ffffff);
     }
     .disabled() {
         background-color: @ff_colour_button_bg;

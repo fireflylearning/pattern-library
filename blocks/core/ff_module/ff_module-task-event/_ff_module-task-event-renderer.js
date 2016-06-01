@@ -27,6 +27,57 @@ var events = [{
         // deleted: true
     }
 
+}, {
+    description: {
+        type: eventTypes.sendReminder,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Terry Teacher' }
+    },
+    actions: [],
+    state: {
+        released: true
+    }
+
+}, {
+    description: {
+        type: eventTypes.comment,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Terry Teacher' },
+        message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
+    },
+    actions: [{
+        key: 'edit',
+        text: 'Edit',
+        onClick: function() { console.log('edit'); }
+    }, {
+        key: 'delete',
+        text: 'Delete',
+        onClick: function() { console.log('delete'); }
+    }],
+    state: {
+        released: true
+    }
+
+}, {
+    description: {
+        type: eventTypes.comment,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Terry Teacher' },
+        message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
+    },
+    actions: [{
+        key: 'edit',
+        text: 'Edit',
+        onClick: function() { console.log('edit'); }
+    }, {
+        key: 'delete',
+        text: 'Delete',
+        onClick: function() { console.log('delete'); }
+    }],
+    state: {
+        deleted: true
+    }
+
 }];
 
 module.exports = function() {

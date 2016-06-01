@@ -24,18 +24,11 @@ var editedState = React.createClass({
 });
 
 function renderDefault(){
-    var description = this.props.description,
-        actions = this.props.actions;
-
     var markAndGrade = getMarkAndGrade(this.props);
     var message = getMessage(this.props);
     var status = getStatus(this.props);
 
-    return  <TaskEventBase
-                description={description}
-                actions={actions}
-                state={this.props.state}
-                onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
+    return  <TaskEventBase {...this.props}>
                 {status}
                 {markAndGrade}
                 {message}
