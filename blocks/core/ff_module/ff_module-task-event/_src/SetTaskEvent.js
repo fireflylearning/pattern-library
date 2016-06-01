@@ -27,11 +27,7 @@ function renderDefault(){
         taskTitle = description.taskTitle,
         editedFlag = getEditedFlag(this.props);
 
-    return  <TaskEventBase
-                description={description}
-                actions={this.props.actions}
-                state={this.props.state}
-                onRetryAfterStatusError={this.props.onRetryAfterStatusError}>
+    return  <TaskEventBase {...this.props}>
                 <p className="ff_module-task-event__author-action">{name} set a task:</p>
                 <p className="ff_module-task-event__task-title">{taskTitle}{editedFlag}</p>
             </TaskEventBase>;
