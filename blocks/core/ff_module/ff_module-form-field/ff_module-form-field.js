@@ -19,6 +19,15 @@ function isChecked(props) {
     return !!props.modelValue;
 }
 
+function getValidationProps(props) {
+    var def = {};
+    if (props.validation) {
+        def.validators = props.validation.rules;
+        def.validateOn = props.validation.validateOn;
+    }
+    return def;
+}
+
 const controlPropsMap = {
     default: (props) => controlPropsMap.text(props),
     checkbox: (props) => ({
@@ -79,7 +88,7 @@ export class FormField extends React.Component {
     render() {
 
         return (
-            <FF_Field {...this.props}>
+            <FF_Field {...getValidationProps(this.props)} {...this.props}>
 
             {this.props.children}
 

@@ -8,6 +8,7 @@ var EditorBase = require('./_src/EditorBase'),
     EditorCommon = require('./_src/EditorCommon'),
     EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
     EditorAddFile = require('./_src/EditorAddFile'),
+    EditorComment = require('./_src/EditorComment'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 var eventStates = {
@@ -27,6 +28,8 @@ module.exports = React.createClass({
         onSend: React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,
         onClose: React.PropTypes.func.isRequired,
+        models: React.PropTypes.object.isRequired,
+        validation: React.PropTypes.object.isRequired
     },
     render: function() {
         var eventEditor = getEventEditor(this.props);
@@ -75,10 +78,12 @@ function createEventWithMessageEditor(editor) {
                 title: editor.title,
                 sendText: editor.sendText,
             },
-            children: React.createElement(EditorCommon, {
+            children: React.createElement(editor.child || EditorCommon, {
                 messageLabel: editor.messageLabel,
                 onMessageChange: onMessageChange,
-                event: props.event
+                event: props.event,
+                validation: props.validation,
+                models: props.models,
             })
         };
 
@@ -128,7 +133,9 @@ function markAndGrade(props) {
             onMarkChange: onMarkChange,
             onGradeChange: onGradeChange,
             onMarkMaxChange: onMarkMaxChange,
-            onMessageChange: onMessageChange
+            onMessageChange: onMessageChange,
+            validation: props.validation,
+            models: props.models
         })
 
     };
@@ -180,7 +187,8 @@ eventEditorComponents[eventTypes.confirmStudentIsExcused] = createEventWithMessa
 });
 eventEditorComponents[eventTypes.comment] = createEventWithMessageEditor({
     title: "Comment",
-    sendText: "Add Comment"
+    sendText: "Add Comment",
+    child: EditorComment
 });
 eventEditorComponents[eventTypes.markAndGrade] = markAndGrade;
 
