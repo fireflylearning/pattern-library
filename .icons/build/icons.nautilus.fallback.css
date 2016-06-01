@@ -240,6 +240,8 @@
 
 .ff_icon-page-down-blue { background-image: url('png/ff_icon-page-down-blue.png'); background-repeat: no-repeat; }
 
+.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled,
 .ff_icon-page-down-open-blue { background-image: url('png/ff_icon-page-down-open-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-down-open-white { background-image: url('png/ff_icon-page-down-open-white.png'); background-repeat: no-repeat; }
@@ -258,6 +260,8 @@
 
 .ff_icon-page-forward { background-image: url('png/ff_icon-page-forward.png'); background-repeat: no-repeat; }
 
+.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-open,
+.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open,
 .ff_icon-page-up-open-blue { background-image: url('png/ff_icon-page-up-open-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-up-open-white { background-image: url('png/ff_icon-page-up-open-white.png'); background-repeat: no-repeat; }
@@ -290,12 +294,16 @@
 
 .ff_icon-quote { background-image: url('png/ff_icon-quote.png'); background-repeat: no-repeat; }
 
+.ff_icon-response-edit.ff_module-dropdown-button__icon-alt.ff_module-dropdown-button__icon-alt--is-open,
 .ff_icon-response-edit-blue { background-image: url('png/ff_icon-response-edit-blue.png'); background-repeat: no-repeat; }
 
+.ff_icon-response-edit.ff_module-dropdown-button__icon-alt,
+.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled,
 .ff_icon-response-edit-darkgrey { background-image: url('png/ff_icon-response-edit-darkgrey.png'); background-repeat: no-repeat; }
 
 .ff_icon-response-edit { background-image: url('png/ff_icon-response-edit.png'); background-repeat: no-repeat; }
 
+.ff_icon-response-errored,
 .ff_icon-response-error-error { background-image: url('png/ff_icon-response-error-error.png'); background-repeat: no-repeat; }
 
 .ff_icon-response-error { background-image: url('png/ff_icon-response-error.png'); background-repeat: no-repeat; }
