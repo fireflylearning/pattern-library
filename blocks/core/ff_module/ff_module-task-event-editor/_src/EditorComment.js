@@ -20,8 +20,7 @@ module.exports = React.createClass({
             <div>
                 <ContainerFormLine>
                     <FormField model={commentModel}
-                        validators={commentValidation.rules}
-                        validateOn={commentValidation.validateOn}
+                        validation={commentValidation}
                         >
                         <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} value={this.props.event.description.message} />
                     </FormField>
@@ -29,8 +28,7 @@ module.exports = React.createClass({
                 <ContainerFormErrors>
                     <FormFieldErrors
                         model={commentModel}
-                        showErrorsOn={commentValidation.showErrorsOn}
-                        messages={commentValidation.messages}/>
+                        validation={commentValidation}/>
                 </ContainerFormErrors>
             </div>
         );

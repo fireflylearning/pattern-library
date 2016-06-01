@@ -94,7 +94,7 @@ function isNumber(value) {
 function maxLength(max) {
     return function (value) {
         return value.length && value.length <= max;
-    }
+    };
 }
 
 var modelKeys = {

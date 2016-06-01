@@ -4,6 +4,17 @@ var React = require('react'),
     getGeneratedClass = require('../../_lib/_ui/class-utils').generateStandardClass,
     Errors = require('react-redux-form').Errors;
 
+
+function getErrorProps(props) {
+    var validation = props.validation || null;
+    var def = { show: false };
+    if (validation) {
+        def.show = validation.showErrorsOn;
+        def.messages = validation.messages;
+    }
+    return def;
+}
+
 function FormError(props) {
     return <li className='ff_module-form-errors__message'>{props.children}</li>;
 }
@@ -22,13 +33,12 @@ function FormFieldErrors(props) {
     return (props.model ?
 
             <Errors model={props.model}
-                show={props.showErrorsOn || false}
-                messages={props.messages}
+                {...getErrorProps(props)}
                 wrapper={FormErrorList}
                 component={FormError}
                 />
         :
-        null
+        <span></span>
     );
 }
 
