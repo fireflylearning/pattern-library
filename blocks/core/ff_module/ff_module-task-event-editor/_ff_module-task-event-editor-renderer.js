@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { modelReducer, formReducer } from 'react-redux-form';
+import { isRequired, isNumber, maxLength} from '../../_lib/simpleValidation';
 
 
 var events = [{
@@ -80,33 +81,16 @@ var events = [{
 );
 
 
-
-// Validation
-
-function isRequired(value) {
-    return value && value.length;
-}
-
-function isNumber(value) {
-    return !isNaN(parseFloat(value)) && isFinite(value);
-}
-
-function maxLength(max) {
-    return function (value) {
-        return value.length && value.length <= max;
-    };
-}
-
 var modelKeys = {
-    mark: 'event.description.mark',
-    markMax: 'event.description.markMax',
-    grade: 'event.description.grade',
-    message: 'event.description.message'
+    mark: 'mark',
+    markMax: 'markMax',
+    grade: 'grade',
+    message: 'message'
 };
 
 // so different model string values can be used if required
 var models = Object.keys(modelKeys).reduce(function(memo, key){
-    memo[modelKeys[key]] = modelKeys[key];
+    memo[modelKeys[key]] = 'event.description.' + modelKeys[key];
     return memo;
 }, {});
 

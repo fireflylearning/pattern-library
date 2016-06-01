@@ -13,8 +13,8 @@ module.exports = React.createClass({
     displayName: 'EditorComment',
     render: function(){
 
-        var commentModel = this.props.models && this.props.models['event.description.message'] || null,
-            commentValidation = this.props.validation && this.props.validation['event.description.message'] || null;
+        var commentModel = this.props.models && this.props.models['message'] || null,
+            commentValidation = this.props.validation && this.props.validation['message'] || null;
 
         return (
             <div>
