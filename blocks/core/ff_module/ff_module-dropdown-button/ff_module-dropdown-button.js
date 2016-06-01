@@ -138,10 +138,10 @@ module.exports = function(options) {
     });
 
     if(!isActivatedForTheseOptions) {
-        if (isBrowser()) console.log('ff_module-dropdown-button is being activated with options: \n',options);
+        // if (isBrowser()) console.log('ff_module-dropdown-button is being activated with options: \n',options);
         activateDropdowns(options);
         activated.push(options);
     } else {
-        if (isBrowser()) console.log('ff_module-dropdown-button has already been activated with options: \n',options);
+        // if (isBrowser()) console.log('ff_module-dropdown-button has already been activated with options: \n',options);
     }
 };
