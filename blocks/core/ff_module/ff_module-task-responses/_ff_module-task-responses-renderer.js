@@ -49,13 +49,23 @@ var events = [{
             key: 'delete',
             text: 'Delete',
             onClick: function() { console.log('delete'); }
-        }]
+        }],
+        state: {
+            released: true
+        }
     };
 });
 
+var eventGroups = [
+    [events[1], events[0]],
+    [events[2]],
+    [events[4], events[1], events[2]],
+    [events[5], events[2], events[3]]
+];
+
 var props = [{
-    events: events,
-    editingEvent: events[0],
+    eventGroups: eventGroups,
+    editingEvent: eventGroups[0],
 
     editEvent: function(event) {
         console.log('editEvent');
@@ -69,7 +79,7 @@ var props = [{
         console.log('stopEditingEvent');
     }
 }, {
-    events: events,
+    eventGroups: eventGroups,
 
     editEvent: function(event) {
         console.log('editEvent');

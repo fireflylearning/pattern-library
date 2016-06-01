@@ -57,6 +57,9 @@ module.exports = React.createClass({
             type: React.PropTypes.string.isRequired,
             sent: React.PropTypes.object.isRequired
         }).isRequired,
+        localEventId: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.number]).isRequired,
         actions: React.PropTypes.array,
         state: React.PropTypes.object,
         onRetryAfterStatusError: React.PropTypes.func

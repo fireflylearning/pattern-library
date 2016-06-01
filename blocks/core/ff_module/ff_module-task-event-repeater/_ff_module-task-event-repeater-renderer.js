@@ -23,7 +23,7 @@ var events = [{
 }].map(function(description, index) {
     return {
         description: description,
-        localEventId: index,
+        localEventId: 'evnt-'+index,
         actions: [{
             key: 'edit',
             text: 'Edit',
@@ -37,13 +37,13 @@ var events = [{
     };
 });
 
-var groups = [[events[1], events[0]],[events[2]],[events[0], events[1], events[2]]];
+var eventGroups = [[events[1], events[0]],[events[2]],[events[0], events[1], events[2]]];
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(e) {
         var el = document.querySelector('[data-ff_module-task-event-repeater]');
         if (el) {
-            var repeater = React.createElement(TaskEventRepeater, { groups: groups });
+            var repeater = React.createElement(TaskEventRepeater, { eventGroups: eventGroups });
             ReactDOM.render(repeater, el);
         }
     });

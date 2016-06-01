@@ -25,20 +25,19 @@ module.exports = React.createClass({
         </div>
     },
     propTypes: {
-        groups: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.shape(TaskEvent.PropTypes))).isRequired
+        eventGroups: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.shape(TaskEvent.PropTypes))).isRequired
     },
     getKey:function(events){
-        var o = events.reduce((memo, event)=> memo + event.localEventId, 'group-');
-        return o;
+        return events.reduce((memo, event)=> '' + memo + event.localEventId, 'group-');
     },
     getGroups: function() {
-        var groups = this.props.groups || [];
+        var eventGroups = this.props.eventGroups || [];
         // if (isArray(events)) {
         //     events = events.sort(function(a, b) {
         //         // Reverse chronological order
         //         return ensureIsDate(b.description.sent) - ensureIsDate(a.description.sent);
         //     });
         // }
-        return groups;
+        return eventGroups;
     }
 });

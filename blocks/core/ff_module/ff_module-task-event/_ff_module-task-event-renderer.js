@@ -7,6 +7,7 @@ var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:
 var eventTypes = require('./_src/events').types;
 
 var events = [{
+    localEventId: '012a',
     description: {
         type: eventTypes.setTask,
         sent: new Date(dStrings[2]),
@@ -28,6 +29,7 @@ var events = [{
     }
 
 }, {
+    localEventId: '013a',
     description: {
         type: eventTypes.sendReminder,
         sent: new Date(dStrings[2]),
@@ -39,6 +41,7 @@ var events = [{
     }
 
 }, {
+    localEventId: '014a',
     description: {
         type: eventTypes.comment,
         sent: new Date(dStrings[2]),
@@ -59,6 +62,7 @@ var events = [{
     }
 
 }, {
+    localEventId: '015a',
     description: {
         type: eventTypes.comment,
         sent: new Date(dStrings[2]),
@@ -87,7 +91,8 @@ module.exports = function() {
             var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, events.map(function(event, index) {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(TaskEvent, {
-                        key: 'el' + (index),
+                        key: event.localEventId,
+                        localEventId: event.localEventId,
                         description: event.description,
                         state: event.state,
                         actions: event.actions

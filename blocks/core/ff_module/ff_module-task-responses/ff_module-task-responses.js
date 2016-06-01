@@ -21,7 +21,7 @@ module.exports = React.createClass({
             classes: 'ff_container-overlay--task-event-scrollable-top',
             body: React.createElement('div', {},
                 React.createElement(TaskResponseRepeater, {
-                events: this.props.events,
+                eventGroups: this.props.eventGroups,
                 key: 'response-repeater'
             }), editor),
             bar: React.createElement(TaskResponseActions, { onClick: this.onEventChange })

@@ -95,7 +95,10 @@ var events = [{
         href: '#'
     }]
 }].map(function(description) {
+    var localEventId = description.localEventId;
+    delete description.localEventId;
     return {
+        localEventId: localEventId,
         description: description,
         actions: [{
             key: 'edit',
@@ -108,6 +111,10 @@ var events = [{
         }]
     };
 });
+
+var eventGroups = [[events[1], events[0]],[events[2]],[events[3], events[4], events[5]], [events[6], events[7]],[events[8]],[events[9], events[10], events[11]]];
+
+
 
 var recipientData = [{
     onSelect: function() {
@@ -261,7 +268,7 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 
 
 var overlayInner = React.createElement(TaskResponses, {
-        events: events,
+        eventGroups: eventGroups,
         // editingEvent: events[4],
         editEvent: function(event) {
             console.log('editEvent');

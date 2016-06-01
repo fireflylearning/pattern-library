@@ -24,7 +24,7 @@ module.exports = React.createClass({
         return (
             <div className={className}>
                 <time className="ff_module-task-event-group__sent">{formatDate(date)}</time>
-                {this.props.events.map((event, index)=> <TaskEvent {...event} key={'event'+index}/> )}
+                {this.props.events.map((event, index)=> <TaskEvent {...event} key={event.localEventId}/> )}
             </div>
         );
 

@@ -32,14 +32,14 @@ var events = [{
     };
 });
 
-var groups = [[events[1], events[0]],[events[2]],[events[0], events[1], events[2]]];
+var eventGroups = [[events[1], events[0]],[events[2]],[events[0], events[1], events[2]]];
 
 
 describe('TaskEventRepeater', function() {
     var component;
 
     before(function() {
-        var element = React.createElement(TaskEventRepeater, { groups: groups });
+        var element = React.createElement(TaskEventRepeater, { eventGroups: eventGroups });
         component = TestUtils.renderIntoDocument(element);
     });
 
@@ -47,9 +47,9 @@ describe('TaskEventRepeater', function() {
         expect(component).to.exist;
     });
 
-    it('should have ' + groups.length + ' items', function() {
+    it('should have ' + eventGroups.length + ' items', function() {
         var items = TestUtils.scryRenderedDOMComponentsWithTag(component, 'li');
-        expect(items.length).to.equal(groups.length);
+        expect(items.length).to.equal(eventGroups.length);
     });
 
 });
