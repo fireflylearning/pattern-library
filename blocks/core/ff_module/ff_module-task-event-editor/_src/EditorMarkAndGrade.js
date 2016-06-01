@@ -32,10 +32,10 @@ function getMarkTypeOptions() {
 }
 
 function Mark(props) {
-    var markModel = props.models && props.models['event.description.mark'] || null,
-        markValidation = props.validation && props.validation['event.description.mark'] || null,
-        markMaxModel = props.models && props.models['event.description.markMax'] || null,
-        markMaxValidation = props.validation && props.validation['event.description.markMax'] || null;
+    var markModel = props.models && props.models['mark'] || null,
+        markValidation = props.validation && props.validation['mark'] || null,
+        markMaxModel = props.models && props.models['markMax'] || null,
+        markMaxValidation = props.validation && props.validation['markMax'] || null;
 
     return (
         <div>
@@ -61,8 +61,8 @@ function Mark(props) {
 }
 
 function Grade(props) {
-    var gradeModel = props.models && props.models['event.description.grade'] || null,
-        gradeValidation = props.validation && props.validation['event.description.grade'] || null;
+    var gradeModel = props.models && props.models['grade'] || null,
+        gradeValidation = props.validation && props.validation['grade'] || null;
 
     return (
         <div>
