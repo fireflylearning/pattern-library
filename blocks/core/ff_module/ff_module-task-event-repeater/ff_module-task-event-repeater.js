@@ -1,6 +1,7 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    _ = require('underscore');
 
 var TaskEventGroup = require('../ff_module-task-event-group/ff_module-task-event-group'),
     TaskEvent = require('../ff_module-task-event/ff_module-task-event'),
