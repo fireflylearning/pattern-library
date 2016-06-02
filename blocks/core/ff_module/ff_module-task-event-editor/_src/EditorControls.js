@@ -1,12 +1,14 @@
 'use strict';
 
+var React = require('react');
+
 var Button = require('../../ff_module-button/ff_module-button');
 
 var getPrimaryButtonText = require('./editorText').getPrimaryButtonText,
     getSecondaryButtonText = require('./editorText').getSecondaryButtonText;
 
 
-function EditorButton(props) {
+var EditorButton = function EditorButton(props) {
     return <Button key={props.key} onClick={props.onClick} text={props.text} modifier="primary"/>
 }
 

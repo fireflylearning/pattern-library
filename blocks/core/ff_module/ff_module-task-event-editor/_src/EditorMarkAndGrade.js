@@ -135,7 +135,7 @@ module.exports = React.createClass({
             <EditorBase
                 title={title}
                 controls={getEditorControls(getLabelText(this.state, title), this.props, true)}
-                onClose={props.onClose}
+                onClose={this.props.onClose}
                 >
                 <div>
                     <ContainerFormLine>
