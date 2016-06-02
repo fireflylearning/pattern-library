@@ -3,6 +3,9 @@
 var React = require('react'),
     FormLabel = require('../../ff_module-form-label/ff_module-form-label'),
     FormInput = require('../../ff_module-form-input/ff_module-form-input'),
+    FormField = require('../../ff_module-form-field/ff_module-form-field'),
+    FormFieldErrors = require('../../ff_module-form-errors/ff_module-form-errors').FormFieldErrors,
+    ContainerFormErrors = require('../../../ff_container/ff_container-form-errors/ff_container-form-errors'),
     ContainerFormLine = require('../../../ff_container/ff_container-form-line/ff_container-form-line');
 
 var markTypes = {
@@ -17,56 +20,89 @@ markText[markTypes.grade] = 'Grade/Level (e.g. A, 7, +)';
 markText[markTypes.markAndGrade] = 'Mark & Grade/Level';
 
 var markForms = {};
-markForms[markTypes.mark] = renderMark;
-markForms[markTypes.grade] = renderGrade;
-markForms[markTypes.markAndGrade] = renderMarkAndGrade;
+markForms[markTypes.mark] = Mark;
+markForms[markTypes.grade] = Grade;
+markForms[markTypes.markAndGrade] = MarkAndGrade;
+
 
 function getMarkTypeOptions() {
-    return Object.keys(markTypes).map(function(key){
+    return Object.keys(markTypes).map(function(key) {
         return { value: markTypes[key], text: markText[markTypes[key]] };
     });
 }
 
-function renderMark(state, props) {
-    return <ContainerFormLine>
-                <FormLabel modifier="mini" required="true">Mark:</FormLabel>
-                <FormInput modifier="mini" key='mark' value={props.event.description.mark} onChange={props.onMarkChange} />
-                <FormLabel modifier="mini" required="true">out of</FormLabel>
-                <FormInput modifier="mini" key='markMax' value={props.event.description.markMax} onChange={props.onMarkMaxChange} />
-            </ContainerFormLine>;
-}
+function Mark(props) {
+    var markModel = props.models && props.models['mark'] || null,
+        markValidation = props.validation && props.validation['mark'] || null,
+        markMaxModel = props.models && props.models['markMax'] || null,
+        markMaxValidation = props.validation && props.validation['markMax'] || null;
 
-function renderGrade(state, props) {
-    return <ContainerFormLine>
-                <FormLabel modifier="mini" required="true">Grade:</FormLabel>
-                <FormInput modifier="mini" key='grade' value={props.event.description.grade} onChange={props.onGradeChange} />
-            </ContainerFormLine>;
-}
-
-function renderMarkAndGrade(state, props) {
-    return <div><ContainerFormLine>
-                <FormLabel modifier="mini" required="true">Mark:</FormLabel>
-                <FormInput modifier="mini" key='mark' value={props.event.description.mark} onChange={props.onMarkChange} />
-                <FormLabel modifier="mini" required="true">out of</FormLabel>
-                <FormInput modifier="mini" key='markMax' value={props.event.description.markMax} onChange={props.onMarkMaxChange} />
-            </ContainerFormLine>
+    return (
+        <div>
             <ContainerFormLine>
-                <FormLabel modifier="mini" required="true">Grade:</FormLabel>
-                <FormInput modifier="mini" key='grade' value={props.event.description.grade} onChange={props.onGradeChange} />
-            </ContainerFormLine></div>;
+                <FormField model={markModel} validation={markValidation}>
+                    <FormLabel modifier="mini" required="true">Mark:</FormLabel>
+                    <FormInput modifier="mini" key='mark' value={props.event.description.mark} onChange={props.onMarkChange} />
+                </FormField>
+
+                <FormField model={markMaxModel} validation={markMaxValidation}>
+                    <FormLabel modifier="mini" required="true">out of</FormLabel>
+                    <FormInput modifier="mini" key='markMax' value={props.event.description.markMax} onChange={props.onMarkMaxChange} />
+                </FormField>
+
+            </ContainerFormLine>
+
+            <ContainerFormErrors>
+                <FormFieldErrors model={markModel} validation={markValidation} />
+                <FormFieldErrors model={markMaxModel} validation={markMaxValidation} />
+            </ContainerFormErrors>
+        </div>
+    );
+}
+
+function Grade(props) {
+    var gradeModel = props.models && props.models['grade'] || null,
+        gradeValidation = props.validation && props.validation['grade'] || null;
+
+    return (
+        <div>
+            <ContainerFormLine>
+                <FormField model={gradeModel}
+                    validation={gradeValidation}>
+                    <FormLabel modifier="mini" required="true">Grade:</FormLabel>
+                    <FormInput modifier="mini" key='grade' value={props.event.description.grade} onChange={props.onGradeChange} />
+                </FormField>
+            </ContainerFormLine>
+            <ContainerFormErrors>
+                <FormFieldErrors
+                    model={gradeModel}
+                    validation={gradeValidation}/>
+            </ContainerFormErrors>
+        </div>
+    );
+}
+
+function MarkAndGrade(props) {
+
+    return (
+        <div>
+            <Mark {...props}/>
+            <Grade {...props}/>
+        </div>
+    );
 }
 
 function renderMarkOrGrade(state, props) {
-    var method = markForms[state.type] || null;
-    if (method) return method(state, props);
+    var Method = markForms[state.type] || null;
+    if (Method) return <Method {...props}/>;
     return null;
 }
 
 
 module.exports = React.createClass({
     displayName: 'EditorMarkAndGrade',
-    getInitialState: function(){
-        return { type: markTypes.mark}
+    getInitialState: function() {
+        return { type: markTypes.mark }
     },
     render: function() {
         return <div>
@@ -81,8 +117,7 @@ module.exports = React.createClass({
             </ContainerFormLine>
         </div>
     },
-    onChangeType: function(event){
-        this.setState({type: event.target.value});
+    onChangeType: function(event) {
+        this.setState({ type: event.target.value });
     }
 });
-
