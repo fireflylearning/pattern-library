@@ -1,13 +1,24 @@
 'use strict';
 
 var React = require('react');
-var TaskEventGroup = require('../ff_module-task-event-group/ff_module-task-event-group');
-var TaskEvent = require('../ff_module-task-event/ff_module-task-event');
-var ensureIsDate = require('../../_lib/_ui/date-utils').ensureIsDate;
+
+var TaskEventGroup = require('../ff_module-task-event-group/ff_module-task-event-group'),
+    TaskEvent = require('../ff_module-task-event/ff_module-task-event'),
+    ensureIsDate = require('../../_lib/_ui/date-utils').ensureIsDate,
+    getEventsInOrder = TaskEventGroup.getEventsInOrder;
 
 
-function isArray(array){
-    return array && array.constructor === Array;
+function getEventGroupsInOrder(eventGroups) {
+    eventGroups = eventGroups || [];
+    if (_.isArray(eventGroups)) {
+        eventGroups = eventGroups
+            .map(getEventsInOrder)
+            .sort(function(listA, listB) {
+            // Reverse chronological order
+                return ensureIsDate(listB[0].description.sent) - ensureIsDate(listA[0].description.sent);
+            });
+    }
+    return eventGroups;
 }
 
 module.exports = React.createClass({
@@ -31,13 +42,6 @@ module.exports = React.createClass({
         return events.reduce((memo, event)=> '' + memo + event.localEventId, 'group-');
     },
     getGroups: function() {
-        var eventGroups = this.props.eventGroups || [];
-        // if (isArray(events)) {
-        //     events = events.sort(function(a, b) {
-        //         // Reverse chronological order
-        //         return ensureIsDate(b.description.sent) - ensureIsDate(a.description.sent);
-        //     });
-        // }
-        return eventGroups;
+        return getEventGroupsInOrder(this.props.eventGroups);
     }
 });
