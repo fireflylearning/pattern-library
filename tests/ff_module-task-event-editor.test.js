@@ -105,7 +105,7 @@ var modelKeys = {
 };
 
 // so different model string values can be used if required
-var models = Object.keys(modelKeys).reduce(function(memo, key){
+var models = Object.keys(modelKeys).reduce(function(memo, key) {
     memo[modelKeys[key]] = modelKeys[key];
     return memo;
 }, {});
@@ -170,41 +170,93 @@ types[eventTypes.deleteResponse] = [EditorBase, ContainerDialog];
 types[eventStates.error] = [EditorBase, ContainerDialog];
 
 var buttonClasses = {};
-buttonClasses[eventTypes.stampResponseAsSeen] = [[0, 'ff_module-button ff_module-button--primary', 'onSend'], [1, 'ff_module-button ff_module-button--primary', 'onNext']];
-buttonClasses[eventTypes.requestResubmission] = [[0, 'ff_module-button ff_module-button--primary', 'onSend']];
-buttonClasses[eventTypes.confirmTaskIsComplete] = [[0, 'ff_module-button ff_module-button--primary', 'onSend']];
-buttonClasses[eventTypes.confirmStudentIsExcused] = [[0, 'ff_module-button ff_module-button--primary', 'onSend']];
-buttonClasses[eventTypes.comment] = [[0, 'ff_module-button ff_module-button--primary', 'onSend']];
-buttonClasses[eventTypes.markAndGrade] = [[0, 'ff_module-button ff_module-button--primary', 'onSend'], [1, 'ff_module-button ff_module-button--primary', 'onNext']];
-buttonClasses[eventTypes.addFile] = [[0, 'ff_module-button ff_module-button--primary', 'onSend']];
-buttonClasses[eventTypes.deleteResponse] = [[0, 'ff_module-button ff_module-button--danger', 'onSend'], [0, 'ff_module-button ff_module-button--tertiary', 'onClose']];
-buttonClasses[eventStates.error] = [[0, 'ff_module-button ff_module-button--primary', 'onSend'], [0, 'ff_module-button ff_module-button--tertiary', 'onClose']];
+buttonClasses[eventTypes.stampResponseAsSeen] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend'],
+    [1, 'ff_module-button ff_module-button--primary', 'onNext']
+];
+buttonClasses[eventTypes.requestResubmission] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.confirmTaskIsComplete] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.confirmStudentIsExcused] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.comment] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.markAndGrade] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend'],
+    [1, 'ff_module-button ff_module-button--primary', 'onNext']
+];
+buttonClasses[eventTypes.addFile] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.deleteResponse] = [
+    [0, 'ff_module-button ff_module-button--danger', 'onSend'],
+    [0, 'ff_module-button ff_module-button--tertiary', 'onClose']
+];
+buttonClasses[eventStates.error] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend'],
+    [0, 'ff_module-button ff_module-button--tertiary', 'onClose']
+];
+
+function getStore(event) {
+    return createStore(combineReducers({
+        event: modelReducer('event', event),
+        eventForm: formReducer('event', event)
+    }));
+}
+
+function getMapStateToProps(spies) {
+    return function mapStateToProps(state) {
+        return {
+            event: state.event,
+            eventForm: state.eventForm,
+            validation: validation,
+            models: models,
+            onSend: spies.onSend,
+            onChange: spies.onChange,
+            onClose: spies.onClose,
+            onNext: spies.onNext
+        };
+    };
+}
+
+function getProvidedForm(store, mapStateToProps) {
+    var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
+    return (
+        <Provider store={store}>
+            <ConnectedEditForm />
+        </Provider>
+    );
+}
+
+function getTypeName(event) {
+    var typeName = event.description.type;
+    if (event.state.error) typeName = eventStates.error;
+    return typeName;
+}
+
+function getSpies() {
+    return {
+        onSend: sinon.spy(),
+        onChange: sinon.spy(),
+        onClose: sinon.spy(),
+        onNext: sinon.spy()
+    }
+}
 
 describe('TaskEventEditor', function() {
 
     it('should render', function() {
 
-        var store = createStore(combineReducers({
-            event: modelReducer('event', events[0]),
-            eventForm: formReducer('event', events[0])
-        }));
+        var store = getStore(events[0]);
 
-        function mapStateToProps(state) {
-            return {
-                event: state.event,
-                eventForm: state.eventForm,
-                validation: validation,
-                models: models,
-                onSend: sinon.spy(),
-                onChange: sinon.spy(),
-                onClose: sinon.spy(),
-            };
-        }
+        var mapStateToProps = getMapStateToProps(getSpies());
 
-        var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
-        var ProvidedForm = <Provider store={store}>
-                    <ConnectedEditForm />
-                </Provider>;
+        var ProvidedForm = getProvidedForm(store, mapStateToProps);
 
         var component = TestUtils.renderIntoDocument(ProvidedForm);
         expect(component).to.exist;
@@ -213,32 +265,15 @@ describe('TaskEventEditor', function() {
     it('should render correct views for each event type', function() {
         events.forEach(function(event) {
 
-            var store = createStore(combineReducers({
-                event: modelReducer('event', event),
-                eventForm: formReducer('event', event)
-            }));
+            var store = getStore(event);
 
-            function mapStateToProps(state) {
-                return {
-                    event: state.event,
-                    eventForm: state.eventForm,
-                    validation: validation,
-                    models: models,
-                    onSend: sinon.spy(),
-                    onChange: sinon.spy(),
-                    onClose: sinon.spy(),
-                };
-            }
+            var mapStateToProps = getMapStateToProps(getSpies());
 
-            var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
-            var ProvidedForm = <Provider store={store}>
-                    <ConnectedEditForm />
-                </Provider>;
+            var ProvidedForm = getProvidedForm(store, mapStateToProps);
 
             var component = TestUtils.renderIntoDocument(ProvidedForm);
-            var typeName = event.description.type;
+            var typeName = getTypeName(event);
 
-            if (event.state.error) typeName = eventStates.error;
             var rootView = TestUtils.findRenderedComponentWithType(component, types[typeName][0]);
             expect(rootView).to.exist;
             var subView = TestUtils.findRenderedComponentWithType(rootView, types[typeName][1]);
@@ -250,40 +285,15 @@ describe('TaskEventEditor', function() {
     it('should fire correct handlers', function() {
         events.forEach(function(event) {
 
-            var store = createStore(combineReducers({
-                event: modelReducer('event', event),
-                eventForm: formReducer('event', event)
-            }));
+            var store = getStore(event);
 
-            var spies = {
-                onSend: sinon.spy(),
-                onChange: sinon.spy(),
-                onClose: sinon.spy(),
-                onNext: sinon.spy()
-            }
+            var spies = getSpies();
+            var mapStateToProps = getMapStateToProps(spies);
 
-            function mapStateToProps(state) {
-                return {
-                    event: state.event,
-                    eventForm: state.eventForm,
-                    validation: validation,
-                    models: models,
-                    onSend: spies.onSend,
-                    onChange: spies.onChange,
-                    onClose: spies.onClose,
-                    onNext: spies.onNext
-                };
-            }
-
-            var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
-            var ProvidedForm = <Provider store={store}>
-                    <ConnectedEditForm />
-                </Provider>;
+            var ProvidedForm = getProvidedForm(store, mapStateToProps);
 
             var component = TestUtils.renderIntoDocument(ProvidedForm);
-            var typeName = event.description.type;
-
-            if (event.state.error) typeName = eventStates.error;
+            var typeName = getTypeName(event);
 
             var topCloseBtn = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_container-dialog__close-top');
             expect(topCloseBtn).to.exist;
@@ -291,27 +301,25 @@ describe('TaskEventEditor', function() {
             expect(spies.onClose.calledOnce).to.equal(true);
 
             var classes = buttonClasses[typeName];
-            classes.forEach(function(classDef){
+            classes.forEach(function(classDef) {
                 var index = classDef[0],
                     className = classDef[1],
-                    spyName = classDef[2];
+                    spyName = classDef[2],
+                    spy = spies[spyName];
 
                 var buttonList = TestUtils.scryRenderedDOMComponentsWithClass(component, className);
                 var button = buttonList[index];
                 expect(button).to.exist;
 
                 TestUtils.Simulate.click(button);
+
                 if (spyName === 'onClose') {
-                    expect(spies[spyName].calledTwice).to.equal(true);
-                } else  {
-                    expect(spies[spyName].calledOnce).to.equal(true);
+                    expect(spy.calledTwice).to.equal(true);
+                } else {
+                    expect(spy.calledOnce).to.equal(true);
                 }
 
             })
-
-
         });
     });
-
-
 });
