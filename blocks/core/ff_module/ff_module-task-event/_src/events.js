@@ -14,6 +14,7 @@ module.exports.types = {
     deleteResponse: 'delete-response',
     editResponse: 'edit-response',
     confirmStudentIsUnexcused: 'confirm-student-is-unexcused',
+    confirmTaskIsToDo: 'confirm-task-is-to-do',
 
     // unconfirmed task events:
     deleteTask: 'delete-task',
@@ -41,14 +42,14 @@ var states = {
     deleted: 'deleted',
     edited: 'edited',
 
-
     released: 'released',
-    // unreleased: 'unreleased',
+    complete: 'complete',
+    excused: 'excused',
+
+    allStudents: 'all-students',
 
     archived: 'archived',
-    noConnection: 'no-connection',
-
-
+    noConnection: 'no-connection'
 };
 
 module.exports.states = states;
