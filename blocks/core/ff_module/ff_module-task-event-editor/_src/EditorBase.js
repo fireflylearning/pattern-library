@@ -8,12 +8,15 @@ var React = require('react'),
 module.exports = React.createClass({
     displayName: 'EditorBase',
     render: function(){
-        return <ContainerDialog
-            title={this.props.title}
-            showCloseIcon={true}
-            onCloseIconClick={this.props.onClose}
-            body={this.props.children}
-            controls={<Button onClick={this.props.onSend} text={this.props.sendText} modifier="primary"/>}
-        />;
+
+        return (
+            <ContainerDialog
+                title={this.props.title}
+                showCloseIcon={true}
+                onCloseIconClick={this.props.onClose}
+                body={this.props.children}
+                controls={this.props.controls}
+            />
+        );
     }
 });

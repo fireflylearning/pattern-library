@@ -14,7 +14,6 @@ module.exports = React.createClass({
         events: React.PropTypes.array.isRequired
     },
     render: function() {
-        console.log(this.props.events);
 
         if (!this.props.events || this.props.events.length === 0) return null;
 

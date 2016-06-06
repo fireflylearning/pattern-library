@@ -37,7 +37,7 @@ module.exports = React.createClass({
 
         if (this.props.type == 'select') {
             var options = this.props.options ? this.props.options.map(function(option) {
-                return <option value={option.value}>{option.text}</option>;
+                return <option key={option.value} value={option.value}>{option.text}</option>;
             }) : null;
 
             return <select className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} onFocus={this.props.onFocus} id={this.props.id}>{options}</select>;

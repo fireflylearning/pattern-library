@@ -1,8 +1,7 @@
 'use strict';
+
 var React = require('react'),
     ReactDOM = require('react-dom');
-
-
 
 var TestUtils = require('react-addons-test-utils'),
     expect = require('chai').expect,
@@ -18,7 +17,6 @@ var TaskEventEditor = require('../blocks/core/ff_module/ff_module-task-event-edi
     eventStates = require('../blocks/core/ff_module/ff_module-task-event/_src/events').states;
 
 var EditorBase = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorBase'),
-    EditorBaseMini = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorBaseMini'),
     EditorCommon = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorCommon'),
     EditorComment = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorComment'),
     EditorMarkAndGrade = require('../blocks/core/ff_module/ff_module-task-event-editor/_src/EditorMarkAndGrade'),
@@ -66,12 +64,10 @@ var events = [{
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.addFile,
-    erroredSend: true,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.addFile,
-    erroredSave: true,
     sent: new Date(dStrings[1]),
     author: { name: 'Terry Teacher' }
 }].map(function(event) {
@@ -79,6 +75,15 @@ var events = [{
         description: event,
         state: {}
     };
+}).concat({
+    description: {
+        type: eventTypes.confirmStudentIsExcused,
+        sent: new Date(dStrings[2]),
+        author: { name: 'Terry Teacher' }
+    },
+    state: {
+        error: true
+    }
 });
 
 
@@ -100,7 +105,7 @@ var modelKeys = {
 };
 
 // so different model string values can be used if required
-var models = Object.keys(modelKeys).reduce(function(memo, key){
+var models = Object.keys(modelKeys).reduce(function(memo, key) {
     memo[modelKeys[key]] = modelKeys[key];
     return memo;
 }, {});
@@ -158,38 +163,100 @@ types[eventTypes.requestResubmission] = [EditorBase, EditorCommon];
 types[eventTypes.confirmTaskIsComplete] = [EditorBase, EditorCommon];
 types[eventTypes.confirmStudentIsExcused] = [EditorBase, EditorCommon];
 types[eventTypes.comment] = [EditorBase, EditorComment];
-types[eventTypes.markAndGrade] = [EditorBase, EditorMarkAndGrade];
+types[eventTypes.markAndGrade] = [EditorMarkAndGrade, EditorBase];
 
 types[eventTypes.addFile] = [EditorBase, EditorAddFile];
-types[eventTypes.deleteResponse] = [EditorBaseMini, ContainerDialog];
-types[eventStates.erroredSend] = [EditorBaseMini, ContainerDialog];
-types[eventStates.erroredSave] = [EditorBaseMini, ContainerDialog];
+types[eventTypes.deleteResponse] = [EditorBase, ContainerDialog];
+types[eventStates.error] = [EditorBase, ContainerDialog];
+
+var buttonClasses = {};
+buttonClasses[eventTypes.stampResponseAsSeen] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend'],
+    [1, 'ff_module-button ff_module-button--primary', 'onNext']
+];
+buttonClasses[eventTypes.requestResubmission] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.confirmTaskIsComplete] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.confirmStudentIsExcused] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.comment] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.markAndGrade] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend'],
+    [1, 'ff_module-button ff_module-button--primary', 'onNext']
+];
+buttonClasses[eventTypes.addFile] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend']
+];
+buttonClasses[eventTypes.deleteResponse] = [
+    [0, 'ff_module-button ff_module-button--danger', 'onSend'],
+    [0, 'ff_module-button ff_module-button--tertiary', 'onClose']
+];
+buttonClasses[eventStates.error] = [
+    [0, 'ff_module-button ff_module-button--primary', 'onSend'],
+    [0, 'ff_module-button ff_module-button--tertiary', 'onClose']
+];
+
+function getStore(event) {
+    return createStore(combineReducers({
+        event: modelReducer('event', event),
+        eventForm: formReducer('event', event)
+    }));
+}
+
+function getMapStateToProps(spies) {
+    return function mapStateToProps(state) {
+        return {
+            event: state.event,
+            eventForm: state.eventForm,
+            validation: validation,
+            models: models,
+            onSend: spies.onSend,
+            onChange: spies.onChange,
+            onClose: spies.onClose,
+            onNext: spies.onNext
+        };
+    };
+}
+
+function getProvidedForm(store, mapStateToProps) {
+    var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
+    return (
+        <Provider store={store}>
+            <ConnectedEditForm />
+        </Provider>
+    );
+}
+
+function getTypeName(event) {
+    var typeName = event.description.type;
+    if (event.state.error) typeName = eventStates.error;
+    return typeName;
+}
+
+function getSpies() {
+    return {
+        onSend: sinon.spy(),
+        onChange: sinon.spy(),
+        onClose: sinon.spy(),
+        onNext: sinon.spy()
+    }
+}
 
 describe('TaskEventEditor', function() {
 
     it('should render', function() {
 
-        var store = createStore(combineReducers({
-            event: modelReducer('event', events[0]),
-            eventForm: formReducer('event', events[0])
-        }));
+        var store = getStore(events[0]);
 
-        function mapStateToProps(state) {
-            return {
-                event: state.event,
-                eventForm: state.eventForm,
-                validation: validation,
-                models: models,
-                onSend: sinon.spy(),
-                onChange: sinon.spy(),
-                onClose: sinon.spy(),
-            };
-        }
+        var mapStateToProps = getMapStateToProps(getSpies());
 
-        var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
-        var ProvidedForm = <Provider store={store}>
-                    <ConnectedEditForm />
-                </Provider>;
+        var ProvidedForm = getProvidedForm(store, mapStateToProps);
 
         var component = TestUtils.renderIntoDocument(ProvidedForm);
         expect(component).to.exist;
@@ -198,33 +265,14 @@ describe('TaskEventEditor', function() {
     it('should render correct views for each event type', function() {
         events.forEach(function(event) {
 
-            var store = createStore(combineReducers({
-                event: modelReducer('event', event),
-                eventForm: formReducer('event', event)
-            }));
+            var store = getStore(event);
 
-            function mapStateToProps(state) {
-                return {
-                    event: state.event,
-                    eventForm: state.eventForm,
-                    validation: validation,
-                    models: models,
-                    onSend: sinon.spy(),
-                    onChange: sinon.spy(),
-                    onClose: sinon.spy(),
-                };
-            }
+            var mapStateToProps = getMapStateToProps(getSpies());
 
-            var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
-            var ProvidedForm = <Provider store={store}>
-                    <ConnectedEditForm />
-                </Provider>;
+            var ProvidedForm = getProvidedForm(store, mapStateToProps);
 
             var component = TestUtils.renderIntoDocument(ProvidedForm);
-            var typeName = event.description.type;
-
-            if (event.erroredSave) typeName = eventStates.erroredSave;
-            else if (event.erroredSend) typeName = eventStates.erroredSend;
+            var typeName = getTypeName(event);
 
             var rootView = TestUtils.findRenderedComponentWithType(component, types[typeName][0]);
             expect(rootView).to.exist;
@@ -234,5 +282,44 @@ describe('TaskEventEditor', function() {
         });
     });
 
+    it('should fire correct handlers', function() {
+        events.forEach(function(event) {
 
+            var store = getStore(event);
+
+            var spies = getSpies();
+            var mapStateToProps = getMapStateToProps(spies);
+
+            var ProvidedForm = getProvidedForm(store, mapStateToProps);
+
+            var component = TestUtils.renderIntoDocument(ProvidedForm);
+            var typeName = getTypeName(event);
+
+            var topCloseBtn = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_container-dialog__close-top');
+            expect(topCloseBtn).to.exist;
+            TestUtils.Simulate.click(topCloseBtn);
+            expect(spies.onClose.calledOnce).to.equal(true);
+
+            var classes = buttonClasses[typeName];
+            classes.forEach(function(classDef) {
+                var index = classDef[0],
+                    className = classDef[1],
+                    spyName = classDef[2],
+                    spy = spies[spyName];
+
+                var buttonList = TestUtils.scryRenderedDOMComponentsWithClass(component, className);
+                var button = buttonList[index];
+                expect(button).to.exist;
+
+                TestUtils.Simulate.click(button);
+
+                if (spyName === 'onClose') {
+                    expect(spy.calledTwice).to.equal(true);
+                } else {
+                    expect(spy.calledOnce).to.equal(true);
+                }
+
+            })
+        });
+    });
 });

@@ -13,16 +13,17 @@ module.exports = React.createClass({
     displayName: 'EditorComment',
     render: function(){
 
-        var commentModel = this.props.models && this.props.models['message'] || null,
-            commentValidation = this.props.validation && this.props.validation['message'] || null;
+        var commentModel = this.props.models && this.props.models['comment'] || null,
+            commentValidation = this.props.validation && this.props.validation['comment'] || null;
 
         return (
             <div>
                 <ContainerFormLine>
-                    <FormField model={commentModel}
+                    <FormField
+                        model={commentModel}
                         validation={commentValidation}
                         >
-                        <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} value={this.props.event.description.message} />
+                        <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} />
                     </FormField>
                 </ContainerFormLine>
                 <ContainerFormErrors>
