@@ -13,7 +13,7 @@ function getOnClick(type) {
 
 var props = [{
     state: {
-        archived: true
+        archived: false
     },
     onEditClick: getOnClick('onEditClick'),
     onDuplicateClick: getOnClick('onDuplicateClick'),
