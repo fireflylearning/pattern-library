@@ -242,6 +242,11 @@
 
 .ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled,
 .ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact-right-widelist.ff_module-dropdown-button__icon--is-enabled,
 .ff_icon-page-down-open-blue { background-image: url('png/ff_icon-page-down-open-blue.png'); background-repeat: no-repeat; }
 
 .ff_module-dropdown-button__icon--is-enabled,
