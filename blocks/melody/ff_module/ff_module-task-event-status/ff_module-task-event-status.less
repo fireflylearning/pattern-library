@@ -4,6 +4,7 @@
 
 .ff_module-task-event-status {
 
+    font-size: .8rem;
     color: @ff_colour_text_quiet;
     vertical-align: top;
     line-height: @base-height;
@@ -11,10 +12,15 @@
     &__icon {
         width: @base-height;
         height: @base-height;
+        top: -0.08rem;
     }
     &__text {
         display: inline-block;
         line-height: @base-height;
+    }
+
+    button&__error-button {
+        font-size: .8rem;
     }
 }
 
