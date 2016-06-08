@@ -2,12 +2,12 @@
 
 var React = require('react');
 
-var TaskOverview = function TaskOverview(props) {
+var ContainerTaskOverview = function ContainerTaskOverview(props) {
     return (
-        <div className="ff_module-task-overview">
+        <div className="ff_container-task-overview">
             {props.children}
         </div>
     );
 }
 
-module.exports = TaskOverview;
+module.exports = ContainerTaskOverview;

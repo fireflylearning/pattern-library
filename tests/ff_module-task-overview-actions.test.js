@@ -1,7 +1,6 @@
 'use strict';
 
-var React = require('react'),
-    _ = require('underscore');
+var React = require('react');
 
 var TestUtils = require('react-addons-test-utils'),
     expect = require('chai').expect,
@@ -37,7 +36,7 @@ function clickButtons(root) {
 }
 
 function testSpy(props, propsName, key, value) {
-    it('should ' + (value === true ? '' : 'not ') + 'fire ' + key + ' handler for \'' + propsName + '\' props', function() {
+    it('should ' + (value === true ? '' : 'not ') + 'fire ' + key + ' handler in \'' + propsName + '\' state', function() {
         expect(props[key].calledOnce).to.equal(value);
     });
 }
