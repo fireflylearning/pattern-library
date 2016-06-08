@@ -66,9 +66,15 @@ module.exports = React.createClass({
             numRecipientsAffected: React.PropTypes.number,
         }),
         state: React.PropTypes.object,
-        filters: React.PropTypes.instanceOf(DropdownFilters),
-        singleButtons: React.PropTypes.arrayOf(React.PropTypes.instanceOf(Button)),
-        groupedActions: React.PropTypes.instanceOf(DropdownButton)
+        filters: React.PropTypes.shape({
+            type: React.PropTypes.oneOf([DropdownFilters])
+        }),
+        singleButtons: React.PropTypes.arrayOf(React.PropTypes.shape({
+            type: React.PropTypes.oneOf([Button])
+        })),
+        groupedActions: React.PropTypes.shape({
+            type: React.PropTypes.oneOf([DropdownButton])
+        })
     },
     render: function() {
         return getRenderMethod(this.props);

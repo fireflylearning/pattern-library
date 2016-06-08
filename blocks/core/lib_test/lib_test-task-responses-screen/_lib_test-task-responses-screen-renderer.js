@@ -19,83 +19,97 @@ var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
 
-var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
+var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'],
+    dStrings2 = [
+        '7 Dec 2015 18:45',     // 0
+        '7 Dec 2015 18:45:10',  // 1
+        '7 Dec 2015 18:45:15',  // 2
+        '12 March 2016 20:40',  // 3
+        '12 March 2016 21:47',  // 4
+        '13 March 2016 20:40',  // 5
+        '13 March 2016 21:47',  // 6
+        '14 March 2016 20:40',  // 7
+        '14 March 2016 21:47'   // 8
+    ];
 
 
 var events = [{
     type: eventTypes.setTask,
-    localEventId: '2',
+    localEventId: '2g',
     pending: true,
-    sent: '14 March, 20:40',
-    author: { name: 'Sally Student' },
+    sent: new Date(dStrings2[7]),
+    author: { name: 'Sally Student '+dStrings2[7] },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
-    localEventId: '3',
-    sent: '14 March, 21:47',
-    author: { name: 'Terry Teacher' }
+    localEventId: '3g',
+    sent: new Date(dStrings2[8]),
+    author: { name: 'Terry Teacher '+dStrings2[8] }
 }, {
     type: eventTypes.comment,
-    localEventId: '1',
-    sent: 'Mon 7 Dec, 18:45:15',
-    author: { name: 'Sally Student' },
+    localEventId: '1g',
+    sent: new Date(dStrings2[2]),
+    author: { name: 'Sally Student '+dStrings2[2] },
     message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (15)'
 }, {
     type: eventTypes.setTask,
     localEventId: '2a',
-    sent: '13 March 20:40',
+    sent: new Date(dStrings2[5]),
     error: true,
-    author: { name: 'Sally Student' },
+    author: { name: 'Sally Student '+dStrings2[5] },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.requestResubmission,
     localEventId: '3a',
-    sent: '13 March 21:47',
-    author: { name: 'Terry Teacher' }
+    sent: new Date(dStrings2[6]),
+    author: { name: 'Terry Teacher '+dStrings2[6] }
 }, {
     type: eventTypes.comment,
     localEventId: '1a',
-    sent: 'Mon 7 Dec, 18:45',
-    author: { name: 'Sally Student' },
+    sent: new Date(dStrings2[0]),
+    author: { name: 'Sally Student '+dStrings2[0] },
     message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (0)'
 }, {
     type: eventTypes.setTask,
     localEventId: '2b',
-    sent: '12 March 20:40',
-    author: { name: 'Sally Student' },
+    sent: new Date(dStrings2[3]),
+    author: { name: 'Sally Student '+dStrings2[3] },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
     localEventId: '3b',
-    sent: '12 March 21:47',
-    author: { name: 'Terry Teacher' }
+    sent: new Date(dStrings2[4]),
+    author: { name: 'Terry Teacher '+dStrings2[4] }
 }, {
     type: eventTypes.comment,
     localEventId: '1b',
-    sent: 'Mon 7 Dec, 18:45:10',
-    author: { name: 'Sally Student' },
+    sent: new Date(dStrings2[1]),
+    author: { name: 'Sally Student '+dStrings2[1] },
     message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (10)'
 }, {
     type: eventTypes.deleteResponse,
     localEventId: '4a',
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher '+dStrings[0] }
 }, {
     type: eventTypes.confirmStudentIsUnexcused,
     localEventId: '4b',
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher' }
+    author: { name: 'Terry Teacher '+dStrings[1] }
 }, {
     type: eventTypes.addFile,
     localEventId: '4c',
     sent: new Date(dStrings[2]),
-    author: { name: 'Sally Student' },
+    author: { name: 'Sally Student '+ dStrings[2]},
     files: [{
         title: 'File one',
         href: '#'
     }]
 }].map(function(description) {
+    var localEventId = description.localEventId;
+    delete description.localEventId;
     return {
+        localEventId: localEventId,
         description: description,
         actions: [{
             key: 'edit',
@@ -105,9 +119,25 @@ var events = [{
             key: 'delete',
             text: 'Delete',
             onClick: function() { console.log('delete'); }
-        }]
+        }],
+        state:{
+            released: true
+        }
     };
 });
+
+var eventGroups = [
+    [events[1], events[0]],
+    [events[2]],
+    [events[3], events[4], events[5]],
+    [events[6], events[7]],
+    [events[8]],
+    [events[9], events[10], events[11]],
+    [events[5], events[8], events[2]],
+    [events[2], events[5], events[8]] // this one should work out to dupe of prev after sorting, so not render
+];
+
+
 
 var recipientData = [{
     onSelect: function() {
@@ -261,7 +291,7 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 
 
 var overlayInner = React.createElement(TaskResponses, {
-        events: events,
+        eventGroups: eventGroups,
         // editingEvent: events[4],
         editEvent: function(event) {
             console.log('editEvent');

@@ -5,9 +5,9 @@
     - `numRecipientsAffected`: Number
 - **`state`**  {Object}: 
     - `archived`: {String}
-- **`filters`** {Object}: See `DropdownFilters` Component props
+- **`filters`** {DropdownFilters}: See `DropdownFilters` Component props
 - **`singleActions`** {Array}: Array of `Button` props 
-- **`groupedActions`** {Object}: See `DropdownButton` Component props
+- **`groupedActions`** {DropdownButton}: See `DropdownButton` Component props
 
 ### Valid states:
 

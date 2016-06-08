@@ -142,10 +142,15 @@ module.exports = function() {
                                                     eventState[deleteState] = true;
                                                     eventState[serverState] = true;
                                                     eventState[releaseState] = true;
-
-                                                    return  <li key={serverState+'-'+eventDescription.type+'-'+editState+'-'+deleteState+'-'+releaseState}>
+                                                    var localEventId = eventDescription.type+'-'+serverState+editState+deleteState+releaseState;
+                                                    return  <li key={'li-'+localEventId}>
                                                                 <pre>Response event: <b>{eventDescription.type}</b></pre>
-                                                                <TaskEvent description={eventDescription} actions={actions} state={eventState} onRetryAfterStatusError={retryAfterStatusError} />
+                                                                <TaskEvent key={''+eventDescription.type+'-'+serverState+editState+deleteState+releaseState}
+                                                                    localEventId={localEventId}
+                                                                    description={eventDescription}
+                                                                    actions={actions}
+                                                                    state={eventState}
+                                                                    onRetryAfterStatusError={retryAfterStatusError} />
                                                             </li>
                                                 })}
                                             </ul>
