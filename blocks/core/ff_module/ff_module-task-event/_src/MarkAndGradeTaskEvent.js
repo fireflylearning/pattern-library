@@ -77,7 +77,7 @@ function getMarkAndGrade(props) {
 
     var mark = markText ? <span className="ff_module-task-event__mark">{markText}</span> : null,
         grade = gradeText ? <span className="ff_module-task-event__grade">{gradeText}</span> : null,
-        sep = (markText && gradeText) ? ', ' : '';
+        sep = (markText && gradeText) ? ' ' : '';
 
     return (mark || grade) ? <p className="ff_module-task-event__mark-and-grade">{mark}{sep}{grade}</p> : null;
 }
