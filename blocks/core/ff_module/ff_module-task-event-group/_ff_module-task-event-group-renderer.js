@@ -8,6 +8,7 @@ var eventTypes = require('../ff_module-task-event/_src/events').types;
 
 var groups = [
     [{
+        localEventId: 'event-01',
         description: {
             type: eventTypes.setTask,
             sent: new Date(dStrings[2]),
@@ -29,6 +30,7 @@ var groups = [
         }
 
     }, {
+        localEventId: 'event-02',
         description: {
             type: eventTypes.sendReminder,
             sent: new Date(dStrings[2]),
@@ -41,6 +43,7 @@ var groups = [
 
     }],
     [{
+        localEventId: 'event-03',
         description: {
             type: eventTypes.comment,
             sent: new Date(dStrings[2]),
@@ -62,6 +65,7 @@ var groups = [
 
     }],
     [{
+        localEventId: 'event-04',
         description: {
             type: eventTypes.comment,
             sent: new Date(dStrings[2]),
@@ -83,6 +87,7 @@ var groups = [
 
     }],
     [{
+        localEventId: 'event-05',
         description: {
             type: eventTypes.setTask,
             sent: new Date(dStrings[2]),
@@ -100,10 +105,11 @@ var groups = [
             onClick: function() { console.log('delete'); }
         }],
         state: {
-            // deleted: true
+            pending: true
         }
 
     }, {
+        localEventId: 'event-06',
         description: {
             type: eventTypes.sendReminder,
             sent: new Date(dStrings[2]),
@@ -115,6 +121,7 @@ var groups = [
         }
 
     }, {
+        localEventId: 'event-07',
         description: {
             type: eventTypes.comment,
             sent: new Date(dStrings[2]),

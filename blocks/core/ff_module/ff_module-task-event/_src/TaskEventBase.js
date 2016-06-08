@@ -22,13 +22,13 @@ function renderActions(props) {
     var list = props.actions;
     var isDisabled = !canEdit(props.state);
     if (list && list.length) {
-        return <DropDownButton text="..." list={list} isDisabled={isDisabled} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
+        return <DropDownButton key="actions" text="..." list={list} isDisabled={isDisabled} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
     }
     return null;
 }
 
 function renderStatus(props) {
-    return <TaskEventStatus type={props.description.type} state={props.state || {}} onError={props.onRetryAfterStatusError || function(){}} classes='ff_module-task-event__status'/>
+    return <TaskEventStatus key="status" type={props.description.type} state={props.state || {}} onError={props.onRetryAfterStatusError || function(){}} classes='ff_module-task-event__status'/>
 }
 
 module.exports = React.createClass({

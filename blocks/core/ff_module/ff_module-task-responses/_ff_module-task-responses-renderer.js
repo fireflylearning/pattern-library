@@ -54,10 +54,19 @@ var events = [{
             key: 'delete',
             text: 'Delete',
             onClick: function() { console.log('delete'); }
-        }]
+        }],
+        state: {
+            released: true
+        }
     };
 });
 
+var eventGroups = [
+    [events[1], events[0]],
+    [events[2]],
+    [events[4], events[1], events[2]],
+    [events[5], events[2], events[3]]
+];
 
 
 var modelKeys = {
@@ -124,13 +133,13 @@ validation[modelKeys.message] = {
 
 
 var store = createStore(combineReducers({
-    editingEvent: modelReducer('editingEvent', events[5]),
-    editingEventForm: formReducer('editingEvent', events[5])
+    editingEvent: modelReducer('editingEvent', eventGroups[5]),
+    editingEventForm: formReducer('editingEvent', eventGroups[5])
 }));
 
 function mapStateToProps(state) {
     return {
-        events: events,
+        eventGroups: eventGroups,
 
         editingEvent: state.editingEvent,
 

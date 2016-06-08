@@ -1,17 +1,29 @@
 'use strict';
 
-var React = require('react');
-var dateFormatting = require('../../_lib/_ui/dateFormatting')();
-var ensureIsDate = require('../../_lib/_ui/date-utils').ensureIsDate;
-var TaskEvent = require('../ff_module-task-event/ff_module-task-event');
+var React = require('react'),
+    _ = require('underscore');
 
-var formatDate = require('../ff_module-task-event/_src/utils').formatDate;
-var generateClass = require('../ff_module-task-event/_src/utils').generateClass;
+var ensureIsDate = require('../../_lib/_ui/date-utils').ensureIsDate,
+    TaskEvent = require('../ff_module-task-event/ff_module-task-event');
+
+var formatDate = require('../ff_module-task-event/_src/utils').formatDate,
+    generateClass = require('../ff_module-task-event/_src/utils').generateClass;
+
+function getEventsInOrder(events) {
+    events = events || [];
+    if (_.isArray(events)) {
+        events = events.sort(function(a, b) {
+            // Reverse chronological order
+            return ensureIsDate(b.description.sent) - ensureIsDate(a.description.sent);
+        });
+    }
+    return events;
+}
 
 module.exports = React.createClass({
     displayName: 'TaskEventGroup',
     propTypes: {
-        events: React.PropTypes.array.isRequired
+        events: React.PropTypes.arrayOf(React.PropTypes.shape(TaskEvent.PropTypes)).isRequired
     },
     render: function() {
 
@@ -24,9 +36,14 @@ module.exports = React.createClass({
         return (
             <div className={className}>
                 <time className="ff_module-task-event-group__sent">{formatDate(date)}</time>
-                {this.props.events.map((event, index)=> <TaskEvent {...event} key={'event'+index}/> )}
+                {this.getEvents().map((event, index)=> <TaskEvent {...event} key={event.localEventId}/> )}
             </div>
         );
 
+    },
+    getEvents: function getEvents() {
+        return getEventsInOrder(this.props.events);
     }
 });
+
+module.exports.getEventsInOrder = getEventsInOrder;
