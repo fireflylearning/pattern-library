@@ -12,37 +12,61 @@ var eventTypes = require('../ff_module-task-event/_src/events').types,
     presentationStates = require('./_src/presentationStates').presentationStates,
     stateClasses = require('./_src/presentationStates').stateClasses;
 
-var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
+var transitionDelay = 3000,
+    transitionEnterTimeout = 1500,
+    transitionLeaveTimeout = 1500;
 
-function getTryAgainText(text, props, showButton) {
-    var onErrorHandler = props.onError || function(){},
-        tryAgainButton = showButton ? <span> <Button text='Try again.' modifier='link' classes='ff_module-task-event-status__error-button' onClick={onErrorHandler} /></span> : null;
+var textValues = {
+    sending: 'Sending',
+    sent: 'Sent',
+    saving: 'Saving',
+    saved: 'Saved',
+    deleting: 'Deleting',
+    editDidntSave: 'Your edit didn\'t save.',
+    editDidntSend: 'Your edit didn\'t send.',
+    responseDidntSave: 'Your response didn\'t save.',
+    responseDidntSend: 'Your response didn\'t send.',
+    responseDidntDelete: 'Your response didn\'t delete.',
+    readyToSend: 'Ready to Send'
+}
 
-    return <span className='ff_module-task-event-status__text'>{text}{tryAgainButton}</span>;
+var TryAgainButton = function TryAgainButton(props) {
+    return (
+        <span> <Button text='Try again.' modifier='link' classes='ff_module-task-event-status__error-button' onClick={props.onError} /></span>
+    );
+}
+
+var TryAgainText = function TryAgainText(props) {
+    return (
+        <span className='ff_module-task-event-status__text'>
+            {props.children}
+        </span>
+    )
 }
 
 function getStatusMessage(props, presentationState) {
+    var tryAgainButton = <TryAgainButton onError={props.onError} />;
 
     var messages = {};
     messages[presentationStates.default] = '';
 
-    messages[presentationStates.pendingSend]   = getTryAgainText('Sending', props);
-    messages[presentationStates.sent]          = getTryAgainText('Sent', props);
-    messages[presentationStates.erroredSend]   = getTryAgainText('Your response didn\'t send.', props, true);
+    messages[presentationStates.pendingSend]   = <TryAgainText>{textValues.sending}</TryAgainText>;
+    messages[presentationStates.sent]          = <TryAgainText>{textValues.sent}</TryAgainText>;
+    messages[presentationStates.erroredSend]   = <TryAgainText>{textValues.responseDidntSend}{tryAgainButton}</TryAgainText>;
 
-    messages[presentationStates.pendingSave]   = getTryAgainText('Saving', props);
-    messages[presentationStates.saved]         = getTryAgainText('Saved', props);
-    messages[presentationStates.erroredSave]   = getTryAgainText('Your response didn\'t save.', props, true);
+    messages[presentationStates.pendingSave]   = <TryAgainText>{textValues.saving}</TryAgainText>;
+    messages[presentationStates.saved]         = <TryAgainText>{textValues.saved}</TryAgainText>;
+    messages[presentationStates.erroredSave]   = <TryAgainText>{textValues.responseDidntSave}{tryAgainButton}</TryAgainText>;
 
-    messages[presentationStates.pendingEdit]           = getTryAgainText('Saving', props);
-    messages[presentationStates.pendingEditReleased]   = getTryAgainText('Sending', props);
-    messages[presentationStates.erroredEdit]           = getTryAgainText('Your edit didn\'t save.', props, true);
-    messages[presentationStates.erroredEditReleased]   = getTryAgainText('Your edit didn\'t send.', props, true);
+    messages[presentationStates.pendingEdit]           = <TryAgainText>{textValues.saving}</TryAgainText>;
+    messages[presentationStates.pendingEditReleased]   = <TryAgainText>{textValues.sending}</TryAgainText>;
+    messages[presentationStates.erroredEdit]           = <TryAgainText>{textValues.editDidntSave}{tryAgainButton}</TryAgainText>;
+    messages[presentationStates.erroredEditReleased]   = <TryAgainText>{textValues.editDidntSend}{tryAgainButton}</TryAgainText>;
 
-    messages[presentationStates.pendingDelete] = getTryAgainText('Deleting', props);
-    messages[presentationStates.erroredDelete] = getTryAgainText('Your response didn\'t delete.', props, true);
+    messages[presentationStates.pendingDelete] = <TryAgainText>{textValues.deleting}</TryAgainText>;
+    messages[presentationStates.erroredDelete] = <TryAgainText>{textValues.responseDidntDelete}{tryAgainButton}</TryAgainText>;
 
-    messages[presentationStates.unreleased]    = getTryAgainText('Ready to Send', props);
+    messages[presentationStates.unreleased]    = <TryAgainText>{textValues.readyToSend}</TryAgainText>;
 
     return messages[presentationState] || '';
 }
@@ -208,6 +232,7 @@ function getIconClass(base, props, presentationState) {
         case presentationStates.erroredSave:
         case presentationStates.erroredSend:
         case presentationStates.erroredEdit:
+        case presentationStates.erroredDelete:
         case presentationStates.erroredEditReleased:
             classNames = ['ff_icon','ff_icon-response-errored'].concat(classSuffix);
             break;
@@ -280,7 +305,7 @@ module.exports = React.createClass({
             self.setState({
                 transientDisplayStatesActive: false
             });
-        }, 5000);
+        }, transitionDelay);
 
         this.setState({
             transitionTimeout: transitionTimeout
@@ -295,7 +320,7 @@ module.exports = React.createClass({
 
         var items = [<StatusItem key={presentationState} presentationState={presentationState} containerClass={containerClass} icon={icon} statusMessage={statusMessage} />];
 
-        return <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1000} transitionLeaveTimeout={1000} component='div' className={getWrapperClass(baseClassName, this.props, presentationState)}>
+        return <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={transitionEnterTimeout} transitionLeaveTimeout={transitionLeaveTimeout} component='div' className={getWrapperClass(baseClassName, this.props, presentationState)}>
                     {items}
                 </ReactCSSTransitionGroup>;
 
