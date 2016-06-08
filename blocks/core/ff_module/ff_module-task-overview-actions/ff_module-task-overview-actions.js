@@ -64,7 +64,7 @@ module.exports = React.createClass({
 
         var dropDownActionList = getList(this.props);
         return (
-            <ContainerControlBar modifier= "split">
+            <ContainerControlBar modifier="split" classes="ff_module-task-overview-actions">
                 <ContainerControlBarSet>
                     {editButton}
                     <Button modifier="tertiary" text={duplicateBtnProps.text} key={duplicateBtnProps.key} onClick={this.props.onDuplicateClick} />
