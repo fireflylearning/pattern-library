@@ -182,7 +182,7 @@ var testDefs = {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
         var expected = '';
         if (props.event) {
-            expected = statusSummaryText(props.event) + " " + dateFormatting.niceDate(props.event.description.sent);
+            expected = statusSummaryText(props.event) + " " + dateFormatting.niceDate(props.event.description.sent).toLowerCase();
         }
         expect(node.textContent).to.equal(expected);
     },
