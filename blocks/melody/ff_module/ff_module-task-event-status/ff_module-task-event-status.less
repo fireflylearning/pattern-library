@@ -1,19 +1,28 @@
+@base-height: 1.25rem;
+@visible: 1;
+@invisible: 0.01;
+@text-size-base: 12;
+@text-size: unit(@text-size-base/@ff_base, rem);
+
 .ff_module-task-event-status {
 
+    font-size: @text-size;
     color: @ff_colour_text_quiet;
-    background-color: lighten(@ff_colour_control_bg, 7%);
-    border-radius: 0.5*@ff_size_control_rounding;
-    border: 1px solid lighten(@ff_colour_control_border, 7%);
-    padding: @ff_size_spacing_min*0.1 @ff_size_spacing_min*0.75 @ff_size_spacing_min*0.15;
-
+    vertical-align: top;
+    line-height: @base-height;
 
     &__icon {
-        width: 1.4em;
-        height: 1.4em;
-        margin: -.4em .2em -.4em -.3em;
+        width: @base-height;
+        height: @base-height;
+        top: unit(-2/@ff_base, rem);
     }
-    &__content {
+    &__text {
         display: inline-block;
+        line-height: @base-height;
+    }
+
+    button&__error-button {
+        font-size: @text-size;
     }
 }
 
@@ -30,7 +39,8 @@
 .ff_module-task-event-status {
 
     &__transition-wrapper {
-        max-height: 2rem;
+        max-height: @base-height;
+        line-height: @base-height;
     }
     &__transition-wrapper--is-default {
         transition: max-height 1s;
@@ -48,25 +58,24 @@
         display: none;
     }
 
+    // note: class changes are controlled by js
+    // so full transition duration is 1.5s
     &.transition-enter {
         position: absolute;
-        opacity: 0.1;
-        transition: transform 1s, opacity 1s;
-        transform: scaleX(0);
+        opacity: @invisible;
+        transition: opacity 0.5s;
     }
     &.transition-enter.transition-enter-active {
-        transform: scaleX(1);
-        opacity: 1;
+        opacity: @visible;
+        transition-delay: 0.75s;
     }
 
     &.transition-leave {
-        opacity: 1;
-        transition: transform 1s, opacity 1s;
-        transform: scaleX(1);
+        opacity: @visible;
+        transition: opacity 0.5s;
     }
     &.transition-leave.transition-leave-active {
-        transform: scaleX(0);
-        opacity: 0.1;
+        opacity: @invisible;
     }
 
     &--is-default.transition-enter,
@@ -92,6 +101,6 @@
     &__icon.ff_icon.ff_icon-response-errored {
         width: 1em;
         height: 1em;
-        margin: -.5em .4em -.4em -.1em;
+        margin-right: .4rem;
     }
 }
