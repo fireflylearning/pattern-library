@@ -37,8 +37,12 @@ module.exports = {
                 '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open'],
             'ff_icon-page-down-open-blue': [
                 '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled',
-                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled'],
-
+                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary-right.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary-compact.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary-compact-right.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary-compact-right-widelist.ff_module-dropdown-button__icon--is-enabled'],
             'ff_icon-response-edit-darkgrey': [
                 '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt',
                 '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled'
@@ -54,8 +58,12 @@ module.exports = {
                 '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open'],
             'ff_icon-page-down-open-blue': [
                 '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled',
-                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled'],
-
+                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary-right.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary-compact.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary-compact-right.ff_module-dropdown-button__icon--is-enabled',
+                '.ff_module-dropdown-button__icon--tertiary-compact-right-widelist.ff_module-dropdown-button__icon--is-enabled'],
             'ff_icon-response-edit-darkgrey': [
                 '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt',
                 '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled'
@@ -66,13 +74,6 @@ module.exports = {
         nautilus: {
             'ff_icon-page-up-open-blue': ['.ff_module-dropdown-button__icon--is-open'],
             'ff_icon-page-down-open-blue': ['.ff_module-dropdown-button__icon--is-enabled'],
-            'ff_icon-page-up-open-blue': [
-                '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-open',
-                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open'],
-            'ff_icon-page-down-open-blue': [
-                '.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled',
-                '.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled'],
-
             'ff_icon-response-edit-darkgrey': [
                 '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt',
                 '.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled'

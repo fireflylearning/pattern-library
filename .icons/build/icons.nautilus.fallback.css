@@ -240,8 +240,7 @@
 
 .ff_icon-page-down-blue { background-image: url('png/ff_icon-page-down-blue.png'); background-repeat: no-repeat; }
 
-.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled,
-.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--is-enabled,
 .ff_icon-page-down-open-blue { background-image: url('png/ff_icon-page-down-open-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-down-open-white { background-image: url('png/ff_icon-page-down-open-white.png'); background-repeat: no-repeat; }
@@ -260,8 +259,7 @@
 
 .ff_icon-page-forward { background-image: url('png/ff_icon-page-forward.png'); background-repeat: no-repeat; }
 
-.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-open,
-.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open,
+.ff_module-dropdown-button__icon--is-open,
 .ff_icon-page-up-open-blue { background-image: url('png/ff_icon-page-up-open-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-up-open-white { background-image: url('png/ff_icon-page-up-open-white.png'); background-repeat: no-repeat; }

@@ -25,6 +25,7 @@ See [the variations page](/tests/dropdown-buttons.html) for examples.
 
 - **block**: Button will take up full width of page.
 - **primary**: Button will take on standard primary button styling.
+- **tertiary**: Button will take on standard tertiary button styling.
 - **right**: Button's children will align right.
 - **compact**: Compact style
 - **widelist**: Instead of taking the width of the button, the list will take on a set wide width.
@@ -34,6 +35,13 @@ See [the variations page](/tests/dropdown-buttons.html) for examples.
 - **primary-compact**: Combines compact and primary (above)
 - **primary-compact-right**: Combines compact, primary, and right (above)
 - **primary-compact-right-widelist**
+
+- **teritary-right**: Button will take on standard primary button styling and children will align right.
+
+- **teritary-compact**: Combines compact and primary (above)
+- **teritary-compact-right**: Combines compact, primary, and right (above)
+- **teritary-compact-right-widelist**
+
 - **compact-widelist**
 - **compact-right-widelist**
 

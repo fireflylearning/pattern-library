@@ -242,6 +242,11 @@
 
 .ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled,
 .ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact-right-widelist.ff_module-dropdown-button__icon--is-enabled,
 .ff_icon-page-down-open-blue { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAMFBMVEUAAAAAAP8ofc8qf84qfs8of80nf84qfs8pf88nf80ofc0pf88nfc0pf88pfc0pf88WhKWuAAAAD3RSTlMAAVFUVVhaW+bo6ezt/P3k5gzoAAAAYElEQVQoz2NgGNqAUQBBgoHPFhAZswmu4Py/AAYG9vc/4QL7/z9lYMj7/wOuxe//vwC29/8vwQVY3/9/mvf/rwPCmrj//97/v4JkL1AJigKQEhQFICWoChgYrCYNufAFAMZpJaOLVD2XAAAAAElFTkSuQmCC'); background-repeat: no-repeat; }
 
 .ff_module-dropdown-button__icon--is-enabled,

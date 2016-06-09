@@ -61,3 +61,11 @@ exports.setupGetElementsByClass = function setupGetElementsByClass(React, TestUt
         return TestUtils.scryRenderedDOMComponentsWithClass(component, className);
     };
 };
+
+exports.wrapStatelessComponent = function wrap(React, statelessComponent) {
+  return React.createClass({
+    render: function() {
+      return statelessComponent(this.props);
+    }
+  });
+}
