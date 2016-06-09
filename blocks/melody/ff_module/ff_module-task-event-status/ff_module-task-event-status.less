@@ -1,7 +1,7 @@
 @base-height: 1.25rem;
 @visible: 1;
 @invisible: 0.01;
-@text-size-base: 12.8;
+@text-size-base: 12;
 @text-size: unit(@text-size-base/@ff_base, rem);
 
 .ff_module-task-event-status {
@@ -14,7 +14,7 @@
     &__icon {
         width: @base-height;
         height: @base-height;
-        top: -0.08rem;
+        top: unit(-2/@ff_base, rem);
     }
     &__text {
         display: inline-block;
