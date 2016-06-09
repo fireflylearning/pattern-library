@@ -1,10 +1,12 @@
 @base-height: 1.25rem;
 @visible: 1;
 @invisible: 0.01;
+@text-size-base: 12.8;
+@text-size: unit(@text-size-base/@ff_base, rem);
 
 .ff_module-task-event-status {
 
-    font-size: .8rem;
+    font-size: @text-size;
     color: @ff_colour_text_quiet;
     vertical-align: top;
     line-height: @base-height;
@@ -20,7 +22,7 @@
     }
 
     button&__error-button {
-        font-size: .8rem;
+        font-size: @text-size;
     }
 }
 
