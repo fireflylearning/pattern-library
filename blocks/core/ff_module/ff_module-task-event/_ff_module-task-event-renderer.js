@@ -64,10 +64,13 @@ var events = [{
 }, {
     localEventId: '015a',
     description: {
-        type: eventTypes.comment,
+        type: eventTypes.markAndGrade,
         sent: new Date(dStrings[2]),
         author: { name: 'Terry Teacher' },
-        message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
+        message: 'Needs improvement',
+        mark: 4,
+        markMax: 10,
+        grade: 'C'
     },
     actions: [{
         key: 'edit',

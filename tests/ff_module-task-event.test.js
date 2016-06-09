@@ -50,7 +50,7 @@ var events = [{
         author: 'Sally MarkAndGrade added a mark and grade:',
         mark: '7/10',
         grade: 'B',
-        markAndGrade: '7/10, B'
+        markAndGrade: '7/10 B'
     }
 }, {
     props: {
