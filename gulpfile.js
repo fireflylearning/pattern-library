@@ -30,7 +30,7 @@ var gulp = require('gulp'),
     utils = require('./src/lib/utils')(gulp, plugins, browserSync, config),
     cssTasks = require('./src/gulp-tasks/compileCSS')(gulp, plugins, config, utils, browserSync),
     reactTemplates = require('./src/gulp-tasks/reactTemplates')(gulp, plugins, config, utils, browserSync),
-    webpackTasks = require('./src/gulp-tasks/webpack')(gulp, plugins, config),
+    webpackTasks = require('./src/gulp-tasks/webpack')(gulp, plugins, config, utils),
     iconTasks = require('./src/gulp-tasks/icons')(gulp, plugins, config, utils),
     assetTasks = require('./src/gulp-tasks/assets')(gulp, plugins, config, utils, browserSync),
     clean = require('./src/gulp-tasks/clean')(gulp, plugins);
@@ -74,7 +74,6 @@ gulp.task('xslt', ['xslt:blocks', 'xslt:pages']);
  */
 gulp.task('export:blocks',
     exportBlocks(paths.blocks.export.src, config.exportPath, './src/templates/export/blocks/main.xsl', 'blocks.xsl'));
-
 
 
 /**
@@ -121,7 +120,8 @@ gulp.task('export:js', ['preexport:js'],
 gulp.task('preexport:js', ['react:templates'],
     webpackTasks.buildExportJs(paths.blocks.dir, './src/templates/export/js/main.js', './.tmp/js'));
 
-
+gulp.task('export:js:raw',
+    webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), paths.export));
 /**
  * Compile React Templates
  */
