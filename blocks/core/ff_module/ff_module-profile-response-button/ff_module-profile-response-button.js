@@ -1,16 +1,11 @@
 'use strict';
 
 var React = require('react');
-var template = require('./_ff_module-profile-response-button.rt.js');
 var eventTypes = require('../ff_module-task-event/_src/events').types,
     dateFormatting = require('../../_lib/_ui/dateFormatting')();
 
-// lastEventWasAuthoredByCurrentUser
-// lastEventWasReleased
-
 module.exports = React.createClass({
     displayName: 'ProfileTaskResponseButton',
-    render: template,
     propTypes: {
         onSelect: React.PropTypes.func.isRequired,
         label: React.PropTypes.string.isRequired,
@@ -21,6 +16,37 @@ module.exports = React.createClass({
         pic_href: React.PropTypes.string.isRequired,
         lastEventWasAuthoredByCurrentUser: React.PropTypes.bool
     },
+    render: function(){
+        var sent = this.props.event && this.props.event.description && this.props.event.description.sent;
+        return (
+            <button
+                type="button"
+                className={this.generateClass('ff_module-profile-response-button')}
+                onClick={this.props.onSelect}>
+
+                <figure className="ff_module-profile-response-button__picture">
+                    <img className="ff_module-profile-response-button__image" src={this.props.pic_href} />
+                </figure>
+
+                <dl className="ff_module-profile-response-button__caption">
+                    <dt className="ff_module-profile-response-button__heading">
+                        {this.props.lastEventWasAuthoredByCurrentUser ?
+                            <span className={this.generateIconClass()}></span> : null}
+                        <span className="ff_module-profile-response-button__label">{this.props.label}</span>
+                    </dt>
+                    <dd className="ff_module-profile-response-button__status" rt-if="this.props.event">
+                        <span className="ff_module-profile-response-button__status-text">{this.renderStatus()}</span>
+                        {sent ?
+                            <time dateTime={sent} className="ff_module-profile-response-button__status-sent"> {this.renderTime()}</time> : null}
+                    </dd>
+                    {this.props.markAndGrade ?
+                        <dd className="ff_module-profile-response-button__mark-and-grade">{this.renderMarkAndGrade()}</dd> : null}
+                </dl>
+            </button>
+
+        );
+    },
+
     generateClass: function(base) {
         var classNames = [],
             props = this.props;
@@ -64,7 +90,7 @@ module.exports = React.createClass({
     renderTime: function(){
         var event = this.props.event;
         if (event && event.description.sent){
-            return dateFormatting.niceDate(event.description.sent);
+            return dateFormatting.niceDate(event.description.sent).toLowerCase();
         } else {
             return '';
         }
