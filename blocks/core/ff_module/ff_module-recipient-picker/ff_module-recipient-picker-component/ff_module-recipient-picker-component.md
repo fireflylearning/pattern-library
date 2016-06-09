@@ -1,4 +1,6 @@
 ---
 data: 
-    dataattr: 'data-ff-recipient-picker'
+    dataattr: 'data-ff_module-recipient-picker-component'
 ---
+
+<div data-ff_module-recipient-picker-component="" />

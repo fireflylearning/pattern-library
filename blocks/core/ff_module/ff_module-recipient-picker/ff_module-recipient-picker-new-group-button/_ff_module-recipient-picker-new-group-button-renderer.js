@@ -14,8 +14,8 @@ module.exports = function() {
 
         var btnEl = document.querySelector('[data-ff-recipient-picker-new-group-button]');
         if (btnEl && picker) {
-            var newGroupButtonComponent = createNewGroupButton(picker, groupService);
-            var newGroupButton = ReactDOM.render(React.createElement(newGroupButtonComponent), btnEl);
+            var NewGroupButtonComponent = createNewGroupButton(picker, groupService);
+            ReactDOM.render(React.createElement(NewGroupButtonComponent), btnEl);
         }
     });
 };
