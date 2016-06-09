@@ -29,7 +29,6 @@ var gulp = require('gulp'),
     browserSync = server.browserSync,
     utils = require('./src/lib/utils')(gulp, plugins, browserSync, config),
     cssTasks = require('./src/gulp-tasks/compileCSS')(gulp, plugins, config, utils, browserSync),
-    reactTemplates = require('./src/gulp-tasks/reactTemplates')(gulp, plugins, config, utils, browserSync),
     webpackTasks = require('./src/gulp-tasks/webpack')(gulp, plugins, config, utils),
     iconTasks = require('./src/gulp-tasks/icons')(gulp, plugins, config, utils),
     assetTasks = require('./src/gulp-tasks/assets')(gulp, plugins, config, utils, browserSync),
@@ -108,7 +107,7 @@ gulp.task('export:less',
  * Compile javascript
  */
 var jsentries;
-gulp.task('js', ['react:templates', 'info'],
+gulp.task('js', ['info'],
     webpackTasks.develop(blockData));
 
 /**
@@ -117,15 +116,11 @@ gulp.task('js', ['react:templates', 'info'],
 gulp.task('export:js', ['preexport:js'],
     webpackTasks.export());
 
-gulp.task('preexport:js', ['react:templates'],
+gulp.task('preexport:js',
     webpackTasks.buildExportJs(paths.blocks.dir, './src/templates/export/js/main.js', './.tmp/js'));
 
 gulp.task('export:js:raw',
     webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), paths.export));
-/**
- * Compile React Templates
- */
-gulp.task('react:templates', reactTemplates(paths.blocks.rt.src, paths.blocks.rt.dest));
 
 
 
@@ -240,7 +235,6 @@ gulp.task('watch:css:blocks', ['css:blocks']);
 gulp.task('watch:css:pages', ['css:pages']);
 gulp.task('watch:js', ['js'], utils.callbackAfterBuild('*.js'));
 gulp.task('watch:icons', ['icons:copy']);
-gulp.task('watch:react:templates', ['react:templates']);
 
 gulp.task('watch:pages', ['xslt'], utils.callbackAfterBuild('*.html'));
 gulp.task('watch:pages:templates', ['xslt'], utils.callbackAfterBuild('*.html'));
