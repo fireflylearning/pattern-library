@@ -1,2 +1,0 @@
-<div class="ff_container-control-bar__group">
-    <h3 class="ff_container-control-bar__title" rt-if="this.props.title" >{this.props.title}</h3>{this.props.children}</div>

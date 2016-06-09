@@ -1,8 +1,0 @@
-<rt-require dependency="./_src/ControlBarSet.js" as="ControlBarSet"/>
-
-<div class="ff_container-control-bar{this.props.modifier ? ' ff_container-control-bar--' + this.props.modifier : ''}{ this.props.classes ? ' '+this.props.classes: ''}">
-    <ControlBarSet
-        rt-repeat="set in this.props.sets"
-        title="{set.title}"
-        key="{set.key || setIndex}">{set.modules}</ControlBarSet>{this.props.children}</div>
-

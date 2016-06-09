@@ -1,4 +1,0 @@
-<div class="ff_container-scrollable-list">
-    <div class="ff_container-scrollable-list__item ff_container-scrollable-list__item--sidebar">{this.props.sidebar}</div>
-    <div class="ff_container-scrollable-list__item ff_container-scrollable-list__item--main">{this.props.main}</div>
-</div>

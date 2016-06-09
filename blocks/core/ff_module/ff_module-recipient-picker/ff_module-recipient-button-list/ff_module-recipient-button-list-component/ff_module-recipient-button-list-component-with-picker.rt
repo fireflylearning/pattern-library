@@ -1,7 +1,0 @@
-<rt-require dependency="./_ff_module-recipient-button-list-component-viewsimple.js" as="RecipientButtonList"/>
-
-<RecipientButtonList
-    results="{this.state.results}"
-    isSelected="{this.picker.checkIsSelected}"
-    onSelect="{this.addRecipientByResultId}"
-    />
