@@ -1,0 +1,25 @@
+.ff_module-profile-picture-and-name-button {
+    #ff_mix-buttons > .clear;
+    cursor: pointer;
+    &__picture {
+        #ff_mix-decoration > .square(36px);
+    }
+    &__image {
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+    &__title {
+        #ff_mix-util-prose > .link-no-decoration();
+        margin-left: @ff_size_spacing_max;
+    }
+}
+
+.ff_module-profile-picture-and-name-button {
+    &--is-selected {
+        cursor: default;
+        &__title {
+            #ff_mix-util-prose > .link-disabled(#ccc);
+        }
+    }
+}

@@ -1,0 +1,95 @@
+/* This file is for core less variables that are hard-coded in the environment
+and shared between all themes */
+
+@ff_base: 16;
+
+@ff_colour_green:           #98CE1E;
+@ff_colour_red:             #D35447;
+@ff_colour_yellow:          #FFCD00;
+
+@ff_colour_success:         @ff_colour_green;
+@ff_colour_error:           @ff_colour_red;
+@ff_colour_notify:          @ff_colour_yellow;
+@ff_colour_progress:        @ff_colour_green;
+
+//colours
+@ff_colour_default:         @ff_templatesetting_colour_main;
+@ff_colour_primary:       	@ff_templatesetting_colour_accent;
+@ff_colour_quiet:           #E3E3E3;
+
+	@c_main:					@ff_templatesetting_colour_main; // the main key colour
+	@c_accent:					@ff_templatesetting_colour_accent; // a complementary colour
+	@c_page-bg:					@ff_templatesetting_colour_page_bg; // a complementary colour
+	@c_site-title:				@ff_templatesetting_colour_site_title; // the site title appears in this colour
+
+	@c_text:					hsl(hue(@c_main), saturation(@c_main * 0.8), 15%);
+	@c_menu:					hsl(hue(@c_main), saturation(@c_main * 0.8), 20%);
+	@c_links:					@ff_templatesetting_colour_links;
+	@c_visited:					lighten(desaturate(@c_links, 30%), 5%);
+	@c_buttons:					desaturate(lighten(@ff_templatesetting_colour_links, 15%), 20%);
+
+	@c_header-bg:				@c_main; // the background the logo sits on
+	@c_header-border:			@c_accent; // the fat border at the bottom of the header and between section menu items
+
+	@c_main-border:				mix(@c_main, black, 80%);
+
+	@c_menu-bg: 				mix(@c_main, white, 90%);
+
+	@c_header-menu:				mix(@c_menu-bg, white, 85%); // default section name background
+	@c_header-menu-highlight:	mix(@c_menu-bg, white, 65%); // background for mouseover section name
+	@c_header-menu-darklight:	mix(@c_menu-bg, black, 85%); // background for mouseover section name ff6
+	@c_header-menu-selected:	mix(@c_menu-bg, white, 20%); // background of current section name
+	@c_header-dropdown-bg:		mix(@c_menu-bg, black, 65%); // section dropdown background
+
+	@c_panel-bg:				hsl(hue(@c_page-bg), saturation(@c_page-bg), 95%); // background of dashboard components, page menu and content
+	@c_panel-border:			mix(@c_accent, @c_panel-bg, 50%); // borders of dashboard and page menu and content
+
+
+@ff_colour_control_bg: desaturate(lighten(@ff_templatesetting_colour_links, 15%), 20%);
+@ff_colour_control_bg_selected: darken(desaturate(lighten(@ff_templatesetting_colour_links, 15%), 20%), 10%);
+@ff_colour_control_border: mix(@c_accent, @c_panel-bg, 50%);
+@ff_color_control_link: @ff_colour_default;
+@ff_colour_control_text: #333333;
+
+@ff_colour_button_bg: #e3e3e3;
+@ff_colour_button_border: #b4b4b4;
+@ff_colour_error: #C12814;
+
+@mycolour: blue;
+
+//text colours
+@ff_colour_text_quiet: #888888;
+@ff_color_text_link: @ff_color_control_link;
+
+//sizing
+@ff_size_spacing_min: .625rem; //10px
+@ff_size_spacing_med: 1rem; //16px
+@ff_size_spacing_max: 1.25rem; //20px
+@ff_size_control_horizontal: @ff_size_spacing_med;
+@ff_size_control_vertical: @ff_size_spacing_min;
+@ff_size_control_rounding: 4rem/@ff_base;
+
+@ff_size_prose_top_spacing: 32rem/@ff_base;
+@ff_size_prose_spacing: 2rem;
+
+@ff_bp_narrow: 480px;
+@ff_bp_medium: 640px;
+@ff_bp_wide: 960px;
+@ff_bp_extrawide: 1200px;
+
+@ff_fixed_control_z-index: 2;
+
+@ff_input-group-padding-vertical: 7.5rem/@ff_base;
+
+//class colours
+@ff_colour_class_Red: #EA7063;
+@ff_colour_class_Orange: #F39D31; 
+@ff_colour_class_Indigo: #5e75b5; 
+@ff_colour_class_Yellow: #FDDC4A;
+@ff_colour_class_Lavender: #9EACD3;
+@ff_colour_class_Violet: #9B59B6;
+@ff_colour_class_Green: #7CB75B;
+@ff_colour_class_Turquoise: #51C6B7;
+@ff_colour_class_Pink: #d8739d;
+@ff_colour_class_Forest: #1A8073;
+@ff_colour_class_Cerise: #af4854; 
