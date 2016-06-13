@@ -1,0 +1,290 @@
+@planner-grid-brdr-dk: darken(@ff_colour_control_border, 15%);
+@planner-grid-brdr-md: lighten(@planner-grid-brdr-dk, 17.8);
+@planner-grid-brdr-lt: lighten(@planner-grid-brdr-dk, 21);
+@planner-grid-hrd-brdr-md: lighten(@planner-grid-brdr-dk, 14);
+@header-bg-sm: darken(@ff_colour_control_bg, 55);
+@header-bg-md: @ff_colour_control_bg;
+@base-color: @ff_colour_control_text;
+@base-bg: lighten(@ff_colour_control_bg, 8.4);
+
+#ff_mix-planner-grid() {
+    .table {
+        .sm {
+            display: block;
+            border: 1px solid @planner-grid-brdr-dk;
+            color: @base-color;
+            tbody {
+                display: block;
+            }
+        }
+        .md {
+            display: table;
+            border-collapse: collapse;
+            table-layout: fixed;
+            width: 100%;
+            border: 1px solid @planner-grid-brdr-dk;
+            tbody {
+                display: table-row-group;
+            }
+        }
+    }
+    .row {
+        .sm {
+            display: block;
+        }
+        .md {
+            display: table-row;
+            border-bottom: 1px solid @planner-grid-brdr-md;
+            border-top: 1px solid @planner-grid-brdr-md;
+            &:first-child {
+                border-top: 1px solid @planner-grid-brdr-dk;
+            }
+            &:last-child {
+                border-bottom: 1px solid @planner-grid-brdr-dk;
+            }
+        }
+    }
+    .header {
+        .sm {
+            display: block;
+            background-color: @header-bg-sm;
+            color: #fff;
+            border-bottom: 1px solid @planner-grid-hrd-brdr-md;
+            font-weight: normal;
+            padding: @ff_size_control_vertical @ff_size_control_horizontal;
+            font-size: 13px;
+            text-align: left;
+        }
+        .md {
+            display: table-cell;
+            vertical-align: top;
+            color: @base-color;
+            background-color: @header-bg-md;
+            position: relative;
+            padding: @ff_size_control_vertical @ff_size_control_horizontal @ff_size_control_vertical*1.5 @ff_size_control_horizontal;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        .lg {
+
+        }
+    }
+    .item {
+        .sm {
+            display: block;
+            position: relative;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        .sm--def {
+            padding: @ff_size_control_vertical @ff_size_control_horizontal @ff_size_control_vertical*1.5 @ff_size_control_horizontal;
+        }
+        .sm--note {
+            background-color: @base-bg;
+        }
+        .sm--empty {
+            background-color: @base-bg;
+            border-left: 10px solid transparent;
+            border-right: none; //AFTER bett, find out why this doesn't work.
+        }
+        .sm--event {}
+        .md {
+            display: table-cell;
+            vertical-align: top;
+            border-bottom: none;
+            border-right: 1px solid @planner-grid-brdr-lt;
+            position: relative;
+            &:last-child {
+                border-right: none;
+            }
+        }
+        .md--event {
+            width: 28%;
+        }
+        .md--note {}
+        .lg {}
+        .lg--event {
+            width: 24%;
+        }
+    }
+    .borders {
+        .item-sep {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-top: 1px solid @planner-grid-hrd-brdr-md;
+        }
+        .header-sep {
+            content: " ";
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            border-right: 1.5px solid #fff;
+        }
+        .top-sep {
+            content: " ";
+            position: absolute;
+            top: -1px;
+            left: -10px;
+            width: 10px;
+            border-top: 1px solid @planner-grid-brdr-md;
+        }
+        .bottom-sep {
+            content: " ";
+            position: absolute;
+            bottom: -1px;
+            left: -10px;
+            width: 10px;
+            border-bottom: 1px solid @planner-grid-brdr-dk;
+        }
+    }
+}
+
+#ff_mix-planner-grid-day() {
+    .header {
+        .sm {
+        }
+        .md {
+            border-right: 1px solid #FFFFFF;
+            width: 18%;
+        }
+        .lg {
+            width: 12%;
+        }
+    }
+
+}
+
+.ff_module-planner-grid-day {
+    &__content {
+        #ff_mix-planner-grid > .table > .sm();
+    }
+    &__row {
+        #ff_mix-planner-grid > .row > .sm();
+    }
+    &__header {
+        #ff_mix-planner-grid > .header > .sm();
+        #ff_mix-planner-grid-day > .header > .sm();
+    }
+    &__item {
+        #ff_mix-planner-grid > .item > .sm();
+    }
+    &__item--note {
+        #ff_mix-planner-grid > .item > .sm--note();
+        #ff_mix-class-view > .color-block-md();
+    }
+    &__item--event {
+        #ff_mix-planner-grid > .item > .sm--def();
+        #ff_mix-planner-grid > .item > .sm--event();
+        #ff_mix-class-view > .color-block-md();
+    }
+    &__item--empty {
+        #ff_mix-planner-grid > .item > .sm--def();
+        #ff_mix-planner-grid > .item > .sm--empty();
+    }
+    &__item:before {
+        #ff_mix-planner-grid > .borders > .item-sep();
+    }
+    @media screen and (min-width:@ff_bp_medium) {
+        &__content {
+            #ff_mix-planner-grid > .table > .md();
+        }
+        &__row {
+            #ff_mix-planner-grid > .row > .md();
+        }
+        &__row:first-child &__header + &__item:before {
+            border-top-color: @planner-grid-brdr-dk;
+        }
+        &__row:last-child &__header {
+            border-bottom: none;
+        }
+        &__row:last-child &__header + &__item:after {
+            #ff_mix-planner-grid > .borders > .bottom-sep();
+        }
+        &__header {
+            #ff_mix-planner-grid > .header > .md();
+            #ff_mix-planner-grid-day > .header > .md();
+            &:after {
+                #ff_mix-planner-grid > .borders > .header-sep();
+            }
+        }
+        &__item {
+            #ff_mix-planner-grid > .item > .md();
+        }
+        &__item--event {
+            #ff_mix-planner-grid > .item > .md--event();
+            #ff_mix-class-view > .color-block-md();
+        }
+        &__item--note {
+            #ff_mix-planner-grid > .item > .md--note();
+            #ff_mix-class-view > .undo-color-block();
+        }
+        &__item:before {
+            content: none;
+            border-width: 0;
+        }
+        &__header + &__item:before {
+            #ff_mix-planner-grid > .borders > .top-sep();
+        }
+    }
+    @media screen and (min-width:@ff_bp_extrawide) {
+        &__header {
+            #ff_mix-planner-grid > .header > .lg();
+            #ff_mix-planner-grid-day > .header > .lg();
+        }
+        &__item--event,
+        &__item--empty {
+            #ff_mix-planner-grid > .item > .lg--event();
+        }
+    }
+    //colors
+    &__color {
+        &--Red {
+            border-left-color: @ff_colour_class_Red;
+        }
+        &--Orange {
+            border-left-color: @ff_colour_class_Orange;
+        }
+        &--Indigo {
+            border-left-color: @ff_colour_class_Indigo;
+        }
+        &--Yellow {
+            border-left-color: @ff_colour_class_Yellow;
+        }
+        &--Lavender {
+            border-left-color: @ff_colour_class_Lavender;
+        }
+        &--Violet {
+            border-left-color: @ff_colour_class_Violet;
+        }
+        &--Green {
+            border-left-color: @ff_colour_class_Green;
+        }
+        &--Turquoise {
+            border-left-color: @ff_colour_class_Turquoise;
+        }
+        &--Pink {
+            border-left-color: @ff_colour_class_Pink;
+        }
+        &--Forest {
+            border-left-color: @ff_colour_class_Forest;
+        }
+        &--Cerise {
+            border-left-color: @ff_colour_class_Cerise;
+        }
+    }
+    //end: colours
+
+    //no events
+    &__no-events {
+        #ff_mix-no-events > .block();
+    }
+    &__no-events-message {
+        #ff_mix-no-events > .message();
+    }
+}
