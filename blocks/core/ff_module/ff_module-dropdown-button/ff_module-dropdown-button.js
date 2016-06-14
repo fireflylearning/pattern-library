@@ -2,7 +2,7 @@
 
 var $ = require('jquery');
 var core = require('../../_lib/ff-core/_ff-core.js');
-var _ = require('lodash');
+var _ = require('underscore');
 
 var _options = {
     root: document,

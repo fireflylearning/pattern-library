@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react'),
-    _ = require('lodash');
+    _ = require('underscore');
 
 
 var ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),

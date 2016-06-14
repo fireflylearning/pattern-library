@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('underscore');
 
 var msInS = 1000,
     sInM = 60,

@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react'),
     ReactDOM = require('react-dom');
-var _ = require('lodash');
+var _ = require('underscore');
 
 var DropdownButton = require('./ff_module-dropdown-button-component');
 var checkbox = {
