@@ -40,14 +40,11 @@ function getType(props) {
     var event = props.event || {},
         state = event.state || {},
         type = null;
-
     if (state.error || state.editError || state.deleteError) {
         type = eventStates.error;
-    }
-    if (event.description && event.description.type) {
+    } else if (event.description && event.description.type) {
         type = event.description.type;
     }
-
     return type;
 }
 
