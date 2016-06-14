@@ -12,7 +12,8 @@ var StampResponseAsSeenTaskEvent = require('./_src/StampResponseAsSeenTaskEvent.
     DeletedResponseTaskEvent = require('./_src/DeletedResponseTaskEvent'),
     AddedFileTaskEvent = require('./_src/AddedFileTaskEvent'),
     SentReminderTaskEvent = require('./_src/SentReminderTaskEvent'),
-    SentFeedbackAndMarks = require('./_src/SentFeedbackAndMarks');
+    SentFeedbackAndMarks = require('./_src/SentFeedbackAndMarks'),
+    InvalidType = require('./_src/InvalidType');
 
 var eventTypes = require('./_src/events').types;
 var eventStates = require('./_src/events').states;
@@ -47,7 +48,12 @@ function getPresentationState(description, state) {
 
 function getComponent(description, state) {
     var presentationState = getPresentationState(description, state);
-    return eventComponents[description.type][presentationState] || eventComponents[description.type][eventStates.default];
+    var componentType = getComponentType(description);
+    return componentType[presentationState] || componentType[eventStates.default];
+}
+
+function getComponentType(description) {
+    return eventComponents[description.type] || InvalidType;
 }
 
 module.exports = React.createClass({

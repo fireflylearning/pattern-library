@@ -1,0 +1,36 @@
+.ff_container-expandable {
+	&__header {
+		padding: @ff_size_spacing_med;
+		border: 1px solid @ff_templatesetting_colour_links;
+		color: @ff_templatesetting_colour_links;
+		cursor: pointer;
+		background: white;
+	}
+
+	&__icon {
+		width: 1.5em;
+		height: 1.5em;
+		float: right;
+	}
+
+	&__content {
+		max-height: 1000px;
+		overflow: hidden;
+		transition: max-height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	}
+
+	&--is-collapsed &__content {
+		max-height: 0;
+	}
+
+	&--is-widescreen &__header {
+		@media all and (min-width: @ff_bp_wide) {
+			display: none;
+		}
+	}
+	&--is-widescreen &__content {
+		@media all and (min-width: @ff_bp_wide) {
+			max-height: 1000px;
+		}
+	}
+}

@@ -1,0 +1,75 @@
+.ui-datepicker {
+    box-shadow: 0 2px 4px fade(#000,20%);
+    border-radius: @ff_size_control_rounding * 2;
+}
+
+.ff_module-date-picker-calendar {
+    
+    //restyling for jQuery datepicker
+    &, .ui-widget-content {
+        background: white;
+    }
+
+
+    .ui-widget-header {
+        background: @ff_templatesetting_colour_main;
+        #ff_mix-responsive-colour > .check-contrast(lighten(desaturate(@ff_templatesetting_colour_main, 25%), 15%), @c_text, #ffffff);
+        border-radius: @ff_size_control_rounding;
+        border: none;
+
+        a {
+            cursor: pointer;
+        }
+
+        @datpicker-spacing: 8px;
+        .datepicker-jump() {
+            top: @datpicker-spacing;
+            background-repeat: no-repeat; 
+            border: none;
+            background-color: transparent;
+            background-position: top left;
+            width: 20px;
+            height: 20px;
+        }
+
+        a.ui-datepicker-prev,
+        a.ui-datepicker-prev.ui-datepicker-prev-hover {
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%22-7.5%2016.5%2016%2016%22%3E%3Cpath%20d%3D%22M.5%2017.5c-3.866%200-7%203.134-7%207s3.134%207%207%207%207-3.134%207-7-3.134-7-7-7zm1.707%209.293c.39.39.39%201.023%200%201.414-.195.195-.45.293-.707.293s-.512-.098-.707-.293l-3-3c-.39-.39-.39-1.023%200-1.414l3-3c.39-.39%201.023-.39%201.414%200%20.39.39.39%201.023%200%201.414L-.086%2024.5l2.293%202.293z%22%20fill%3D%22%23FFFFFF%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E'); 
+            left: @datpicker-spacing;
+            .datepicker-jump();
+        }
+        a.ui-datepicker-next,
+        a.ui-datepicker-next.ui-datepicker-next-hover {
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%208c0%203.866%203.134%207%207%207s7-3.134%207-7-3.134-7-7-7-7%203.134-7%207zm7.586%200L6.293%205.707c-.39-.39-.39-1.024%200-1.414.39-.39%201.023-.39%201.414%200l3%203c.39.39.39%201.023%200%201.414l-3%203c-.195.195-.45.293-.707.293s-.512-.098-.707-.293c-.39-.39-.39-1.023%200-1.414L8.586%208z%22%20fill%3D%22%23FFFFFF%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E'); 
+            right: @datpicker-spacing;
+            .datepicker-jump();
+        }
+
+
+    }
+
+    .ui-datepicker-calendar tbody {
+        border-top: 1px solid @ff_colour_control_border;
+        &:before {
+            content: "-";
+            display: block;
+            line-height: 6px;
+            color: transparent;
+        }
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        border: none;
+        background: none;
+        text-align: center;
+        color: @ff_color_text_link;
+        border-radius: @ff_size_control_rounding;
+        &:hover {
+            color: darken(@ff_color_text_link, 10%);
+            background-color: @ff_colour_control_bg;
+        }
+    }
+    .ui-state-active, .ui-widget-content .ui-state-active {
+        background-color: #F1F1F1;
+    }
+}

@@ -126,6 +126,20 @@ module.exports = {
             error: '#D35447',
             notify: '#FFCD00'
         },
+        folio: {
+            blue: '#297FCF',
+            darkblue: '#2165A4',
+            brightblue: '#0085E6',
+            grey: '#A9AEB6',
+            darkgrey: '#888888',
+            extradarkgrey: '#444444',
+            white: '#FFF',
+            lightblue: '#add8e6',
+            greyblue: '#7F9CB5',
+            success: '#98CE1E',
+            error: '#D35447',
+            notify: '#FFCD00'
+        },
     },
 
     dynamicColorOnly: false,
