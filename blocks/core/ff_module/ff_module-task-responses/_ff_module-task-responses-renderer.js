@@ -133,8 +133,8 @@ validation[modelKeys.message] = {
 
 
 var store = createStore(combineReducers({
-    editingEvent: modelReducer('editingEvent', eventGroups[5]),
-    editingEventForm: formReducer('editingEvent', eventGroups[5])
+    editingEvent: modelReducer('editingEvent', events[5]),
+    editingEventForm: formReducer('editingEvent', events[5])
 }));
 
 function mapStateToProps(state) {

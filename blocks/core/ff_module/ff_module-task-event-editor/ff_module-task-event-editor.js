@@ -36,17 +36,25 @@ module.exports = React.createClass({
     }
 });
 
-function getEventEditor(props) {
+function getType(props) {
     var event = props.event || {},
-        state = event.state || {};
+        state = event.state || {},
+        type = null;
 
     if (state.error || state.editError || state.deleteError) {
-        return eventEditorComponents[eventStates.error](props);
-    } else {
-        return eventEditorComponents[event.description.type](props);
+        type = eventStates.error;
     }
+    if (event.description && event.description.type) {
+        type = event.description.type;
+    }
+
+    return type;
 }
 
+function getEventEditor(props) {
+    var type = getType(props);
+    return eventEditorComponents[type] ? eventEditorComponents[type](props) : <EditorInvalid {...props} />;
+}
 
 
 var EventWithMessageEditor = function EventWithMessageEditor(props) {
@@ -139,6 +147,10 @@ var DeleteResponseMessage = function DeleteResponseMessage(props) {
 
 var ErrorMessage = function ErrorMessage(props) {
     return <p>We'll try again in a few seconds</p>
+}
+
+var InvalidMessage = function InvalidMessage(props) {
+    return <p>Something went wrong with this action. If this keeps happening, contact our Support Team.</p>
 }
 
 var eventEditorComponents = {};
@@ -263,6 +275,24 @@ eventEditorComponents[eventStates.error] = function EditorError(props) {
             {...props}
             >
             <ErrorMessage {...props}/>
+        </EditorBase>
+    )
+};
+
+function EditorInvalid(props) {
+
+    var titleText = "Unable to perform action",
+        controls = [
+            <Button key="close" onClick={props.onClose} text="Close" modifier="primary"/>
+        ];
+
+    return (
+        <EditorBase
+            title={titleText}
+            controls={controls}
+            {...props}
+            >
+            <InvalidMessage {...props}/>
         </EditorBase>
     )
 };
