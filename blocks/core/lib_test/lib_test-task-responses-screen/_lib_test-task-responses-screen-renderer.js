@@ -19,6 +19,12 @@ var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
 
+import { connect } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { modelReducer, formReducer } from 'react-redux-form';
+import { isRequired, isNumber, maxLength} from '../../_lib/simpleValidation';
+
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'],
     dStrings2 = [
         '7 Dec 2015 18:45',     // 0
@@ -38,73 +44,78 @@ var events = [{
     localEventId: '2g',
     pending: true,
     sent: new Date(dStrings2[7]),
-    author: { name: 'Sally Student '+dStrings2[7] },
+    author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
     localEventId: '3g',
     sent: new Date(dStrings2[8]),
-    author: { name: 'Terry Teacher '+dStrings2[8] }
+    author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.comment,
     localEventId: '1g',
     sent: new Date(dStrings2[2]),
-    author: { name: 'Sally Student '+dStrings2[2] },
+    author: { name: 'Sally Student' },
     message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (15)'
 }, {
     type: eventTypes.setTask,
     localEventId: '2a',
     sent: new Date(dStrings2[5]),
     error: true,
-    author: { name: 'Sally Student '+dStrings2[5] },
+    author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.requestResubmission,
     localEventId: '3a',
     sent: new Date(dStrings2[6]),
-    author: { name: 'Terry Teacher '+dStrings2[6] }
+    author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.comment,
     localEventId: '1a',
     sent: new Date(dStrings2[0]),
-    author: { name: 'Sally Student '+dStrings2[0] },
+    author: { name: 'Sally Student' },
     message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (0)'
 }, {
     type: eventTypes.setTask,
     localEventId: '2b',
     sent: new Date(dStrings2[3]),
-    author: { name: 'Sally Student '+dStrings2[3] },
+    author: { name: 'Sally Student' },
     taskTitle: 'Write an Essay'
 }, {
     type: eventTypes.stampResponseAsSeen,
     localEventId: '3b',
     sent: new Date(dStrings2[4]),
-    author: { name: 'Terry Teacher '+dStrings2[4] }
+    author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.comment,
     localEventId: '1b',
     sent: new Date(dStrings2[1]),
-    author: { name: 'Sally Student '+dStrings2[1] },
+    author: { name: 'Sally Student' },
     message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work! (10)'
 }, {
     type: eventTypes.deleteResponse,
     localEventId: '4a',
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher '+dStrings[0] }
+    author: { name: 'Terry Teacher'}
 }, {
     type: eventTypes.confirmStudentIsUnexcused,
     localEventId: '4b',
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher '+dStrings[1] }
+    author: { name: 'Terry Teacher'}
 }, {
     type: eventTypes.addFile,
     localEventId: '4c',
     sent: new Date(dStrings[2]),
-    author: { name: 'Sally Student '+ dStrings[2]},
+    author: { name: 'Sally Student'},
     files: [{
         title: 'File one',
         href: '#'
     }]
+}, {
+    type: 'invalid-type',
+    localEventId: '4v',
+    sent: new Date(dStrings[1]),
+    author: { name: 'Terry Teacher' }
 }].map(function(description) {
     var localEventId = description.localEventId;
     delete description.localEventId;
@@ -134,7 +145,7 @@ var eventGroups = [
     [events[8]],
     [events[9], events[10], events[11]],
     [events[5], events[8], events[2]],
-    [events[2], events[5], events[8]] // this one should work out to dupe of prev after sorting, so not render
+    [events[12]],
 ];
 
 
@@ -290,12 +301,97 @@ var recipientNavigation = React.createElement(IncrementalNavigation, {
 });
 
 
-var overlayInner = React.createElement(TaskResponses, {
+var modelKeys = {
+    mark: 'mark',
+    markMax: 'markMax',
+    grade: 'grade',
+    message: 'message',
+    comment: 'comment'
+};
+
+// so different model string values can be used if required
+var models = Object.keys(modelKeys).reduce(function(memo, key){
+    memo[modelKeys[key]] = 'editingEvent.description.' + modelKeys[key];
+    return memo;
+}, {});
+models['comment'] = 'editingEvent.description.message';
+
+var validation = {};
+validation[modelKeys.mark] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired,
+        valid: isNumber
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please add a mark',
+        valid: (val) => val ? 'Please use numbers' : '',
+    }
+};
+validation[modelKeys.markMax] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired,
+        valid: isNumber
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please add a maximum mark',
+        valid: (val) => val ? 'Please use numbers' : '',
+    }
+};
+validation[modelKeys.grade] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired,
+        valid: maxLength(5)
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please add a grade',
+        valid: (val) => val ? '5 characters maximum' : '',
+    }
+};
+validation[modelKeys.comment] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please add a comment'
+    }
+};
+var max = 255;
+validation[modelKeys.message] = {
+    validateOn: 'blur',
+    rules: {
+        valid: maxLength(max)
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        valid: (val) => val ? '' + max + ' characters maximum' : '',
+    }
+};
+
+
+var store = createStore(combineReducers({
+    editingEvent: modelReducer('editingEvent', events[12]),
+    editingEventForm: formReducer('editingEvent', events[12])
+}));
+
+function mapStateToProps(state) {
+    return {
         eventGroups: eventGroups,
-        // editingEvent: events[4],
+
+        editingEvent: state.editingEvent,
+
+        editorValidation: validation,
+        editorModels: models,
         editEvent: function(event) {
             console.log('editEvent');
-            console.table(event);
+            console.log(event);
         },
         addEvent: function() {
             console.log('addEvent');
@@ -304,7 +400,13 @@ var overlayInner = React.createElement(TaskResponses, {
         stopEditingEvent: function() {
             console.log('stopEditingEvent');
         }
-    }),
+    };
+}
+
+var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses);
+
+
+var overlayInner = React.createElement(ConnectedTaskResponses),
 
     overlayOuter = React.createElement(ContainerOverlay, {
         modifier: 'absolute-bottom',
@@ -326,7 +428,8 @@ module.exports = function() {
         var el = document.querySelector('[data-lib_test-task-responses-screen]'); //Use jquery or sim in Firefly for backwards compat
         if (el) {
 
-            var element = <div className="ff_module-task-responses">
+            var element = <Provider store={store}>
+                    <div className="ff_module-task-responses">
                 <TaskMetaActions {...metaActionProps}/>
 
                 <ScrollableList
@@ -334,6 +437,8 @@ module.exports = function() {
                     sidebar={sidebar} />
 
             </div>
+                </Provider>
+
 
             ReactDOM.render(element, el);
         }
