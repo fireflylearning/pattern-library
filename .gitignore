@@ -5,6 +5,7 @@ wwwroot/
 .tmp/
 node_modules/
 export/
+patternlib-export/
 !src/templates/export
 config/options.local.js
 blocks/**/_icons/optimised_svgs

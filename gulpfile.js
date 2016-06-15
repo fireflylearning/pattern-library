@@ -106,7 +106,6 @@ gulp.task('export:less',
 /**
  * Compile javascript
  */
-var jsentries;
 gulp.task('js', ['info'],
     webpackTasks.develop(blockData));
 
@@ -120,7 +119,7 @@ gulp.task('preexport:js',
     webpackTasks.buildExportJs(paths.blocks.dir, './src/templates/export/js/main.js', './.tmp/js'));
 
 gulp.task('export:js:raw',
-    webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), paths.export));
+    webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), './patternlib-export'));
 
 
 
