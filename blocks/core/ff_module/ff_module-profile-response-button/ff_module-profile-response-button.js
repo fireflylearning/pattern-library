@@ -71,17 +71,29 @@ module.exports = React.createClass({
     }
 });
 
-var statusTexts = {};
-statusTexts[eventTypes.setTask] = "Awaiting Response";
-statusTexts[eventTypes.stampResponseAsSeen] = "Task stamped as seen";
-statusTexts[eventTypes.requestResubmission] = "Resubmission requested";
-statusTexts[eventTypes.confirmTaskIsComplete] = "Confirmed as complete";
-statusTexts[eventTypes.confirmStudentIsExcused] = "Student excused";
-statusTexts[eventTypes.comment] = "Comment sent";
-statusTexts[eventTypes.markAndGrade] = "Marked";
-statusTexts[eventTypes.addFile] = "Response Received";
+var statusTextsForEventByCurrentUser = {};
+statusTextsForEventByCurrentUser[eventTypes.setTask] = "Awaiting Response";
+statusTextsForEventByCurrentUser[eventTypes.stampResponseAsSeen] = "Task stamped as seen";
+statusTextsForEventByCurrentUser[eventTypes.requestResubmission] = "Resubmission requested";
+statusTextsForEventByCurrentUser[eventTypes.confirmTaskIsComplete] = "Confirmed as complete";
+statusTextsForEventByCurrentUser[eventTypes.confirmStudentIsExcused] = "Student excused";
+statusTextsForEventByCurrentUser[eventTypes.comment] = "Comment sent";
+statusTextsForEventByCurrentUser[eventTypes.markAndGrade] = "Marked";
+statusTextsForEventByCurrentUser[eventTypes.addFile] = "File sent";
+
+var statusTextsForEventByOtherUser = {};
+statusTextsForEventByOtherUser[eventTypes.setTask] = statusTextsForEventByCurrentUser[eventTypes.setTask];
+statusTextsForEventByOtherUser[eventTypes.stampResponseAsSeen] = statusTextsForEventByCurrentUser[eventTypes.stampResponseAsSeen];
+statusTextsForEventByOtherUser[eventTypes.requestResubmission] = statusTextsForEventByCurrentUser[eventTypes.requestResubmission];
+statusTextsForEventByOtherUser[eventTypes.confirmTaskIsComplete] = statusTextsForEventByCurrentUser[eventTypes.confirmTaskIsComplete];
+statusTextsForEventByOtherUser[eventTypes.confirmStudentIsExcused] = statusTextsForEventByCurrentUser[eventTypes.confirmStudentIsExcused];
+statusTextsForEventByOtherUser[eventTypes.comment] = "Comment received";
+statusTextsForEventByOtherUser[eventTypes.markAndGrade] = statusTextsForEventByCurrentUser[eventTypes.markAndGrade];
+statusTextsForEventByOtherUser[eventTypes.addFile] = "File received";
 
 function statusSummaryText(props) {
     var event = props.event;
-    return statusTexts[event.description.type];
+    return props.lastEventWasAuthoredByCurrentUser
+        ? statusTextsForEventByCurrentUser[event.description.type]
+        : statusTextsForEventByOtherUser[event.description.type];
 }
