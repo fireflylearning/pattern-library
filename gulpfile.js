@@ -251,7 +251,7 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
 /**
  * Export
  *********************************************/
-gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:js:raw', 'export:icons', 'export:assets'], exportStatus);
+gulp.task('export', ['export:blocks', 'export:less', 'export:js:raw', 'export:icons', 'export:assets'], exportStatus);
 
 
 
