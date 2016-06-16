@@ -10,6 +10,7 @@ function getPaths() {
         blocks: 'blocks/',
         core: 'core/',
         export: 'export/',
+        exportJs: 'export-js/',
         assets: 'assets/',
         temp: '.tmp/',
         icons: '.icons/',
@@ -33,6 +34,7 @@ function getPaths() {
     };
     var paths = {
         export: basePaths.export,
+        exportJs: basePaths.exportJs,
         clean: [basePaths.temp, basePaths.dest],
         dest: basePaths.dest,
         pages: {

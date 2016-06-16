@@ -119,7 +119,7 @@ gulp.task('preexport:js',
     webpackTasks.buildExportJs(paths.blocks.dir, './src/templates/export/js/main.js', './.tmp/js'));
 
 gulp.task('export:js:raw',
-    webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), './patternlib-export'));
+    webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), config.exportJsPath));
 
 
 
@@ -259,11 +259,11 @@ gulp.task('export', ['export:blocks', 'export:less', 'export:js:raw', 'export:ic
 /**
  * Clean
  *********************************************/
-gulp.task('clean', clean([config.exportPath].concat(paths.clean)));
+gulp.task('clean', clean([config.exportPath, config.exportJsPath].concat(paths.clean)));
 /**
  * Clean - with icon cache
  *********************************************/
-gulp.task('clean:cache', clean([config.exportPath].concat(paths.clean).concat(paths.icons.cache)));
+gulp.task('clean:cache', clean([config.exportPath, config.exportJsPath].concat(paths.clean).concat(paths.icons.cache)));
 
 
 /**
