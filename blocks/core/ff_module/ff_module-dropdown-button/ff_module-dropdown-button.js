@@ -3,9 +3,10 @@
 var $ = require('jquery');
 var core = require('../../_lib/ff-core/_ff-core.js');
 var _ = require('underscore');
+var docVal = (typeof window !== 'undefined' && window.document) ? window.document : 'document';
 
 var _options = {
-    root: document,
+    root: docVal,
     triggerSelBase: 'data-ff-dropdown-trigger',
     targetSelBase: 'data-ff-dropdown-target',
     enabledClassSuffix: '--is-enabled',
@@ -13,8 +14,6 @@ var _options = {
     defaultTriggerClass: 'ff_module-dropdown-button__button',
     defaultTargetClass: 'ff_module-dropdown-button__dropdown-container'
 };
-
-
 
 function activateDropdowns(options) {
 
