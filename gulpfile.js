@@ -112,11 +112,8 @@ gulp.task('js', ['info'],
 /**
  * Export javascript
  */
-gulp.task('export:js', ['preexport:js'],
-    webpackTasks.export());
-
-gulp.task('preexport:js',
-    webpackTasks.buildExportJs(paths.blocks.dir, './src/templates/export/js/main.js', './.tmp/js'));
+gulp.task('export:js', ['export:js:raw'],
+    exportStatus(config.exportJsPath, "pattern-library-js.json"));
 
 gulp.task('export:js:raw',
     webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), config.exportJsPath));
@@ -251,7 +248,7 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
 /**
  * Export
  *********************************************/
-gulp.task('export', ['export:blocks', 'export:less', 'export:js:raw', 'export:icons', 'export:assets'], exportStatus);
+gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], exportStatus(config.exportPath, "pattern-library.json"));
 
 
 
