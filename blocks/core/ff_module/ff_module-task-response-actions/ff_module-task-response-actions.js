@@ -9,6 +9,7 @@ var Button = require("../../ff_module/ff_module-button/ff_module-button");
 var DropdownButton = require("../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component");
 var TaskEvent = require('../../ff_module/ff_module-task-event/ff_module-task-event');
 var events = require("../../ff_module/ff_module-task-event/_src/events" );
+var generateClasses = require('../../_lib/_ui/class-utils.js').generateStandardClass;
 
 var textValues = {};
 textValues[events.types.confirmTaskIsComplete] = 'Confirm as Completed';
@@ -49,13 +50,11 @@ function getText(type, state) {
 function getList(state) {
     var newList = _.extend({}, presentationList);
 
-    if (state) {
-        if (state.complete) {
-            newList.completeStatus = events.types.confirmTaskIsToDo;
-        }
-        if (state.excused) {
-            newList.excusedStatus = events.types.confirmStudentIsUnexcused;
-        }
+    if (state.complete) {
+        newList.completeStatus = events.types.confirmTaskIsToDo;
+    }
+    if (state.excused) {
+        newList.excusedStatus = events.types.confirmStudentIsUnexcused;
     }
 
     return newList;
@@ -68,11 +67,13 @@ module.exports = React.createClass({
         state: React.PropTypes.object
     },
     render: function(){
-        var state = this.props.state,
+        var state = this.props.state || {},
             list = getList(state);
 
+        if (state.userCanEdit === false) return null;
+
         return (
-            <div className="ff_module-task-response-actions">
+            <div className={generateClasses("ff_module-task-response-actions", this.props)}>
                 <ContainerControlBar
                     modifier= "right"
                     key="controlBarUpper">
