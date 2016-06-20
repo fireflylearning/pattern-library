@@ -8,17 +8,21 @@
             </xsl:attribute>
     		
     		<xsl:for-each select="$data//subsection">
-    	    	<li class="ff_module-columnar-list__item">
+    	    	<li>
+                    <xsl:attribute name="class">
+                        <xsl:text>ff_module-columnar-list__item</xsl:text>
+                        <xsl:if test="not(@url)"> ff_module-columnar-list--no-url</xsl:if>
+                    </xsl:attribute>
     		    	<xsl:choose>
     					<xsl:when test="@url">
-    						<a class="ff_module-columnar-list__link" href="{@url}"><span class="ff_module-columnar-list__content"><xsl:value-of select="@title" /></span></a>
+    						<a class="ff_module-columnar-list__link" href="{@url}"><xsl:value-of select="@title" /></a>
     				    </xsl:when>
     				    <xsl:otherwise>
-    				    	<span class="ff_module-columnar-list__content"><xsl:value-of select="@title" /></span>
+    				    	<xsl:value-of select="@title" />
     		    		</xsl:otherwise>
     		    	</xsl:choose>
     		    </li>
     	    </xsl:for-each>
-
+            
 	</ul>
 </xsl:template>
