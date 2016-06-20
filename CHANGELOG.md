@@ -1,3 +1,10 @@
+# 0.2.6 (20/06/2016)
+
+## Breaking changes
+Changed `gulp export` to exclude bundled js file (aka `blocks.js`) from main `export` directory, and instead export unbundled js files to separate directory, by default, `export-js/`.
+Added `--export-js-path` argument to `gulp export` task, to set location of exported unbundled js files.
+Previous `--export-path` argument still operates as expected, aside from aforementioned js files change.
+
 # 0.2.5 (18/04/2016)
 
 ## Updates
