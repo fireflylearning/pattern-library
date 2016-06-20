@@ -4,12 +4,13 @@ var React = require('react'),
     ReactDOM = require('react-dom');
 
 var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff_container-scrollable-list'),
-    ResponseRecipientList = require('../../ff_module/ff_module-response-recipient-list/ff_module-response-recipient-list'),
+    ItemRepeater = require('../../ff_container/ff_container-item-repeater/ff_container-item-repeater'),
     IncrementalNavigation = require('../../ff_module/ff_module-incremental-navigation/ff_module-incremental-navigation'),
     ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay'),
     ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
     ContainerControlBarSet = ContainerControlBar.ControlBarSet,
     TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
+    TaskResponseActionsIndividual = require('../../ff_module/ff_module-task-response-actions-individual/ff_module-task-response-actions-individual'),
     TaskMetaActions = require('../../ff_module/ff_module-task-meta-actions/ff_module-task-meta-actions'),
     Button = require('../../ff_module/ff_module-button/ff_module-button'),
     DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
@@ -23,19 +24,19 @@ import { connect } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { modelReducer, formReducer } from 'react-redux-form';
-import { isRequired, isNumber, maxLength} from '../../_lib/simpleValidation';
+import { isRequired, isNumber, maxLength } from '../../_lib/simpleValidation';
 
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'],
     dStrings2 = [
-        '7 Dec 2015 18:45',     // 0
-        '7 Dec 2015 18:45:10',  // 1
-        '7 Dec 2015 18:45:15',  // 2
-        '12 March 2016 20:40',  // 3
-        '12 March 2016 21:47',  // 4
-        '13 March 2016 20:40',  // 5
-        '13 March 2016 21:47',  // 6
-        '14 March 2016 20:40',  // 7
-        '14 March 2016 21:47'   // 8
+        '7 Dec 2015 18:45', // 0
+        '7 Dec 2015 18:45:10', // 1
+        '7 Dec 2015 18:45:15', // 2
+        '12 March 2016 20:40', // 3
+        '12 March 2016 21:47', // 4
+        '13 March 2016 20:40', // 5
+        '13 March 2016 21:47', // 6
+        '14 March 2016 20:40', // 7
+        '14 March 2016 21:47' // 8
     ];
 
 
@@ -96,17 +97,17 @@ var events = [{
     type: eventTypes.deleteResponse,
     localEventId: '4a',
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher'}
+    author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.confirmStudentIsUnexcused,
     localEventId: '4b',
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher'}
+    author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.addFile,
     localEventId: '4c',
     sent: new Date(dStrings[2]),
-    author: { name: 'Sally Student'},
+    author: { name: 'Sally Student' },
     files: [{
         title: 'File one',
         href: '#'
@@ -131,7 +132,7 @@ var events = [{
             text: 'Delete',
             onClick: function() { console.log('delete'); }
         }],
-        state:{
+        state: {
             released: true
         }
     };
@@ -150,102 +151,6 @@ var eventGroups = [
 
 
 
-var recipientData = [{
-    onSelect: function() {
-        console.log("onSelect is0");
-    },
-    guid: "u42",
-    label: "Sally Student",
-    latestEvent: {
-        description: {
-            type: eventTypes.confirmTaskIsComplete,
-            sent: new Date()
-        }
-    },
-    markAndGrade: {
-        mark: 7,
-        markMax: 10,
-        grade: "A"
-    },
-    pic_href: "/images/default_picture.png"
-}, {
-    onSelect: function() {
-        console.log("onSelect is0");
-    },
-    guid: "u42a",
-    label: "Tally Student",
-    latestEvent: {
-        description: {
-            type: eventTypes.markAndGrade,
-            sent: new Date('4 March 2016')
-        }
-    },
-    markAndGrade: {
-        mark: 7,
-        markMax: 10,
-        grade: "A"
-    },
-    pic_href: "/images/default_picture.png"
-}, {
-    onSelect: function() {
-        console.log("onSelect id1");
-    },
-    isSelected: true,
-    guid: "u43",
-    label: "Terry Teacher",
-    latestEvent: {
-        description: {
-            type: eventTypes.markAndGrade,
-            sent: new Date('1 March 2016')
-        }
-    },
-    pic_href: "/images/default_picture.png"
-}, {
-    onSelect: function() {
-        console.log("onSelect id1");
-    },
-    guid: "u43a",
-    label: "Terry Teacher",
-    latestEvent: {
-        description: {
-            type: eventTypes.stampResponseAsSeen,
-            sent: new Date('27 February 2016')
-        }
-    },
-    markAndGrade: {
-        mark: 7,
-        markMax: 10,
-        grade: "A"
-    },
-    pic_href: "/images/default_picture.png"
-}, {
-    onSelect: function() {
-        console.log("onSelect id1");
-    },
-    guid: "u43b",
-    label: "Terry Teacher",
-    latestEvent: {
-        description: {
-            type: eventTypes.confirmTaskIsComplete,
-            sent: new Date()
-        }
-    },
-    pic_href: "/images/default_picture.png"
-}, {
-    onSelect: function() {
-        console.log("onSelect id2");
-    },
-    isRead: true,
-    guid: "u44",
-    label: "Joseph Goulden",
-    latestEvent: {
-        description: {
-            type: eventTypes.confirmTaskIsComplete,
-            sent: new Date()
-        }
-    },
-    pic_href: "/images/default_picture.png"
-}];
 
 var filterProps = {
         text: 'Filter by Status',
@@ -310,7 +215,7 @@ var modelKeys = {
 };
 
 // so different model string values can be used if required
-var models = Object.keys(modelKeys).reduce(function(memo, key){
+var models = Object.keys(modelKeys).reduce(function(memo, key) {
     memo[modelKeys[key]] = 'editingEvent.description.' + modelKeys[key];
     return memo;
 }, {});
@@ -377,21 +282,20 @@ validation[modelKeys.message] = {
 
 
 var store = createStore(combineReducers({
-    editingEvent: modelReducer('editingEvent', events[8]),
-    editingEventForm: formReducer('editingEvent', events[8])
+    editingEvent: modelReducer('editingEvent', events[12]),
+    editingEventForm: formReducer('editingEvent', events[12])
 }));
+
 
 function mapStateToProps(state) {
     return {
-        modifier: 'fixed-actions',
-
         eventGroups: eventGroups,
 
-        editingEvent: null,//state.editingEvent,
+        editingEvent: null, //state.editingEvent,
 
         editorValidation: validation,
         editorModels: models,
-        editEvent: function(event) {
+        editEvent: function editEvent(event) {
             console.log('editEvent');
             console.log(event);
         },
@@ -404,7 +308,9 @@ function mapStateToProps(state) {
         },
         state: {
             // userCanEdit: false
-        }
+        },
+        modifier: 'standalone',
+        actionsComponent: TaskResponseActionsIndividual
     };
 }
 
@@ -420,27 +326,29 @@ var overlayInner = React.createElement(ConnectedTaskResponses),
         bar: recipientNavigation
     }),
 
-    sidebar = React.createElement(ResponseRecipientList, {
-        responses: recipientData,
-        onSelect: function() {
-            console.log('select recipient');
-        }
-    });
+    sidebar = <ItemRepeater>
+        <div>Task details</div>
+        <div>Files</div>
+        </ItemRepeater>;
 
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
-        var el = document.querySelector('[data-lib_test-task-responses-screen]'); //Use jquery or sim in Firefly for backwards compat
+        var el = document.querySelector('[data-lib_test-task-responses-screen-student]');
         if (el) {
 
             var element = (
                 <Provider store={store}>
                     <div>
-                        <TaskMetaActions {...metaActionProps}/>
 
-                        <ScrollableList
-                            main={overlayOuter}
-                            sidebar={sidebar} />
+                        <div className="ff_grid ff_grid--1-2">
+                            <div className="ff_grid__column">
+                                {sidebar}
+                            </div>
+                            <div className="ff_grid__column">
+                                <ConnectedTaskResponses/>
+                            </div>
+                        </div>
                     </div>
                 </Provider>
             )
