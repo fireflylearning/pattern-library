@@ -11,10 +11,10 @@
     	    	<li class="ff_module-columnar-list__item">
     		    	<xsl:choose>
     					<xsl:when test="@url">
-    						<a class="ff_module-columnar-list__link" href="{@url}"><xsl:value-of select="@title" /></a>
+    						<a class="ff_module-columnar-list__link" href="{@url}"><span class="ff_module-columnar-list__content"><xsl:value-of select="@title" /></span></a>
     				    </xsl:when>
     				    <xsl:otherwise>
-    				    	<xsl:value-of select="@title" />
+    				    	<span class="ff_module-columnar-list__content"><xsl:value-of select="@title" /></span>
     		    		</xsl:otherwise>
     		    	</xsl:choose>
     		    </li>

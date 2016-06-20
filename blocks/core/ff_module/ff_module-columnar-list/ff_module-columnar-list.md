@@ -29,7 +29,7 @@ Add responsive columnar lists.
 ## XML Structure
 
 ```
-<top-section modifier="two-colum">
+<top-section modifier="two-column">
   <subsection url="#" title="Link Title" />
   <subsection title="Text only" />
 </top-section>
