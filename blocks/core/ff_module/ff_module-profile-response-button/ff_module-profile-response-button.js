@@ -93,7 +93,7 @@ statusTextsForEventByOtherUser[eventTypes.addFile] = "File received";
 
 function statusSummaryText(props) {
     var event = props.event;
-    return props.lastEventWasAuthoredByCurrentUser
-        ? statusTextsForEventByCurrentUser[event.description.type]
-        : statusTextsForEventByOtherUser[event.description.type];
+    return (props.lastEventWasAuthoredByCurrentUser === true) ?
+        statusTextsForEventByCurrentUser[event.description.type] :
+        statusTextsForEventByOtherUser[event.description.type];
 }
