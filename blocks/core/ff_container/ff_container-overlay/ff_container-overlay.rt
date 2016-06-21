@@ -1,7 +1,0 @@
-<div class="ff_container-overlay{this.props.modifier ? ' ff_container-overlay--' + this.props.modifier : ''}{ this.props.classes ? ' '+this.props.classes: ''}">
-    <div class="ff_container-overlay__body">{this.props.body}</div>
-    <div class="ff_container-overlay__bar">
-        <div class="ff_container-overlay__bar-content">{this.props.bar}</div>
-    </div>
-</div>
-

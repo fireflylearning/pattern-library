@@ -3,7 +3,7 @@
 var React = require('react');
 var DropdownMainTemplate = require('./_src/templates/main.jsx').default;
 var activateDropdowns = require('../ff_module-dropdown-button');
-var _ = require('lodash');
+var _ = require('underscore');
 
 var triggerName = 'data-ff_module-dropdown-button-rt-trigger',
     targetName = 'data-ff_module-dropdown-button-rt-target';

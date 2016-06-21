@@ -10,7 +10,26 @@ function camelCase(input) {
     });
 }
 
-module.exports = function(gulp, plugins, config) {
+function getSrc(dir) {
+    return [
+            dir + '**/**.js',               // match all js
+            '!' + dir + "**/_*",            // except folders
+            '!' + dir + "**/_*/**",         // or files with underscore
+            '!' + dir + "lib_test/**/*",    // or anything in lib_test
+            '!' + dir + "_lib/**/*"         // or anything in _lib
+        ];
+}
+
+function getRawSrc(dir) {
+    return [
+            dir + '**/**.js',
+            dir + '**/**.jsx',
+            '!' + dir + "**/_*-{renderer,view,control,mock*}.js",
+            '!' + dir + "lib_test/**/*",
+        ];
+}
+
+module.exports = function(gulp, plugins, config, utils) {
     var compilers = {
         export: webpack(config.webpack.export),
         develop: webpack(config.webpack.develop)
@@ -18,11 +37,7 @@ module.exports = function(gulp, plugins, config) {
 
     function buildExportJs(dir, templatePath, tmpDir) {
         return function() {
-            return gulp.src([
-                    dir + '**/**.js', // match all js except folders or files with underscore
-                    '!' + dir + "**/_*",
-                    '!' + dir + "**/_*/**"
-                ])
+            return gulp.src(getSrc(dir))
                 .pipe(plugins.plumber())
                 .pipe(plugins.applyTemplate({
                     engine: 'swig',
@@ -39,9 +54,21 @@ module.exports = function(gulp, plugins, config) {
                     }
                 }))
                 .pipe(plugins.concat(path.join('blocks-export.js')))
-                .pipe(gulp.dest(path.join('./.tmp/js')));
+                .pipe(gulp.dest(path.join(tmpDir)));
         };
     }
+
+    function buildExportRawJs(dir, dest) {
+        return function() {
+            return gulp.src(getRawSrc(dir))
+                .pipe(plugins.plumber())
+                .pipe(utils.debugPipe({
+                    title: 'export:js:raw'
+                })())
+                .pipe(gulp.dest(path.join(dest, 'js/')));
+            };
+    }
+
 
     function getCompiler(options, blockData) {
 
@@ -98,6 +125,7 @@ module.exports = function(gulp, plugins, config) {
         export: function() {
             return getExportCompiler(compilers.export);
         },
-        buildExportJs: buildExportJs
+        buildExportJs: buildExportJs,
+        buildExportRawJs: buildExportRawJs
     };
 };

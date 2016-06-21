@@ -1,9 +1,15 @@
 'use strict';
 
 var React = require('react');
-var template = require('./_ff_container-scrollable-list.rt.js');
 
 module.exports = React.createClass({
     displayName:'ScrollableList',
-    render: template
+    render: function() {
+        return (
+            <div className="ff_container-scrollable-list">
+                <div className="ff_container-scrollable-list__item ff_container-scrollable-list__item--sidebar">{this.props.sidebar}</div>
+                <div className="ff_container-scrollable-list__item ff_container-scrollable-list__item--main">{this.props.main}</div>
+            </div>
+        );
+    }
 });

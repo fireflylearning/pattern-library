@@ -1,5 +1,5 @@
 'use strict';
-var React = require('react/addons');
+var React = require('react');
 var TaskEventBase = require('./TaskEventBase.js');
 var eventStates = require('./events').states;
 var _ = require('underscore');

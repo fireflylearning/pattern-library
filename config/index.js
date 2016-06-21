@@ -17,6 +17,7 @@ module.exports = function(argv) {
     config = _.assign({}, options, locals);
 
     config.exportPath = argv["export-path"] || config.exportPath || paths.export;
+    config.exportJsPath = argv["export-js-path"] || config.exportJsPath || paths.exportJs;
     config.paths = paths;
     config.site = require('./site.js');
     config.gulpicon = require('./icons.js');

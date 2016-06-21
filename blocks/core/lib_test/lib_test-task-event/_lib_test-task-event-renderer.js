@@ -2,7 +2,7 @@
 
 var React = require('react'),
     ReactDOM = require('react-dom'),
-    _ = require('lodash');
+    _ = require('underscore');
 
 var TaskEvent = require('../../ff_module/ff_module-task-event/ff_module-task-event');
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];

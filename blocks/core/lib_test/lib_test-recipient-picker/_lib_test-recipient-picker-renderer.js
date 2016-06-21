@@ -5,7 +5,7 @@ var React = require('react'),
 var $ = require('jquery');
 
 var recipientPickerService = require('../../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-component/_ff_module-recipient-picker-component-mockservice')();
-var recipientPickerComponent = require('../../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-component/ff_module-recipient-picker-component')(recipientPickerService);
+var RecipientPickerComponent = require('../../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-component/ff_module-recipient-picker-component')(recipientPickerService);
 
 var groupButtonService = require('../../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-new-group-button/_ff_module-recipient-picker-new-group-button-mockservice.js')();
 var createNewGroupButton = require('../../ff_module/ff_module-recipient-picker/ff_module-recipient-picker-new-group-button/ff_module-recipient-picker-new-group-button.js');
@@ -22,19 +22,19 @@ module.exports = function() {
         console.log('tab-recipients');
         var pickerEl = document.querySelector('[data-ff-recipient-picker-test]'); //Use jquery or sim in Firefly for backwards compat
         if (pickerEl) {
-            picker = ReactDOM.render(React.createElement(recipientPickerComponent), pickerEl);
+            picker = ReactDOM.render(React.createElement(RecipientPickerComponent), pickerEl);
         }
         var btnEl = document.querySelector('[data-ff-recipient-picker-new-group-button-test]');
         if (btnEl && picker) {
-            var newGroupButtonComponent = createNewGroupButton(picker, groupButtonService);
-            var newGroupButton = ReactDOM.render(React.createElement(newGroupButtonComponent), btnEl);
+            var GroupButtonComponent = createNewGroupButton(picker, groupButtonService);
+            ReactDOM.render(React.createElement(GroupButtonComponent), btnEl);
         }
         $('[data-ff-recipient-list-type]').each(function(i) {
 
             var $el = $(this);
             var type = $el.attr('data-ff-recipient-list-type');
-            var newRecipientListComponent = createRecipientListComponent(picker, groupListService, type);
-            var newRecipientList = window['recipientList' + i] = ReactDOM.render(React.createElement(newRecipientListComponent), $el.get(0));
+            var RecipientListComponent = createRecipientListComponent(picker, groupListService, type);
+            window['recipientList' + i] = ReactDOM.render(React.createElement(RecipientListComponent), $el.get(0));
         });
 
     });

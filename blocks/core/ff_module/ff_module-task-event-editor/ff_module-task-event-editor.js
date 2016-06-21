@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react'),
-    _ = require('lodash');
+    _ = require('underscore');
 
 var Button = require('../ff_module-button/ff_module-button'),
     EditorBase = require('./_src/EditorBase'),

@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react'),
-    _ = require('lodash');
+    _ = require('underscore');
 
 var NotificationBase = require('./_src/NotificationBase'),
     NotificationDeleteTask = require('./_src/NotificationDeleteTask'),
