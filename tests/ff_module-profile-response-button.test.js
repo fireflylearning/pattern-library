@@ -84,7 +84,18 @@ var buttonProps = [{
         pic_href: "/images/group-icon.png"
     }, {
         onSelect: sinon.spy(),
-        label: "Joshua Comment",
+        label: "Joshua CommentReceived",
+        event: {
+            description: {
+                type: eventTypes.comment,
+                sent: new Date()
+            }
+        },
+        pic_href: "/images/group-icon.png"
+    }, {
+        onSelect: sinon.spy(),
+        label: "Joshua CommentSent",
+        lastEventWasAuthoredByCurrentUser: true,
         event: {
             description: {
                 type: eventTypes.comment,
@@ -105,7 +116,19 @@ var buttonProps = [{
         pic_href: "/images/group-icon.png"
     }, {
         onSelect: sinon.spy(),
-        label: "Joshua AddedFile",
+        label: "Joshua FileReceived",
+        event: {
+            description: {
+                type: eventTypes.addFile,
+                sent: new Date(),
+                files: []
+            }
+        },
+        pic_href: "/images/group-icon.png"
+    }, {
+        onSelect: sinon.spy(),
+        label: "Joshua FileSent",
+        lastEventWasAuthoredByCurrentUser: true,
         event: {
             description: {
                 type: eventTypes.addFile,
@@ -130,27 +153,31 @@ function testClasses(component, value, props) {
     }
 }
 
-function statusSummaryText(event) {
-    switch (event.description.type) {
-        case eventTypes.setTask:
-            return "Awaiting Response";
-        case eventTypes.stampResponseAsSeen:
-            return "Task stamped as seen";
-        case eventTypes.requestResubmission:
-            return "Resubmission requested";
-        case eventTypes.confirmTaskIsComplete:
-            return "Confirmed as complete";
-        case eventTypes.confirmStudentIsExcused:
-            return "Student excused";
-        case eventTypes.comment:
-            return "Comment sent";
-        case eventTypes.markAndGrade:
-            return "Marked";
-        case eventTypes.addFile:
-            return "Response Received";
-        default:
-            return "";
-    }
+var statusTextsForEventByCurrentUser = {};
+statusTextsForEventByCurrentUser[eventTypes.setTask] = "Awaiting Response";
+statusTextsForEventByCurrentUser[eventTypes.stampResponseAsSeen] = "Task stamped as seen";
+statusTextsForEventByCurrentUser[eventTypes.requestResubmission] = "Resubmission requested";
+statusTextsForEventByCurrentUser[eventTypes.confirmTaskIsComplete] = "Confirmed as complete";
+statusTextsForEventByCurrentUser[eventTypes.confirmStudentIsExcused] = "Student excused";
+statusTextsForEventByCurrentUser[eventTypes.comment] = "Comment sent";
+statusTextsForEventByCurrentUser[eventTypes.markAndGrade] = "Marked";
+statusTextsForEventByCurrentUser[eventTypes.addFile] = "File sent";
+
+var statusTextsForEventByOtherUser = {};
+statusTextsForEventByOtherUser[eventTypes.setTask] = statusTextsForEventByCurrentUser[eventTypes.setTask];
+statusTextsForEventByOtherUser[eventTypes.stampResponseAsSeen] = statusTextsForEventByCurrentUser[eventTypes.stampResponseAsSeen];
+statusTextsForEventByOtherUser[eventTypes.requestResubmission] = statusTextsForEventByCurrentUser[eventTypes.requestResubmission];
+statusTextsForEventByOtherUser[eventTypes.confirmTaskIsComplete] = statusTextsForEventByCurrentUser[eventTypes.confirmTaskIsComplete];
+statusTextsForEventByOtherUser[eventTypes.confirmStudentIsExcused] = statusTextsForEventByCurrentUser[eventTypes.confirmStudentIsExcused];
+statusTextsForEventByOtherUser[eventTypes.comment] = "Comment received";
+statusTextsForEventByOtherUser[eventTypes.markAndGrade] = statusTextsForEventByCurrentUser[eventTypes.markAndGrade];
+statusTextsForEventByOtherUser[eventTypes.addFile] = "File received";
+
+function statusSummaryText(props) {
+    var event = props.event;
+    return (props.lastEventWasAuthoredByCurrentUser === true) ?
+        statusTextsForEventByCurrentUser[event.description.type] :
+        statusTextsForEventByOtherUser[event.description.type];
 }
 
 var testDefs = {
@@ -182,7 +209,7 @@ var testDefs = {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
         var expected = '';
         if (props.event) {
-            expected = statusSummaryText(props.event) + " " + dateFormatting.niceDate(props.event.description.sent).toLowerCase();
+            expected = statusSummaryText(props) + " " + dateFormatting.niceDate(props.event.description.sent).toLowerCase();
         }
         expect(node.textContent).to.equal(expected);
     },
