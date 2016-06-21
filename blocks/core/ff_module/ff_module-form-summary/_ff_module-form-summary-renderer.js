@@ -8,7 +8,11 @@ var FormSummary = require('./ff_module-form-summary.js'),
 
 var props = {
     title: 'Task Summary',
-    items : [ {title: 'Title 1', data: 'Item 1'}, {title: 'Title 2', data: 'Item 2', url:'#'}]
+    list: [
+        { title: 'Title 1', content: 'Item 1' },
+        { title: 'Title 2', content: 'Item 2', url: '#' },
+        { title: 'Title 2', content: <p>Item 2</p> }
+    ]
 };
 
 module.exports = function() {
