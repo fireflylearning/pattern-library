@@ -3,7 +3,7 @@
 var React = require('react');
 var generateClasses = require('../../_lib/_ui/class-utils.js').generateStandardClass;
 
-function DataListTitle(props) {
+function DefListTitle(props) {
     return (
         <dt className="ff_module-form-summary__list__title">
             {props.children}
@@ -11,7 +11,7 @@ function DataListTitle(props) {
     );
 }
 
-function DataListDatum(props) {
+function DefListDatum(props) {
     return (
         <dd className="ff_module-form-summary__list__data">
             {props.children}
@@ -55,8 +55,8 @@ module.exports = React.createClass({
                     <dl className="ff_module-form-summary__list">
                     {this.props.list.map(item => {
                         return [
-                            <DataListTitle key='title'>{item.title}</DataListTitle>,
-                            <DataListDatum key='data'>{renderItem(item)}</DataListDatum>
+                            <DefListTitle key='title'>{item.title}</DefListTitle>,
+                            <DefListDatum key='data'>{renderItem(item)}</DefListDatum>
                         ];
                     })}
                     </dl>
