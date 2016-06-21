@@ -32,6 +32,22 @@ function renderItem(item) {
 
 }
 
+function renderList(props) {
+    if (props.list) {
+        return (
+            <dl className="ff_module-form-summary__list">
+            {props.list.map(item => {
+                return [
+                    <DefListTitle key='title'>{item.title}</DefListTitle>,
+                    <DefListDatum key='data'>{renderItem(item)}</DefListDatum>
+                ];
+            })}
+            </dl>
+        );
+    }
+    return null;
+}
+
 module.exports = React.createClass({
     displayName: 'FormSummary',
     props: {
@@ -52,16 +68,8 @@ module.exports = React.createClass({
                 </div>
 
                 <div className="ff_module-form-summary__content">
-                    <dl className="ff_module-form-summary__list">
-                    {this.props.list.map(item => {
-                        return [
-                            <DefListTitle key='title'>{item.title}</DefListTitle>,
-                            <DefListDatum key='data'>{renderItem(item)}</DefListDatum>
-                        ];
-                    })}
-                    </dl>
+                    {renderList(this.props)}
                     {this.props.children}
-
                 </div>
             </div>
 
