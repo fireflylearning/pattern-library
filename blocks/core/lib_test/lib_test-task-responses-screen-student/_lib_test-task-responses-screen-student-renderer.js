@@ -3,19 +3,14 @@
 var React = require('react'),
     ReactDOM = require('react-dom');
 
-var ScrollableList = require('../../ff_container/ff_container-scrollable-list/ff_container-scrollable-list'),
+var Button = require('../../ff_module/ff_module-button/ff_module-button'),
+    DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
     ItemRepeater = require('../../ff_container/ff_container-item-repeater/ff_container-item-repeater'),
-    IncrementalNavigation = require('../../ff_module/ff_module-incremental-navigation/ff_module-incremental-navigation'),
-    ContainerOverlay = require('../../ff_container/ff_container-overlay/ff_container-overlay'),
-    ContainerControlBar = require('../../ff_container/ff_container-control-bar/ff_container-control-bar'),
-    ContainerControlBarSet = ContainerControlBar.ControlBarSet,
+    ModuleFileList = require('../../ff_module/ff_module-file-list/ff_module-file-list'),
     TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
     TaskResponseActionsIndividual = require('../../ff_module/ff_module-task-response-actions-individual/ff_module-task-response-actions-individual'),
-    TaskMetaActions = require('../../ff_module/ff_module-task-meta-actions/ff_module-task-meta-actions'),
-    Button = require('../../ff_module/ff_module-button/ff_module-button'),
-    DropdownButton = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component'),
-    DropdownFilters = require('../../ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters');
-
+    TaskSummary = require('../../ff_module/ff_module-form-summary/ff_module-form-summary'),
+    MarkAndGrade = require('../../ff_module/ff_module-mark-and-grade/ff_module-mark-and-grade');
 
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
@@ -180,32 +175,6 @@ var filterProps = {
         ]
     };
 
-var metaActionProps = {
-    state: {
-        // archived: true
-    },
-    description: {
-        numRecipientsAffected: 43,
-        author: { name: 'Terry Teacher' }
-    },
-    filters: <DropdownFilters {...filterProps} />,
-    singleButtons: [<Button key="send-all-now" {...buttonProps}/>],
-    groupedActions: <DropdownButton {...dropdownProps}/>
-};
-
-var recipientNavigation = React.createElement(IncrementalNavigation, {
-    nextText: 'Next Student',
-    previousText: 'Previous Student',
-    isFirst: true,
-    onNext: function() {
-        console.log('Click Next Student');
-    },
-    onPrevious: function() {
-        console.log('Click Previous Student');
-    }
-});
-
-
 var modelKeys = {
     mark: 'mark',
     markMax: 'markMax',
@@ -314,22 +283,51 @@ function mapStateToProps(state) {
     };
 }
 
-var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses);
-
-
-var overlayInner = React.createElement(ConnectedTaskResponses),
-
-    overlayOuter = React.createElement(ContainerOverlay, {
-        modifier: 'absolute-bottom',
-        classes: 'ff_container-overlay--task-event-scrollable',
-        body: overlayInner,
-        bar: recipientNavigation
-    }),
-
-    sidebar = <ItemRepeater>
-        <div>Task details</div>
-        <div>Files</div>
-        </ItemRepeater>;
+var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses),
+    sidebar = <ItemRepeater modifier="rounded">
+        <TaskSummary
+            title="Task Details"
+            modifier='in-list'
+            list={[
+                { title: 'Set Date:', content: '04/04/2016' },
+                { title: 'Set By:', content: 'Terry Teacher' },
+                { title: 'Due Date:', content: '11/04/2016' }
+            ]}
+            >
+            <DropdownButton
+                text="Set an Alert"
+                modifier="tertiary"
+                list={[
+                    { text: 'Option 1', onClick: function() { console.log('Option 1'); } },
+                    { text: 'Option 2', onClick: function() { console.log('Option 2'); } }
+                ]}
+                />
+        </TaskSummary>
+        <TaskSummary
+            title="Task Description"
+            modifier='in-list'
+            >
+            <ModuleFileList files={[
+                { title: 'View Description', type: 'page', href: '#' }
+                ]} />
+        </TaskSummary>
+        <TaskSummary
+            title="Task Files"
+            modifier='in-list'
+            >
+            <ModuleFileList files={[
+                { title: 'My lovely file.pdf', href: '#' },
+                { title: 'My lovely page', type: 'page', href: '#' }
+                ]} />
+        </TaskSummary>
+        <TaskSummary
+            title="Marks Received"
+            modifier='in-list'
+            >
+            <MarkAndGrade
+                grade={'C'} mark={7} markMax={11} />
+        </TaskSummary>
+    </ItemRepeater>;
 
 
 module.exports = function() {
