@@ -37,7 +37,7 @@ module.exports = React.createClass({
     propTypes: {
         title: React.PropTypes.string.isRequired,
         body: React.PropTypes.node.isRequired,
-        controls: React.PropTypes.node.isRequired,
+        controls: React.PropTypes.node,
         showCloseIcon: React.PropTypes.bool,
         onCloseIconClick: React.PropTypes.func
     },
@@ -47,7 +47,7 @@ module.exports = React.createClass({
         return <div className={className}>
             <DialogTitle showCloseIcon={this.props.showCloseIcon} onCloseIconClick={this.props.onCloseIconClick} modifier={this.props.modifier}>{this.props.title}</DialogTitle>
             <DialogBody modifier={this.props.modifier}>{this.props.body}</DialogBody>
-            <DialogControls modifier={this.props.modifier}>{this.props.controls}</DialogControls>
+            {(this.props.controls) ? <DialogControls modifier={this.props.modifier}>{this.props.controls}</DialogControls> : null}
          </div>;
     }
 });
