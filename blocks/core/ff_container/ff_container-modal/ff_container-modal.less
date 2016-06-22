@@ -14,13 +14,22 @@
             outline: none;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
-
         }
         .default() {
             .style() {
                 padding: 0;
                 border: none;
                 background: #fff;
+            }
+            .position() {
+                top: 0;
+                left: 0;
+                width: 100%;
+                min-height: 100%;
+            }
+        }
+        .medium() {
+            .style() {
                 border-radius: 4px;
                 box-shadow: 1px 5px 0px 0px rgba(0,0,0,0.25);
             }
@@ -30,7 +39,7 @@
                 transform: translate(-50%, -50%);
                 width: 50%;
                 min-width: 400px;
-                min-height: 265px;
+                min-height: 200px;
             }
         }
         .compact() {
@@ -50,7 +59,7 @@
                 transform: translate(-50%, -50%);
                 width: 70%;
                 min-width: 300px;
-                min-height: 160px;
+                min-height: 265px;
             }
         }
     }
@@ -71,26 +80,31 @@
     }
 }
 
-// compact modifiers
-.ff_container-modal {
-    &__overlay--compact {
-        #ff_container-modal > .overlay;
+
+@media (min-width: @ff_bp_narrow) {
+
+    // default (no mods)
+    .ff_container-modal {
+        &__content {
+            #ff_container-modal > .content > .medium > .style;
+            #ff_container-modal > .content > .medium > .position;
+        }
     }
-    &__content--compact {
-        #ff_container-modal > .content > .core;
-        #ff_container-modal > .content > .default > .style;
-        #ff_container-modal > .content > .compact > .position;
+
+    // compact modifiers
+    .ff_container-modal {
+        &__overlay--compact {}
+        &__content--compact {
+            #ff_container-modal > .content > .compact > .position;
+        }
+    }
+
+    // wide modifiers
+    .ff_container-modal {
+        &__overlay--wide {}
+        &__content--wide {
+            #ff_container-modal > .content > .wide > .position;
+        }
     }
 }
 
-// wide modifiers
-.ff_container-modal {
-    &__overlay--wide {
-        #ff_container-modal > .overlay;
-    }
-    &__content--wide {
-        #ff_container-modal > .content > .core;
-        #ff_container-modal > .content > .default > .style;
-        #ff_container-modal > .content > .wide > .position;
-    }
-}
