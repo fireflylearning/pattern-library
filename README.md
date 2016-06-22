@@ -17,7 +17,10 @@ It provides us with a separate environment to build and test patterns and their 
     
 - gulp export 
 
-    build and exports the xsl and css files to `export` directory. The location can be overriden in `config/options.local.js`.
+    - build and exports the xsl and css files to `export` directory. 
+    - export js modules to `export-js`.
+    - The locations can be overriden in `config/options.local.js`.
+    - Alternatively, paths can be set via command-line: `--export-path` and `--export-js-path`; eg: `gulp export --export-path www/files --export-js-path www/files/js`
 
 - gulp build
      
