@@ -10,7 +10,8 @@ var Button = require('../../ff_module/ff_module-button/ff_module-button'),
     TaskResponses = require('../../ff_module/ff_module-task-responses/ff_module-task-responses'),
     TaskResponseActionsIndividual = require('../../ff_module/ff_module-task-response-actions-individual/ff_module-task-response-actions-individual'),
     TaskSummary = require('../../ff_module/ff_module-form-summary/ff_module-form-summary'),
-    MarkAndGrade = require('../../ff_module/ff_module-mark-and-grade/ff_module-mark-and-grade');
+    MarkAndGrade = require('../../ff_module/ff_module-mark-and-grade/ff_module-mark-and-grade'),
+    ContainerModalWithDialog = require('../../ff_container/ff_container-modal-with-dialog/ff_container-modal-with-dialog');
 
 var eventTypes = require('../../ff_module/ff_module-task-event/_src/events').types,
     activateDropdowns = require('../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button');
@@ -276,7 +277,7 @@ function mapStateToProps(state) {
             console.log('stopEditingEvent');
         },
         state: {
-            // userCanEdit: false
+            userCanEdit: false
         },
         modifier: 'standalone',
         actionsComponent: TaskResponseActionsIndividual
@@ -298,8 +299,8 @@ var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses),
                 text="Set an Alert"
                 modifier="tertiary"
                 list={[
-                    { text: 'Option 1', onClick: function() { console.log('Option 1'); } },
-                    { text: 'Option 2', onClick: function() { console.log('Option 2'); } }
+                    { text: 'Option 1', type: 'radio', id: 'option1', name: 'set-alert', onClick: function() { console.log('Option 1'); } },
+                    { text: 'Option 2', type: 'radio', id: 'option2', name: 'set-alert', onClick: function() { console.log('Option 2'); } }
                 ]}
                 />
         </TaskSummary>
@@ -308,7 +309,7 @@ var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses),
             modifier='in-list'
             >
             <ModuleFileList files={[
-                { title: 'View Description', type: 'page', href: '#' }
+                { title: 'View Description', type: 'description', onClick: function(){ console.log('view description'); } }
                 ]} />
         </TaskSummary>
         <TaskSummary
@@ -330,6 +331,8 @@ var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses),
     </ItemRepeater>;
 
 
+
+var descriptionModalIsOpen = false;
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         var el = document.querySelector('[data-lib_test-task-responses-screen-student]');
@@ -345,6 +348,15 @@ module.exports = function() {
                             </div>
                             <div className="ff_grid__column">
                                 <ConnectedTaskResponses/>
+                                <ContainerModalWithDialog
+                                    modifier='wide'
+                                    title="Task Description"
+                                    isOpen={descriptionModalIsOpen}
+                                    onClose={function(){ console.log('close modal'); }}
+                                    >
+                                    <p>Description of the task at hand</p>
+
+                                </ContainerModalWithDialog>
                             </div>
                         </div>
                     </div>
