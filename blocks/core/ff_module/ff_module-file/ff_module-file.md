@@ -22,7 +22,8 @@ data:
     - **`type`**: {String} 
 
         Icon for type defaults to `file`; type of `page` sets icon to `computer`
-    - **`href`**: {String}}
+    - **`href`**: {String} - renders an `<a/>` with href when present
+    - **`onClick`**: {Function} - renders a `<button/>` with onClick handler when present }
 - **`classes`**: {String}
 - **`modifier`**: {String}
 
