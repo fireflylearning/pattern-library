@@ -49,6 +49,9 @@ module.exports = React.createClass({
             list = getList(state);
 
         if (state.userCanEdit === false) return null;
+        var completeStatusModifier = (list.completeStatus === events.types.confirmTaskIsComplete) ?
+            "primary-compact" :
+            "tertiary-compact";
 
         return (
             <div className={generateClasses("ff_module-task-response-actions", this.props)}>
@@ -63,7 +66,7 @@ module.exports = React.createClass({
                         />
                         <Button
                             key={list.completeStatus}
-                            modifier="primary-compact"
+                            modifier={completeStatusModifier}
                             text={getText(list.completeStatus, state)}
                             onClick={()=>this.onClick(list.completeStatus)}
                         />
