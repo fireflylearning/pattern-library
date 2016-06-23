@@ -19,7 +19,7 @@ module.exports = React.createClass({
                 modifier={this.props.modifier}
                 isOpen={this.props.isOpen}
                 onRequestClose={this.props.onClose}
-                ref={this.bindRef}
+                ref={this.bindModalRef}
                 >
                 <ContainerDialog
                     title={this.props.title}
@@ -31,12 +31,12 @@ module.exports = React.createClass({
             </ContainerModal>
         );
     },
-    bindRef:function(component){
-        this.ffContainerModal = component;
+    bindModalRef(component){
+        this.modal = component;
     },
     getOverlay: function() {
-        var ref = this.ffContainerModal;
-        if (ref) return ref.portal;
-        return null;
+        var modal = this.modal;
+        if (modal) return modal.getOverlay();
+        return undefined;
     }
 });
