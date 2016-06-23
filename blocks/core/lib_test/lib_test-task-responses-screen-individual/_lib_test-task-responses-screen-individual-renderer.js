@@ -22,6 +22,10 @@ import { Provider } from 'react-redux';
 import { modelReducer, formReducer } from 'react-redux-form';
 import { isRequired, isNumber, maxLength } from '../../_lib/simpleValidation';
 
+var descriptionModalIsOpen = false,
+    eventEditorModalIsOpen = false,
+    userCanEdit = true;
+
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'],
     dStrings2 = [
         '7 Dec 2015 18:45', // 0
@@ -252,8 +256,8 @@ validation[modelKeys.message] = {
 
 
 var store = createStore(combineReducers({
-    editingEvent: modelReducer('editingEvent', events[12]),
-    editingEventForm: formReducer('editingEvent', events[12])
+    editingEvent: modelReducer('editingEvent', events[8]),
+    editingEventForm: formReducer('editingEvent', events[8])
 }));
 
 
@@ -261,7 +265,7 @@ function mapStateToProps(state) {
     return {
         eventGroups: eventGroups,
 
-        editingEvent: null, //state.editingEvent,
+        editingEvent: eventEditorModalIsOpen ? state.editingEvent : null ,
 
         editorValidation: validation,
         editorModels: models,
@@ -277,62 +281,77 @@ function mapStateToProps(state) {
             console.log('stopEditingEvent');
         },
         state: {
-            userCanEdit: false
+            userCanEdit: userCanEdit,
+            complete: true
         },
         modifier: 'standalone',
         actionsComponent: TaskResponseActionsIndividual
     };
 }
 
-var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses),
-    sidebar = <ItemRepeater modifier="rounded">
-        <TaskSummary
-            title="Task Details"
-            modifier='in-list'
-            list={[
-                { title: 'Set Date:', content: '04/04/2016' },
-                { title: 'Set By:', content: 'Terry Teacher' },
-                { title: 'Due Date:', content: '11/04/2016' }
-            ]}
-            >
-            <DropdownButton
-                text="Set an Alert"
-                modifier="tertiary"
+var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses);
+
+
+var SidebarContainer = function(props) {
+
+    return (
+        <ItemRepeater modifier="rounded">
+            <TaskSummary
+                title="Task Details"
+                modifier='in-list'
                 list={[
-                    { text: 'Option 1', type: 'radio', id: 'option1', name: 'set-alert', onClick: function() { console.log('Option 1'); } },
-                    { text: 'Option 2', type: 'radio', id: 'option2', name: 'set-alert', onClick: function() { console.log('Option 2'); } }
+                    { title: 'Set Date:', content: '04/04/2016' },
+                    { title: 'Set By:', content: 'Terry Teacher' },
+                    { title: 'Due Date:', content: '11/04/2016' }
                 ]}
-                />
-        </TaskSummary>
-        <TaskSummary
-            title="Task Description"
-            modifier='in-list'
-            >
-            <ModuleFileList files={[
-                { title: 'View Description', type: 'description', onClick: function(){ console.log('view description'); } }
-                ]} />
-        </TaskSummary>
-        <TaskSummary
-            title="Task Files"
-            modifier='in-list'
-            >
-            <ModuleFileList files={[
-                { title: 'My lovely file.pdf', href: '#' },
-                { title: 'My lovely page', type: 'page', href: '#' }
-                ]} />
-        </TaskSummary>
-        <TaskSummary
-            title="Marks Received"
-            modifier='in-list'
-            >
-            <MarkAndGrade
-                grade={'C'} mark={7} markMax={11} />
-        </TaskSummary>
-    </ItemRepeater>;
+                >
+                {(props.userCanEdit !== false) ?
+                    <DropdownButton
+                        text="Set an Alert"
+                        modifier="tertiary"
+                        classes="ff_module-task-summary__set-task-button"
+                        list={[
+                            { text: 'No alert', type: 'radio', id: 'option1', name: 'set-alert', onClick: function() { console.log('No alert'); } },
+                            { text: 'One day before', type: 'radio', id: 'option2', name: 'set-alert', onClick: function() { console.log('One day before'); } },
+                            { text: 'Two day before', type: 'radio', id: 'option3', name: 'set-alert', onClick: function() { console.log('Two day before'); } },
+                            { text: 'Three day before', type: 'radio', id: 'option4', name: 'set-alert', onClick: function() { console.log('Three day before'); } },
+                            { text: 'Four days before', type: 'radio', id: 'option5', name: 'set-alert', onClick: function() { console.log('Four days before'); } },
+                            { text: 'Five days before', type: 'radio', id: 'option6', name: 'set-alert', onClick: function() { console.log('Five days before'); } }
+                        ]}
+                    /> :
+                    null}
+            </TaskSummary>
+            <TaskSummary
+                title="Task Description"
+                modifier='in-list'
+                >
+                <ModuleFileList files={[
+                    { title: 'View Description', type: 'description', onClick: function(){ console.log('view description'); } }
+                    ]} />
+            </TaskSummary>
+            <TaskSummary
+                title="Task Files"
+                modifier='in-list'
+                >
+                <ModuleFileList files={[
+                    { title: 'My lovely file.pdf', href: '#' },
+                    { title: 'My lovely page', type: 'page', href: '#' }
+                    ]} />
+            </TaskSummary>
+            <TaskSummary
+                title="Marks Received"
+                modifier='in-list'
+                >
+                <MarkAndGrade
+                    grade={'C'} mark={7} markMax={11} />
+            </TaskSummary>
+        </ItemRepeater>
+    );
+}
 
 
 
-var descriptionModalIsOpen = false;
+
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         var el = document.querySelector('[data-lib_test-task-responses-screen-student]');
@@ -344,7 +363,7 @@ module.exports = function() {
 
                         <div className="ff_grid ff_grid--1-2">
                             <div className="ff_grid__column">
-                                {sidebar}
+                                <SidebarContainer userCanEdit={userCanEdit} />
                             </div>
                             <div className="ff_grid__column">
                                 <ConnectedTaskResponses/>
