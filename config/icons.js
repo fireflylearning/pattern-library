@@ -14,7 +14,7 @@ module.exports = {
     loadersnippet: 'grunticon.loader.js',
 
     // Include loader code for SVG markup embedding
-    false: true,
+    enhanceSVG: true,
 
     // Make markup embedding work across domains (if CSS hosted externally)
     corsEmbed: false,
