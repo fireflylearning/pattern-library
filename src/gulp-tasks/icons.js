@@ -3,7 +3,7 @@
 var path = require('path'),
     gulpicon = require('../../node_modules/gulpicon/tasks/gulpicon'),
     glob = require('glob'),
-    folderTaskParallel = require('../lib/perFolderUtils').folderParallel;
+    folderTaskSeries = require('../lib/perFolderUtils').folderSeries;
 
 function updateIconConfig(iconConfig, folder) {
     var config = Object.create(iconConfig);
@@ -106,7 +106,7 @@ module.exports = function(gulp, plugins, config, utils) {
 
 
     function getGrumpIcon(src, srcDir, dest, destDir) {
-        return folderTaskParallel(srcDir, function(folder) {
+        return folderTaskSeries(srcDir, function(folder) {
             var haventChanged = iconsChanged[folder] && iconsChanged[folder].length === 0;
 
             plugins.util.log('Icons for ' + folder + (haventChanged ? ' haven\'t ' : ' have ') + 'changed');
