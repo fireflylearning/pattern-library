@@ -5,13 +5,12 @@ var ResponseRecipientList = require('./ff_module-response-recipient-list'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 var responses = [{
-    currentTaskResponse: <span className='crate_util-block'>Component</span>,
     recipient: {
         name: 'rudy'
     },
     guid: "u47",
     label: "Sally Student",
-    latestEvent: {
+    description: {
         type: eventTypes.markAndGrade,
         sent: new Date()
     },
@@ -28,7 +27,7 @@ var responses = [{
     isSelected: true,
     guid: "u43",
     label: "Terry Teacher",
-    latestEvent: {
+    description: {
         type: eventTypes.requestResubmission,
         sent: new Date()
     },
@@ -41,7 +40,7 @@ var responses = [{
     isRead: true,
     guid: "u44",
     label: "Joseph Goulden",
-    latestEvent: {
+    description: {
         type: eventTypes.confirmTaskIsComplete,
         sent: new Date()
     },
@@ -53,7 +52,7 @@ var responses = [{
     lastEventWasAuthoredByCurrentUser: true,
     guid: "u42",
     label: "Sally Student",
-    latestEvent: {
+    description: {
         type: eventTypes.markAndGrade,
         sent: new Date()
     },
@@ -71,7 +70,7 @@ var responses = [{
     isSelected: true,
     guid: "u41",
     label: "Terry Teacher",
-    latestEvent: {
+    description: {
         type: eventTypes.requestResubmission,
         sent: new Date()
     },
@@ -85,7 +84,7 @@ var responses = [{
     isRead: true,
     guid: "u40",
     label: "Joseph Goulden",
-    latestEvent: {
+    description: {
         type: eventTypes.confirmTaskIsComplete,
         sent: new Date()
     },
@@ -99,7 +98,8 @@ module.exports = function() {
                 responses: responses,
                 onSelect: function(recipient){
                     console.log(recipient);
-                }
+                },
+                currentTaskResponse: <span className='crate_util-block'>Component</span>
             });
             React.render(element, domElement);
         });
