@@ -13,7 +13,9 @@ module.exports = React.createClass({
     render: function() {
     	return <ItemRepeater modifier='separated'>
     		{this.props.responses.map((response)=>{
-			return <ProfileResponseButton 
+    			var currentResponse = response.currentTaskResponse ? <div className='ff_module-response-recipient-list__currentResponse'>{response.currentTaskResponse}</div> : '';
+			return <div>
+				<ProfileResponseButton 
 				key = {'list-profile-response-btn-' + response.guid}
 				isRead ={response.isRead}
 				isSelected = {response.isSelected}
@@ -23,7 +25,9 @@ module.exports = React.createClass({
 				lastEventWasAuthoredByCurrentUser={response.lastEventWasAuthoredByCurrentUser}
 				onSelect={()=>this.props.onSelect(response.recipient)}
 				pic_href={response.pic_href}
-			/>
+				/>
+				{currentResponse}
+			</div>
 		})}
 	</ItemRepeater>;
     }

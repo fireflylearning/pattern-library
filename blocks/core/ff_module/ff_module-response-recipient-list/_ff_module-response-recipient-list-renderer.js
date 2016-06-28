@@ -5,6 +5,7 @@ var ResponseRecipientList = require('./ff_module-response-recipient-list'),
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 var responses = [{
+    currentTaskResponse: <span className='crate_util-block'>Component</span>,
     recipient: {
         name: 'rudy'
     },
