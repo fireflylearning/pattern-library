@@ -53,7 +53,11 @@
 
     (function(window, document, undefined){
 
-        function changeCSS(cssFile, linkId) {
+        function getCSSFilePathForTheme(theme) {
+            return '/css/blocks.'+theme+'.css';
+        }
+
+        function changeCSSTheme(cssFile, linkId) {
 
             var oldlink = document.getElementById(linkId);
             var newlink = document.createElement("link");
@@ -69,17 +73,29 @@
             document.getElementById('theme-select').onchange = function() {
                 var val = this.value;
                 if (!val) return;
-                changeCSS(val, 'crate_theme-switch');
+                changeCSSTheme(getCSSFilePathForTheme(val), 'crate_theme-switch');
+                setIconTheme(val);
                 window.setCookie('theme', val);
-                console.log(getCookie('theme'));
             }
+        }
+
+        function checkAndUnsetOldCookie(theme) {
+            var isOldCookie = /\/css\//.test(theme);
+            if (isOldCookie) {
+                theme = 'core';
+                window.setCookie('theme', theme);
+            }
+            return theme;
         }
 
         var theme = window.getCookie('theme');
         if (theme) {
-
-            changeCSS(theme, 'crate_theme-switch');
+            theme = checkAndUnsetOldCookie(theme);
+            changeCSSTheme(getCSSFilePathForTheme(theme), 'crate_theme-switch');
+            setIconTheme(theme);
             document.getElementById('theme-select').value = theme;
+        } else {
+            setIconTheme('core');
         }
 
     })(window, document);
