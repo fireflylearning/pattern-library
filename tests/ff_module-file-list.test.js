@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react');
 
-require('./lib/utils').bootstrapBrowser();
+
 
 var TestUtils = require('react-addons-test-utils'),
     expect = require('chai').expect;

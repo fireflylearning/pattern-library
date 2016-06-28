@@ -8,7 +8,7 @@ data:
 ---
 
 ## React component (`separated`):
-<div data-ff-container-item-repeater=""/>
+<div data-ff_container-item-repeater=""/>
 
 ## Modifiers
 - `rounded` (Also default): rounded borders on outside of list, borders between list items

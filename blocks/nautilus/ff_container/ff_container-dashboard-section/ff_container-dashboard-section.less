@@ -1,0 +1,35 @@
+
+.ff_container-dashboard-section {
+    
+    // header
+    &__header {
+        #ff_mix-sections > .header();
+        &--messages {
+        }
+        &--planner {
+        }
+        &--tasks {
+        }
+    }
+    
+    // main
+    &__title {
+        font-size: 21rem/@ff_base;
+    }
+    &__main {
+       #ff_mix-sections > .main();
+       background-color: white;
+    }
+    &__main--no-footer {
+        #ff_mix-sections > .main--no-footer()
+    }
+
+    // footer
+    &__footer {
+        #ff_mix-sections > .footer();
+    }
+    &__more-link {
+        #ff_mix-util-prose > .link-no-decoration();
+    }
+}
+

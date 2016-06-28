@@ -59,3 +59,6 @@ module.exports = function() {
         }
     };
 };
+
+module.exports.groups = groups;
+

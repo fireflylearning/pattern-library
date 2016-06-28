@@ -14,9 +14,9 @@ var _options = {
 module.exports = function(stepsValidator, options) {
 
     options = $.extend({}, _options, options, stepsValidator);
-
+    
     var formStepsHandler = createFormSteps(options);
-
+    
     $(function() {
         formStepsHandler.init();
         // formStepsHandler.(next | previous)

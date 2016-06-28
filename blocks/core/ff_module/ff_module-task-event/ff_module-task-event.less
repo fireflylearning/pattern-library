@@ -1,41 +1,19 @@
 .ff_module-task-event {
-    background: #fff;
-    border: 1px solid @ff_colour_control_border;
-    padding: 0 @ff_size_spacing_min;
 
+    .ff_mix-clearfix;
     &>* {
         margin: @ff_size_spacing_min*0.8 0;
     }
-
     &__sent {
-        float:right;
+        float: right;
     }
     &__author-action {
         display: block;
     }
-
-    &__files {
-    }
-
+    &__files {}
     &__actions {
-        float:right;
-        clear:right;
+        float: right;
+        clear: right;
         margin: 0;
     }
 }
-
-.ff_module-task-event {
-    &--is-pending {
-        opacity: .5;
-    }
-    &--has-error {
-        background-color: #fcc;
-    }
-    &--delete-response {
-        background-color: transparent;
-    }
-    &--is-deleted {
-        background-color: transparent;
-    }
-}
-

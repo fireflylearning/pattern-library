@@ -5,5 +5,7 @@ data:
     type: groupprofile
 ---
 
+<div data-ff_module-form-box-group=""/>
+
 State options:
 - editable

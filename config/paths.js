@@ -10,9 +10,11 @@ function getPaths() {
         blocks: 'blocks/',
         core: 'core/',
         export: 'export/',
+        exportJs: 'export-js/',
         assets: 'assets/',
         temp: '.tmp/',
         icons: '.icons/',
+        config: 'config/',
         templates: 'src/templates',
         cssBuildPriority: [
             '**/outputs.less',
@@ -33,6 +35,7 @@ function getPaths() {
     };
     var paths = {
         export: basePaths.export,
+        exportJs: basePaths.exportJs,
         clean: [basePaths.temp, basePaths.dest],
         dest: basePaths.dest,
         pages: {
@@ -104,6 +107,10 @@ function getPaths() {
             },
             export: {
                 src: [basePaths.icons+'build/**/*.{js,css,png}'], // Must have no spaces between commas in curly brackets!
+            },
+            config : {
+                src: path.join(basePaths.config, 'icons.js'),
+                dest: path.join(basePaths.icons, 'config')
             }
         },
         assets: {

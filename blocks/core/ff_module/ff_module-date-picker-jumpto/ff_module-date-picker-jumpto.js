@@ -19,9 +19,12 @@ module.exports = function() {
             }
             
             function updateTarget(date) {
-                valueElement.val(date);
-                var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
-                displayElement.val(displayDate);
+                
+                if (!isNaN(Date.parse(date))) {
+                    valueElement.val(date);
+                    var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
+                    displayElement.val(displayDate);
+                }
             }
             
             $(element).datepicker({

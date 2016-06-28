@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 
@@ -13,7 +13,7 @@ describe('FormLabel', function() {
         var component = TestUtils.renderIntoDocument(element);
         expect(component).to.exist;
     });
-	
+
 	var content = '[Label Text]';
 	var modifier = '[Modifier]';
 	var testFor = '[For]';

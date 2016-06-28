@@ -4,45 +4,42 @@ var React = require('react');
 var dateFormatting = require('../../../_lib/_ui/dateFormatting')();
 var ensureIsDate = require('../../../_lib/_ui/date-utils').ensureIsDate;
 var DropDownButton = require('../../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component');
+var TaskEventStatus = require('../../../ff_module/ff_module-task-event-status/ff_module-task-event-status');
+
+var generateClass = require('./utils').generateClass;
+
+
+function canEdit(state){
+    state = state || {};
+
+    if (state.pending || state.editPending || state.deletePending) {
+        return false;
+    }
+    return true;
+}
+
+function renderActions(props) {
+    var list = props.actions;
+    var isDisabled = !canEdit(props.state);
+    if (list && list.length) {
+        return <DropDownButton key="actions" text="..." list={list} isDisabled={isDisabled} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
+    }
+    return null;
+}
+
+function renderStatus(props) {
+    return <TaskEventStatus key="status" type={props.description.type} state={props.state || {}} onError={props.onRetryAfterStatusError || function(){}} classes='ff_module-task-event__status'/>
+}
 
 module.exports = React.createClass({
     displayName: 'TaskEventBase',
     render: function(){
-        return  <div className={this.generateClass('ff_module-task-event', this.props)}>
-                    <time className="ff_module-task-event__sent">{this.formatDate(this.props.description.sent)}</time>
-                    {this.renderActions(this.props)}
-                    {this.props.children}
-                </div>
-    },
-    formatDate: function(date) {
-        var validDate = ensureIsDate(date);
-        if (validDate) {
-            return dateFormatting.niceDate(date);
-        }
-        return '';
-    },
-    generateClass: function(base, props) {
-        var classNames = [];
-        classNames.push(base);
-        var state = props.state || {},
-            description = props.description;
-
-        if (description.type) classNames.push(base + '--' + description.type);
-        if (state.pending) classNames.push(base + '--is-pending');
-        if (state.error) classNames.push(base + '--has-error');
-        if (state.deleted) classNames.push(base + '--is-deleted');
-        if (state.unreleased) classNames.push(base + '--is-unreleased');
-        if (state.released) classNames.push(base + '--is-released');
-        return classNames.join(' ');
-    },
-    renderActions: function(props) {
-
-        var list = props.actions;
-
-        if (list && list.length) {
-            return <DropDownButton text="..." list={list} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
-        }
-
-        return null;
+        return (
+            <div className={generateClass('ff_module-task-event', this.props)}>
+                {renderActions(this.props)}
+                {this.props.children}
+                {renderStatus(this.props)}
+            </div>
+        );
     }
 });

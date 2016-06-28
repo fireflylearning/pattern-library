@@ -4,3 +4,5 @@ data:
     guid: "input-member-id"
     type: profile
 ---
+
+<div data-ff_module-form-box-member=""/>

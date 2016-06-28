@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 
@@ -13,13 +13,13 @@ describe('FilterContainer', function() {
 		var component = TestUtils.renderIntoDocument(element);
 		expect(component).to.exist;
 	});
-	
+
 	var filter1 = <span>filter1</span>,
 	filter2 = <span>filter2</span>;
 
 	var filters = [{
 			content: filter1
-		}, 
+		},
 		{
 			content: filter2
 		}

@@ -8,23 +8,50 @@ module.exports.types = {
     confirmStudentIsExcused: 'confirm-student-is-excused',
     comment: 'comment',
     markAndGrade: 'mark-and-grade',
+    addFile: 'add-file',
+
     // unconfirmed response events:
     deleteResponse: 'delete-response',
+    editResponse: 'edit-response',
     confirmStudentIsUnexcused: 'confirm-student-is-unexcused',
-    addFile: 'add-file',
+    confirmTaskIsToDo: 'confirm-task-is-to-do',
+
     // unconfirmed task events:
     deleteTask: 'delete-task',
     releaseFeedbackAndMarks: 'release-feedback-and-marks',
-    sendReminder: 'send-reminder'
+    sendReminder: 'send-reminder',
+    archivedTask: 'archived-task'
 };
 
-module.exports.states = {
+
+var states = {
     default: 'default',
-    error: 'error',
+
     pending: 'pending',
-    sent: 'sent',
-    released: 'released',
-    unreleased: 'unreleased',
+    error: 'error',
+    success: 'success',
+
+    editPending: 'edit-pending',
+    editSuccess: 'edit-success',
+    editError: 'edit-error',
+
+    deletePending: 'delete-pending',
+    deleteSuccess: 'delete-success',
+    deleteError: 'delete-error',
+
     deleted: 'deleted',
-    edited: 'edited'
+    edited: 'edited',
+
+    released: 'released',
+    complete: 'complete',
+    excused: 'excused',
+
+    allStudents: 'all-students',
+
+    archived: 'archived',
+    noConnection: 'no-connection'
 };
+
+module.exports.states = states;
+
+

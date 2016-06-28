@@ -18,10 +18,10 @@ module.exports = React.createClass({
     render: function() {
 
         var body = <div>
-            <p>This will delete the task for <b>{this.props.event.numRecipientsAffected} students</b>, and cannot be undone.</p>
+            <p>This will delete the task for <b>{this.props.event.description.numRecipientsAffected} students</b>, and cannot be undone.</p>
 
             <ContainerFormLine>
-                <FormLabel key="l0" modifier="stacked" required="true">Type the word <span className="ff_util-prose__text--danger">DELETE</span> to continue</FormLabel>
+                <FormLabel key="l0" modifier="stacked" required="true">Type the word <span className="ff_util-prose__text--danger">DELETE</span> to continue (it's case sensitive)</FormLabel>
                 <FormInput modifier="constrained" key="i0" onChange={this.checkInputValueEqualsDelete}/>
             </ContainerFormLine>
         </div>;

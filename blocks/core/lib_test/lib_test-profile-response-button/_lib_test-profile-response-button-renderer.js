@@ -1,5 +1,6 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
 
 var ProfileResponseButton = require('../../ff_module/ff_module-profile-response-button/ff_module-profile-response-button'),
     selector = 'data-ff_module-profile-response-button-lib',
@@ -12,9 +13,12 @@ var data = {
         },
         guid: "u42",
         label: "Sally Student",
+        lastEventWasAuthoredByCurrentUser: true,
         event: {
-            type: eventTypes.markAndGrade,
-            sent: new Date()
+            description: {
+                type: eventTypes.markAndGrade,
+                sent: new Date()
+            }
         },
         markAndGrade: {
             mark: 7,
@@ -28,11 +32,14 @@ var data = {
             console.log("onSelect id1");
         },
         isSelected: true,
+        lastEventWasAuthoredByCurrentUser: true,
         guid: "u43",
         label: "Terry Teacher",
         event: {
-            type: eventTypes.requestResubmission,
-            sent: new Date()
+            description: {
+                type: eventTypes.requestResubmission,
+                sent: new Date()
+            }
         },
         markAndGrade: {
             grade: "A"
@@ -44,11 +51,70 @@ var data = {
             console.log("onSelect id2");
         },
         isRead: true,
+        lastEventWasAuthoredByCurrentUser: true,
         guid: "u44",
         label: "Joseph Goulden",
         event: {
-            type: eventTypes.confirmTaskIsComplete,
-            sent: new Date()
+            description: {
+                type: eventTypes.confirmTaskIsComplete,
+                sent: new Date()
+            }
+        },
+        markAndGrade: {
+            mark: 7,
+            markMax: 10
+        },
+        pic_href: "/images/default_picture.png"
+    },
+    id3: {
+        onSelect: function() {
+            console.log("onSelect is0");
+        },
+        guid: "u42a",
+        label: "Sally Student",
+        event: {
+            description: {
+                type: eventTypes.markAndGrade,
+                sent: new Date()
+            }
+        },
+        markAndGrade: {
+            mark: 7,
+            markMax: 10,
+            grade: "A"
+        },
+        pic_href: "/images/default_picture.png"
+    },
+    id4: {
+        onSelect: function() {
+            console.log("onSelect id1");
+        },
+        isSelected: true,
+        guid: "u43a",
+        label: "Terry Teacher",
+        event: {
+            description: {
+                type: eventTypes.requestResubmission,
+                sent: new Date()
+            }
+        },
+        markAndGrade: {
+            grade: "A"
+        },
+        pic_href: "/images/default_picture.png"
+    },
+    id5: {
+        onSelect: function() {
+            console.log("onSelect id2");
+        },
+        isRead: true,
+        guid: "u44a",
+        label: "Joseph Goulden",
+        event: {
+            description: {
+                type: eventTypes.confirmTaskIsComplete,
+                sent: new Date()
+            }
         },
         markAndGrade: {
             mark: 7,
@@ -56,15 +122,14 @@ var data = {
         },
         pic_href: "/images/default_picture.png"
     }
-}
+};
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         Array.prototype.forEach.call(document.querySelectorAll('[' + selector + ']'), function(domElement) {
             var id = domElement.getAttribute(selector);
-            console.log(id);
             var element = React.createElement(ProfileResponseButton, data[id]);
-            React.render(element, domElement);
+            ReactDOM.render(element, domElement);
         });
     });
 };

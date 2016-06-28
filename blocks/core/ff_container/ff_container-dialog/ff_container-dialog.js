@@ -1,49 +1,35 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    generateClass = require('../../_lib/_ui/class-utils').generateStandardClass;
 
-function generateClass(base, props){
-    var classNames = [];
-        classNames.push(base);
-        if (!!props.modifier) classNames.push(base + '--' + props.modifier);
-        if (!!props.classes) classNames.push(props.classes);
-        return classNames.join(' ');
-}
 
-function getTopClose(props){
+var TopClose = function TopClose(props){
     return <button type="button" onClick={props.onCloseIconClick} className="ff_icon ff_icon-cancel-open-darkgrey ff_container-dialog__close-top">Close</button>;
 }
 
-var DialogTitle = React.createClass({
-    displayName:'ContainerDialogTitle',
-    render:function(){
-        var props = { modifier: this.props.modifier },
-            headingClassName = generateClass('ff_container-dialog__heading', props),
-            titleClassName = generateClass('ff_container-dialog__title', props);
+var DialogTitle = function DialogTitle(props) {
+    var modProps = { modifier: props.modifier },
+        headingClassName = generateClass('ff_container-dialog__heading', modProps),
+        titleClassName = generateClass('ff_container-dialog__title', modProps);
 
-        var topClose = this.props.showCloseIcon ? getTopClose(this.props) : null;
+    var topClose = props.showCloseIcon ? <TopClose {...props}/> : null;
 
-        return <h3 className={headingClassName}><span className={titleClassName}>{this.props.children}</span> {topClose}</h3>;
-    }
-});
+    return <h3 className={headingClassName}><span className={titleClassName}>{props.children}</span> {topClose}</h3>;
+};
 
-var DialogBody = React.createClass({
-    displayName:'ContainerDialogBody',
-    render:function(){
-        var className = generateClass('ff_container-dialog__body', this.props);
+var DialogBody = function DialogBody(props) {
+    var className = generateClass('ff_container-dialog__body', props);
 
-        return <div className={className}>{this.props.children}</div>;
-    }
-});
+    return <div className={className}>{props.children}</div>;
+};
 
-var DialogControls = React.createClass({
-    displayName:'ContainerDialogControls',
-    render:function(){
-        var className = generateClass('ff_container-dialog__controls', this.props);
+var DialogControls = function DialogControls(props) {
+    var className = generateClass('ff_container-dialog__controls', props);
 
-        return <div className={className}>{this.props.children}</div>;
-    }
-});
+    return <div className={className}>{props.children}</div>;
+};
+
 
 
 module.exports = React.createClass({
@@ -59,9 +45,9 @@ module.exports = React.createClass({
         var className = generateClass('ff_container-dialog', this.props);
 
         return <div className={className}>
-            <DialogTitle showCloseIcon={this.props.showCloseIcon} onCloseIconClick={this.props.onCloseIconClick}>{this.props.title}</DialogTitle>
-            <DialogBody>{this.props.body}</DialogBody>
-            <DialogControls>{this.props.controls}</DialogControls>
+            <DialogTitle showCloseIcon={this.props.showCloseIcon} onCloseIconClick={this.props.onCloseIconClick} modifier={this.props.modifier}>{this.props.title}</DialogTitle>
+            <DialogBody modifier={this.props.modifier}>{this.props.body}</DialogBody>
+            <DialogControls modifier={this.props.modifier}>{this.props.controls}</DialogControls>
          </div>;
     }
 });

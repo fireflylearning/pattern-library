@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 var TestUtils = require('react-addons-test-utils');
 var sinon = require('sinon');
 var expect = require('chai').expect;
@@ -14,7 +14,7 @@ describe('FormInput', function() {
         var component = TestUtils.renderIntoDocument(element);
         expect(component).to.exist;
     });
-    
+
     // [id, name, value, modifier, data-attr]
     // test a text input
 	var id = '[Input Id]',
@@ -33,7 +33,7 @@ describe('FormInput', function() {
         expect(root.className).to.equal('ff_module-form-input ff_module-form-input--' + modifier);
         expect(root.getAttribute(attributeName)).to.equal(attributeValue);
 	});
-    
+
     // [type=checkbox, checked, disabled]
     // check checked on checkbox
 	it('should make a checkbox input element that is checked and disabled', function() {
@@ -44,7 +44,7 @@ describe('FormInput', function() {
         expect(root.getAttribute("checked")).to.exist;
         expect(root.getAttribute("disabled")).to.exist;
 	});
-    
+
     // [type=select]
     // test a select input
     var optionText = "[Option Text]",
@@ -63,7 +63,7 @@ describe('FormInput', function() {
         expect(root.getElementsByTagName('option')[0].innerHTML).to.equal(optionText);
         expect(root.getElementsByTagName('option')[0].getAttribute("value")).to.equal(optionValue);
 	});
-    
+
     // [onClick, onChange]
     // check onClick and onChange event handlers
 	it('should make a an input element and attach onClick and onChange event handlers', function() {

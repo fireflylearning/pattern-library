@@ -1,15 +1,19 @@
 'use strict';
 
 var React = require('react'),
-    _ = require('lodash');
+    _ = require('underscore');
 
-var EditorBase = require('./_src/EditorBase'),
-    EditorBaseMini = require('./_src/EditorBaseMini'),
+var Button = require('../ff_module-button/ff_module-button'),
+    EditorBase = require('./_src/EditorBase'),
+    ContainerDialog = require('../../ff_container/ff_container-dialog/ff_container-dialog'),
     EditorCommon = require('./_src/EditorCommon'),
     EditorMarkAndGrade = require('./_src/EditorMarkAndGrade'),
     EditorAddFile = require('./_src/EditorAddFile'),
+    EditorComment = require('./_src/EditorComment'),
     eventTypes = require('../ff_module-task-event/_src/events').types,
-    eventStates = require('../ff_module-task-event/_src/events').states;
+    eventStates = require('../ff_module-task-event/_src/events').states,
+    getPrimaryButtonText = require('./_src/editorText').getPrimaryButtonText,
+    getEditorControls = require('./_src/EditorControls').getEditorControls;
 
 
 module.exports = React.createClass({
@@ -23,73 +27,87 @@ module.exports = React.createClass({
         onSend: React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,
         onClose: React.PropTypes.func.isRequired,
+        models: React.PropTypes.object.isRequired,
+        validation: React.PropTypes.object.isRequired,
+        onNext: React.PropTypes.func
     },
     render: function() {
-        var eventEditor = getEventEditor(this.props);
-        return React.createElement(eventEditor.base,
-            _.extend({}, eventEditor.props, {
-                onSend: this.onSend,
-                onClose: this.onClose
-            }),
-            eventEditor.children);
-    },
-    onSend: function() {
-        this.props.onSend();
-    },
-    onClose: function() {
-        this.props.onClose();
+        return getEventEditor(this.props);
     }
 });
 
-function getEventEditor(props){
-    if (props.event.state.error) {
-        return eventEditorComponents[eventStates.error](props);
-    } else {
-        return eventEditorComponents[props.event.description.type](props);
+function getType(props) {
+    var event = props.event || {},
+        state = event.state || {},
+        type = null;
+    if (state.error || state.editError || state.deleteError) {
+        type = eventStates.error;
+    } else if (event.description && event.description.type) {
+        type = event.description.type;
     }
+    return type;
 }
 
-function createEventWithMessageEditor(editor) {
+function getEventEditor(props) {
+    var type = getType(props);
+    return eventEditorComponents[type] ? eventEditorComponents[type](props) : <EditorInvalid {...props} />;
+}
 
-    return function(props) {
-        var onMessageChange = function(event) {
-            props.onChange(_.extend({}, props.event, {
-                description: _.extend({}, props.event.description, {message: event.target.value})
-            }));
-        };
 
-        return {
-            base: EditorBase,
-            props: {
-                title: editor.title,
-                sendText: editor.sendText,
-            },
-            children: React.createElement(EditorCommon, {
-                messageLabel: editor.messageLabel,
-                onMessageChange: onMessageChange,
-                event: props.event
-            })
-        };
+var EventWithMessageEditor = function EventWithMessageEditor(props) {
 
+    var onMessageChange = function(event) {
+        props.onChange(_.extend({}, props.event, {
+            description: _.extend({}, props.event.description, { message: event.target.value })
+        }));
     };
+
+    return (
+        <EditorCommon
+            messageLabel={props.messageLabel}
+            onMessageChange={onMessageChange}
+            {...props}
+            />
+    );
 }
 
-function createEventWithMessageNotification(editor) {
-    return function(props) {
-        return {
-            base: EditorBaseMini,
-            props: {
-                title: editor.title,
-                sendText: editor.sendText,
-                closeText: editor.closeText,
-                sendModifier: editor.sendModifier
-            },
-            children: editor.message(props)
-        };
-    }
+
+
+var CommentEditor = function CommentEditor(props) {
+
+    var onMessageChange = function(event) {
+        props.onChange(_.extend({}, props.event, {
+            description: _.extend({}, props.event.description, { message: event.target.value })
+        }));
+    };
+
+    return (
+        <EditorComment
+            onMessageChange={onMessageChange}
+            {...props}
+            />
+    );
 }
 
-function markAndGrade(props) {
+var AddFileEditor = function AddFileEditor(props) {
+
+    var onFileDrop = function(event) {
+        props.onChange(_.extend({}, props.event, {
+            description: _.extend({}, props.event.description, { files: event.dataTransfer.files } )
+        }));
+    };
+
+    return (
+        <div>
+            <br/>
+            <EditorAddFile
+                event={props.event}
+                onFileDrop={onFileDrop}/>
+        </div>
+    );
+}
+
+var MarkAndGradeEditor = function MarkAndGradeEditor(props) {
 
     function eventUpdater(propertyName) {
         return function(event) {
@@ -106,97 +124,175 @@ function markAndGrade(props) {
     var onGradeChange = eventUpdater("grade");
     var onMessageChange = eventUpdater("message");
 
-    return {
-        base: EditorBase,
-        props: {
-            title: "Mark or Grade",
-            sendText: "Add Mark or Grade"
-        },
-        children: React.createElement(EditorMarkAndGrade, {
-            event: props.event,
-            onMarkChange: onMarkChange,
-            onGradeChange: onGradeChange,
-            onMarkMaxChange: onMarkMaxChange,
-            onMessageChange: onMessageChange
-        })
-
-    };
+    return (
+        <EditorMarkAndGrade
+            onMarkChange={onMarkChange}
+            onGradeChange={onGradeChange}
+            onMarkMaxChange={onMarkMaxChange}
+            onMessageChange={onMessageChange}
+            {...props} />
+    );
 }
 
-function addFile(props) {
+var DeleteResponseMessage = function DeleteResponseMessage(props) {
+    var name = props.event && props.event.state && props.event.state.allStudents ?
+            'all students' :
+            props.event.description.author.name;
 
-    var onFileDrop = function(event) {
-        props.onChange(_.extend({}, props.event, { files: event.dataTransfer.files }));
-    };
-
-    return {
-        base: EditorBase,
-        props: {
-            title: 'File',
-            sendText: 'Add File',
-        },
-        children: <div><br/><EditorAddFile
-                event={props.event}
-                onFileDrop={onFileDrop}/></div>
-
-    };
+    return <p>Delete feedback to {name}.<br/>This cannot be undone.</p>
 }
 
+var ErrorMessage = function ErrorMessage(props) {
+    return <p>We'll try again in a few seconds</p>
+}
 
-
+var InvalidMessage = function InvalidMessage(props) {
+    return <p>Something went wrong with this action. If this keeps happening, contact our Support Team.</p>
+}
 
 var eventEditorComponents = {};
 
-eventEditorComponents[eventTypes.stampResponseAsSeen] = createEventWithMessageEditor({
-    title: "Stamp as Seen",
-    messageLabel: "Feedback",
-    sendText: "Send Stamp"
-});
-eventEditorComponents[eventTypes.requestResubmission] = createEventWithMessageEditor({
-    title: "Request Resubmission",
-    messageLabel: "Reason for Request",
-    sendText: "Send Request"
-});
-eventEditorComponents[eventTypes.confirmTaskIsComplete] = createEventWithMessageEditor({
-    title: "Confirm Task is Complete",
-    messageLabel: "Feedback",
-    sendText: "Send Confirmation"
-});
-eventEditorComponents[eventTypes.confirmStudentIsExcused] = createEventWithMessageEditor({
-    title: "Confirm Student is Excused",
-    messageLabel: "Comment",
-    sendText: "Send Confirmation"
-});
-eventEditorComponents[eventTypes.comment] = createEventWithMessageEditor({
-    title: "Comment",
-    sendText: "Add Comment"
-});
-eventEditorComponents[eventTypes.markAndGrade] = markAndGrade;
+eventEditorComponents[eventTypes.stampResponseAsSeen] = function StampResponseAsSeen(props) {
+    return (
+        <EditorBase
+            title="Stamp as Seen"
+            controls={getEditorControls('Stamp', props, true)}
+            {...props}
+            >
+            <EventWithMessageEditor messageLabel="Feedback" {...props} />
+        </EditorBase>
+    );
+};
+eventEditorComponents[eventTypes.requestResubmission] = function RequestResubmission(props) {
+    return (
+        <EditorBase
+            title="Request Resubmission"
+            controls={getEditorControls('Request', props, false)}
+            {...props}
+            >
+            <EventWithMessageEditor messageLabel="Reason for Request" {...props} />
+        </EditorBase>
+    );
+};
+eventEditorComponents[eventTypes.confirmTaskIsComplete] = function ConfirmTaskIsComplete(props) {
+    return (
+        <EditorBase
+            title="Confirm as Complete"
+            controls={getEditorControls('Confirmation', props, false)}
+            {...props}
+            >
+            <EventWithMessageEditor messageLabel="Feedback" {...props} />
+        </EditorBase>
+    );
+};
+eventEditorComponents[eventTypes.confirmStudentIsExcused] = function ConfirmStudentIsExcused(props) {
+    return (
+        <EditorBase
+            title="Confirm as Excused"
+            controls={getEditorControls('Confirmation', props, false)}
+            {...props}
+            >
+            <EventWithMessageEditor messageLabel="Feedback" {...props} />
+        </EditorBase>
+    );
+};
+eventEditorComponents[eventTypes.confirmStudentIsUnexcused] = function ConfirmStudentIsUnexcused(props) {
+    return (
+        <EditorBase
+            title="Confirm as Unexcused"
+            controls={getEditorControls('Confirmation', props, false)}
+            {...props}
+            >
+            <EventWithMessageEditor messageLabel="Feedback" {...props} />
+        </EditorBase>
+    );
+};
 
-//
-// unconfirmed types
-//
-eventEditorComponents[eventTypes.addFile] = addFile;
-eventEditorComponents[eventTypes.deleteResponse] = createEventWithMessageNotification({
-    title: "Delete Feedback",
-    message: function(props) {
-        return  <p>
-                    Delete feedback to {props.event.description.author.name}.<br/>
-                    This cannot be undone.</p>
-    },
-    sendText: "Delete",
-    closeText: "Cancel",
-    sendModifier: "danger"
-});
 
-//
-// unconfirmed states
-//
-eventEditorComponents[eventStates.error] = createEventWithMessageNotification({
-    title: "Unable to Send Feedback",
-    message: function(props) {
-        return  <p>We'll try again in a few seconds</p>
-    },
-    sendText: "Try again",
-    closeText: "Close"
-});
+eventEditorComponents[eventTypes.comment] = function Comment(props) {
+    return (
+        <EditorBase
+            title="Comment"
+            controls={getEditorControls('Comment', props, false)}
+            {...props}
+            >
+            <CommentEditor {...props} />
+        </EditorBase>
+    );
+};
+eventEditorComponents[eventTypes.addFile] = function(props){
+    return (
+        <EditorBase
+            title="File"
+            controls={getEditorControls('File', props, false)}
+            {...props}
+            >
+            <AddFileEditor {...props} />
+        </EditorBase>
+    );
+};
+eventEditorComponents[eventTypes.markAndGrade] = MarkAndGradeEditor; // requires some state to calc text, so all internal
+
+
+
+
+
+eventEditorComponents[eventTypes.deleteResponse] = function DeleteResponse(props) {
+
+    var titleText='Delete Feedback',
+        controls= [
+            <Button key="send" onClick={props.onSend} text="Delete" modifier="danger"/>,
+            <Button key="close" onClick={props.onClose} text="Cancel" modifier="tertiary"/>
+        ];
+
+    return (
+        <EditorBase
+            title={titleText}
+            controls={controls}
+            {...props}
+            >
+            <DeleteResponseMessage {...props}/>
+        </EditorBase>
+    );
+};
+
+
+eventEditorComponents[eventStates.error] = function EditorError(props) {
+
+    var titleText = "Unable to " + getPrimaryButtonText('Feedback', props),
+        controls = [
+            <Button key="send" onClick={props.onSend} text="Try again" modifier="primary"/>,
+            <Button key="close" onClick={props.onClose} text="Close" modifier="tertiary"/>
+        ];
+
+    return (
+        <EditorBase
+            title={titleText}
+            controls={controls}
+            {...props}
+            >
+            <ErrorMessage {...props}/>
+        </EditorBase>
+    )
+};
+
+function EditorInvalid(props) {
+
+    var titleText = "Unable to perform action",
+        controls = [
+            <Button key="close" onClick={props.onClose} text="Close" modifier="primary"/>
+        ];
+
+    return (
+        <EditorBase
+            title={titleText}
+            controls={controls}
+            {...props}
+            >
+            <InvalidMessage {...props}/>
+        </EditorBase>
+    )
+};
+
+
+

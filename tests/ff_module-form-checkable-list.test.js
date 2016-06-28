@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-require('./lib/utils').bootstrapBrowser();
+
 var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 
@@ -29,7 +29,7 @@ describe('CheckableList', function() {
 	});
 
 	// Checking that it renders the right number of items
-	var items = [{ name: 'item' }, { name: 'item' }, { name: 'item' }];
+	var items = [{ label: 'item A', id: 'itemA' }, { label: 'item B', id: 'itemB' }, { label: 'item C', id: 'itemC' }];
 	it('should make a checkable list with ' + items.length + ' items', function() {
 		var element = React.createElement(CheckableList, {
 			items: items

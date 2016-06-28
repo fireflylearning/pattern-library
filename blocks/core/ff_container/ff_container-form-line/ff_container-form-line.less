@@ -5,9 +5,14 @@
     &__item {
         #ff_mix-form-pair > .item;
     }
-    >*:nth-last-child(+n+2) {
+    &__item,
+    & > &__section {
         margin-left: 0;
         margin-right: @ff_size_spacing_min;
+    }
+    &__item:last-child,
+    & > &__section:last-child {
+        margin-right: 0;
     }
     &__item--fullwidth {
         #ff_mix-form-pair > .fullwidth;
@@ -20,8 +25,7 @@
     }
     &__item--stacked {
         #ff_mix-form-pair > .stacked;
-        &, &:nth-last-child(+n+2) {
-            margin-right: 0;
-        }
+        margin-right: 0;
     }
 }
+

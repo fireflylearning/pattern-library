@@ -1,9 +1,15 @@
 'use strict';
 
 var React = require('react');
-var template = require('./_ControlBarSet.rt.js');
 
 module.exports = React.createClass({
     displayName: 'ControlBarSet',
-    render: template
+    render: function() {
+        return (
+            <div className="ff_container-control-bar__group">
+                {this.props.title ? <h3 className="ff_container-control-bar__title" >{this.props.title}</h3> : ''}
+                {this.props.children}
+            </div>
+        );
+    }
 });

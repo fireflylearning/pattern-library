@@ -48,9 +48,24 @@ exports.setUpTestFramework = function setUpTestFramework(React, TestUtils, expec
 
 exports.setupGetElementByClass = function setupGetElementByClass(React, TestUtils, ClassType) {
     return function getElementByClass(props, className) {
-            var element = React.createElement(ClassType, props);
-            var component = TestUtils.renderIntoDocument(element);
-            return TestUtils.findRenderedDOMComponentWithClass(component, className);
-
+        var element = React.createElement(ClassType, props);
+        var component = TestUtils.renderIntoDocument(element);
+        return TestUtils.findRenderedDOMComponentWithClass(component, className);
     };
 };
+
+exports.setupGetElementsByClass = function setupGetElementsByClass(React, TestUtils, ClassType) {
+    return function getElementsByClass(props, className) {
+        var element = React.createElement(ClassType, props);
+        var component = TestUtils.renderIntoDocument(element);
+        return TestUtils.scryRenderedDOMComponentsWithClass(component, className);
+    };
+};
+
+exports.wrapStatelessComponent = function wrap(React, statelessComponent) {
+  return React.createClass({
+    render: function() {
+      return statelessComponent(this.props);
+    }
+  });
+}

@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-module.exports = React.createClass({
+var LabelTemplate = React.createClass({
     render() {
         var optionalMarkerSet = !(this.props.optionalMarker === null || this.props.optionalMarker === undefined);
         var optionalMarker = optionalMarkerSet ? this.props.optionalMarker : '(optional)';
@@ -14,8 +14,11 @@ module.exports = React.createClass({
             props = this.props;
         classNames.push(base);
         if (!!props.modifier) classNames.push(base + '--' + props.modifier);
+        if (props.valid === false) classNames.push(base + '--has-errors');
         if (!!props.classes) classNames.push(props.classes);
         if (!!props.className) classNames.push(props.className);
         return classNames.join(' ');
     }
 });
+
+module.exports = LabelTemplate;

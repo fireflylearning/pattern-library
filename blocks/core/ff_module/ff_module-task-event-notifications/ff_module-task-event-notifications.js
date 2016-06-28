@@ -1,28 +1,37 @@
 'use strict';
 
 var React = require('react'),
-    _ = require('lodash');
+    _ = require('underscore');
 
 var NotificationBase = require('./_src/NotificationBase'),
     NotificationDeleteTask = require('./_src/NotificationDeleteTask'),
+    eventTypes = require('../ff_module-task-event/_src/events').types;
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 
 module.exports = React.createClass({
     displayName: 'TaskEventNotifications',
     propTypes: {
-        event: React.PropTypes.object.isRequired,
+        event: React.PropTypes.shape({
+            description: React.PropTypes.shape({
+                type: React.PropTypes.string.isRequired
+            }).isRequired
+        }).isRequired,
         onConfirm: React.PropTypes.func.isRequired,
         onClose: React.PropTypes.func.isRequired,
     },
     render: function() {
         var eventNotification = getEventEditor(this.props);
-        return React.createElement(eventNotification.base,
+        if (eventNotification) {
+            return React.createElement(eventNotification.base,
             _.extend({}, eventNotification.props, {
                 onConfirm: this.onConfirm,
                 onClose: this.onClose
             }),
             eventNotification.children);
+        } else {
+            return null;
+        }
     },
     onConfirm: function() {
         this.props.onConfirm();
@@ -33,11 +42,10 @@ module.exports = React.createClass({
 });
 
 function getEventEditor(props){
-    if (props.event.error) {
-        return eventNotificationComponents[eventStates.error](props);
-    } else {
-        return eventNotificationComponents[props.event.type](props);
+    if (props.event && eventNotificationComponents[props.event.description.type]) {
+        return eventNotificationComponents[props.event.description.type](props);
     }
+    else return null;
 }
 
 function createEventWithMessageNotification(editor) {
@@ -73,7 +81,7 @@ eventNotificationComponents[eventTypes.deleteTask] = deleteTask;
 eventNotificationComponents[eventTypes.releaseFeedbackAndMarks] = createEventWithMessageNotification({
     title: "Send Feedback and Marks",
     message: function(props) {
-        return <p>This will release marks and feedback immediately to <b>{props.event.numRecipientsAffected} students</b>.</p>
+        return <p>This will release marks and feedback immediately to <b>{props.event.description.numRecipientsAffected} students</b>.</p>;
     },
     sendText: "Send",
     closeText: "Cancel"
@@ -81,7 +89,7 @@ eventNotificationComponents[eventTypes.releaseFeedbackAndMarks] = createEventWit
 eventNotificationComponents[eventTypes.sendReminder] = createEventWithMessageNotification({
     title: "Send Reminder",
     message: function(props) {
-        return <p>This will notify <b>{props.event.numRecipientsAffected} students</b> that they have a task due soon.</p>
+        return <p>This will notify <b>{props.event.description.numRecipientsAffected} students</b> that they have a task due soon.</p>
     },
     sendText: "Send",
     closeText: "Cancel"

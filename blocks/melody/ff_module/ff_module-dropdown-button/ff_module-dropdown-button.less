@@ -92,10 +92,29 @@
         font-weight: normal;
     }
 
+    &--tertiary,
+    &--tertiary-right,
+    &--tertiary-compact,
+    &--tertiary-compact-right,
+    &--tertiary-compact-right-widelist {
+        #ff_module-button > .tertiary();
+    }
+
+    &--tertiary  &__content,
+    &--tertiary-right  &__content,
+    &--tertiary-compact  &__content,
+    &--tertiary-compact-right  &__content,
+    &--tertiary-compact-right-widelist  &__content {
+        #ff_module-button > .tertiary-content();
+    }
+
     &--right &__list-container,
     &--primary-right &__list-container,
     &--primary-compact-right &__list-container,
     &--primary-compact-right-widelist &__list-container,
+    &--tertiary-right &__list-container,
+    &--tertiary-compact-right &__list-container,
+    &--tertiary-compact-right-widelist &__list-container,
     &--compact-right &__list-container,
     &--compact-right-widelist &__list-container,
     &--link-right &__list-container {
@@ -110,7 +129,10 @@
     &--compact-right-widelist &__button,
     &--primary-compact &__button,
     &--primary-compact-right &__button,
-    &--primary-compact-right-widelist &__button {
+    &--primary-compact-right-widelist &__button,
+    &--tertiary-compact &__button,
+    &--tertiary-compact-right &__button,
+    &--tertiary-compact-right-widelist &__button {
         #ff_module-button > .compact();
     }
 
@@ -120,7 +142,10 @@
     &--compact-right-widelist &__icon,
     &--primary-compact &__icon,
     &--primary-compact-right &__icon,
-    &--primary-compact-right-widelist &__icon {
+    &--primary-compact-right-widelist &__icon,
+    &--tertiary-compact &__icon,
+    &--tertiary-compact-right &__icon,
+    &--tertiary-compact-right-widelist &__icon {
         height:1.125em;
         width:1.125em;
         line-height: 1;
@@ -161,16 +186,24 @@
     &--is-disabled &__content {
         color: @ff_colour_default;
     }
+    &--is-open &--tertiary &__content {
+
+    }
 }
 
 //modifier + state
 .ff_module-dropdown-button {
 
+    &--tertiary--is-open &__content {
+        color: white;
+    }
+
     &--widelist &__list-container--is-open,
     &--primary-compact-right-widelist &__list-container--is-open,
+    &--tertiary-compact-right-widelist &__list-container--is-open,
     &--compact-widelist &__list-container--is-open,
     &--compact-right-widelist &__list-container--is-open {
-        min-width: 16em;
+        min-width: 19.7em;
     }
 
     &--link &__icon-alt--no-text,
