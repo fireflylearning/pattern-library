@@ -21,3 +21,16 @@ data:
             data: 
                 - value: Online or offline
 ---
+
+## React component
+
+<div data-ff_module-form-summary="" />
+
+
+## React props
+
+- **title**: {String} isRequired,
+- **list**: {ArrayOf Object}:
+    - **title**: String,
+    - **content**: node
+

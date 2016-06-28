@@ -11,6 +11,6 @@ data:
 <div data-ff_container-item-repeater=""/>
 
 ## Modifiers
-- `rounded` (Also default): rounded borders on outside of list, borders between list items
+- `rounded`: rounded borders on outside of list, borders between list items
 - `separated`: no borders on outside of list, only borders between list items
-- `squared`: square borders on outside of list, borders between list items
+- `squared` (Also default): square borders on outside of list, borders between list items

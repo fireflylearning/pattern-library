@@ -1,13 +1,12 @@
-.ff_container-filter__heading {
-	padding: @ff_size_control_vertical;
-	background: @ff_colour_control_bg;
-	border-bottom: 1px solid @ff_colour_control_border; // outer borders to be added by repeater/container module
-}
-.ff_container-filter__label {
-	display: inline-block;
-	cursor: inherit;
-}
-.ff_container-filter__items {
-	background: lighten(@ff_colour_control_bg_selected,15%);
-	padding: @ff_size_control_vertical;
+.ff_container-filter {
+
+    &__heading {
+        #ff_mix-title-box > .header;
+        border-bottom: 1px solid @ff_colour_control_border; // outer borders to be added by repeater/container module
+    }
+    &__items {
+        #ff_mix-title-box > .content(lighten(@ff_colour_control_bg_selected, 15%));
+        padding-left: @ff_size_control_vertical;
+        padding-right: @ff_size_control_vertical;
+    }
 }

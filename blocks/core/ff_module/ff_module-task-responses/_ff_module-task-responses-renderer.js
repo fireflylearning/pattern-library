@@ -2,7 +2,10 @@
 var React = require('react'),
     ReactDOM = require('react-dom');
 
-var TaskResponses = require('./ff_module-task-responses');
+var TaskResponses = require('./ff_module-task-responses'),
+    TaskResponseActions = require('../ff_module-task-response-actions/ff_module-task-response-actions'),
+    TaskResponseActionsIndividual = require('../ff_module-task-response-actions-individual/ff_module-task-response-actions-individual');
+
 var eventTypes = require('../ff_module-task-event/_src/events').types;
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'];
 
@@ -77,7 +80,7 @@ var modelKeys = {
 };
 
 // so different model string values can be used if required
-var models = Object.keys(modelKeys).reduce(function(memo, key){
+var models = Object.keys(modelKeys).reduce(function(memo, key) {
     memo[modelKeys[key]] = 'editingEvent.description.' + modelKeys[key];
     return memo;
 }, {});
@@ -131,7 +134,6 @@ validation[modelKeys.message] = {
     }
 };
 
-
 var store = createStore(combineReducers({
     editingEvent: modelReducer('editingEvent', events[5]),
     editingEventForm: formReducer('editingEvent', events[5])
@@ -141,11 +143,11 @@ function mapStateToProps(state) {
     return {
         eventGroups: eventGroups,
 
-        editingEvent: state.editingEvent,
+        editingEvent: null,//state.editingEvent,
 
         editorValidation: validation,
         editorModels: models,
-        editEvent: function(event) {
+        editEvent: function editEvent(event) {
             console.log('editEvent');
             console.log(event);
         },
@@ -155,7 +157,12 @@ function mapStateToProps(state) {
         },
         stopEditingEvent: function() {
             console.log('stopEditingEvent');
-        }
+        },
+        actionsComponent: TaskResponseActions,
+        state: {
+            // userCanEdit: false
+        },
+        modifier: 'standalone'
     };
 }
 
@@ -167,8 +174,7 @@ module.exports = function() {
             ReactDOM.render(
                 <Provider store={store}>
                     <ConnectedTaskResponses />
-                </Provider>
-            , domElement);
+                </Provider>, domElement);
         });
     });
 };

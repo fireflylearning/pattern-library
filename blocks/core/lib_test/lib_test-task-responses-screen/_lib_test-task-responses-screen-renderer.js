@@ -377,15 +377,17 @@ validation[modelKeys.message] = {
 
 
 var store = createStore(combineReducers({
-    editingEvent: modelReducer('editingEvent', events[12]),
-    editingEventForm: formReducer('editingEvent', events[12])
+    editingEvent: modelReducer('editingEvent', events[8]),
+    editingEventForm: formReducer('editingEvent', events[8])
 }));
 
 function mapStateToProps(state) {
     return {
+        modifier: 'fixed-actions',
+
         eventGroups: eventGroups,
 
-        editingEvent: state.editingEvent,
+        editingEvent: null,//state.editingEvent,
 
         editorValidation: validation,
         editorModels: models,
@@ -399,6 +401,9 @@ function mapStateToProps(state) {
         },
         stopEditingEvent: function() {
             console.log('stopEditingEvent');
+        },
+        state: {
+            // userCanEdit: false
         }
     };
 }
@@ -428,16 +433,17 @@ module.exports = function() {
         var el = document.querySelector('[data-lib_test-task-responses-screen]'); //Use jquery or sim in Firefly for backwards compat
         if (el) {
 
-            var element = <Provider store={store}>
-                    <div className="ff_module-task-responses">
-                <TaskMetaActions {...metaActionProps}/>
+            var element = (
+                <Provider store={store}>
+                    <div>
+                        <TaskMetaActions {...metaActionProps}/>
 
-                <ScrollableList
-                    main={overlayOuter}
-                    sidebar={sidebar} />
-
-            </div>
+                        <ScrollableList
+                            main={overlayOuter}
+                            sidebar={sidebar} />
+                    </div>
                 </Provider>
+            )
 
 
             ReactDOM.render(element, el);

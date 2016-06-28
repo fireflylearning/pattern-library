@@ -1,6 +1,6 @@
 
 .ff_module-form-summary {
-    #ff_mix-title-box > .border;
+    #ff_mix-title-box > .base;
     &__header {
         #ff_mix-title-box > .header;
     }
@@ -10,11 +10,12 @@
     &__content {
         #ff_mix-title-box > .content;
     }
-
+    &__content > * {
+        margin: @ff_size_control_vertical @ff_size_control_horizontal;
+    }
     &__list {
-        // #ff_mix-util-prose > .definition-list();
         #ff_mix-util-prose > .text-default();
-        margin: 0 @ff_size_control_horizontal;
+        margin: @ff_size_control_vertical @ff_size_control_horizontal;
     }
     &__list__title {
         #ff_mix-util-prose > .text-default();
@@ -32,4 +33,5 @@
     &__list__link {
         #ff_mix-util-prose > .link-no-decoration();
     }
+
 }

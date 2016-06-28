@@ -19,7 +19,7 @@ var classes = {
     [eventTypes.confirmTaskIsComplete]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.confirmStudentIsExcused]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.comment]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__comment' },
-    [eventTypes.markAndGrade]: { author: 'ff_module-task-event__author-action', mark: 'ff_module-task-event__mark', grade: 'ff_module-task-event__grade', markAndGrade: 'ff_module-task-event__mark-and-grade', message: 'ff_module-task-event__message' },
+    [eventTypes.markAndGrade]: { author: 'ff_module-task-event__author-action', mark: 'ff_module-mark-and-grade__mark', grade: 'ff_module-mark-and-grade__grade', markAndGrade: 'ff_module-mark-and-grade', message: 'ff_module-task-event__message' },
     [eventTypes.confirmStudentIsUnexcused]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.deleteResponse]: { author: 'ff_module-task-event__author-action', files: 'ff_module-task-event__files', message: 'ff_module-task-event__message' },
     [eventTypes.addFile]: { author: 'ff_module-task-event__author-action', files: 'ff_module-task-event__files', message: 'ff_module-task-event__message' }
