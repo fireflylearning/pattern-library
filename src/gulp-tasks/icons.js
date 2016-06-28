@@ -3,6 +3,10 @@
 var path = require('path'),
     gulpicon = require('../../node_modules/gulpicon/tasks/gulpicon'),
     glob = require('glob'),
+    fs = require('fs'),
+    gutil = require('gulp-util'),
+    async = require('async'),
+    path = require('path'),
     folderTaskSeries = require('../lib/perFolderUtils').folderSeries;
 
 function updateIconConfig(iconConfig, folder) {
@@ -17,6 +21,19 @@ function updateIconConfig(iconConfig, folder) {
     config.customselectors = (iconConfig.customselectors && iconConfig.customselectors[folder]) || {};
 
     return config;
+}
+
+// ignore missing file error
+function fsOperationFailed(stream, sourceFile, err) {
+    if (err) {
+        if (err.code !== 'ENOENT') {
+            stream.emit('error', new gutil.PluginError('gulp-changed', err, {
+                fileName: sourceFile.path
+            }));
+        }
+    }
+
+    return err;
 }
 
 module.exports = function(gulp, plugins, config, utils) {
@@ -79,21 +96,42 @@ module.exports = function(gulp, plugins, config, utils) {
 
                 return gulp.src(srcPaths)
                     .pipe(plugins.plumber())
-                    .pipe(plugins.rename(function(path) {
-                        var tmp = path.basename.split('.colors-');
-                        var newpath = path.basename;
-                        if (tmp.length > 1) {
-                            newpath = tmp[0];
-                            // console.log(' has-colours', tmp[1]);
-                            tmp = tmp[1].split('-');
-                            newpath = newpath + '-' + tmp[tmp.length - 1];
-                            // console.log(main);
-                        }
-                        // console.log(path.basename, newpath);
-                        path.basename = newpath; // Hack to account for gulpicon only renaming '.color' filenames
-                    }))
                     .pipe(plugins.changed(changedPath, {
-                        extension: '.png'
+                        extension: '.png',
+                        hasChanged: function(stream, cb, sourceFile, targetPath) {
+
+                            var targetPaths = [],
+                                targetPathInfo = path.parse(targetPath),
+                                sourcePathInfo = path.parse(sourceFile.path);
+
+                            var tmp = sourcePathInfo.base.split('.colors-');
+
+                            if (tmp.length > 1) {
+                                var firstPathPart = tmp[0];
+                                var colors = tmp[1].replace(sourcePathInfo.ext, '').split('-');
+
+                                targetPaths.push(path.join(targetPathInfo.dir, firstPathPart + targetPathInfo.ext));
+
+                                colors.forEach(function(color){
+                                    targetPaths.push(path.join(targetPathInfo.dir, firstPathPart + '-' +color + targetPathInfo.ext));
+                                });
+                            } else {
+                                targetPaths.push(targetPath);
+                            }
+
+                            async.filter(targetPaths, function(targetPath, _cb){
+                                fs.stat(targetPath, function (err, targetStat) {
+                                    var fileExists = !fsOperationFailed(stream, sourceFile, err);
+                                    if (!fileExists || fileExists && (sourceFile.stat.mtime > targetStat.mtime)) {
+                                        return _cb(true);
+                                    }
+                                    return _cb(false);
+                                });
+                            }, function(results){
+                                if (results.length > 0) stream.push(sourceFile);
+                                cb();
+                            });
+                        }
                     }))
                     .pipe(utils.debugPipe({
                         title: 'icons:checkmodified:' + folder
