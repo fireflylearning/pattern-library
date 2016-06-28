@@ -4,9 +4,9 @@ var React = require('react');
 var Responses = require('./ff_module-responses');
 
 var data = {
-	recipientList: [],
-	details: [],
-	currentTaskResponse: <span>
+	recipientList: <span className='crate_util-block'>Recipients</span>,
+	responseDetails: <span className='crate_util-block'>Details</span>,
+	currentTaskResponse: <span className='crate_util-block'>CurrentResponse</span>,
 };
 
 module.exports = function() {
