@@ -14,6 +14,7 @@ function getPaths() {
         assets: 'assets/',
         temp: '.tmp/',
         icons: '.icons/',
+        config: 'config/',
         templates: 'src/templates',
         cssBuildPriority: [
             '**/outputs.less',
@@ -106,6 +107,10 @@ function getPaths() {
             },
             export: {
                 src: [basePaths.icons+'build/**/*.{js,css,png}'], // Must have no spaces between commas in curly brackets!
+            },
+            config : {
+                src: path.join(basePaths.config, 'icons.js'),
+                dest: path.join(basePaths.icons, 'config')
             }
         },
         assets: {

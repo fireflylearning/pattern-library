@@ -1,3 +1,16 @@
+# 1.0.0 (28/06/2016)
+
+## Updates
+- Updated major version as previous update contained breaking changes
+- Updates grunticon loading in the patternlib to ensure themes are loaded correctly.
+- Enables embedded svg files so that css can be applied directly to the inline element without having to pre-define the colours
+    
+    (see blocks/core/ff_container/ff_container-landing-section/ff_container-landing-section.xsl)
+
+    **NB**: it may be necessary to clear cookies on localhost after this change, for the theme select to work properly
+
+    The script does attempt to detect for the old version of the cookie, but if it should fail, ie. the theme selector is empty and there is no theme selected, try clearing cookies
+
 # 0.2.6 (20/06/2016)
 
 ## Breaking changes

@@ -24,11 +24,18 @@
 
             <script src="/css/icons/grunticon.loader.js"></script>
             <script>
-            // FIXME: For now, load all icons, but should update to only load theme icons
-            if (grunticon) {
-                grunticon(["/css/icons/icons.core.svg.css", "/css/icons/icons.core.png.css", "/css/icons/icons.core.fallback.css"]);
-                grunticon(["/css/icons/icons.melody.svg.css", "/css/icons/icons.melody.png.css", "/css/icons/icons.melody.fallback.css"]);
-            }
+            (function(document, window, undefined){
+                function setIconTheme(theme) {
+                    if (typeof grunticon !== "undefined") {
+                        var base = "/css/icons/icons."+theme;
+                        grunticon([base+".svg.css", base+".png.css", base+".fallback.css"], grunticon.svgLoadedCallback);
+                    } else {
+                        console.warn('Grunticon loader script not found; please check paths and build settings');
+                    }
+                }
+                window.setIconTheme = setIconTheme;
+
+            })(document, window);
             </script>
             <noscript><link href="/css/icons/icons.core.fallback.css" rel="stylesheet"/></noscript>
             <noscript><link href="/css/icons/icons.melody.fallback.css" rel="stylesheet"/></noscript>

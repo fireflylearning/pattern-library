@@ -1,6 +1,6 @@
 {
   "name": "firefly-pattern-library",
-  "version": "0.2.6",
+  "version": "1.0.0",
   "description": "Node xslt compilation test",
   "main": "index.js",
   "scripts": {
