@@ -5,8 +5,7 @@ var Responses = require('./ff_module-responses');
 
 var data = {
 	recipientList: <span className='crate_util-block'>Recipients</span>,
-	responseDetails: <span className='crate_util-block'>Details</span>,
-	currentTaskResponse: <span className='crate_util-block'>CurrentResponse</span>,
+	responseDetails: <span className='crate_util-block'>Details</span>
 };
 
 module.exports = function() {
