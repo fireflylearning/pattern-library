@@ -38,6 +38,17 @@ function fsOperationFailed(stream, sourceFile, err) {
 
 module.exports = function(gulp, plugins, config, utils) {
 
+    var iconsChanged = {};
+    var configHasntChanged = [];
+
+    function checkIconsHaventChanged(folder) {
+        return iconsChanged[folder] && iconsChanged[folder].length === 0;
+    }
+
+    function checkConfigHasntChanged() {
+        return configHasntChanged.length === 0;
+    }
+
     function getCopyMethod(src, dest) {
         return function copyIcons() {
             return gulp.src(src)
@@ -81,8 +92,6 @@ module.exports = function(gulp, plugins, config, utils) {
             });
     }
 
-    var iconsChanged = {};
-
     function getCheckModifiedMethod(src, srcDir, dest, destDir) {
         return plugins.folders(srcDir,
             function checkModified(folder) {
@@ -91,7 +100,7 @@ module.exports = function(gulp, plugins, config, utils) {
                 }).join();
 
                 var destPath = path.join(destDir, dest);
-                var changedPath = path.join(destPath, 'png/' + folder + '/');
+                var changedPath = path.join(destPath, 'png', folder + '/');
                 iconsChanged[folder] = [];
 
                 return gulp.src(srcPaths)
@@ -112,22 +121,22 @@ module.exports = function(gulp, plugins, config, utils) {
 
                                 targetPaths.push(path.join(targetPathInfo.dir, firstPathPart + targetPathInfo.ext));
 
-                                colors.forEach(function(color){
-                                    targetPaths.push(path.join(targetPathInfo.dir, firstPathPart + '-' +color + targetPathInfo.ext));
+                                colors.forEach(function(color) {
+                                    targetPaths.push(path.join(targetPathInfo.dir, firstPathPart + '-' + color + targetPathInfo.ext));
                                 });
                             } else {
                                 targetPaths.push(targetPath);
                             }
 
-                            async.filter(targetPaths, function(targetPath, _cb){
-                                fs.stat(targetPath, function (err, targetStat) {
+                            async.filter(targetPaths, function(targetPath, _cb) {
+                                fs.stat(targetPath, function(err, targetStat) {
                                     var fileExists = !fsOperationFailed(stream, sourceFile, err);
                                     if (!fileExists || fileExists && (sourceFile.stat.mtime > targetStat.mtime)) {
                                         return _cb(true);
                                     }
                                     return _cb(false);
                                 });
-                            }, function(results){
+                            }, function(results) {
                                 if (results.length > 0) stream.push(sourceFile);
                                 cb();
                             });
@@ -142,14 +151,33 @@ module.exports = function(gulp, plugins, config, utils) {
             });
     }
 
+    function getCheckConfigModified(src, dest) {
+
+        configHasntChanged = [];
+
+        return function() {
+            return gulp.src(src)
+                .pipe(plugins.plumber())
+                .pipe(plugins.changed(dest))
+                .pipe(utils.debugPipe({
+                    title: 'icons:checkmodified:config'
+                })())
+                .pipe(plugins.tap(function(file) {
+                    configHasntChanged.push(file);
+                }))
+                .pipe(gulp.dest(dest));
+        };
+    }
 
     function getGrumpIcon(src, srcDir, dest, destDir) {
         return folderTaskSeries(srcDir, function(folder) {
-            var haventChanged = iconsChanged[folder] && iconsChanged[folder].length === 0;
+            var iconsHaventChanged = checkIconsHaventChanged(folder),
+                configHasntChanged = checkConfigHasntChanged();
 
-            plugins.util.log('Icons for ' + folder + (haventChanged ? ' haven\'t ' : ' have ') + 'changed');
+            plugins.util.log('[' + gutil.colors.magenta(folder.toUpperCase()) + '] Icons: ' + (iconsHaventChanged ? gutil.colors.green('NO CHANGE') : gutil.colors.red('CHANGED')));
+            plugins.util.log('[' + gutil.colors.cyan('CONFIG') + '] Icons: ' + (configHasntChanged ? gutil.colors.green('NO CHANGE') : gutil.colors.red('CHANGED')));
 
-            if (haventChanged) return function(cb) {
+            if (iconsHaventChanged && configHasntChanged) return function(cb) {
                 cb();
             };
 
@@ -168,6 +196,7 @@ module.exports = function(gulp, plugins, config, utils) {
     return {
         optimise: getOptimiseMethod,
         checkModified: getCheckModifiedMethod,
+        checkConfigModified: getCheckConfigModified,
         copyIcons: getCopyMethod,
         export: getExportMethod,
         grumpIcon: getGrumpIcon

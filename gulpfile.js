@@ -134,11 +134,13 @@ gulp.task('icons:copy',
 gulp.task('icons:grump:copy', ['icons:grumpicon'],
     iconTasks.copyIcons(paths.icons.copy.src, paths.icons.copy.dest));
 
-gulp.task('icons:grumpicon', ['icons:checkmodified'],
+gulp.task('icons:grumpicon', ['icons:checkmodified', 'icons:checkconfigmodified'],
     iconTasks.grumpIcon(paths.icons.grumpicon.src, paths.icons.grumpicon.srcDir, paths.icons.grumpicon.dest, paths.icons.grumpicon.destDir));
 
 gulp.task('icons:checkmodified', ['icons:optimise'],
     iconTasks.checkModified(paths.icons.grumpicon.src, paths.icons.grumpicon.srcDir, paths.icons.grumpicon.dest, paths.icons.grumpicon.destDir));
+
+gulp.task('icons:checkconfigmodified', iconTasks.checkConfigModified(paths.icons.config.src, paths.icons.config.dest));
 
 gulp.task('icons:optimise',
     iconTasks.optimise(paths.icons.optimise.src, paths.icons.optimise.srcDir, paths.icons.optimise.dest, paths.icons.optimise.destDir));
