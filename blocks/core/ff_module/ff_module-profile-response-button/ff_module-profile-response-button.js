@@ -57,15 +57,15 @@ module.exports = React.createClass({
     renderStatus: function() {
         var event = this.props.event;
         if (event) {
-            return statusSummaryText(this.props);
+           return statusSummaryText(this.props);
         } else {
             return '';
         }
     },
     renderTime: function(){
         var event = this.props.event;
-        if (event && event.description.sent){
-            return dateFormatting.niceDate(event.description.sent);
+        if (event && event.sent){
+            return dateFormatting.niceDate(event.sent);
         } else {
             return '';
         }
@@ -84,5 +84,5 @@ statusTexts[eventTypes.addFile] = "Response Received";
 
 function statusSummaryText(props) {
     var event = props.event;
-    return statusTexts[event.description.type];
+    return statusTexts[event.type];
 }
