@@ -8,14 +8,14 @@ module.exports = React.createClass({
     displayName: 'TaskResponseRecipientList',
     propTypes:{
         responses: React.PropTypes.array.isRequired,
-        onSelect: React.PropTypes.func.isRequired
+        onSelect: React.PropTypes.func.isRequired,
+        currentTaskResponse: React.PropTypes.element
     },
     render: function(){
-        return (
-            <ItemRepeater modifier="separated">
-                {this.props.responses && this.props.responses.map(response =>
-                	var currentResponse = response.currentTaskResponse ? <div className='ff_module-response-recipient-list__currentResponse'>{response.currentTaskResponse}</div> : '';
-                    <ProfileResponseButton
+        return <ItemRepeater modifier="separated">
+                {this.props.responses && this.props.responses.map(response =>{
+                	var currentResponse = response.isSelected ? <div className='ff_module-response-recipient-list__currentResponse'>{this.props.currentTaskResponse}</div> : null;
+                    return <div><ProfileResponseButton
                         key = {response.guid}
                         isRead = {response.isRead}
                         isSelected = {response.isSelected}
@@ -27,8 +27,8 @@ module.exports = React.createClass({
                         pic_href = {response.pic_href}
                     />
                     {currentResponse}
-                )}
-            </ItemRepeater>
-        );
+                    </div>
+                })}
+            </ItemRepeater>;
     }
 });
