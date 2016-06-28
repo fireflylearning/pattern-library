@@ -10,6 +10,7 @@ function updateIconConfig(iconConfig, folder) {
     config.datasvgcss = 'icons.' + folder + '.svg.css';
     config.datapngcss = 'icons.' + folder + '.png.css';
     config.urlpngcss = 'icons.' + folder + '.fallback.css';
+    config.pngfolder = 'png/' + folder + '/';
     config.previewhtml = 'preview.' + folder + '.html';
     config.tmpDir = 'grunticon-tmp-' + folder;
     config.colors = (iconConfig.colors && iconConfig.colors[folder]) || {};
@@ -73,7 +74,7 @@ module.exports = function(gulp, plugins, config, utils) {
                 }).join();
 
                 var destPath = path.join(destDir, dest);
-                var changedPath = path.join(destPath, 'png/');
+                var changedPath = path.join(destPath, 'png/' + folder + '/');
                 iconsChanged[folder] = [];
 
                 return gulp.src(srcPaths)
@@ -85,7 +86,7 @@ module.exports = function(gulp, plugins, config, utils) {
                             newpath = tmp[0];
                             // console.log(' has-colours', tmp[1]);
                             tmp = tmp[1].split('-');
-                            newpath = newpath + '-' + tmp[tmp.length-1];
+                            newpath = newpath + '-' + tmp[tmp.length - 1];
                             // console.log(main);
                         }
                         // console.log(path.basename, newpath);
