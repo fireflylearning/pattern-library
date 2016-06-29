@@ -3,7 +3,6 @@
     border-collapse: collapse;
     border:2px solid @ff_colour_control_border;
     max-height: 585px;
-    box-sizing: border-box;
     position: relative;
     overflow-y: auto;
     @media (min-width: @ff_bp_medium) {
@@ -25,6 +24,7 @@
         display: none;
         overflow-y: auto;
         background: @ff_colour_control_bg;
+        box-sizing: border-box;
     }
     &__item--sidebar {
         @media (min-width: @ff_bp_medium) {
@@ -36,5 +36,6 @@
         }
         position: relative;
         overflow-y: auto;
+        box-sizing: border-box;
     }
 }
