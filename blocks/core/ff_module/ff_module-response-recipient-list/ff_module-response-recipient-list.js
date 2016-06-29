@@ -15,8 +15,7 @@ module.exports = React.createClass({
         return <ItemRepeater modifier="separated">
                 {this.props.responses && this.props.responses.map(response =>{
                 	var currentResponse = response.isSelected ? <div className='ff_module-response-recipient-list__currentResponse'>{this.props.currentTaskResponse}</div> : null;
-                    return <div><ProfileResponseButton
-                        key = {response.guid}
+                    return <div key={response.guid}><ProfileResponseButton
                         isRead = {response.isRead}
                         isSelected = {response.isSelected}
                         label = {response.label}
