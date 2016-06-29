@@ -16,6 +16,7 @@ var classes = {
     [eventTypes.setTask]: { author: 'ff_module-task-event__author-action', taskTitle: 'ff_module-task-event__task-title' },
     [eventTypes.stampResponseAsSeen]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.requestResubmission]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
+    [eventTypes.claimTaskIsComplete]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.confirmTaskIsComplete]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.confirmStudentIsExcused]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__message' },
     [eventTypes.comment]: { author: 'ff_module-task-event__author-action', message: 'ff_module-task-event__comment' },
@@ -138,6 +139,16 @@ var events = [{
     expected: {
         author: 'Terry Teacher requested resubmission.',
         message: 'Message from the teacher'
+    }
+}, {
+    props: {
+        type: eventTypes.claimTaskIsComplete,
+        author: { name: 'Sally Student' },
+        message: 'Message from the student'
+    },
+    expected: {
+        author: 'Sally Student claimed completion.',
+        message: 'Message from the student'
     }
 }, {
     props: {
