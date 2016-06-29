@@ -1,27 +1,11 @@
 .ff_container-scrollable-list {
-	display: flex;
-	box-sizing: border-box;
-	width: 100%;
-	border-collapse: collapse;
 	border:2px solid @ff_colour_control_border;
-	height: 585px;
-	flex-direction: column;
-    align-items: stretch;
-    &__item {
-
-    }
     &__item--main {
-        float:right;
-        width: 70%;
-        flex: 1 0 70%;
-        overflow-y: auto;
         background-color: lighten(@ff_colour_control_bg_selected, 15%);
     }
     &__item--sidebar {
-        float:left;
-        width: 30%;
-        flex: 1 0 30%;
-        overflow-y: auto;
         border-right: 1px solid @ff_colour_control_border;
     }
 }
+
+

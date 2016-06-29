@@ -1,28 +1,9 @@
 .ff_container-scrollable-list {
-    width: 100%;
-    border-collapse: collapse;
     border:2px solid @ff_colour_control_border;
-    max-height: 585px;
-
-    display: flex;
-    align-items: stretch;
-    box-sizing: border-box;
-    position: relative;
-    &__item {
-
-    }
     &__item--main {
-        float:right;
-        width: 70%;
-        flex: 1 0 70%;
-        overflow-y: auto;
         background: @ff_colour_control_bg;
     }
     &__item--sidebar {
-        float:left;
-        width: 30%;
-        flex: 1 0 30%;
-        overflow-y: auto;
         border-right: 1px solid @ff_colour_control_border;
     }
 }
