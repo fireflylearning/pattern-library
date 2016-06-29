@@ -10,9 +10,11 @@ var responses = [{
     },
     guid: "u47",
     label: "Sally Student",
-    description: {
-        type: eventTypes.markAndGrade,
-        sent: new Date()
+    latestEvent: {
+        description: {
+            type: eventTypes.markAndGrade,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -27,9 +29,11 @@ var responses = [{
     isSelected: true,
     guid: "u43",
     label: "Terry Teacher",
-    description: {
-        type: eventTypes.requestResubmission,
-        sent: new Date()
+    latestEvent: {
+        description: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         grade: "A"
@@ -40,9 +44,11 @@ var responses = [{
     isRead: true,
     guid: "u44",
     label: "Joseph Goulden",
-    description: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+    latestEvent: {
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     pic_href: "/images/default_picture.png"
 },{
@@ -52,9 +58,11 @@ var responses = [{
     lastEventWasAuthoredByCurrentUser: true,
     guid: "u42",
     label: "Sally Student",
-    description: {
-        type: eventTypes.markAndGrade,
-        sent: new Date()
+    latestEvent: {
+        description: {
+            type: eventTypes.markAndGrade,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -70,9 +78,11 @@ var responses = [{
     isSelected: true,
     guid: "u41",
     label: "Terry Teacher",
-    description: {
-        type: eventTypes.requestResubmission,
-        sent: new Date()
+    latestEvent: {
+        description: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         grade: "A"
@@ -84,9 +94,11 @@ var responses = [{
     isRead: true,
     guid: "u40",
     label: "Joseph Goulden",
-    description: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+    latestEvent: {
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     pic_href: "/images/default_picture.png"
 }];
