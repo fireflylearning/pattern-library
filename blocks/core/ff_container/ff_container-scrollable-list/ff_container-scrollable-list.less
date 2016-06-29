@@ -3,14 +3,14 @@
     border-collapse: collapse;
     border:2px solid @ff_colour_control_border;
     max-height: 585px;
+
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
     position: relative;
-    overflow-y: auto;
-    @media (min-width: @ff_bp_medium) {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
+    &__item {
+
     }
-    display: block;
     &__item--main {
         @media (min-width: @ff_bp_medium) {
             float:right;
@@ -19,12 +19,12 @@
             overflow-y: auto;
             background: @ff_colour_control_bg;
             display: block;
-        }
-        position: relative;
+      }
         display: none;
         overflow-y: auto;
         background: @ff_colour_control_bg;
         box-sizing: border-box;
+
     }
     &__item--sidebar {
         @media (min-width: @ff_bp_medium) {
@@ -34,7 +34,6 @@
             overflow-y: auto;
             border-right: 1px solid @ff_colour_control_border;
         }
-        position: relative;
         overflow-y: auto;
         box-sizing: border-box;
     }
