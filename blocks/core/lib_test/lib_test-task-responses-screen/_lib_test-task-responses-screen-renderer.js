@@ -419,7 +419,8 @@ var overlayInner = React.createElement(ConnectedTaskResponses),
         responses: recipientData,
         onSelect: function() {
             console.log('select recipient');
-        }
+        },
+        currentTaskResponse: overlayOuter
     });
 
 
