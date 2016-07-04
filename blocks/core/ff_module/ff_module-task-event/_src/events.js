@@ -4,6 +4,7 @@ module.exports.types = {
     setTask: 'set-task',
     stampResponseAsSeen: 'stamp-response-as-seen',
     requestResubmission: 'request-resubmission',
+    claimTaskIsComplete: 'claim-task-is-complete',
     confirmTaskIsComplete: 'confirm-task-is-complete',
     confirmStudentIsExcused: 'confirm-student-is-excused',
     comment: 'comment',
