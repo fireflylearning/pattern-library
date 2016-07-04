@@ -4,9 +4,13 @@
   "description": "Node xslt compilation test",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint blocks/core/**/*.js",
-    "test": "mocha tests/*.test.js --watch --compilers jsx:babel-register,js:babel-register --require tests/lib/utils.js",
-    "start": "npm install && gulp"
+        "lint": "npm install && eslint blocks/core/**/*.js",
+        "build": "npm install && gulp build",
+        "start": "npm install && gulp",
+        "serve": "npm install && gulp serve",
+        "export" : "npm install && gulp export",
+        "icons": "npm install && gulp icons",
+        "test": "npm install && npm run lint && mocha tests/*.test.js --compilers jsx:babel-register,js:babel-register --require tests/lib/utils.js"
   },
   "repository": {
     "type": "git",

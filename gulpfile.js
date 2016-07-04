@@ -148,7 +148,7 @@ gulp.task('icons:optimise',
 /**
  * Export Icons
  */
-gulp.task('export:icons', ['icons:grumpicon'],
+gulp.task('export:icons',
     iconTasks.export(paths.icons.export.src, path.join(config.exportPath, 'icons')));
 
 
