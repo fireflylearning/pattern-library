@@ -2,6 +2,7 @@
     background-color: #fff;
     border-radius: @ff_size_control_rounding * 0.5;
     overflow: hidden;
+
     &__heading {
         background-color: @ff_colour_control_bg;
         font-weight: normal;
@@ -37,6 +38,16 @@
         }
         *+* {
             margin-left: @ff_size_spacing_min;
+        }
+    }
+    &--arrow {
+        &:before {
+            #triangle-up(10px, 1, @ff_colour_control_bg);
+            content:' ';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: -10px;
         }
     }
 }
