@@ -8,8 +8,6 @@ var props = {
     type: 'textarea'
 };
 
-console.log({...this.props})
-
 module.exports = React.createClass({
     displayName: 'Description',
     render: function(){

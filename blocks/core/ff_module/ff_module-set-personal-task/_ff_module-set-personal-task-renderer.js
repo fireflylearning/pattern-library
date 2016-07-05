@@ -24,7 +24,7 @@ module.exports = function() {
  					<TaskTitle />
  					<DueDate />
  					<ClassSelector />
- 					
+ 					<Description />
             	</ModuleSetPersonalTask>
             , el);
         }

@@ -12,7 +12,7 @@ module.exports = React.createClass({
     displayName: 'ClassSelector',
     render: function(){
         return (
-            <FormInput {...this.props} onChange={event => this.setValue(event)} value='{this.state.value}' />
+            <FormInput {...this.props} type="{select}" onChange={event => this.setValue(event)} value='{this.state.value}' />
         );
     },
     onChange: function() {
