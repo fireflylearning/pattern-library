@@ -6,7 +6,7 @@
 - **`controls`**: {Node}, required
 - **`showCloseIcon`**: {Boolean}
 - **`onCloseIconClick`**: {Function}
-- **`modifier`**: {String}
+- **`modifier`**: {String} - current options are `arrow`
 
 ## Structure
 
