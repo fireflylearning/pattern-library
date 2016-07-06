@@ -18,13 +18,13 @@ var ContainerModalWithDialog = require('../blocks/core/ff_container/ff_container
 describe('ContainerModalWithDialog', function() {
 
     it('should render', function() {
-        var element = React.createElement(ContainerModalWithDialog, props[0]);
+        var element = React.createElement(ContainerModalWithDialog, props[0], <p>[Body text]</p>);
         var component = TestUtils.renderIntoDocument(element);
         expect(component).to.exist;
     });
 
     it('should have \'getOverlay\' method', function() {
-        var element = React.createElement(ContainerModalWithDialog, props[0]);
+        var element = React.createElement(ContainerModalWithDialog, props[0], <p>[Body text]</p>);
         var component = TestUtils.renderIntoDocument(element);
         expect(component.getOverlay).to.be.a('function');
         expect(component.getOverlay()).to.be.a('object');
