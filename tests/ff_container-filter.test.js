@@ -18,9 +18,11 @@ describe('FilterContainer', function() {
 	filter2 = <span>filter2</span>;
 
 	var filters = [{
+			key: 1,
 			content: filter1
 		},
 		{
+			key: 2,
 			content: filter2
 		}
 	];
@@ -35,7 +37,7 @@ describe('FilterContainer', function() {
 
 	var label= "[Sort by]";
 	it('should render a filter container with a label ' + label, function() {
-		var element = React.createElement(FilterContainer, { label: label, filters: [] } );
+		var element = React.createElement(FilterContainer, { label: label, filters: filters } );
 		var component = TestUtils.renderIntoDocument(element);
 
 		var labelNode = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_container-filter__label');
@@ -44,7 +46,7 @@ describe('FilterContainer', function() {
 
 	var modifier = '[Modifier]';
 	it('should render a filter container with modifier ' + label, function() {
-		var element = React.createElement(FilterContainer, { modifier: modifier, filters: [] } );
+		var element = React.createElement(FilterContainer, { modifier: modifier, filters: filters } );
 		var component = TestUtils.renderIntoDocument(element);
 
 		var itemsNode = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_container-filter__items');
