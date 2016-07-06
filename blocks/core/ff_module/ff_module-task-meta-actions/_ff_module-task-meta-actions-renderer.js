@@ -40,6 +40,7 @@ var TaskMetaActions = require('./ff_module-task-meta-actions'),
         state: {
             // archived: true
         },
+        modifier: 'my-modifier',
         description: {
             numRecipientsAffected: 43,
             author: { name: 'Terry Teacher' }
