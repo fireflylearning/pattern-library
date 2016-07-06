@@ -1,0 +1,17 @@
+.ff_module-task-meta-actions--responses {
+	.ff_container-control-bar--split {
+		.ff_container-control-bar__group:first-of-type {
+			@media (min-width: @ff_bp_wide) {
+				order: 0;
+			}
+			order: 3;
+		}
+		.ff_container-control-bar__group:last-of-type {
+			@media (min-width: @ff_bp_wide) {
+				justify-content: flex-end;
+				order: 1
+			}
+			justify-content: flex-start;
+		}
+	}
+}
