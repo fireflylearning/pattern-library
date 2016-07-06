@@ -15,7 +15,7 @@ var expandedText = '[Expanded state header]',
 describe('ExpandableComponent', function() {
 
     it('should render an expandable component', function() {
-        var component = getComponent();
+        var component = getComponent({ expandedText: expandedText, collapsedText: collapsedText });
         expect(component).to.exist;
     });
 
