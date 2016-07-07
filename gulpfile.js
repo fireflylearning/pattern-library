@@ -24,7 +24,6 @@ var gulp = require('gulp'),
     getFileInfo = require('./src/gulp-tasks/fileInfo').getFileInfo,
     buildXSLT = require('./src/gulp-tasks/buildXSLT')(gulp, plugins),
     exportBlocks = require('./src/gulp-tasks/exportBlocks')(gulp, plugins),
-    exportStatus = require('./src/gulp-tasks/exportStatus')(gulp, plugins, config),
     server = require('./src/gulp-tasks/server')(gulp, plugins, config),
     browserSync = server.browserSync,
     utils = require('./src/lib/utils')(gulp, plugins, browserSync, config),
@@ -112,8 +111,7 @@ gulp.task('js', ['info'],
 /**
  * Export javascript
  */
-gulp.task('export:js', ['export:js:raw'],
-    exportStatus(config.exportJsPath, "pattern-library-js.json"));
+gulp.task('export:js', ['export:js:raw']);
 
 gulp.task('export:js:raw',
     webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), config.exportJsPath));
@@ -250,7 +248,7 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
 /**
  * Export
  *********************************************/
-gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], exportStatus(config.exportPath, "pattern-library.json"));
+gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets']);
 
 
 
