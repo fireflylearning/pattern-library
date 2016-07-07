@@ -20,7 +20,7 @@ function renderArchived(props) {
 
 function renderDefault(props) {
     return  <div className={generateClass('ff_module-task-meta-actions', props) + ' ff_util-row-bottom'}>
-                <ContainerControlBar modifier="split">
+                <ContainerControlBar modifier="split" classes="ff_module-task-meta-actions__controlbar">
 
                     <ContainerControlBarSet>
 

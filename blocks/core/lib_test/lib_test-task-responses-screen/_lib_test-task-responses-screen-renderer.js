@@ -410,7 +410,7 @@ var overlayInner = React.createElement(ConnectedTaskResponses),
 
     overlayOuter = React.createElement(ContainerOverlay, {
         modifier: 'absolute-bottom',
-        classes: 'ff_container-overlay--task-event-scrollable',
+        classes: 'ff_container-overlay--task-event-scrollable ff_container-overlay--task-responses',
         body: overlayInner,
         bar: recipientNavigation
     }),
