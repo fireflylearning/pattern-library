@@ -24,7 +24,7 @@ describe('FormInput', function() {
 	    attributeName = 'data-ff-attribute-name',
 	    attributeValue = '[Attribute Value]';
 	it('should make an input element with correct properties set', function() {
-        var element = React.createElement(FormInput, {id: id, name: name, value: value, modifier: modifier, data: [{attr: attributeName, value: attributeValue}], disabled: true});
+        var element = React.createElement(FormInput, {id: id, name: name, value: value, modifier: modifier, data: [{attr: attributeName, value: attributeValue}], disabled: true, onChange: function(){}});
         var component = TestUtils.renderIntoDocument(element);
         var root = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-form-input');
         expect(root.id).to.equal(id);
