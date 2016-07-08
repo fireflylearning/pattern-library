@@ -9,22 +9,29 @@ var MarkingControls = require('../blocks/core/ff_module/ff_module-form-marking-c
 var data = {
 	controls: {
 		buttons: [{
-			text: '[button]'
+			text: '[button]',
+			key: 1
 		},
 		{
-			text: '[button]'
+			text: '[button]',
+			key: 2
 		},
 		{
-			text: '[button]'
+			text: '[button]',
+			key: 3
 		}],
 		checkableList: {
 			items: [{
 				label: '[label]',
-				type: 'radio'
+				type: 'radio',
+				key: 1,
+				id: 'id1'
 			},
 			{
 				label: '[label]',
-				type: 'radio'
+				type: 'radio',
+				key: 2,
+				id: 'id2'
 			}]
 		}
 	}
