@@ -66,14 +66,18 @@ describe('FormInput', function() {
 
     // [onClick, onChange]
     // check onClick and onChange event handlers
+        var eventHandlers = {
+            onClick: sinon.spy(),
+            onChange: sinon.spy()
+        }
 	it('should make a an input element and attach onClick and onChange event handlers', function() {
-        var element = React.createElement(FormInput, { onClick: sinon.spy(), onChange: sinon.spy() });
+        var element = React.createElement(FormInput, { onClick: eventHandlers.onClick, onChange: eventHandlers.onChange });
         var component = TestUtils.renderIntoDocument(element);
         var root = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-form-input');
 	TestUtils.Simulate.click(root);
 	TestUtils.Simulate.change(root);
 
-	expect(root.props.onClick.called).to.be.true;
-	expect(root.props.onChange.called).to.be.true;
+	expect(eventHandlers.onClick.calledOnce).to.be.true;
+	expect(eventHandlers.onChange.calledOnce).to.be.true;
 	});
 });
