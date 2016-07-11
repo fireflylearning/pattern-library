@@ -238,10 +238,9 @@ function getMapStateToProps(spies) {
 
 function getProvidedForm(store, mapStateToProps) {
     var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
-    return ( < Provider store = { store } >
-        < ConnectedEditForm / >
-        < /Provider>
-    );
+    return (<Provider store = { store }>
+        <ConnectedEditForm/>
+        </Provider>);
 }
 
 function getTypeName(event) {

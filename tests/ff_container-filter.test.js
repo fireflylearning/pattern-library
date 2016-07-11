@@ -14,8 +14,9 @@ describe('FilterContainer', function() {
         expect(component).to.exist;
     });
 
-    var filter1 = < span > filter1 < /span>,
-    filter2 = < span > filter2 < /span>;
+    var filter1 = <span> filter1 </span>,
+        filter2 = <span> filter2 </span>;
+
 
     var filters = [{
         key: 1,

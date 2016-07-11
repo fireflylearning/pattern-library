@@ -10,12 +10,12 @@ var TabsComponent = require('../blocks/core/ff_module/ff_module-tabs-component/f
 
 var tabs = [{
     label: 'test label 1',
-    content: < p > test content 1 < /p>,
+    content: <p> test content 1 </p>,
     id: "tab1a",
     key: 1
 }, {
     label: 'test label 2',
-    content: < p > test content 2 < /p>,
+    content: <p> test content 2 </p>,
     id: "tab2a",
     key: 2
 }];
