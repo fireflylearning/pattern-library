@@ -228,7 +228,7 @@ describe('TaskEvent', function() {
     var component;
 
     before(function() {
-        var element = React.createElement(TaskEvent, { description: events[0].props });
+        var element = React.createElement(TaskEvent, { localEventId: 'event-id', description: events[0].props });
         component = TestUtils.renderIntoDocument(element);
     });
 
@@ -247,7 +247,7 @@ describe('TaskEvent', function() {
                 if (!testClass) return null;
 
                 it('should render \'' + _event.expected[key] + '\' for prop \'' + key + '\' with value \'' + prop.toString() + '\'', function() {
-                    element = React.createElement(TaskEvent, { description: _event.props });
+                    element = React.createElement(TaskEvent, { localEventId: 'event-id', description: _event.props });
                     component = TestUtils.renderIntoDocument(element);
 
                     if (_event.expected[key] === shouldntExist) {
