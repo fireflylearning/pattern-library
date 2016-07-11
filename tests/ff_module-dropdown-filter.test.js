@@ -13,24 +13,24 @@ var DropdownFilters = require('../blocks/core/ff_module/ff_module-dropdown-filte
 
 var testProps = [{
     text: '[DropdownFilter basic props]',
-    filters: [{ name: '[Filter title A1]', id:'filterA1' }, { name: '[Filter title A2]', id:'filterA2' }],
-        onAddFilter: sinon.spy(),
+    filters: [{ name: '[Filter title A1]', id: 'filterA1' }, { name: '[Filter title A2]', id: 'filterA2' }],
+    onAddFilter: sinon.spy(),
     onRemoveFilter: sinon.spy()
 }, {
     text: '[DropdownFilter isOpen]',
-    filters: [{ name: '[Filter title B1]' , id:'filterB1'}],
+    filters: [{ name: '[Filter title B1]', id: 'filterB1' }],
     isOpen: true,
-        onAddFilter: sinon.spy(),
+    onAddFilter: sinon.spy(),
     onRemoveFilter: sinon.spy()
 }, {
     text: '[DropdownFilter isDisabled]',
-    filters: [{ name: '[Filter title C1]', id:'filterC1' }],
+    filters: [{ name: '[Filter title C1]', id: 'filterC1' }],
     isDisabled: true,
     onAddFilter: sinon.spy(),
     onRemoveFilter: sinon.spy()
 }, {
     text: '[Filter onClick handlers]',
-    filters: [{ name: '[Filter title D1]', id:'filterD1' }],
+    filters: [{ name: '[Filter title D1]', id: 'filterD1' }],
     onAddFilter: sinon.spy(),
     onRemoveFilter: sinon.spy()
 }];
@@ -61,7 +61,7 @@ var testDefs = {
     },
     onAddFilter: function(component, value, props) {
         var inputs = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-form-input');
-         if (props.isDisabled) {
+        if (props.isDisabled) {
             expect(inputs.length).to.equal(0);
         } else {
             var input = inputs[0];
@@ -72,7 +72,7 @@ var testDefs = {
     },
     onRemoveFilter: function(component, value, props) {
         var inputs = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-form-input');
-         if (props.isDisabled) {
+        if (props.isDisabled) {
             expect(inputs.length).to.equal(0);
         } else {
             var input = inputs[0];

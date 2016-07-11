@@ -12,31 +12,31 @@ var modifier = '[Modifier]';
 
 describe('CheckableList', function() {
 
-	//Checking that component renders correctly
-	it('should render', function() {
-		var element = React.createElement(CheckableList, {items: items});
-		var component = TestUtils.renderIntoDocument(element);
-		expect(component).to.exist;
-	});
+    //Checking that component renders correctly
+    it('should render', function() {
+        var element = React.createElement(CheckableList, { items: items });
+        var component = TestUtils.renderIntoDocument(element);
+        expect(component).to.exist;
+    });
 
-	//Checking modifier
-	it('should make a checkable list item with modifier ' + modifier, function() {
-		var element = React.createElement(CheckableList, {
-            		modifier: modifier,
-			items: items
-		});
-		var component = TestUtils.renderIntoDocument(element);
-		var root = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-form-checkable-list__item');
-		expect(root[0].className).to.equal('ff_module-form-checkable-list__item ff_module-form-checkable-list__item--' + modifier);
-	});
+    //Checking modifier
+    it('should make a checkable list item with modifier ' + modifier, function() {
+        var element = React.createElement(CheckableList, {
+            modifier: modifier,
+            items: items
+        });
+        var component = TestUtils.renderIntoDocument(element);
+        var root = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-form-checkable-list__item');
+        expect(root[0].className).to.equal('ff_module-form-checkable-list__item ff_module-form-checkable-list__item--' + modifier);
+    });
 
-	// Checking that it renders the right number of items
-	it('should make a checkable list with ' + items.length + ' items', function() {
-		var element = React.createElement(CheckableList, {
-			items: items
-		});
-		var component = TestUtils.renderIntoDocument(element);
-		var root = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-form-checkable-list__item');
-		expect(root.length).to.equal(items.length);
-	});
+    // Checking that it renders the right number of items
+    it('should make a checkable list with ' + items.length + ' items', function() {
+        var element = React.createElement(CheckableList, {
+            items: items
+        });
+        var component = TestUtils.renderIntoDocument(element);
+        var root = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-form-checkable-list__item');
+        expect(root.length).to.equal(items.length);
+    });
 });

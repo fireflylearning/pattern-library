@@ -106,7 +106,7 @@ var modelKeys = {
 };
 
 // so different model string values can be used if required
-var models = Object.keys(modelKeys).reduce(function(memo, key){
+var models = Object.keys(modelKeys).reduce(function(memo, key) {
     memo[modelKeys[key]] = 'event.description.' + modelKeys[key];
     return memo;
 }, {});
@@ -238,10 +238,9 @@ function getMapStateToProps(spies) {
 
 function getProvidedForm(store, mapStateToProps) {
     var ConnectedEditForm = connect(mapStateToProps)(TaskEventEditor);
-    return (
-        <Provider store={store}>
-            <ConnectedEditForm />
-        </Provider>
+    return ( < Provider store = { store } >
+        < ConnectedEditForm / >
+        < /Provider>
     );
 }
 

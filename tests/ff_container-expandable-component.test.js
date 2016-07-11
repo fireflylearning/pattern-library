@@ -65,6 +65,7 @@ describe('ExpandableComponent', function() {
 });
 
 function getComponent(props) {
+
     var element = React.createElement(ExpandableComponent, props, React.createElement('span', {}, contentText));
     return TestUtils.renderIntoDocument(element);
 }
