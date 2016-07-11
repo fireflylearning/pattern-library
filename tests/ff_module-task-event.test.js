@@ -32,7 +32,8 @@ var events = [{
     props: {
         type: eventTypes.setTask,
         author: { name: 'Sally Student' },
-        taskTitle: 'Write an Essay'
+        taskTitle: 'Write an Essay',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Sally Student set a task:',
@@ -45,7 +46,8 @@ var events = [{
         mark: 7,
         markMax: 10,
         grade: 'B',
-        markAndGrade: ''
+        markAndGrade: '',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Sally MarkAndGrade added a mark and grade:',
@@ -58,7 +60,8 @@ var events = [{
         type: eventTypes.markAndGrade,
         author: { name: 'Sally Grade' },
         grade: 'B',
-        markAndGrade: ''
+        markAndGrade: '',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Sally Grade added a grade:',
@@ -72,7 +75,8 @@ var events = [{
         author: { name: 'Sally GradeAndMessage' },
         grade: 'B',
         message: 'Good work',
-        markAndGrade: ''
+        markAndGrade: '',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Sally GradeAndMessage added a grade:',
@@ -88,7 +92,8 @@ var events = [{
         mark: 6,
         markMax: 10,
         message: 'Good work',
-        markAndGrade: ''
+        markAndGrade: '',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Sally MarkAndMessage added a mark:',
@@ -102,7 +107,8 @@ var events = [{
         author: { name: 'Sally Student' },
         mark: 7,
         markMax: 10,
-        markAndGrade: ''
+        markAndGrade: '',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Sally Student added a mark:',
@@ -114,7 +120,8 @@ var events = [{
     props: {
         type: eventTypes.stampResponseAsSeen,
         author: { name: 'Terry Teacher' },
-        message: 'Message from the teacher'
+        message: 'Message from the teacher',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Terry Teacher stamped response as seen.',
@@ -124,7 +131,8 @@ var events = [{
     props: {
         type: eventTypes.comment,
         author: { name: 'Terry Teacher' },
-        message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!'
+        message: 'Much better, this sets the essay up very well. Very good character analysis, you understand the different perspectives and explained the context very thoroughly. Keep up the good work!',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Terry Teacher added a comment:',
@@ -134,7 +142,8 @@ var events = [{
     props: {
         type: eventTypes.requestResubmission,
         author: { name: 'Terry Teacher' },
-        message: 'Message from the teacher'
+        message: 'Message from the teacher',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Terry Teacher requested resubmission.',
@@ -144,7 +153,8 @@ var events = [{
     props: {
         type: eventTypes.claimTaskIsComplete,
         author: { name: 'Sally Student' },
-        message: 'Message from the student'
+        message: 'Message from the student',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Sally Student claimed completion.',
@@ -154,7 +164,8 @@ var events = [{
     props: {
         type: eventTypes.confirmTaskIsComplete,
         author: { name: 'Terry Teacher' },
-        message: 'Message from the teacher'
+        message: 'Message from the teacher',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Terry Teacher confirmed completion.',
@@ -164,7 +175,8 @@ var events = [{
     props: {
         type: eventTypes.confirmStudentIsExcused,
         author: { name: 'Terry Teacher' },
-        message: 'Message from the teacher'
+        message: 'Message from the teacher',
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Terry Teacher confirmed student is excused.',
@@ -173,7 +185,8 @@ var events = [{
 }, {
     props: {
         type: eventTypes.deleteResponse,
-        author: { name: 'Terry Teacher' }
+        author: { name: 'Terry Teacher' },
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Terry Teacher deleted a response.'
@@ -181,7 +194,8 @@ var events = [{
 }, {
     props: {
         type: eventTypes.confirmStudentIsUnexcused,
-        author: { name: 'Terry Teacher' }
+        author: { name: 'Terry Teacher' },
+        sent: new Date(dStrings[0])
     },
     expected: {
         author: 'Terry Teacher unexcused student.'
@@ -190,6 +204,7 @@ var events = [{
     props: {
         type: eventTypes.addFile,
         author: { name: 'Sally StudentFiles' },
+        sent: new Date(dStrings[0]),
         files: [{
             title: 'File one',
             href: '#'
@@ -209,6 +224,7 @@ var events = [{
     props: {
         type: eventTypes.addFile,
         author: { name: 'Sally StudentFile' },
+        sent: new Date(dStrings[0]),
         files: [{
             title: 'File one',
             href: '#'
