@@ -12,7 +12,7 @@ var Task = require('../blocks/core/ff_module/ff_module-task/ff_module-task.js'),
 describe('Task', function() {
 
   it('should always render the Task component', function() {
-    var element = React.createElement(Task, {});
+    var element = React.createElement(Task, {to: '', message: '', linkHref: ''});
 		var component = TestUtils.renderIntoDocument(element);
 		expect(component).to.exist;
   });
@@ -51,7 +51,7 @@ describe('Task', function() {
 
   it('should not render a \'date\' element if \'duedate\' prop is not supplied', function() {
     var attemptToFindNode = function(){
-      getElementByClass({duedate: ''}, 'ff_module-task__item--date');
+      getElementByClass({duedate: '', from: '', to: '', message: '', linkHref: ''}, 'ff_module-task__item--date');
     };
     expect(attemptToFindNode).to.throw(Error, /Did not find/);
   });
@@ -63,7 +63,7 @@ describe('Task', function() {
         numExcused: 2,
         completedBy: 20,
         marked: 3
-      }
+      }, to: '', message: '', linkHref: ''
     });
     var parentComponent = TestUtils.renderIntoDocument(element);
     var childComponent = TestUtils.findRenderedComponentWithType(parentComponent, Progress);
