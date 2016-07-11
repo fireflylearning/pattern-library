@@ -7,8 +7,8 @@ var expect = require('chai').expect;
 
 var FormPreview = require('../blocks/core/ff_module/ff_module-form-preview/ff_module-form-preview');
 
-var items = [{ title: 'item' }, { title: 'item' }, { title: 'item' }];
-var itemWithDescription = [{ title: 'item' , html: '<div>hello</div>' }];
+var items = [{ title: 'item', key: 1 }, { title: 'item', key: 2 }, { title: 'item', key: 3}];
+var itemWithDescription = [{ title: 'item' , html: <div>hello</div>, key: 1}];
 var itemWithSublist = [{
 	title: 'item' ,
 	list: [{
@@ -18,7 +18,8 @@ var itemWithSublist = [{
 	{
 		title: "Title",
 		value: "Volcano formation"
-	}]
+	}],
+	key: 1
 }];
 
 describe('FormPreview', function() {

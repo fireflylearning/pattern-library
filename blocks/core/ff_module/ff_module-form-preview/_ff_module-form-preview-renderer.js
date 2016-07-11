@@ -16,11 +16,13 @@ var data = {
 			completedBy: 20,
 			marked: 3
 		},
+		key: 0
 	},
 	{
 		modifier: 'controls',
 		title: 'My component',
-		component: <span className='crate_util-block'>My component</span>
+		component: <span className='crate_util-block'>My component</span>,
+		key: 1
 	},
 	{
 		title: 'Details',
@@ -66,13 +68,15 @@ var data = {
 				title: 'My lovely page',
 				href: '#'
 			}]
-		}
+		},
+		key: 3
 
 	},
 	{
 		modifier: 'description',
 		title: 'Description',
-		html: <div><h2>Volcano formation</h2> <p>Volcanoes are amazing</p></div>
+		html: <div><h2>Volcano formation</h2> <p>Volcanoes are amazing</p></div>,
+		key: 4
 	}]
 }
 
