@@ -22,10 +22,15 @@ function generateClassLocal(base, props) {
         mods = base+'--cannot-edit';
     }
 
-    if (props.state && props.state.userCanEdit === false) {
+    if (shouldNotRenderActions(props)) {
         className = className + ' ' + mods;
     }
     return className;
+}
+
+function shouldNotRenderActions(props) {
+    return props.state && ((props.state.userCanEdit === false) ||
+        (props.state.archived === true));
 }
 
 module.exports = React.createClass({
@@ -36,7 +41,8 @@ module.exports = React.createClass({
         stopEditingEvent: React.PropTypes.func,
         addEvent: React.PropTypes.func,
         state: React.PropTypes.shape({
-            userCanEdit: React.PropTypes.bool
+            userCanEdit: React.PropTypes.bool,
+            archived: React.PropTypes.bool
         }),
         editingEvent: React.PropTypes.shape(TaskEvent.PropTypes),
         editorModels: React.PropTypes.object,
@@ -49,7 +55,8 @@ module.exports = React.createClass({
 
         var editor = this.props.editingEvent ? this.renderEventEditor() : null;
         var ActionsComponent = this.props.actionsComponent ? this.props.actionsComponent : TaskResponseActions;
-        var actions = this.props.state && (this.props.state.userCanEdit === false) ?
+
+        var actions = shouldNotRenderActions(this.props) ?
             null :
             <ActionsComponent
                     onClick={this.onEventChange}
