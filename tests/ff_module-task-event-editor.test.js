@@ -98,18 +98,20 @@ function isNumber(value) {
 }
 
 var modelKeys = {
-    mark: 'event.description.mark',
-    markMax: 'event.description.markMax',
-    grade: 'event.description.grade',
-    message: 'event.description.message'
+    mark: 'mark',
+    markMax: 'markMax',
+    grade: 'grade',
+    message: 'message',
+    comment: 'comment'
 };
 
 // so different model string values can be used if required
-var models = Object.keys(modelKeys).reduce(function(memo, key) {
-    memo[modelKeys[key]] = modelKeys[key];
+var models = Object.keys(modelKeys).reduce(function(memo, key){
+    memo[modelKeys[key]] = 'event.description.' + modelKeys[key];
     return memo;
 }, {});
 
+models['comment'] = 'event.description.message';
 
 var validation = {};
 validation[modelKeys.mark] = {
@@ -154,6 +156,16 @@ validation[modelKeys.message] = {
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
     messages: {
         required: 'Please provide a comment.'
+    }
+};
+validation[modelKeys.comment] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please add a comment'
     }
 };
 
