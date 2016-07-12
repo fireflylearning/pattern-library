@@ -48,8 +48,7 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 - BrowserSync for hot-reloading and syncing
 - Webpack for bundling javascript modules
 - Less with gulp-less for less > css transpiling
-- React Templates for compiling `.rt` templates files (html-like syntax) to `.js`
-- Babel for js(x) transpiling
+- Babel for jsx transpiling `.jsx` templates files and `<tag/>` syntax to `.js`
 - gulp-jshint for js linting
 - css-lint for css linting
 - Karma, Mocha, Chai and Sinon for testing
@@ -109,20 +108,13 @@ JSX syntax is available, and should be used whenever practical to replace calls 
 
 ##### Separate Template Files
 
-Separate template files are required if any of the following conditions are true for a given pattern:
-
- - The pattern is JavaScript/React only. The absense of an XSL means a template is required to quickly see the shape of a patterns output.
- - The pattern outputs more than one DOM element. As soon as the complexity of a pattern increases to contain more than one HTML DOM element a template is required to quickly see the shape of a patterns output.
+If a component involves rendering decisions or complex dynamic aspects, you may separate things into template files where it makes sense to do so, and do include the flat HTML in the .md file.
 
 In most cases these templates should naturally grow from raw HTML files used to plan the pattern.
 
 **JSX Files**
 
 Moving dom rendering into a `.jsx` file is a convenient way to separate DOM structure from pattern set up. Id's, classes and data attributes being set on DOM elements should be as clear as is practical to be (try not to hide attribute values inside props if it can be avoided in the pattern usage).
-
-**React Templates**
-
-The view templates use [React Templates](https://www.npmjs.com/package/gulp-react-templates) to transform html-like `.rt` files into compiled `.js` files for use in React view logic files.
 
 ### Pages
 A collection of layout files for presenting these patterns in a variety of ways and with a variety of content. For instance, the developer can view the pattern in the context of all other patterns for comparison purposes; in isolation for development and testing; with a variety of text in different lengths and languages.
