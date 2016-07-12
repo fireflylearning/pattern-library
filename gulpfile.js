@@ -204,11 +204,6 @@ gulp.task('watch', ['build'], function() {
         .on('change', utils.changeEvent('Icons'));
 
     gulp.watch([
-            paths.blocks.rt.src
-        ], ['watch:react:templates'])
-        .on('change', utils.changeEvent('React Templates'));
-
-    gulp.watch([
             paths.pages.watch
         ], ['watch:pages'])
         .on('change', utils.changeEvent('Pages'));
