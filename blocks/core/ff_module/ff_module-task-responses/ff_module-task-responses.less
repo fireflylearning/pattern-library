@@ -1,0 +1,34 @@
+.ff_module-task-responses {
+    position: relative;
+
+    &__actions {
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+    }
+}
+
+@local-radius: @ff_size_control_rounding;
+
+// modifiers
+.ff_module-task-responses {
+    &--standalone {
+    }
+}
+
+.ff_module-task-responses {
+    &--fixed-actions {
+        position: static;
+    }
+    &--fixed-actions &__actions {
+        position: absolute;
+        left: 30%;
+        right: 0;
+        top: 0;
+        z-index: 2;
+    }
+    &--fixed-actions &__content {
+        margin-top: 60px;
+    }
+    &--fixed-actions-cannot-edit &__content {
+        margin-top: 0px;
+    }
+}

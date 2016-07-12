@@ -1,0 +1,25 @@
+.ff_module-tabs__navigation {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	.ff_mix-clearfix();
+	border-radius: @ff_size_control_rounding  @ff_size_control_rounding 0  0;
+	display: inline-block;
+	border: 1px solid @ff_colour_control_border;
+	border-bottom: 0;
+	overflow: hidden;
+}
+.ff_module-tabs__tab {
+	float: left;
+    line-height: 1;
+	padding: 12rem/@ff_base 20rem/@ff_base;
+	background: @ff_colour_control_bg;
+	#ff_mix-base-box > .list-item()
+}
+.ff_module-tabs__link {
+	text-decoration: none;
+	color: @ff_colour_control_text;
+}
+.ff_module-tabs__tab--active {
+	background: white;
+}

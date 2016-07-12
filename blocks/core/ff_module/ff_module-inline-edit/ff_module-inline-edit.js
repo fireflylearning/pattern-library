@@ -1,24 +1,19 @@
 'use strict';
-var $ = require('jquery');
 
-module.exports = function(controlFactory) {
-    console.log('ff_module-inline-edit file is included');
-    $(function() {
+var React = require('react');
 
-        var editControl = controlFactory.getControl();
-
-        $('[data-ff-control="edit"]').on('click', function(event) {
-            console.log('[data-ff-control="edit"] clicked');
-
-            event.preventDefault();
-            var $root = $(this),
-                targetSel = $root.data('ff-edit-target'),
-                target = $(targetSel).get(0);
-
-            if (target) {
-                editControl.startEdit(target);
-            }
-
-        });
-    });
-};
+module.exports = React.createClass({
+	displayName: 'InlineEdit',
+	generateClass: function(base) {
+		var classNames = [],
+		props = this.props;
+		classNames.push(base);
+		if(this.props.modifier) {
+			classNames.push(base + '--' + this.props.modifier);
+		}
+		return classNames.join(' ');
+	},
+	render: function() {
+		return <a className={this.generateClass('ff_module-inline-edit' )} id={this.props.id} href={this.props.url} data-ff-inline-edit="">{this.props.text}</a>;
+	}
+});

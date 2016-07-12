@@ -1,16 +1,82 @@
 'use strict';
 
-var createRecipientList = require('./_ff_module-recipient-button-list-component-viewcontrol.js');
-var rt = require('./_ff_module-recipient-button-list-component-with-picker.rt.js');
+var React = require('react');
+var _ = require('underscore');
 
-module.exports = function(recipientPicker, groupService, groupType, template) {
-    if (!recipientPicker) throw new Error('[recipient-list] requires a \'recipientPicker\' reference');
-    if (!groupService) throw new Error('[recipient-list] requires a \'groupService\' parameter');
-    if (!groupType) throw new Error('[recipient-list] requires a \'groupType\' parameter');
+var RecipientButtonList = require('./ff_module-recipient-button-list-component.js');
 
-    template = template || rt;
+var id = 0;
 
-    var recipientList = createRecipientList(recipientPicker, groupService, groupType, template);
+module.exports = function(picker, service, type, template) {
+    if (!picker) throw new Error('[recipient-list] requires a \'picker\' reference');
+    if (!service) throw new Error('[recipient-list] requires a \'service\' parameter');
+    if (!type) throw new Error('[recipient-list] requires a \'type\' parameter');
 
-    return recipientList;
+    return React.createClass({
+        displayName: 'RecipientButtonListContainer',
+        render: function(){
+            return (
+                <RecipientButtonList
+                    results={this.state.results}
+                    isSelected={this.picker.checkIsSelected}
+                    onSelect={this.addRecipientByResultId}
+                />
+            );
+        },
+        picker: picker,
+        getInitialState: function() {
+            return {
+                results: []
+            }
+        },
+        updateResults: function(results) {
+            if (this._isMounted) {
+                this.setState({
+                    results: results
+                });
+            }
+        },
+        addResults: function(recipients) {
+            recipients = [].concat(recipients);
+            var uniqueMembers;
+            if (this.state.results.length) {
+                uniqueMembers = _.reject(recipients, function(member) {
+                    return _.any(this.state.results, function(result) {
+                        return result.guid === member.guid;
+                    });
+                }.bind(this));
+            } else {
+                uniqueMembers = recipients;
+            }
+
+            var newSelection = (this.state.results.concat(uniqueMembers));
+            this.updateResults(newSelection);
+        },
+        addResult: function(recipient) {
+            this.addResults(recipient);
+        },
+        componentWillMount: function(){
+            this._id = id++;
+        },
+        componentWillUnmount: function(){
+            this._isMounted = false;
+        },
+        componentDidMount: function() {
+            this._isMounted = true;
+            service.getGroupsOfType(type, this.updateResults);
+            picker.addSubscriber(function(ns){
+                this.setState({
+                    selected: ns
+                });
+            }.bind(this));
+        },
+        //FIXME: Naming add -> select
+        addRecipientByResultId: function(recipientId) {
+            var result = _.find(this.state.results, function(result) {
+                return result.guid === recipientId;
+            });
+            picker.addRecipient(result);
+        }
+    });
+
 };

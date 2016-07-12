@@ -1,12 +1,16 @@
 ---
 data:
     items: 
-      - 
-        content: "Line label"  
+      -
+        content: "<label for=\"id01\">Input label</label>"
       -              
         modifier: fullwidth
-        content: "Line input"
+        content: "<input id=\"id01\" type=\"text\" value=\"Input fullwidth\"/>"
 ---
+
+## React component
+
+<div data-ff_container-form-line="" ></div>
 
 ## Modifiers
 
@@ -16,8 +20,9 @@ data:
 
 ### Inputs (or remaining items)
 
-- `constrained` (sets max-width of 200px)
+- `constrained` (sets max-width of `@ff_size_spacing_min * 20`)
 - `fullwidth` (takes up remaining space, will take into account trailing buttons, etc)
+- `mini` (set max-width of `@ff_size_spacing_min * 5.5`)
 
 ## Usage
 ### As HTML

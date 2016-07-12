@@ -2,7 +2,10 @@
 
 This repo contains the source files for Firefly front-end development patterns.
 
-// TODO: Complete API
+The primary goal of this pattern library is to enable us to build and test solid html, css, and js/React components. 
+
+It provides us with a separate environment to build and test patterns and their respective css in **isolated units**, with data we have control over so that we can test multiple variations of patterns, their groupings, and how they react to varying things (e.g. differing text lengths, languages, etc). Having each block isolated encourages separation of responsiblities (e.g. containers vs modules) and a modular approach.
+
 ### API 
 - gulp
     
@@ -14,7 +17,10 @@ This repo contains the source files for Firefly front-end development patterns.
     
 - gulp export 
 
-    build and exports the xsl and css files to `export` directory. The location can be overriden in `config/options.local.js`.
+    - build and exports the xsl and css files to `export` directory. 
+    - export js modules to `export-js`.
+    - The locations can be overriden in `config/options.local.js`.
+    - Alternatively, paths can be set via command-line: `--export-path` and `--export-js-path`; eg: `gulp export --export-path www/files --export-js-path www/files/js`
 
 - gulp build
      
@@ -30,16 +36,12 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 
 
 ## Dependencies
-- Node
-- npm
+- Node (Version 4 or greater recommended)
+- npm (Version 3 or greater required to ensure correct dependency resolution)
 - Xcode Command Line Tools (for running some modules on Mac, PC should be OK)
-- Java for cross-platform XSLT (using Saxon)
+- Node-libxslt for cross-platform XSLT
     
-    OSX on Yosemite+ will need to either install from the apple support page, or install the standard Java runtime, then add 'JAVA_HOME' to paths.
-
-    Follow these [instructions to install](http://osxdaily.com/2014/10/21/get-java-os-x-yosemite/).
-
-    And see this [link for instruction on setting path variables](http://stackoverflow.com/questions/1348842/what-should-i-set-java-home-to-on-osx).
+    See [the Readme for node-libsxlt](https://github.com/albanm/node-libxslt) for more info on enviroment support and dependencies
 
 ## Technologies used
 - Swig for template compilation
@@ -47,10 +49,14 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 - Webpack for bundling javascript modules
 - Less with gulp-less for less > css transpiling
 - React Templates for compiling `.rt` templates files (html-like syntax) to `.js`
+- Babel for js(x) transpiling
 - gulp-jshint for js linting
 - css-lint for css linting
 - Karma, Mocha, Chai and Sinon for testing
 - x for regression testing // TODO (1)
+
+## Testing
+Any files within the directory `/tests` and with the suffix `*.test.js` will be run through the test runner when the command `npm test` is run.
 
 ## Setup
 
@@ -118,14 +124,32 @@ Moving dom rendering into a `.jsx` file is a convenient way to separate DOM stru
 
 The view templates use [React Templates](https://www.npmjs.com/package/gulp-react-templates) to transform html-like `.rt` files into compiled `.js` files for use in React view logic files.
 
-### Crate
+### Pages
 A collection of layout files for presenting these patterns in a variety of ways and with a variety of content. For instance, the developer can view the pattern in the context of all other patterns for comparison purposes; in isolation for development and testing; with a variety of text in different lengths and languages.
 
 ### Icons
+Icons are built using [gulp/(grunt)icon](http://www.grunticon.com/) . See [the grunticon docs for full details](https://github.com/filamentgroup/grunticon) of options and methodology.
+
 The `icons` task should (currently) be run separately, and will need to be run after each clean. To optimise the `.svg` icons and build the CSS for each of those icons run:
 
-1. `gulp icons`
+`gulp icons`
 
+#### Adding new colours 
+SVG files are stored in `blocks/[theme]/_icons/original_svgs`. To add another colour to an existing icon files, add a suffix to the file: `filename`**`.colors-[colorname].svg`** where **colorname** is either a hex value or a name defined in `config/icons.js`. Then run the `gulp icons` command to build and output the new svg & fallback files.
+
+#### Exporting icons to the correct svg format
+To export icons images to `.svg` format in an optimal way use this script: [svg_exporter](https://github.com/fireflylearning/pattern-library/wiki/svg_exporter)
+
+Save the script as a `.jsx` file. The script is executed in Adobe Illustrator and strips away all the extra code that the default Illustrator export adds to the file.
+
+To run the script:
+
+1. Open Illustrator
+2. Select File > Scripts > Other Scripts
+3. Select your script
+4. Select the folder which contains the files that you want to export as `.svg`
+5. Enter the extension of the files that you want to export (e.g. *.ai)
+6. Select a folder where you want to save the generated svgs
 
 ## Process
 The gulp task will run and traverse the directory, performing the following tasks:
@@ -154,3 +178,25 @@ The gulp task will run and traverse the directory, performing the following task
     - and perform end-to-end tests.
 - Any additional assets such as pre-existing source files are copied to the build folder.
 
+## Common Issues
+
+- node-gyp rebuild errors:
+  
+    ```
+    > node-gyp rebuild
+
+    SOLINK_MODULE(target) Release/.node
+    ld: library not found for -lgcc_s.10.5
+    clang: error: linker command failed with exit code 1 (use -v to see invocation)
+    make: *** [Release/.node] Error 1
+    gyp ERR! build error 
+    ```
+    
+    **Resolution:** Usually there is an issue with resolving paths to required `C` libraries. See [this stackoverflow page for an example of the error and solution](http://stackoverflow.com/questions/31936170/npm-the-ld-library-not-found-for-lgcc-s-10-5-on-on-os-x-el-capitain)
+- babel dependency errors:
+    
+    ```
+    ERROR in ./blocks/core/ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/_src/templates/list.jsx
+    Module not found: Error: Cannot resolve module 'babel-runtime/helpers/possibleConstructorReturn' in C:\Git-repos\pattern-library\blocks\core\ff_module\ff_module-dropdown-button\ff_module-dropdown-button-component\_src\templates
+    ```
+    **Resolution:** Babel requires a large amount of interlinked packages and the versions must be internally consistent to be resolved correctly. Unfortunately there are issues with olders version of npm not installing correctly versioned packages. Update npm to resolve this issue.

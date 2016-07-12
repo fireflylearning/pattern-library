@@ -16,7 +16,7 @@
 	&__content {
 		max-height: 1000px;
 		overflow: hidden;
-		transition: max-height 0.25s ease-in-out;
+		transition: max-height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 	}
 
 	&--is-collapsed &__content {
@@ -24,12 +24,12 @@
 	}
 
 	&--is-widescreen &__header {
-		@media all and (min-width: @ff_bp_wide) { 
+		@media all and (min-width: @ff_bp_wide) {
 			display: none;
 		}
 	}
 	&--is-widescreen &__content {
-		@media all and (min-width: @ff_bp_wide) { 
+		@media all and (min-width: @ff_bp_wide) {
 			max-height: 1000px;
 		}
 	}

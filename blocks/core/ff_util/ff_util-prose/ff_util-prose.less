@@ -43,6 +43,20 @@
     .text-quiet {
         color: @ff_colour_text_quiet;
     }
+    .text-danger {
+        color: @ff_colour_error;
+    }
+    .text-notify {
+        color: @ff_colour_notify;
+    }
+    .text-block {
+        color: @ff_colour_control_text;
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        margin-top: 0;
+        #ff_mix-util-prose > .spacing;
+    }
+    .text-block--notify {}
+    .text-block--error {}
     .link-with-decoration {
         text-decoration: underline;
         color: @ff_color_control_link;
@@ -53,14 +67,14 @@
             color: lighten(@ff_color_control_link, 10%);
         }
     }
-    .link-no-decoration(@color:@ff_color_control_link) {
+    .link-no-decoration(@color: @ff_color_control_link) {
         text-decoration: none;
         color: @color;
         &:visited {
-            color: darken(@color, 10%);
+           color: darken(@color, 10%);
         }
         &:active, &:hover {
-            color: lighten(@color, 10%);
+           color: lighten(@color, 10%);
         }
     }
     .link-quiet {
@@ -294,6 +308,16 @@
     &__text--small {
         #ff_mix-util-prose > .text-small();
     }
+    &__text--danger {
+        #ff_mix-util-prose > .text-danger();
+    }
+    &__text-block--notify {
+        #ff_mix-util-prose > .text-block--notify();
+    }
+    &__text-block--error {
+        #ff_mix-util-prose > .text-block--error();
+    }
+
     &__time--supporting {
         #ff_mix-util-prose > .text-quiet();
     }

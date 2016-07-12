@@ -34,12 +34,6 @@ var testDates = [1, 2, 3, 21, 22, 23, 31, 4, 7, 20],
 
 
 var niceDateTests = {
-    seconds: ['should format dates less than a minute ago as "' + momentsAgoText + '"', function(now) {
-        return {
-            test: [58, 50, 10, 1, 0.1],
-            expected: [momentsAgoText, momentsAgoText, momentsAgoText, momentsAgoText, momentsAgoText]
-        };
-    }, msInS],
     minutes: ['should format dates less than an hour ago as "[minutes] minute(s) ago"', function(now) {
         return {
             test: [59, 50, 10, 1, 0.1],
@@ -429,6 +423,32 @@ describe('dateFormatting', function() {
 
 
     describe('niceDate', function() {
+
+        describe('should format dates less than a minute ago as "' + momentsAgoText + '"', function() {
+
+            var testDates = {
+                test: [58, 50, 10, 1, 0.1],
+                expected: [momentsAgoText, momentsAgoText, momentsAgoText, momentsAgoText, momentsAgoText]
+            },
+            testMethod = 'niceDate';
+
+            var today = new Date(),
+                todayTime = today.getTime(),
+                testList = testDates.test.map(function(date) {
+                    return new Date(todayTime - (date * msInS));
+                });
+
+            testList.forEach(function(date, index) {
+                it(today + ' - ' + date + ' = ' + testDates.expected[index], function() {
+                    var result = dateFormatting[testMethod](date);
+                    expect(result.toString()).to.equal(testDates.expected[index]);
+                });
+            });
+
+
+        });
+
+
 
         _.forEach(niceDateTests, function(test) {
             describe(test[0],

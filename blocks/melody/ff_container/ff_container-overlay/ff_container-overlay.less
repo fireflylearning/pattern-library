@@ -97,17 +97,29 @@
 .ff_container-overlay {
     &--task-event-scrollable &__bar {
         left: 30%;
+        margin-right: -1px;
     }
     &--task-event-scrollable-top &__body{
         margin-top: 60px;
     }
     &--task-event-scrollable-top &__bar{
-        background-color: lighten(@ff_colour_control_bg, 3%);
+        background-color: @ff_colour_control_bg;
         border: 1px solid @ff_colour_control_border;
         border-top:0;
         border-right: 0;
     }
     &--task-event-scrollable-top &__bar-content {
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
+    }
+
+
+    &--task-event-scrollable-top-cannot-edit &__body {
+        margin-top: 0;
+    }
+    &--task-event-scrollable-top-cannot-edit &__bar {
+        display: none;
+    }
+    &--task-event-scrollable-top-cannot-edit &__bar-content {
+        padding: 0;
     }
 }

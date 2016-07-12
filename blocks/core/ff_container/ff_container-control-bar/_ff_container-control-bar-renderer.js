@@ -1,36 +1,25 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
 
-var ContainerControlBar = require('./ff_container-control-bar');
-var sets = [{
-    title: 'Test title',
-    modules: [
-        { key: 'item1', text: 'Item 1' },
-        { key: 'item2', text: 'Item 2' }
-    ]
-}, {
-    modules: [{ key: 'item3', text: 'Item 3' }]
-}];
-
+var ContainerControlBar = require('./ff_container-control-bar'),
+ContainerControlBarSet = ContainerControlBar.ControlBarSet;
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         var root = document.querySelector('[data-ff_container-control-bar]'); //Use jquery or sim in Firefly for backwards compat
         if (root) {
-            var element = React.createElement(ContainerControlBar,
-            {
-                modifier: 'split',
-                classes: 'ff_other-class',
-                sets: sets.map(function(datum) {
-                    datum.modules = datum.modules.map(function(module){
-                        return React.createElement('span',
-                            { className:'crate_util-block', key: module.key },
-                            module.text);
-                    });
-                    return datum;
-                })
-            });
-            React.render(element, root);
+            var element = <ContainerControlBar modifier="split" classes="ff_other-class">
+                            <ContainerControlBarSet title="Test title">
+                                <span className="crate_util-block" key="item1">Item 1</span>
+                                <span className="crate_util-block" key="item2">Item 2</span>
+                            </ContainerControlBarSet>
+                            <ContainerControlBarSet>
+                                <span className="crate_util-block" key="item3">Item 3</span>
+                            </ContainerControlBarSet>
+                        </ContainerControlBar>;
+
+            ReactDOM.render(element, root);
         }
     });
 };

@@ -1,15 +1,11 @@
 'use strict';
 
-var filewalker = require('filewalker'),
-    path = require('path'),
+var path = require('path'),
     matter = require('gray-matter'),
     marked = require('marked'),
     _ = require('lodash'),
-    gutil = require('gulp-util'),
     dir = require('node-dir'),
-    fs = require('fs'),
-    async = require('async'),
-    util = require('util');
+    async = require('async');
 
 
 function getBlockData(blockPath) {
@@ -56,25 +52,45 @@ function getFileData(filePath) {
     return fileData;
 }
 
-function getBlockFileProcess(block, options) {
+function ifClosestBlockMatchesCurrentBlock(filePath, currentBlock, dataStore, cb) {
+    var dirs = filePath.split(path.sep),
+        closestBlock;
+    dirs.pop();
+    dirs.reverse(); // Start with last dirs to find closest block
+    async.detect(dirs, function(dirName, cb) {
+        closestBlock = dataStore.getBlock(dirName);
+        if (closestBlock) return cb(true);
+        cb(false);
+    }, function(result) {
+        if (closestBlock === currentBlock) return cb(true);
+        cb(false);
+    });
+}
+
+function getBlockFileProcess(block, dataStore, options) {
     return function processFile(filePath, fileCallback) {
-        var fileData = getFileData(filePath),
-            file = block.addFile(fileData.fsInfo.name, fileData.fsInfo.resolvedName);
+        var fileData, file;
 
-        if (options.generateFileUrl) {
-            file.setUrlPath(options.generateFileUrl(fileData.fsInfo.name, fileData.fsInfo.resolvedName))
-        }
+        ifClosestBlockMatchesCurrentBlock(filePath, block, dataStore, function(blocksMatch) {
+            if (blocksMatch) {
+                fileData = getFileData(filePath);
+                file = block.addFile(fileData.fsInfo.name, fileData.fsInfo.resolvedName);
 
-        file.addMeta(fileData.meta);
-        file.addData(fileData.data);
-        file.addContent(fileData.content);
+                if (options.generateFileUrl) {
+                    file.setUrlPath(options.generateFileUrl(fileData.fsInfo.name, fileData.fsInfo.resolvedName));
+                }
 
-        block.addMeta(fileData.meta);
-        block.addData(fileData.data);
-        block.addDependencies(fileData.requires);
+                file.addMeta(fileData.meta);
+                file.addData(fileData.data);
+                file.addContent(fileData.content);
 
-        fileCallback();
-    }
+                block.addMeta(fileData.meta);
+                block.addData(fileData.data);
+                block.addDependencies(fileData.requires);
+            }
+            fileCallback();
+        });
+    };
 }
 
 function getFileProcess(pageData, options) {
@@ -83,7 +99,7 @@ function getFileProcess(pageData, options) {
             file = pageData.addFile(fileData.fsInfo.name, fileData.fsInfo.resolvedName);
 
         if (options.generateFileUrl) {
-            file.setUrlPath(options.generateFileUrl(fileData.fsInfo.name, fileData.fsInfo.resolvedName))
+            file.setUrlPath(options.generateFileUrl(fileData.fsInfo.name, fileData.fsInfo.resolvedName));
         }
         // console.log('[fileInfo]', fileData.data);
         file.addMeta(fileData.meta);
@@ -91,34 +107,25 @@ function getFileProcess(pageData, options) {
         file.addContent(fileData.content);
 
         fileCallback();
-    }
+    };
 }
 
-function getFileIterator(fileFilter, processFile, processFileComplete, generateUrl) {
-
-    return function(err, files) {
-        if (err) return processFileComplete(err);
-        files = files.filter(fileFilter);
-        async.each(files, processFile, processFileComplete);
-    }
-}
 
 function getBlockSubdirProcess(dataStore, options) {
     return function processSubdir(blockPath, subdirCallback) {
         var blockData = getBlockData(blockPath),
             block = dataStore.addBlock(blockData.blockName, blockData.resolvedBlockName),
-            processFile = getBlockFileProcess(block, options),
+            processFile = getBlockFileProcess(block, dataStore, options),
             processFileComplete = function(err) {
                 if (err) return subdirCallback(err);
                 subdirCallback();
             };
 
         if (options.generateBlockUrl) {
-            block.setUrlPath(options.generateBlockUrl(blockData.blockName, blockData.resolvedBlockName))
+            block.setUrlPath(options.generateBlockUrl(blockData.blockName, blockData.resolvedBlockName));
         }
-
-        dir.files(blockPath, getFileIterator(options.filterFile, processFile, processFileComplete));
-    }
+        dir.files(blockPath, getIterator(options.filterFile, processFile, processFileComplete));
+    };
 }
 
 function getProcessSubdirComplete(dataStore, callback) {
@@ -127,23 +134,22 @@ function getProcessSubdirComplete(dataStore, callback) {
         // console.log('\n__________________');
         // console.log(util.inspect(dataStore.getAllData(), {
         //     showHidden: false,
-        //     depth: null
+        //     depth: 2
         // }));
         // console.log('\n__________________');
         callback();
-    }
+    };
 }
 
-function getSubDirIterator(processSubdir, processSubdirComplete, options) {
+function getIterator(filter, processMethod, onComplete) {
 
-    return function subdirIterator(err, subdirs) {
-        if (err) return processSubdirComplete(err);
+    return function iterator(err, set) {
+        if (err) return onComplete(err);
 
-        async.filter(subdirs, options.filterDir, function(results) {
-            async.each(results, processSubdir, processSubdirComplete);
+        async.filter(set, filter, function(results) {
+            async.each(results, processMethod, onComplete);
         });
-
-    }
+    };
 }
 
 function getBlockInfo(fileSrc, dataStore, options) {
@@ -152,7 +158,7 @@ function getBlockInfo(fileSrc, dataStore, options) {
         var processSubdir = getBlockSubdirProcess(dataStore, options),
             processSubdirComplete = getProcessSubdirComplete(dataStore, callback);
 
-        dir.subdirs(fileSrc, getSubDirIterator(processSubdir, processSubdirComplete, options));
+        dir.subdirs(fileSrc, getIterator(options.filterDir, processSubdir, processSubdirComplete));
     };
 }
 
@@ -161,11 +167,11 @@ function getFileInfo(fileSrc, dataStore, options) {
         var processFile = getFileProcess(dataStore, options),
             processFileComplete = getProcessSubdirComplete(dataStore, callback);
 
-        dir.files(fileSrc, getFileIterator(options.filterFile, processFile, processFileComplete));
+        dir.files(fileSrc, getIterator(options.filterFile, processFile, processFileComplete));
     };
 }
 
 module.exports = {
     getBlockInfo: getBlockInfo,
     getFileInfo: getFileInfo
-}
+};

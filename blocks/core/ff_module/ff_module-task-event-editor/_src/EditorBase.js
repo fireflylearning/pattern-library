@@ -1,10 +1,22 @@
 'use strict';
 
 var React = require('react'),
-    template = require('./_editor--base.rt.js');
+    Button = require('../../ff_module-button/ff_module-button'),
+    ContainerDialog = require('../../../ff_container/ff_container-dialog/ff_container-dialog');
 
 
 module.exports = React.createClass({
     displayName: 'EditorBase',
-    render: template
+    render: function(){
+
+        return (
+            <ContainerDialog
+                title={this.props.title}
+                showCloseIcon={true}
+                onCloseIconClick={this.props.onClose}
+                body={this.props.children}
+                controls={this.props.controls}
+            />
+        );
+    }
 });

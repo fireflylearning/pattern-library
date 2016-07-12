@@ -13,24 +13,6 @@ var child_process = require('child_process'),
 
 module.exports = function(gulp, plugins, config) {
 
-    function hashExportFiles() {
-        return bluebird.props(new bluebird(function(resolve, reject) {
-            var files = {};
-            var finder = findit(config.exportPath);
-            finder.on("file", function(file, stat) {
-                var normalisedPath = path.relative(config.exportPath, file).replace(/\\/g, "/");
-                files[normalisedPath] = readNormalisedFile(file).then(function(contents) {
-                    var hash = crypto.createHash("sha1");
-                    hash.update(contents);
-                    return hash.digest("hex");
-                });
-            });
-            finder.on("end", function() {
-                resolve(files);
-            });
-            finder.on("error", reject);
-        }));
-    }
 
     function readNormalisedFile(file) {
         var fileType = fileTypes[path.extname(file)];
@@ -65,7 +47,9 @@ module.exports = function(gulp, plugins, config) {
         ".js": "text",
         ".less": "text",
         ".png": "binary",
-        ".xsl": "text"
+        ".xsl": "text",
+        ".gif": "binary",
+        ".jsx": "text"
     };
 
     function gitCommit(callback) {
@@ -90,25 +74,50 @@ module.exports = function(gulp, plugins, config) {
         });
     }
 
-    return function(cb) {
-        var infoPath = path.join(config.exportPath, "pattern-library.json");
-        unlink(infoPath).catch(function(error) {
-            if (error.code === "ENOENT") {
-                return null;
-            } else {
-                return bluebird.reject(error);
-            }
-        }).then(function() {
-            return [
-                gitCommit(),
-                hashExportFiles()
-            ]
-        }).spread(function(commit, exportHashes) {
-            var info = {
-                commit: commit,
-                files: exportHashes
-            };
-            return writeFile(infoPath, JSON.stringify(info, null, 4));
-        }).asCallback(cb);
+    return function(exportPath, hashFileName) {
+
+        function hashExportFiles() {
+            return bluebird.props(new bluebird(function(resolve, reject) {
+                var files = {};
+                var finder = findit(exportPath);
+                finder.on("file", function(file, stat) {
+                    var normalisedPath = path.relative(exportPath, file).replace(/\\/g, "/");
+                    files[normalisedPath] = readNormalisedFile(file).then(function(contents) {
+                        var hash = crypto.createHash("sha1");
+                        hash.update(contents);
+                        return hash.digest("hex");
+                    });
+                });
+                finder.on("end", function() {
+                    resolve(files);
+                });
+                finder.on("error", reject);
+            }));
+        }
+
+
+        return function(cb) {
+            var infoPath = path.join(exportPath, hashFileName);
+            unlink(infoPath).catch(function(error) {
+                if (error.code === "ENOENT") {
+                    return null;
+                } else {
+                    return bluebird.reject(error);
+                }
+            }).then(function() {
+                return [
+                    gitCommit(),
+                    hashExportFiles()
+                ]
+            }).spread(function(commit, exportHashes) {
+                var info = {
+                    commit: commit,
+                    files: exportHashes
+                };
+                return writeFile(infoPath, JSON.stringify(info, null, 4));
+            }).asCallback(cb);
+        }
     }
+
+
 }

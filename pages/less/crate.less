@@ -129,15 +129,19 @@ body {
     color: #FC0D1B;
 }
 
+.crate_util-block-spacer {
+  margin-bottom: 10px;
+}
+
 .crate_pagelist,
 .crate_blocklist {
     list-style: none;
     margin: 0;
     padding: 0;
-    li {
+    > li {
         margin: 0;
     }
-    li a {
+    > li > a {
         color: lighten(#777, 10%);
         text-decoration: none;
         padding: 0.3rem 0.5rem 0.3rem 0;

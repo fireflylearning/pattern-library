@@ -1,8 +1,9 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
 
 var ProfileResponseButton = require('./ff_module-profile-response-button'),
-eventTypes = require('../ff_module-task-event/_src/events').types;
+    eventTypes = require('../ff_module-task-event/_src/events').types;
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
@@ -11,12 +12,15 @@ module.exports = function() {
                 onSelect: function() {
                     console.log("onSelect");
                 },
-                uiState: "is-updated",
-                guid: "u42",
+                lastEventWasAuthoredByCurrentUser: true,
+                isSelected: false,
+                isRead: false,
                 label: "Sally Student",
                 event:{
-                    type: eventTypes.requestResubmission,
-                    sent: new Date()
+                    description: {
+                        type: eventTypes.requestResubmission,
+                        sent: new Date()
+                    }
                 },
                 markAndGrade: {
                     mark: 7,
@@ -25,7 +29,7 @@ module.exports = function() {
                 },
                 pic_href: "/images/default_picture.png"
             });
-            React.render(element, domElement);
+            ReactDOM.render(element, domElement);
         });
     });
 };

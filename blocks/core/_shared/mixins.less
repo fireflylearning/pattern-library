@@ -3,9 +3,6 @@
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
         background-color: @ff_colour_control_bg;
     }
-    .medium() {
-        // padding: 1.25rem;
-    }
     .isolate() {
         border: 1px solid @ff_colour_control_border;
         border-radius: @ff_size_control_rounding;
@@ -20,6 +17,9 @@
 #ff_mix-title-box() {
     .border {
         border: 1px solid @ff_colour_control_border;
+    }
+    .base {
+        #ff_mix-title-box > .border;
     }
     .header {
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
@@ -105,5 +105,11 @@
         background: none;
         line-height: 1;
         // outline: none;
+    }
+}
+
+#ff_mix-sections--core() {
+    .main() {
+        padding: 0 @ff_size_control_horizontal;
     }
 }

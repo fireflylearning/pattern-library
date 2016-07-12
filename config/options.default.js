@@ -18,7 +18,8 @@ module.exports = {
     /**
      * Set this option in local options file
      * `options.local.js` to override, eg:
-     * exportPath:'export/'
+     * exportPath: 'export/',
+     * exportJsPath: 'export-js/'
      *
      */
 

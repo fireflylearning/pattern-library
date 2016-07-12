@@ -1,0 +1,185 @@
+@planner-border-primary: @ff_colour_control_border; //#b4b4b4;
+@planner-border-default: fade(@ff_colour_control_border, 50%);
+
+@planner-bg-header-row: #f8f8f8;
+@planner-bg-header-col: fade(@ff_colour_control_border, 50%);
+@planner-bg-default: #f3f3f3;
+@planner-bg-primary: #fff;
+
+
+@planner-text-color-default: #444;
+
+
+#ff_mix-planner-grid-week() {
+    .table {
+        .sm {
+            border-collapse: collapse;
+            table-layout: fixed;
+            width: 100%;
+            border: 1px solid @planner-border-primary;
+            color: @planner-text-color-default;
+        }
+        .md {
+        }
+    }
+    .row {
+        .sm {
+            border-bottom: 1px solid @planner-border-default;
+            border-top: 1px solid @planner-border-default;
+        }
+        .md {
+        }
+    }
+    .row-hcol {
+        .sm {
+            border-bottom: 1px solid @planner-border-primary;
+            border-top: 1px solid @planner-border-primary;
+        }
+        .md {
+
+        }
+    }
+    .header-col {
+        .sm {
+            background-color: @planner-bg-header-row;
+            color: @planner-text-color-default;
+            padding: @ff_size_control_vertical*1.5 0;
+        }
+        .md {
+        }
+        .lg {
+
+        }
+    }
+
+    .header-row {
+        .sm {
+            width: 10%;
+            background: @planner-bg-header-col;
+            font-weight: normal;
+            font-size: 12rem/@ff_base;
+            text-align: left;
+            vertical-align: top;
+            padding: 10px;
+        }
+    }
+    .item {
+        .sm {
+            background: @planner-bg-default;
+            position: relative;
+            padding: 2rem/@ff_base;
+            // &:last-child {
+            //     border-bottom: none;
+            // }
+        }
+        .sm--today {
+            background: @planner-bg-primary;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+
+        .md {
+            display: table-cell;
+            vertical-align: top;
+            border-bottom: none;
+            border-right: 1px solid @planner-grid-brdr-lt;
+            position: relative;
+            &:last-child {
+                border-right: none;
+            }
+        }
+        .md--event {
+            width: 28%;
+        }
+        .md--note {}
+        .lg {}
+        .lg--event {
+            width: 24%;
+        }
+    }
+    .borders {
+        .item-sep {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-top: 1px solid @planner-grid-hrd-brdr-md;
+        }
+        .header-sep {
+            content: " ";
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            border-right: 1.5px solid #fff;
+        }
+        .top-sep {
+            content: " ";
+            position: absolute;
+            top: -1px;
+            left: -10px;
+            width: 10px;
+            border-top: 1px solid @planner-grid-brdr-md;
+        }
+        .bottom-sep {
+            content: " ";
+            position: absolute;
+            bottom: -1px;
+            left: -10px;
+            width: 10px;
+            border-bottom: 1px solid @planner-grid-brdr-dk;
+        }
+    }
+}
+
+.ff_module-planner-grid-week {
+    &__content {
+        #ff_mix-planner-grid-week > .table > .sm();
+    }
+    &__row {
+        #ff_mix-planner-grid-week > .row > .sm();
+    }
+    &__row--header-col {
+        #ff_mix-planner-grid-week > .row-hcol > .sm();
+    }
+    &__header-col {
+        #ff_mix-planner-grid-week > .header-col > .sm();
+    }
+    &__header-col--empty {
+        width: 10%;
+    }
+    &__header-col--today {
+        background: @planner-bg-primary;
+        border: 1px solid #ccc;
+    }
+    &__header-row {
+        #ff_mix-planner-grid-week > .header-row > .sm();
+    }
+    &__item {
+        #ff_mix-planner-grid-week > .item > .sm();
+    }
+    &__item--today {
+        #ff_mix-planner-grid-week > .item > .sm--today();
+    }
+
+    &__no-events {
+        #ff_mix-no-events > .block();
+    }
+    &__no-events-message {
+        #ff_mix-no-events > .message();
+    }
+
+
+    @media screen and (min-width:@ff_planner_week_bp_med) {
+        &__content {
+            #ff_mix-planner-grid-week > .table > .md();
+        }
+        &__row {
+            #ff_mix-planner-grid-week > .row > .md();
+        }
+        &__header-col {
+            #ff_mix-planner-grid-week > .header-col > .md();
+        }
+    }
+}

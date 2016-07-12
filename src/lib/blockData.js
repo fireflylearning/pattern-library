@@ -21,10 +21,7 @@ function createBlock(name, resolvedname) {
     var block = {
         addFile: function(name, resolvedname) {
             var file = this.getFile(name);
-            if (file) {
-                // console.log(fileInfo, name, name);
-                // throw new Error('[Blockdata] File \'' + name + '\' already exists for block ' + name);
-            } else {
+            if (!file) {
                 file = createFile(name, resolvedname);
                 _files[name] = file;
             }
@@ -32,17 +29,17 @@ function createBlock(name, resolvedname) {
             return file;
         },
         addDependencies: function(dependencies) {
-            if (!dependencies) return
+            if (!dependencies) return this;
             _dependencies = _.union(_dependencies, [].concat(dependencies));
             return this;
         },
         addMeta: function(meta) {
-            if (!meta) return
+            if (!meta) return this;
             _meta = _.assign({}, _meta, meta);
             return this;
         },
         addData: function(data) {
-            if (!data) return;
+            if (!data) return this;
             _data = _.union(_data, [].concat(data));
             return this;
         },
@@ -76,21 +73,21 @@ function createBlock(name, resolvedname) {
         },
         getJsEntry: function() {
             if (_.isEmpty(_files)) return null;
+            var hasRenderer, hasJs, file;
 
-            var file = _.find(_files, function(file) {
-                var path = file.getAbsolutePath(),
-                    fileName = file.getInfo().name,
-
-                    entryName = 'renderer',
-                    rendererTest = /^_([\w-]+)-renderer\.js$/,
-                    hasRenderer = rendererTest.test(fileName),
-                    hasJs = name + '.js' === fileName;
-                // console.log(fileName, hasRenderer);
-                return hasRenderer || hasJs;
-
+            file = _.find(_files, function(file) {
+                var fileName = file.getInfo().name,
+                    rendererTest = /^_([\w-]+)-renderer\.js$/;
+                    hasRenderer = rendererTest.test(fileName);
+                return hasRenderer;
             });
-
-            // console.log(file);
+            if (!file) {
+                file = _.find(_files, function(file) {
+                    var fileName = file.getInfo().name;
+                        hasJs = name + '.js' === fileName;
+                    return hasJs;
+                });
+            }
             return file;
         },
         clearData: function() {

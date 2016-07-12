@@ -2,10 +2,11 @@
 
 var $ = require('jquery');
 var core = require('../../_lib/ff-core/_ff-core.js');
-var _ = require('lodash');
+var _ = require('underscore');
+var docVal = (typeof window !== 'undefined' && window.document) ? window.document : 'document';
 
 var _options = {
-    root: document,
+    root: docVal,
     triggerSelBase: 'data-ff-dropdown-trigger',
     targetSelBase: 'data-ff-dropdown-target',
     enabledClassSuffix: '--is-enabled',
@@ -13,8 +14,6 @@ var _options = {
     defaultTriggerClass: 'ff_module-dropdown-button__button',
     defaultTargetClass: 'ff_module-dropdown-button__dropdown-container'
 };
-
-
 
 function activateDropdowns(options) {
 
@@ -94,7 +93,7 @@ function activateDropdowns(options) {
         addSuffix($targets, newState, defaultTargetClass);
     }
 
-    function hideAll(){
+    function hideAll() {
         var $triggers = $(triggerSel);
         var $targets = $(targetSel);
 
@@ -106,8 +105,8 @@ function activateDropdowns(options) {
     }
 
     $(function() {
-        addSuffix($root.find(triggerSel), options.enabledClassSuffix, defaultTriggerClass);
-        addSuffix($root.find(targetSel), options.enabledClassSuffix, defaultTargetClass);
+        addSuffix($root.find(triggerSel).addBack(triggerSel), options.enabledClassSuffix, defaultTriggerClass);
+        addSuffix($root.find(targetSel).addBack(targetSel), options.enabledClassSuffix, defaultTargetClass);
 
         $root.on('click', triggerSel, function(e) {
             e.preventDefault();
@@ -128,20 +127,16 @@ var activated = [];
 /**
  * Ensure exported method is called only once DOM is ready
  */
-var isBrowser = new Function("try {return this===window;}catch(e){ return false;}");
 
 module.exports = function(options) {
     options = $.extend({}, _options, options);
 
-    var isActivatedForTheseOptions = _.some(activated, function(optionSet){
+    var isActivatedForTheseOptions = _.some(activated, function(optionSet) {
         return _.isEqual(optionSet, options);
     });
 
-    if(!isActivatedForTheseOptions) {
-        if (isBrowser()) console.log('ff_module-dropdown-button is being activated with options: \n',options);
+    if (!isActivatedForTheseOptions) {
         activateDropdowns(options);
         activated.push(options);
-    } else {
-        if (isBrowser()) console.log('ff_module-dropdown-button has already been activated with options: \n',options);
     }
 };

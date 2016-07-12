@@ -1,0 +1,5 @@
+<top-section {% if modifier %}modifier="{{modifier}}"{% endif %}>
+	{% for item in items %}
+	<subsection {% if item.url %}url="{{item.url}}"{% endif %} title="{{item.title}}" />
+	{% endfor %}
+</top-section>

@@ -2,12 +2,13 @@
     .default() {
         background-color: @ff_colour_default;
         color: #fff;
-        border-radius: @ff_size_control_rounding;
+        border-radius: @ff_size_control_rounding * 0.75;
         border: 1px solid @ff_colour_default;
         padding: (@ff_size_spacing_min * .85) @ff_size_spacing_med;
         cursor: pointer;
         min-width: 60rem/@ff_base;
         box-sizing: border-box;
+        line-height: 1.25rem;
     }
     .primary() {
         background-color: @ff_colour_primary;
@@ -33,10 +34,11 @@
     }
     .link(){
         #ff_mix-buttons > .clear();
-        color: @ff_color_text_link;
-        padding: (@ff_size_spacing_min * .4) 0;
+        #ff_mix-util-prose > .link-no-decoration();
+        padding: 0;
         display: inline-block;
         text-align: left;
+        min-width: auto;
     }
     .compact() {
         padding: (@ff_size_spacing_min * 0.6) (@ff_size_spacing_min * 0.9);
@@ -49,6 +51,24 @@
             margin-left: @ff_size_spacing_min * 0.7;
             margin-right: -@ff_size_spacing_min * 0.2;
         }
+    }
+    .danger() {
+        background-color: @ff_colour_error;
+        font-weight: bold;
+        border-color: @ff_colour_error;
+    }
+    .disabled() {
+        background-color: @ff_colour_quiet;
+        border-color: @ff_colour_default;
+        color: @ff_colour_default;
+        cursor: default;
+    }
+    .danger-disabled() {
+        background-color: lighten(@ff_colour_error, 35%);
+        font-weight: bold;
+        border-color: lighten(@ff_colour_error, 20%);
+        color: lighten(@ff_colour_error, 18%);
+        cursor: default;
     }
 }
 
@@ -91,9 +111,13 @@
     &--link {
         #ff_module-button > .link();
     }
-    &--link&--is-disabled {
-        background: none;
+    &--link &__icon--no-text {
+        margin: @ff_size_spacing_min * 0.3 @ff_size_spacing_min * 0.6;
     }
+    &--danger {
+        #ff_module-button > .danger();
+    }
+
     &--primary-block {
         #ff_module-button > .block();
         #ff_module-button > .primary();
@@ -135,15 +159,24 @@
         #ff_module-button > .tertiary();
         #ff_module-button > .block();
     }
+    &--danger-block {
+        #ff_module-button > .danger();
+        #ff_module-button > .block();
+    }
 
+
+    //disabled buttons
+    &--is-disabled {
+        #ff_module-button > .disabled();
+    }
+
+    &--link&--is-disabled,
     &--link-block&--is-disabled {
         background: none;
     }
-    //disabled buttons
-    &--is-disabled {
-        background-color: @ff_colour_quiet;
-        border-color: @ff_colour_default;
-        color: @ff_colour_default;
-        cursor: default;
+
+    &--danger&--is-disabled,
+    &--danger-block&--is-disabled {
+        #ff_module-button > .danger-disabled();
     }
 }

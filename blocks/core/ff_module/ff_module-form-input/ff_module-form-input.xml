@@ -1,4 +1,4 @@
-<input type="{{type}}" modifier="{{modifier}}" value="{{value}}" id="{{id}}" name="{{name}}" checked="{{checked}}" disabled="{{disabled}}" classes="{{classes}}">
+<input type="{{type}}" modifier="{{modifier}}" value="{{value}}" id="{{id}}" name="{{name}}" checked="{{checked}}" disabled="{{disabled}}" classes="{{classes}}" maxlength="{{maxlength}}">
     {% if options %}
     <options>
         {% for option in options %}

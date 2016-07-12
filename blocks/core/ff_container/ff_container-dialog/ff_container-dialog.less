@@ -1,0 +1,31 @@
+.ff_container-dialog {
+    background-color: #fff;
+    &__heading {
+        background-color: @ff_colour_control_bg;
+        color: @ff_colour_control_text;
+        margin: 0;
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        position: relative;
+    }
+    &__title {
+        color: @ff_colour_control_text;
+    }
+    &__close-top {
+        #ff_util > .ir;
+        float: right;
+        background-color: transparent;
+    }
+    &__body {
+        padding: 0 @ff_size_control_horizontal;
+    }
+    &__controls {
+        padding: @ff_size_control_vertical @ff_size_control_horizontal @ff_size_spacing_med @ff_size_control_horizontal;
+        overflow: auto;
+        * {
+            float:left;
+        }
+        *+* {
+            margin-left: @ff_size_spacing_min;
+        }
+    }
+}

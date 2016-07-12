@@ -2,7 +2,7 @@
     {% for item in items %}
 
     <item modifier="{{item.modifier}}">
-        <span class="crate_util-block">{{ item.content }}</span>
+        {{ item.content | safe}}
     </item>
 
     {% endfor %}

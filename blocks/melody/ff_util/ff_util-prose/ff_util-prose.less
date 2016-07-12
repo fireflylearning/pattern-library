@@ -43,6 +43,29 @@
     .text-quiet {
         color: @ff_colour_text_quiet;
     }
+    .text-danger {
+        color: @ff_colour_error;
+    }
+    .text-notify {
+        color: @ff_colour_notify;
+    }
+    .text-block {
+        color: @ff_colour_control_text;
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        margin-top: 0;
+        #ff_mix-util-prose > .spacing;
+    }
+    .text-block--notify {
+        #ff_mix-util-prose > .text-block;
+        border: 1px solid @ff_colour_notify;
+        background-color: lighten(@ff_colour_notify, 40%);
+    }
+    .text-block--error {
+        #ff_mix-util-prose > .text-block;
+        border: 1px solid lighten(@ff_colour_error, 10%);
+        background-color: lighten(@ff_colour_error, 30%);
+    }
+
     .link-quiet {
         text-decoration: none;
         color: @ff_colour_text_quiet;
@@ -57,14 +80,14 @@
             color: lighten(@ff_color_control_link, 10%);
         }
     }
-    .link-no-decoration(@color:@ff_color_control_link) {
+    .link-no-decoration(@color: @ff_color_control_link) {
         text-decoration: none;
         color: @color;
         &:visited {
-            color: darken(@color, 10%);
+           color: darken(@color, 10%);
         }
         &:active, &:hover {
-            color: lighten(@color, 10%);
+           color: lighten(@color, 10%);
         }
     }
     .link-disabled(@color:@ff_color_control_link) {
@@ -76,8 +99,13 @@
             color: @color;
         }
     }
-    .spacing {
-        margin-bottom: @ff_size_prose_spacing;
+    .spacing(@d:1) {
+        margin-bottom: @ff_size_prose_spacing/@d;
+    }
+    .list-remove-defaults{
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
     .list-parent {
@@ -289,6 +317,15 @@
     &__text--small {
         #ff_mix-util-prose > .text-small();
     }
+    &__text--danger {
+        #ff_mix-util-prose > .text-danger();
+    }
+    &__text-block--notify {
+        #ff_mix-util-prose > .text-block--notify();
+    }
+    &__text-block--error {
+        #ff_mix-util-prose > .text-block--error();
+    }
     &__time--supporting {
         #ff_mix-util-prose > .text-quiet();
     }
@@ -296,4 +333,5 @@
         #ff_mix-util-prose > .text-quiet();
         #ff_mix-util-prose > .text-left-blank();
     }
+
 }

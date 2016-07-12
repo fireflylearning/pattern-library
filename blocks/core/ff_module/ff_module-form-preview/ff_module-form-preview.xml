@@ -20,7 +20,17 @@
         {% if item.value %}
         {{item.value}}
         {% endif %}
-
+        {% if item.progress %}
+            {% for item in item.progress %}
+                {% include '../ff_module-progress/ff_module-progress.xml' with item %}
+             {% endfor %}
+        {% endif %}
+        {% if item.attachments %}
+                {% include '../ff_module-file-list/ff_module-file-list.xml' with item %}
+        {% endif %}
+        {% if item.module %}
+            <module>{{ item.module | safe }}</module>
+        {% endif %}
         {% if item.html %}
         <html><![CDATA[{{item.html|safe}}]]></html>
         {% endif %}

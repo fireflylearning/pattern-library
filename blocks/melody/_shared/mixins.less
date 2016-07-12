@@ -21,6 +21,9 @@
     .border {
         border: 1px solid @ff_colour_control_border;
     }
+    .base {
+        #ff_mix-title-box > .border;
+    }
     .header {
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
         background: @ff_colour_control_bg;
@@ -112,4 +115,76 @@
         width: 100%;
         bottom: @ff_size_control_vertical*3;
     }
+}
+
+#ff_mix-responsive-colour() {
+    // Calculating contrasts from here: http://24ways.org/2010/calculating-color-contrast/
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+        color: @dark;
+    }
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+        color: @light;
+    }
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+        fill: @dark;
+    }
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+        fill: @light;
+    }
+}
+
+#ff_mix-sections() {
+    .link-contrast(@c: @ff_color_control_link) {
+        text-decoration: none;
+        #ff_mix-responsive-colour > .check-contrast(@c, darken(#fff, 70%), #fff);
+        &:visited {
+            #ff_mix-responsive-colour > .check-contrast(@c, darken(@c, 70%), #fff);
+        }
+        &:active, &:hover {
+            #ff_mix-responsive-colour > .check-contrast(@c, darken(@c, 70%), #fff);
+        }
+        .ff_icon path {
+            #ff_mix-responsive-colour > .check-contrast-svg(@c, darken(@c, 70%), #fff);
+        }
+    }
+    .title-contrast(@c: white) {
+        #ff_mix-responsive-colour > .check-contrast(@c, darken(@c, 70%), #fff);
+        #ff_mix-util-prose > .h2();
+        font-weight: normal;
+        margin: 0;
+    }
+    .header() {
+        padding: @ff_size_spacing_max @ff_size_control_horizontal;
+        background-color: @ff_templatesetting_section-01-colour;
+        border: none;
+        border-top-left-radius: @ff_size_control_rounding;
+        border-top-right-radius: @ff_size_control_rounding;
+    }
+    .footer() {
+        padding: @ff_size_spacing_max @ff_size_control_horizontal;
+        background-color: @ff_colour_control_bg;
+        border: none;
+        border-bottom-left-radius: @ff_size_control_rounding;
+        border-bottom-right-radius: @ff_size_control_rounding;
+        #ff_mix-sections > .shadow();
+    }
+    .main() {
+       border: none;
+    }
+    .main--no-footer() {
+        border-bottom-left-radius: @ff_size_control_rounding;
+        border-bottom-right-radius: @ff_size_control_rounding;
+        #ff_mix-sections > .shadow();
+    }
+    .shadow() {
+        box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.1);
+    }
+}
+
+#triangle-up(@base:10px, @ratio:1, @color:red) {
+    width: 0;
+    height: 0;
+    border-bottom: @base solid @color;
+    border-left: @base*@ratio solid transparent;
+    border-right: @base*@ratio solid transparent;
 }

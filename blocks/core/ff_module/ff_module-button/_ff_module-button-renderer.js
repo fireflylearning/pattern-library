@@ -1,5 +1,6 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
 
 var Button = require('./ff_module-button');
 
@@ -20,11 +21,15 @@ var buttonProps = [{
     text: 'Button tertiary',
     id: 'btn-03',
     modifier: 'tertiary',
-    hide_text: false
+    hideText: false
 }, {
     text: 'Button primary',
     id: 'btn-04',
     modifier: 'primary',
+}, {
+    text: 'Button danger',
+    id: 'btn-04a',
+    modifier: 'danger',
 }, {
     text: 'Button with classes, disabled',
     id: 'btn-04',
@@ -34,6 +39,23 @@ var buttonProps = [{
     text: 'Button disabled',
     id: 'btn-05',
     disabled: true
+}, {
+    text: 'Button danger disabled',
+    id: 'btn-06',
+    disabled: true,
+    modifier: 'danger'
+}, {
+    text: 'Button with icon',
+    hideText: true,
+    id: 'btn-02',
+    icon: 'calendar',
+}, {
+    text: 'Button with icon hidden text',
+    modifier:'link',
+    id: 'btn-02',
+    hideText: true,
+    icon: 'calendar',
+    iconAlign: 'right'
 }];
 
 
@@ -45,7 +67,7 @@ module.exports = function() {
                 return React.createElement('li', { style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
                     React.createElement(Button, props));
             }));
-            React.render(root, domElement);
+            ReactDOM.render(root, domElement);
         });
     });
 };

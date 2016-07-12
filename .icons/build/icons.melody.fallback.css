@@ -1,70 +1,495 @@
-.ff_icon_melody-book { background-image: url('png/ff_icon_melody-book.png'); background-repeat: no-repeat; }
+.ff_icon-add-open-blue { background-image: url('png/melody/ff_icon-add-open-blue.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-bookmark { background-image: url('png/ff_icon_melody-bookmark.png'); background-repeat: no-repeat; }
+.ff_icon-add-open { background-image: url('png/melody/ff_icon-add-open.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-calendar { background-image: url('png/ff_icon_melody-calendar.png'); background-repeat: no-repeat; }
+.ff_icon-add-question { background-image: url('png/melody/ff_icon-add-question.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-circle-empty { background-image: url('png/ff_icon_melody-circle-empty.png'); background-repeat: no-repeat; }
+.ff_icon-add { background-image: url('png/melody/ff_icon-add.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-circle { background-image: url('png/ff_icon_melody-circle.png'); background-repeat: no-repeat; }
+.ff_icon-align-center { background-image: url('png/melody/ff_icon-align-center.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-clock { background-image: url('png/ff_icon_melody-clock.png'); background-repeat: no-repeat; }
+.ff_icon-align-justify { background-image: url('png/melody/ff_icon-align-justify.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-cutlery { background-image: url('png/ff_icon_melody-cutlery.png'); background-repeat: no-repeat; }
+.ff_icon-align-left { background-image: url('png/melody/ff_icon-align-left.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-file-shapes { background-image: url('png/ff_icon_melody-file-shapes.png'); background-repeat: no-repeat; }
+.ff_icon-align-right { background-image: url('png/melody/ff_icon-align-right.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-globe { background-image: url('png/ff_icon_melody-globe.png'); background-repeat: no-repeat; }
+.ff_icon-alpha-list { background-image: url('png/melody/ff_icon-alpha-list.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-leaf { background-image: url('png/ff_icon_melody-leaf.png'); background-repeat: no-repeat; }
+.ff_icon-archive { background-image: url('png/melody/ff_icon-archive.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-messages { background-image: url('png/ff_icon_melody-messages.png'); background-repeat: no-repeat; }
+.ff_icon-attachment { background-image: url('png/melody/ff_icon-attachment.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-nav-classes { background-image: url('png/ff_icon_melody-nav-classes.png'); background-repeat: no-repeat; }
+.ff_icon-award { background-image: url('png/melody/ff_icon-award.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-nav-manage-set-tasks { background-image: url('png/ff_icon_melody-nav-manage-set-tasks.png'); background-repeat: no-repeat; }
+.ff_icon-bold { background-image: url('png/melody/ff_icon-bold.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-nav-markbook { background-image: url('png/ff_icon_melody-nav-markbook.png'); background-repeat: no-repeat; }
+.ff_icon-book { background-image: url('png/melody/ff_icon-book.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-nav-planner { background-image: url('png/ff_icon_melody-nav-planner.png'); background-repeat: no-repeat; }
+.ff_icon-bookmark { background-image: url('png/melody/ff_icon-bookmark.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-nav-students { background-image: url('png/ff_icon_melody-nav-students.png'); background-repeat: no-repeat; }
+.ff_icon-bullet-list { background-image: url('png/melody/ff_icon-bullet-list.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-nav-tasks { background-image: url('png/ff_icon_melody-nav-tasks.png'); background-repeat: no-repeat; }
+.ff_icon-calendar-blue { background-image: url('png/melody/ff_icon-calendar-blue.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-parents { background-image: url('png/ff_icon_melody-parents.png'); background-repeat: no-repeat; }
+.ff_icon-calendar-day { background-image: url('png/melody/ff_icon-calendar-day.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-picture { background-image: url('png/ff_icon_melody-picture.png'); background-repeat: no-repeat; }
+.ff_icon-calendar { background-image: url('png/melody/ff_icon-calendar.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-planet { background-image: url('png/ff_icon_melody-planet.png'); background-repeat: no-repeat; }
+.ff_icon-cancel-blue { background-image: url('png/melody/ff_icon-cancel-blue.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-puzzle { background-image: url('png/ff_icon_melody-puzzle.png'); background-repeat: no-repeat; }
+.ff_icon-cancel-grey { background-image: url('png/melody/ff_icon-cancel-grey.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-rocket { background-image: url('png/ff_icon_melody-rocket.png'); background-repeat: no-repeat; }
+.ff_icon-cancel-open-blue { background-image: url('png/melody/ff_icon-cancel-open-blue.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-rss { background-image: url('png/ff_icon_melody-rss.png'); background-repeat: no-repeat; }
+.ff_icon-cancel-open-darkgrey { background-image: url('png/melody/ff_icon-cancel-open-darkgrey.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-smiley { background-image: url('png/ff_icon_melody-smiley.png'); background-repeat: no-repeat; }
+.ff_icon-cancel-open { background-image: url('png/melody/ff_icon-cancel-open.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-speechmark { background-image: url('png/ff_icon_melody-speechmark.png'); background-repeat: no-repeat; }
+.ff_icon-cancel-white { background-image: url('png/melody/ff_icon-cancel-white.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-students { background-image: url('png/ff_icon_melody-students.png'); background-repeat: no-repeat; }
+.ff_icon-cancel { background-image: url('png/melody/ff_icon-cancel.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-task { background-image: url('png/ff_icon_melody-task.png'); background-repeat: no-repeat; }
+.ff_icon-caret-down { background-image: url('png/melody/ff_icon-caret-down.png'); background-repeat: no-repeat; }
 
-.ff_icon_melody-tennis-ball { background-image: url('png/ff_icon_melody-tennis-ball.png'); background-repeat: no-repeat; }
+.ff_icon-caret-left { background-image: url('png/melody/ff_icon-caret-left.png'); background-repeat: no-repeat; }
 
-.ff_icons_melody-file { background-image: url('png/ff_icons_melody-file.png'); background-repeat: no-repeat; }
+.ff_icon-caret-right { background-image: url('png/melody/ff_icon-caret-right.png'); background-repeat: no-repeat; }
 
-.ff_icons_melody-home { background-image: url('png/ff_icons_melody-home.png'); background-repeat: no-repeat; }
+.ff_icon-caret-up { background-image: url('png/melody/ff_icon-caret-up.png'); background-repeat: no-repeat; }
 
-.ff_icons_melody-magnifying-glass { background-image: url('png/ff_icons_melody-magnifying-glass.png'); background-repeat: no-repeat; }
+.ff_icon-carousel-merged { background-image: url('png/melody/ff_icon-carousel-merged.png'); background-repeat: no-repeat; }
 
-.ff_icons_melody-megaphone { background-image: url('png/ff_icons_melody-megaphone.png'); background-repeat: no-repeat; }
+.ff_icon-carousel { background-image: url('png/melody/ff_icon-carousel.png'); background-repeat: no-repeat; }
 
-.ff_icons_melody-scissors { background-image: url('png/ff_icons_melody-scissors.png'); background-repeat: no-repeat; }
+.ff_icon-characters { background-image: url('png/melody/ff_icon-characters.png'); background-repeat: no-repeat; }
 
-.ff_icons_melody-staff { background-image: url('png/ff_icons_melody-staff.png'); background-repeat: no-repeat; }
+.ff_icon-classes { background-image: url('png/melody/ff_icon-classes.png'); background-repeat: no-repeat; }
 
-.ff_icons_melody-trophy { background-image: url('png/ff_icons_melody-trophy.png'); background-repeat: no-repeat; }
+.ff_icon-clock { background-image: url('png/melody/ff_icon-clock.png'); background-repeat: no-repeat; }
+
+.ff_icon-cog { background-image: url('png/melody/ff_icon-cog.png'); background-repeat: no-repeat; }
+
+.ff_icon-colours { background-image: url('png/melody/ff_icon-colours.png'); background-repeat: no-repeat; }
+
+.ff_icon-comment-add { background-image: url('png/melody/ff_icon-comment-add.png'); background-repeat: no-repeat; }
+
+.ff_icon-comment-delete { background-image: url('png/melody/ff_icon-comment-delete.png'); background-repeat: no-repeat; }
+
+.ff_icon-comment-file { background-image: url('png/melody/ff_icon-comment-file.png'); background-repeat: no-repeat; }
+
+.ff_icon-comment { background-image: url('png/melody/ff_icon-comment.png'); background-repeat: no-repeat; }
+
+.ff_icon-comments { background-image: url('png/melody/ff_icon-comments.png'); background-repeat: no-repeat; }
+
+.ff_icon-computer { background-image: url('png/melody/ff_icon-computer.png'); background-repeat: no-repeat; }
+
+.ff_icon-dashboard { background-image: url('png/melody/ff_icon-dashboard.png'); background-repeat: no-repeat; }
+
+.ff_icon-dashboards { background-image: url('png/melody/ff_icon-dashboards.png'); background-repeat: no-repeat; }
+
+.ff_icon-discussions { background-image: url('png/melody/ff_icon-discussions.png'); background-repeat: no-repeat; }
+
+.ff_icon-down-arrow { background-image: url('png/melody/ff_icon-down-arrow.png'); background-repeat: no-repeat; }
+
+.ff_icon-download-from { background-image: url('png/melody/ff_icon-download-from.png'); background-repeat: no-repeat; }
+
+.ff_icon-download-to-greyblue { background-image: url('png/melody/ff_icon-download-to-greyblue.png'); background-repeat: no-repeat; }
+
+.ff_icon-download-to { background-image: url('png/melody/ff_icon-download-to.png'); background-repeat: no-repeat; }
+
+.ff_icon-duplicate-blue { background-image: url('png/melody/ff_icon-duplicate-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-duplicate { background-image: url('png/melody/ff_icon-duplicate.png'); background-repeat: no-repeat; }
+
+.ff_icon-edit-blue { background-image: url('png/melody/ff_icon-edit-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-edit-white { background-image: url('png/melody/ff_icon-edit-white.png'); background-repeat: no-repeat; }
+
+.ff_icon-edit { background-image: url('png/melody/ff_icon-edit.png'); background-repeat: no-repeat; }
+
+.ff_icon-email { background-image: url('png/melody/ff_icon-email.png'); background-repeat: no-repeat; }
+
+.ff_icon-embed { background-image: url('png/melody/ff_icon-embed.png'); background-repeat: no-repeat; }
+
+.ff_icon-fast-forward { background-image: url('png/melody/ff_icon-fast-forward.png'); background-repeat: no-repeat; }
+
+.ff_icon-file-forward-blue { background-image: url('png/melody/ff_icon-file-forward-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-file-forward-white { background-image: url('png/melody/ff_icon-file-forward-white.png'); background-repeat: no-repeat; }
+
+.ff_icon-file-forward { background-image: url('png/melody/ff_icon-file-forward.png'); background-repeat: no-repeat; }
+
+.ff_icon-file-list { background-image: url('png/melody/ff_icon-file-list.png'); background-repeat: no-repeat; }
+
+.ff_icon-file { background-image: url('png/melody/ff_icon-file.png'); background-repeat: no-repeat; }
+
+.ff_icon-firefly { background-image: url('png/melody/ff_icon-firefly.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-blue { background-image: url('png/melody/ff_icon-folder-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-large { background-image: url('png/melody/ff_icon-folder-large.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-new-large { background-image: url('png/melody/ff_icon-folder-new-large.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-new { background-image: url('png/melody/ff_icon-folder-new.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-page-large { background-image: url('png/melody/ff_icon-folder-page-large.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-page { background-image: url('png/melody/ff_icon-folder-page.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-up-large { background-image: url('png/melody/ff_icon-folder-up-large.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-up { background-image: url('png/melody/ff_icon-folder-up.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder-white { background-image: url('png/melody/ff_icon-folder-white.png'); background-repeat: no-repeat; }
+
+.ff_icon-folder { background-image: url('png/melody/ff_icon-folder.png'); background-repeat: no-repeat; }
+
+.ff_icon-font { background-image: url('png/melody/ff_icon-font.png'); background-repeat: no-repeat; }
+
+.ff_icon-formula { background-image: url('png/melody/ff_icon-formula.png'); background-repeat: no-repeat; }
+
+.ff_icon-gallery { background-image: url('png/melody/ff_icon-gallery.png'); background-repeat: no-repeat; }
+
+.ff_icon-gdocs { background-image: url('png/melody/ff_icon-gdocs.png'); background-repeat: no-repeat; }
+
+.ff_icon-google-plus { background-image: url('png/melody/ff_icon-google-plus.png'); background-repeat: no-repeat; }
+
+.ff_icon-grid-merged { background-image: url('png/melody/ff_icon-grid-merged.png'); background-repeat: no-repeat; }
+
+.ff_icon-grid { background-image: url('png/melody/ff_icon-grid.png'); background-repeat: no-repeat; }
+
+.ff_icon-guidance-open { background-image: url('png/melody/ff_icon-guidance-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-guidance { background-image: url('png/melody/ff_icon-guidance.png'); background-repeat: no-repeat; }
+
+.ff_icon-header { background-image: url('png/melody/ff_icon-header.png'); background-repeat: no-repeat; }
+
+.ff_icon-heart { background-image: url('png/melody/ff_icon-heart.png'); background-repeat: no-repeat; }
+
+.ff_icon-help-blue { background-image: url('png/melody/ff_icon-help-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-help-open { background-image: url('png/melody/ff_icon-help-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-help { background-image: url('png/melody/ff_icon-help.png'); background-repeat: no-repeat; }
+
+.ff_icon-highlight-open { background-image: url('png/melody/ff_icon-highlight-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-highlight { background-image: url('png/melody/ff_icon-highlight.png'); background-repeat: no-repeat; }
+
+.ff_icon-home { background-image: url('png/melody/ff_icon-home.png'); background-repeat: no-repeat; }
+
+.ff_icon-horizontal-rule { background-image: url('png/melody/ff_icon-horizontal-rule.png'); background-repeat: no-repeat; }
+
+.ff_icon-image { background-image: url('png/melody/ff_icon-image.png'); background-repeat: no-repeat; }
+
+.ff_icon-important-open { background-image: url('png/melody/ff_icon-important-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-important { background-image: url('png/melody/ff_icon-important.png'); background-repeat: no-repeat; }
+
+.ff_icon-indent { background-image: url('png/melody/ff_icon-indent.png'); background-repeat: no-repeat; }
+
+.ff_icon-italic { background-image: url('png/melody/ff_icon-italic.png'); background-repeat: no-repeat; }
+
+.ff_icon-left-arrow { background-image: url('png/melody/ff_icon-left-arrow.png'); background-repeat: no-repeat; }
+
+.ff_icon-lightning-comment { background-image: url('png/melody/ff_icon-lightning-comment.png'); background-repeat: no-repeat; }
+
+.ff_icon-lightning-file { background-image: url('png/melody/ff_icon-lightning-file.png'); background-repeat: no-repeat; }
+
+.ff_icon-lightning { background-image: url('png/melody/ff_icon-lightning.png'); background-repeat: no-repeat; }
+
+.ff_icon-link { background-image: url('png/melody/ff_icon-link.png'); background-repeat: no-repeat; }
+
+.ff_icon-lock-locked { background-image: url('png/melody/ff_icon-lock-locked.png'); background-repeat: no-repeat; }
+
+.ff_icon-lock-unlocked { background-image: url('png/melody/ff_icon-lock-unlocked.png'); background-repeat: no-repeat; }
+
+.ff_icon-magnifier-minus { background-image: url('png/melody/ff_icon-magnifier-minus.png'); background-repeat: no-repeat; }
+
+.ff_icon-magnifier-plus { background-image: url('png/melody/ff_icon-magnifier-plus.png'); background-repeat: no-repeat; }
+
+.ff_icon-magnifier { background-image: url('png/melody/ff_icon-magnifier.png'); background-repeat: no-repeat; }
+
+.ff_icon-manage-tasks { background-image: url('png/melody/ff_icon-manage-tasks.png'); background-repeat: no-repeat; }
+
+.ff_icon-markbook { background-image: url('png/melody/ff_icon-markbook.png'); background-repeat: no-repeat; }
+
+.ff_icon-menu { background-image: url('png/melody/ff_icon-menu.png'); background-repeat: no-repeat; }
+
+.ff_icon-messages { background-image: url('png/melody/ff_icon-messages.png'); background-repeat: no-repeat; }
+
+.ff_icon-nav-resources { background-image: url('png/melody/ff_icon-nav-resources.png'); background-repeat: no-repeat; }
+
+.ff_icon-navigation { background-image: url('png/melody/ff_icon-navigation.png'); background-repeat: no-repeat; }
+
+.ff_icon-news-feed { background-image: url('png/melody/ff_icon-news-feed.png'); background-repeat: no-repeat; }
+
+.ff_icon-number-list { background-image: url('png/melody/ff_icon-number-list.png'); background-repeat: no-repeat; }
+
+.ff_icon-office-365 { background-image: url('png/melody/ff_icon-office-365.png'); background-repeat: no-repeat; }
+
+.ff_icon-outdent { background-image: url('png/melody/ff_icon-outdent.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-back-blue { background-image: url('png/melody/ff_icon-page-back-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-back-open { background-image: url('png/melody/ff_icon-page-back-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-back { background-image: url('png/melody/ff_icon-page-back.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-down-blue { background-image: url('png/melody/ff_icon-page-down-blue.png'); background-repeat: no-repeat; }
+
+.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact-right.ff_module-dropdown-button__icon--is-enabled,
+.ff_module-dropdown-button__icon--tertiary-compact-right-widelist.ff_module-dropdown-button__icon--is-enabled,
+.ff_icon-page-down-open-blue { background-image: url('png/melody/ff_icon-page-down-open-blue.png'); background-repeat: no-repeat; }
+
+.ff_module-dropdown-button__icon--is-enabled,
+.ff_icon-page-down-open-white { background-image: url('png/melody/ff_icon-page-down-open-white.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-down-open { background-image: url('png/melody/ff_icon-page-down-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-down { background-image: url('png/melody/ff_icon-page-down.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-forward-blue { background-image: url('png/melody/ff_icon-page-forward-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-forward-open-lightblue { background-image: url('png/melody/ff_icon-page-forward-open-lightblue.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-forward-open { background-image: url('png/melody/ff_icon-page-forward-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-forward-white { background-image: url('png/melody/ff_icon-page-forward-white.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-forward { background-image: url('png/melody/ff_icon-page-forward.png'); background-repeat: no-repeat; }
+
+.ff_module-dropdown-button__icon--link.ff_module-dropdown-button__icon--is-open,
+.ff_module-dropdown-button__icon--link-right.ff_module-dropdown-button__icon--is-open,
+.ff_icon-page-up-open-blue { background-image: url('png/melody/ff_icon-page-up-open-blue.png'); background-repeat: no-repeat; }
+
+.ff_module-dropdown-button__icon--is-open,
+.ff_icon-page-up-open-white { background-image: url('png/melody/ff_icon-page-up-open-white.png'); background-repeat: no-repeat; }
+
+.ff_icon-page-up-open { background-image: url('png/melody/ff_icon-page-up-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-password { background-image: url('png/melody/ff_icon-password.png'); background-repeat: no-repeat; }
+
+.ff_icon-pause { background-image: url('png/melody/ff_icon-pause.png'); background-repeat: no-repeat; }
+
+.ff_icon-placemarker-dot { background-image: url('png/melody/ff_icon-placemarker-dot.png'); background-repeat: no-repeat; }
+
+.ff_icon-placemarker { background-image: url('png/melody/ff_icon-placemarker.png'); background-repeat: no-repeat; }
+
+.ff_icon-planner { background-image: url('png/melody/ff_icon-planner.png'); background-repeat: no-repeat; }
+
+.ff_icon-play { background-image: url('png/melody/ff_icon-play.png'); background-repeat: no-repeat; }
+
+.ff_icon-poll { background-image: url('png/melody/ff_icon-poll.png'); background-repeat: no-repeat; }
+
+.ff_icon-progress-full { background-image: url('png/melody/ff_icon-progress-full.png'); background-repeat: no-repeat; }
+
+.ff_icon-progress-half { background-image: url('png/melody/ff_icon-progress-half.png'); background-repeat: no-repeat; }
+
+.ff_icon-progress-none { background-image: url('png/melody/ff_icon-progress-none.png'); background-repeat: no-repeat; }
+
+.ff_icon-progress-quarter { background-image: url('png/melody/ff_icon-progress-quarter.png'); background-repeat: no-repeat; }
+
+.ff_icon-progress-threequarters { background-image: url('png/melody/ff_icon-progress-threequarters.png'); background-repeat: no-repeat; }
+
+.ff_icon-quote { background-image: url('png/melody/ff_icon-quote.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-edit.ff_module-dropdown-button__icon-alt.ff_module-dropdown-button__icon-alt--is-open,
+.ff_icon-response-edit-blue { background-image: url('png/melody/ff_icon-response-edit-blue.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-edit.ff_module-dropdown-button__icon-alt,
+.ff_icon-response-edit.ff_module-dropdown-button__icon-alt--is-enabled,
+.ff_icon-response-edit-darkgrey { background-image: url('png/melody/ff_icon-response-edit-darkgrey.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-edit { background-image: url('png/melody/ff_icon-response-edit.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-errored,
+.ff_icon-response-error-error { background-image: url('png/melody/ff_icon-response-error-error.png'); background-repeat: no-repeat; }
+
+.ff_icon-response-error { background-image: url('png/melody/ff_icon-response-error.png'); background-repeat: no-repeat; }
+
+.ff_icon-rewind { background-image: url('png/melody/ff_icon-rewind.png'); background-repeat: no-repeat; }
+
+.ff_icon-right-arrow { background-image: url('png/melody/ff_icon-right-arrow.png'); background-repeat: no-repeat; }
+
+.ff_icon-roman-list { background-image: url('png/melody/ff_icon-roman-list.png'); background-repeat: no-repeat; }
+
+.ff_icon-scorm { background-image: url('png/melody/ff_icon-scorm.png'); background-repeat: no-repeat; }
+
+.ff_icon-slideshow-merged { background-image: url('png/melody/ff_icon-slideshow-merged.png'); background-repeat: no-repeat; }
+
+.ff_icon-slideshow { background-image: url('png/melody/ff_icon-slideshow.png'); background-repeat: no-repeat; }
+
+.ff_icon-starred-file { background-image: url('png/melody/ff_icon-starred-file.png'); background-repeat: no-repeat; }
+
+.ff_icon-stop { background-image: url('png/melody/ff_icon-stop.png'); background-repeat: no-repeat; }
+
+.ff_icon-structured-data-old { background-image: url('png/melody/ff_icon-structured-data-old.png'); background-repeat: no-repeat; }
+
+.ff_icon-structured-data { background-image: url('png/melody/ff_icon-structured-data.png'); background-repeat: no-repeat; }
+
+.ff_icon-students { background-image: url('png/melody/ff_icon-students.png'); background-repeat: no-repeat; }
+
+.ff_icon-styles { background-image: url('png/melody/ff_icon-styles.png'); background-repeat: no-repeat; }
+
+.ff_icon-subtract-open { background-image: url('png/melody/ff_icon-subtract-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-subtract { background-image: url('png/melody/ff_icon-subtract.png'); background-repeat: no-repeat; }
+
+.ff_icon-table-add-horiz { background-image: url('png/melody/ff_icon-table-add-horiz.png'); background-repeat: no-repeat; }
+
+.ff_icon-table-add-vert { background-image: url('png/melody/ff_icon-table-add-vert.png'); background-repeat: no-repeat; }
+
+.ff_icon-table-merge-horiz { background-image: url('png/melody/ff_icon-table-merge-horiz.png'); background-repeat: no-repeat; }
+
+.ff_icon-table-merge-vert { background-image: url('png/melody/ff_icon-table-merge-vert.png'); background-repeat: no-repeat; }
+
+.ff_icon-table-remove-horiz { background-image: url('png/melody/ff_icon-table-remove-horiz.png'); background-repeat: no-repeat; }
+
+.ff_icon-table-remove-vert { background-image: url('png/melody/ff_icon-table-remove-vert.png'); background-repeat: no-repeat; }
+
+.ff_icon-table-split-horiz { background-image: url('png/melody/ff_icon-table-split-horiz.png'); background-repeat: no-repeat; }
+
+.ff_icon-table-split-vert { background-image: url('png/melody/ff_icon-table-split-vert.png'); background-repeat: no-repeat; }
+
+.ff_icon-table { background-image: url('png/melody/ff_icon-table.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-description { background-image: url('png/melody/ff_icon-task-description.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-incoming-brightblue { background-image: url('png/melody/ff_icon-task-incoming-brightblue.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-incoming-extradarkgrey { background-image: url('png/melody/ff_icon-task-incoming-extradarkgrey.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-incoming-grey { background-image: url('png/melody/ff_icon-task-incoming-grey.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-incoming { background-image: url('png/melody/ff_icon-task-incoming.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-outgoing-brightblue { background-image: url('png/melody/ff_icon-task-outgoing-brightblue.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-outgoing-extradarkgrey { background-image: url('png/melody/ff_icon-task-outgoing-extradarkgrey.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-outgoing-grey { background-image: url('png/melody/ff_icon-task-outgoing-grey.png'); background-repeat: no-repeat; }
+
+.ff_icon-task-outgoing { background-image: url('png/melody/ff_icon-task-outgoing.png'); background-repeat: no-repeat; }
+
+.ff_icon-tasks-white { background-image: url('png/melody/ff_icon-tasks-white.png'); background-repeat: no-repeat; }
+
+.ff_icon-tasks { background-image: url('png/melody/ff_icon-tasks.png'); background-repeat: no-repeat; }
+
+.ff_icon-text-box-2 { background-image: url('png/melody/ff_icon-text-box-2.png'); background-repeat: no-repeat; }
+
+.ff_icon-text-box { background-image: url('png/melody/ff_icon-text-box.png'); background-repeat: no-repeat; }
+
+.ff_icon-text-size { background-image: url('png/melody/ff_icon-text-size.png'); background-repeat: no-repeat; }
+
+.ff_icon-thin-image { background-image: url('png/melody/ff_icon-thin-image.png'); background-repeat: no-repeat; }
+
+.ff_icon-tick-open-success { background-image: url('png/melody/ff_icon-tick-open-success.png'); background-repeat: no-repeat; }
+
+.ff_icon-tick-open { background-image: url('png/melody/ff_icon-tick-open.png'); background-repeat: no-repeat; }
+
+.ff_icon-tick { background-image: url('png/melody/ff_icon-tick.png'); background-repeat: no-repeat; }
+
+.ff_icon-undo { background-image: url('png/melody/ff_icon-undo.png'); background-repeat: no-repeat; }
+
+.ff_icon-up-arrow { background-image: url('png/melody/ff_icon-up-arrow.png'); background-repeat: no-repeat; }
+
+.ff_icon-upload-from { background-image: url('png/melody/ff_icon-upload-from.png'); background-repeat: no-repeat; }
+
+.ff_icon-upload-to { background-image: url('png/melody/ff_icon-upload-to.png'); background-repeat: no-repeat; }
+
+.ff_icon-user-permissions { background-image: url('png/melody/ff_icon-user-permissions.png'); background-repeat: no-repeat; }
+
+.ff_icon-user { background-image: url('png/melody/ff_icon-user.png'); background-repeat: no-repeat; }
+
+.ff_icon-video { background-image: url('png/melody/ff_icon-video.png'); background-repeat: no-repeat; }
+
+.ff_icon-vimeo { background-image: url('png/melody/ff_icon-vimeo.png'); background-repeat: no-repeat; }
+
+.ff_icon-warning-error { background-image: url('png/melody/ff_icon-warning-error.png'); background-repeat: no-repeat; }
+
+.ff_icon-warning { background-image: url('png/melody/ff_icon-warning.png'); background-repeat: no-repeat; }
+
+.ff_icon-web-page { background-image: url('png/melody/ff_icon-web-page.png'); background-repeat: no-repeat; }
+
+.ff_icon-widgets { background-image: url('png/melody/ff_icon-widgets.png'); background-repeat: no-repeat; }
+
+.ff_icon-youtube { background-image: url('png/melody/ff_icon-youtube.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-book { background-image: url('png/melody/ff_icon_melody-book.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-bookmark { background-image: url('png/melody/ff_icon_melody-bookmark.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-calendar { background-image: url('png/melody/ff_icon_melody-calendar.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-circle-empty { background-image: url('png/melody/ff_icon_melody-circle-empty.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-circle { background-image: url('png/melody/ff_icon_melody-circle.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-clock { background-image: url('png/melody/ff_icon_melody-clock.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-cutlery { background-image: url('png/melody/ff_icon_melody-cutlery.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-file-shapes { background-image: url('png/melody/ff_icon_melody-file-shapes.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-globe { background-image: url('png/melody/ff_icon_melody-globe.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-leaf { background-image: url('png/melody/ff_icon_melody-leaf.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-messages { background-image: url('png/melody/ff_icon_melody-messages.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-nav-classes { background-image: url('png/melody/ff_icon_melody-nav-classes.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-nav-manage-set-tasks { background-image: url('png/melody/ff_icon_melody-nav-manage-set-tasks.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-nav-markbook { background-image: url('png/melody/ff_icon_melody-nav-markbook.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-nav-planner { background-image: url('png/melody/ff_icon_melody-nav-planner.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-nav-students { background-image: url('png/melody/ff_icon_melody-nav-students.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-nav-tasks { background-image: url('png/melody/ff_icon_melody-nav-tasks.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-parents { background-image: url('png/melody/ff_icon_melody-parents.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-picture { background-image: url('png/melody/ff_icon_melody-picture.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-planet { background-image: url('png/melody/ff_icon_melody-planet.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-puzzle { background-image: url('png/melody/ff_icon_melody-puzzle.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-rocket { background-image: url('png/melody/ff_icon_melody-rocket.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-rss { background-image: url('png/melody/ff_icon_melody-rss.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-smiley { background-image: url('png/melody/ff_icon_melody-smiley.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-speechmark { background-image: url('png/melody/ff_icon_melody-speechmark.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-students { background-image: url('png/melody/ff_icon_melody-students.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-task { background-image: url('png/melody/ff_icon_melody-task.png'); background-repeat: no-repeat; }
+
+.ff_icon_melody-tennis-ball { background-image: url('png/melody/ff_icon_melody-tennis-ball.png'); background-repeat: no-repeat; }
+
+.ff_icons_melody-file { background-image: url('png/melody/ff_icons_melody-file.png'); background-repeat: no-repeat; }
+
+.ff_icons_melody-home { background-image: url('png/melody/ff_icons_melody-home.png'); background-repeat: no-repeat; }
+
+.ff_icons_melody-magnifying-glass { background-image: url('png/melody/ff_icons_melody-magnifying-glass.png'); background-repeat: no-repeat; }
+
+.ff_icons_melody-megaphone { background-image: url('png/melody/ff_icons_melody-megaphone.png'); background-repeat: no-repeat; }
+
+.ff_icons_melody-scissors { background-image: url('png/melody/ff_icons_melody-scissors.png'); background-repeat: no-repeat; }
+
+.ff_icons_melody-staff { background-image: url('png/melody/ff_icons_melody-staff.png'); background-repeat: no-repeat; }
+
+.ff_icons_melody-trophy { background-image: url('png/melody/ff_icons_melody-trophy.png'); background-repeat: no-repeat; }
 

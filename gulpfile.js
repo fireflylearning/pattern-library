@@ -24,13 +24,11 @@ var gulp = require('gulp'),
     getFileInfo = require('./src/gulp-tasks/fileInfo').getFileInfo,
     buildXSLT = require('./src/gulp-tasks/buildXSLT')(gulp, plugins),
     exportBlocks = require('./src/gulp-tasks/exportBlocks')(gulp, plugins),
-    exportStatus = require('./src/gulp-tasks/exportStatus')(gulp, plugins, config),
     server = require('./src/gulp-tasks/server')(gulp, plugins, config),
     browserSync = server.browserSync,
     utils = require('./src/lib/utils')(gulp, plugins, browserSync, config),
     cssTasks = require('./src/gulp-tasks/compileCSS')(gulp, plugins, config, utils, browserSync),
-    reactTemplates = require('./src/gulp-tasks/reactTemplates')(gulp, plugins, config, utils, browserSync),
-    webpackTasks = require('./src/gulp-tasks/webpack')(gulp, plugins, config),
+    webpackTasks = require('./src/gulp-tasks/webpack')(gulp, plugins, config, utils),
     iconTasks = require('./src/gulp-tasks/icons')(gulp, plugins, config, utils),
     assetTasks = require('./src/gulp-tasks/assets')(gulp, plugins, config, utils, browserSync),
     clean = require('./src/gulp-tasks/clean')(gulp, plugins);
@@ -76,7 +74,6 @@ gulp.task('export:blocks',
     exportBlocks(paths.blocks.export.src, config.exportPath, './src/templates/export/blocks/main.xsl', 'blocks.xsl'));
 
 
-
 /**
  * Css
  * ******************************************/
@@ -108,24 +105,16 @@ gulp.task('export:less',
 /**
  * Compile javascript
  */
-var jsentries;
-gulp.task('js', ['react:templates', 'info'],
+gulp.task('js', ['info'],
     webpackTasks.develop(blockData));
 
 /**
  * Export javascript
  */
-gulp.task('export:js', ['preexport:js'],
-    webpackTasks.export());
+gulp.task('export:js', ['export:js:raw']);
 
-gulp.task('preexport:js', ['react:templates'],
-    webpackTasks.buildExportJs(paths.blocks.dir, './src/templates/export/js/main.js', './.tmp/js'));
-
-
-/**
- * Compile React Templates
- */
-gulp.task('react:templates', reactTemplates(paths.blocks.rt.src, paths.blocks.rt.dest));
+gulp.task('export:js:raw',
+    webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), config.exportJsPath));
 
 
 
@@ -143,11 +132,13 @@ gulp.task('icons:copy',
 gulp.task('icons:grump:copy', ['icons:grumpicon'],
     iconTasks.copyIcons(paths.icons.copy.src, paths.icons.copy.dest));
 
-gulp.task('icons:grumpicon', ['icons:checkmodified'],
+gulp.task('icons:grumpicon', ['icons:checkmodified', 'icons:checkconfigmodified'],
     iconTasks.grumpIcon(paths.icons.grumpicon.src, paths.icons.grumpicon.srcDir, paths.icons.grumpicon.dest, paths.icons.grumpicon.destDir));
 
 gulp.task('icons:checkmodified', ['icons:optimise'],
     iconTasks.checkModified(paths.icons.grumpicon.src, paths.icons.grumpicon.srcDir, paths.icons.grumpicon.dest, paths.icons.grumpicon.destDir));
+
+gulp.task('icons:checkconfigmodified', iconTasks.checkConfigModified(paths.icons.config.src, paths.icons.config.dest));
 
 gulp.task('icons:optimise',
     iconTasks.optimise(paths.icons.optimise.src, paths.icons.optimise.srcDir, paths.icons.optimise.dest, paths.icons.optimise.destDir));
@@ -155,7 +146,7 @@ gulp.task('icons:optimise',
 /**
  * Export Icons
  */
-gulp.task('export:icons', ['icons:grumpicon'],
+gulp.task('export:icons',
     iconTasks.export(paths.icons.export.src, path.join(config.exportPath, 'icons')));
 
 
@@ -240,7 +231,6 @@ gulp.task('watch:css:blocks', ['css:blocks']);
 gulp.task('watch:css:pages', ['css:pages']);
 gulp.task('watch:js', ['js'], utils.callbackAfterBuild('*.js'));
 gulp.task('watch:icons', ['icons:copy']);
-gulp.task('watch:react:templates', ['react:templates']);
 
 gulp.task('watch:pages', ['xslt'], utils.callbackAfterBuild('*.html'));
 gulp.task('watch:pages:templates', ['xslt'], utils.callbackAfterBuild('*.html'));
@@ -258,7 +248,7 @@ gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
 /**
  * Export
  *********************************************/
-gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets'], exportStatus);
+gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets']);
 
 
 
@@ -266,8 +256,11 @@ gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons'
 /**
  * Clean
  *********************************************/
-gulp.task('clean', clean([config.exportPath].concat(paths.clean)));
-
+gulp.task('clean', clean([config.exportPath, config.exportJsPath].concat(paths.clean)));
+/**
+ * Clean - with icon cache
+ *********************************************/
+gulp.task('clean:cache', clean([config.exportPath, config.exportJsPath].concat(paths.clean).concat(paths.icons.cache)));
 
 
 /**

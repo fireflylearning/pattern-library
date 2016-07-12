@@ -1,0 +1,98 @@
+@ff_templatesetting_colour_main-highlight: desaturate(hsl(hue(@ff_templatesetting_colour_main), saturation(@ff_templatesetting_colour_main), 70%), 20%);
+
+.ff_module-formsteps {
+	margin:0;
+	padding:0;
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	border: 1px solid hsl(hue(@ff_templatesetting_colour_main), saturation(@ff_templatesetting_colour_main), 80%);
+	background-color: @ff_templatesetting_colour_main;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.ff_module-formstep {
+	display: inline-block;
+	max-width: 100%;
+	margin: 0;
+	min-width: 0;
+	text-align: left;
+	position: relative;
+	box-sizing: border-box;
+	white-space: normal;
+
+	& + .ff_module-formstep {
+		border-left: 1px solid hsl(hue(@ff_templatesetting_colour_main), saturation(@ff_templatesetting_colour_main), 80%);
+	}
+
+	@media (min-width: @ff_bp_wide) {
+	}
+
+
+	&__link {
+		display: inline-block;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: nowrap;
+		padding: 10px 20px 10px 20px;
+
+		#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_main, @c_text, #ffffff);
+
+
+		&:visited {
+			#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_main, @c_text, #ffffff);
+		}
+
+		&:hover {
+			background-color: darken(@ff_templatesetting_colour_main, 5%);
+			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_main, 5%), @c_text, #ffffff);
+		}
+	}
+	&__icon {
+		margin-right: 10px;
+//		#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_main, @c_text, #ffffff);
+	}
+
+	&__text {
+		font-size: 11rem/@ff_base;
+		margin: 0;
+		@media (min-width: @ff_bp_wide) {
+		}
+	}
+
+	&__separator {
+		display: none;
+	}
+
+	&--is-complete {
+
+		a, a:visited {
+			background-color: darken(@ff_templatesetting_colour_main, 7.5%);
+			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_main, 7.5%), fade(@c_text, 20%), fade(#ffffff, 80%));
+		}
+	}
+
+	&--is-visited {
+		a, a:visited {
+			background-color: darken(@ff_templatesetting_colour_main, 7.5%);
+			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_main, 7.5%), fade(@c_text, 20%), fade(#ffffff, 80%));
+		}
+	}
+
+	&--is-current {
+		a, a:visited {
+			background-color: @ff_templatesetting_colour_main-highlight;
+			#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_main-highlight, @c_text, #ffffff);
+		}
+	}
+
+	@media (min-width: @ff_bp_medium) {
+//		margin-right: 2rem;
+	}
+	&:last-child {
+//		margin-right: 0;
+	}
+}

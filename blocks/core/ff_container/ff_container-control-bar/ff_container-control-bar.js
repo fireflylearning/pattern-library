@@ -1,9 +1,24 @@
 'use strict';
 
 var React = require('react');
-var template = require('./_ff_container-control-bar.rt.js');
+
+var ControlBarSet = require('./_src/ControlBarSet');
+var generateClass = require('../../_lib/_ui/class-utils').generateStandardClass;
+
 
 module.exports = React.createClass({
     displayName: 'ContainerControlBar',
-    render: template
+    render: function() {
+        return (
+            <div className={generateClass('ff_container-control-bar', this.props)}>
+                {this.props.sets ? this.props.sets.map((set, setIndex) =>
+                    <ControlBarSet
+                        title={set.title}
+                        key={set.key || setIndex}>{set.modules}</ControlBarSet>) : null}
+                {this.props.children}
+            </div>
+        );
+    }
 });
+
+module.exports.ControlBarSet = ControlBarSet;

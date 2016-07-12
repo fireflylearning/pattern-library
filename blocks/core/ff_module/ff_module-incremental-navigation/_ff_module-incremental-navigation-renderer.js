@@ -1,5 +1,6 @@
 'use strict';
-var React = require('react');
+var React = require('react'),
+    ReactDOM = require('react-dom');
 
 var IncrementalNavigation = require('./ff_module-incremental-navigation');
 
@@ -11,7 +12,7 @@ module.exports = function() {
                 nextText: 'Next Student',
                 previousText: 'Previous Student',
                 isFirst: false,
-                isLast: true,
+                isLast: false,
                 onNext: function(){
                     console.log('Click Next Student');
                 },
@@ -19,7 +20,7 @@ module.exports = function() {
                     console.log('Click Previous Student');
                 }
             });
-            React.render(element, root);
+            ReactDOM.render(element, root);
         }
     });
 };
