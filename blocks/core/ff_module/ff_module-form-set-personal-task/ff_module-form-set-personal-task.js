@@ -8,7 +8,7 @@ var React = require('react'),
     FormFieldErrors = require('../ff_module-form-errors/ff_module-form-errors').FormFieldErrors,
     ContainerFormErrors = require('../../ff_container/ff_container-form-errors/ff_container-form-errors'),
     ContainerFormLine = require('../../ff_container/ff_container-form-line/ff_container-form-line'),
-    JumptoDatePicker = require('../ff_module-date-picker-jumpto/ff_module-date-picker-jumpto');
+    DatePickerJumpTo = require('../ff_module-date-picker-jumpto-component/ff_module-date-picker-jumpto-component');
 
 
 function getOptions() {
@@ -45,13 +45,22 @@ module.exports = React.createClass({
             taskDescriptionModel = this.props.models && this.props.models['description'] || null,
             taskDescriptionValidation = this.props.validation && this.props.validation['description'] || null;
 
+        var data = {
+            id: 'due-date',
+            dateFormat: 'dd/mm/yy',
+            data: [{
+                attr: 'data-ff-target',
+                value: 'due-date'
+            }]
+        };
+
         return (
             <div>
                 
                 <ContainerFormLine>
                     <FormField model={taskTitleModel} validation={taskTitleValidation}>
                         <FormLabel key="l0" modifier="stacked">Task Title</FormLabel>
-                        <FormInput modifier="fullwidth" type="text" value={this.props.personalTask.taskTitle} onChange={this.onChangeType} />
+                        <FormInput modifier="fullwidth" type="text" value={this.props.personalTask.taskTitle} onChange={this.onChangeTitle} />
                     </FormField>
                 </ContainerFormLine>
 
@@ -62,7 +71,8 @@ module.exports = React.createClass({
                 <ContainerFormLine>
                     <FormField model={taskDueDateModel} validation={taskDueDateValidation}>
                         <FormLabel key="l1" modifier="stacked">Due Date</FormLabel>
-                        <FormInput modifier="constrained" type="text" onChange={this.onChangeType} />
+                        <FormInput id="due-date" modifier="constrained" type="text" onChange={this.onChangeDueDate} value={this.props.personalTask.dueDate} />
+                        <DatePickerJumpTo {...data } />
                     </FormField>
                 </ContainerFormLine>
 
@@ -73,7 +83,7 @@ module.exports = React.createClass({
                 <ContainerFormLine>
                     <FormField model={taskClassModel} validation={taskClassValidation}>
                         <FormLabel key="l2" modifier="stacked">Class</FormLabel>
-                        <FormInput modifier="constrained" type="select" onChange={this.onChangeType} options={getOptions()} />
+                        <FormInput modifier="constrained" type="select" onChange={this.onChangeClass} options={getOptions()} />
                     </FormField>
                 </ContainerFormLine>
 
@@ -84,7 +94,7 @@ module.exports = React.createClass({
                 <ContainerFormLine>
                     <FormField model={taskDescriptionModel} validation={taskDescriptionValidation}>
                         <FormLabel key="l3" modifier="stacked">Description</FormLabel>
-                        <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.props.onMessageChange} />
+                        <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.onChangeDescription} />
                     </FormField>
                 </ContainerFormLine>
 
@@ -92,14 +102,25 @@ module.exports = React.createClass({
                     <FormFieldErrors model={taskDescriptionModel} validation={taskDescriptionValidation}/>
                 </ContainerFormErrors>
 
+                <ContainerFormLine>
+                    <Button modifier="primary" text="Set Task"></Button>
+                </ContainerFormLine>
             </div>
         );
     },
 
-    /*componentWillMount() {
-        if (typeof document !== "undefined" && document.body) {
-            Modal.setAppElement(document.body);
-        }
-    }*/
+    onChangeTitle: function(){
+        console.log('Title changed')
+    },
+    onChangeDueDate: function(){
+        console.log('Due date changed')
+    },
+    onChangeClass: function(){
+        console.log('Class changed')
+    },
+    onChangeDescription: function(){
+        console.log('Description changed')
+    },
+
 });
 

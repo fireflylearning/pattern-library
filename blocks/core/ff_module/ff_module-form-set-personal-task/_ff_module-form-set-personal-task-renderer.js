@@ -46,10 +46,10 @@ var personalTaskKeys = {
 };
 
 var personalTask = {
-    taskTitle: 'Task Title',
-    dueDate: '12/4/90',
+    taskTitle: '',
+    dueDate: '',
     class: 'Class Name',
-    description: 'Task Description'
+    description: ''
 };
 
 //so different model string values can be used if required
@@ -108,7 +108,6 @@ var store = createStore(combineReducers({
 }));
 
 function mapStateToProps(state) {
-
     return {
         personalTask: state.personalTask,
         models: models,
