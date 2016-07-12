@@ -48,8 +48,7 @@ After initial install, the command `gulp` will perform the build, serve, and wat
 - BrowserSync for hot-reloading and syncing
 - Webpack for bundling javascript modules
 - Less with gulp-less for less > css transpiling
-- React Templates for compiling `.rt` templates files (html-like syntax) to `.js`
-- Babel for js(x) transpiling
+- Babel for jsx transpiling `.jsx` templates files and `<tag/>` syntax to `.js`
 - gulp-jshint for js linting
 - css-lint for css linting
 - Karma, Mocha, Chai and Sinon for testing
@@ -96,7 +95,26 @@ If the core file requires other services or controls, we can mock them with an u
 Some modules use React; see below for more information.
 
 #### React
-The view templates use [React Templates](https://www.npmjs.com/package/gulp-react-templates) to transform html-like `.rt` files into compiled `.js` files for use in React view logic files.
+
+##### Presentation only Components
+
+React Components included in the pattern library should be purely presentational. This is similar to thinking of them as being read-only. This will mean that in most cases React versions of patterns will have no state, they will be entirely driven by props given to them.
+
+The most direct observation of this principal is that without a wrapping Container Component, inputs like text boxes should appear to be non-interactive. Going so far that if typed into they will refuse to update (or more accurately, immediately be redrawn with their pre-typed content). Changes in input values should fire events rather than modifying the DOM directly as they would in traditional usage. For an example of this, see `ff_module-form-input`.
+
+##### JSX
+
+JSX syntax is available, and should be used whenever practical to replace calls to React.createElement() due to the transparency of the DOM structure it offers.
+
+##### Separate Template Files
+
+If a component involves rendering decisions or complex dynamic aspects, you may separate things into template files where it makes sense to do so, and do include the flat HTML in the .md file.
+
+In most cases these templates should naturally grow from raw HTML files used to plan the pattern.
+
+**JSX Files**
+
+Moving dom rendering into a `.jsx` file is a convenient way to separate DOM structure from pattern set up. Id's, classes and data attributes being set on DOM elements should be as clear as is practical to be (try not to hide attribute values inside props if it can be avoided in the pattern usage).
 
 ### Pages
 A collection of layout files for presenting these patterns in a variety of ways and with a variety of content. For instance, the developer can view the pattern in the context of all other patterns for comparison purposes; in isolation for development and testing; with a variety of text in different lengths and languages.
