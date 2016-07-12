@@ -31,8 +31,7 @@ describe('ContainerModalWithDialog', function() {
     });
 
     it('should have render correct components and children', function() {
-        var element = < ContainerModalWithDialog {...props[1] } >
-            <p>[Body text]</p> < /ContainerModalWithDialog> ;
+        var element = <ContainerModalWithDialog {...props[1] }><p>[Body text]</p></ContainerModalWithDialog> ;
 
         var component = TestUtils.renderIntoDocument(element);
         var portal = component.getOverlay();
