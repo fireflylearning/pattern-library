@@ -432,14 +432,11 @@ describe('dateFormatting', function() {
             },
             testMethod = 'niceDate';
 
-            var today = new Date(),
-                todayTime = today.getTime(),
-                testList = testDates.test.map(function(date) {
-                    return new Date(todayTime - (date * msInS));
-                });
-
-            testList.forEach(function(date, index) {
-                it(today + ' - ' + date + ' = ' + testDates.expected[index], function() {
+            testDates.test.forEach(function(offset, index){
+                var now = new Date(),
+                    nowTime = now.getTime(),
+                    date = new Date(nowTime - (offset * msInS));
+                    it(now + ' - ' + date + ' = ' + testDates.expected[index], function() {
                     var result = dateFormatting[testMethod](date);
                     expect(result.toString()).to.equal(testDates.expected[index]);
                 });
