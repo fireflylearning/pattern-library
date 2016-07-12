@@ -10,6 +10,8 @@ module.exports = React.createClass({
     },
 
 	componentDidMount: function() {
+
+		console.log()
 		activateDatePickerJumpTo({
 			root: this._root,
 			selector: 'data-ff=date-picker',
@@ -22,12 +24,20 @@ module.exports = React.createClass({
 	},
 	
 	render: function() {
+
+		var inputs = [];
+		if (this.props.dataUrlPrefix) {
+			inputs.push(<input className="ff_module-date-picker-jumpto__cal yes" data-ff="date-picker" data-ff-url-prefix={this.props.dataUrlPrefix} value=""/>);	
+		}
+		if (this.props.id) {
+			inputs.push(<input className="ff_module-date-picker-jumpto__cal" data-ff="date-picker" data-ff-target-input-id={this.props.id} data-ff-display-format={this.props.dateFormat} value=""/>);
+		}
+		
 		return (
 			<div className="ff_module-date-picker-jumpto__icon" options={this.options} ref={this.bindRef}>
-		        <span className="ff_icon ff_icon-calendar-blue ff_module-date-picker-jumpto__trigger">
-					{/*<input className="ff_module-date-picker-jumpto__cal" data-ff="date-picker" data-ff-url-prefix="{@dateUrlPrefix}" value="{@date}"/>*/}
-					<input className="ff_module-date-picker-jumpto__cal" data-ff="date-picker" data-ff-target-input-id={this.props.id} data-ff-display-format={this.props.dateFormat} value=""/>
-		        </span>   
+		        <span className="ff_icon ff_icon-calendar-blue ff_module-date-picker-jumpto__trigger">			
+		        	{inputs}
+		        </span>
 		    </div>
 		)
 	}
