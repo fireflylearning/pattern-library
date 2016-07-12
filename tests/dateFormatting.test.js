@@ -436,7 +436,11 @@ describe('dateFormatting', function() {
                 var now = new Date(),
                     nowTime = now.getTime(),
                     date = new Date(nowTime - (offset * msInS));
-                    it(now + ' - ' + date + ' = ' + testDates.expected[index], function() {
+
+                it(now + ' - ' + date + ' = ' + testDates.expected[index], function() {
+                    now = new Date();
+                    nowTime = now.getTime();
+                    date = new Date(nowTime - (offset * msInS));
                     var result = dateFormatting[testMethod](date);
                     expect(result.toString()).to.equal(testDates.expected[index]);
                 });
