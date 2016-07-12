@@ -15,7 +15,7 @@ var expandedText = '[Expanded state header]',
 describe('ExpandableComponent', function() {
 
     it('should render an expandable component', function() {
-        var component = getComponent();
+        var component = getComponent({ expandedText: expandedText, collapsedText: collapsedText });
         expect(component).to.exist;
     });
 
@@ -65,6 +65,7 @@ describe('ExpandableComponent', function() {
 });
 
 function getComponent(props) {
+
     var element = React.createElement(ExpandableComponent, props, React.createElement('span', {}, contentText));
     return TestUtils.renderIntoDocument(element);
 }

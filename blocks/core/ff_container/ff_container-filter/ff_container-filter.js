@@ -14,7 +14,7 @@ module.exports = React.createClass({
     			</div>
     			<div className={'ff_container-filter__items' + (this.props.modifier ? ' ff_container-filter__items--' + this.props.modifier : '')}>
     				{this.props.filters.map(function(filter){
-    					return filter.content;
+    					return <div key={filter.key}>{filter.content}</div>;
     				})}
     			</div>
     		</div>

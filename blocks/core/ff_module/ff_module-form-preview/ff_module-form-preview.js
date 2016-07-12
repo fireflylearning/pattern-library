@@ -57,7 +57,7 @@ module.exports = React.createClass({
 					} else {
 						itemData = item.value;
 					}
-					return <li className={this.generateClass('ff_module-form-preview__item', item) }>
+					return <li key={item.key} className={this.generateClass('ff_module-form-preview__item', item) }>
 						<dl>
 							<dt className='ff_module-form-preview__list__title'><span className='ff_module-form-preview__list__title__text'>{item.title}</span>{isInlineEdit}</dt>
 						<dd className='ff_module-form-preview__list__data' data-ff-preview-for={item.previewfor}>{itemData}</dd>

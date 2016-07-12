@@ -181,7 +181,7 @@ function onError(){
 describe('TaskEventStatus', function() {
 
     it('should render', function() {
-        var element = React.createElement(TaskEventStatus, {});
+        var element = React.createElement(TaskEventStatus, {state:{},onError:onError});
         var component = TestUtils.renderIntoDocument(element);
         expect(component).to.exist;
     });
