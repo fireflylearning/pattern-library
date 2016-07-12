@@ -9,8 +9,8 @@ var TestUtils = require('react-addons-test-utils');
 var expect = require('chai').expect;
 
 var props = [
-    { title: '[]', isOpen: true, onClose: function(){} },
-    { title: '[Component Title]', isOpen: true, onClose: function(){} }
+    { title: '[]', isOpen: true, onClose: function() {} },
+    { title: '[Component Title]', isOpen: true, onClose: function() {} }
 ];
 
 var ContainerModalWithDialog = require('../blocks/core/ff_container/ff_container-modal-with-dialog/ff_container-modal-with-dialog.js');
@@ -18,22 +18,20 @@ var ContainerModalWithDialog = require('../blocks/core/ff_container/ff_container
 describe('ContainerModalWithDialog', function() {
 
     it('should render', function() {
-        var element = React.createElement(ContainerModalWithDialog, props[0]);
+        var element = React.createElement(ContainerModalWithDialog, props[0], <p>[Body text]</p>);
         var component = TestUtils.renderIntoDocument(element);
         expect(component).to.exist;
     });
 
     it('should have \'getOverlay\' method', function() {
-        var element = React.createElement(ContainerModalWithDialog, props[0]);
+        var element = React.createElement(ContainerModalWithDialog, props[0], <p>[Body text]</p>);
         var component = TestUtils.renderIntoDocument(element);
         expect(component.getOverlay).to.be.a('function');
         expect(component.getOverlay()).to.be.a('object');
     });
 
     it('should have render correct components and children', function() {
-        var element = <ContainerModalWithDialog {...props[1]}>
-            <p>[Body text]</p>
-        </ContainerModalWithDialog>;
+        var element = <ContainerModalWithDialog {...props[1] }><p>[Body text]</p></ContainerModalWithDialog> ;
 
         var component = TestUtils.renderIntoDocument(element);
         var portal = component.getOverlay();

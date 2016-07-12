@@ -7,12 +7,15 @@ var data = {
 	label: 'Sort by',
 	modifier: 'fixed-height',
 	filters: [{
+		key: 1,
 		content: <span className={'crate_util-block'}>Module A</span>
 	},
 	{
+		key: 2,
 		content: <span className={'crate_util-block'}>Module B</span>
 	},
 	{
+		key: 3,
 		content: <span className={'crate_util-block'}>Module C</span>
 	}]
 }

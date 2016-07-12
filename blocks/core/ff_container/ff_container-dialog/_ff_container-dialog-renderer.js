@@ -10,7 +10,8 @@ var props = {
         console.log('close');
     },
     body: <p>Test body text</p>,
-    controls: [<button key="send">Send</button>, <button key="close">Close</button>]
+    controls: [<button key="send">Send</button>, <button key="close">Close</button>],
+    modifier: ''
 };
 
 module.exports = function() {

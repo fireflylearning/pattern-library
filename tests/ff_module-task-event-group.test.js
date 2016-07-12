@@ -12,24 +12,31 @@ var TaskEventGroup = require('../blocks/core/ff_module/ff_module-task-event-grou
 var eventsEmpty = [];
 
 var events = [{
+    localEventId: 'event-1',
     description: {
         type: eventTypes.confirmTaskIsComplete,
         author: { name: 'Terry Teacher' },
-        message: 'Message from the teacher'
+        message: 'Message from the teacher',
+        sent: new Date("July 11, 2016 11:13:00")
     }
 }, {
+    localEventId: 'event-2',
     description: {
         type: eventTypes.confirmTaskIsComplete,
         author: { name: 'Terry Teacher' },
-        message: 'Message from the teacher'
+        message: 'Message from the teacher',
+        sent: new Date("July 11, 2016 11:13:00")
+
     }
 }];
 
 var deletedEvents = [{
+    localEventId: 'event-3',
     description: {
         type: eventTypes.confirmTaskIsComplete,
         author: { name: 'Terry Teacher' },
-        message: 'Message from the teacher'
+        message: 'Message from the teacher',
+        sent: new Date("July 11, 2016 11:13:00")
     },
     state: {
         deleted: true
