@@ -11,6 +11,7 @@ var ContainerControlBar = require('../../ff_container/ff_container-control-bar/f
     DropdownFilters = require('../../ff_module/ff_module-dropdown-filters/ff_module-dropdown-filters');
 
 var eventStates = require('../../ff_module/ff_module-task-event/_src/events').states;
+var generateClass = require('../../_lib/_ui/class-utils').generateStandardClass;
 
 
 function renderArchived(props) {
@@ -18,8 +19,8 @@ function renderArchived(props) {
 }
 
 function renderDefault(props) {
-    return  <div className="ff_module-task-meta-actions ff_util-row-bottom">
-                <ContainerControlBar modifier="split">
+    return  <div className={generateClass('ff_module-task-meta-actions', props) + ' ff_util-row-bottom'}>
+                <ContainerControlBar modifier="split" classes="ff_module-task-meta-actions__controlbar">
 
                     <ContainerControlBarSet>
 
@@ -65,6 +66,7 @@ module.exports = React.createClass({
         description: React.PropTypes.shape({
             numRecipientsAffected: React.PropTypes.number,
         }),
+        modifier: React.PropTypes.string,
         state: React.PropTypes.object,
         filters: React.PropTypes.shape({
             type: React.PropTypes.oneOf([DropdownFilters])

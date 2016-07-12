@@ -96,7 +96,8 @@ describe('ResponseRecipientList', function() {
     before(function() {
         var element = React.createElement(ResponseRecipientList, {
             responses: responses,
-            onSelect: sinon.spy()
+            onSelect: sinon.spy(),
+            currentTaskResponse: '[test]'
         });
         component = TestUtils.renderIntoDocument(element);
     });
@@ -108,6 +109,11 @@ describe('ResponseRecipientList', function() {
     it('should have ' + responses.length + ' items', function() {
         var items = TestUtils.scryRenderedDOMComponentsWithTag(component, 'li');
         expect(items.length).to.equal(responses.length);
+    });
+
+    it('should render the current task response', function() {
+        var root = TestUtils.scryRenderedDOMComponentsWithClass(component, 'ff_module-response-recipient-list__currentResponse');
+        expect(root).to.exist;
     });
 
 });

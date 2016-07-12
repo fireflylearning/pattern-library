@@ -82,7 +82,7 @@ module.exports = React.createClass({
     renderStatus: function() {
         var event = this.props.event;
         if (event) {
-            return statusSummaryText(this.props);
+           return statusSummaryText(this.props);
         } else {
             return '';
         }

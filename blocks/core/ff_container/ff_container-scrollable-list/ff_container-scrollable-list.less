@@ -12,17 +12,30 @@
 
     }
     &__item--main {
-        float:right;
-        width: 70%;
-        flex: 1 0 70%;
+        @media (min-width: @ff_bp_wide) {
+            float:right;
+            width: 70%;
+            flex: 1 0 70%;
+            overflow-y: auto;
+            background: @ff_colour_control_bg;
+            display: block;
+      }
+        display: none;
         overflow-y: auto;
         background: @ff_colour_control_bg;
+        box-sizing: border-box;
+
     }
     &__item--sidebar {
-        float:left;
-        width: 30%;
-        flex: 1 0 30%;
+        @media (min-width: @ff_bp_wide) {
+            float:left;
+            width: 30%;
+            flex: 1 0 30%;
+            overflow-y: auto;
+            border-right: 1px solid @ff_colour_control_border;
+        }
         overflow-y: auto;
-        border-right: 1px solid @ff_colour_control_border;
+        box-sizing: border-box;
+        width: 100%;
     }
 }

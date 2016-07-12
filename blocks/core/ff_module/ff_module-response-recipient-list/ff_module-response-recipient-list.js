@@ -1,22 +1,21 @@
 'use strict';
 
 var React = require('react');
-
-var ProfileResponseButton = require('./../ff_module-profile-response-button/ff_module-profile-response-button'),
-    ItemRepeater = require('../../ff_container/ff_container-item-repeater/ff_container-item-repeater');
+var ProfileResponseButton = require('../ff_module-profile-response-button/ff_module-profile-response-button.js');
+var ItemRepeater = require('../../ff_container/ff_container-item-repeater/ff_container-item-repeater.js');
 
 module.exports = React.createClass({
     displayName: 'TaskResponseRecipientList',
     propTypes:{
         responses: React.PropTypes.array.isRequired,
-        onSelect: React.PropTypes.func.isRequired
+        onSelect: React.PropTypes.func.isRequired,
+        currentTaskResponse: React.PropTypes.element
     },
     render: function(){
-        return (
-            <ItemRepeater modifier="separated">
-                {this.props.responses && this.props.responses.map(response =>
-                    <ProfileResponseButton
-                        key = {response.guid}
+        return <ItemRepeater modifier="separated">
+                {this.props.responses && this.props.responses.map(response =>{
+                	var currentResponse = response.isSelected ? <div className='ff_module-response-recipient-list__currentResponse'>{this.props.currentTaskResponse}</div> : null;
+                    return <div key={response.guid}><ProfileResponseButton
                         isRead = {response.isRead}
                         isSelected = {response.isSelected}
                         label = {response.label}
@@ -26,9 +25,9 @@ module.exports = React.createClass({
                         onSelect = {()=>this.props.onSelect(response.recipient)}
                         pic_href = {response.pic_href}
                     />
-                )}
-            </ItemRepeater>
-        );
-
+                    {currentResponse}
+                    </div>
+                })}
+            </ItemRepeater>;
     }
 });

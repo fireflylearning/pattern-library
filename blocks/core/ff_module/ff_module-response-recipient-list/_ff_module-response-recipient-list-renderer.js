@@ -11,8 +11,10 @@ var responses = [{
     guid: "u47",
     label: "Sally Student",
     latestEvent: {
-        type: eventTypes.markAndGrade,
-        sent: new Date()
+        description: {
+            type: eventTypes.markAndGrade,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -28,8 +30,10 @@ var responses = [{
     guid: "u43",
     label: "Terry Teacher",
     latestEvent: {
-        type: eventTypes.requestResubmission,
-        sent: new Date()
+        description: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         grade: "A"
@@ -41,8 +45,10 @@ var responses = [{
     guid: "u44",
     label: "Joseph Goulden",
     latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     pic_href: "/images/default_picture.png"
 },{
@@ -53,8 +59,10 @@ var responses = [{
     guid: "u42",
     label: "Sally Student",
     latestEvent: {
-        type: eventTypes.markAndGrade,
-        sent: new Date()
+        description: {
+            type: eventTypes.markAndGrade,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         mark: 7,
@@ -71,8 +79,10 @@ var responses = [{
     guid: "u41",
     label: "Terry Teacher",
     latestEvent: {
-        type: eventTypes.requestResubmission,
-        sent: new Date()
+        description: {
+            type: eventTypes.requestResubmission,
+            sent: new Date()
+        }
     },
     markAndGrade: {
         grade: "A"
@@ -85,8 +95,10 @@ var responses = [{
     guid: "u40",
     label: "Joseph Goulden",
     latestEvent: {
-        type: eventTypes.confirmTaskIsComplete,
-        sent: new Date()
+        description: {
+            type: eventTypes.confirmTaskIsComplete,
+            sent: new Date()
+        }
     },
     pic_href: "/images/default_picture.png"
 }];
@@ -98,7 +110,8 @@ module.exports = function() {
                 responses: responses,
                 onSelect: function(recipient){
                     console.log(recipient);
-                }
+                },
+                currentTaskResponse: <span className='crate_util-block'>Component</span>
             });
             React.render(element, domElement);
         });
