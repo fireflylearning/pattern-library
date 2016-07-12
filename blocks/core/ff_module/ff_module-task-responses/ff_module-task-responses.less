@@ -1,17 +1,14 @@
 .ff_module-task-responses {
     position: relative;
-
     &__actions {
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
     }
 }
 
 @local-radius: @ff_size_control_rounding;
-
 // modifiers
 .ff_module-task-responses {
-    &--standalone {
-    }
+    &--standalone {}
 }
 
 .ff_module-task-responses {
@@ -19,14 +16,20 @@
         position: static;
     }
     &--fixed-actions &__actions {
-        position: absolute;
-        left: 30%;
-        right: 0;
-        top: 0;
-        z-index: 2;
+        @media (min-width: @ff_bp_wide) {
+            position: absolute;
+            left: 30%;
+            right: 0;
+            top: 0;
+            z-index: 2;
+        }
+        left: 0;
     }
     &--fixed-actions &__content {
-        margin-top: 60px;
+        @media (min-width: @ff_bp_wide) {
+            margin-top: 55px;
+        }
+        margin-top: 0;
     }
     &--fixed-actions-cannot-edit &__content {
         margin-top: 0px;
