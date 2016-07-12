@@ -99,7 +99,7 @@
 .ff_container-overlay {
     &--task-event-scrollable &__bar {
         @media (min-width: @ff_bp_wide) {
-          left: 30%;
+            left: 30%;
         }
     }
     &--task-event-scrollable-top &__bar{
@@ -115,22 +115,7 @@
     &--absolute-top &__bar {
         display: block;
     }
-    // task responses
-    &--task-responses &__body{
-         @media (min-width: 570px) { 
-             margin-top: 55px;
-         }
-         margin-top: 110px;
-    }
-    &--task-responses &--task-event-scrollable-top &__bar {
-        @media (min-width: 570px) {
-            top: -55px;
-        }
-        @media (min-width: @ff_bp_wide) {
-            top: 0;
-        }
-        top: -110px;
-    }
+    // Task responses
     &--task-responses > &__bar{
             @media (min-width: @ff_bp_wide) {
                 display: block;
