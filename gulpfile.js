@@ -114,7 +114,7 @@ gulp.task('js', ['info'],
 gulp.task('export:js', ['export:js:raw']);
 
 gulp.task('export:js:raw',
-    webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), config.exportJsPath));
+    webpackTasks.buildExportRawJs(path.join(paths.blocks.dir,'core/'), config.exportPath));
 
 
 
