@@ -24,6 +24,15 @@
 		width: 100%;
 		padding: @ff_size_control_vertical/2 0;
 	}
+
+	/* 
+	NOTE: there are no browser targeting prefixes as yet in patternlib - this targets code on webapp specifically
+	TODO: Add add IE10 target in pattern-lib templates
+	*/
+	.ie10 &__item {
+		display: block;
+	}
+	
 	&--with-url {
 		padding: 0;
 	}
