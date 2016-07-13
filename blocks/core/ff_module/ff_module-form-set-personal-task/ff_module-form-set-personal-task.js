@@ -1,5 +1,7 @@
 'use strict';
 
+var $ = require('jquery');
+
 var React = require('react'),
     Button = require('../ff_module-button/ff_module-button'),
     FormLabel = require('../ff_module-form-label/ff_module-form-label'),
@@ -14,14 +16,12 @@ var React = require('react'),
 function getOptions() {
     return [
         {
-            key: 'opt1',
-            value: 'Option 1',
-            text: 'is'
+            value: 'opt_1',
+            text: 'Option 1'
         },
         {
-            key: 'opt2',
-            value: 'Option 2',
-            text: 'this'
+            value: 'opt_2',
+            text: 'Option 2'
         }
     ]
 }
@@ -45,9 +45,13 @@ module.exports = React.createClass({
             taskDescriptionModel = this.props.models && this.props.models['description'] || null,
             taskDescriptionValidation = this.props.validation && this.props.validation['description'] || null;
 
-        var data = {
+
+        // console.log(this.props);
+
+        var datePickerProps = {
             id: 'due-date',
             dateFormat: 'dd/mm/yy',
+            dueDateRef: this.props.personalTask.dueDate,
             data: [{
                 attr: 'data-ff-target',
                 value: 'due-date'
@@ -56,7 +60,6 @@ module.exports = React.createClass({
 
         return (
             <div>
-                
                 <ContainerFormLine>
                     <FormField model={taskTitleModel} validation={taskTitleValidation}>
                         <FormLabel key="l0" modifier="stacked">Task Title</FormLabel>
@@ -69,10 +72,18 @@ module.exports = React.createClass({
                 </ContainerFormErrors>
 
                 <ContainerFormLine>
-                    <FormField model={taskDueDateModel} validation={taskDueDateValidation}>
+                    <FormField model={taskDueDateModel}>
                         <FormLabel key="l1" modifier="stacked">Due Date</FormLabel>
-                        <FormInput id="due-date" modifier="constrained" type="text" onChange={this.onChangeDueDate} value={this.props.personalTask.dueDate} />
-                        <DatePickerJumpTo {...data } />
+                        <FormInput 
+                            id="due-date" 
+                            modifier="constrained" 
+                            type="text" 
+                            onChange={this.onChangeDueDate} 
+                            onClick={this.onClickDueDate.bind(this, datePickerProps.id)} 
+                            value={this.props.personalTask.dueDate} 
+                            readonly={true} 
+                        />
+                        <DatePickerJumpTo {...datePickerProps } />
                     </FormField>
                 </ContainerFormLine>
 
@@ -107,6 +118,11 @@ module.exports = React.createClass({
                 </ContainerFormLine>
             </div>
         );
+    },
+
+    onClickDueDate: function(id){
+        var target = 'data-ff-target-input-id=' + id;
+        $('['+ target + ']').trigger('focus');
     },
 
     onChangeTitle: function(){

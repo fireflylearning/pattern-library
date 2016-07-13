@@ -44,10 +44,10 @@ module.exports = React.createClass({
 
         } else if (this.props.type == 'textarea') {
 
-            return <textarea className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} onFocus={this.props.onFocus} id={this.props.id} value={this.props.value} maxLength={this.props.maxlength}></textarea>;
+            return <textarea className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} onFocus={this.props.onFocus} id={this.props.id} value={this.props.value} maxLength={this.props.maxlength} readOnly={this.props.readonly}></textarea>;
         } else {
 
-            return <input className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} onFocus={this.props.onFocus} id={this.props.id} value={this.props.value} type={this.props.type ? this.props.type : 'text'} maxLength={this.props.maxlength}></input>;
+            return <input className={className} name={this.props.name} {...attributes} onChange={this.props.onChange} onClick={this.props.onClick} onBlur={this.props.onBlur} onFocus={this.props.onFocus} id={this.props.id} value={this.props.value} type={this.props.type ? this.props.type : 'text'} maxLength={this.props.maxlength} readOnly={this.props.readonly}></input>;
         }
     }
 });

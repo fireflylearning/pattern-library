@@ -51,6 +51,7 @@
     <xsl:param name="className" />
     <xsl:param name="type" />
     <xsl:param name="maxlength" />
+    <xsl:param name="readonly" />
 
     <input class="{$className} {$input/@classes}">
 
@@ -100,6 +101,12 @@
         <xsl:if test="not($input/@maxlength='')">
             <xsl:attribute name="maxlength">
                <xsl:value-of select="$input/@maxlength"/>
+            </xsl:attribute>
+        </xsl:if>
+
+        <xsl:if test="not($input/@readonly='')">
+            <xsl:attribute name="readonly">
+               <xsl:value-of select="$input/@readonly"/>
             </xsl:attribute>
         </xsl:if>
 

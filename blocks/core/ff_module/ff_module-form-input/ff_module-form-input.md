@@ -21,6 +21,7 @@ data:
 - checked (Bool)
 - disabled (Bool)
 - maxlength (Number)
+- readonly (Bool)
 
 ## Modifiers 
 

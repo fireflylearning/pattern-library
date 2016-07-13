@@ -47,7 +47,7 @@ var personalTaskKeys = {
 
 var personalTask = {
     taskTitle: '',
-    dueDate: '',
+    dueDate: '1/2/34',
     class: 'Class Name',
     description: ''
 };
