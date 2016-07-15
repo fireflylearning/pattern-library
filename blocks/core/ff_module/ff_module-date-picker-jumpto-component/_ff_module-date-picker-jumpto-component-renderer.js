@@ -4,7 +4,6 @@ var React = require('react'),
 
 var DatePickerJumpTo = require('./ff_module-date-picker-jumpto-component');
 
-
 var data = {
     id: 'test',
     dataFormat: 'dd/mm/yy',

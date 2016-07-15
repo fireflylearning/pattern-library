@@ -68,6 +68,7 @@
     "react-redux": "^4.4.5",
     "react-redux-form": "^0.12.2",
     "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
     "swig": "^1.4.2",
     "through2": "^2.0.0",
     "webpack": "^1.12.14"

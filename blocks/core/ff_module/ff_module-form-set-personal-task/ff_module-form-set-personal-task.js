@@ -12,6 +12,8 @@ var React = require('react'),
     ContainerFormLine = require('../../ff_container/ff_container-form-line/ff_container-form-line'),
     DatePickerJumpTo = require('../ff_module-date-picker-jumpto-component/ff_module-date-picker-jumpto-component');
 
+import {modelReducer, actions} from 'react-redux-form';
+import thunk from 'redux-thunk';
 
 function getOptions() {
     return [
@@ -45,13 +47,11 @@ module.exports = React.createClass({
             taskDescriptionModel = this.props.models && this.props.models['description'] || null,
             taskDescriptionValidation = this.props.validation && this.props.validation['description'] || null;
 
-
-        // console.log(this.props);
-
         var datePickerProps = {
             id: 'due-date',
             dateFormat: 'dd/mm/yy',
-            dueDateRef: this.props.personalTask.dueDate,
+            onChangeDueDate: this.onChangeDueDate,
+            inlineContainer: '#datepicker-container',
             data: [{
                 attr: 'data-ff-target',
                 value: 'due-date'
@@ -59,11 +59,11 @@ module.exports = React.createClass({
         };
 
         return (
-            <div>
+            <div className="ff_module-form-set-personal-task">
                 <ContainerFormLine>
                     <FormField model={taskTitleModel} validation={taskTitleValidation}>
-                        <FormLabel key="l0" modifier="stacked">Task Title</FormLabel>
-                        <FormInput modifier="fullwidth" type="text" value={this.props.personalTask.taskTitle} onChange={this.onChangeTitle} />
+                        <FormLabel key="l0" modifier="stacked" required="true">Task Title</FormLabel>
+                        <FormInput modifier="fullwidth" type="text" value={this.props.personalTask.taskTitle} onChange={this.onChangeTitle} required/>
                     </FormField>
                 </ContainerFormLine>
 
@@ -72,28 +72,29 @@ module.exports = React.createClass({
                 </ContainerFormErrors>
 
                 <ContainerFormLine>
-                    <FormField model={taskDueDateModel}>
-                        <FormLabel key="l1" modifier="stacked">Due Date</FormLabel>
+                    <FormField model={taskDueDateModel} validation={taskDueDateValidation}>
+                        <FormLabel key="l1" modifier="stacked" required="true">Due Date</FormLabel>
                         <FormInput 
                             id="due-date" 
                             modifier="constrained" 
                             type="text" 
-                            onChange={this.onChangeDueDate} 
-                            onClick={this.onClickDueDate.bind(this, datePickerProps.id)} 
+                            onClick={this.onClickDueDate.bind(this, datePickerProps.id)}
                             value={this.props.personalTask.dueDate} 
-                            readonly={true} 
+                            readonly={true}
                         />
-                        <DatePickerJumpTo {...datePickerProps } />
+                        <DatePickerJumpTo {...datePickerProps} />
                     </FormField>
                 </ContainerFormLine>
 
                 <ContainerFormErrors>
                     <FormFieldErrors model={taskDueDateModel} validation={taskDueDateValidation}/>
                 </ContainerFormErrors>
+                
+                <div id="datepicker-container"></div>
 
                 <ContainerFormLine>
                     <FormField model={taskClassModel} validation={taskClassValidation}>
-                        <FormLabel key="l2" modifier="stacked">Class</FormLabel>
+                        <FormLabel key="l2" modifier="stacked" required="true">Class</FormLabel>
                         <FormInput modifier="constrained" type="select" onChange={this.onChangeClass} options={getOptions()} />
                     </FormField>
                 </ContainerFormLine>
@@ -104,7 +105,7 @@ module.exports = React.createClass({
 
                 <ContainerFormLine>
                     <FormField model={taskDescriptionModel} validation={taskDescriptionValidation}>
-                        <FormLabel key="l3" modifier="stacked">Description</FormLabel>
+                        <FormLabel key="l3" modifier="stacked" required="true">Description</FormLabel>
                         <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.onChangeDescription} />
                     </FormField>
                 </ContainerFormLine>
@@ -123,20 +124,26 @@ module.exports = React.createClass({
     onClickDueDate: function(id){
         var target = 'data-ff-target-input-id=' + id;
         $('['+ target + ']').trigger('focus');
+
     },
 
-    onChangeTitle: function(){
-        console.log('Title changed')
+    onChangeDueDate: function(value){        
+            
+        var props = this.props;    
+
+        this.props.dispatch(actions.focus(this.props.models['dueDate']));
+        this.props.dispatch(actions.change(this.props.models['dueDate'], value));
+        
+        setTimeout(function(){
+            console.log(props);
+            props.dispatch(actions.setTouched(prop.models['dueDate']));  
+        }, 0)
+
     },
-    onChangeDueDate: function(){
-        console.log('Due date changed')
-    },
-    onChangeClass: function(){
-        console.log('Class changed')
-    },
-    onChangeDescription: function(){
-        console.log('Description changed')
-    },
+
+    onChangeTitle: function(){},
+    onChangeClass: function(){},
+    onChangeDescription: function(){},
 
 });
 

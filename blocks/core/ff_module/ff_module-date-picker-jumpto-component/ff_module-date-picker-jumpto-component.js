@@ -1,4 +1,5 @@
 'use strict';
+var $ = require('jquery');
 
 var React = require('react');
 var activateDatePickerJumpTo = require('../ff_module-date-picker-jumpto/ff_module-date-picker-jumpto');
@@ -12,13 +13,12 @@ module.exports = React.createClass({
 
 	componentDidMount: function() {
 
-		console.log(this.props);
-		
 		activateDatePickerJumpTo({
 			root: this._root,
 			selector: 'data-ff=date-picker',
 			displayElement: 'data-ff-target-input-id',
-			dueDateStoreRef: '{this.props.ref}'
+			inlineContainer: this.props.inlineContainer,
+			onChangeDueDate: this.props.onChangeDueDate
 		});
 	},
 
@@ -30,10 +30,10 @@ module.exports = React.createClass({
 
 		var inputs = [];
 		if (this.props.dataUrlPrefix) {
-			inputs.push(<input className="ff_module-date-picker-jumpto__cal yes" data-ff="date-picker" data-ff-url-prefix={this.props.dataUrlPrefix} value=""/>);	
+			inputs.push(<input key="url-prefix" className="ff_module-date-picker-jumpto__cal" data-ff="date-picker" data-ff-url-prefix={this.props.dataUrlPrefix} onClick={this.onClickHandler} value=""/>);	
 		}
 		if (this.props.id) {
-			inputs.push(<input className="ff_module-date-picker-jumpto__cal" data-ff="date-picker" data-ff-target-input-id={this.props.id} data-ff-display-format={this.props.dateFormat} value=""/>);
+			inputs.push(<input key="target" className="ff_module-date-picker-jumpto__cal" data-ff="date-picker" data-ff-target-input-id={this.props.id} data-ff-display-format={this.props.dateFormat} onClick={this.onClickHandler} value=""/>);
 		}
 		
 		return (
@@ -43,6 +43,12 @@ module.exports = React.createClass({
 		        </span>
 		    </div>
 		)
+	},
+
+	onClickHandler: function() {
+		$(this.props.inlineContainer).fadeIn(100);
+
+	
 	}
 
 });

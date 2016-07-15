@@ -5,7 +5,7 @@ var docVal = (typeof window !== 'undefined' && window.document) ? window.documen
 var _options = {
     root: docVal,
     selector: 'data-ff=date-picker',
-    displayElement: 'data-ff-target-input-id'
+    displayElement: 'data-ff-target-input-id',
 }
 
 function activateDatePickerJumpTo(options) {
@@ -31,12 +31,13 @@ function activateDatePickerJumpTo(options) {
                 valueElement.val(date);
                 var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
                 displayElement.val(displayDate);
-
-                // console.log(options.parentRef);
+                options.onChangeDueDate(displayDate);
             }
         }
         
-        $(element).datepicker({
+        var sel = (options.inlineContainer) ? options.inlineContainer : element;
+
+        $(sel).datepicker({
             dateFormat: valueFormat,
             onSelect: function(date) {
                 if (displayElement) {
