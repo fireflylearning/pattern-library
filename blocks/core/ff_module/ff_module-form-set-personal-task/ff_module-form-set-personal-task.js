@@ -124,21 +124,11 @@ module.exports = React.createClass({
     onClickDueDate: function(id){
         var target = 'data-ff-target-input-id=' + id;
         $('['+ target + ']').trigger('focus');
-
     },
 
     onChangeDueDate: function(value){        
-            
-        var props = this.props;    
-
         this.props.dispatch(actions.focus(this.props.models['dueDate']));
         this.props.dispatch(actions.change(this.props.models['dueDate'], value));
-        
-        setTimeout(function(){
-            console.log(props);
-            props.dispatch(actions.setTouched(prop.models['dueDate']));  
-        }, 0)
-
     },
 
     onChangeTitle: function(){},

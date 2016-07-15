@@ -1,15 +1,30 @@
+
 .ui-datepicker {
-    box-shadow: 0 5px 0 3px fade(black,10%);
-    border-radius: @ff_size_control_rounding;
+
+
 }
 
+
 .ff_module-date-picker-calendar {
-    
-    //restyling for jQuery datepicker
-    &, .ui-widget-content {
-        background: white;
+         
+    &--inline {
+        &, .ui-widget-content {
+            background: transparent;
+            border: none;
+        }
     }
 
+
+
+    &--popup {
+        box-shadow: 0 5px 0 3px fade(black,10%);
+        border-radius: @ff_size_control_rounding; 
+
+        //restyling for jQuery datepicker
+        &, .ui-widget-content {
+            background: white;
+        }  
+    }
 
     .ui-widget-header {
         background: none;
@@ -43,7 +58,6 @@
             right: @datpicker-spacing;
             .datepicker-jump();
         }
-
 
     }
 

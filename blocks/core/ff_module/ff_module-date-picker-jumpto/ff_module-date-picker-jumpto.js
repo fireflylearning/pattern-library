@@ -32,12 +32,13 @@ function activateDatePickerJumpTo(options) {
                 var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
                 displayElement.val(displayDate);
                 options.onChangeDueDate(displayDate);
+                $sel.slideUp(250);
             }
         }
         
-        var sel = (options.inlineContainer) ? options.inlineContainer : element;
+        var $sel = (options.inlineContainer) ? $(options.inlineContainer).addClass('ff_module-date-picker-calendar ff_module-date-picker-calendar--inline') : $(element);
 
-        $(sel).datepicker({
+        $sel.datepicker({
             dateFormat: valueFormat,
             onSelect: function(date) {
                 if (displayElement) {
@@ -48,7 +49,7 @@ function activateDatePickerJumpTo(options) {
                 }
             },
             beforeShow: function(input, inst) {
-                $(inst.dpDiv).addClass('ff_module-date-picker-calendar');
+                $(inst.dpDiv).addClass('ff_module-date-picker-calendar ff_module-date-picker-calendar--popup');
                 setTimeout(function () {
                     var curr_left = inst.dpDiv.css('left');
                     var curr_right = inst.dpDiv.css('right');
@@ -65,7 +66,8 @@ function activateDatePickerJumpTo(options) {
 
                     ensureElementIsFullyContainedByWindow(inst.dpDiv);
                 }, 0);
-            }
+            },
+
         });
     });
     
