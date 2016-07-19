@@ -114,9 +114,6 @@ module.exports = React.createClass({
                     <FormFieldErrors model={taskDescriptionModel} validation={taskDescriptionValidation}/>
                 </ContainerFormErrors>
 
-                <ContainerFormLine>
-                    <Button modifier="primary" text="Set Task"></Button>
-                </ContainerFormLine>
             </div>
         );
     },

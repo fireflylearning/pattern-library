@@ -12,7 +12,7 @@
         .core() {
             position: absolute;
             outline: none;
-            overflow: auto;
+            // overflow: auto;
             -webkit-overflow-scrolling: touch;
         }
         .default() {
@@ -62,6 +62,16 @@
                 min-height: 265px;
             }
         }
+        .parent() {
+            .position() {
+                left: 50%;
+                top: 50px;
+                transform: translate(-50%, 0);
+                width: 20%;
+                min-width: 300px;
+                min-height: 160px;
+            }
+        }
     }
 }
 
@@ -104,6 +114,14 @@
         &__overlay--wide {}
         &__content--wide {
             #ff_container-modal > .content > .wide > .position;
+        }
+    }
+
+    // compact modifiers
+    .ff_container-modal {
+        &__overlay--parent {}
+        &__content--parent {
+            #ff_container-modal > .content > .parent > .position;
         }
     }
 }

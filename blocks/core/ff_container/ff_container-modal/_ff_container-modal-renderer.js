@@ -3,7 +3,7 @@ var React = require('react'),
     ReactDOM = require('react-dom');
 
 var ContainerModal = require('./ff_container-modal');
-var props = { isOpen: true, modifier: '' };
+var props = { isOpen: true, modifier: 'parent' };
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {

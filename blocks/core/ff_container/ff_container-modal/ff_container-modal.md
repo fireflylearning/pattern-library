@@ -8,7 +8,7 @@ See the docs for [react-modal](https://github.com/reactjs/react-modal) for more 
 
 - **`modifier`**: {String} Suffix class modifier
      
-    Current options are `compact` and `wide`
+    Current options are `compact`, `wide` and `parent`
     
 - **`classes`**: {String} Additional classes from other block owners
 
