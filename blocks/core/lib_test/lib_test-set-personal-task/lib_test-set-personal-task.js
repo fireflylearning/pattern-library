@@ -40,7 +40,7 @@ validation[personalTaskKeys.taskTitle] = {
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
     messages: {
-        required: 'Please add a Title to this task'
+        required: 'Please add a title to this task'
     }
 };
 validation[personalTaskKeys.dueDate] = {
@@ -76,7 +76,6 @@ validation[personalTaskKeys.description] = {
     }
 };
 
-
 var store = applyMiddleware(thunk)(createStore)(combineReducers({
     personalTask: modelReducer('personalTask', personalTask),
     personalTaskForm: formReducer('personalTask', personalTask)
@@ -89,32 +88,22 @@ function mapStateToProps(state) {
         validation: validation
     };
 };
-
-
-
-
-var store = createStore(combineReducers({
-	user: modelReducer('personalTask', personalTask),
-	userForm: formReducer('personalTask', personalTask)
-}));
-
+	
 var ConnectedFormSetPersonalTask = connect(mapStateToProps)(ModuleFormSetPersonalTask);
-
-
 
 var props = {
 	isOpen: true, 
-	modifierModal: 'parent',
-	modifierDialog: 'arrow',
-	title: 'Set a Personal Task'
+	modifier: 'parent',
+	title: 'Set a Personal Task',
+	controls: <button key="set-task" className="ff_module-button ff_module-button--primary">Set Task</button>
 };
 
 export class App extends React.Component {
 	render() {
 		return ( 
-			<Provider store = { store }>
+			<Provider store={store}>
 				<ContainerModalWithDialog {...props} >
-					<ConnectedFormSetPersonalTask />
+					<ConnectedFormSetPersonalTask {...props} />
 				</ContainerModalWithDialog>
 			</Provider>
 		)

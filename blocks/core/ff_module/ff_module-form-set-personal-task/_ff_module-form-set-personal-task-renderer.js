@@ -5,9 +5,8 @@ var React = require('react'),
 
 var ModuleFormSetPersonalTask = require('./ff_module-form-set-personal-task');
 
-import { connect } from 'react-redux';
+import { connect, Provider} from 'react-redux';
 import { combineReducers, createStore, applyMiddleware, actions } from 'redux';
-import { Provider } from 'react-redux';
 import { modelReducer, formReducer } from 'react-redux-form';
 import thunk from 'redux-thunk';
 import { isRequired, isNumber, maxLength , isString } from '../../_lib/simpleValidation';
@@ -82,7 +81,6 @@ var store = applyMiddleware(thunk)(createStore)(combineReducers({
 }));
 
 function mapStateToProps(state) {
-    
     return {
         personalTask: state.personalTask,
         models: models,

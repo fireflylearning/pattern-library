@@ -14,12 +14,9 @@ module.exports = React.createClass({
         controls: React.PropTypes.node
     },
     render: function() {
-
-        console.log(this.props);
-
         return (
             <ContainerModal
-                modifier={this.props.modifierModal}
+                modifier={this.props.modifier}
                 isOpen={this.props.isOpen}
                 onRequestClose={this.props.onClose}
                 ref={this.bindModalRef}
@@ -30,7 +27,7 @@ module.exports = React.createClass({
                     onCloseIconClick={this.props.onClose}
                     body={this.props.children}
                     controls={this.props.controls}
-                    modifier={this.props.modifierDialog}
+                    modifier={this.props.modifier}
                 />
             </ContainerModal>
         );

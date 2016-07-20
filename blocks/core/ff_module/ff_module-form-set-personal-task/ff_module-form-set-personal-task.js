@@ -15,6 +15,16 @@ var React = require('react'),
 import {modelReducer, actions} from 'react-redux-form';
 import thunk from 'redux-thunk';
 
+function generateClass(base, props) {
+    var classNames = [];
+    props = props || {};
+    classNames.push(base);
+    if (!!props.modifier) {
+        classNames.push(base + '--' + props.modifier);
+    }
+    return classNames.join(' ');
+}
+
 function getOptions() {
     return [
         {
@@ -58,8 +68,11 @@ module.exports = React.createClass({
             }]
         };
 
+        // console.log( generateClass('ff_module-form-set-personal-task', this.props.modifier) )
+
+
         return (
-            <div className="ff_module-form-set-personal-task">
+            <div className={generateClass('ff_module-form-set-personal-task', this.props)}>
                 <ContainerFormLine>
                     <FormField model={taskTitleModel} validation={taskTitleValidation}>
                         <FormLabel key="l0" modifier="stacked" required="true">Task Title</FormLabel>
@@ -80,7 +93,6 @@ module.exports = React.createClass({
                             type="text" 
                             onClick={this.onClickDueDate.bind(this, datePickerProps.id)}
                             value={this.props.personalTask.dueDate} 
-                            readonly={true}
                         />
                         <DatePickerJumpTo {...datePickerProps} />
                     </FormField>
