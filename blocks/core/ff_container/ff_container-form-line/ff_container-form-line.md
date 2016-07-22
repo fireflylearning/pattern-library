@@ -5,6 +5,7 @@ data:
         content: "<label for=\"id01\">Input label</label>"
       -              
         modifier: fullwidth
+        dataAnchor: my-data-anchor-value
         content: "<input id=\"id01\" type=\"text\" value=\"Input fullwidth\"/>"
 ---
 

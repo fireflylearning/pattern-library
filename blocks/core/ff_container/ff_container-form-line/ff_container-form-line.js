@@ -39,7 +39,6 @@ module.exports = React.createClass({
             clonedSubChildren,
             className;
 
-
         if (children) {
 
             if (React.Children.count(children) === 1) singleNode = true;
@@ -53,7 +52,7 @@ module.exports = React.createClass({
                         className = formlineSectionClass;
                     }
                     clonedSubChildren = React.Children.map(child.props.children, addClassesToNode);
-                    return React.cloneElement(child, { className: className}, clonedSubChildren)
+                    return React.cloneElement(child, { className: className, 'data-anchor': this.props.dataAnchor }, clonedSubChildren)
                 } else {
                     return addClassesToNode(child);
                 }
@@ -63,7 +62,7 @@ module.exports = React.createClass({
                 return clonedDirectChildren[0];
             } else {
                 // more than one direct child, so formline class must be added to new wrapper root, and direct children skipped if they are formfields
-                return <div className={formlineClass}>{clonedDirectChildren}</div>;
+                return <div className={formlineClass} data-anchor={this.props.dataAnchor} >{clonedDirectChildren}</div>;
             }
         }
 

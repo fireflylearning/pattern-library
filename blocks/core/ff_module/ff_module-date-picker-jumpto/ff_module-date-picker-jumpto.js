@@ -35,9 +35,6 @@ function activateDatePickerJumpTo(options) {
                 $sel.slideUp(250);
             }
         }
-        
-        displayElement.focus(function(){ console.log("this focused")})
-
 
         var $sel = (options.inlineContainer) ? $(options.inlineContainer).addClass('ff_module-date-picker-calendar ff_module-date-picker-calendar--inline') : $(element);
 

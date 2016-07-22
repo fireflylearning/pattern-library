@@ -12,7 +12,7 @@ module.exports = React.createClass({
     },
 
 	componentDidMount: function() {
-
+	
 		activateDatePickerJumpTo({
 			root: this._root,
 			selector: 'data-ff=date-picker',
@@ -46,7 +46,12 @@ module.exports = React.createClass({
 	},
 
 	onFocusHandler: function() {
-		if (this.props.inlineContainer) $(this.props.inlineContainer).slideDown(250);
+		if (this.props.inlineContainer) {
+			$(this.props.inlineContainer).slideDown(250, function(){
+				var offset = $('[data-anchor]').position().top - 30;
+				$('.ff_container-dialog__body').animate({scrollTop: offset});
+			});
+		}
 	},
 
 	onBlurHandler: function() {

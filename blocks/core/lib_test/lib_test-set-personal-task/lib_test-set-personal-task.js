@@ -95,7 +95,8 @@ var props = {
 	isOpen: true, 
 	modifier: 'parent',
 	title: 'Set a Personal Task',
-	controls: <button key="set-task" className="ff_module-button ff_module-button--primary">Set Task</button>
+	controls: <button key="set-task" className="ff_module-button ff_module-button--primary">Set Task</button>,
+	dataAnchor: 'date-picker'
 };
 
 export class App extends React.Component {

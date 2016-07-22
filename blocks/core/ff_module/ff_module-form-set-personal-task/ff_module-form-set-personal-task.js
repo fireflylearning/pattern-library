@@ -68,9 +68,6 @@ module.exports = React.createClass({
             }]
         };
 
-        // console.log( generateClass('ff_module-form-set-personal-task', this.props.modifier) )
-
-
         return (
             <div className={generateClass('ff_module-form-set-personal-task', this.props)}>
                 <ContainerFormLine>
@@ -84,7 +81,7 @@ module.exports = React.createClass({
                     <FormFieldErrors model={taskTitleModel} validation={taskTitleValidation} />
                 </ContainerFormErrors>
 
-                <ContainerFormLine>
+                <ContainerFormLine dataAnchor="true">
                     <FormField model={taskDueDateModel} validation={taskDueDateValidation}>
                         <FormLabel key="l1" modifier="stacked" required="true">Due Date</FormLabel>
                         <FormInput 
@@ -93,6 +90,7 @@ module.exports = React.createClass({
                             type="text" 
                             onClick={this.onClickDueDate.bind(this, datePickerProps.id)}
                             value={this.props.personalTask.dueDate} 
+                            readonly={true}
                         />
                         <DatePickerJumpTo {...datePickerProps} />
                     </FormField>
@@ -133,6 +131,11 @@ module.exports = React.createClass({
     onClickDueDate: function(id){
         var target = 'data-ff-target-input-id=' + id;
         $('['+ target + ']').trigger('focus');
+        
+        // setTimeout(function(){
+        //     $('.ff_container-dialog__body').scrollTop($('#due-date').parent().position().top - 30);    
+        // }, 1000);
+
     },
 
     onChangeDueDate: function(value){        
