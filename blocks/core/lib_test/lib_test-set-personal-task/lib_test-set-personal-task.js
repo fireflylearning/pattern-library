@@ -7,10 +7,9 @@ import { modelReducer, formReducer } from 'react-redux-form';
 import thunk from 'redux-thunk';
 import { isRequired, isNumber, maxLength , isString } from '../../_lib/simpleValidation';
 
-// import ContainerModalWithDialog from '../../ff_container/ff_container-modal-with-dialog/ff_container-modal-with-dialog';
+var Button = require('../../ff_module/ff_module-button/ff_module-button');
 var ContainerModalWithDialog = require('../../ff_container/ff_container-modal-with-dialog/ff_container-modal-with-dialog');
 var ModuleFormSetPersonalTask = require('../../ff_module/ff_module-form-set-personal-task/ff_module-form-set-personal-task');
-// var generateClass = require('../../_lib/_ui/class-utils.js').generateClass; //(base, props)
 
 var personalTaskKeys = {
     taskTitle: 'taskTitle',
@@ -65,16 +64,16 @@ validation[personalTaskKeys.class] = {
         valid: (val) => val ? '5 characters maximum' : '',
     }
 };
-validation[personalTaskKeys.description] = {
-    validateOn: 'blur',
-    rules: {
-        required: isRequired
-    },
-    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
-    messages: {
-        required: 'Please add a description'
-    }
-};
+// validation[personalTaskKeys.description] = {
+//     validateOn: 'blur',
+//     rules: {
+//         required: isRequired
+//     },
+//     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+//     messages: {
+//         required: 'Please add a description'
+//     }
+// };
 
 var store = applyMiddleware(thunk)(createStore)(combineReducers({
     personalTask: modelReducer('personalTask', personalTask),
@@ -91,24 +90,36 @@ function mapStateToProps(state) {
 	
 var ConnectedFormSetPersonalTask = connect(mapStateToProps)(ModuleFormSetPersonalTask);
 
+
+function onClose() {
+
+}
+
 var props = {
-	isOpen: true, 
+	isOpen: false,
 	modifier: 'parent',
 	title: 'Set a Personal Task',
-	controls: <button key="set-task" className="ff_module-button ff_module-button--primary">Set Task</button>,
-	dataAnchor: 'date-picker'
+	controls: [<button key="set-task" className="ff_module-button ff_module-button--primary">Set Task</button>]
 };
 
 export class App extends React.Component {
 	render() {
-		return ( 
+		return (
 			<Provider store={store}>
-				<ContainerModalWithDialog {...props} >
-					<ConnectedFormSetPersonalTask {...props} />
-				</ContainerModalWithDialog>
+				<div>
+					<Button key="add-task" onClick={this.onClickHandler} text="Add a Task" modifier="primary"/>
+					<ContainerModalWithDialog {...props} isOpen={props.isOpen}>
+						<ConnectedFormSetPersonalTask {...props} />
+					</ContainerModalWithDialog>
+				</div>
 			</Provider>
 		)
 	}
+
+	onClickHandler() {
+		return { isOpen: true };
+	}
+
 }
 
 module.exports = App;

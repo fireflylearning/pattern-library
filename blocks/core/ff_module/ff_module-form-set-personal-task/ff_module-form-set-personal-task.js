@@ -100,7 +100,7 @@ module.exports = React.createClass({
                     <FormFieldErrors model={taskDueDateModel} validation={taskDueDateValidation}/>
                 </ContainerFormErrors>
                 
-                <div id="datepicker-container"></div>
+                <div id="datepicker-container" style={{display: 'none'}}></div>
 
                 <ContainerFormLine>
                     <FormField model={taskClassModel} validation={taskClassValidation}>
@@ -114,8 +114,8 @@ module.exports = React.createClass({
                 </ContainerFormErrors>
 
                 <ContainerFormLine>
-                    <FormField model={taskDescriptionModel} validation={taskDescriptionValidation}>
-                        <FormLabel key="l3" modifier="stacked" required="true">Description</FormLabel>
+                    <FormField model={taskDescriptionModel}>
+                        <FormLabel key="l3" modifier="stacked">Description</FormLabel>
                         <FormInput modifier="fullwidth" key="i0" type='textarea' onChange={this.onChangeDescription} />
                     </FormField>
                 </ContainerFormLine>
@@ -131,11 +131,6 @@ module.exports = React.createClass({
     onClickDueDate: function(id){
         var target = 'data-ff-target-input-id=' + id;
         $('['+ target + ']').trigger('focus');
-        
-        // setTimeout(function(){
-        //     $('.ff_container-dialog__body').scrollTop($('#due-date').parent().position().top - 30);    
-        // }, 1000);
-
     },
 
     onChangeDueDate: function(value){        
