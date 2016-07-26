@@ -30,7 +30,7 @@ function activateDatePickerJumpTo(options) {
             if (!isNaN(Date.parse(date))) {
                 valueElement.val(date);
                 var displayDate = $.datepicker.formatDate(displayFormat, new Date(date));
-                displayElement.val(displayDate);
+                displayElement.trigger('focus').val(displayDate).trigger('blur');
                 options.onChangeDueDate(displayDate);
                 $sel.slideUp(250);
             }

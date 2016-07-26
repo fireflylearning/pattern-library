@@ -90,7 +90,7 @@ module.exports = React.createClass({
                             type="text" 
                             onClick={this.onClickDueDate.bind(this, datePickerProps.id)}
                             value={this.props.personalTask.dueDate} 
-                            readonly={true}
+
                         />
                         <DatePickerJumpTo {...datePickerProps} />
                     </FormField>

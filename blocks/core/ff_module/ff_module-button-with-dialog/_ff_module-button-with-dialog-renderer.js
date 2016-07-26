@@ -1,15 +1,15 @@
 'use strict';
 
+var ButtonWithDialog = require('./ff_module-button-with-dialog'),
+    ModuleFormSetPersonalTask = require('../ff_module-form-set-personal-task/ff_module-form-set-personal-task');
+
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { modelReducer, formReducer } from 'react-redux-form';
 import thunk from 'redux-thunk';
 import { isRequired, isNumber, maxLength , isString } from '../../_lib/simpleValidation';
-
-var Button = require('../../ff_module/ff_module-button/ff_module-button');
-var ContainerModalWithDialog = require('../../ff_container/ff_container-modal-with-dialog/ff_container-modal-with-dialog');
-var ModuleFormSetPersonalTask = require('../../ff_module/ff_module-form-set-personal-task/ff_module-form-set-personal-task');
 
 var personalTaskKeys = {
     taskTitle: 'taskTitle',
@@ -64,16 +64,16 @@ validation[personalTaskKeys.class] = {
         valid: (val) => val ? '5 characters maximum' : '',
     }
 };
-// validation[personalTaskKeys.description] = {
-//     validateOn: 'blur',
-//     rules: {
-//         required: isRequired
-//     },
-//     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
-//     messages: {
-//         required: 'Please add a description'
-//     }
-// };
+validation[personalTaskKeys.description] = {
+    validateOn: 'blur',
+    rules: {
+        required: isRequired
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please add a description'
+    }
+};
 
 var store = applyMiddleware(thunk)(createStore)(combineReducers({
     personalTask: modelReducer('personalTask', personalTask),
@@ -90,39 +90,25 @@ function mapStateToProps(state) {
 	
 var ConnectedFormSetPersonalTask = connect(mapStateToProps)(ModuleFormSetPersonalTask);
 
-var props = {
-    modifier: 'parent',
+var data = {
+    modifier: 'compact-form',
     title: 'Set a Personal Task',
+    appElement: '[data-modal-anchor]',
     controls: [<button key="set-task" className="ff_module-button ff_module-button--primary">Set Task</button>]
 };
 
-module.exports = React.createClass({
-    displayName: 'App',
-
-    getInitialState: function() {
-        return { modalIsOpen: false };
-    },
-
-    openModal: function() {
-        this.setState({modalIsOpen: true});
-    },
-    closeModal: function() {
-        this.setState({modalIsOpen: false});
-    },
-    render: function() {
-        return (
-            <Provider store={store}>
-                <div>
-                    <Button key="add-task" onClick={this.openModal} text="Add a Task" modifier="primary" />
-                    <ContainerModalWithDialog 
-                        {...props} 
-                        isOpen={this.state.modalIsOpen}
-                        onClose={this.closeModal}
-                        >
-                        <ConnectedFormSetPersonalTask {...props} />
-                    </ContainerModalWithDialog>
-                </div>
-            </Provider>
-        );
-    }
-});
+module.exports = function() {
+	document.addEventListener('DOMContentLoaded', function(event) {
+		Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-button-with-dialog]'), function(domElement) {
+			if(domElement){
+                ReactDOM.render(
+                	<ButtonWithDialog {...data}>
+                		<Provider store={store}>
+	                		<ConnectedFormSetPersonalTask {...data} />
+                		</Provider>
+                	</ButtonWithDialog>
+                , domElement);
+			}
+		});
+	});
+};

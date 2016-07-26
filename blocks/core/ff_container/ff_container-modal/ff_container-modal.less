@@ -12,7 +12,6 @@
         .core() {
             position: absolute;
             outline: none;
-            // overflow: auto;
             -webkit-overflow-scrolling: touch;
         }
         .default() {
@@ -32,6 +31,7 @@
             .style() {
                 border-radius: 4px;
                 box-shadow: 1px 5px 0px 0px rgba(0,0,0,0.25);
+                overflow: hidden;
             }
             .position() {
                 left: 50%;
@@ -52,6 +52,16 @@
                 min-height: 160px;
             }
         }
+        .compact-form() {
+            .position() {
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 20%;
+                min-width: 300px;
+                min-height: 160px;
+            }
+        }
         .wide() {
             .position() {
                 left: 50%;
@@ -62,16 +72,16 @@
                 min-height: 265px;
             }
         }
-        .parent() {
-            .position() {
-                left: 50%;
-                top: 50px;
-                transform: translate(-50%, 0);
-                width: 20%;
-                min-width: 300px;
-                min-height: 160px;
-            }
-        }
+        // .parent() {
+        //     .position() {
+        //         left: 50%;
+        //         top: 50px;
+        //         transform: translate(-50%, 0);
+        //         width: 20%;
+        //         min-width: 300px;
+        //         min-height: 160px;
+        //     }
+        // }
     }
 }
 
@@ -117,11 +127,11 @@
         }
     }
 
-    // parent modifiers
+    // compact-form modifiers
     .ff_container-modal {
-        &__overlay--parent {}
-        &__content--parent {
-            #ff_container-modal > .content > .parent > .position;
+        &__overlay--compact-form {}
+        &__content--compact-form {
+            #ff_container-modal > .content > .compact-form > .position;
         }
     }
 }

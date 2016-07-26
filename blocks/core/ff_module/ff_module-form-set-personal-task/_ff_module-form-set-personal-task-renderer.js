@@ -83,6 +83,7 @@ var store = applyMiddleware(thunk)(createStore)(combineReducers({
 function mapStateToProps(state) {
     return {
         personalTask: state.personalTask,
+        personalTaskForm: state.personalTaskForm,
         models: models,
         validation: validation
     };

@@ -14,10 +14,13 @@ module.exports = React.createClass({
         controls: React.PropTypes.node
     },
     render: function() {
+
+        console.log(this.props)
         return (
             <ContainerModal
                 modifier={this.props.modifier}
                 isOpen={this.props.isOpen}
+                onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.props.onClose}
                 ref={this.bindModalRef}
                 >
