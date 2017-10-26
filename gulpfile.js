@@ -150,6 +150,38 @@ gulp.task('export:icons',
     iconTasks.export(paths.icons.export.src, path.join(config.exportPath, 'icons')));
 
 
+/**
+ * SVG Inline Icons
+ * ******************************************/
+
+var svgSpritesConfig = {
+  mode: {
+    symbol: {
+      dest: './',
+      sprite: 'sprites.svg'
+    }
+  }
+};
+
+/**
+ * Generate icon sprite file from source svgs
+ */
+
+gulp.task('svg-icons',() => {
+  gulp.src(paths.svgicons.source)
+  .pipe(plugins.svgSprite(svgSpritesConfig))
+  .pipe(gulp.dest(paths.svgicons.dest))
+});
+
+/**
+ * Export svg icons
+ */
+
+gulp.task('export:svg-icons',() => {
+  gulp.src(paths.svgicons.source)
+  .pipe(plugins.svgSprite(svgSpritesConfig))
+  .pipe(gulp.dest(path.join(config.exportPath,paths.svgicons.export)))
+});
 
 /**
  * Assets
@@ -218,6 +250,7 @@ gulp.task('watch', ['build'], function() {
         ], ['watch:blocks'])
         .on('change', utils.changeEvent('Blocks'));
 
+    gulp.watch(['./icons/*.svg'],['svg-icons']);
 })
 
 
@@ -236,14 +269,14 @@ gulp.task('watch:blocks', ['xslt'], utils.callbackAfterBuild('*.html'));
 /**
  * Combine html and css build
  */
-gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy']);
+gulp.task('build', ['xslt', 'css', 'assets', 'js', 'icons:copy', 'svg-icons']);
 
 
 
 /**
  * Export
  *********************************************/
-gulp.task('export', ['export:blocks', 'export:less', 'export:js', 'export:icons', 'export:assets']);
+gulp.task('export', ['export:blocks', 'export:less', 'export:icons', 'export:assets', 'export:svg-icons']);
 
 
 

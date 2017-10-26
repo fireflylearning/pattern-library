@@ -15,7 +15,6 @@ module.exports = function createRecipientPicker(service) {
         displayName: 'RecipientPicker',
         componentDidMount: function() {
             document.addEventListener('click', this.documentClickHandler);
-
             service.getInitialSearchResults(this.setResults);
             service.getInitialSelectedRecipients(this.addRecipients);
             firstFocus = true;

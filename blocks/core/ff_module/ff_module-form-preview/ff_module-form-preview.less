@@ -38,6 +38,15 @@
         box-shadow: inset 0 0 7px rgba(0,0,0,.15);
         padding-left: @ff_size_control_horizontal;
         padding-right: @ff_size_control_horizontal;
+
+        &:after { // because it will contain things that might be floated
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
     }
 
     &__sublist {
@@ -50,6 +59,7 @@
         font-weight: bold;
         margin-top: @ff_size_control_vertical;
         margin-bottom: @ff_size_control_vertical*0.5;
+        word-break: break-word;
         &:first-child {
             margin-top: 0;
         }
@@ -57,6 +67,7 @@
     &__sublist__data {
         #ff_mix-util-prose > .text-default();
         margin-bottom: @ff_size_control_vertical*0.35;
+        word-break: break-word;
     }
     @media (min-width: @ff_bp_wide) {
             &__item--controls {

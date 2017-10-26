@@ -8,7 +8,7 @@
     }
 
     .default() {
-        &:not([type="radio"]), &:not([type="checkbox"]){
+        &:not([type="radio"]):not([type="checkbox"]){
             border: 1px solid @ff_colour_control_border;
             border-radius: @ff_size_control_rounding;
             padding: @ff_size_spacing_min;
@@ -29,13 +29,14 @@
 
     &--invisible {
 
-        &, &:not([type="radio"]), &:not([type="checkbox"]){
+        &, &:not([type="radio"]):not([type="checkbox"]){
             border: none;
             background: none;
         }
-        &:focus, &:not([type="radio"]):focus, &:not([type="checkbox"]):focus{
+        &:focus, &:not([type="radio"]):not([type="checkbox"]):focus{
             outline: none;
             // TODO: Find nice style that still indicates accessibility
         }
     }
+
 }

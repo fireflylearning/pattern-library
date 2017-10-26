@@ -6,8 +6,8 @@
     box-sizing: border-box;
     padding: @ff_size_spacing_max * 1.5 @ff_size_spacing_max * 2;
     min-height: 90px;
-    background-color: lighten(desaturate(@ff_templatesetting_colour_sm_level0_bg, 25%), 15%);
-    #ff_mix-responsive-colour > .check-contrast(lighten(desaturate(@ff_templatesetting_colour_sm_level0_bg, 25%), 15%), @c_text, #ffffff);
+    background-color: @ff_colour_header_bg;
+    #ff_mix-responsive-colour > .check-contrast(@ff_colour_header_bg, @c_text, #ffffff);
 }
 
 .ff_container-page-header__title {

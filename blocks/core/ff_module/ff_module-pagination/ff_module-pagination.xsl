@@ -29,12 +29,12 @@
 
 <xsl:template match="*" mode="ff_module-pagination-previous">
 	<li class="ff_module-pagination__item">
-		<a href="{preceding-sibling::page[1]/@href}"><span class="ff_icon ff_icon-page-back-blue"></span></a>
+		<a href="{preceding-sibling::page[1]/@href}"><span class="ff_icon ff_module-pagination__icon--prev"></span></a>
 	</li>
 </xsl:template>
 
 <xsl:template match="*" mode="ff_module-pagination-following">
 	<li class="ff_module-pagination__item">
-		<a href="{following-sibling::page[1]/@href}"><span class="ff_icon ff_icon-page-forward-blue"></span></a>
+		<a href="{following-sibling::page[1]/@href}"><span class="ff_icon ff_module-pagination__icon--next"></span></a>
 	</li>
 </xsl:template>

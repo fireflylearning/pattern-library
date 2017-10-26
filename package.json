@@ -4,13 +4,15 @@
   "description": "Node xslt compilation test",
   "main": "index.js",
   "scripts": {
-        "lint": "npm install && eslint blocks/core/**/*.js",
-        "build": "npm install && gulp build",
-        "start": "npm install && gulp",
-        "serve": "npm install && gulp serve",
-        "export" : "npm install && gulp export",
-        "icons": "npm install && gulp icons",
-        "test": "npm install && npm run lint && mocha tests/*.test.js --compilers jsx:babel-register,js:babel-register --require tests/lib/utils.js"
+    "lint": "eslint blocks/core/**/*.js",
+    "build": "yarn install && gulp build",
+    "start": "yarn install && gulp",
+    "serve": "gulp serve",
+    "export": "gulp export",
+    "icons": "gulp icons",
+    "clean": "gulp clean",
+    "test": "yarn run lint && mocha tests/*.test.js --compilers jsx:babel-register,js:babel-register --require tests/lib/utils.js",
+    "test-no-lint": "mocha tests/*.test.js --compilers jsx:babel-register,js:babel-register --require tests/lib/utils.js"
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,6 @@
   "license": "ISC",
   "dependencies": {
     "async": "^1.5.2",
-    "babel-core": "^6.7.0",
-    "babel-loader": "^6.2.4",
-    "babel-plugin-transform-runtime": "^6.6.0",
-    "babel-preset-es2015": "^6.6.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-register": "^6.6.5",
     "bluebird": "^3.2.1",
     "browser-sync": "^2.11.1",
     "del": "^2.2.0",
@@ -52,6 +48,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-svg-sprite": "^1.3.6",
     "gulp-svgmin": "^1.2.1",
     "gulp-tap": "^0.1.3",
     "gulp-util": "^3.0.7",
@@ -60,29 +57,43 @@
     "lazypipe": "^1.0.1",
     "less-plugin-autoprefix": "^1.5.1",
     "libxslt": "^0.6.3",
-    "lodash": "^4.4.0",
+    "lodash": "~4.16.6",
     "marked": "^0.3.5",
     "minimist": "^1.2.0",
     "node-dir": "^0.1.11",
-    "react": "^0.14.7",
-    "react-addons-css-transition-group": "^0.14.7",
-    "react-addons-transition-group": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-modal": "^1.3.0",
-    "react-redux": "^4.4.5",
-    "react-redux-form": "^0.12.2",
-    "redux": "^3.5.2",
+    "redux": "3.2.1",
+    "redux-thunk": "^2.1.0",
     "swig": "^1.4.2",
     "through2": "^2.0.0",
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
     "chai": "^3.5.0",
-    "eslint-plugin-react": "^5.0.1",
     "jquery": "^2.2.1",
     "jsdom": "^8.0.2",
     "mocha": "^2.4.5",
-    "react-addons-test-utils": "^0.14.7",
     "sinon": "^1.17.3"
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "brfs"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "global:jQuery",
+    "react": "global:React",
+    "react-dom": "global:ReactDOM",
+    "react-addons-transition-group": "global:React.addons.TransitionGroup",
+    "react-addons-css-transition-group": "global:React.addons.CSSTransitionGroup",
+    "redux": "global:Redux",
+    "react-redux": "global:ReactRedux",
+    "underscore": "global:_"
   }
 }

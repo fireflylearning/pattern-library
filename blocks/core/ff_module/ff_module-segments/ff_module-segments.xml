@@ -1,5 +1,13 @@
+{% if icons %}
+    {% for icon in icons %}
+        {% include '../../ff_icons/ff_icon-svg/ff_icon-svg.xml' with icon %}
+     {% endfor %}
+{% endif %}
+
 <items modifiers="{{ modifiers }}">
     {% for item in items %}
-    <item url="{{item.url | default('#')}}" active="{{item.active | default('false')}}">{{item.name | default('Item One')}}</item>
+    <item url="{{item.url | default('#')}}" active="{{item.active | default('false')}}">
+        	{{item.name | default('Item One')}}
+    </item>
     {% endfor %}
 </items>

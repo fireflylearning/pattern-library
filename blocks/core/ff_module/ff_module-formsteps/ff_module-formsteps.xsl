@@ -1,12 +1,9 @@
 <xsl:template name="ff_module-formsteps">
 <xsl:param name="data" />
 
-<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz-'" />
-<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ '" />
-
 <ul class="ff_module-formsteps">
 <xsl:for-each select="$data/formsteps/step">
-	
+
 	<xsl:variable name="classes">
 		<xsl:choose>
 			<xsl:when test="not(@state = '')">ff_module-formstep ff_module-formstep--<xsl:value-of select="@state"/>
@@ -16,18 +13,18 @@
             </xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
-	
+
 	<li class="{$classes}">
         <xsl:if test="label/@tab-attr-name">
             <xsl:attribute name="{label/@tab-attr-name}">
                 <xsl:value-of select="@id"/>
             </xsl:attribute>
         </xsl:if>
-		
+
 		<xsl:attribute name="data-label">
-			<xsl:value-of select="translate(label, $uppercase, $lowercase)" />
+            <xsl:value-of select="@id" />
 		</xsl:attribute>
-		
+
 		<a class="ff_module-formstep__link" href="{@url}">
 			<span class="ff_module-formstep__icon">
 				<span class="ff_module-formstep__stepnumber"><xsl:number/></span>
@@ -36,7 +33,7 @@
 		</a>
         <xsl:if test="position() != last()">
             <span class="ff_module-formstep__separator">
-                <span class="ff_icon ff_icon-page-forward-open-lightblue"/>
+                <span class="ff_icon ff_module-formstep__separatorIcon"/>
             </span>
         </xsl:if>
 	</li>

@@ -3,14 +3,18 @@
 var React = require('react');
 var StampResponseAsSeenTaskEvent = require('./_src/StampResponseAsSeenTaskEvent.js'),
     SetTaskEvent = require('./_src/SetTaskEvent.js'),
+    EditTaskEvent = require('./_src/EditTaskEvent.js'),
+    ArchiveTaskEvent = require('./_src/ArchiveTaskEvent.js'),
+    UnarchiveTaskEvent = require('./_src/UnarchiveTaskEvent.js'),
     AddedCommentEvent = require('./_src/AddedCommentEvent.js'),
     RequestResubmissionTaskEvent = require('./_src/RequestResubmissionTaskEvent'),
-    ClaimedCompleteTaskEvent = require('./_src/ClaimedCompleteTaskEvent'),
+    MarkAsDoneTaskEvent = require('./_src/MarkAsDoneTaskEvent'),
+    MarkAsUndoneTaskEvent = require('./_src/MarkAsUndoneTaskEvent'),
     ConfirmedCompleteTaskEvent = require('./_src/ConfirmedCompleteTaskEvent'),
+    RevertToToDoTaskEvent = require('./_src/RevertToToDoTaskEvent'),
     ConfirmedStudentExcusedTaskEvent = require('./_src/ConfirmedStudentExcusedTaskEvent'),
     ConfirmedStudentUnExcusedTaskEvent = require('./_src/ConfirmedStudentUnExcusedTaskEvent'),
     MarkAndGradeTaskEvent = require('./_src/MarkAndGradeTaskEvent'),
-    DeletedResponseTaskEvent = require('./_src/DeletedResponseTaskEvent'),
     AddedFileTaskEvent = require('./_src/AddedFileTaskEvent'),
     SentReminderTaskEvent = require('./_src/SentReminderTaskEvent'),
     SentFeedbackAndMarks = require('./_src/SentFeedbackAndMarks'),
@@ -25,15 +29,19 @@ eventComponents[eventTypes.setTask] = SetTaskEvent;
 eventComponents[eventTypes.stampResponseAsSeen] = StampResponseAsSeenTaskEvent;
 eventComponents[eventTypes.comment] = AddedCommentEvent;
 eventComponents[eventTypes.requestResubmission] = RequestResubmissionTaskEvent;
-eventComponents[eventTypes.claimTaskIsComplete] = ClaimedCompleteTaskEvent;
+eventComponents[eventTypes.markAsDone] = MarkAsDoneTaskEvent;
+eventComponents[eventTypes.markAsUndone] = MarkAsUndoneTaskEvent;
 eventComponents[eventTypes.confirmTaskIsComplete] = ConfirmedCompleteTaskEvent;
+eventComponents[eventTypes.revertTaskToToDo] = RevertToToDoTaskEvent;
 eventComponents[eventTypes.confirmStudentIsExcused] = ConfirmedStudentExcusedTaskEvent;
 eventComponents[eventTypes.markAndGrade] = MarkAndGradeTaskEvent;
-eventComponents[eventTypes.deleteResponse] = DeletedResponseTaskEvent;
 eventComponents[eventTypes.confirmStudentIsUnexcused] = ConfirmedStudentUnExcusedTaskEvent;
 eventComponents[eventTypes.addFile] = AddedFileTaskEvent;
 eventComponents[eventTypes.sendReminder] = SentReminderTaskEvent;
 eventComponents[eventTypes.releaseFeedbackAndMarks] = SentFeedbackAndMarks;
+eventComponents[eventTypes.editTask] = EditTaskEvent;
+eventComponents[eventTypes.archivedTask] = ArchiveTaskEvent;
+eventComponents[eventTypes.unarchivedTask] = UnarchiveTaskEvent;
 
 function getPresentationState(description, state) {
     state = state || {};
@@ -70,7 +78,11 @@ module.exports = React.createClass({
             React.PropTypes.number]).isRequired,
         actions: React.PropTypes.array,
         state: React.PropTypes.object,
-        onRetryAfterStatusError: React.PropTypes.func
+        tryAgainCallback: React.PropTypes.func,
+        loggedInUserGuid: React.PropTypes.string,
+        recipient: React.PropTypes.object,
+        setTransitionFinished: React.PropTypes.func.isRequired,
+        setTaskDetails: React.PropTypes.object.isRequired
     },
     render: function() {
         var Component = getComponent(this.props.description, this.props.state);

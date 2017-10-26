@@ -1,10 +1,11 @@
 ---
 data:
-    items: 
+    items:
       -
         content: "<label for=\"id01\">Input label</label>"
       -              
         modifier: fullwidth
+        dataAnchor: my-data-anchor-value
         content: "<input id=\"id01\" type=\"text\" value=\"Input fullwidth\"/>"
 ---
 
@@ -20,7 +21,7 @@ data:
 
 ### Inputs (or remaining items)
 
-- `constrained` (sets max-width of `@ff_size_spacing_min * 20`)
+- `constrained` (sets max-width of `@ff_size_spacing_min * 15` on smaller screen then `@ff_size_spacing_min * 20` once past the wider screen breakpoint)
 - `fullwidth` (takes up remaining space, will take into account trailing buttons, etc)
 - `mini` (set max-width of `@ff_size_spacing_min * 5.5`)
 

@@ -16,7 +16,12 @@ function getErrorProps(props) {
 }
 
 function FormError(props) {
-    return <li className='ff_module-form-errors__message'>{props.children}</li>;
+    return (
+        <li className='ff_module-form-errors__message'>
+            { props.modifier == 'full-width' ? <span className="ff_icon ff_icon-left ff_icon-warning-error"></span> : null }
+            {props.children}
+        </li>
+    );
 }
 
 function FormErrorList(props) {
@@ -51,7 +56,7 @@ module.exports = React.createClass({
     },
     render: function(){
 
-        var messages = this.props.messages ? this.props.messages.map((message, index) => <FormError key={'message'+index}>{message}</FormError>) : null;
+        var messages = this.props.messages ? this.props.messages.map((message, index) => <FormError key={'message'+index} {...this.props}>{message}</FormError>) : null;
         if (messages.length) {
             return <FormErrorList {...this.props}>{messages}</FormErrorList>;
         }

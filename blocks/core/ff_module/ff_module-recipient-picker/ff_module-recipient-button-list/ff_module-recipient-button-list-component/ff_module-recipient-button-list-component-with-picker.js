@@ -20,19 +20,23 @@ module.exports = function(picker, service, type, template) {
                     results={this.state.results}
                     isSelected={this.picker.checkIsSelected}
                     onSelect={this.addRecipientByResultId}
+                    loaded={this.state.loaded}
+                    modifier={this.props.modifier}
                 />
             );
         },
         picker: picker,
         getInitialState: function() {
             return {
-                results: []
+                results: [],
+                loaded: false
             }
         },
         updateResults: function(results) {
             if (this._isMounted) {
                 this.setState({
-                    results: results
+                    results: results,
+                    loaded: true
                 });
             }
         },

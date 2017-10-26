@@ -5,8 +5,13 @@ var React = require('react'),
     ContainerDialog = require('../../../ff_container/ff_container-dialog/ff_container-dialog'),
     FormLabel = require('../../ff_module-form-label/ff_module-form-label'),
     FormInput = require('../../ff_module-form-input/ff_module-form-input'),
-    ContainerFormLine = require('../../../ff_container/ff_container-form-line/ff_container-form-line');
+    ContainerFormLine = require('../../../ff_container/ff_container-form-line/ff_container-form-line'),
+    simplePlural = require('../../../_lib/_ui/grammar-utils.js').simplePlural;
 
+
+function getStudentText(num) {
+    return simplePlural(num, 'student');
+}
 
 module.exports = React.createClass({
     displayName: 'NotificationDeleteTask',
@@ -16,9 +21,9 @@ module.exports = React.createClass({
         };
     },
     render: function() {
-
+        var numAffected = (this.props.event.description && this.props.event.description.numRecipientsAffected) || 0;
         var body = <div>
-            <p>This will delete the task for <b>{this.props.event.description.numRecipientsAffected} students</b>, and cannot be undone.</p>
+            <p>This will delete the task for <b>{numAffected} {getStudentText(numAffected)}</b>, and cannot be undone.</p>
 
             <ContainerFormLine>
                 <FormLabel key="l0" modifier="stacked" required="true">Type the word <span className="ff_util-prose__text--danger">DELETE</span> to continue (it's case sensitive)</FormLabel>

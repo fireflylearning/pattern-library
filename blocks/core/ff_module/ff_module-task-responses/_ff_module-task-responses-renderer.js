@@ -12,7 +12,7 @@ var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:
 import { connect } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { modelReducer, formReducer } from 'react-redux-form';
+import { modelReducer, formReducer, actions } from 'react-redux-form';
 import { isRequired, isNumber, maxLength } from '../../_lib/simpleValidation';
 
 var events = [{
@@ -76,20 +76,22 @@ var modelKeys = {
     mark: 'mark',
     markMax: 'markMax',
     grade: 'grade',
-    message: 'message'
+    message: 'message',
+    comment: 'comment'
 };
 
 // so different model string values can be used if required
 var models = Object.keys(modelKeys).reduce(function(memo, key) {
-    memo[modelKeys[key]] = 'editingEvent.description.' + modelKeys[key];
+    memo[modelKeys[key]] = 'event.description.' + modelKeys[key];
     return memo;
 }, {});
+models['comment'] = 'event.description.message';
 
 
 var validation = {};
 validation[modelKeys.mark] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: isNumber
     },
@@ -101,7 +103,7 @@ validation[modelKeys.mark] = {
 };
 validation[modelKeys.markMax] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: isNumber
     },
@@ -113,7 +115,7 @@ validation[modelKeys.markMax] = {
 };
 validation[modelKeys.grade] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: maxLength(5)
     },
@@ -125,7 +127,17 @@ validation[modelKeys.grade] = {
 };
 validation[modelKeys.message] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
+        required: isRequired
+    },
+    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
+    messages: {
+        required: 'Please add a comment'
+    }
+};
+validation[modelKeys.comment] = {
+    validateOn: 'change',
+    validators: {
         required: isRequired
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
@@ -135,29 +147,37 @@ validation[modelKeys.message] = {
 };
 
 var store = createStore(combineReducers({
-    editingEvent: modelReducer('editingEvent', events[5]),
-    editingEventForm: formReducer('editingEvent', events[5])
+    editingEvent: modelReducer('event', null),
+    editingEventForm: formReducer('event', null)
 }));
+
+function mapDispatchToProps(dispatch) {
+    return {
+        editEvent: function(event) {
+            console.log('editEvent');
+            console.log(event);
+            dispatch(actions.change('event', event));
+        },
+        stopEditingEvent: function() {
+            console.log('stopEditingEvent');
+            dispatch(actions.change('event', null));
+        },
+        addEvent: function() {
+            console.log('addEvent');
+            console.log('stopEditingEvent');
+            dispatch(actions.change('event', null));
+        },
+    };
+}
 
 function mapStateToProps(state) {
     return {
         eventGroups: eventGroups,
 
-        editingEvent: null,//state.editingEvent,
-
+        editingEvent: state.editingEvent,
+        editingEventForm: state.editingEventForm,
         editorValidation: validation,
         editorModels: models,
-        editEvent: function editEvent(event) {
-            console.log('editEvent');
-            console.log(event);
-        },
-        addEvent: function() {
-            console.log('addEvent');
-            console.log('stopEditingEvent');
-        },
-        stopEditingEvent: function() {
-            console.log('stopEditingEvent');
-        },
         actionsComponent: TaskResponseActions,
         state: {
             // userCanEdit: false
@@ -166,7 +186,7 @@ function mapStateToProps(state) {
     };
 }
 
-var ConnectedTaskResponses = connect(mapStateToProps)(TaskResponses);
+var ConnectedTaskResponses = connect(mapStateToProps, mapDispatchToProps)(TaskResponses);
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {

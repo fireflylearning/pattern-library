@@ -1,7 +1,6 @@
 .ff_container-dialog {
     background-color: #fff;
     border-radius: @ff_size_control_rounding * 0.5;
-    overflow: hidden;
     &__heading {
         background-color: @ff_colour_control_bg;
         font-weight: normal;
@@ -9,9 +8,13 @@
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
         font-size: 18rem/@ff_base;
         line-height: 21/18;
+        border-radius: @ff_size_control_rounding * 0.5 @ff_size_control_rounding * 0.5 0 0;
     }
     &__title {
         color: @ff_colour_control_text;
+        > .ff_util-prose__text--quiet {
+            #ff_mix-responsive-colour > .check-contrast(@ff_colour_control_bg, fade(@ff_colour_control_text, 60%), fade(#ffffff, 60%));
+        }
     }
     &__close-top {
         right: -@ff_size_spacing_min * .6;
@@ -31,13 +34,7 @@
         }
     }
     &__controls {
-        padding: @ff_size_control_vertical @ff_size_control_horizontal @ff_size_spacing_med @ff_size_control_horizontal;
-        overflow: auto;
-        * {
-            float:left;
-        }
-        *+* {
-            margin-left: @ff_size_spacing_min;
-        }
+        padding: @ff_size_spacing_min/2 @ff_size_control_horizontal;
+        border-color: fade(@ff_colour_control_border,50%);
     }
 }

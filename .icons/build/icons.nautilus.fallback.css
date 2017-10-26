@@ -1,3 +1,4 @@
+.ff_module-form-box-group__edit--icon,
 .ff_icon-add-open-blue { background-image: url('png/nautilus/ff_icon-add-open-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-add-open { background-image: url('png/nautilus/ff_icon-add-open.png'); background-repeat: no-repeat; }
@@ -40,6 +41,7 @@
 
 .ff_icon-cancel-grey { background-image: url('png/nautilus/ff_icon-cancel-grey.png'); background-repeat: no-repeat; }
 
+.ff_module-form-box-group__delete--icon,
 .ff_icon-cancel-open-blue { background-image: url('png/nautilus/ff_icon-cancel-open-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-cancel-open-darkgrey { background-image: url('png/nautilus/ff_icon-cancel-open-darkgrey.png'); background-repeat: no-repeat; }
@@ -232,6 +234,8 @@
 
 .ff_icon-outdent { background-image: url('png/nautilus/ff_icon-outdent.png'); background-repeat: no-repeat; }
 
+.ff_module-date-stepper__icon--prev,
+.ff_module-incremental-navigation__icon--prev,
 .ff_icon-page-back-blue { background-image: url('png/nautilus/ff_icon-page-back-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-back-open { background-image: url('png/nautilus/ff_icon-page-back-open.png'); background-repeat: no-repeat; }
@@ -249,6 +253,8 @@
 
 .ff_icon-page-down { background-image: url('png/nautilus/ff_icon-page-down.png'); background-repeat: no-repeat; }
 
+.ff_module-date-stepper__icon--next,
+.ff_module-incremental-navigation__icon--next,
 .ff_icon-page-forward-blue { background-image: url('png/nautilus/ff_icon-page-forward-blue.png'); background-repeat: no-repeat; }
 
 .ff_icon-page-forward-open-lightblue { background-image: url('png/nautilus/ff_icon-page-forward-open-lightblue.png'); background-repeat: no-repeat; }
@@ -362,6 +368,7 @@
 
 .ff_icon-task-incoming { background-image: url('png/nautilus/ff_icon-task-incoming.png'); background-repeat: no-repeat; }
 
+.ff_module-profile-response-button__icon--unread,
 .ff_icon-task-outgoing-brightblue { background-image: url('png/nautilus/ff_icon-task-outgoing-brightblue.png'); background-repeat: no-repeat; }
 
 .ff_icon-task-outgoing-extradarkgrey { background-image: url('png/nautilus/ff_icon-task-outgoing-extradarkgrey.png'); background-repeat: no-repeat; }

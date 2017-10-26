@@ -1,9 +1,9 @@
 ---
 data:
     modifier: constrained-height
-    steps: 
+    steps:
       -
-        state: ''
+        state: 'is-current'
         label: "Recipients"
         content: "<p class=\"crate_util-block\">Recipients Step</p>"
         id: "tabfs-a"

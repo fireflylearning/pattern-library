@@ -4,13 +4,22 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        // IE 10
+        display: -ms-flexbox;
+        -ms-flex-wrap: wrap;
     }
     .item {
+        vertical-align: top;
         display: inline-block;
-        vertical-align: middle;
+        @media (max-width: 600px) {
+             max-width: 85%;
+         }
     }
     .constrained {
+      max-width: @ff_size_spacing_min * 15;
+      @media (min-width: @ff_bp_wide) {
         max-width: @ff_size_spacing_min * 20;
+      }
         flex-grow: 1;
         box-sizing: border-box;
     }
@@ -21,64 +30,49 @@
     }
     .fullwidth {
         flex-grow: 1;
+        // IE 10
+        -ms-flex: 1 auto;
     }
     .stacked {
-        margin-bottom: @ff_size_spacing_min;
         flex-grow: 1;
-        width:100%;
+        width: 100%;
+        // IE 10
+        -ms-flex-direction: column;
     }
 }
 
 .ff_module-form-pair {
-    &__item,
-    &__label {
+    >* {
         #ff_mix-form-pair > .item;
     }
-    >*:nth-last-child(2) {
+    >*:nth-last-child(n+2) {
         margin-left: 0;
         margin-right: @ff_size_spacing_min;
     }
-    &--fullwidth {
-        #ff_mix-form-pair > .root;
-    }
-    &--fullwidth &__item {
-        #ff_mix-form-pair > .fullwidth;
-    }
-    &--constrained &__item {
-        #ff_mix-form-pair > .constrained;
-    }
-    &--stacked &__item {
+    &--stacked {
+        box-sizing: border-box;
+        padding-left: 30px;
         #ff_mix-form-pair > .stacked;
-    }
-    &--stacked-constrained &__item {
-        #ff_mix-form-pair > .stacked;
-        #ff_mix-form-pair > .constrained;
-    }
-    &--stacked-fullwidth &__item {
-        #ff_mix-form-pair > .fullwidth;
-        #ff_mix-form-pair > .stacked;
+        &>*:first-child {
+            margin-left: -30px;
+        }
     }
 }
-
 
 .ff_module-form-checkable-list {
     #ff_mix-util-prose > .list-remove-defaults;
-
-    display: inline-block;
-
-    &__item, &__item--inline {
+    &__item,
+    &__item--inline {
         display: inline-block;
     }
-
     &__item--inline {
         margin-right: @ff_size_spacing_min * 2.5;
     }
-
     &__item--stacked {
         display: block;
+        line-height: 1.2;
     }
     &__item--stacked:nth-last-child(n+2) {
-        margin-bottom: @ff_size_spacing_min * 0.5;
+        margin-bottom: @ff_size_spacing_min * 0.8;
     }
 }
-

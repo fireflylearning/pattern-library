@@ -8,7 +8,7 @@ var eventStates = require('./events').states,
 
 var defaultState = React.createClass({
     displayName: 'RequestResubmissionTaskEventDefault',
-    render: taskEventWithOptionalMessage('requested resubmission.')
+    render: taskEventWithOptionalMessage('requested resubmission')
 });
 
 var deletedState = React.createClass({
@@ -18,7 +18,7 @@ var deletedState = React.createClass({
 
 var editedState = React.createClass({
     displayName: 'RequestResubmissionTaskEventEdited',
-    render: taskEventWithOptionalMessageEdited('requested resubmission.')
+    render: taskEventWithOptionalMessageEdited('requested resubmission')
 });
 
 

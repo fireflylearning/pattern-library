@@ -6,8 +6,6 @@
     display: inline-block;
 }
 
-
-
 // children
 .ff_module-dropdown-button {
     &__button {
@@ -18,31 +16,13 @@
         vertical-align: middle;
         #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @ff_templatesetting_colour_links, #ffffff);
     }
-    &__list-container {
-        top: 100%;
-        left: 0;
-        &--is-enabled {
-            position: absolute;
-            height: 0;
-            overflow: hidden;
-        }
-        &--is-open {
-            position: absolute;
-            height: auto;
-            min-width: 8rem;
-            #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @ff_templatesetting_colour_links, #ffffff);
-        }
-    }
-
     &__list {
         // right: 5px;
         background-color: #fff;
-        color: @ff_colour_default;
+        #ff_mix-responsive-colour > .check-contrast(#e3e3e3, @ff_templatesetting_colour_links, #ffffff);
         border: 1px solid @ff_colour_control_border;
         border-radius: @ff_size_control_rounding;
         padding: (@ff_size_spacing_min * .6) @ff_size_spacing_med;
-        margin: 0;
-        list-style: none;
         line-height: 1.1;
     }
     &__list-item {
@@ -50,16 +30,17 @@
     }
     &__icon {
         .ff_icon;
-        top:-.05em;
+        top: -.05em;
         margin-left: 5px;
         width: 1.25em;
         height: 1.25em;
-        &--is-open {
-            // Icon class generated in config/icons: customselectors by grunticon
-        }
-        &--is-enabled {
-            // Icon class generated in config/icons: customselectors by grunticon
-        }
+        #ff_mix-responsive-colour > .check-contrast-svg(#e3e3e3, @ff_templatesetting_colour_links, #ffffff);
+    }
+    &--primary &__icon,
+    &--primary-compact &__icon,
+    &--primary-right &__icon,
+    &--primary-compact-right &__icon {
+      #ff_mix-responsive-colour > .check-contrast-svg(darken(@ff_templatesetting_colour_links, 10%), @ff_templatesetting_colour_links, #ffffff);
     }
     &__link {
         #ff_mix-util-prose > .link-no-decoration;
@@ -75,74 +56,59 @@
     &--primary,
     &--primary-right,
     &--primary-compact,
-    &--primary-compact-right,
-    &--primary-compact-right-widelist {
+    &--primary-compact-right {
         #ff_module-button > .primary();
     }
-
     &--primary &__content,
     &--primary-right &__content,
     &--primary-compact &__content,
-    &--primary-compact-right &__content,
-    &--primary-compact-right-widelist &__content {
+    &--primary-compact-right &__content {
         #ff_module-button > .primary-content();
     }
     &--primary-compact &__content,
-    &--primary-compact-right &__content,
-    &--primary-compact-right-widelist &__content {
+    &--primary-compact-right &__content {
         font-weight: normal;
     }
-
-    &--right &__list-container,
-    &--primary-right &__list-container,
-    &--primary-compact-right &__list-container,
-    &--primary-compact-right-widelist &__list-container,
-    &--compact-right &__list-container,
-    &--compact-right-widelist &__list-container,
-    &--link-right &__list-container {
-        right: 0;
-        left: auto;
-        text-align: right;
+    &--tertiary,
+    &--tertiary-right,
+    &--tertiary-compact,
+    &--tertiary-compact-right {
+        #ff_module-button > .tertiary();
+    }
+    &--tertiary &__content,
+    &--tertiary-right &__content,
+    &--tertiary-compact &__content,
+    &--tertiary-compact-right &__content {
+        #ff_module-button > .tertiary-content();
     }
 
-    &--compact &__button,
-    &--compact-right &__button,
-    &--compact-widelist &__button,
-    &--compact-right-widelist &__button,
-    &--primary-compact &__button,
-    &--primary-compact-right &__button,
-    &--primary-compact-right-widelist &__button {
+    &__button--compact,
+    &__button--compact-right,
+    &__button--primary-compact,
+    &__button--primary-compact-right,
+    &__button--tertiary-compact,
+    &__button--tertiary-compact-right {
         #ff_module-button > .compact();
     }
 
-    &--compact &__icon,
-    &--compact-right &__icon,
-    &--compact-widelist &__icon,
-    &--compact-right-widelist &__icon,
-    &--primary-compact &__icon,
-    &--primary-compact-right &__icon,
-    &--primary-compact-right-widelist &__icon {
-        height:1.125em;
-        width:1.125em;
-        line-height: 1;
-        top:0;
+    &--link,
+    &--link-right, {
+        #ff_module-button > .link();
     }
-
-
-    &--link &__button,
-    &--link-right &__button {
+    &__button--link,
+    &__button--link-right {
         #ff_module-button > .link();
     }
     &--link &__content,
     &--link-right &__content {
         color: @ff_templatesetting_colour_links;
+        &:hover {
+            color: shade(@ff_templatesetting_colour_links, 10%);
+        }
     }
     &--link &__icon {
         // linked to alt color in config/icons.js
     }
-
-
-
 }
 
 // states
@@ -154,144 +120,42 @@
         #ff_mix-responsive-colour > .check-contrast(mix(@ff_colour_button_bg, @ff_templatesetting_colour_links, 50%), @ff_templatesetting_colour_links, #ffffff);
         z-index: 3;
     }
-    &--is-disabled {
-        cursor: default;
-    }
-    &--is-disabled &__content {
-    }
-
-
-    &--primary,
-    &--primary-right,
-    &--primary-compact,
-    &--primary-compact-right,
-    &--primary-compact-right-widelist {
-        &--is-open {
-            background-color: darken(@ff_templatesetting_colour_links, 20%);
-            border-color: darken(@ff_templatesetting_colour_links, 30%);
-        }
-        &--is-disabled {
-        }
-        &--is-disabled &__content {
-        }
-    }
-
-    &--primary &__content,
-    &--primary-right &__content,
-    &--primary-compact &__content,
-    &--primary-compact-right &__content,
-    &--primary-compact-right-widelist &__content {
-        &--is-open {
-            #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 20%), @ff_templatesetting_colour_links, #ffffff);
-        }
-        &--is-disabled {
-        }
-        &--is-disabled &__content {
-        }
-    }
-    &--primary-compact &__content,
-    &--primary-compact-right &__content,
-    &--primary-compact-right-widelist &__content {
-        &--is-open {
-            background-color: darken(@ff_templatesetting_colour_links, 20%);
-            border-color: darken(@ff_templatesetting_colour_links, 30%);
-        }
-        &--is-disabled {
-            #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 20%), @ff_templatesetting_colour_links, #ffffff);
-        }
-        &--is-disabled &__content {
-        }
-    }
-
-    &--right &__list-container,
-    &--primary-right &__list-container,
-    &--primary-compact-right &__list-container,
-    &--primary-compact-right-widelist &__list-container,
-    &--compact-right &__list-container,
-    &--compact-right-widelist &__list-container,
-    &--link-right &__list-container {
-        &--is-open {
-        }
-        &--is-disabled {
-        }
-        &--is-disabled &__content {
-        }
-    }
-
-    &--compact &__button,
-    &--compact-right &__button,
-    &--compact-widelist &__button,
-    &--compact-right-widelist &__button,
-    &--primary-compact &__button,
-    &--primary-compact-right &__button,
-    &--primary-compact-right-widelist &__button {
-        &--is-open {
-        }
-        &--is-disabled {
-        }
-        &--is-disabled &__content {
-        }
-    }
-
-    &--compact &__icon,
-    &--compact-right &__icon,
-    &--compact-widelist &__icon,
-    &--compact-right-widelist &__icon,
-    &--primary-compact &__icon,
-    &--primary-compact-right &__icon,
-    &--primary-compact-right-widelist &__icon {
-        &--is-open {
-        }
-        &--is-disabled {
-        }
-        &--is-disabled &__content {
-        }
-    }
-
-    &--link &__button,
-    &--link-right &__button {
-        &--is-open {
-        }
-        &--is-disabled {
-        }
-        &--is-disabled &__content {
-        }
-    }
-    &--link &__content,
-    &--link-right &__content {
-        &--is-open {
-        }
-        &--is-disabled {
-        }
-        &--is-disabled &__content {
-        }
-    }
-    &--link &__icon {
-        // linked to alt color in config/icons.js
-    }
-
 }
 
 //modifier + state
 .ff_module-dropdown-button {
-
-    &--widelist &__list-container--is-open,
-    &--primary-compact-right-widelist &__list-container--is-open,
-    &--compact-widelist &__list-container--is-open,
-    &--compact-right-widelist &__list-container--is-open {
-        min-width: 19.7em;
-    }
-
     &--link &__icon-alt--no-text,
     &--link-right &__icon-alt--no-text {
         margin: 0 5px;
     }
-
-    &--link, &--link--is-open,
-    &--link-right, &--link-right--is-open {
+    &--link,
+    &--link--is-open,
+    &--link-right,
+    &--link-right--is-open {
         background: none;
         min-width: 0;
         border: none;
     }
+    &--primary--is-open,
+    &--primary-right--is-open,
+    &--primary-compact--is-open,
+    &--primary-compact-right--is-open {
+        background-color: darken(@ff_templatesetting_colour_links, 20%);
+        border-color: darken(@ff_templatesetting_colour_links, 30%);
+    }
+    &--primary--is-open &__content,
+    &--primary-right--is-open &__content,
+    &--primary-compact--is-open &__content,
+    &--primary-compact-right--is-open &__content {
+        #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 20%), @ff_templatesetting_colour_links, #ffffff);
+    }
+    &--primary-compact--is-open &__content,
+    &--primary-compact-right--is-open &__content {
+        background-color: darken(@ff_templatesetting_colour_links, 20%);
+        border-color: darken(@ff_templatesetting_colour_links, 30%);
+    }
+    &--primary-compact--is-disabled &__content,
+    &--primary-compact-right--is-disabled &__content {
+        #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 20%), @ff_templatesetting_colour_links, #ffffff);
+    }
 }
-

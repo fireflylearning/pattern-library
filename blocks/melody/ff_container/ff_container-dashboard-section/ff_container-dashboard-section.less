@@ -25,6 +25,8 @@
     &__main {
         #ff_mix-sections > .main();
         background-color: white;
+        border-left: 1px solid fade(@ff_colour_control_border, 50%);
+        border-right: 1px solid fade(@ff_colour_control_border, 50%);
     }
     &__main--no-footer {
         #ff_mix-sections > .main--no-footer()
@@ -37,5 +39,42 @@
     &__more-link {
         #ff_mix-util-prose > .link-no-decoration();
     }
+
+    &--simple {
+        
+        .ff_container-dashboard-section {
+            // header
+            &__header {
+                padding-left: 0;
+                padding-right: 0;
+                background-color: transparent;
+                border: none;
+                border-radius: 0;
+            }
+            
+            // main
+            &__title {
+                #ff_mix-sections > .title-contrast(#ffffff);
+                font-size: 24rem/@ff_base;
+            }
+            &__main {
+                border: 1px solid fade(@ff_colour_control_border, 80%);
+                border-radius: @ff_size_control_rounding;
+            }
+
+            // footer
+            &__footer {
+                padding-left: 0;
+                padding-right: 0;
+                background-color: transparent;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                font-weight: bold;
+            }
+
+        }
+    }
 }
+
 

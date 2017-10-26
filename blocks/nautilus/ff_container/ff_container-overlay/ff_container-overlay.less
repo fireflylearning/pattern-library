@@ -1,7 +1,11 @@
 // Individual variations
 .ff_container-overlay {
-    &--task-event-scrollable-top &__bar {
-        background-color: lighten(@ff_colour_control_bg, 3%);
-        border-color: @ff_colour_control_border;
-    }
+  &__bar {
+    background-color: rgba(255,255,255,0.9);
+    border-top: 1px solid lighten(mix(desaturate(@ff_templatesetting_colour_sm_level0_bg, 50%),#ccc,10%), 5%);
+  }
+  &--task-event-scrollable-top &__bar {
+      background-color: lighten(@ff_colour_control_bg, 3%);
+      border-color: @ff_colour_control_border;
+  }
 }

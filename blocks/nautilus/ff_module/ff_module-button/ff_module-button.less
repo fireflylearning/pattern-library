@@ -38,9 +38,11 @@
     }
     .primary-content() {
         font-weight: normal;
+        // TODO remove these colour defs as they break disabled styling, needs testing to see if there's a reason for them being here
         #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 10%), @ff_templatesetting_colour_links, #ffffff);
 
         &:hover {
+            // TODO see above
             #ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_links, 20%), @ff_templatesetting_colour_links, #ffffff);
         }
     }
@@ -67,6 +69,11 @@
         display: inline-block;
         text-align: left;
         min-width: auto;
+        &:hover {
+            background-color: transparent;
+            border: none;
+            color: shade(@ff_color_control_link, 10%);
+        }
     }
     .compact() {
         padding: (@ff_size_spacing_min * 0.6) (@ff_size_spacing_min * 0.9);
@@ -86,16 +93,20 @@
         #ff_mix-responsive-colour > .check-contrast(@ff_colour_error, @ff_templatesetting_colour_links, #ffffff);
     }
     .disabled() {
-        background-color: @ff_colour_button_bg;
-        border-color: @ff_colour_button_bg;
-        color: darken(@ff_colour_button_bg, 30%);
-        cursor: default;
+        &, &:hover {
+            background-color: @ff_colour_button_bg;
+            border-color: @ff_colour_button_bg;
+            color: darken(@ff_colour_button_bg, 30%);
+            cursor: default;
+        }
     }
     .danger-disabled() {
-        background-color: lighten(@ff_colour_error, 35%);
-        border-color: lighten(@ff_colour_error, 20%);
-        color: lighten(@ff_colour_error, 18%);
-        cursor: default;
+        &, &:hover {
+            background-color: lighten(@ff_colour_error, 35%);
+            border-color: lighten(@ff_colour_error, 20%);
+            color: lighten(@ff_colour_error, 18%);
+            cursor: default;
+        }
     }
 }
 

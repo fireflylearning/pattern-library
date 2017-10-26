@@ -6,8 +6,8 @@ var Expandable = require('./ff_container-expandable-component');
 var data = {
 	expandedText: 'Hide content',
 	collapsedText: 'Show content',
-	collapsedIcon: 'ff_icon-page-down-open-blue',
-	expandedIcon: 'ff_icon-page-up-open-blue'
+	collapsedIcon: 'ff_container-expandable__icon--closed',
+	expandedIcon: 'ff_container-expandable__icon--open'
 };
 
 module.exports = function() {

@@ -1,0 +1,5 @@
+{% for item in mark_grade %}
+	{% include '../ff_module-mark-and-grade/ff_module-mark-and-grade.xml' with item %}
+{% endfor %}
+
+<mark id="{{id}}" to="{{to}}" postback_href="{{postback_href}}" achieved="{{achieved}}" possible="{{possible}}" grade_level="{{grade_level}}" assignment="{{assignment}}" />

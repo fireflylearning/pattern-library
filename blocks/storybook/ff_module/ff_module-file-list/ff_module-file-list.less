@@ -1,0 +1,28 @@
+.ff_module-file-list {
+
+    .ff_mix-clearfix();
+    
+    &__items {
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        list-style: none;
+        border: 1px solid @ff_colour_control_border;
+        padding: @ff_size_control_vertical (@ff_size_control_horizontal / 2);
+
+        @media (min-width: @ff_bp_medium) {
+            // because we don't have element queries yet
+            &:not(.ff_module-file-list__item--sidebar) {
+                float: left;
+                clear: left;    
+            } 
+        }
+    }
+
+    &__item + &__item {
+        margin-top: @ff_size_spacing_min;
+    }
+
+}

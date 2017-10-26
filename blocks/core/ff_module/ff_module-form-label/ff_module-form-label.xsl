@@ -24,6 +24,9 @@
             </xsl:for-each>
         </xsl:if>
         <xsl:value-of select="$label/text" />
+        <xsl:if test="$label/hint">
+            <span class="ff_module-form-label__hint"> <xsl:value-of select="$label/hint" /></span>    
+        </xsl:if>
         <xsl:if test="$label/@required='false'">
             <span class="ff_module-form-label__optional"> (optional)</span>
         </xsl:if>

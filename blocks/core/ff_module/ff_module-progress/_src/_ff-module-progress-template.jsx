@@ -57,7 +57,7 @@ module.exports = React.createClass({
       </div>
       <ul className="ff_module-progress__key">
           <li className="ff_module-progress__label ff_module-progress__label--marked"><span className="ff_module-progress__label-value">{marked}</span> Marked</li>
-          <li className="ff_module-progress__label ff_module-progress__label--completed"><span className="ff_module-progress__label-value">{completed}</span> completed</li>
+          <li className="ff_module-progress__label ff_module-progress__label--completed"><span className="ff_module-progress__label-value">{completed}</span> Completed</li>
           <li className="ff_module-progress__label ff_module-progress__label--total"><span className="ff_module-progress__label-value">{total}</span> Total</li>
       </ul>
     </div>

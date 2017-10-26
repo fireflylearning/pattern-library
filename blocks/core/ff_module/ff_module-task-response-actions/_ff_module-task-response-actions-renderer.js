@@ -21,8 +21,8 @@ var props = [{
     },
     onClick: onClick
 }, {
+    allStudents: true,
     state: {
-        allStudents: true,
         excused: true,
         complete: true
     },

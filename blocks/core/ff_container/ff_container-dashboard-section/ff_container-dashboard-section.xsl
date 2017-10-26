@@ -1,7 +1,11 @@
 <xsl:template name="ff_container-dashboard-section">
     <xsl:param name="data" />
-    <section class="ff_container-dashboard-section">
-        <header class="ff_container-dashboard-section__header ff_container-dashboard-section__header--{$data/item/@modifiers}">
+    <section>
+      <xsl:attribute name="class">
+        <xsl:text>ff_container-dashboard-section</xsl:text>
+        <xsl:if test="$data/item/@modifier"> ff_container-dashboard-section--<xsl:value-of select="$data/item/@modifier"/></xsl:if>
+      </xsl:attribute>
+        <header class="ff_container-dashboard-section__header">
             <h2 class="ff_container-dashboard-section__title"><xsl:value-of select="$data/item/@title"/></h2>
         </header>
         <div>

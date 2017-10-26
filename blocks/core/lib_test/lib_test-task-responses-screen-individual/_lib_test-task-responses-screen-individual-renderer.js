@@ -198,7 +198,7 @@ models['comment'] = 'editingEvent.description.message';
 var validation = {};
 validation[modelKeys.mark] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: isNumber
     },
@@ -210,7 +210,7 @@ validation[modelKeys.mark] = {
 };
 validation[modelKeys.markMax] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: isNumber
     },
@@ -222,7 +222,7 @@ validation[modelKeys.markMax] = {
 };
 validation[modelKeys.grade] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: maxLength(5)
     },
@@ -234,7 +234,7 @@ validation[modelKeys.grade] = {
 };
 validation[modelKeys.comment] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
@@ -245,7 +245,7 @@ validation[modelKeys.comment] = {
 var max = 255;
 validation[modelKeys.message] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         valid: maxLength(max)
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,

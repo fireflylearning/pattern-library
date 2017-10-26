@@ -1,0 +1,92 @@
+.ff_module-form-completed {
+  margin: auto;
+  padding: 70px 30px;
+  padding: 70rem/@ff_base 30rem/@ff_base;
+  max-width: 540px;
+  max-width: 540rem/@ff_base;
+  text-align: center;
+
+
+  &__title {
+    #ff_mix-util-prose > .h-default();
+    #ff_mix-util-prose > .h2();
+  }
+
+  &__message {
+    #ff_mix-util-prose > .text-default();
+    #ff_mix-util-prose > .spacing();
+    #ff_mix-util-prose > .text-quiet();
+  }
+
+  &__meta >*:only-child {
+    margin: (@ff_size_control_vertical * 3) 0;
+  }
+
+  &__actions {
+    >* {
+      float: left;//older browsers
+      margin-bottom: @ff_size_control_vertical/2;
+    }
+    >*+* {
+      margin-left: @ff_size_spacing_min;
+    }
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  //default image
+  #ff_module-form-completed__image--circle {
+    animation-name: circle;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-iteration-count: 1;
+  }
+
+  #ff_module-form-completed__image--tick {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  //draft image
+  #ff_module-form-completed__image--draft-circle {
+    animation-name: circleSmall;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-iteration-count: 1;
+  }
+  #ff_module-form-completed__image--draft-tick,
+  #ff_module-form-completed__image--draft-page {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-delay: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  //svg animation
+  @keyframes circle {
+    0% {r: 0;}
+    100% {r: 35;}
+  }
+  @keyframes fadeIn {
+    to {opacity: 1;}
+  }
+  @keyframes circleSmall {
+    0% {r: 0;}
+    100% {r: 30;}
+  }
+
+}

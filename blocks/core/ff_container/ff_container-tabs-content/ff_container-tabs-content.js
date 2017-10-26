@@ -14,6 +14,12 @@ function isSelectedTab(tabKey, selectedTabKey) {
 	var selectedTab = tabKey == selectedTabKey ? ' ff_container-tabs-content--is-active' : '';
 	return selectedTab;
 }
+
+function isContentLoading(props) {
+	var isContentLoading = props.isContentLoading ? ' ff_container-tabs-content--is-loading' : '';
+	return isContentLoading;
+}
+
 module.exports = React.createClass({
 	displayName: 'ContainerTabsContent',
 	propTypes: {
@@ -29,9 +35,14 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		return <div>{this.props.tabs.map(function(tab) { 
-			return <div key={tab.key} className={generateClass('ff_container-tabs-content', this.props) + isSelectedTab(tab.key, this.props.selectedTabKey)} id={tab.id}>
-				{tab.content}
+			let isTabSelected = tab.key === this.props.selectedTabKey;
+
+			var tabContent = this.props.isContentLoading ? <img className="ff_container-tabs-content__spinner" src={this.props.spinner_href} /> : tab.content;
+
+			return <div key={tab.key} className={generateClass('ff_container-tabs-content', this.props) + isSelectedTab(tab.key, this.props.selectedTabKey) +  isContentLoading(this.props)}  id={tab.id}>
+				{isTabSelected ? tab.content : null}
 			</div>;
+
 		}, this)} </div>;	
 	}
 });

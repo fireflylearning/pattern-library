@@ -5,7 +5,7 @@ var React = require('react'),
 
 var NotificationBase = require('./_src/NotificationBase'),
     NotificationDeleteTask = require('./_src/NotificationDeleteTask'),
-    eventTypes = require('../ff_module-task-event/_src/events').types;
+    simplePlural = require('../../_lib/_ui/grammar-utils.js').simplePlural,
     eventTypes = require('../ff_module-task-event/_src/events').types;
 
 
@@ -75,13 +75,22 @@ function deleteTask(props) {
     };
 }
 
+function getStudentText(num) {
+    return simplePlural(num, 'student');
+}
+
+function getChangesText(num) {
+    return simplePlural(num, 'change');
+}
+
 var eventNotificationComponents = {};
 
 eventNotificationComponents[eventTypes.deleteTask] = deleteTask;
 eventNotificationComponents[eventTypes.releaseFeedbackAndMarks] = createEventWithMessageNotification({
-    title: "Send Feedback and Marks",
+    title: "Send Responses",
     message: function(props) {
-        return <p>This will release marks and feedback immediately to <b>{props.event.description.numRecipientsAffected} students</b>.</p>;
+        var numAffected = (props.event.description && props.event.description.numRecipientsAffected) || 0;
+        return <p>This will send responses immediately to <b>{numAffected} {getStudentText(numAffected)}</b>.</p>;
     },
     sendText: "Send",
     closeText: "Cancel"
@@ -89,8 +98,46 @@ eventNotificationComponents[eventTypes.releaseFeedbackAndMarks] = createEventWit
 eventNotificationComponents[eventTypes.sendReminder] = createEventWithMessageNotification({
     title: "Send Reminder",
     message: function(props) {
-        return <p>This will notify <b>{props.event.description.numRecipientsAffected} students</b> that they have a task due soon.</p>
+        var numAffected = (props.event.description && props.event.description.numRecipientsAffected) || 0;
+        return <p>This will notify <b>{numAffected} {getStudentText(numAffected)}</b> that they have a task due soon.</p>
     },
     sendText: "Send",
+    closeText: "Cancel"
+});
+eventNotificationComponents[eventTypes.toAllUpdate] = createEventWithMessageNotification({
+    title: "Update for all",
+    message: function(props) {
+        var numAffected = (props.event.description && props.event.description.numRecipientsAffected) || 0;
+        return <p>This will immediately update and release for all <b>{numAffected} {getStudentText(numAffected)}</b>.</p>
+    },
+    sendText: "Update",
+    closeText: "Cancel"
+});
+eventNotificationComponents[eventTypes.toAllAdd] = createEventWithMessageNotification({
+    title: "Release to all",
+    message: function(props) {
+        var numAffected = (props.event.description && props.event.description.numRecipientsAffected) || 0;
+        return <p>This will immediately release to all <b>{numAffected} {getStudentText(numAffected)}</b>.</p>
+    },
+    sendText: "Release",
+    closeText: "Cancel"
+});
+eventNotificationComponents[eventTypes.toAllDelete] = createEventWithMessageNotification({
+    title: "Delete for all",
+    message: function(props) {
+        var numAffected = (props.event.description && props.event.description.numRecipientsAffected) || 0;
+        return <p>This will immediately delete for all <b>{numAffected} {getStudentText(numAffected)}</b>.</p>
+    },
+    sendText: "Delete",
+    closeText: "Cancel"
+});
+
+eventNotificationComponents[eventTypes.navigateTo] = createEventWithMessageNotification({
+    title: "Saving changes...",
+    message: function(props) {
+        var outstandingChanges = props.event.description.outstandingChanges;
+        return <p>{outstandingChanges} outstanding {getChangesText(outstandingChanges)} are being saved.<br />{props.event.description.description}</p>;
+    },
+    sendText: "Abandon changes",
     closeText: "Cancel"
 });

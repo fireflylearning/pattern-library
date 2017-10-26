@@ -27,7 +27,7 @@ var data = {
 		checkableList: {
 			modifier: 'stacked',
 			items: [{
-				label: 'Label text',
+				label: 'Send all feedback and marks for the task at the same time.',
 				required: true,
 				type: 'radio',
 				id: 'react-radio-id-1',
@@ -36,7 +36,7 @@ var data = {
 				key: 1
 			},
 			{
-				label: 'Label text',
+				label: 'Send all feedback and marks as you add them.',
 				required: true,
 				type: 'radio',
 				id: 'react-radio-id-2',

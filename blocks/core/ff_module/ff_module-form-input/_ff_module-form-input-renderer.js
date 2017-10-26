@@ -8,6 +8,7 @@ var data = {
 	value: 'Form input',
 	name: 'input-name',
 	maxlength: 15,
+	autofocus: true,
 	data: [{
 		attr: 'data-ff-attr',
 		value: true

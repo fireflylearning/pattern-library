@@ -1,0 +1,6 @@
+<empty_state>
+	<text>{{text}}</text>
+	{% for item in button %}
+		{% include '../ff_module-button/ff_module-button.xml' with item %}
+	{% endfor %}
+</empty_state>

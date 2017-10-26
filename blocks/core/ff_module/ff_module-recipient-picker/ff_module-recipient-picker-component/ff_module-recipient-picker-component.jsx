@@ -57,6 +57,7 @@ module.exports = function(){
             <div className={"ff_module-recipient-picker__selectable" + (this.state.isActive ? ' ff_module-recipient-picker__selectable--is-active' : '')}>
                 {this.state.hasResults === true ?
                     <RecipientButtonList
+                        loaded={true}
                         results={this.state.results}
                         isSelected={this.checkIsSelected}
                         onSelect={this.addRecipientByResultId}

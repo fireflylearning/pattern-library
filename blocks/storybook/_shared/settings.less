@@ -1,0 +1,146 @@
+
+/*-------------------------------------
+Theme variations:
+
+Storybook comes in different preset variations. This file contains a number of
+@variables and .mixins() to control the overall look of the theme based on @ff_templatesetting_storybook_style
+
+The variations are:  [aqua, astro, springtime]
+-------------------------------------*/
+
+
+
+/*-------------------------------------
+defaults. Maybe this could be an easter egg?
+-------------------------------------*/
+//no need to override these for each theme variation
+@sb_menu_height:			70px;
+@sb_menu_item_minwidth:		80px;
+
+
+//these need to be overridden for each variation
+	@sb_menu_icon:			'\e60a'; //submarine
+	@sb_c_primary:			@sb_c_orange;
+	@sb_c_primary_text:		#FFFFFF;
+	@sb_c_secondary:		@sb_c_yellow;
+
+.footer() {}
+
+/*-------------------------------------
+aqua
+-------------------------------------*/
+
+.storybook_settings(@ff_templatesetting_storybook_style) when (@ff_templatesetting_storybook_style = "aqua") {
+	@sb_menu_icon:			'\e60a'; //submarine
+	@sb_c_primary:			@sb_c_orange;
+	@sb_c_primary_text:		#FFFFFF;
+	@sb_c_secondary:		@sb_c_yellow;
+}
+
+/*-------------------------------------
+astro
+-------------------------------------*/
+
+.storybook_settings(@ff_templatesetting_storybook_style) when (@ff_templatesetting_storybook_style = "astro") {
+	@sb_menu_icon:			'\e60a'; //submarine
+	@sb_c_primary:			#73467A; //is a deeper colour than the purple in the general palette
+	@sb_c_primary_text:		#FFFFFF;
+	@sb_c_secondary:		#55c3b9;
+}
+
+
+/*-------------------------------------
+springtime
+-------------------------------------*/
+
+.storybook_settings(@ff_templatesetting_storybook_style) when (@ff_templatesetting_storybook_style = "springtime") {
+	@sb_menu_icon:			'\e60a'; //submarine
+	@sb_c_primary:			@sb_c_lightblue;
+	@sb_c_primary_text:		#FFFFFF;
+	@sb_c_secondary:		@sb_c_yellow;
+}
+
+.storybook_settings(@ff_templatesetting_storybook_style);
+
+/* This file is for core less variables that are hard-coded in the environment, per theme */
+
+@ff_base: 16;
+
+@ff_colour_green:           #98CE1E;
+@ff_colour_red:             #D35447;
+@ff_colour_yellow:          #FFCD00;
+@ff_colour_blue:            #83BFEE;
+
+@ff_colour_success:         @ff_colour_green;
+@ff_colour_error:           @ff_colour_red;
+@ff_colour_notify:          @ff_colour_yellow;
+@ff_colour_progress:        @sb_c_primary;
+@ff_colour_inform:			@ff_colour_blue;
+
+//colours
+@ff_colour_default:         @sb_c_primary;
+@ff_colour_primary:      	@sb_c_yellow;
+@ff_colour_quiet:           #EAEAEA;
+
+@ff_colour_control_bg: mix(@sb_c_primary, #ffffff, 25%);
+@ff_colour_control_bg_selected: darken(@ff_colour_control_bg, 10%);
+@ff_colour_control_border: @ff_colour_primary;
+@ff_color_control_link: @ff_colour_default;
+@ff_colour_control_text: #333333;
+
+//text colours
+@ff_colour_text_quiet: #909090;
+@ff_color_text_link: @ff_color_control_link;
+
+//sizing
+@ff_size_spacing_min: 15rem/@ff_base; //10px
+@ff_size_spacing_med: 20rem/@ff_base; //16px
+@ff_size_spacing_max: 30rem/@ff_base; //20px
+@ff_size_control_horizontal: @ff_size_spacing_max;
+@ff_size_control_vertical: @ff_size_spacing_min;
+@ff_size_control_rounding: 24rem/@ff_base;
+
+@ff_size_prose_top_spacing: 32rem/@ff_base;
+@ff_size_prose_spacing: 2rem;
+
+@ff_bp_narrow: 480px;
+@ff_bp_medium: 640px;
+@ff_bp_wide: 960px;
+@ff_bp_extrawide: 1200px;
+
+@ff_input-group-padding-vertical: 7.5rem/@ff_base;
+
+
+/*-------------------------------------
+Theme colours: Despite there being a number of different variations, Storybook is actually based on
+a set colour palette — this is it. Other colour variables should relate to these. There are 10 colours.
+-------------------------------------*/
+
+@sb_c_grey:				#e6e6e6;
+
+@sb_c_purple:			#b881ce;
+@sb_c_red:				#ea696e;
+@sb_c_orange:			#f39656;
+@sb_c_yellow:			#f7b95b;
+@sb_c_lightgreen:		#b1c96f;
+@sb_c_green:			#5ac077;
+@sb_c_lightblue:		#65cae4;
+@sb_c_blue:				#6ca1e4;
+@sb_c_lightpurple:		#7f8de0;
+@sb_c_pink:				#e45cc9;
+@sb_c_bluegrey:			#95adc6;
+
+//class colours
+@ff_colour_class_Red: #EA7063;
+@ff_colour_class_Orange: #F39D31;
+@ff_colour_class_Indigo: #5e75b5;
+@ff_colour_class_Yellow: #FDDC4A;
+@ff_colour_class_Lavender: #9EACD3;
+@ff_colour_class_Violet: #9B59B6;
+@ff_colour_class_Green: #7CB75B;
+@ff_colour_class_Turquoise: #51C6B7;
+@ff_colour_class_Pink: #d8739d;
+@ff_colour_class_Forest: #1A8073;
+@ff_colour_class_Cerise: #af4854;
+
+@ff_bp_dialog_height: 580px; //the height at which the dialog boxes go to fullscreen.

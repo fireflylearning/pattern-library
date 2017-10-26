@@ -1,6 +1,10 @@
 .ff_module-task-event-group {
     &__sent {
         float: right;
+        @media screen and (max-width:@ff_bp_narrow) {
+        	float: none;
+        	clear: both;
+        }
     }
     &--delete-response {
         background-color: transparent;

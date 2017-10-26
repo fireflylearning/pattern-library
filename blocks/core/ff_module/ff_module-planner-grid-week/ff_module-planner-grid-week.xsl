@@ -26,13 +26,13 @@
     <xsl:choose>
         <xsl:when test="$day = $weekstartday">
             <th class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--empty"> </th>
-            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$day"/></th>
+            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$nicedate"/></th>
         </xsl:when>
 
         <xsl:when test="$day = $weekenddays/*"></xsl:when>
 
         <xsl:otherwise>
-            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$day"/></th>
+            <th scope="col" class="ff_module-planner-grid-week__header-col ff_module-planner-grid-week__header-col--{$dayTypeClass}"><xsl:value-of select="$nicedate"/></th>
         </xsl:otherwise>
     </xsl:choose>
 

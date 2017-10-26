@@ -1,0 +1,28 @@
+.ff_module-text-with-label {
+	&__label {
+		color: @ff_colour_text_quiet;
+		margin-bottom: @ff_size_spacing_min;
+	}
+}
+
+.ff_module-text-with-label--inline {
+	.ff_module-text-with-label__label, .ff_module-text-with-label__text {
+		margin-bottom: 0;
+		display: inline-block;
+	}
+	.ff_module-text-with-label__label {
+		margin-right: @ff_size_spacing_med;
+	}
+}
+
+.ff_module-text-with-label--split {
+	display: flex; 
+	justify-content: space-around;
+	.ff_module-text-with-label__label {
+		margin-bottom: 0;
+	}
+	.ff_module-text-with-label__label, 
+	.ff_module-text-with-label__text {
+		flex: 1 1 100px;
+	}
+}

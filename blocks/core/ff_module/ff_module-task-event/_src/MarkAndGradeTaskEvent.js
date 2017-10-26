@@ -4,6 +4,7 @@ var React = require('react');
 var eventStates = require('./events').states,
     TaskEventBase = require('./TaskEventBase'),
     MarkAndGrade = require('../../ff_module-mark-and-grade/ff_module-mark-and-grade'),
+    Utils = require('./utils'),
     taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState;
 
 
@@ -15,7 +16,7 @@ var defaultState = React.createClass({
 var deletedState = React.createClass({
     displayName: 'MarkAndGradeTaskEventDeleted',
     render: taskEventWithOptionalMessageDeleted(function(props) {
-        return getStatusText(props.description.author.name + ' deleted a ', props.description) + '.';
+        return `${TaskEventBase.getAuthor(props)} deleted ${describeEvent(props.description)}`;
     })
 });
 
@@ -44,27 +45,32 @@ function TaskEventMessage(props) {
     var description = props.description || {},
         messageText = description.message;
 
-    return messageText ? <p className="ff_module-task-event__message">{messageText}</p> : <span/>;
+    return messageText ? <p className="ff_module-task-event__message">{Utils.breakifyComponents(Utils.urlifyText(messageText))}</p> : <span/>;
 }
 
 function TaskEventStatus(props) {
-    var statusText = getStatusText(props.description.author.name + ' added a ', props.description),
+    var statusText = getStatusText(props),
         editedFlag = getEditedFlag(props);
 
     return statusText ? <p className="ff_module-task-event__author-action">{statusText}{editedFlag}:</p> : <span/>;
 }
 
-function getStatusText(base, description) {
+function getStatusText(props) {
+    let author = TaskEventBase.getAuthor(props);
+    return `${author} added ${describeEvent(props.description)}`;
+}
 
-    if (description.mark && !description.grade){
-        return base + 'mark';
-    } else if(!description.mark && description.grade) {
-        return base + 'grade';
-    } else if (description.mark && description.grade) {
-        return base + 'mark and grade';
-    } else {
-        return '';
+function describeEvent(description) {
+    if (description.mark != null && description.grade == null){
+        return 'a mark';
+    } else if(description.mark == null && description.grade != null) {
+        return 'a grade';
+    } else if (description.mark != null && description.grade != null) {
+        return 'a mark and grade';
+    } else if (description.message != null) {
+        return 'feedback';
     }
+    return '';
 }
 
 module.exports = {};

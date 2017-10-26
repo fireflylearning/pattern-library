@@ -29,7 +29,7 @@ function getChild(file) {
 
     var child = <span>{icon}{title}</span>;
 
-    if (file.href) child = <a href={file.href} className="ff_module-file__link">{icon}{title}</a>;
+    if (file.href) child = <a href={file.href} className="ff_module-file__link" target="_blank">{icon}{title}</a>;
     else if (file.onClick) child = <Button text={file.title} modifier='link' onClick={file.onClick} icon={getIconType(file).replace('ff_icon-', '')}></Button>;
 
     return child;
@@ -54,7 +54,7 @@ module.exports = React.createClass({
         var child = getChild(file);
 
         return (
-            <div className={generateClass('ff_module-file', file)}>
+            <div className={generateClass('ff_module-file', this.props)}>
                 {child}
             </div>
         );

@@ -49,6 +49,8 @@ var buttonProps = [{
     hideText: true,
     id: 'btn-02',
     icon: 'calendar',
+    href: "#",
+    hrefMethod: "post"
 }, {
     text: 'Button with icon hidden text',
     modifier:'link',
@@ -56,6 +58,9 @@ var buttonProps = [{
     hideText: true,
     icon: 'calendar',
     iconAlign: 'right'
+}, {
+  text: 'Link Button',
+  href: '#'
 }];
 
 

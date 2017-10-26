@@ -7,10 +7,13 @@
         flex-wrap: wrap;
         max-height: 200px;
         overflow:auto;
-        &, &:not([type="radio"]), &:not([type="checkbox"]) {
+        &:not([type="radio"]):not([type="checkbox"]) {
             padding: @ff_size_spacing_min * 0.25;
         }
         background: #fff;
+        @media (max-width: @ff_bp_narrow) {
+            max-height: 100%;
+        }
     }
     &__selectable {
         display: none;
@@ -23,15 +26,17 @@
         z-index:2;
         left:20px;
         right:20px;
+        max-height: 320px;
+        overflow-y: scroll;
 
-        &, &:not([type="radio"]), &:not([type="checkbox"]){
+        &, &:not([type="radio"]):not([type="checkbox"]){
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             border-top:none;
         }
     }
     &__input {
-        flex:1;
+        flex: 1 1 auto;
     }
     &__selectable--is-active {
         display: block;

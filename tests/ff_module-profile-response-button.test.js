@@ -9,8 +9,11 @@ var TestUtils = require('react-addons-test-utils'),
     getTestFramework = require('./lib/framework').setUpTestFramework(React, TestUtils, expect);
 
 var ProfileResponseButton = require("../blocks/core/ff_module/ff_module-profile-response-button/ff_module-profile-response-button.js"),
-    eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types,
-    dateFormatting = require('../blocks/core/_lib/_ui/dateFormatting')();
+    eventTypes = require('../blocks/core/ff_module/ff_module-task-event/_src/events').types;
+
+var testMarkValue = 7,
+    testMaxMarkValue = 10,
+    percentageString = "70%"
 
 var buttonProps = [{
         onSelect: sinon.spy(),
@@ -18,15 +21,16 @@ var buttonProps = [{
         isRead: true,
         label: "Sally Student",
         markAndGrade: {
-            mark: 7,
-            markMax: 10,
+            mark: testMarkValue,
+            markMax: testMaxMarkValue,
             grade: "A"
         },
         event: {
             description: {
                 type: eventTypes.markAndGrade,
                 sent: new Date()
-            }
+            },
+            state: {}
         },
         pic_href: "/images/default_picture.png"
     }, {
@@ -35,14 +39,15 @@ var buttonProps = [{
         isRead: true,
         label: "Terry Teacher",
         markAndGrade: {
-            mark: 7,
-            markMax: 10
+            mark: testMarkValue,
+            markMax: testMaxMarkValue
         },
         event: {
             description: {
                 type: eventTypes.requestResubmission,
                 sent: new Date()
-            }
+            },
+            state: {}
         },
         pic_href: "/images/default_picture.png"
     }, {
@@ -54,7 +59,8 @@ var buttonProps = [{
             description: {
                 type: eventTypes.confirmTaskIsComplete,
                 sent: new Date()
-            }
+            },
+            state: {}
         },
         pic_href: "/images/default_picture.png"
     }, {
@@ -69,7 +75,8 @@ var buttonProps = [{
             description: {
                 type: eventTypes.stampResponseAsSeen,
                 sent: new Date()
-            }
+            },
+            state: {}
         },
         pic_href: "/images/group-icon.png"
     }, {
@@ -79,7 +86,8 @@ var buttonProps = [{
             description: {
                 type: eventTypes.confirmStudentIsExcused,
                 sent: new Date()
-            }
+            },
+            state: {}
         },
         pic_href: "/images/group-icon.png"
     }, {
@@ -89,7 +97,8 @@ var buttonProps = [{
             description: {
                 type: eventTypes.comment,
                 sent: new Date()
-            }
+            },
+            state: {}
         },
         pic_href: "/images/group-icon.png"
     }, {
@@ -100,7 +109,8 @@ var buttonProps = [{
             description: {
                 type: eventTypes.comment,
                 sent: new Date()
-            }
+            },
+            state: {}
         },
         pic_href: "/images/group-icon.png"
     }, {
@@ -111,7 +121,8 @@ var buttonProps = [{
             description: {
                 type: eventTypes.setTask,
                 sent: new Date()
-            }
+            },
+            state: {}
         },
         pic_href: "/images/group-icon.png"
     }, {
@@ -122,7 +133,8 @@ var buttonProps = [{
                 type: eventTypes.addFile,
                 sent: new Date(),
                 files: []
-            }
+            },
+            state: {}
         },
         pic_href: "/images/group-icon.png"
     }, {
@@ -134,7 +146,8 @@ var buttonProps = [{
                 type: eventTypes.addFile,
                 sent: new Date(),
                 files: []
-            }
+            },
+            state: {}
         },
         pic_href: "/images/group-icon.png"
     }],
@@ -154,7 +167,7 @@ function testClasses(component, value, props) {
 }
 
 var statusTextsForEventByCurrentUser = {};
-statusTextsForEventByCurrentUser[eventTypes.setTask] = "Awaiting Response";
+statusTextsForEventByCurrentUser[eventTypes.setTask] = "Awaiting response";
 statusTextsForEventByCurrentUser[eventTypes.stampResponseAsSeen] = "Task stamped as seen";
 statusTextsForEventByCurrentUser[eventTypes.requestResubmission] = "Resubmission requested";
 statusTextsForEventByCurrentUser[eventTypes.confirmTaskIsComplete] = "Confirmed as complete";
@@ -185,11 +198,11 @@ var testDefs = {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__mark-and-grade');
 
         if (value.grade && value.mark && value.markMax) {
-            expect(node.textContent).to.equal(value.mark + '/' + value.markMax + ', ' + value.grade);
+            expect(node.textContent).to.equal(value.mark + '/' + value.markMax + percentageString + value.grade);
         } else if (value.grade) {
             expect(node.textContent).to.equal(value.grade);
         } else if (value.mark && value.markMax) {
-            expect(node.textContent).to.equal(value.mark + '/' + value.markMax);
+            expect(node.textContent).to.equal(value.mark + '/' + value.markMax + percentageString);
         }
     },
     'label': function(component, value, props) {
@@ -209,7 +222,7 @@ var testDefs = {
         var node = TestUtils.findRenderedDOMComponentWithClass(component, 'ff_module-profile-response-button__status');
         var expected = '';
         if (props.event) {
-            expected = statusSummaryText(props) + " " + dateFormatting.niceDate(props.event.description.sent).toLowerCase();
+            expected = statusSummaryText(props);
         }
         expect(node.textContent).to.equal(expected);
     },

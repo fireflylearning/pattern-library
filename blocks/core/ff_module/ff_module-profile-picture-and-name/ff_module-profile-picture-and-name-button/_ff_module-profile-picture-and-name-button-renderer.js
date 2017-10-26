@@ -12,6 +12,7 @@ module.exports = function() {
                 label: 'Sally Student',
                 pic_href: '/images/default_picture.png',
                 guid: 'profile-guid',
+                showImage: false,
                 onSelect: function(){
                     console.log('Select Sally Student');
                 }

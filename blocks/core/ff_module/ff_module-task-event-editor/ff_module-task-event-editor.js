@@ -24,15 +24,27 @@ module.exports = React.createClass({
             actions: React.PropTypes.array,
             state: React.PropTypes.object
         }).isRequired,
+        eventForm: React.PropTypes.object,
+        allStudents: React.PropTypes.bool.isRequired,
+        studentName: React.PropTypes.string.isRequired,
+        releaseMode: React.PropTypes.number.isRequired,
         onSend: React.PropTypes.func.isRequired,
+        onNext: React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,
         onClose: React.PropTypes.func.isRequired,
-        models: React.PropTypes.object.isRequired,
-        validation: React.PropTypes.object.isRequired,
-        onNext: React.PropTypes.func
+        models: React.PropTypes.object,
+        validation: React.PropTypes.object,
+        showSaveAndNext: React.PropTypes.bool,
+        persistTaskEventState: React.PropTypes.object,
+        setInputInitialValue: React.PropTypes.func
     },
     render: function() {
         return getEventEditor(this.props);
+    },
+    componentDidMount() {
+        if (getType(this.props) === 'mark-and-grade' && this.props.persistTaskEventState.markMax) {
+            this.props.setInputInitialValue(this.props.models['markMax'], this.props.persistTaskEventState.markMax);
+        }
     }
 });
 
@@ -135,7 +147,7 @@ var MarkAndGradeEditor = function MarkAndGradeEditor(props) {
 }
 
 var DeleteResponseMessage = function DeleteResponseMessage(props) {
-    var name = props.event && props.event.state && props.event.state.allStudents ?
+    var name = props.allStudents ?
             'all students' :
             props.event.description.author.name;
 
@@ -153,13 +165,24 @@ var InvalidMessage = function InvalidMessage(props) {
 var eventEditorComponents = {};
 
 eventEditorComponents[eventTypes.stampResponseAsSeen] = function StampResponseAsSeen(props) {
+    var onNext = function() {
+        var newEvent = {
+            description: {
+                type: eventTypes.stampResponseAsSeen
+            }
+        };
+        props.onNext(newEvent);
+    };
+
+    var newProps = _.extend({}, props, { onNext: onNext });
+
     return (
         <EditorBase
             title="Stamp as Seen"
-            controls={getEditorControls('Stamp', props, true)}
+            controls={getEditorControls('Stamp', newProps, true)}
             {...props}
             >
-            <EventWithMessageEditor messageLabel="Feedback" {...props} />
+            <EventWithMessageEditor messageLabel="Feedback" {...newProps} />
         </EditorBase>
     );
 };
@@ -179,6 +202,17 @@ eventEditorComponents[eventTypes.confirmTaskIsComplete] = function ConfirmTaskIs
         <EditorBase
             title="Confirm as Complete"
             controls={getEditorControls('Confirmation', props, false)}
+            {...props}
+            >
+            <EventWithMessageEditor messageLabel="Feedback" {...props} />
+        </EditorBase>
+    );
+};
+eventEditorComponents[eventTypes.revertTaskToToDo] = function RevertTaskToToDo(props) {
+    return (
+        <EditorBase
+            title="Revert to To Do"
+            controls={getEditorControls('Revert', props, false)}
             {...props}
             >
             <EventWithMessageEditor messageLabel="Feedback" {...props} />
@@ -207,8 +241,6 @@ eventEditorComponents[eventTypes.confirmStudentIsUnexcused] = function ConfirmSt
         </EditorBase>
     );
 };
-
-
 eventEditorComponents[eventTypes.comment] = function Comment(props) {
     return (
         <EditorBase
@@ -232,11 +264,6 @@ eventEditorComponents[eventTypes.addFile] = function(props){
     );
 };
 eventEditorComponents[eventTypes.markAndGrade] = MarkAndGradeEditor; // requires some state to calc text, so all internal
-
-
-
-
-
 eventEditorComponents[eventTypes.deleteResponse] = function DeleteResponse(props) {
 
     var titleText='Delete Feedback',
@@ -255,8 +282,6 @@ eventEditorComponents[eventTypes.deleteResponse] = function DeleteResponse(props
         </EditorBase>
     );
 };
-
-
 eventEditorComponents[eventStates.error] = function EditorError(props) {
 
     var titleText = "Unable to " + getPrimaryButtonText('Feedback', props),
@@ -293,6 +318,3 @@ function EditorInvalid(props) {
         </EditorBase>
     )
 };
-
-
-

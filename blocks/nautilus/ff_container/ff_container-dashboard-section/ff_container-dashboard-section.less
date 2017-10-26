@@ -1,6 +1,6 @@
 
 .ff_container-dashboard-section {
-    
+
     // header
     &__header {
         #ff_mix-sections > .header();
@@ -11,7 +11,7 @@
         &--tasks {
         }
     }
-    
+
     // main
     &__title {
         font-size: 21rem/@ff_base;
@@ -31,5 +31,38 @@
     &__more-link {
         #ff_mix-util-prose > .link-no-decoration();
     }
-}
 
+    &--simple {
+
+        .ff_container-dashboard-section {
+            // header
+            &__header {
+                padding-left: 0;
+                padding-right: 0;
+                background-color: transparent;
+                border: none;
+                border-radius: 0;
+            }
+
+            // main
+            &__title {
+                font-size: 24rem/@ff_base;
+            }
+            &__main {
+                border: 1px solid @ff_colour_control_border;
+                border-radius: @ff_size_control_rounding;
+            }
+
+            // footer
+            &__footer {
+                padding-left: 0;
+                padding-right: 0;
+                background-color: transparent;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                font-weight: bold;
+            }
+        }
+    }
+}

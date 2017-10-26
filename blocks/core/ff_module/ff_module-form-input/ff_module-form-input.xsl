@@ -51,6 +51,7 @@
     <xsl:param name="className" />
     <xsl:param name="type" />
     <xsl:param name="maxlength" />
+    <xsl:param name="readonly" />
 
     <input class="{$className} {$input/@classes}">
 
@@ -68,6 +69,10 @@
             <xsl:attribute name="name">
                <xsl:value-of select="$input/@name"/>
             </xsl:attribute>
+        </xsl:if>
+
+        <xsl:if test="$input/@autofocus='true'">
+          <xsl:attribute name="autofocus">autofocus</xsl:attribute>
         </xsl:if>
 
         <xsl:if test="not($input/@value='')">
@@ -96,10 +101,16 @@
                 </xsl:attribute>
             </xsl:for-each>
         </xsl:if>
-        
-        <xsl:if test="not($input/@maxlength='')">
+
+        <xsl:if test="$input/@maxlength">
             <xsl:attribute name="maxlength">
                <xsl:value-of select="$input/@maxlength"/>
+            </xsl:attribute>
+        </xsl:if>
+
+        <xsl:if test="$input/@readonly='true'">
+            <xsl:attribute name="readonly">
+               <xsl:text>true</xsl:text>
             </xsl:attribute>
         </xsl:if>
 

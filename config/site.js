@@ -12,5 +12,8 @@ module.exports = {
     }, {
         name: 'Melody',
         filepath: '/css/blocks.melody.css'
+    }, {
+        name: 'Storybook',
+        filepath: '/css/blocks.storybook.css'
     }]
 };

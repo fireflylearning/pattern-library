@@ -1,0 +1,35 @@
+.ff_container-control-bar {
+    &__group {
+      flex-wrap: wrap;
+      >* {
+        margin-right: @ff_size_control_horizontal/2;
+        margin-bottom: @ff_size_control_vertical;
+      }
+
+      @media (min-width:@ff_bp_medium) {
+        align-items: center;
+        flex-wrap: nowrap;
+        >* {
+          margin-right: 0;
+          margin-bottom: 0;
+          margin-top: 0;
+        }
+        >*+*,
+        &+.ff_container-control-bar__group {
+            margin-left: @ff_size_control_horizontal/2;
+        }
+      }
+
+    }
+    &--right &__group,
+    &--split &__group:last-of-type {
+        >* {
+          margin-left: @ff_size_control_horizontal/2;
+        }
+    }
+
+    &__title {
+        #ff_mix-util-prose > .h3();
+    }
+
+}

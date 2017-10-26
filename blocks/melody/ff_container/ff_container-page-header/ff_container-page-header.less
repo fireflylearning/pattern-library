@@ -1,6 +1,12 @@
 .ff_container-page-header {
-    padding: @ff_size_spacing_max @ff_size_spacing_max * 2;
-    background-color: @ff_colour_melody_int_blue;
+    padding: @ff_size_spacing_min;
+    @media (min-width: 360px) {
+      padding: @ff_size_spacing_min * 2;
+    }
+    @media all and (min-width: @ff_bp_medium) {
+      padding: @ff_size_spacing_max @ff_size_spacing_max * 2;
+    }
+    background-color: @ff_colour_melody_int_main;
     border-radius: @ff_size_control_rounding @ff_size_control_rounding 0 0 ;
 }
 

@@ -2,15 +2,17 @@
     display: flex;
     align-content: space-between;
     align-items: center;
-    width: 100%;
     box-sizing: border-box;
-}
+    flex-wrap: nowrap;
 
-.ff_container-page-header__title {
-    flex: 1;
-}
+    &__controls {
+      margin: auto;
+    }
 
-.ff_container-page-header__title {
-    #ff_mix-util-prose > .h1();
-    margin: 0;
+    &__title {
+        #ff_mix-util-prose > .h1();
+        margin: 0;
+        flex:1;
+    }
+
 }

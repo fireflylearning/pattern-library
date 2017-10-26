@@ -22,6 +22,9 @@ var datesNonLocal = [new Date('Mon, 25 Dec 1995 13:30:00 +0430'), new Date('9 Se
     datesLocal = [new Date('Mon, 25 Dec 1995 09:00:00'), new Date('Sun Sep 09 2018 14:30:00'), new Date(2015, 11, 1, 0, 0, 0), new Date('2016', '01', '13', '08')],
     shortDates = ['25/12/1995', '9/9/2018', '1/12/2015', '13/2/2016'],
     shortTimes = ['9:00 AM', '2:30 PM', '12:00 AM', '8:00 AM'],
+    _24HourTimes = ['9:00', '14:30', '00:00', '8:00'],
+    expectedShortDaysOfWeek = ['Mon', 'Sun', 'Tues', 'Sat'],
+    expectedShortMonths = ['Dec', 'Sep', 'Dec', 'Feb'],
     expectedLongDaysOfWeek = ['Monday', 'Sunday', 'Tuesday', 'Saturday'];
 
 var testDates = [1, 2, 3, 21, 22, 23, 31, 4, 7, 20],
@@ -408,6 +411,42 @@ describe('dateFormatting', function() {
                 expect(dateFormatting.toLongDayString(date).toString()).to.equal(expectedLongDaysOfWeek[index]);
             });
         });
+    });
+
+    describe('toShortDayString', function() {
+        datesLocal.forEach(function(date, index) {
+            it(date + ' = ' + expectedShortDaysOfWeek[index], function() {
+                expect(dateFormatting.toShortDayString(date).toString()).to.equal(expectedShortDaysOfWeek[index]);
+            });
+        });
+    });
+
+    describe('to24HourTimeString', function() {
+        datesLocal.forEach(function(date, index) {
+            it(date + ' = ' + _24HourTimes[index], function() {
+                expect(dateFormatting.to24HourTimeString(date).toString()).to.equal(_24HourTimes[index]);
+            });
+        });
+    });
+
+    describe('toShortMonthString', function() {
+        datesLocal.forEach(function(date, index) {
+            it(date + ' = ' + expectedShortMonths[index], function() {
+                expect(dateFormatting.toShortMonthString(date).toString()).to.equal(expectedShortMonths[index]);
+            });
+        });
+    });
+
+    describe('isToday', function() {
+        var today = new Date();
+        var notToday = datesLocal[0];
+        it(today + ' = ' + true, function() {
+            expect(dateFormatting.isToday(today)).to.equal(true);
+        });
+        it(notToday + ' = ' + false, function() {
+            expect(dateFormatting.isToday(notToday)).to.equal(false);
+        });
+
     });
 
     describe('getDateSuffix', function() {

@@ -6,7 +6,7 @@ var eventStates = require('./events').states,
 
 var defaultState = React.createClass({
     displayName: 'SentReminderTaskEventDefault',
-    render: taskEventWithOptionalMessage('sent a reminder.')
+    render: taskEventWithOptionalMessage('sent a reminder')
 });
 
 module.exports = {};

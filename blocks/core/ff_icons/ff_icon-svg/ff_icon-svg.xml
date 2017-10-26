@@ -1,0 +1,14 @@
+<svg-icon
+  name="{{name}}"
+  {% if base %}base="{{base}}"{% endif %}
+  {% if modifier %}modifier="{{modifier}}"{% endif %}
+  {% if classes %}classes="{{classes}}"{% endif %}
+>
+  {% if data %}
+  <data>
+    {% for item in data %}
+      <item attr="{{item.attr}}">{{item.value}}</item>
+    {% endfor %}
+  </data>
+  {% endif %}
+</svg-icon>

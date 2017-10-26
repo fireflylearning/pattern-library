@@ -1,0 +1,46 @@
+.ff_container-expandable {
+	&__header {
+		padding: @ff_size_spacing_med;
+        border: 1px solid @ff_colour_default;
+        background-color: white;
+        border-radius: (@ff_size_control_rounding * 1.25) (@ff_size_control_rounding * 1.25) 0 0;
+        #ff_mix-responsive-colour > .check-contrast(white, darken(spin(saturate(@ff_colour_default, 30%), -5), 10%), @ff_colour_default);
+        &:hover {
+            background-color: mix(white, @ff_colour_default, 75%);
+            border-color: darken(spin(saturate(@ff_colour_default, 30%), -5), 10%);
+            #ff_mix-responsive-colour > .check-contrast(mix(white, @ff_colour_default, 75%), darken(spin(saturate(@ff_colour_default, 30%), -5), 10%), @ff_colour_default);
+        }
+		cursor: pointer;
+	}
+
+	&__icon {
+		width: 1.5em;
+		height: 1.5em;
+		float: right;
+	}
+
+	&__content {
+		max-height: 1000px;
+		overflow: hidden;
+		transition: max-height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	}
+
+	&--is-collapsed &__header {
+		border-radius: @ff_size_control_rounding * 1.5;
+	}
+
+	&--is-collapsed &__content {
+		max-height: 0;
+	}
+
+	&--is-widescreen &__header {
+		@media all and (min-width: @ff_bp_wide) {
+			display: none;
+		}
+	}
+	&--is-widescreen &__content {
+		@media all and (min-width: @ff_bp_wide) {
+			max-height: 1000px;
+		}
+	}
+}

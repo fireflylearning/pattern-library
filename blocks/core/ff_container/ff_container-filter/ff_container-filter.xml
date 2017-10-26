@@ -1,4 +1,9 @@
 <filter modifier="{{modifier}}">
+	{% if clear_filters_button %}
+		{% for item in clear_filters_button %}
+			{% include '../../ff_module/ff_module-button/ff_module-button.xml' with item %}
+		{% endfor %}
+	{% endif %}
 	<label>{{label}}</label>
 	{% for set in sets %}
 		<set>

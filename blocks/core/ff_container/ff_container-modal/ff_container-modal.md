@@ -7,9 +7,9 @@ This block is thin wrapper around the `react-modal` [node module](https://github
 See the docs for [react-modal](https://github.com/reactjs/react-modal) for more info; additionally this wrapper adds:
 
 - **`modifier`**: {String} Suffix class modifier
-     
-    Current options are `compact` and `wide`
-    
+
+    Current options are `compact`, `wide`, `fixed-height` and `fixed-height-wide`
+
 - **`classes`**: {String} Additional classes from other block owners
 
 ## Methods

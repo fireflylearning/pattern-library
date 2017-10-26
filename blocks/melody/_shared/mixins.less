@@ -85,7 +85,7 @@
         border: @border-width solid @border-color;
         overflow: hidden;
         background-color: @background-color;
-        line-height: @diam - @border-width;
+        line-height: @diam;
     }
 }
 
@@ -131,6 +131,12 @@
     .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
         fill: @light;
     }
+    .check-contrast-var(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 204) {
+        @colour: @dark;
+    }
+    .check-contrast-var(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 204) {
+        @colour: @light;
+    }
 }
 
 #ff_mix-sections() {
@@ -142,9 +148,6 @@
         }
         &:active, &:hover {
             #ff_mix-responsive-colour > .check-contrast(@c, darken(@c, 70%), #fff);
-        }
-        .ff_icon path {
-            #ff_mix-responsive-colour > .check-contrast-svg(@c, darken(@c, 70%), #fff);
         }
     }
     .title-contrast(@c: white) {

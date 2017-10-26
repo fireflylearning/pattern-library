@@ -29,7 +29,10 @@
     &__bar-content {
         max-width: 87.5rem;
         margin: 0 auto;
-        padding: 3*@ff_size_control_vertical 2.5*@ff_size_control_horizontal;
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
+        @media all and (min-width: @ff_bp_wide) {
+          padding: @ff_size_control_vertical 2.5*@ff_size_control_horizontal;
+        }
     }
 
     //fixed-bottom
@@ -98,9 +101,7 @@
 // Individual variations
 .ff_container-overlay {
     &--task-event-scrollable &__bar {
-        @media (min-width: @ff_bp_wide) {
-            left: 30%;
-        }
+        @media (min-width: @ff_bp_wide) {}
     }
     &--task-event-scrollable-top &__bar{
         background-color: lighten(@ff_colour_control_bg, 3%);

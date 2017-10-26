@@ -1,3 +1,7 @@
+.plugin-settasks-ff6 .ff-jseditor-window-overlay {
+    z-index: 10000;
+}
+
 .ff_module-task-responses {
     position: relative;
     &__actions {
@@ -8,7 +12,20 @@
 @local-radius: @ff_size_control_rounding;
 // modifiers
 .ff_module-task-responses {
-    &--standalone {}
+    &--standalone {
+        position: static;
+        background: @ff_colour_control_bg;
+        border: 1px solid @ff_colour_control_border;
+        @media (min-width: @ff_bp_wide) {
+            margin-top: 0;
+        }
+        margin-top: @ff_size_spacing_min;
+    }
+    &--standalone &__content {
+        margin-top: 0;
+        max-height: 585px;
+        overflow-y: auto;
+    }
 }
 
 .ff_module-task-responses {
@@ -17,19 +34,18 @@
     }
     &--fixed-actions &__actions {
         @media (min-width: @ff_bp_wide) {
-            position: absolute;
-            left: 30%;
-            right: 0;
-            top: 0;
             z-index: 2;
         }
         left: 0;
     }
     &--fixed-actions &__content {
-        @media (min-width: @ff_bp_wide) {
-            margin-top: 55px;
-        }
         margin-top: 0;
+        overflow-y: auto;
+        @media (min-width: @ff_bp_wide) {
+            padding-bottom: @ff_size_spacing_min;
+            max-height: 463px;
+            box-sizing: border-box;
+        }
     }
     &--fixed-actions-cannot-edit &__content {
         margin-top: 0px;

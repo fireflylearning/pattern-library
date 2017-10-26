@@ -15,6 +15,73 @@ but don't belong specifically to the blocks */
     }
 }
 
+//typograhy
+#type() {
+  .default() {
+    font-size: unit(18/16,rem);
+    line-height: 26/18;
+    margin: 0;
+    padding: 0;
+  }
+  .spacing() {
+    margin: unit(18/16,rem) 0;
+  }
+  .code--base() {
+    font-family: monospace;
+    color: lighten(#333,10%);
+    margin: 0 .1em;
+    border: 1px solid darken(#ccc,10%);
+    background-color: #ccc;
+    padding: 4rem/16;
+    border-radius: 4rem/16;
+  }
+
+  .code--inline() {
+    font-size: 80%;
+  }
+}
+
+//apply typography
+.crate_block__content {
+  max-width: 800px;
+
+  p, li {
+    #type > .default();
+    #type > .spacing();
+  }
+
+  //code blocks
+  p>code, li>code, td>code, th>code {
+    #type > .code--base();
+    #type > .code--inline();
+  }
+
+  pre>code {
+    #type > .code--base();
+    display: block;
+  }
+
+  table {
+      border-collapse: collapse;
+      font-size: 80%;
+      width: 100%;
+      #type > .default();
+  }
+
+  td, th {
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+      padding: .5em .7em;
+      vertical-align: top;
+  }
+
+  th {
+      font-weight: bold;
+      border-bottom: 2px solid darken(#ccc,10%);
+  }
+
+}
+
 .crate_block > [class*="ff_container-"] {
     outline: 1px dotted #CCC;
 }

@@ -10,7 +10,7 @@ var TaskMetaActions = require('./ff_module-task-meta-actions'),
     dataAttr = '[data-ff_module-task-meta-actions]',
     filterProps = {
         text: '[Filter by Status]',
-        modifier: 'compact-widelist',
+        modifier: 'compact',
         onAddFilter: function(id, event) { console.log('Adding ' + id); },
         onRemoveFilter: function(id, event) { console.log('Removing ' + id); },
         filters: [{
@@ -32,30 +32,60 @@ var TaskMetaActions = require('./ff_module-task-meta-actions'),
     },
     dropdownProps = {
         text: '[More Actions]',
-        modifier: 'compact-right-widelist',
+        modifier: 'compact',
         list: [{ text: '[Edit]', onClick: function(event) { console.log(event); } }]
     },
 
-    props = {
+    props = [{
         state: {
             // archived: true
         },
         modifier: 'my-modifier',
         description: {
-            numRecipientsAffected: 43,
+            numRecipientsAffected: 1,
             author: { name: 'Terry Teacher' }
         },
         filters: <DropdownFilters {...filterProps} />,
         singleButtons: [<Button key="send-all-now" {...buttonProps}/>],
         groupedActions: <DropdownButton {...dropdownProps}/>
-    };
+    },
+    {
+        state: {
+            // archived: true
+        },
+        description: {
+            numRecipientsAffected: 24,
+            author: { name: 'Terry Teacher' }
+        },
+        filters: <DropdownFilters {...filterProps} />,
+        singleButtons: [<Button key="send-all-now" {...buttonProps}/>],
+        groupedActions: <DropdownButton {...dropdownProps}/>
+    },
+    {
+        state: {
+            archived: true
+        },
+        description: {
+            numRecipientsAffected: 1,
+            author: { name: 'Terry Teacher' }
+        },
+        filters: <DropdownFilters {...filterProps} />,
+        singleButtons: [<Button key="send-all-now" {...buttonProps}/>],
+        groupedActions: <DropdownButton {...dropdownProps}/>
+    }];
 
 
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
         Array.prototype.forEach.call(document.querySelectorAll(dataAttr), function(domElement, index) {
-            ReactDOM.render(React.createElement(TaskMetaActions, props), domElement);
+            var el = <div>
+                {props.map(function(_props, index){
+                    return <TaskMetaActions {..._props} key={index} />;
+                })}
+            </div>
+            ReactDOM.render(el, domElement);
+
         });
     });
 };

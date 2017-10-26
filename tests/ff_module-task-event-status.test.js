@@ -174,14 +174,14 @@ function getPresentationState(eventState) {
 }
 
 
-function onError(){
+function tryAgainCallback(){
     console.log('Error, retrying');
 }
 
 describe('TaskEventStatus', function() {
 
     it('should render', function() {
-        var element = React.createElement(TaskEventStatus, {state:{},onError:onError});
+        var element = React.createElement(TaskEventStatus, {state:{},tryAgainCallback:tryAgainCallback});
         var component = TestUtils.renderIntoDocument(element);
         expect(component).to.exist;
     });
@@ -204,11 +204,11 @@ describe('TaskEventStatus', function() {
                             ((sState === eventStates.default) && (rState === eventStates.released))) {
 
                             var attemptToFindNode = function(){
-                                getElementByClass({state: state, type:type, onError:onError}, 'ff_module-task-event-status__text');
+                                getElementByClass({state: state, type: type, tryAgainCallback: tryAgainCallback}, 'ff_module-task-event-status__text');
                             };
                             expect(attemptToFindNode).to.throw(Error, /Did not find/);
                         } else {
-                            var status = getElementByClass({state: state, type:type, onError:onError}, 'ff_module-task-event-status__text');
+                            var status = getElementByClass({state: state, type: type, tryAgainCallback: tryAgainCallback}, 'ff_module-task-event-status__text');
                             expect(status).to.exist;
                             expect(status.textContent).to.equal(expectedText);
                         }

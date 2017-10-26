@@ -8,6 +8,8 @@ var ContainerTabsContent = require('./ff_container-tabs-content');
 var data = {
 	modifier: '',
 	selectedTabKey: 1,
+	isContentLoading: false,
+	spinnerHref: '/images/loading_spinner.gif',
 	tabs: [{
 		content: <p>Overview Tab</p>,
 		id: "tab1a",

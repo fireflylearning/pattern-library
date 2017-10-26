@@ -49,6 +49,9 @@
     .text-notify {
         color: @ff_colour_notify;
     }
+    .text-inform {
+        color: @ff_colour_inform;
+    }
     .text-block {
         color: @ff_colour_control_text;
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
@@ -59,6 +62,11 @@
         #ff_mix-util-prose > .text-block;
         border: 1px solid @ff_colour_notify;
         background-color: lighten(@ff_colour_notify, 40%);
+    }
+    .text-block--inform {
+        #ff_mix-util-prose > .text-block;
+        border: 1px solid @ff_colour_inform;
+        background-color: lighten(@ff_colour_inform, 20%);
     }
     .text-block--error {
         #ff_mix-util-prose > .text-block;
@@ -320,8 +328,14 @@
     &__text--danger {
         #ff_mix-util-prose > .text-danger();
     }
+    &__text--quiet {
+        #ff_mix-util-prose > .text-quiet();
+    }
     &__text-block--notify {
         #ff_mix-util-prose > .text-block--notify();
+    }
+    &__text-block--inform {
+        #ff_mix-util-prose > .text-block--inform();
     }
     &__text-block--error {
         #ff_mix-util-prose > .text-block--error();
@@ -333,5 +347,8 @@
         #ff_mix-util-prose > .text-quiet();
         #ff_mix-util-prose > .text-left-blank();
     }
-
+    &__text--small-quiet {
+        #ff_mix-util-prose > .text-quiet();
+        #ff_mix-util-prose > .text-small();
+    }
 }

@@ -13,7 +13,8 @@ var props = {
     isSelected: function(id){
         return id === '125';
     },
-    results: mockService.groups['your-groups']
+    results: mockService.groups['your-groups'],
+    modifier: 'constrained-height'
 };
 
 module.exports = function() {

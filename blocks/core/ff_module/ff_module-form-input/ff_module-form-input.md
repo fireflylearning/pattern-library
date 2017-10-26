@@ -14,6 +14,10 @@ data:
 
 <div data-ff_module-form-input="" ></div>
 
+## A note on React and autofocus.
+
+As far as I can tell, React now doesn't support `autofocus`. See [this thread](https://github.com/facebook/react/issues/3066) for more information. 
+
 ## Options
 
 - modifier (String)
@@ -21,8 +25,10 @@ data:
 - checked (Bool)
 - disabled (Bool)
 - maxlength (Number)
+- readonly (Bool)
+- autofocus (Bool)
 
-## Modifiers 
+## Modifiers
 
 - invisible
 

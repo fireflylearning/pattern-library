@@ -7,7 +7,10 @@
     .link--base() {
         #ff_mix-base-box > .default();
         #ff_mix-base-links > .default();
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
     .link--active() {
         background: @ff_colour_control_bg_selected;
@@ -47,4 +50,10 @@
 
 .ff_module-segments__link--active {
     #ff_mix-segments > .link--active();
+    
+    .ff_icon-svg {
+        margin-right: @ff_size_control_horizontal*0.25;
+        fill: currentColor;
+        filter: drop-shadow( 0 1px 0 rgba(0,0,0,0.2));
+    }
 }

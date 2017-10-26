@@ -1,6 +1,15 @@
 .ff_container-overlay {
     &__bar {
-      background-color: fade(mix(@ff_color_control_link, #ffffff, 25%), 90%);
+      background-color: fade(mix(@ff_colour_melody_int_main, #ffffff, 7.5%), 90%);
+    }
+    &__bar-content {
+      padding: @ff_size_spacing_min;
+      @media (min-width: 360px) {
+        padding: @ff_size_spacing_min * 2;
+      }
+      @media all and (min-width: @ff_bp_medium) {
+        padding: @ff_size_spacing_max @ff_size_spacing_max * 2;
+      }
     }
 }
 
@@ -10,8 +19,8 @@
         margin-right: -1px;
     }
     &--task-event-scrollable-top &__bar{
-        background-color: @ff_colour_control_bg;
-        border-color: @ff_colour_control_border;
+        background-color: @ff_colour_melody_int_main;
+        border-color: @ff_colour_melody_dk_main;
     }
 
 

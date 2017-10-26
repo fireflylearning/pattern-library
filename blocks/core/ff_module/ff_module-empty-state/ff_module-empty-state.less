@@ -1,0 +1,15 @@
+.ff_module-empty-state {
+	display: flex;
+	text-align: center; //fallback
+	flex-direction: column;
+	padding: @ff_size_spacing_max * 4 @ff_size_spacing_max * 2;
+}
+
+.ff_module-empty-state__item {
+	margin-bottom: @ff_size_spacing_max;
+	align-self: center;
+	max-width: 480px;
+	&--headline {
+		font-weight: bold;
+	}
+}

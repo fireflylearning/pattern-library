@@ -1,9 +1,9 @@
 #ff_module-progress() {
     .marked() {
-        background-color: darken(@ff_templatesetting_colour_main,5%);
+        background-color: hsl(hue(@ff_colour_control_bg), saturation(@ff_colour_control_bg)/2, 35%);
     }
     .completed() {
-        background-color: lighten(desaturate(@ff_templatesetting_colour_main, 25%), 15%);
+        background-color: hsl(hue(@ff_colour_control_bg), saturation(@ff_colour_control_bg)/2, 60%);
     }
     .total() {
         background-color: @ff_colour_control_bg;
@@ -24,7 +24,7 @@
     }
 
     &__meta {
-        display: none;        
+        display: none;
     }
 
     &__bar {
@@ -33,16 +33,16 @@
 
         &--completed {
             #ff_module-progress > .completed();
-            border-radius: 0 @ff_size_control_rounding @ff_size_control_rounding 0;
+            border-radius: 0 @ff_size_control_rounding @ff_size_control_rounding/2 0;
         }
 
         &--marked {
             #ff_module-progress > .marked();
-            border-radius: @ff_size_control_rounding 0 0 @ff_size_control_rounding;
+            border-radius: @ff_size_control_rounding/2 0 0 @ff_size_control_rounding/2;
         }
 
         &--lonely {
-            border-radius: @ff_size_control_rounding;
+            border-radius: @ff_size_control_rounding/2;
         }
     }
 
@@ -61,7 +61,7 @@
             font-weight: bold;
         }
 
-        margin-right: @ff_size_control_vertical;
+        margin-right: @ff_size_spacing_max;
         &:last-child {margin-right: 0;}
 
         &:before {
@@ -73,19 +73,19 @@
             border-radius: 50%;
             border: 1px solid @ff_colour_control_border;
             box-shadow:         inset 0px 0px 0 2px @ff_colour_control_bg;
-            margin-right: @ff_size_control_vertical;
+            margin-right: @ff_size_spacing_min * .7;
         }
 
         &--completed:before {
-            #ff_module-progress > .completed();            
+            #ff_module-progress > .completed();
         }
 
         &--marked:before {
-            #ff_module-progress > .marked();            
+            #ff_module-progress > .marked();
         }
 
         &--total:before {
-            #ff_module-progress > .total();            
+            #ff_module-progress > .total();
         }
     }
 }

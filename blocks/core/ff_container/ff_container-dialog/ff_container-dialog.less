@@ -1,5 +1,37 @@
 .ff_container-dialog {
     background-color: #fff;
+    position: relative;
+    //layout
+    display: flex;
+    flex-direction: column;
+
+    &:not(.ff_container-dialog--compact) {
+      @media (max-height: @ff_bp_dialog_height) {
+        position: absolute;
+        top:0; right: 0;
+        bottom:0; left:0;
+      }
+    }
+
+    &__body {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding: 0 @ff_size_control_horizontal;
+      box-shadow: 0 -5px 5px -5px rgba(0,0,0,.1) inset;
+
+      //this isn't very BEM. TODO: Improve this.
+      input[type="text"], textarea {
+        background: none;
+      }
+
+      // fixed height modifier
+      &--fixed-height {
+        max-height: @ff_bp_dialog_height;
+      }
+
+    }
     &__heading {
         background-color: @ff_colour_control_bg;
         color: @ff_colour_control_text;
@@ -15,17 +47,87 @@
         float: right;
         background-color: transparent;
     }
-    &__body {
-        padding: 0 @ff_size_control_horizontal;
-    }
     &__controls {
-        padding: @ff_size_control_vertical @ff_size_control_horizontal @ff_size_spacing_med @ff_size_control_horizontal;
-        overflow: auto;
-        * {
-            float:left;
-        }
-        *+* {
-            margin-left: @ff_size_spacing_min;
-        }
+      position: relative;
+      padding: @ff_size_control_horizontal @ff_size_spacing_min;
+      border-top: 1px solid @ff_colour_control_border;
+      .ff_mix-clearfix();
+
+      >* {
+          float: left;
+          margin: @ff_size_spacing_min*0.5 0 @ff_size_spacing_min*0.5 0;
+      }
+      >*:not(:last-child) {
+          margin-right: @ff_size_spacing_min;
+      }
+
     }
+
+    // Status
+    &__status-overlay {
+
+      //IE 10 hacks
+      display: -ms-flexbox;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      -moz-box-pack: center;
+      -ms-flex-pack: center;
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #FFF;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__status-image {
+
+      &--saving {
+        margin-bottom: @ff_size_spacing_min;
+        animation: rotateCircle 900ms cubic-bezier(1.000, 0.000, 0.000, 1.005);
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes rotateCircle {
+        to {
+          transform-origin: 40px, 40px;
+          transform: rotate(360deg);
+        }
+      }
+
+      &--saved {
+        margin-bottom: @ff_size_spacing_min;
+        animation: fadeInSaved 1s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes fadeInSaved {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+    }
+
+    &__status-overlay-label {
+      text-align: center;
+      margin-bottom: @ff_size_spacing_min*2;
+    }
+
+    &__status-overlay-inner {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+
 }

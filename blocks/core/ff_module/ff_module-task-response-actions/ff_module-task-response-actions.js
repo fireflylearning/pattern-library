@@ -13,14 +13,14 @@ var generateClasses = require('../../_lib/_ui/class-utils.js').generateStandardC
 
 var textValues = {};
 textValues[events.types.confirmTaskIsComplete] = 'Confirm as Completed';
-textValues[events.types.confirmTaskIsToDo] = 'Confirm as To Do';
-textValues[events.types.markAndGrade] = 'Send Mark/Grade';
+textValues[events.types.revertTaskToToDo] = 'Revert to To Do';
+textValues[events.types.markAndGrade] = 'Add Mark, Grade or Feedback';
 textValues[events.types.stampResponseAsSeen] = 'Stamp Response as Seen';
 textValues[events.types.requestResubmission] = 'Request Resubmission';
 textValues[events.types.confirmStudentIsExcused] = 'Confirm Student is Excused';
 textValues[events.types.confirmStudentIsUnexcused] = 'Confirm Student is Unexcused';
-textValues[events.types.comment] = 'Send Comment';
-textValues[events.types.addFile] = 'Send File';
+textValues[events.types.comment] = 'Add Comment';
+textValues[events.types.addFile] = 'Add File';
 
 var textValuesAllStudents = {};
 textValuesAllStudents[events.types.confirmStudentIsExcused] = 'Confirm All Students are Excused';
@@ -51,7 +51,7 @@ function getList(state) {
     var newList = _.extend({}, presentationList);
 
     if (state.complete) {
-        newList.completeStatus = events.types.confirmTaskIsToDo;
+        newList.completeStatus = events.types.revertTaskToToDo;
     }
     if (state.excused) {
         newList.excusedStatus = events.types.confirmStudentIsUnexcused;
@@ -64,13 +64,21 @@ module.exports = React.createClass({
     displayName: 'TaskResponseActions',
     propTypes: {
         onClick: React.PropTypes.func.isRequired,
-        state: React.PropTypes.object
+        state: React.PropTypes.shape({
+            userCanEdit: React.PropTypes.bool,
+            userCanCreate: React.PropTypes.bool,
+            excused: React.PropTypes.bool,
+            confirmedCompletion: React.PropTypes.bool,
+            complete: React.PropTypes.bool
+        }),
+        allStudentsSelected: React.PropTypes.bool,
+        isCompletedTask: React.PropTypes.bool.isRequired
     },
     render: function(){
         var state = this.props.state || {},
             list = getList(state);
 
-        if (state.userCanEdit === false) return null;
+        if (!state.userCanCreate) return null;
 
         return (
             <div className={generateClasses("ff_module-task-response-actions", this.props)}>
@@ -78,53 +86,34 @@ module.exports = React.createClass({
                     modifier= "right"
                     key="controlBarUpper">
                     <ControlBarSet>
-                        <Button
-                            key={list.completeStatus}
-                            modifier="primary-compact"
-                            text={getText(list.completeStatus, state)}
-                            onClick={()=>this.onClick(list.completeStatus)}
-                        />
+                        {this.renderCompletedToggleButton(list.completeStatus, state)}
                         <Button
                             key={list.markStatus}
-                            modifier="primary-compact"
+                            modifier="tertiary-compact"
                             text={getText(list.markStatus, state)}
                             onClick={()=>this.onClick(list.markStatus)}
                         />
                         <DropdownButton
                             id="more-actions"
                             key="more-actions"
-                            modifier="primary-compact-right-widelist"
+                            modifier="tertiary-compact"
                             classes="ff_module-task-response-actions__dropdown"
                             text="More"
-                            list= {[
-                                    {
-                                        text: getText(list.responseSeenStatus, state),
-                                        key: list.responseSeenStatus,
-                                        onClick: ()=>this.onClick(list.responseSeenStatus)
-                                    }, {
-                                        text: getText(list.resubmissionStatus, state),
-                                        key: list.resubmissionStatus,
-                                        onClick: ()=>this.onClick(list.resubmissionStatus)
-                                    }, {
-                                        text: getText(list.excusedStatus, state),
-                                        key: list.excusedStatus,
-                                        onClick: ()=>this.onClick(list.excusedStatus)
-                                    },{
-                                        text: getText(list.commentStatus, state),
-                                        key: list.commentStatus,
-                                        onClick: ()=>this.onClick(list.commentStatus)
-                                    },{
-                                        text: getText(list.fileStatus, state),
-                                        key: list.fileStatus,
-                                        onClick: ()=>this.onClick(list.fileStatus)
-                                    },
-                                ]}
-                            />
-
+                            list={this.getDropDownButtons(list)}
+                        />
                     </ControlBarSet>
                 </ContainerControlBar>
             </div>
         );
+    },
+    renderCompletedToggleButton(completeStatus, state) {
+        if (this.props.isHiddenFromRecipients && !this.props.isShownInParentPortal) return null;
+        return <Button
+            key={completeStatus}
+            modifier="tertiary-compact"
+            text={getText(completeStatus, state)}
+            onClick={()=>this.onClick(completeStatus)}
+        />;
     },
     createEvent: function(type) {
         return {
@@ -134,5 +123,35 @@ module.exports = React.createClass({
     },
     onClick: function(type) {
         this.props.onClick(this.createEvent(type));
+    },
+    getDropDownButtons: function(list) {
+        let dropDownList = [{
+                text: getText(list.commentStatus, this.props.state),
+                key: list.commentStatus,
+                onClick: ()=>this.onClick(list.commentStatus)
+            },{
+                text: getText(list.fileStatus, this.props.state),
+                key: list.fileStatus,
+                onClick: ()=>this.onClick(list.fileStatus)
+            }
+        ];
+
+        if (!this.props.allStudentsSelected) {
+            dropDownList.unshift({
+                text: getText(list.excusedStatus, this.props.state),
+                key: list.excusedStatus,
+                onClick: ()=>this.onClick(list.excusedStatus)
+            });
+        }
+
+        if (!this.props.isHiddenFromRecipients) {
+            dropDownList.unshift({
+                text: getText(list.resubmissionStatus, this.props.state),
+                key: list.resubmissionStatus,
+                onClick: ()=>this.onClick(list.resubmissionStatus)
+            });
+        }
+
+        return dropDownList;
     }
 });

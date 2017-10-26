@@ -6,19 +6,21 @@ var eventStates = require('./events').states,
     taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState,
     taskEventWithOptionalMessageEdited = require('./taskEventWithOptionalMessage').editedState;
 
+var text = 'confirmed the task is complete';
+
 var defaultState = React.createClass({
     displayName: 'ConfirmedCompleteTaskEventDefault',
-    render: taskEventWithOptionalMessage('confirmed completion.')
+    render: taskEventWithOptionalMessage(text)
 });
 
 var deletedState = React.createClass({
     displayName: 'ConfirmedCompleteTaskEventDeleted',
-    render: taskEventWithOptionalMessageDeleted('deleted a confirmation of completion.')
+    render: taskEventWithOptionalMessageDeleted('deleted the event \"Confirmed the task is complete\".')
 });
 
 var editedState = React.createClass({
     displayName: 'StampResponseAsSeenTaskEventDeleted',
-    render: taskEventWithOptionalMessageEdited('confirmed completion.')
+    render: taskEventWithOptionalMessageEdited(text)
 });
 
 module.exports = {};

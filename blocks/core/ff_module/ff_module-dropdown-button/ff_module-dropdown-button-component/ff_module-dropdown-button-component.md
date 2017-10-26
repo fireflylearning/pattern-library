@@ -7,6 +7,9 @@ This component just renders an html dropdown button, it doesn't replicate the dr
 
 **The core dropdown file is activated automatically once the component mounts.**
 
+To view the Overflow variations, the screen must be ~400px wide.
+
+
 # Props 
 - **text**: {String, required} The text rendered by the button
 - **list**: {Array, required}: 

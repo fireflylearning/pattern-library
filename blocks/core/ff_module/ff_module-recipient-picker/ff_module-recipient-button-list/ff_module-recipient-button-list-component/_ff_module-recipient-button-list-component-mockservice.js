@@ -43,6 +43,36 @@ var groups = {
         'guid': '126',
         type: 'groupprofile',
         'pic_href': '/images/group-icon.png'
+    }, {
+        label: 'Group DX/8',
+        'guid': '127',
+        type: 'groupprofile',
+        'pic_href': '/images/group-icon.png'
+    }, {
+        label: 'Group DX/9',
+        'guid': '128',
+        type: 'groupprofile',
+        'pic_href': '/images/group-icon.png'
+    }, {
+        label: 'Group DX/9',
+        'guid': '129',
+        type: 'groupprofile',
+        'pic_href': '/images/group-icon.png'
+    }, {
+        label: 'Group DX/9',
+        'guid': '130',
+        type: 'groupprofile',
+        'pic_href': '/images/group-icon.png'
+    }, {
+        label: 'Group DX/9',
+        'guid': '131',
+        type: 'groupprofile',
+        'pic_href': '/images/group-icon.png'
+    }, {
+        label: 'Group DX/9',
+        'guid': '132',
+        type: 'groupprofile',
+        'pic_href': '/images/group-icon.png'
     }]
 };
 
@@ -61,4 +91,3 @@ module.exports = function() {
 };
 
 module.exports.groups = groups;
-

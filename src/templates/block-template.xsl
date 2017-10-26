@@ -23,6 +23,7 @@
                 <div class="crate_block__item">
                 <xsl:apply-templates select="page/blocks"/>
                 </div>
+                <div class="crate_block__item" data-ff-crate-block-react-item=""></div>
                 <div class="crate_block__content">{{page.contents|safe}}</div>
             </div>
 

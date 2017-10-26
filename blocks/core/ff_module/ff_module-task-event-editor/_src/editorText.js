@@ -1,37 +1,40 @@
 'use strict';
+var events = require('../../ff_module-task-event/_src/events');
 
 var recipientText = {},
     sendTypeText = {},
-    releaseTypes = {
-        released: 'released',
-        unreleased: 'unreleased'
+    releaseModes = {
+        Batched: 0,
+        Immediate: 1
     },
     recipientTypes = {
-        individual: 'individual',
-        all: 'all'
+        individual: 'Individual',
+        all: 'All'
     },
     nextStudent = 'and Next Student';
 
 recipientText[recipientTypes.individual] = '';
 recipientText[recipientTypes.all] = 'for All Students';
 
-sendTypeText[releaseTypes.released] = 'Send';
-sendTypeText[releaseTypes.unreleased] = 'Save';
-
+sendTypeText[releaseModes.Immediate] = 'Send';
+sendTypeText[releaseModes.Batched] = 'Save';
 
 module.exports.getPrimaryButtonText = function getPrimaryButtonText(base, props) {
     var textItems = [];
     var eventState = props.event && props.event.state || {};
+    var eventDescription = props.event && props.event.description || {};
 
-    if (eventState.released) {
-        textItems.push(sendTypeText[releaseTypes.released]);
-    } else {
-        textItems.push(sendTypeText[releaseTypes.unreleased]);
+    if (eventDescription.type !== events.types.revertTaskToToDo) {
+        if (eventState.released) {
+            textItems.push(sendTypeText[releaseModes.immediate]);
+        } else {
+            textItems.push(sendTypeText[releaseModes[props.releaseMode]]);
+        }
     }
 
     textItems.push(base);
 
-    if (eventState.allStudents) {
+    if (props.allStudents) {
         textItems.push(recipientText[recipientTypes.all]);
     }
 
@@ -43,10 +46,11 @@ module.exports.getSecondaryButtonText = function getSecondaryButtonText(props) {
     var eventState = props.event && props.event.state || {};
 
     if (eventState.released) {
-        textItems.push(sendTypeText[releaseTypes.released]);
+        textItems.push(sendTypeText[releaseModes.immediate]);
     } else {
-        textItems.push(sendTypeText[releaseTypes.unreleased]);
+        textItems.push(sendTypeText[releaseModes[props.releaseMode]]);
     }
+
     textItems.push(nextStudent);
     return textItems.join(' ');
 };

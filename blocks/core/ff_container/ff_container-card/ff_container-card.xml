@@ -1,0 +1,9 @@
+<card title="{{title}}" modifier="{{ modifier }}">
+    <items>
+        {% for item in items %}
+            <item>
+                {{ item.item | safe }}
+            </item>
+        {% endfor %}
+    </items>
+</card>

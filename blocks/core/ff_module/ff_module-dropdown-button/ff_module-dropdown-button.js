@@ -1,9 +1,10 @@
 'use strict';
 
-var $ = require('jquery');
-var core = require('../../_lib/ff-core/_ff-core.js');
-var _ = require('underscore');
-var docVal = (typeof window !== 'undefined' && window.document) ? window.document : 'document';
+var $ = require('jquery'),
+    core = require('../../_lib/ff-core/_ff-core.js'),
+    _ = require('underscore'),
+    docVal = (typeof window !== 'undefined' && window.document) ? window.document : 'document',
+    storedDropdownID = '';
 
 var _options = {
     root: docVal,
@@ -12,7 +13,10 @@ var _options = {
     enabledClassSuffix: '--is-enabled',
     openClassSuffix: '--is-open',
     defaultTriggerClass: 'ff_module-dropdown-button__button',
-    defaultTargetClass: 'ff_module-dropdown-button__dropdown-container'
+    defaultTargetClass: 'ff_module-dropdown-button__dropdown-container',
+    overflowLeftSuffix: '--has-overflow-left',
+    overflowRightSuffix: '--has-overflow-right',
+    overflowViewportSuffix: '--has-overflow-viewport'
 };
 
 function activateDropdowns(options) {
@@ -29,7 +33,10 @@ function activateDropdowns(options) {
     var defaultTriggerClass = options.defaultTriggerClass,
         defaultTargetClass = options.defaultTargetClass,
         openClassSuffix = options.openClassSuffix,
-        enabledClassSuffix = options.enabledClassSuffix;
+        enabledClassSuffix = options.enabledClassSuffix,
+        overflowLeftSuffix = options.overflowLeftSuffix,
+        overflowRightSuffix = options.overflowRightSuffix,
+        overflowViewportSuffix = options.overflowViewportSuffix;
 
     function removeSuffix($elements, suffix) {
         return $elements.each(function(index, el) {
@@ -68,8 +75,10 @@ function activateDropdowns(options) {
                 toggleState = openClassSuffix;
                 break;
         }
+
         return toggleState;
     }
+
 
     function toggleState(el) {
         var $trigger = $(el);
@@ -88,20 +97,35 @@ function activateDropdowns(options) {
 
         removeSuffix($triggers, currentState);
         removeSuffix($targets, currentState);
+        removeSuffix($targets, overflowLeftSuffix);
+        removeSuffix($targets, overflowRightSuffix);
+        removeSuffix($targets, overflowViewportSuffix);
 
         addSuffix($triggers, newState, defaultTriggerClass);
         addSuffix($targets, newState, defaultTargetClass);
+
+        var $overflowViewportTargets = $targets.filter(core.widerThanViewport);
+        var $remainingTargets = $targets.not(core.widerThanViewport);
+        var $overflowLeftTargets = $remainingTargets.filter(core.offViewportLeft);
+        var $overflowRightTargets = $remainingTargets.filter(core.offViewportRight);
+
+        addSuffix($overflowViewportTargets, overflowViewportSuffix, defaultTargetClass);
+        addSuffix($overflowLeftTargets, overflowLeftSuffix, defaultTargetClass);
+        addSuffix($overflowRightTargets, overflowRightSuffix, defaultTargetClass);
     }
 
-    function hideAll() {
-        var $triggers = $(triggerSel);
-        var $targets = $(targetSel);
+    function resetPreviousDropdown() {
+        var $triggers = $(triggerSel).filter('[' + triggerSelBase + '=' + storedDropdownID + ']');
+        var $targets = $(targetSel).filter('[' + targetSelBase + '=' + storedDropdownID + ']');
 
         removeSuffix($triggers, openClassSuffix);
         removeSuffix($targets, openClassSuffix);
-
         addSuffix($triggers, enabledClassSuffix, defaultTriggerClass);
         addSuffix($targets, enabledClassSuffix, defaultTargetClass);
+    }
+
+    function updateStoredDropdown(el) {
+        storedDropdownID = $(el).attr(triggerSelBase);
     }
 
     $(function() {
@@ -110,14 +134,18 @@ function activateDropdowns(options) {
 
         $root.on('click', triggerSel, function(e) {
             e.preventDefault();
+            e.stopPropagation();
+
+            if ( storedDropdownID !== $(this).attr(triggerSelBase) ) {
+                resetPreviousDropdown();
+                updateStoredDropdown(this);
+            }
+            
             toggleState(this);
+
         });
 
-        $(document).on('click', function(event) {
-            if (!$(event.target).closest(targetSel).length) {
-                hideAll();
-            }
-        });
+        $(document).off('.dropDown').on('click.dropDown', resetPreviousDropdown);
 
     });
 

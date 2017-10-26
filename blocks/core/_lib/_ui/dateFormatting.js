@@ -1,5 +1,7 @@
 'use strict';
 
+var dateUtils = require("./date-utils");
+
 var _ = require('underscore');
 
 var msInS = 1000,
@@ -10,7 +12,11 @@ var msInS = 1000,
     msInM = msInS * sInM,
     msInH = msInM * mInH,
     msInD = msInH * hInD,
-    weekNamesLong = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    weekNamesLong = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    weekNamesShort = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'],
+    monthNamesShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    monthNamesLong = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+        'October', 'November', 'December' ];
 
 var momentsAgo = 'A few moments ago',
     minutesAgo = '{mins} minute{suffix} ago',
@@ -33,7 +39,7 @@ var momentsAgo = 'A few moments ago',
     nWeeksTime = '{numweeks} Weeks\' Time';
 
 
-var niceDateOperations = [
+var nicePastDateOperations = [
     [isMomentsAgo, formatAsMomentsAgo],
     [isLessThanAnHourAgo, formatAsMinutesAgo],
     [isHoursAgoAndToday, formatAsHoursAgo],
@@ -53,7 +59,6 @@ function getNiceDateFuzzyOperations(contextUnknown) {
         [isDefault, formatAsDate]
     ];
 }
-
 
 var niceWeekOperations = [
     [isMoreThanAWeekFromNow, formatAsNWeeksTime],
@@ -86,8 +91,6 @@ function isYesterday(date, now) {
     return (getDayDiff(date, now) < 1) && (now.getDate() !== date.getDate());
 }
 
-
-
 function isMoreThanAWeekFromNow(date, now) {
     return getDayDiff(date, now) <= -2 * dInW;
 }
@@ -108,8 +111,6 @@ function isLastWeek(date, now) {
     return getDayDiff(date, now) <= dInW;
 }
 
-
-
 function isLessThanAWeekAgo(date, now) {
     return getDayDiff(date, now) < dInW;
 }
@@ -127,7 +128,6 @@ function isWithinWeekPlusOrMinus(date, now) {
     return (diff < dInW && diff > -dInW);
 }
 
-
 function isTomorrowFuzzy(date, now) {
     return getDayDiff(date, now) === -1;
 }
@@ -144,12 +144,9 @@ function isDefault(date, now) {
     return true;
 }
 
-
-
 function formatAsMomentsAgo(date, now) {
     return momentsAgo;
 }
-
 
 function formatAsMinutesAgo(date, now) {
     var mins = getMinDiff(date, now),
@@ -268,9 +265,6 @@ function formatAsNWeeksTime(date, now) {
 
 
 
-
-
-
 /**
  * Primary methods
  */
@@ -283,7 +277,7 @@ function niceDate(date) {
     }
 
     var now = new Date(),
-        format = getFormat(niceDateOperations, date, now);
+        format = getFormat(nicePastDateOperations, date, now);
 
     return format(date, now);
 }
@@ -335,7 +329,6 @@ function getFormat(oerations, date, now) {
         return testAndMethod[0](date, now);
     })[1];
 }
-
 
 function getNumSuffix(value) {
     return value === 1 ? '' : 's';
@@ -420,7 +413,6 @@ function getWeekDiffCeil(date, now) {
     }
 }
 
-
 function toShortTimeString(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
@@ -430,6 +422,14 @@ function toShortTimeString(date) {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
+}
+
+function to24HourTimeString(date) {
+    var hours = date.getHours();
+    hours = hours === 0 ? '00' : hours;
+    var minutes = date.getMinutes();
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    return [hours, minutes].join(':');
 }
 
 function toShortDateString(date) {
@@ -444,8 +444,36 @@ function toShortDateString(date) {
         .replace('{year}', year);
 }
 
+function toDateString(date) {
+    return toDateStringUsingMonths(date, monthNamesShort);
+}
+
+function toLongMonthDateString(date) {
+    return toDateStringUsingMonths(date, monthNamesLong);
+}
+
+function toDateStringUsingMonths(date, monthNames) {
+    var day = date.getDate(),
+        suffix = getDateSuffix(date),
+        month = monthNames[date.getMonth()];
+
+    return `${toLongDayString(date)} ${day}${suffix} ${month}`;
+}
+
 function toLongDayString(date) {
     return weekNamesLong[date.getDay()];
+}
+
+function toShortDayString(date) {
+    return weekNamesShort[date.getDay()];
+}
+
+function toShortMonthString(date) {
+    return monthNamesShort[date.getMonth()];
+}
+
+function formatDateStringToLongMonth(dateString) {
+    return dateUtils.applyDateFormatting(dateString, toLongMonthDateString);
 }
 
 function getStartOfWeekForDate(date, weekStartDay) {
@@ -464,7 +492,6 @@ function getStartOfWeekForDate(date, weekStartDay) {
 }
 
 module.exports = function(config) {
-
     var niceWeek = getNiceWeek(config);
 
     return {
@@ -475,8 +502,18 @@ module.exports = function(config) {
         toLocal: toLocal,
 
         toShortTimeString: toShortTimeString,
+        to24HourTimeString: to24HourTimeString,
         toShortDateString: toShortDateString,
+        toDateString: toDateString,
+        toLongMonthDateString: toLongMonthDateString,
         toLongDayString: toLongDayString,
-    };
+        toShortDayString: toShortDayString,
+        toShortMonthString: toShortMonthString,
+        formatDateStringToLongMonth: formatDateStringToLongMonth,
 
+        isToday: function(date, now){
+            now = now || new Date();
+            return isToday(date, now);
+        }
+    };
 };

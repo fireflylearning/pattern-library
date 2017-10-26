@@ -35,8 +35,8 @@ var types = [
     eventTypes.stampResponseAsSeen
 ];
 
-function onError(){
-    console.log('Error, retrying');
+function tryAgainCallback(){
+    console.log('Retrying');
 }
 
 var renderedStates = [];
@@ -65,7 +65,7 @@ module.exports = function() {
 
                             return <li key={'li'+sState+''+dState+''+rState+''+tIndex} style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' }}>
                                 <pre>{sState + ' & ' + dState + ' & ' + rState}</pre>
-                                <TaskEventStatus state={state} type={type} onError={onError} />
+                                <TaskEventStatus state={state} type={type} tryAgainCallback={tryAgainCallback} />
                                 </li>;
                             })
 

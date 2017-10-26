@@ -31,19 +31,30 @@ module.exports = React.createClass({
         }
 
         var text = <span className = {generateTextClass('ff_module-button__content', this.props)}>{this.props.text}</span>;
+        var buttonType = this.props.href ? "submit":null;
 
-        return <button
+        var button =  <button
                 type="button"
                 title = {this.props.text}
                 id = {this.props.id}
                 disabled = {this.props.disabled}
                 className = {generateClass('ff_module-button', this.props)}
                 onClick = {this.props.onClick}
+                type = {buttonType}
                 >
                 {leftAlignedIcon}
                 {text}
                 {rightAlignedIcon}
                 {this.props.children}
             </button>;
+
+        if(this.props.href) {
+          return <form method={this.props.hrefMethod ? this.props.hrefMethod : "get"} action = {this.props.href} className = 'ff_module-button__inline-form'>{button}</form>;
+        }
+        else {
+          return button;
+        }
+
+
     }
 });

@@ -1,19 +1,30 @@
-@ff_templatesetting_colour_main-highlight: desaturate(hsl(hue(@ff_templatesetting_colour_main), saturation(@ff_templatesetting_colour_main), 70%), 20%);
-
 .ff_module-formsteps {
-	margin:0;
+	display: -ms-flexbox;
+	-ms-flex: 1 auto;
+	-ms-flex-positive: 1;
+	-ms-flex-direction: row;
+	-ms-flex-pack: center;
+	-ms-flex-align: center;
+	margin: @ff_size_spacing_min/2 0;
 	padding:0;
 	list-style: none;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	border: 1px solid hsl(hue(@ff_templatesetting_colour_main), saturation(@ff_templatesetting_colour_main), 80%);
-	background-color: @ff_templatesetting_colour_main;
-	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+	border: 1px solid @c_panel-border;
+	background-color: transparent;
+	border-radius: @ff_size_control_rounding;
+	overflow: hidden;
 }
 
 .ff_module-formstep {
 	display: inline-block;
+	display: -ms-flexbox;
+	-ms-flex: 1 auto;
+	-ms-flex-positive: 1;
+	-ms-flex-direction: row;
+	-ms-flex-pack: center;
+	-ms-flex-align: center;
 	max-width: 100%;
 	margin: 0;
 	min-width: 0;
@@ -23,7 +34,7 @@
 	white-space: normal;
 
 	& + .ff_module-formstep {
-		border-left: 1px solid hsl(hue(@ff_templatesetting_colour_main), saturation(@ff_templatesetting_colour_main), 80%);
+		border-left: 1px solid @c_panel-border;
 	}
 
 	@media (min-width: @ff_bp_wide) {
@@ -32,33 +43,65 @@
 
 	&__link {
 		display: inline-block;
+		display: -ms-flexbox;
+		-ms-flex: 1 auto;
+		-ms-flex-positive: 1;
+		-ms-flex-direction: row;
+		-ms-flex-pack: center;
+		-ms-flex-align: center;
+		-ms-flex-wrap: nowrap;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 		flex-wrap: nowrap;
-		padding: 10px 20px 10px 20px;
+		padding: (@ff_size_spacing_min * 0.75) @ff_size_spacing_min;
+		text-decoration: none;
+		max-width: 15rem;
+		height: 100%;
+		box-sizing: border-box;
 
-		#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_main, @c_text, #ffffff);
+		#ff_mix-responsive-colour > .check-contrast(@c_panel-bg, @c_text, #ffffff);
 
 
 		&:visited {
-			#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_main, @c_text, #ffffff);
-		}
-
-		&:hover {
-			background-color: darken(@ff_templatesetting_colour_main, 5%);
-			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_main, 5%), @c_text, #ffffff);
+			#ff_mix-responsive-colour > .check-contrast(@c_panel-bg, @c_text, #ffffff);
+			text-decoration: none;
 		}
 	}
 	&__icon {
-		margin-right: 10px;
-//		#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_main, @c_text, #ffffff);
+		display: inline-block;
+		display: -ms-flexbox;
+		-ms-flex-direction: row;
+		-ms-flex-pack: center;
+		-ms-flex-align: center;
+		-ms-flex-wrap: nowrap;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: nowrap;
+		margin-right: 0;
+		font-size: 12rem/@ff_base;
+		font-weight: bold;
+		border-radius: 50%;
+		min-width: 21px;
+		min-height: 21px;
+		padding: 1px 0 0 0;
+		box-sizing: border-box;
+		width: 21px;
+		height: 21px;
+		background-color: transparent;
+		border: 1px solid @c_text;
+		border: 1px solid currentColor;
+		#ff_mix-responsive-colour > .check-contrast(@c_panel-bg, @c_text, #ffffff);
 	}
 
 	&__text {
-		font-size: 11rem/@ff_base;
+		font-size: 14rem/@ff_base;
 		margin: 0;
+		margin-left: @ff_size_spacing_min;
+		font-weight: bold;
 		@media (min-width: @ff_bp_wide) {
 		}
 	}
@@ -67,29 +110,45 @@
 		display: none;
 	}
 
-	&--is-complete {
-
+	&--is-visited {
 		a, a:visited {
-			background-color: darken(@ff_templatesetting_colour_main, 7.5%);
-			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_main, 7.5%), fade(@c_text, 20%), fade(#ffffff, 80%));
+			background-color: mix(@c_panel-bg, black, 90%);
+			#ff_mix-responsive-colour > .check-contrast(mix(@c_panel-bg, black, 90%), fade(@c_text, 80%), fade(#ffffff, 80%));
+
+			.ff_module-formstep__icon {
+				background-color: transparent;
+				#ff_mix-responsive-colour > .check-contrast(mix(@c_panel-bg, black, 90%), fade(@c_text, 75%), fade(#ffffff, 75%));
+			}
+
 		}
 	}
 
-	&--is-visited {
+	&--is-complete {
+
 		a, a:visited {
-			background-color: darken(@ff_templatesetting_colour_main, 7.5%);
-			#ff_mix-responsive-colour > .check-contrast(darken(@ff_templatesetting_colour_main, 7.5%), fade(@c_text, 20%), fade(#ffffff, 80%));
+			background-color: mix(@c_panel-bg, black, 90%);
+			#ff_mix-responsive-colour > .check-contrast(mix(@c_panel-bg, black, 90%), fade(@c_text, 80%), fade(#ffffff, 80%));
+
+			.ff_module-formstep__icon {
+				background-color: transparent;
+				#ff_mix-responsive-colour > .check-contrast(mix(@c_panel-bg, black, 90%), fade(@c_text, 75%), fade(#ffffff, 75%));
+			}
 		}
 	}
 
 	&--is-current {
 		a, a:visited {
-			background-color: @ff_templatesetting_colour_main-highlight;
-			#ff_mix-responsive-colour > .check-contrast(@ff_templatesetting_colour_main-highlight, @c_text, #ffffff);
+			background-color: @c_accent;
+			#ff_mix-responsive-colour > .check-contrast(@c_accent, @c_text, #ffffff);
+
+			.ff_module-formstep__icon {
+				background-color: transparent;
+				#ff_mix-responsive-colour > .check-contrast(@c_accent, @c_text, #ffffff);
+			}
 		}
 	}
 
-	@media (min-width: @ff_bp_medium) {
+	@media (min-width: @ff_bp_narrow) {
 //		margin-right: 2rem;
 	}
 	&:last-child {

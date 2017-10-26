@@ -5,11 +5,13 @@
 @ff_colour_green:           #98CE1E;
 @ff_colour_red:             #D35447;
 @ff_colour_yellow:          #FFCD00;
+@ff_colour_blue:            #83BFEE;
 
 @ff_colour_success:         @ff_colour_green;
 @ff_colour_error:           @ff_colour_red;
 @ff_colour_notify:          @ff_colour_yellow;
 @ff_colour_progress:        @ff_colour_green;
+@ff_colour_inform:          @ff_colour_blue;
 
 //colours
 @ff_colour_default:         #297FCF;
@@ -42,6 +44,8 @@
 @ff_bp_wide: 960px;
 @ff_bp_extrawide: 1200px;
 
-@ff_fixed_control_z-index: 2;
+@ff_fixed_control_z-index: 490; //10 lower than the black overlay for dialogs in Firefly
 
 @ff_input-group-padding-vertical: 7.5rem/@ff_base;
+
+@ff_bp_dialog_height: 580px; //the height at which the dialog boxes go to fullscreen.

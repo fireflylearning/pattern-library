@@ -84,7 +84,7 @@
         </xsl:call-template>
     </xsl:variable>
 
-    <span class="ff_module-dropdown-button__content"><xsl:value-of select="." /></span>
+    <span class="ff_module-dropdown-button__content"><xsl:value-of select="normalize-space()" /></span>
     <span class="ff_module-dropdown-button__icon {$modifier} {$state}" >
         <xsl:if test="boolean(../@id)">
             <xsl:attribute name="data-ff-dropdown-target">
@@ -123,13 +123,13 @@
 
 
 <xsl:template match="item[@href]" mode="ff_module-dropdown-button">
-    <li class="ff_module-dropdown-button__list-item"><a href="{@href}" class="ff_module-dropdown-button__link"><xsl:value-of select="." /></a></li>
+    <li class="ff_module-dropdown-button__list-item"><a href="{@href}" class="ff_module-dropdown-button__link"><xsl:value-of select="normalize-space()" /></a></li>
 </xsl:template>
 
 <xsl:template match="item[not(@href)]" mode="ff_module-dropdown-button">
     <xsl:variable name="button">
         <button modifier="link" classes="ff_module-dropdown-button__link-button">
-            <text><xsl:value-of select="." /></text>
+            <text><xsl:value-of select="normalize-space()" /></text>
             <xsl:if test="boolean(@attr)">
                 <data attr="data-ff_module-dropdown-button__link-button"><xsl:value-of select="@attr" /></data>
             </xsl:if>

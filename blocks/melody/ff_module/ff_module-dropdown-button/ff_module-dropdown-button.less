@@ -6,8 +6,6 @@
     display: inline-block;
 }
 
-
-
 // children
 .ff_module-dropdown-button {
     &__button {
@@ -19,49 +17,34 @@
         vertical-align: middle;
     }
     &__list-container {
-        top: 2.1rem;
-        left: 5px;
-        right: 5px;
-        &--is-enabled {
-            position: absolute;
-            height: 0;
-            overflow: hidden;
-        }
-        &--is-open {
-            position: absolute;
-            height: auto;
-        }
+        min-width: calc(~'100% - 10px');
     }
-
     &__list {
-        // right: 5px;
         background-color: #fff;
         color: @ff_colour_default;
         border: 1px solid @ff_colour_control_border;
         border-radius: @ff_size_control_rounding;
         padding: (@ff_size_spacing_min * .6) @ff_size_spacing_med;
-        margin: 0;
-        list-style: none;
         line-height: 1.1;
-        min-width: 82%;
-        display: inline-block;
     }
     &__list-item {
         padding: (@ff_size_spacing_min * .4) 0;
-        white-space: pre;
     }
     &__icon {
         .ff_icon;
-        top:-.05em;
+        top: -.05em;
         margin-left: 5px;
         width: 1.25em;
         height: 1.25em;
-        &--is-open {
-            // Icon class generated in config/icons: customselectors by grunticon
-        }
-        &--is-enabled {
-            // Icon class generated in config/icons: customselectors by grunticon
-        }
+        #ff_mix-responsive-colour > .check-contrast-svg(@ff_colour_default, darken(@ff_colour_default,30%));
+    }
+    &--tertiary &__icon,
+    &--tertiary-right &__icon,
+    &--tertiary-compact &__icon,
+    &--tertiary-compact-right &__icon, 
+    &--link &__icon,
+    &--link-right &__icon {
+      fill: @ff_color_control_link;
     }
     &__link {
         #ff_mix-util-prose > .link-no-decoration;
@@ -77,141 +60,142 @@
     &--primary,
     &--primary-right,
     &--primary-compact,
-    &--primary-compact-right,
-    &--primary-compact-right-widelist {
+    &--primary-compact-right {
         #ff_module-button > .primary();
     }
-
     &--primary &__content,
     &--primary-right &__content,
     &--primary-compact &__content,
-    &--primary-compact-right &__content,
-    &--primary-compact-right-widelist &__content {
+    &--primary-compact-right &__content {
         #ff_module-button > .primary-content();
     }
     &--primary-compact &__content,
-    &--primary-compact-right &__content,
-    &--primary-compact-right-widelist &__content {
+    &--primary-compact-right &__content {
         font-weight: normal;
     }
-
     &--tertiary,
     &--tertiary-right,
     &--tertiary-compact,
-    &--tertiary-compact-right,
-    &--tertiary-compact-right-widelist {
+    &--tertiary-compact-right {
         #ff_module-button > .tertiary();
     }
-
-    &--tertiary  &__content,
-    &--tertiary-right  &__content,
-    &--tertiary-compact  &__content,
-    &--tertiary-compact-right  &__content,
-    &--tertiary-compact-right-widelist  &__content {
+    &--tertiary &__content,
+    &--tertiary-right &__content,
+    &--tertiary-compact &__content,
+    &--tertiary-compact-right &__content {
         #ff_module-button > .tertiary-content();
     }
 
-    &--right &__list-container,
-    &--primary-right &__list-container,
-    &--primary-compact-right &__list-container,
-    &--primary-compact-right-widelist &__list-container,
-    &--tertiary-right &__list-container,
-    &--tertiary-compact-right &__list-container,
-    &--tertiary-compact-right-widelist &__list-container,
-    &--compact-right &__list-container,
-    &--compact-right-widelist &__list-container,
-    &--link-right &__list-container {
-        right: 5px;
-        left: auto;
-        text-align: right;
-    }
-
-    &--compact &__button,
-    &--compact-right &__button,
-    &--compact-widelist &__button,
-    &--compact-right-widelist &__button,
-    &--primary-compact &__button,
-    &--primary-compact-right &__button,
-    &--primary-compact-right-widelist &__button,
-    &--tertiary-compact &__button,
-    &--tertiary-compact-right &__button,
-    &--tertiary-compact-right-widelist &__button {
+    &__button--compact,
+    &__button--compact-right,
+    &__button--primary-compact,
+    &__button--primary-compact-right,
+    &__button--tertiary-compact,
+    &__button--tertiary-compact-right {
         #ff_module-button > .compact();
     }
 
     //compact icon
-    &--compact &__icon,
-    &--compact-right &__icon,
-    &--compact-widelist &__icon,
-    &--compact-right-widelist &__icon,
-    &--primary-compact &__icon,
-    &--primary-compact-right &__icon,
-    &--primary-compact-right-widelist &__icon,
-    &--tertiary-compact &__icon,
-    &--tertiary-compact-right &__icon,
-    &--tertiary-compact-right-widelist &__icon {
-        height:1.125em;
-        width:1.125em;
+    &__icon--compact,
+    &__icon--compact-right,
+    &__icon--primary-compact,
+    &__icon--primary-compact-right,
+    &__icon--tertiary-compact,
+    &__icon--tertiary-compact-right {
+        height: 1.125em;
+        width: 1.125em;
         line-height: 1;
-        top:0;
+        top: 0;
     }
 
+    &__list-container--right,
+    &__list-container--primary-right,
+    &__list-container--primary-compact-right,
+    &__list-container--tertiary-right,
+    &__list-container--tertiary-compact-right,
+    &__list-container--compact-right,
+    &__list-container--link-right {
+        min-width: calc(~'100% - 10px');
+        right: 5px;
+        left: auto;
+    }
 
-    &--link &__button,
-    &--link-right &__button {
+    &--link,
+    &--link-right {
         #ff_module-button > .link();
     }
+
+    &__button--link,
+    &__button--link-right {
+        #ff_module-button > .link();
+    }
+
     &--link &__content,
     &--link-right &__content {
         color: @ff_color_control_link;
+        &:hover {
+            color: shade(@ff_color_control_link, 10%);
+        }
     }
     &--link &__icon {
         // linked to alt color in config/icons.js
     }
-
-
-
 }
 
 // states
 .ff_module-dropdown-button {
     &--is-enabled {}
     &--is-open {
-        #ff_module-button > .primary();
+        background-color: shade(@ff_colour_default, 10%);
+        border-color: shade(@ff_colour_default, 10%);
         font-weight: 400;
         z-index: 3;
     }
     &--is-disabled {
-        background-color: @ff_colour_quiet;
-        border-color: @ff_colour_default;
-        color: @ff_colour_default;
-        cursor: default;
+        #ff_module-button > .disabled;
     }
     &--is-disabled &__content {
         color: @ff_colour_default;
-    }
-    &--is-open &--tertiary &__content {
-
     }
 }
 
 //modifier + state
 .ff_module-dropdown-button {
 
-    &--tertiary--is-open &__content {
-        color: white;
-    }
-
     &--link &__icon-alt--no-text,
     &--link-right &__icon-alt--no-text {
         margin: 0 5px;
     }
 
-    &--link, &--link--is-open,
-    &--link-right, &--link-right--is-open {
-        background: none;
-        min-width: 0;
-        border: none;
+    &--link--is-open,
+    &--link-right--is-open {
+        #ff_module-button > .link();
+    }
+    &--primary--is-open,
+    &--primary-right--is-open,
+    &--primary-compact--is-open,
+    &--primary-compact-right--is-open {
+        background-color: shade(@ff_colour_primary, 10%);
+        border-color: shade(@ff_colour_primary, 10%);
+    }
+    &--tertiary--is-open,
+    &--tertiary-right--is-open,
+    &--tertiary-compact--is-open,
+    &--tertiary-compact-right--is-open {
+        background-color: shade(white, 10%);
+        border-color: shade(@ff_colour_default, 10%);
+        color: @ff_colour_primary;
     }
 }
 
+// children + states
+.ff_module-dropdown-button {
+    &__list-container--has-overflow-right {
+        right: 5px;
+        left: auto;
+    }
+    &__list-container--has-overflow-left {
+        left: 5px;
+        right: auto;
+    }
+}

@@ -13,13 +13,15 @@ module.exports = {
     isDebugging: true,
     isProduction: false,
     browserList: ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', 'Firefox >= 4'],
-    pagesCssName: 'pages.min.css'
+    pagesCssName: 'pages.min.css',
+
+    exportPath: '../www/Templates/lib/core/patterns/',
 
     /**
      * Set this option in local options file
      * `options.local.js` to override, eg:
+     *
      * exportPath: 'export/',
-     * exportJsPath: 'export-js/'
      *
      */
 

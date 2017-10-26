@@ -1,6 +1,13 @@
 <xsl:template name="ff_container-filter">
 	<xsl:param name="data" />
 	<div class="ff_container-filter">
+		<xsl:if test="$data/filter/button">
+			<div class="ff_container-filter__clear-button">
+				<xsl:call-template name="ff_module-button">
+					<xsl:with-param name="data" select="$data/filter" />
+				</xsl:call-template>
+			</div>
+		</xsl:if>
 		<div class="ff_container-filter__content">
 			<div class="ff_container-filter__heading">
 				<label class="ff_container-filter__label"><xsl:value-of select="$data/filter/label"/></label>

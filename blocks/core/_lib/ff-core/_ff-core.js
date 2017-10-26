@@ -1,10 +1,12 @@
 'use strict';
 
+var _window = (typeof window !== 'undefined') ? window : { pageXOffset: 0, innerWidth: 0 };
+
 function passThrough(className) {
     return true;
 }
 
-function filterNull(n){
+function filterNull(n) {
     return !!n;
 }
 
@@ -80,11 +82,48 @@ function getClassSuffixes($el) {
         });
 }
 
+function offViewportLeft(index, el) {
+    var left = el.offsetLeft;
+
+    while (el.offsetParent) {
+        el = el.offsetParent;
+        left += el.offsetLeft;
+    }
+
+    return left < _window.pageXOffset;
+}
+
+function offViewportRight(index, el) {
+    var left = el.offsetLeft;
+    var width = el.offsetWidth;
+
+    while (el.offsetParent) {
+        el = el.offsetParent;
+        left += el.offsetLeft;
+    }
+    return (left + width) > (_window.pageXOffset + _window.innerWidth);
+}
+
+function widerThanViewport(index, el) {
+    return el.offsetWidth > _window.innerWidth;
+}
+
+function createHeading(domElement) {
+    let title = document.createTextNode('React Component'),
+    heading = document.createElement('h1');
+    heading.appendChild(title);
+    domElement.insertBefore(heading, domElement.childNodes[0])
+}
+
 module.exports = {
     addClassSuffix: addClassSuffix,
     removeClassSuffix: removeClassSuffix,
     getClassMatchSuffix: getClassMatchSuffix,
     getClassNotSuffix: getClassNotSuffix,
     getElementsBySuffix: getElementsBySuffix,
-    getClassSuffixes: getClassSuffixes
+    getClassSuffixes: getClassSuffixes,
+    offViewportLeft: offViewportLeft,
+    offViewportRight: offViewportRight,
+    widerThanViewport: widerThanViewport,
+    createHeading: createHeading
 };

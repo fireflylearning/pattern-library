@@ -1,3 +1,46 @@
-.ui-datepicker .ui-datepicker-header {
-    // background: none;
+.ff_module-date-picker-calendar {
+    &.ui-datepicker,
+    .ui-datepicker {
+        //highlight current day
+        .ui-datepicker-today {
+            border: 1px solid #ccc;
+        }
+
+        //hide default back/next graphics
+
+        .ui-widget-header .ui-datepicker-prev,
+        .ui-widget-header .ui-datepicker-next,
+        .ui-widget-content .ui-datepicker-prev,
+        .ui-widget-content .ui-datepicker-next {
+            &.ui-state-hover .ui-icon,
+            .ui-icon {
+                background-image: none !important;
+            }
+        }
+    }
+
+    //default styling for inline mode on all themes
+    &--inline {
+      position: relative;
+      border-width: 1px 0;
+      border-style: solid;
+
+
+      .ui-widget-content {
+          background: transparent;
+          border: none;
+      }
+
+      .ui-datepicker {
+          width: 100%;
+          padding: 0;
+          box-shadow: none;
+      }
+
+      .ui-datepicker table {
+          font-size: 0.8em;
+      }
+
+    }
+
 }

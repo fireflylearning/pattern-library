@@ -4,7 +4,8 @@
         background-color: @ff_colour_control_bg;
     }
     .isolate() {
-        border: 1px solid @ff_colour_control_border;
+        //border: 1px solid @ff_colour_control_border;
+        border: none;
         border-radius: @ff_size_control_rounding;
     }
     .list-item() {
@@ -34,7 +35,6 @@
 
 #ff_mix-buttons() {
     .with-icon {
-        border: none;
         background: none;
         // outline: none;
     }
@@ -163,23 +163,23 @@
 
 #ff_mix-responsive-colour() {
     // Calculating contrasts from here: http://24ways.org/2010/calculating-color-contrast/
-    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 192) {
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 150) {
         color: @dark;
     }
-    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 192) {
+    .check-contrast(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 150) {
         color: @light;
     }
-    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 192) {
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) > 150) {
         fill: @dark;
     }
-    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 192) {
+    .check-contrast-svg(@colour, @dark: #000000, @light: #ffffff) when ((((red(@colour)*299)+(green(@colour)*587)+(blue(@colour)*114))/1000) =< 150) {
         fill: @light;
     }
 }
 
 #ff_mix-sections() {
     .header() {
-        padding: @ff_size_spacing_min @ff_size_control_horizontal;
+        padding: @ff_size_spacing_min @ff_size_spacing_max;
         background-color: @c_panel-bg;
         border-top-left-radius: @ff_size_control_rounding;
         border-top-right-radius: @ff_size_control_rounding;
@@ -188,7 +188,7 @@
         h2 {margin: 0;}
     }
     .footer() {
-        padding: @ff_size_spacing_min @ff_size_control_horizontal;
+        padding: @ff_size_spacing_min @ff_size_spacing_max;
         background-color: @c_panel-bg;
         border-bottom-left-radius: @ff_size_control_rounding;
         border-bottom-right-radius: @ff_size_control_rounding;

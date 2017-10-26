@@ -156,6 +156,20 @@ data:
             - 
                 href: "#"
                 text: "Item C with even longer text inside"
+      - 
+        id: dd8
+        text: "Dropdown button lt"
+        modifier: 'tertiary'
+        list: 
+            - 
+                href: "#"
+                text: "Item A with long text inside"            
+            - 
+                href: "#"
+                text: "Item B"           
+            - 
+                href: "#"
+                text: "Item C with even longer text inside"
       
 ---
 Dropdown button variations

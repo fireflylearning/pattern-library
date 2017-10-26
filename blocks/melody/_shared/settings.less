@@ -6,27 +6,31 @@
 @ff_colour_green:           #98CE1E;
 @ff_colour_red:             #D35447;
 @ff_colour_yellow:          #FFCD00;
+@ff_colour_blue:            #83BFEE;
 
+@saturation-limit: saturation(@ff_templatesetting_section-01-colour)/100; // makes sure pastel/monochrome themes are respected
 
-@ff_colour_melody_lt_blue:  #E1E7EA; // light blue
-@ff_colour_melody_md_blue:  #809CB4; // grey blue
-@ff_colour_melody_int_blue: #187dd2; // intermediate med-dark blue
-@ff_colour_melody_dk_blue:  #1A6CA6; // dark blue
+@ff_colour_melody_lt_main:  hsl(hue(@ff_templatesetting_section-01-colour), @saturation-limit * 20, 90%); // light main colour
+@ff_colour_melody_md_main:  hsl(hue(@ff_templatesetting_section-01-colour), @saturation-limit * 45, 70%); // greyis main colour
+@ff_colour_melody_int_main: hsl(hue(@ff_templatesetting_section-01-colour), @saturation-limit * 70, 50%); // intermediate med-dark main colour
+@ff_colour_melody_dk_main:  hsl(hue(@ff_templatesetting_section-01-colour), @saturation-limit * 85, 35%); // dark main colour
 
 @ff_colour_success:         @ff_colour_green;
 @ff_colour_error:           @ff_colour_red;
 @ff_colour_notify:          @ff_colour_yellow;
-@ff_colour_progress:        @ff_colour_melody_dk_blue;
+@ff_colour_progress:        @ff_colour_melody_dk_main;
+@ff_colour_inform:          @ff_colour_blue;
 
-@ff_colour_default:         @ff_colour_melody_md_blue;
+@ff_colour_default:         hsl(hue(@ff_templatesetting_colour_links), 25.7%, 60.4%);
 @ff_colour_primary:         @ff_templatesetting_colour_links;
-@ff_colour_quiet:           @ff_colour_melody_lt_blue;
+@ff_colour_quiet:           hsl(hue(@ff_templatesetting_colour_links), 17.6%, 90.0%);
 
 @ff_colour_control_bg:                              @ff_colour_quiet;
 @ff_colour_control_bg_selected:                     darken(@ff_colour_quiet,10%);
 @ff_colour_control_border:                          #CCCCCC;
 @ff_color_control_link:                             @ff_templatesetting_colour_links;
 @ff_colour_control_text:                            #444444;
+
 
 //text colours
 @ff_colour_text_quiet:                              #888888;
@@ -49,8 +53,6 @@
 @ff_bp_medium: 640px;
 @ff_bp_wide: 960px;
 @ff_bp_extrawide: 1200px;
-
-@ff_fixed_control_z-index: 2;
 
 @ff_input-group-padding-vertical: 7.5rem/@ff_base;
 

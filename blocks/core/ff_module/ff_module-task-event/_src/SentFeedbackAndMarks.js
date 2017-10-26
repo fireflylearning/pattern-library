@@ -6,7 +6,7 @@ var eventStates = require('./events').states,
 
 var defaultState = React.createClass({
     displayName: 'SentFeedbackAndMarksTaskEventDefault',
-    render: taskEventWithOptionalMessage('sent feedback and marks.')
+    render: taskEventWithOptionalMessage('sent feedback and marks')
 });
 
 module.exports = {};

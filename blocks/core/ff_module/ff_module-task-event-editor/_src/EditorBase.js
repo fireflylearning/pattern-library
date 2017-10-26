@@ -12,8 +12,9 @@ module.exports = React.createClass({
         return (
             <ContainerDialog
                 title={this.props.title}
+                subTitle={this.props.studentName}
                 showCloseIcon={true}
-                onCloseIconClick={this.props.onClose}
+                onCloseIconClick={e=>this.props.onClose(this.props.event)}
                 body={this.props.children}
                 controls={this.props.controls}
             />

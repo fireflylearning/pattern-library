@@ -16,6 +16,11 @@ function isSelectedTab(tabKey, selectedTabKey) {
 	return selectedTab;
 }
 
+function isUnread(tab, base) {
+	var isUnread = tab.unread ? ' ' + base + '--is-unread' : '';
+	return isUnread;
+}
+
 module.exports = React.createClass({
 	displayName: 'TabsNavigation',
 	propTypes: {
@@ -36,10 +41,11 @@ module.exports = React.createClass({
 	render: function() {
 		var {onTabSelected, tabs} = this.props;
 		return <ul className='ff_module-tabs-navigation'>
-			{tabs.map(function(tab) { 
-				return <li key={tab.key} className={generateClass('ff_module-tabs-navigation__tab', this.props) + isSelectedTab(tab.key, this.props.selectedTabKey)}>
-						<a href="#" onClick={(event) => this.onTabClick(event, tab.key) } className='ff_module-tabs-navigation__link' >{tab.label}</a>
+			{tabs.map(function(tab) {
+				var badge = tab.badge ? <span className="ff_module-tabs-navigation__badge">{tab.badge}</span> : null;
+				return <li key={tab.key} className={generateClass('ff_module-tabs-navigation__tab', this.props) + isUnread(tab, 'ff_module-tabs-navigation__tab') + isSelectedTab(tab.key, this.props.selectedTabKey)}>
+						<a href="#" onClick={(event) => this.onTabClick(event, tab.key) } className={'ff_module-tabs-navigation__link' + isUnread(tab, 'ff_module-tabs-navigation__link') }>{tab.label}{badge}</a>
 					</li>;
-			}, this)} </ul>;	
+			}, this)} </ul>;
 	}
 });

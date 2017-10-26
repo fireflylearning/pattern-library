@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { modelReducer, formReducer } from 'react-redux-form';
-import { isRequired, isNumber, maxLength} from '../../_lib/simpleValidation';
+import { isRequired, isNumber, maxLength } from '../../_lib/simpleValidation';
 
 var events = [{
     type: eventTypes.stampResponseAsSeen,
@@ -46,9 +46,9 @@ var events = [{
     type: eventTypes.markAndGrade,
     sent: new Date(dStrings[0]),
     author: { name: 'Terry Teacher' },
-    mark: 7,
-    markMax: 10,
-    grade: 'B'
+    mark: '',
+    markMax: '',
+    grade: ''
 }, {
     type: eventTypes.deleteResponse,
     sent: new Date(dStrings[0]),
@@ -72,7 +72,7 @@ var events = [{
             error: true
         }
     }]
-).map(function(event){
+).map(function(event) {
     return {
         description: event.description,
         state: _.extend({}, event.state, {
@@ -92,7 +92,7 @@ var modelKeys = {
 };
 
 // so different model string values can be used if required
-var models = Object.keys(modelKeys).reduce(function(memo, key){
+var models = Object.keys(modelKeys).reduce(function(memo, key) {
     memo[modelKeys[key]] = 'event.description.' + modelKeys[key];
     return memo;
 }, {});
@@ -100,64 +100,7 @@ var models = Object.keys(modelKeys).reduce(function(memo, key){
 models['comment'] = 'event.description.message';
 
 var validation = {};
-validation[modelKeys.mark] = {
-    validateOn: 'blur',
-    rules: {
-        required: isRequired,
-        valid: isNumber
-    },
-    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
-    messages: {
-        required: 'Please add a mark',
-        valid: (val) => val ? 'Please use numbers' : '',
-    }
-};
-validation[modelKeys.markMax] = {
-    validateOn: 'blur',
-    rules: {
-        required: isRequired,
-        valid: isNumber
-    },
-    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
-    messages: {
-        required: 'Please add a maximum mark',
-        valid: (val) => val ? 'Please use numbers' : '',
-    }
-};
-validation[modelKeys.grade] = {
-    validateOn: 'blur',
-    rules: {
-        required: isRequired,
-        valid: maxLength(5)
-    },
-    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
-    messages: {
-        required: 'Please add a grade',
-        valid: (val) => val ? '5 characters maximum' : '',
-    }
-};
-validation[modelKeys.comment] = {
-    validateOn: 'blur',
-    rules: {
-        required: isRequired
-    },
-    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
-    messages: {
-        required: 'Please add a comment'
-    }
-};
-var max = 255;
-validation[modelKeys.message] = {
-    validateOn: 'blur',
-    rules: {
-        valid: maxLength(max)
-    },
-    showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
-    messages: {
-        valid: (val) => val ? '' + max + ' characters maximum' : '',
-    }
-};
-
+// See docs for more info on validation
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(evnt) {
@@ -176,7 +119,7 @@ module.exports = function() {
                         eventForm: state.eventForm,
                         validation: validation,
                         models: models,
-                        onNext: function(event){
+                        onNext: function(event) {
                             console.log('next', event.description);
                         },
                         onSend: function(event) {

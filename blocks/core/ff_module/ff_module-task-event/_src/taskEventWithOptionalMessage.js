@@ -9,7 +9,7 @@ var _ = require('underscore');
 function defaultState(text) {
     return function() {
         var messageText = this.props.description.message || '',
-            outputText = getText(text, this.props);
+            outputText = getText(text, this.props, TaskEventBase.getAuthor(this.props));
 
         var message = messageText ? <p className="ff_module-task-event__message">{messageText}</p> : null;
 
@@ -20,7 +20,7 @@ function defaultState(text) {
 function editedState(text) {
     return function() {
         var messageText = this.props.description.message || '',
-        outputText = getText(text, this.props),
+        outputText = getText(text, this.props, TaskEventBase.getAuthor(this.props)),
         editedFlag = getEditedFlag(this.props);
 
         var message = messageText ? <p className="ff_module-task-event__message">{messageText}{editedFlag}</p> : null;
@@ -31,8 +31,8 @@ function editedState(text) {
 
 function deletedState(text) {
     return function() {
-        var outputText = getText(text, this.props);
-        var newProps = _.extend({}, this.props, { actions: [], onRetryAfterStatusError: function(){}})
+        var outputText = getText(text, this.props, TaskEventBase.getAuthor(this.props));
+        var newProps = _.extend({}, this.props, { actions: [] })
 
         return  <TaskEventBase {...newProps}>
                     <p className='ff_module-task-event__author-action'>{outputText}</p>
@@ -42,20 +42,15 @@ function deletedState(text) {
 
 function renderBase(props, outputText, message) {
     return  <TaskEventBase {...props}>
-                <p className='ff_module-task-event__author-action'>{outputText}</p>
+                <p className='ff_module-task-event__author-action'>{outputText}{message ? ':' : '.'}</p>
                 {message}
             </TaskEventBase>;
 }
 
 
-function getText(text, props){
-    var description = props.description;
-
+function getText(text, props, author){
     if (typeof text === 'string') {
-        if (description.author && description.author.name) {
-            return description.author.name + ' ' + text;
-        }
-        return 'User ' + text;
+        return author + ' ' + text;
     } else if (typeof text === 'function') {
         return text(props);
     }

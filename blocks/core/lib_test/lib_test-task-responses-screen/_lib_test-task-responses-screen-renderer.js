@@ -23,16 +23,20 @@ import { connect } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { modelReducer, formReducer } from 'react-redux-form';
-import { isRequired, isNumber, maxLength} from '../../_lib/simpleValidation';
+import { isRequired, isNumber, maxLength } from '../../_lib/simpleValidation';
+
+var now = new Date(),
+    aBitAgo = new Date(now - 65000),
+    aBitMoreAgo = new Date(now - 120000);
 
 var dStrings = ['27 Feb 2016 03:24:00', '27 Feb 2016 03:28:00', '28 Feb 2016 13:24:00'],
     dStrings2 = [
         '7 Dec 2015 18:45',     // 0
         '7 Dec 2015 18:45:10',  // 1
         '7 Dec 2015 18:45:15',  // 2
-        '12 March 2016 20:40',  // 3
-        '12 March 2016 21:47',  // 4
-        '13 March 2016 20:40',  // 5
+        now.toString(),         // 3
+        aBitAgo.toString(),     // 4
+        aBitMoreAgo.toString(), // 5
         '13 March 2016 21:47',  // 6
         '14 March 2016 20:40',  // 7
         '14 March 2016 21:47'   // 8
@@ -96,17 +100,17 @@ var events = [{
     type: eventTypes.deleteResponse,
     localEventId: '4a',
     sent: new Date(dStrings[0]),
-    author: { name: 'Terry Teacher'}
+    author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.confirmStudentIsUnexcused,
     localEventId: '4b',
     sent: new Date(dStrings[1]),
-    author: { name: 'Terry Teacher'}
+    author: { name: 'Terry Teacher' }
 }, {
     type: eventTypes.addFile,
     localEventId: '4c',
     sent: new Date(dStrings[2]),
-    author: { name: 'Sally Student'},
+    author: { name: 'Sally Student' },
     files: [{
         title: 'File one',
         href: '#'
@@ -131,7 +135,7 @@ var events = [{
             text: 'Delete',
             onClick: function() { console.log('delete'); }
         }],
-        state:{
+        state: {
             released: true
         }
     };
@@ -158,8 +162,7 @@ var recipientData = [{
     label: "Sally Student",
     latestEvent: {
         description: {
-            type: eventTypes.confirmTaskIsComplete,
-            sent: new Date()
+            type: eventTypes.confirmTaskIsComplete
         }
     },
     markAndGrade: {
@@ -176,8 +179,7 @@ var recipientData = [{
     label: "Tally Student",
     latestEvent: {
         description: {
-            type: eventTypes.markAndGrade,
-            sent: new Date('4 March 2016')
+            type: eventTypes.markAndGrade
         }
     },
     markAndGrade: {
@@ -195,8 +197,7 @@ var recipientData = [{
     label: "Terry Teacher",
     latestEvent: {
         description: {
-            type: eventTypes.markAndGrade,
-            sent: new Date('1 March 2016')
+            type: eventTypes.markAndGrade
         }
     },
     pic_href: "/images/default_picture.png"
@@ -208,8 +209,7 @@ var recipientData = [{
     label: "Terry Teacher",
     latestEvent: {
         description: {
-            type: eventTypes.stampResponseAsSeen,
-            sent: new Date('27 February 2016')
+            type: eventTypes.stampResponseAsSeen
         }
     },
     markAndGrade: {
@@ -226,8 +226,7 @@ var recipientData = [{
     label: "Terry Teacher",
     latestEvent: {
         description: {
-            type: eventTypes.confirmTaskIsComplete,
-            sent: new Date()
+            type: eventTypes.confirmTaskIsComplete
         }
     },
     pic_href: "/images/default_picture.png"
@@ -240,8 +239,7 @@ var recipientData = [{
     label: "Joseph Goulden",
     latestEvent: {
         description: {
-            type: eventTypes.confirmTaskIsComplete,
-            sent: new Date()
+            type: eventTypes.confirmTaskIsComplete
         }
     },
     pic_href: "/images/default_picture.png"
@@ -283,7 +281,7 @@ var metaActionProps = {
         numRecipientsAffected: 43,
         author: { name: 'Terry Teacher' }
     },
-    filters: <DropdownFilters {...filterProps} />,
+    //filters: <DropdownFilters {...filterProps} />,
     singleButtons: [<Button key="send-all-now" {...buttonProps}/>],
     groupedActions: <DropdownButton {...dropdownProps}/>
 };
@@ -310,7 +308,7 @@ var modelKeys = {
 };
 
 // so different model string values can be used if required
-var models = Object.keys(modelKeys).reduce(function(memo, key){
+var models = Object.keys(modelKeys).reduce(function(memo, key) {
     memo[modelKeys[key]] = 'editingEvent.description.' + modelKeys[key];
     return memo;
 }, {});
@@ -319,7 +317,7 @@ models['comment'] = 'editingEvent.description.message';
 var validation = {};
 validation[modelKeys.mark] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: isNumber
     },
@@ -331,7 +329,7 @@ validation[modelKeys.mark] = {
 };
 validation[modelKeys.markMax] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: isNumber
     },
@@ -343,7 +341,7 @@ validation[modelKeys.markMax] = {
 };
 validation[modelKeys.grade] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired,
         valid: maxLength(5)
     },
@@ -355,7 +353,7 @@ validation[modelKeys.grade] = {
 };
 validation[modelKeys.comment] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         required: isRequired
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
@@ -366,7 +364,7 @@ validation[modelKeys.comment] = {
 var max = 255;
 validation[modelKeys.message] = {
     validateOn: 'blur',
-    rules: {
+    validators: {
         valid: maxLength(max)
     },
     showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
@@ -387,7 +385,7 @@ function mapStateToProps(state) {
 
         eventGroups: eventGroups,
 
-        editingEvent: null,//state.editingEvent,
+        editingEvent: null, //state.editingEvent,
 
         editorValidation: validation,
         editorModels: models,

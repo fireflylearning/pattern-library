@@ -14,9 +14,20 @@ function getEventGroupsInOrder(eventGroups) {
     if (_.isArray(eventGroups)) {
         eventGroups = eventGroups
             .map(getEventsInOrder)
-            .sort(function(listA, listB) {
-            // Reverse chronological order
-                return ensureIsDate(listB[0].description.sent) - ensureIsDate(listA[0].description.sent);
+            .sort(function(a, b) {
+                a = a[0];
+                b = b[0];
+                var aSent = ensureIsDate(a.description.sent).getTime();
+                var bSent = ensureIsDate(b.description.sent).getTime();
+                var aId = a.description.eventVersionId;
+                var bId = b.description.eventVersionId;
+                return (
+                  aSent < bSent ? 1
+                : aSent > bSent ? -1
+                : aId < bId ? 1
+                : aId > bId ? -1
+                : 0
+                );
             });
     }
     return eventGroups;
@@ -30,14 +41,22 @@ module.exports = React.createClass({
                 {this.getGroups().map(events=>{
                     return  <li className="ff_container-task-event-repeater__item"
                                 key={this.getKey(events)}>
-                                <TaskEventGroup events={events}/>
+                                <TaskEventGroup events={events}
+                                    loggedInUserGuid={this.props.loggedInUserGuid}
+                                    recipient={this.props.recipient}
+                                    setTransitionFinished={this.props.setTransitionFinished}
+                                    setTaskDetails={this.props.setTaskDetails} />
                             </li>
                 })}
             </ol>
         </div>
     },
     propTypes: {
-        eventGroups: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.shape(TaskEvent.PropTypes))).isRequired
+        eventGroups: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.shape(TaskEvent.PropTypes))).isRequired,
+        loggedInUserGuid: React.PropTypes.string,
+        recipient: React.PropTypes.object,
+        setTransitionFinished: React.PropTypes.func.isRequired,
+        setTaskDetails: React.PropTypes.object.isRequired
     },
     getKey:function(events){
         return events.reduce((memo, event)=> '' + memo + event.localEventId, 'group-');

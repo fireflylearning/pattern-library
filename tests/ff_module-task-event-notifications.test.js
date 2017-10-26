@@ -29,6 +29,21 @@ var events = [{
     sent: new Date(),
     author: { name: 'Terry Teacher' },
     numRecipientsAffected: 38
+},{
+    type: eventTypes.toAllUpdate,
+    sent: new Date(),
+    author: { name: 'Terry Teacher' },
+    numRecipientsAffected: 11
+},{
+    type: eventTypes.toAllAdd,
+    sent: new Date(),
+    author: { name: 'Terry Teacher' },
+    numRecipientsAffected: 18
+},{
+    type: eventTypes.toAllDelete,
+    sent: new Date(),
+    author: { name: 'Terry Teacher' },
+    numRecipientsAffected: 41
 }].map(function(event, index){
     return {
         description: event
@@ -39,6 +54,9 @@ var types = {};
 types[eventTypes.deleteTask] = NotificationDeleteTask;
 types[eventTypes.releaseFeedbackAndMarks] = NotificationBase;
 types[eventTypes.sendReminder] = NotificationBase;
+types[eventTypes.toAllUpdate] = NotificationBase;
+types[eventTypes.toAllAdd] = NotificationBase;
+types[eventTypes.toAllDelete] = NotificationBase;
 
 describe('TaskEventNotifications', function() {
 

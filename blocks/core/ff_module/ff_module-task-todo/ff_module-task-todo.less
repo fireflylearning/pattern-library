@@ -1,0 +1,92 @@
+.ff_module-task-todo {
+    display: block;
+    padding-left: @ff_size_spacing_max*2;
+    vertical-align: top;
+    padding-top: @ff_size_spacing_min;
+    padding-bottom: @ff_size_spacing_min;
+    margin: 0;
+    @media (min-width: @ff_bp_medium) {
+        display: flex;
+        justify-content: flex-start; 
+        padding-left: 0;
+    }
+}
+
+.ff_module-task-todo__item {
+    #ff_mix-util-prose > .text-default();
+    margin: @ff_size_spacing_min 0 @ff_size_spacing_min 0;
+    justify-content: flex-start;
+    &--checkbox {
+        margin: 0;
+        margin-left: -@ff_size_spacing_max*2;
+        float: left;
+    }
+    @media (min-width: @ff_bp_medium) {
+        margin: 0;
+        &--checkbox {
+            float: none;
+            margin-left: 0;
+        }
+        &--title {
+            width: 65%;
+        }
+        &--date {
+            width: 35%;
+        }
+        & + .ff_module-task-todo__item {
+            margin: 0 0 0 @ff_size_spacing_max;
+        }
+        &--module {
+            width: 25%;
+        }
+    }
+}
+
+.ff_module-task-todo--stacked {
+    display: block;
+    padding-left: @ff_size_spacing_max*2;
+    .ff_module-task-todo__item--title,
+    .ff_module-task-todo__item--to,
+    .ff_module-task-todo__item--date,
+    .ff_module-task-todo__item--progress {
+        width: auto;
+    }
+    .ff_module-task-todo__item {
+        #ff_mix-util-prose > .text-default();
+        margin: @ff_size_spacing_min 0 @ff_size_spacing_min 0;
+        &--checkbox {
+            margin: 0;
+            margin-left: -@ff_size_spacing_max*2;
+            float: left;
+        }
+    }
+    .ff_module-task-todo__item--checkbox {
+        width: auto;
+    }
+}
+
+.ff_module-task-todo__to {
+    margin: 0;
+}
+
+.ff_module-task-todo__date {
+    &--quiet {
+        #ff_mix-util-prose > .text-quiet();
+    }
+}
+
+.ff_module-task-todo__link {
+    margin: @ff_size_spacing_min/2 0;
+    display: block;
+    #ff_mix-util-prose > .link-no-decoration();
+}
+
+.ff_module-task-todo__meta {
+    display: block;
+    #ff_mix-util-prose > .text-small();
+    #ff_mix-util-prose > .text-quiet();
+}
+
+.ff_module-task-todo--stacked .ff_module-task-todo__item--progress {
+    margin-top: @ff_size_control_vertical;
+}

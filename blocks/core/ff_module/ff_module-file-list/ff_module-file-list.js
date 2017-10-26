@@ -13,8 +13,14 @@ module.exports = React.createClass({
     },
     render: function(){
 
-        return <div className={generateClass('ff_module-file-list', this.props)}><ul className="ff_module-file-list__items">
-            {this.props.files.map((file, index)=><li className="ff_module-file-list__item" key={file.title + index}><ModuleFile file={file}/></li>)}
-        </ul></div>;
-    }
+        return <div className={generateClass('ff_module-file-list', this.props)}>
+                    <ul className="ff_module-file-list__items">
+                        {this.props.files.map((file, index)=>
+                            <li className={generateClass('ff_module-file-list__item', this.props)} key={file.title + index}>
+                                <ModuleFile modifier={this.props.modifier} file={file}/>
+                            </li>
+                        )}
+                    </ul>
+                </div>;
+        }
 });

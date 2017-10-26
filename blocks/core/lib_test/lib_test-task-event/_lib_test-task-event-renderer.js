@@ -120,8 +120,8 @@ var actions = [{
     onClick: function() { console.log('delete'); }
 }];
 
-function retryAfterStatusError() {
-    console.log('[retryAfterStatusError]');
+function tryAgainCallback() {
+    console.log('[tryAgainCallback]');
 }
 
 module.exports = function() {
@@ -150,7 +150,7 @@ module.exports = function() {
                                                                     description={eventDescription}
                                                                     actions={actions}
                                                                     state={eventState}
-                                                                    onRetryAfterStatusError={retryAfterStatusError} />
+                                                                    tryAgainCallback={tryAgainCallback} />
                                                             </li>
                                                 })}
                                             </ul>

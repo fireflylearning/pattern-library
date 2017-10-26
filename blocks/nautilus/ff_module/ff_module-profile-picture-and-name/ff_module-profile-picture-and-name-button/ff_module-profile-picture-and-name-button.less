@@ -18,6 +18,8 @@
 .ff_module-profile-picture-and-name-button {
     &--is-selected {
         cursor: default;
+        opacity: 0.4;
+        filter: alpha(opacity=40); /* msie */
         &__title {
             #ff_mix-util-prose > .link-disabled(#ccc);
         }

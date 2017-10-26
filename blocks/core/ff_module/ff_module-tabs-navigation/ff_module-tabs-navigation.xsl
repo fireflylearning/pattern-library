@@ -17,7 +17,10 @@
                         <xsl:otherwise>ff_module-tabs-navigation__tab</xsl:otherwise>
                     </xsl:choose>
                 </xsl:attribute>
-                <a class="ff_module-tabs-navigation__link" href="#{@id}"><xsl:value-of select="label"/></a>
+                <a class="ff_module-tabs-navigation__link" href="#{@id}">
+                  <xsl:value-of select="label"/>
+                  <xsl:if test="@badge"><span class="ff_module-tabs-navigation__badge"><xsl:value-of select="@badge"/></span></xsl:if>
+                </a>
             </li>
         </xsl:for-each>
     </ul>

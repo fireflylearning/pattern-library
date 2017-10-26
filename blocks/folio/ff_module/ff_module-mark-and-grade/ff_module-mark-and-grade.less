@@ -1,0 +1,14 @@
+.ff_module-mark-and-grade {
+    padding-top: @ff_size_control_vertical*0.5;
+    padding-bottom: @ff_size_control_vertical*0.5;
+
+    &__mark, &__grade, &__percentage {
+        background-color: @c_accent;
+        border-radius: 2rem;
+        #ff_mix-responsive-colour > .check-contrast(@c_accent, @c_text, #ffffff);
+        font-weight: bold;
+        font-size: unit(18/@ff_base, rem);
+        padding: @ff_size_control_vertical*0.5 @ff_size_control_horizontal*0.75;
+        margin-right: @ff_size_control_horizontal*0.2;
+    }
+}

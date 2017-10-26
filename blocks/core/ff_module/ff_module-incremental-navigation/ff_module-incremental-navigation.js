@@ -22,7 +22,7 @@ module.exports = React.createClass({
                 <ControlBarSet>
                     <Button
                         modifier="link"
-                        icon="page-back-blue"
+                        icon=" ff_module-incremental-navigation__icon--prev"
                         classes="ff_module-incremental-navigation__previous"
                         text={this.props.previousText}
                         disabled={this.props.isFirst}
@@ -31,7 +31,7 @@ module.exports = React.createClass({
                 <ControlBarSet>
                     <Button
                         modifier="link"
-                        icon="page-forward-blue"
+                        icon=" ff_module-incremental-navigation__icon--next"
                         iconAlign="right"
                         classes="ff_module-incremental-navigation__next"
                         text={this.props.nextText}

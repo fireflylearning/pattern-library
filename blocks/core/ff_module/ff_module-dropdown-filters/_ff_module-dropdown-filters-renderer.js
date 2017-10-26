@@ -5,28 +5,52 @@ var _ = require('underscore');
 
 var DropdownFilters = require('./ff_module-dropdown-filters');
 
-var propsList = [{
-    text: 'Filter by status',
-    onAddFilter: function(id, event){
-        console.log('filter '+id+' added');
-    },
-    onRemoveFilter: function(id, event){
-        console.log('filter '+id+' removed');
-    },
-    isOpen: false,
-    isDisabled: false,
-    filters: [{
-        name: 'Awaiting Response',
-        id: 'filter-1'
+var propsList = [
+    {
+        text: 'Filter by status - Checkbox',
+        onAddFilter: function(id, event){
+            console.log('filter '+id+' added');
+        },
+        onRemoveFilter: function(id, event){
+            console.log('filter '+id+' removed');
+        },
+        isOpen: false,
+        isDisabled: false,
+        isRadioGrp: false,
+        filters: [{
+            name: 'Awaiting Response',
+            id: 'filter-1'
+        }, {
+            isActive: true,
+            name: 'Approved',
+            id: 'filter-2'
+        }, {
+            name: 'Response Received',
+            id: 'filter-3'
+        }]
     }, {
-        isActive: true,
-        name: 'Approved',
-        id: 'filter-2'
-    }, {
-        name: 'Response Received',
-        id: 'filter-3'
-    }]
-}];
+        text: 'Filter by status - Radio',
+        onAddFilter: function(id, event){
+            console.log('filter '+id+' selected');
+        },
+        onRemoveFilter: function(id, event){
+            console.log('This is a radio button');
+        },
+        isOpen: false,
+        isDisabled: false,
+        isRadioGrp: true,
+        filters: [{
+            name: 'Awaiting Response',
+            id: 'filter-1-radio'
+        }, {
+            name: 'Approved',
+            id: 'filter-2-radio'
+        }, {
+            name: 'Response Received',
+            id: 'filter-3-radio'
+        }]
+    }
+];
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {

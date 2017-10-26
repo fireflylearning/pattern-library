@@ -9,35 +9,35 @@ data:
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Default Alignment</span>"
+                - "<button class=\"ff_module-button\">Default Alignment</button>"
     -
         modifier: ""
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Module A, set A</span>"
-                - "<span class=\"crate_util-block\">Module B, set A</span>"
+                - "<button class=\"ff_module-button\">Module A, set A</button>"
+                - "<button class=\"ff_module-button\">Module B, set A</button>"
             -
                 modules:
-                - "<span class=\"crate_util-block\">Module A, set B</span>"
+                - "<button class=\"ff_module-button\">Module A, set B</button>"
     -
         modifier: ""
         sets:
             -   
                 title: "Default, with title"
                 modules:
-                - "<span class=\"crate_util-block\">Module B</span>"
-                - "<span class=\"crate_util-block\">Module C</span>"
+                - "<button class=\"ff_module-button\">Module B</button>"
+                - "<button class=\"ff_module-button\">Module C</button>"
     -
         modifier: ""
         sets:  
             -
                 title: "Default, with title"
                 modules:
-                - "<span class=\"crate_util-block\">Module A</span>"
-                - "<span class=\"crate_util-block\">Module B</span>"
-                - "<span class=\"crate_util-block\">Module C</span>"
-                - "<span class=\"crate_util-block\">Module D</span>"
+                - "<button class=\"ff_module-button\">Module A</button>"
+                - "<button class=\"ff_module-button\">Module B</button>"
+                - "<button class=\"ff_module-button\">Module C</button>"
+                - "<button class=\"ff_module-button\">Module D</button>"
     -
         modifier: "split"
         sets:
@@ -45,8 +45,8 @@ data:
                 title: "Split, with title"
             -
                 modules:
-                - "<span class=\"crate_util-block\">Module B</span>"
-                - "<span class=\"crate_util-block\">Module C</span>"
+                - "<button class=\"ff_module-button\">Module B</button>"
+                - "<button class=\"ff_module-button\">Module C</button>"
     -
         modifier: "split"
         sets:
@@ -70,48 +70,48 @@ data:
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Module A</span>"
-                - "<span class=\"crate_util-block\">Module B</span>"
-                - "<span class=\"crate_util-block\">Module C</span>"
+                - "<button class=\"ff_module-button\">Module A</button>"
+                - "<button class=\"ff_module-button\">Module B</button>"
+                - "<button class=\"ff_module-button\">Module C</button>"
             -
                 modules:
-                - "<span class=\"crate_util-block\">Module D</span>"
-                - "<span class=\"crate_util-block\">Module E</span>"
-                - "<span class=\"crate_util-block\">Module F</span>"
+                - "<button class=\"ff_module-button\">Module D</button>"
+                - "<button class=\"ff_module-button\">Module E</button>"
+                - "<button class=\"ff_module-button\">Module F</button>"
     -
         modifier: "centered"
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Centred Module</span>"
+                - "<button class=\"ff_module-button\">Centred Module</button>"
     -
         modifier: "centered"
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Module A</span>"     
-                - "<span class=\"crate_util-block\">Module B</span>"
-                - "<span class=\"crate_util-block\">Module C</span>"
+                - "<button class=\"ff_module-button\">Module A</button>"     
+                - "<button class=\"ff_module-button\">Module B</button>"
+                - "<button class=\"ff_module-button\">Module C</button>"
     -
         modifier: "right"
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Right Aligned</span>"
+                - "<button class=\"ff_module-button\">Right Aligned</button>"
     -
         modifier: "right"
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Right-aligned Module A</span>"
-                - "<span class=\"crate_util-block\">Right-aligned Module B</span>"
+                - "<button class=\"ff_module-button\">Right-aligned Module A</button>"
+                - "<button class=\"ff_module-button\">Right-aligned Module B</button>"
     -
         modifier: "right"
         sets:
             -
                 modules:
-                - "<span class=\"crate_util-block\">Module A</span>"
-                - "<span class=\"crate_util-block\">Module B</span>"
-                - "<span class=\"crate_util-block\">Module C</span>"
-                - "<span class=\"crate_util-block\">Module D</span>"
+                - "<button class=\"ff_module-button\">Module A</button>"
+                - "<button class=\"ff_module-button\">Module B</button>"
+                - "<button class=\"ff_module-button\">Module C</button>"
+                - "<button class=\"ff_module-button\">Module D</button>"
 ---

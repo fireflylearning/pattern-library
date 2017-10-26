@@ -1,6 +1,6 @@
 <tabs>
     {% for tab in tabs %}
-        <tab state="{{tab.state | default('')}}" id="{{tab.id}}">
+        <tab state="{{tab.state | default('')}}" id="{{tab.id}}" {% if tab.badge %}badge="{{tab.badge}}"{% endif %}>
             <label>{{tab.label | default('Tab Content')}}</label>
         </tab>
     {% endfor %}

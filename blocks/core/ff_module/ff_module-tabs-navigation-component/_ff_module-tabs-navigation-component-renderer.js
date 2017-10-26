@@ -15,7 +15,8 @@ function mapStateToProps(state) {
 		tabs: [{
 			label: "Overview",
 			id: "tab1-react",
-			key: 1
+			key: 1,
+			unread: true
 		},
 		{
 			label: "Details",
@@ -25,6 +26,7 @@ function mapStateToProps(state) {
 		{
 			label: "Tasks",
 			id: "tab3-react",
+			badge: "33",
 			key: 3
 		},
 		{
@@ -54,14 +56,14 @@ function reducer(state=1, action) {
 		default:
 			return state;
 	}
-} 
+}
 
 function switchTabAction(tabKey) {
 	return {
 		type: SWITCH_TAB,
 		tabKey
 	}
-} 
+}
 
 var store = createStore(reducer);
 

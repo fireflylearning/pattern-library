@@ -1,4 +1,4 @@
-<item title="{{title | default('Container Title')}}" more-page-text="{{pagetext}}" more-page-link="{{ pagelink | default('#') }}" show-footer="{{ showfooter | default('yes') }}" modifiers="{{ modifiers }}">
+<item title="{{title | default('Container Title')}}" more-page-text="{{pagetext}}" more-page-link="{{ pagelink | default('#') }}" show-footer="{{ showfooter | default('yes') }}" modifier="{{ modifier }}">
 	{% if content %}
 	<content>{{content}}</content>
 	{% endif %}

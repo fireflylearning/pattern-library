@@ -1,10 +1,10 @@
 <xsl:template name="ff_module-date-picker-jumpto">
     <xsl:param name="data" />
-    
+
     <div class="ff_module-date-picker-jumpto__icon">
-        <span class="ff_icon ff_icon-calendar-blue ff_module-date-picker-jumpto__trigger">
+        <span class="ff_icon ff_icon-calendar-blue ff_module-date-picker-jumpto__trigger" data-ff="date-picker-container">
 			<xsl:apply-templates select="$data" mode="ff_module-date-picker-jumpto-input" />
-        </span>   
+        </span>
     </div>
 </xsl:template>
 
@@ -18,5 +18,7 @@
       data-ff="date-picker"
       data-ff-target-input-id="{@target-input-id}"
       data-ff-display-format="{@display-format}"
-      value="{@date}"/>
+      value="{@date}"
+      autocomplete="off"
+      autocorrect="off" />
 </xsl:template>

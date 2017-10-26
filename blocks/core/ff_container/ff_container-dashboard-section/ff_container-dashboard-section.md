@@ -4,6 +4,6 @@ data:
     title: "Important Messages"
     pagetext: "View more messages"
     pagelink: "#"
-    modifiers: ""
+    modifier: "simple"
     content: "This is a module"
 ---

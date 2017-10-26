@@ -7,7 +7,7 @@
         flex-wrap: wrap;
         max-height: 200px;
         overflow:auto;
-        &, &:not([type="radio"]), &:not([type="checkbox"]) {
+        &, &:not([type="radio"]):not([type="checkbox"]) {
             padding: @ff_size_spacing_min * 0.25;
         }
         background: #fff;
@@ -24,14 +24,11 @@
         left:20px;
         right:20px;
 
-        &, &:not([type="radio"]), &:not([type="checkbox"]){
+        &, &:not([type="radio"]):not([type="checkbox"]){
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             border-top:none;
         }
-    }
-    &__input {
-        flex:1;
     }
     &__selectable--is-active {
         display: block;

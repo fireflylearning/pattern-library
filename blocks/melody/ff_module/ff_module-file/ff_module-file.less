@@ -1,10 +1,22 @@
 .ff_module-file {
 
     display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     &__link {
         #ff_mix-util-prose > .text-default();
         #ff_mix-util-prose > .link-no-decoration();
     }
 
-}
+    @media (min-width: @ff_bp_medium) {
+        // because we don't have element queries yet
+        &:not(.ff_module-file--sidebar) {
+        	white-space: normal;
+        	text-overflow: clip;
+        	overflow: visible;
+        }
+    }
+
+} 

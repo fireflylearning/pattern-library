@@ -82,7 +82,7 @@ function isRequired(value) {
 const validators = {
     'user.email': {
         validateOn: 'blur',
-        rules: {
+        validators: {
             required: isRequired,
             valid: emailIsValid
         },
@@ -94,7 +94,7 @@ const validators = {
     },
     'user.username': {
         validateOn: 'blur',
-        rules: {
+        validators: {
             required: isRequired
         },
         showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
@@ -104,7 +104,7 @@ const validators = {
     },
     'user.password': {
         validateOn: 'blur',
-        rules: {
+        validators: {
             required: isRequired
         },
         showErrorsOn: (field) => field.touched && !field.focus && !field.valid,
@@ -114,7 +114,7 @@ const validators = {
     },
     'user.selectedColour': {
         validateOn: 'change',
-        rules: {
+        validators: {
             valid: colourIsValid
         },
         showErrorsOn: (field) => !field.valid,
@@ -156,7 +156,7 @@ class LoginForm extends React.Component {
             <ContainerFormLine>
                 <FormField
                     model='user.username'
-                    validators={validation['user.username'].rules}
+                    validators={validation['user.username'].validators}
                     validateOn={validation['user.username'].validateOn}
                     >
 
@@ -181,7 +181,7 @@ class LoginForm extends React.Component {
 
             <ContainerFormLine>
                 <FormField model='user.selectedColour'
-                    validators={validation['user.selectedColour'].rules}
+                    validators={validation['user.selectedColour'].validators}
                     validateOn={validation['user.selectedColour'].validateOn}
                     >
 
@@ -218,7 +218,7 @@ class LoginForm extends React.Component {
 
             <ContainerFormLine>
                 <FormField model='user.password'
-                    validators={validation['user.password'].rules}
+                    validators={validation['user.password'].validators}
                     validateOn={validation['user.password'].validateOn}
                     >
                   <FormLabel required={true}>Password</FormLabel>

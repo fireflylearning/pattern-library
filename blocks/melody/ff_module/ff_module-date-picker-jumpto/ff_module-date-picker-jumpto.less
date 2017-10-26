@@ -1,10 +1,15 @@
-.ff_module-date-picker-jumpto__trigger {
+.ff_module-date-picker-jumpto {
+  &__trigger {
     padding: 12px;
     background-origin: content-box;
     border-radius: @ff_size_control_rounding * 3/5;
     border: 1px solid @ff_colour_default;
-}
-
-.ff_module-date-picker-jumpto__cal {
-    width: 100%;
+  }
+  &__cal {
+      width: 100%;
+  }
+  &--is-active {
+    background-color: shade(white, 10%);
+    border-color: shade(@ff_colour_default, 10%);
+  }
 }

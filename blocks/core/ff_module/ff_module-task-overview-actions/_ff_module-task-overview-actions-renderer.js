@@ -21,6 +21,7 @@ var props = [{
     onArchiveClick: getOnClick('onArchiveClick'),
     onUnarchiveClick: getOnClick('onUnarchiveClick'),
     onDeleteClick: getOnClick('onDeleteClick'),
+    onDownloadClick: getOnClick('onDownloadClick'),
 }];
 
 module.exports = function() {

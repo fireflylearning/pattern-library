@@ -6,9 +6,10 @@ var eventStates = require('./events').states,
     taskEventWithOptionalMessageDeleted = require('./taskEventWithOptionalMessage').deletedState,
     taskEventWithOptionalMessageEdited = require('./taskEventWithOptionalMessage').editedState;
 
+var text = 'stamped response as seen';
 var defaultState = React.createClass({
     displayName: 'StampResponseAsSeenTaskEventDefault',
-    render: taskEventWithOptionalMessage('stamped response as seen.')
+    render: taskEventWithOptionalMessage(text)
 });
 
 var deletedState = React.createClass({
@@ -18,7 +19,7 @@ var deletedState = React.createClass({
 
 var editedState = React.createClass({
     displayName: 'StampResponseAsSeenTaskEventDeleted',
-    render: taskEventWithOptionalMessageEdited('stamped response as seen.')
+    render: taskEventWithOptionalMessageEdited(text)
 });
 
 module.exports = {};

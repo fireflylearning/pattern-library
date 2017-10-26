@@ -1,38 +1,26 @@
 .ff_module-form-add-attachment {
-    background-color: #F8F8F8;
+
     border: 1px solid @ff_colour_control_border;
 
     &__dnd {
-        text-align: center;
         padding: 1.75*@ff_size_spacing_max @ff_size_spacing_max;
     }
-
     &__dnd-text{
-        color: @ff_colour_default;
-        display: block;
-        margin: 0 auto;
-        font-style: italic;
+        color: fade(@c_text, 50%);
     }
     &__buttons {
         margin: 0 @ff_size_spacing_min @ff_size_spacing_min @ff_size_spacing_min;
     }
-    &__icon.ff_icon {
-        width: 1.5em;
-        height: 1.5em;
-        display: block;
-        margin: 0 auto 3px auto;
-    }
     &__filelist {
-
+        // border: 1px solid @ff_colour_control_border;
     }
     &__no-files-message{
-        display: block;
         #ff_mix-util-prose > .text-default();
-        border: 1px solid @ff_colour_control_border;
-        padding: @ff_size_control_vertical @ff_size_control_horizontal;
         font-style: italic;
+        border: 1px solid @ff_colour_control_border;
+        border-top:0;
+        padding: @ff_size_control_vertical @ff_size_control_horizontal;
     }
-
 }
 
 // states

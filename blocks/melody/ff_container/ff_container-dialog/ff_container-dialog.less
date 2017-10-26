@@ -1,7 +1,15 @@
+.top-arrow() {
+    #triangle-up(10px, 1, @ff_colour_control_bg);
+    content:' ';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -10px;
+}
+
 .ff_container-dialog {
     background-color: #fff;
     border-radius: @ff_size_control_rounding * 0.5;
-    overflow: hidden;
 
     &__heading {
         background-color: @ff_colour_control_bg;
@@ -10,9 +18,13 @@
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
         font-size: 18rem/@ff_base;
         line-height: 21/18;
+        border-radius: @ff_size_control_rounding * 0.5 @ff_size_control_rounding * 0.5 0 0;
     }
     &__title {
         color: @ff_colour_control_text;
+        > .ff_util-prose__text--quiet {
+            #ff_mix-responsive-colour > .check-contrast(@ff_colour_control_bg, fade(@ff_colour_control_text, 70%), fade(#ffffff, 70%));
+        }
     }
     &__close-top {
         right: -@ff_size_spacing_min * .6;
@@ -23,6 +35,11 @@
     }
     &__body {
         padding: 0 @ff_size_control_horizontal;
+        // &--constrained-height {
+        //     max-height: 400px;
+        //     overflow-y: scroll;
+        //     -webkit-overflow-scrolling: touch;
+        // }
     }
     &__notification {
         em {
@@ -31,23 +48,21 @@
         }
     }
     &__controls {
-        padding: @ff_size_control_vertical @ff_size_control_horizontal @ff_size_spacing_med @ff_size_control_horizontal;
-        overflow: auto;
-        * {
-            float:left;
+        padding: @ff_size_spacing_min/2 @ff_size_control_horizontal;
+        border-color: fade(@ff_colour_control_border,40%);
+
+        >* {
+            float: left;
+            margin: @ff_size_spacing_min*0.5 0 @ff_size_spacing_min*0.5 0;
         }
-        *+* {
-            margin-left: @ff_size_spacing_min;
+        >*:not(:last-child) {
+            margin-right: @ff_size_spacing_min;
         }
     }
+
     &--arrow {
         &:before {
-            #triangle-up(10px, 1, @ff_colour_control_bg);
-            content:' ';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: -10px;
+            .top-arrow();
         }
     }
 }

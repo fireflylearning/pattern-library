@@ -1,6 +1,25 @@
+.ff_module-recipient-button-list__spinner {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -12.5px;
+    margin-top: -12.5px;
+}
 .ff_module-recipient-button-list {
+    position: relative;
+}
+.ff_module-recipient-button-list--constrained-height {
+        height: 20rem;
+        position: relative;
+        overflow-y: auto;
+}
+
+.ff_module-recipient-button-list__list {
     #ff_mix-util-prose > .list-remove-defaults;
-    &__item {
-        margin: @ff_size_control_vertical 0;
-    }
+}
+
+.ff_module-recipient-button-list__item {
+    margin: @ff_size_control_vertical @ff_size_control_horizontal;
 }

@@ -27,6 +27,10 @@ module.exports = React.createClass({
 		return classNames.join(' ');
 	},
 	render: function() {
+		if (this.props.items == null) {
+			return null;
+		}
+
 		return <ul className='ff_module-form-checkable-list'>
 				{this.props.items.map((item, index)=>{
 					var model = this.props.model || null;

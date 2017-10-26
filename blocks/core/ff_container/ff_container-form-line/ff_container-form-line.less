@@ -1,14 +1,13 @@
 .ff_container-form-line {
-
     #ff_mix-form-pair > .root;
-
+    position: relative;
     &__item {
         #ff_mix-form-pair > .item;
     }
     &__item,
     & > &__section {
-        margin-left: 0;
-        margin-right: @ff_size_spacing_min;
+        #ff_mix-form-pair > .root;
+        margin: 0 @ff_size_spacing_min 0 0;
     }
     &__item:last-child,
     & > &__section:last-child {
@@ -26,6 +25,15 @@
     &__item--stacked {
         #ff_mix-form-pair > .stacked;
         margin-right: 0;
+        margin-bottom: @ff_size_spacing_min;
+    }
+    &__max-characters {
+        position: absolute;
+        right: 0;
+        top: 4.4rem;
+
+        &.error {
+            color: @ff_colour_error;
+        }
     }
 }
-

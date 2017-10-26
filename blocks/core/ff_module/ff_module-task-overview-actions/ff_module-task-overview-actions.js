@@ -9,26 +9,31 @@ var Button = require("../../ff_module/ff_module-button/ff_module-button");
 var DropdownButton = require("../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component");
 
 var editButtonProps = { text: 'Edit', key: 'edit' },
-    duplicateBtnProps = { text: 'Duplicate', key: 'duplicate' },
-    exportBtnProps = { text: 'Export', key: 'export' },
+    continueEditingButtonProps = { text: 'Continue Editing', key: 'continue-editing' },
+    duplicateBtnProps = { text: 'Copy', key: 'duplicate' },
+    exportBtnProps = { text: 'Export all marks to Excel', key: 'export' },
     archiveBtnProps = { text: 'Archive', key: 'archive' },
     unArchiveBtnProps = { text: 'Unarchive', key: 'unarchive' },
-    deleteBtnProps = { text: 'Delete', key: 'delete' };
+    deleteBtnProps = { text: 'Delete', key: 'delete' },
+    downloadBtnProps = { text: 'Download all student files', key: 'download' };
 
 function mergeProps(props) {
     var mergedExportProps = _.extend({}, exportBtnProps, { onClick: props.onExportClick }),
         mergedArchiveProps = _.extend({}, archiveBtnProps, { onClick: props.onArchiveClick }),
         mergedDeleteProps = _.extend({}, deleteBtnProps, { onClick: props.onDeleteClick }),
-        mergedUnarchiveProps = _.extend({}, unArchiveBtnProps, { onClick: props.onUnarchiveClick });
+        mergedUnarchiveProps = _.extend({}, unArchiveBtnProps, { onClick: props.onUnarchiveClick }),
+        mergedDownloadProps = _.extend({}, downloadBtnProps, { onClick: props.onDownloadClick });
 
         return {
             default: [
                 mergedExportProps,
+                mergedDownloadProps,
                 mergedArchiveProps,
                 mergedDeleteProps
             ],
             archived: [
                 mergedExportProps,
+                mergedDownloadProps,
                 mergedUnarchiveProps,
                 mergedDeleteProps
             ]
@@ -56,19 +61,25 @@ module.exports = React.createClass({
         onArchiveClick: React.PropTypes.func,
         onUnarchiveClick: React.PropTypes.func,
         onDeleteClick: React.PropTypes.func,
+        onDownloadClick: React.PropTypes.func
     },
     render: function() {
-        var editButton = this.props.state && this.props.state.archived ?
-            '' :
-            <Button modifier="tertiary" text={editButtonProps.text} key={editButtonProps.key} onClick={this.props.onEditClick} />;
+        let state = this.props.state || {};
+        let buttonProps =  state.draft ? continueEditingButtonProps : editButtonProps;
+        let buttonModifier = state.draft ? "primary" : "tertiary";
 
-        var dropDownActionList = getList(this.props);
+        let editButton = <Button modifier={buttonModifier} text={buttonProps.text} key={buttonProps.key} onClick={this.props.onEditClick} />;
+
+        let additionalActions = state.draft ?
+            <Button modifier="tertiary" text={deleteBtnProps.text} key={deleteBtnProps.key} onClick={this.props.onDeleteClick} /> :
+                <DropdownButton modifier="tertiary" text="More Actions" list={getList(this.props)} />;
+
         return (
-            <ContainerControlBar modifier="split" classes="ff_module-task-overview-actions">
+            <ContainerControlBar modifier="right" classes="ff_module-task-overview-actions">
                 <ContainerControlBarSet>
                     {editButton}
                     <Button modifier="tertiary" text={duplicateBtnProps.text} key={duplicateBtnProps.key} onClick={this.props.onDuplicateClick} />
-                    <DropdownButton modifier="tertiary" text="More Actions" list={getList(this.props)} />
+                    {additionalActions}
                 </ContainerControlBarSet>
             </ContainerControlBar>
         );

@@ -6,15 +6,17 @@ and shared between all themes */
 @ff_colour_green:           #98CE1E;
 @ff_colour_red:             #D35447;
 @ff_colour_yellow:          #FFCD00;
+@ff_colour_blue:            #83BFEE;
 
 @ff_colour_success:         @ff_colour_green;
 @ff_colour_error:           @ff_colour_red;
 @ff_colour_notify:          @ff_colour_yellow;
 @ff_colour_progress:        @ff_colour_green;
+@ff_colour_inform:          @ff_colour_blue;
 
 //colours
 @ff_colour_default:         @ff_templatesetting_colour_main;
-@ff_colour_primary:       	@ff_templatesetting_colour_accent;
+@ff_colour_primary:       	desaturate(darken(@ff_templatesetting_colour_links, 5%), 5%);
 @ff_colour_quiet:           #E3E3E3;
 
 	@c_main:					@ff_templatesetting_colour_main; // the main key colour
@@ -45,14 +47,17 @@ and shared between all themes */
 	@c_panel-border:			mix(@c_accent, @c_panel-bg, 50%); // borders of dashboard and page menu and content
 
 
-@ff_colour_control_bg: desaturate(lighten(@ff_templatesetting_colour_links, 15%), 20%);
-@ff_colour_control_bg_selected: darken(desaturate(lighten(@ff_templatesetting_colour_links, 15%), 20%), 10%);
+@saturation-limit: saturation(@ff_templatesetting_colour_main)/100; // makes sure pastel/monochrome themes are respected
+
+@ff_colour_control_bg: hsl(hue(@ff_templatesetting_colour_main), @saturation-limit * 50, 90%);
+@ff_colour_control_bg_selected: hsl(hue(@ff_templatesetting_colour_main), @saturation-limit * 50, 80%);
 @ff_colour_control_border: mix(@c_accent, @c_panel-bg, 50%);
-@ff_color_control_link: @ff_colour_default;
+@ff_color_control_link: @ff_templatesetting_colour_links;
 @ff_colour_control_text: #333333;
 
-@ff_colour_button_bg: #e3e3e3;
-@ff_colour_button_border: #b4b4b4;
+@ff_colour_button_bg: desaturate(lighten(@ff_templatesetting_colour_links, 15%), 20%);
+@ff_colour_button_border: darken(@ff_templatesetting_colour_links, 15%);
+@ff_colour_button_text: mix(@c_links, #000000, 50%);
 @ff_colour_error: #C12814;
 
 @mycolour: blue;
@@ -62,11 +67,11 @@ and shared between all themes */
 @ff_color_text_link: @ff_color_control_link;
 
 //sizing
-@ff_size_spacing_min: .625rem; //10px
-@ff_size_spacing_med: 1rem; //16px
-@ff_size_spacing_max: 1.25rem; //20px
-@ff_size_control_horizontal: @ff_size_spacing_med;
-@ff_size_control_vertical: @ff_size_spacing_min;
+@ff_size_spacing_min: 1rem; //16px
+@ff_size_spacing_med: 1.5rem; //24px
+@ff_size_spacing_max: 1.875rem; //30px
+@ff_size_control_horizontal: @ff_size_spacing_min;
+@ff_size_control_vertical: @ff_size_spacing_med/2;
 @ff_size_control_rounding: 4rem/@ff_base;
 
 @ff_size_prose_top_spacing: 32rem/@ff_base;
@@ -77,19 +82,9 @@ and shared between all themes */
 @ff_bp_wide: 960px;
 @ff_bp_extrawide: 1200px;
 
-@ff_fixed_control_z-index: 2;
-
 @ff_input-group-padding-vertical: 7.5rem/@ff_base;
 
-//class colours
-@ff_colour_class_Red: #EA7063;
-@ff_colour_class_Orange: #F39D31; 
-@ff_colour_class_Indigo: #5e75b5; 
-@ff_colour_class_Yellow: #FDDC4A;
-@ff_colour_class_Lavender: #9EACD3;
-@ff_colour_class_Violet: #9B59B6;
-@ff_colour_class_Green: #7CB75B;
-@ff_colour_class_Turquoise: #51C6B7;
-@ff_colour_class_Pink: #d8739d;
-@ff_colour_class_Forest: #1A8073;
-@ff_colour_class_Cerise: #af4854; 
+@ff_bp_dialog_height: 580px; //the height at which the dialog boxes go to fullscreen.
+
+
+@ff_colour_disabled_text: #888888;

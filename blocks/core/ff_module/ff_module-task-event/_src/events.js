@@ -1,10 +1,12 @@
 'use strict';
 
 module.exports.types = {
-    setTask: 'set-task',
+    setTask: "set-task",
+    editTask: 'edit-task',
     stampResponseAsSeen: 'stamp-response-as-seen',
     requestResubmission: 'request-resubmission',
-    claimTaskIsComplete: 'claim-task-is-complete',
+    markAsDone: "mark-as-done",
+    markAsUndone: "mark-as-undone",
     confirmTaskIsComplete: 'confirm-task-is-complete',
     confirmStudentIsExcused: 'confirm-student-is-excused',
     comment: 'comment',
@@ -15,13 +17,20 @@ module.exports.types = {
     deleteResponse: 'delete-response',
     editResponse: 'edit-response',
     confirmStudentIsUnexcused: 'confirm-student-is-unexcused',
-    confirmTaskIsToDo: 'confirm-task-is-to-do',
+    revertTaskToToDo: 'revert-task-to-to-do',
+    toAllUpdate: 'to-all-update',
+    toAllAdd: 'to-all-add',
+    toAllDelete: 'to-all-delete',
 
     // unconfirmed task events:
     deleteTask: 'delete-task',
     releaseFeedbackAndMarks: 'release-feedback-and-marks',
     sendReminder: 'send-reminder',
-    archivedTask: 'archived-task'
+    archivedTask: 'archive-task',
+    unarchivedTask: 'unarchive-task',
+
+    // notification for navigation
+    navigateTo: 'navigateTo'
 };
 
 
@@ -32,13 +41,13 @@ var states = {
     error: 'error',
     success: 'success',
 
-    editPending: 'edit-pending',
-    editSuccess: 'edit-success',
-    editError: 'edit-error',
+    editPending: 'editPending',
+    editSuccess: 'editSuccess',
+    editError: 'editError',
 
-    deletePending: 'delete-pending',
-    deleteSuccess: 'delete-success',
-    deleteError: 'delete-error',
+    deletePending: 'deletePending',
+    deleteSuccess: 'deleteSuccess',
+    deleteError: 'deleteError',
 
     deleted: 'deleted',
     edited: 'edited',
@@ -47,12 +56,10 @@ var states = {
     complete: 'complete',
     excused: 'excused',
 
-    allStudents: 'all-students',
+    allStudents: 'allStudents',
 
     archived: 'archived',
-    noConnection: 'no-connection'
+    noConnection: 'noConnection'
 };
 
 module.exports.states = states;
-
-

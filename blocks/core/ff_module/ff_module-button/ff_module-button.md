@@ -2,7 +2,7 @@
 data:
     text: "default button"
     icon: calendar
-page: 
+page:
     title: FF Module Button
 ---
 
@@ -21,7 +21,7 @@ Call `ff_module-button` and pass-in the following XML:
 </button>
 ```
 
-## Examples 
+## Examples
 
 See [the buttons test page](/tests/buttons.html) for all variations.
 
@@ -54,7 +54,8 @@ data:
 * `icon`
 * `<data attr=""/>`
 * `disabled` (disable this button)
-* `hide_text` (hide the button text, for icon only type buttons) 
+* `hide_text` (hide the button text, for icon only type buttons)
+* `href` (string)(if this is set, then take the user to this url when they click the button. Works by wrapping the button in its own `<form action='{{href}}'>` element, and setting `type=submit` on the button)
 
 ## Modifiers
 
@@ -87,5 +88,5 @@ data:
 
 
 
-## React component 
+## React component
 Supports the same values as the xsl, aside from arbitray attributes.

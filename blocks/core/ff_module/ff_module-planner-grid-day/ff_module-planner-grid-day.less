@@ -81,11 +81,13 @@
         }
         .sm--note {
             background-color: @base-bg;
+            .ff_module-planner-note {
+                border: none;
+            }
         }
         .sm--empty {
             background-color: @base-bg;
             border-left: 10px solid transparent;
-            border-right: none; //AFTER bett, find out why this doesn't work.
         }
         .sm--event {}
         .md {
@@ -188,6 +190,14 @@
     &__item:before {
         #ff_mix-planner-grid > .borders > .item-sep();
     }
+    &__event {
+        &--link {
+            #ff_mix-base-links > .default();
+        }
+        &--class {
+            margin-bottom: @ff_size_control_vertical / 2;
+        }
+    }
     @media screen and (min-width:@ff_bp_medium) {
         &__content {
             #ff_mix-planner-grid > .table > .md();
@@ -241,3 +251,6 @@
         }
     }
 }
+
+
+

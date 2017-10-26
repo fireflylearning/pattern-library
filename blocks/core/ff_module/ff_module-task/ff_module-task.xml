@@ -1,6 +1,19 @@
-<notice modifier="{{ modifier }}" id="{{ id }}" sent_to="{{ sent_to }}" no_excused="{{ no_excused }}" handedin="{{ completed_by }}" marked="{{ marked }}" from="{{ from }}" link_href="{{ link_href }}" to="{{ to }}" duedate="{{ duedate }}">
+{% for item in input %}
+	{% include '../ff_module-form-input/ff_module-form-input.xml' with item %}
+{% endfor %}
+<notice
+	{% if modifier %} modifier="{{ modifier }}" {% endif %}
+	{% if id %} id="{{ id }}" {% endif %}
+	{% if fuzzy_date %} fuzzy_date="{{ fuzzy_date }}" {% endif %}
+	{% if from %} from="{{ from }}" {% endif %}
+	{% if link_href %} link_href="{{ link_href }}" {% endif %}
+	{% if to %} to="{{ to }}" {% endif %}
+	{% if duedate %} duedate="{{ duedate }}" {% endif %}
+	{% if has_checkbox %} has_checkbox ="{{ has_checkbox }}" {% endif %}
+	{% if unread_responses %} unread_responses="{{ unread_responses }}" {% endif %}>
     <message>{{ message }}</message>
     <htmlMessage>{{ message }}</htmlMessage>
-    <description/>
-    <attachments/>
+		{% for p in progress %}
+		<progress completed_by="{{ p.completed_by }}" sent_to="{{ p.sent_to }}" marked="{{ p.marked }}" no_excused="{{ p.no_excused }}"/>
+		{% endfor %}
 </notice>

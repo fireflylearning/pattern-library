@@ -1,11 +1,8 @@
 'use strict';
 
 var React = require('react');
-var dateFormatting = require('../../../_lib/_ui/dateFormatting')();
-var ensureIsDate = require('../../../_lib/_ui/date-utils').ensureIsDate;
 var DropDownButton = require('../../../ff_module/ff_module-dropdown-button/ff_module-dropdown-button-component/ff_module-dropdown-button-component');
 var TaskEventStatus = require('../../../ff_module/ff_module-task-event-status/ff_module-task-event-status');
-
 var generateClass = require('./utils').generateClass;
 
 
@@ -22,13 +19,20 @@ function renderActions(props) {
     var list = props.actions;
     var isDisabled = !canEdit(props.state);
     if (list && list.length) {
-        return <DropDownButton key="actions" text="..." list={list} isDisabled={isDisabled} modifier="link-right" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
+        return <DropDownButton key="actions" text="..." list={list} isDisabled={isDisabled} modifier="link" icon="response-edit" hideText={true} hideArrow={true} classes="ff_module-task-event__actions"/>
     }
     return null;
 }
 
 function renderStatus(props) {
-    return <TaskEventStatus key="status" type={props.description.type} state={props.state || {}} onError={props.onRetryAfterStatusError || function(){}} classes='ff_module-task-event__status'/>
+    return <TaskEventStatus
+        key="status"
+        type={props.description.type}
+        state={props.state || {}}
+        tryAgainCallback={props.tryAgainCallback || function(){}}
+        eventId={props.localEventId}
+        setTransitionFinished={props.setTransitionFinished}
+        classes='ff_module-task-event__status'/>
 }
 
 module.exports = React.createClass({
@@ -41,5 +45,16 @@ module.exports = React.createClass({
                 {renderStatus(this.props)}
             </div>
         );
+    },
+    statics: {
+        getAuthor: function(props) {
+            if (props.description.author) {
+                if (props.description.author.guid == props.loggedInUserGuid)
+                    return "You";
+                if (props.description.author.name)
+                    return props.description.author.name;
+            }
+            return 'User';
+        }
     }
 });

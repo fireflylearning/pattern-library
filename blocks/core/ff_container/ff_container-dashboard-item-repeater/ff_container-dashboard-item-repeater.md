@@ -2,7 +2,7 @@
 data:
   -
     items:
-      - "example item 1"
-      - "example item 2"
-      - "example item 3"
+      - "example item 1A"
+      - "example item 2B"
+      - "example item 3C"
 ---

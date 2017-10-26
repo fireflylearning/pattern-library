@@ -5,6 +5,7 @@
     {% if icon_align %} icon_align="{{icon_align}}"  {% endif %}
     {% if disabled %}   disabled="{{disabled}}"     {% endif %}
     {% if hide_text %}  hide_text="{{hide_text}}"   {% endif %}
+    {% if href %}       href="{{href}}"             {% endif %}
     >
         <text>{{text | default('Click me?')}}</text>
         {% for d in data %}

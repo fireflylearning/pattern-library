@@ -15,11 +15,11 @@
     }
 }
 
-.ff_module-profile-picture-and-name-button {
-    &--is-selected {
-        cursor: default;
-        &__title {
-            #ff_mix-util-prose > .link-disabled(#ccc);
-        }
+.ff_module-profile-picture-and-name-button--is-selected {
+    cursor: default;
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+    .ff_module-profile-picture-and-name-button__title:hover {
+        color:@ff_color_control_link;
     }
 }

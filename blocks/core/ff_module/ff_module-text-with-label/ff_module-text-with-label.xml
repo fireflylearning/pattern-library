@@ -1,0 +1,4 @@
+<textWithLabel modifier="{{modifier}}">
+	<label>{{label}}</label>
+	<text>{{text}}</text>
+</textWithLabel>

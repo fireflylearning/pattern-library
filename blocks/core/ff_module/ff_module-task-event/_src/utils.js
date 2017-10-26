@@ -1,18 +1,11 @@
 'use strict';
 
-var dateFormatting = require('../../../_lib/_ui/dateFormatting')();
-var ensureIsDate = require('../../../_lib/_ui/date-utils').ensureIsDate;
 var stateClasses = require('./presentationStates').stateClasses;
 var presentationStates = require('./presentationStates').presentationStates;
 var eventStates = require('./events').states;
 
-function formatDate(date) {
-    var validDate = ensureIsDate(date);
-    if (validDate) {
-        return dateFormatting.niceDate(date);
-    }
-    return '';
-}
+// Taken from SQLKeyRing.cs (combination of short and full regex)
+const urlRegex = /(www(\.[A-Za-z0-9\-]+){2,})|(([A-Za-z]{3,9}):\/\/)([-;:&=\+\$,\w]+@{1})?([-A-Za-z0-9\.]+)+:?(\d+)?((\/[-\+~%/\.\w]+)?\??([-\+=&;%@\.\w]+)?#?([\w]+)?)?/;
 
 function getPresentationState(state) {
     state = state || {};
@@ -39,6 +32,43 @@ function generateClass(base, props) {
     return classNames.join(' ');
 }
 
-module.exports.formatDate = formatDate;
+function urlifyText(text) {
+    let urlTextArray = [];
+    let parts = text.split(" ");
+
+    for (let i = 0; i < parts.length; i++) {
+        if (parts[i].match(urlRegex)) {
+            urlTextArray.push(<a key={'link' + i} href={parts[i]} target='_blank'>{parts[i]}</a>);
+        }
+        else {
+            urlTextArray.push(parts[i]);
+        }
+
+        if (i < parts.length - 1) {
+            urlTextArray.push(" ");
+        }
+    }
+    return urlTextArray;
+}
+
+function breakifyComponents(tags) {
+    var out = [];
+    tags.forEach(tag => {
+        if (typeof tag == "string") {
+            var lines = tag.split(/\r\n|[\n\v\f\r\x85\u2028\u2029]/);
+            out.push(lines.shift());
+            lines.forEach(line => {
+                out.push(<br />);
+                out.push(line);
+            });
+        } else {
+            out.push(tag);
+        }
+    });
+    return out;
+}
+
 module.exports.getPresentationState = getPresentationState;
 module.exports.generateClass = generateClass;
+module.exports.urlifyText = urlifyText;
+module.exports.breakifyComponents = breakifyComponents;

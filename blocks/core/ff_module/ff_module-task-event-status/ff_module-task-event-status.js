@@ -32,7 +32,7 @@ var textValues = {
 
 var TryAgainButton = function TryAgainButton(props) {
     return (
-        <span> <Button text='Try again.' modifier='link' classes='ff_module-task-event-status__error-button' onClick={props.onError} /></span>
+        <span> <Button text='Try again.' modifier='link' classes='ff_module-task-event-status__error-button' onClick={props.tryAgainCallback} /></span>
     );
 }
 
@@ -45,7 +45,7 @@ var TryAgainText = function TryAgainText(props) {
 }
 
 function getStatusMessage(props, presentationState) {
-    var tryAgainButton = <TryAgainButton onError={props.onError} />;
+    var tryAgainButton = <TryAgainButton tryAgainCallback={props.tryAgainCallback} />;
 
     var messages = {};
     messages[presentationStates.default] = '';
@@ -111,7 +111,6 @@ function getTransientDisplayState(eventState, uiState) {
 function getSendState(state) {
     var sendState = '';
     state = state || {};
-
 
     if (state[eventStates.error]) {
         if (state[eventStates.released]) {
@@ -260,7 +259,7 @@ module.exports = React.createClass({
     displayName: 'TaskEventStatus',
     propTypes: {
         state: React.PropTypes.object.isRequired,
-        onError: React.PropTypes.func.isRequired
+        tryAgainCallback: React.PropTypes.func.isRequired
     },
     getInitialState: function(){
         return {
@@ -305,6 +304,7 @@ module.exports = React.createClass({
             self.setState({
                 transientDisplayStatesActive: false
             });
+            self.props.setTransitionFinished(self.props.eventId);
         }, transitionDelay);
 
         this.setState({

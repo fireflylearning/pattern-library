@@ -1,0 +1,15 @@
+<form-completed
+  {% if title %}title="{{title}}"{% endif %}
+  {% if message %}message="{{message}}"{% endif %}
+  {% if image %} image="{{image}}"{% endif %}
+>
+{% if buttons %}
+
+  {% for button in buttons %}
+    <block>
+    {% include '../ff_module-button/ff_module-button.xml' with button %}
+    </block>
+  {% endfor %}
+
+{% endif %}
+</form-completed>

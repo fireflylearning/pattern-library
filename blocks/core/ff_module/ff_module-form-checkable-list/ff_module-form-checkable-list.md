@@ -29,8 +29,7 @@ requires:
     - ff_module-form-input
 ---
 
-## React component
-<div data-ff_module-form-checkable-list="" />
+## Description
 
 A module for displaying groups of radio or checkboxes.
 

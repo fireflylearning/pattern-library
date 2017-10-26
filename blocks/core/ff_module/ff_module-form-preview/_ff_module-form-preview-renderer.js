@@ -29,13 +29,13 @@ var data = {
 		url: '',
 		list: [{
 			title: "Title:",
-			value: "Volcano formation",
+			value: "Unit Test 3",
 			previewfor: "input[name='title']",
 			key: 3
 		},
 		{
 			title: "Due Date:",
-			value: "16/05/2016",
+			value: "2016-07-06T14:13:43Z",
 			key: 4
 		},
 		{
@@ -75,9 +75,13 @@ var data = {
 	{
 		modifier: 'description',
 		title: 'Description',
-		html: <div><h2>Volcano formation</h2> <p>Volcanoes are amazing</p></div>,
+		html: '<div><h2>Volcano formation</h2> <p>Volcanoes are amazing</p></div>',
 		key: 4
-	}]
+	},
+    {
+        title: 'Test',
+        value: (new Date()).toString()
+    }]
 }
 
 module.exports = function() {

@@ -36,8 +36,8 @@ var buttonProps = [{
     text: 'Button primary',
     modifier: 'primary',
 }, {
-    text: 'Button compact',
-    modifier: 'compact',
+    text: 'Button tertiary',
+    modifier: 'tertiary',
 }, {
     text: 'Button primary compact',
     modifier: 'primary-compact',
@@ -101,7 +101,8 @@ buttonProps = buttonProps.map(function(props) {
     return _.assign({}, props, {
         list: [].concat(list, _.assign({}, checkbox, {
             id: _.uniqueId('dd_list-')
-        }))
+        })),
+        iconBase: '/icons/sprites.svg#ff_icon-'
     });
 });
 buttonProps.push({
@@ -129,12 +130,37 @@ buttonProps.push({
         id: 'checkbox-3'
     }]
 });
+buttonProps.push({
+    text: 'Button Overflow Viewport',
+    list: [{
+        href:'#',
+        text: 'Awaiting Response with some long text to make it overflow the viewport',
+        id: 'item-1'
+    }, {
+        href:'#',
+        text: 'Awaiting Response with some long text',
+        id: 'item-2'
+    }]
+});
+buttonProps.push({
+    text: 'Button Overflow Right',
+    list: [{
+        href:'#',
+        text: 'Awaiting Response with some long',
+        id: 'item-1'
+    }, {
+        href:'#',
+        text: 'Awaiting Response with some long text to',
+        id: 'item-2'
+    }]
+});
 
 module.exports = function() {
     document.addEventListener('DOMContentLoaded', function(event) {
         Array.prototype.forEach.call(document.querySelectorAll('[data-ff_module-dropdown-button-component]'), function(domElement, index) {
             var root = React.createElement('ul', { style: { listStyle: 'none', margin: 0, padding: 0 } }, buttonProps.map(function(props, propsIndex) {
-                return React.createElement('li', { key: 'li' + propsIndex, style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px' } },
+                var float = (propsIndex + 1) === buttonProps.length ? 'right' : 'none';
+                return React.createElement('li', { key: 'li' + propsIndex, style: { listStyle: 'none', margin: 0, padding: 0, marginBottom: '5px', float: float } },
                     React.createElement(DropdownButton, props));
             }));
             ReactDOM.render(root, domElement);

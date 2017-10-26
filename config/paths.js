@@ -113,6 +113,11 @@ function getPaths() {
                 dest: path.join(basePaths.icons, 'config')
             }
         },
+        svgicons: {
+          source: 'icons/*.svg',
+          dest: path.join(basePaths.dest, 'icons'),
+          export: '/icons'
+        },
         assets: {
             src: basePaths.assets + '**/*.*',
             dest: basePaths.dest,

@@ -28,22 +28,16 @@ See [the variations page](/tests/dropdown-buttons.html) for examples.
 - **tertiary**: Button will take on standard tertiary button styling.
 - **right**: Button's children will align right.
 - **compact**: Compact style
-- **widelist**: Instead of taking the width of the button, the list will take on a set wide width.
 
 - **primary-right**: Button will take on standard primary button styling and children will align right.
 
 - **primary-compact**: Combines compact and primary (above)
 - **primary-compact-right**: Combines compact, primary, and right (above)
-- **primary-compact-right-widelist**
 
 - **teritary-right**: Button will take on standard primary button styling and children will align right.
 
 - **teritary-compact**: Combines compact and primary (above)
 - **teritary-compact-right**: Combines compact, primary, and right (above)
-- **teritary-compact-right-widelist**
-
-- **compact-widelist**
-- **compact-right-widelist**
 
 ## State
 

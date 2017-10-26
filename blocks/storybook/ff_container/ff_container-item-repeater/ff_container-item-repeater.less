@@ -1,0 +1,25 @@
+.ff_container-item-repeater__item {
+    border: 1px solid @ff_colour_control_border;
+    border-bottom: none;
+    &:last-child {
+        border-bottom: 1px solid @ff_colour_control_border;
+    }
+}
+
+.ff_container-item-repeater__item--rounded {
+    border: 1px solid @ff_colour_control_border;
+    border-bottom: 0;
+    // overflow: auto;
+    &:first-child, &:first-child div:first-child {
+        border-top-left-radius: @ff_size_control_rounding;
+        border-top-right-radius: @ff_size_control_rounding;
+    }
+    &:last-child, &:last-child div:last-child {
+        border-bottom-left-radius: @ff_size_control_rounding;
+        border-bottom-right-radius: @ff_size_control_rounding;
+    }
+    &:last-child {
+        border-bottom: 1px solid @ff_colour_control_border;
+    }
+}
+

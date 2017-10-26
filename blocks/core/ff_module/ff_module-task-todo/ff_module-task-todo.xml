@@ -1,0 +1,9 @@
+<notice modifier="{{ modifier }}" id="{{ id }}" sent_to="{{ sent_to }}" fuzzy_date="{{ fuzzy_date }}" from="{{ from }}" link_href="{{ link_href }}" to="{{ to }}" duedate="{{ duedate }}">
+    <message>{{ message }}</message>
+    <htmlMessage>{{ message }}</htmlMessage>
+    <description/>
+    <attachments/>
+    <module>
+    	{{ module | safe }}
+    </module>
+</notice>

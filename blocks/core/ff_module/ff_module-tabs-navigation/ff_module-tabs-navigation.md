@@ -9,6 +9,7 @@ data:
         state: ''
         label: "Details"
         id: "tab2a"
+        badge: "33"
       -
         state: ''
         label: "Tasks"

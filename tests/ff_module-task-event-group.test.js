@@ -18,6 +18,8 @@ var events = [{
         author: { name: 'Terry Teacher' },
         message: 'Message from the teacher',
         sent: new Date("July 11, 2016 11:13:00")
+    },
+    state: {
     }
 }, {
     localEventId: 'event-2',
@@ -26,7 +28,8 @@ var events = [{
         author: { name: 'Terry Teacher' },
         message: 'Message from the teacher',
         sent: new Date("July 11, 2016 11:13:00")
-
+    },
+    state: {
     }
 }];
 
@@ -43,6 +46,8 @@ var deletedEvents = [{
     }
 }];
 
+var allEvents = events.concat(deletedEvents);
+
 describe('TaskEventGroup', function() {
 
     it('should render', function() {
@@ -56,10 +61,9 @@ describe('TaskEventGroup', function() {
         expect(domEvents.length).to.equal(events.length);
     });
 
-    it('should add deleted class for single event with deleted state', function() {
-        var domEvent = getElementByClass({ events: deletedEvents }, 'ff_module-task-event');
-        expect(domEvent).to.exist;
-        expect(domEvent.className).to.contain('--is-deleted');
+    it('should skip events with deleted state', function() {
+        var domEvents = getElementsByClass({ events: allEvents }, 'ff_module-task-event');
+        expect(domEvents.length).to.equal(events.length);
     });
 
 });

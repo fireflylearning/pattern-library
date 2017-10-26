@@ -50,7 +50,6 @@
 .ff_module-progress__key {
     margin: @ff_size_control_vertical 0 0;
     padding: 0;
-    display: flex;
 }
 
 .ff_module-progress__label {
@@ -60,7 +59,7 @@
     #ff_mix-util-prose > .text-small();
     #ff_mix-util-prose > .text-quiet();
 
-    margin-right: @ff_size_control_vertical;
+    margin-right: @ff_size_spacing_max;
     &:last-child {margin-right: 0;}
 
     &:before {
@@ -71,7 +70,7 @@
         float: left;
         border-radius: 50%;
         border: 1px solid @ff_colour_control_border;
-        margin-right: @ff_size_control_vertical;
+        margin-right: @ff_size_spacing_min * .7;
     }
 
 }

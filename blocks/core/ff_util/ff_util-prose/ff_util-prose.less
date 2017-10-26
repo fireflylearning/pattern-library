@@ -49,6 +49,9 @@
     .text-notify {
         color: @ff_colour_notify;
     }
+    .text-inform {
+        color: @ff_colour_inform;
+    }
     .text-block {
         color: @ff_colour_control_text;
         padding: @ff_size_control_vertical @ff_size_control_horizontal;
@@ -56,6 +59,7 @@
         #ff_mix-util-prose > .spacing;
     }
     .text-block--notify {}
+    .text-block--inform {}
     .text-block--error {}
     .link-with-decoration {
         text-decoration: underline;
@@ -308,10 +312,16 @@
     &__text--small {
         #ff_mix-util-prose > .text-small();
     }
+    &__text--quiet {
+        #ff_mix-util-prose > .text-quiet();
+    }
     &__text--danger {
         #ff_mix-util-prose > .text-danger();
     }
     &__text-block--notify {
+        #ff_mix-util-prose > .text-block--notify();
+    }
+    &__text-block--inform {
         #ff_mix-util-prose > .text-block--notify();
     }
     &__text-block--error {
@@ -324,5 +334,9 @@
     &__left-blank {
         #ff_mix-util-prose > .text-quiet();
         #ff_mix-util-prose > .text-left-blank();
+    }
+    &__text--small-quiet {
+        #ff_mix-util-prose > .text-quiet();
+        #ff_mix-util-prose > .text-small();
     }
 }

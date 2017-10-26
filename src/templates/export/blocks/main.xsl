@@ -2,7 +2,8 @@
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:msxsl="urn:schemas-microsoft-com:xslt"
-    xmlns:ext="http://exslt.org/common">
+    xmlns:ext="http://exslt.org/common"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
 
 {{contents|safe}}
 

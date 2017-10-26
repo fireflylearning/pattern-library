@@ -1,0 +1,90 @@
+.ff_container-dashboard-section+.ff_container-dashboard-section {
+    margin-top: 22rem/@ff_base;
+}
+
+.ff_container-dashboard-section {
+    
+    // header
+    &__header {
+        #ff_mix-sections > .header();
+        &--messages {
+            background-color: @sb_c_yellow;
+        }
+        &--planner {
+            background-color: @sb_c_bluegrey;
+        }
+        &--tasks {
+            background-color: @sb_c_red;
+        }
+    }
+    
+    // main
+    &__title {
+        #ff_mix-sections > .title-contrast(@sb_c_orange);
+    }
+    &__main {
+        #ff_mix-sections > .main();
+        background-color: white;
+        border-left: 1px solid fade(@ff_colour_control_border, 50%);
+        border-right: 1px solid fade(@ff_colour_control_border, 50%);
+    }
+    &__main--no-footer {
+        #ff_mix-sections > .main--no-footer()
+    }
+
+    // footer
+    &__footer {
+        #ff_mix-sections > .footer();
+    }
+    &__more-link {
+        #ff_mix-util-prose > .link-no-decoration();
+        #ff_mix-responsive-colour > .check-contrast(@ff_colour_control_bg, @ff_color_control_link, #fff);
+
+        &:hover, &:visited {
+            #ff_mix-responsive-colour > .check-contrast(@ff_colour_control_bg, fade(@ff_color_control_link, 90%), fade(#fff, 90%));
+        }
+    }
+    &--simple {
+        
+        .ff_container-dashboard-section {
+            // header
+            &__header {
+                padding-left: 0;
+                padding-right: 0;
+                background-color: transparent;
+                border: none;
+                border-radius: 0;
+            }
+            
+            // main
+            &__title {
+                font-size: 24rem/@ff_base;
+                color: @ff_colour_control_text;
+            }
+            &__main {
+                border: 1px solid fade(@ff_colour_control_text, 10%);
+                border-radius: @ff_size_control_rounding/2;
+            }
+
+            // footer
+            &__footer {
+                padding-left: 0;
+                padding-right: 0;
+                background-color: transparent;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                font-weight: bold;
+            }
+
+            &__more-link {
+                color: @ff_color_control_link;
+                &:hover, &:visited {
+                    color: @ff_color_control_link;
+                }
+            }
+
+        }
+    }
+}
+

@@ -4,8 +4,8 @@ var React = require('react');
 var generateClasses = require('../../_lib/_ui/class-utils.js').generateStandardClass;
 
 function getMarkText(props) {
-    if (props.mark) {
-        if (props.markMax) {
+    if (props.mark != null) {
+        if (props.markMax != null) {
             return props.mark + '/' + props.markMax;
         }
         return props.mark;
@@ -13,24 +13,11 @@ function getMarkText(props) {
     return null;
 }
 
-var MarkAndGrade = function TaskEventMarkAndGrade(props) {
-    var markText = props.markText,
-        gradeText = props.gradeText;
-
-    var mark = markText ?
-            <span className="ff_module-mark-and-grade__mark">{markText}</span> :
-            null,
-
-        grade = gradeText ?
-            <span className="ff_module-mark-and-grade__grade">{gradeText}</span> :
-            null,
-
-        sep = (markText && gradeText) ? ' ' : '';
-
-    return (mark || grade) ?
-        <p className={generateClasses("ff_module-mark-and-grade", props)}>{mark}{sep}{grade}</p> :
-        <span/>;
-
+function getPercentageText(props) {
+    if (props.mark != null && props.markMax != null && props.markMax > 0 && props.mark <= props.markMax) {
+        return Math.round(props.mark / props.markMax * 100) + '%';
+    }
+    return null;
 }
 
 module.exports = React.createClass({
@@ -42,8 +29,25 @@ module.exports = React.createClass({
     },
     render: function(){
         var markText = getMarkText(this.props),
-            gradeText = this.props.grade || '';
+            percentageText = getPercentageText(this.props),
+            gradeText = this.props.grade || null;
 
-        return <MarkAndGrade markText={markText} gradeText={gradeText}/>
+        var marks = [];
+
+        if (markText != null) {
+           marks.push(<span className="ff_module-mark-and-grade__mark">{markText}</span>);
+        }
+
+        if (percentageText) {
+            marks.push(<span className="ff_module-mark-and-grade__percentage">{percentageText}</span>);
+        }
+
+        if (gradeText != null) {
+            marks.push(<span className="ff_module-mark-and-grade__grade">{gradeText}</span>);
+        }
+
+        return (marks.length > 0) ?
+            <p className={generateClasses("ff_module-mark-and-grade", this.props)}>{marks}</p> :
+            <span/>;
     }
-})
+});

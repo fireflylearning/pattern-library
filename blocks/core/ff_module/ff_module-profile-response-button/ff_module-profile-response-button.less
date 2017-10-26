@@ -1,5 +1,6 @@
 .ff_module-profile-response-button {
     #ff_mix-buttons > .clear;
+    position: relative;
     padding: @ff_size_spacing_max @ff_size_spacing_min;
     cursor: pointer;
     width: 100%;
@@ -16,6 +17,7 @@
         height: auto;
     }
     &__caption {
+        width: 80%;
         margin:0;
         margin-left: @ff_size_spacing_max*1.25;
         display: inline-block;
@@ -42,6 +44,31 @@
         #ff_mix-util-prose > .text-quiet();
         font-size: 0.875rem;
     }
+    &__icon-completed {
+        float: left;
+        margin: 5px 3px 0 0;
+        fill:grey;
+        width: 26px;
+        height: 26px;
+    }
+    &__status-icon {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 10px;
+        width: 20px;
+        height: 20px;
+        &--ready-to-send {
+            fill:@ff_colour_control_border;
+        }
+        &--sent {
+            fill:@ff_colour_success;
+        }
+        &--error {
+            fill:@ff_colour_error;
+        }
+    }
+
 }
 
 .ff_module-profile-response-button {

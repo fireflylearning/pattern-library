@@ -24,7 +24,7 @@
     }
 
     &__meta {
-        display: none;        
+        display: none;
     }
 
     &__bar {
@@ -61,7 +61,7 @@
             font-weight: bold;
         }
 
-        margin-right: @ff_size_control_vertical;
+        margin-right: @ff_size_spacing_max;
         &:last-child {margin-right: 0;}
 
         &:before {
@@ -73,19 +73,19 @@
             border-radius: 50%;
             border: 1px solid @ff_colour_control_border;
             box-shadow:         inset 0px 0px 0 2px @ff_colour_control_bg;
-            margin-right: @ff_size_control_vertical;
+            margin-right: @ff_size_spacing_min * .7;
         }
 
         &--completed:before {
-            #ff_module-progress > .completed();            
+            #ff_module-progress > .completed();
         }
 
         &--marked:before {
-            #ff_module-progress > .marked();            
+            #ff_module-progress > .marked();
         }
 
         &--total:before {
-            #ff_module-progress > .total();            
+            #ff_module-progress > .total();
         }
     }
 }

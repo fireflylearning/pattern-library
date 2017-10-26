@@ -1,0 +1,17 @@
+<emptyState>
+	{% if image %}
+		<image>{{ image | safe }}</image>
+	{% endif %}
+	
+	{% if headline %}
+		<headline>{{headline}}</headline>
+	{% endif %}
+
+	{% if explanation %}
+		<explanation>{{ explanation }}</explanation>
+	{% endif %}
+
+	{% if callToAction %}
+		<callToAction>{{ callToAction | safe }}</callToAction>
+	{% endif %}
+</emptyState>

@@ -20,12 +20,10 @@ function isChecked(props) {
 }
 
 function getValidationProps(props) {
-    var def = {};
     if (props.validation) {
-        def.validators = props.validation.rules;
-        def.validateOn = props.validation.validateOn;
+        return _.clone(props.validation);
     }
-    return def;
+    return {};
 }
 
 const controlPropsMap = {
@@ -69,16 +67,27 @@ const FF_Field = createFieldClass({
             onBlur: props.onBlur,
             onFocus: props.onFocus,
             onClick: props.onClick,
+            onLoad: props.onLoad,
             errors: props.fieldValue && props.fieldValue.errors,
-            valid: props.fieldValue && props.fieldValue.valid
+            valid: isValid(props.fieldValue),
+            pristine: props.fieldValue.pristine,
+            touched: props.fieldValue.touched,
+            retouched: props.fieldValue.retouched,
+            submitFailed: props.fieldValue.submitFailed,
+            focus: props.fieldValue.focus,
+            submitted: props.fieldValue.submitted
         };
     },
     'FormLabel': (props) => {
         return {
-            valid: props.fieldValue && props.fieldValue.valid
+            valid: isValid(props.fieldValue)
         };
     }
 });
+
+function isValid(fieldValue) {
+    return fieldValue && fieldValue.valid;
+}
 
 export class FormField extends React.Component {
     constructor(props) {
@@ -86,6 +95,8 @@ export class FormField extends React.Component {
         this.displayName = 'FormField';
     }
     render() {
+
+        if (!this.props.model) return <div className={this.props.className}>{this.props.children}</div>;
 
         return (
             <FF_Field {...getValidationProps(this.props)} {...this.props}>

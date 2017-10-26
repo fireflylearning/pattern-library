@@ -18,17 +18,15 @@ var deletedState = React.createClass({
     })
 });
 
-var editedState = 'p';
-
 function defaultState(){
     var description = this.props.description,
         files = description.files || [],
-        name = description.author.name,
+        name = TaskEventBase.getAuthor(this.props),
         fileText = getFileText(files);
 
     return <TaskEventBase {...this.props}>
-                <p className="ff_module-task-event__author-action">{name + ' added ' + fileText}:</p>
-                <ModuleFileList files={files} classes="ff_module-task-event__files"/>
+                <p className="ff_module-task-event__author-action">{name} added {fileText}:</p>
+                <ModuleFileList files={files.map( file => ({title: file.title, type: file.type, href: "/resource.aspx?id=" + file.id.Value }))} classes="ff_module-task-event__files"/>
             </TaskEventBase>
 }
 
@@ -39,4 +37,3 @@ function getFileText(files) {
 module.exports = {};
 module.exports[eventStates.default] = defaultState;
 module.exports[eventStates.deleted] = deletedState;
-module.exports[eventStates.edited] = editedState;

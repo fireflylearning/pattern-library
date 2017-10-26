@@ -19,3 +19,4 @@ requires:
     - **`isActive`**: {Bool}  
 - **`isOpen`**: {Bool}
 - **`isDisabled`**: {Bool}
+- **`isRadioGrp`**: {Bool}

@@ -2,10 +2,12 @@
     <xsl:param name="data" />
 
     <div class="ff_container-page-header">
-        <h1 class="ff_container-page-header__title">Page title</h1>
-        <xsl:call-template name="ff_module-formsteps" >
-            <xsl:with-param name="data" select="$data" />
-        </xsl:call-template>
+        
+        <div class="ff_container-page-header__controls">
+          <xsl:call-template name="ff_module-formsteps" >
+              <xsl:with-param name="data" select="$data" />
+          </xsl:call-template>
+        </div>
      </div>
 
     <p>Other content</p>

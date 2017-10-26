@@ -12,9 +12,11 @@ export class DropdownFilters extends React.Component {
         this.displayName = 'DropdownFilters';
     }
     render() {
-        var list = this.props.filters.map(filter => {
+        var rgName = genRadioGrpName();
+        var list = this.props.filters.map((filter, idx) => {
             return {
-                type: listItemTypes.checkbox,
+                type: this.props.isRadioGrp ? listItemTypes.radio : listItemTypes.checkbox,
+                name: this.props.isRadioGrp ? rgName : filter.id,
                 id: filter.id,
                 text: filter.name,
                 checked: filter.isActive,
@@ -37,6 +39,11 @@ export class DropdownFilters extends React.Component {
         }
     }
 }
+
+function genRadioGrpName() {
+    return 'filt-rgroup.' + Date.now();
+}
+
 DropdownFilters.propTypes = {
     text: React.PropTypes.string.isRequired,
     onAddFilter: React.PropTypes.func.isRequired,

@@ -1,0 +1,26 @@
+.ff_module-form-set-personal-task {
+	&--compact-form {
+		.ff_container-form-line,
+		.ff_container-form-errors {
+			padding: 0 @ff_size_control_horizontal;
+		}
+	}
+}
+
+.ff_module-form-set-personal-task__message--success,
+.ff_module-form-set-personal-task__message--saving {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+	min-height: 160px; // same min-height of the container modal
+}
+
+.ff_module-form-set-personal-task__message--failure {
+	@media (max-width: 480px) {
+		padding: @ff_size_spacing_min 0;
+	}
+	max-width: 60%;
+	color: @ff_colour_red;
+	font-weight: 700;
+}
