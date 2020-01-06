@@ -1,3 +1,5 @@
+This library is deprecated as the pattern library code was moved into the Firefly Web App repository. This repository has been archived as it uses npm packages with known security vulnerabilities.
+
 # Firefly Pattern Library
 
 ## Contents
